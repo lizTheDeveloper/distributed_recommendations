@@ -1,0 +1,142 @@
+# Match Feed
+
+Distributed recommendations for federated video. Match Feed is a client-side layer on top
+of PeerTube: your feed is ranked **on your device** from creators you follow, public taste
+lists you subscribe to, reserved slots for new creators, and (later) private, mutual,
+expiring **matches** with people you choose and small **circles** that pool picks. No
+server decides the feed, and every recommendation says why it is there.
+
+The idea and the evidence behind it are in [`docs/DESIGN.md`](docs/DESIGN.md). The short
+version: decentralized peer collaborative filtering is old (Tribler's BuddyCast, PocketLens,
+Gossple); what nobody has shipped is the consent model of user-chosen, mutual, expiring
+matches plus public creator taste lists plus on-device ranking on an open protocol.
+
+Status: early. The first tier (Follow, Subscribe to taste, explore slots) works in a web
+client over live PeerTube instances. Match and Circles exist as tested policy code and a
+simulation, but have no networking or cryptography yet. See "Status" below.
+
+## Try it
+
+- **Web client** (offline snapshot build, runs in the browser sandbox): https://claude.ai/artifact/KSbWrUFZXvxVUCFi1yzvSK
+  It bundles about 125 real videos from framatube.org and tilvids.com; thumbnails are placeholders and playback is disabled. Run the live build locally (below) for real instances.
+- **Design mockup** (static, includes the Match/Circle screens and creator studio): https://claude.ai/artifact/HuSpWCdxK54gjwHjEqagh5 (source: `mockups/match-feed.html`)
+
+## Repository map
+
+| Path | What it is |
+|---|---|
+| `packages/core/` | `@match-feed/core`: the on-device library. Feed recipes, ranking with explore slots and per-list caps, explanations, taste sketches, trust walk, circle and preview privacy policies, a PeerTube client. TypeScript, no runtime dependencies. Apache-2.0 |
+| `packages/bridge/` | `@match-feed/bridge`: publishes public PeerTube videos as Nostr NIP-71 video events. Library plus a dry-run-by-default CLI. Apache-2.0 |
+| `apps/web/` | The v1 web client (PWA): follows, taste lists, recipes, explore slots, creator studio. Vanilla TypeScript built with esbuild. Apache-2.0 |
+| `sim/` | Python + numpy simulation harness: recommender quality, explore share, circle leakage, preview leakage, Sybil reach |
+| `docs/` | Design, threat model, wire formats, web app, analytics, open-source stack, simulation results |
+| `reports/` | Prior-art research report |
+| `research_notes/` | Source-verification and research notes behind the report |
+| `mockups/` | Static HTML mockup |
+
+## Run it
+
+Requires Node 22.6 or later (TypeScript runs through `--experimental-strip-types`) and,
+for the simulation, Python 3 with numpy (tested with Python 3.13, numpy 2.5).
+
+### Core library
+
+```sh
+cd packages/core
+npm test        # node:test, offline (97 tests)
+npm run demo    # ranks live videos from framatube.org with invented follows and matches
+                # flags: --instance https://… --seed N --limit N
+```
+
+### PeerTube → NIP-71 bridge
+
+```sh
+cd packages/bridge
+npm install
+npm test            # offline tests against trimmed real API fixtures (31 tests)
+npm run typecheck
+
+# Dry run: one event JSON per line on stdout, nothing published
+npm run -s sync -- sync --instance framatube.org --channel framaconf --limit 5
+
+# Dry run signed with a throwaway key, to see id/pubkey/sig
+npm run -s sync -- sync --instance tube.tchncs.de --channel dies_und_das --ephemeral-key
+```
+
+Publishing needs `--publish --relay wss://…` and a key in `NOSTR_SECRET_KEY` (never on the
+command line). Read "Who signs" in [`packages/bridge/README.md`](packages/bridge/README.md)
+first: an instance-run bridge signs with its own key and names the creator with
+`--creator-pubkey`; it must not pose as the creator.
+
+### Web client
+
+```sh
+cd apps/web
+npm install
+npm run dev            # http://localhost:8080, rebuilds on save
+npm run build          # dist/ (PWA) and dist-artifact/index.html (single-file offline build)
+npm test               # offline (20 tests)
+npm run typecheck
+npm run snapshot       # refresh the offline snapshot (network)
+```
+
+Serve a build with `python3 -m http.server -d dist 8080`. The service worker registers only
+over https. Details: [`apps/web/README.md`](apps/web/README.md), [`docs/WEB_APP.md`](docs/WEB_APP.md).
+
+### Simulation
+
+From the repository root:
+
+```sh
+python3 -m sim.run --all --quick                  # smoke test, ~20 s
+python3 -m sim.run --all                          # all five experiments, ~7.5 min on 4 cores; writes sim/out/
+python3 -m sim.run --exp 2 --seed 5 --out /tmp/simout --workers 2
+python3 -m unittest discover -s sim/tests -t .
+```
+
+Details: [`sim/README.md`](sim/README.md).
+
+## Documents
+
+| Document | Contents |
+|---|---|
+| [`docs/DESIGN.md`](docs/DESIGN.md) | The design: tiers, ship order, defaults, match and circle protocols, decisions, implementation status, sources |
+| [`docs/THREAT_MODEL.md`](docs/THREAT_MODEL.md) | Assets, adversaries, threats T1–T23 with mitigations and which are implemented |
+| [`docs/PROTOCOL.md`](docs/PROTOCOL.md) | Wire formats: recipes, taste sketches, circle policy, previews, second degree |
+| [`docs/SIMULATION_RESULTS.md`](docs/SIMULATION_RESULTS.md) | What the simulation found and the parameters it set |
+| [`docs/WEB_APP.md`](docs/WEB_APP.md) | Web client data flow, local state, provisional taste-list format |
+| [`docs/ANALYTICS.md`](docs/ANALYTICS.md) | Creator analytics tiers and decisions |
+| [`docs/OSS_STACK.md`](docs/OSS_STACK.md) | Open-source building blocks, licenses, audit status |
+| [`reports/Distributed video recommendation prior art.md`](reports/Distributed%20video%20recommendation%20prior%20art.md) | Prior-art report, with a 2026-10-19 update on what the simulation confirmed or refuted |
+
+## Status (2026-10-19)
+
+**Works**
+- On-device ranking over live PeerTube data in the web client: follows, taste lists (at most 2 items per list per page, weighted by each list's track record), 5% explore slots ranked by your on-device tag profile, declarative recipes (decision D1), "Why am I seeing this?", Sponsored/Affiliated labels, P2P off by default, self-hosted fonts.
+- Creator studio Tiers 0–1 (host stats links, public counts). Tier 2 discovery stats are tallied on the device only; nothing is sent.
+- The bridge produces NIP-71 events (addressable 34235/34236 by default) and can publish them.
+- Core implements the simulated policies: sketch padding and transport caps (128 items over NIP-17, 256 over MLS), quiet pause (D2), the trust walk, circle output rules (k ≥ 8, thresholds, ε = 1 sticky noise, epoch freeze, picks only), and noised previews with a per-target yearly budget.
+
+**Not built yet**
+- Any Match or Circle networking or cryptography: PSI, NIP-17 wrapping, MLS, secure aggregation.
+- Signed taste lists (the format is provisional; lists are imported by URL or paste).
+- Encryption of local history at rest (the web client uses plain `localStorage`).
+- DAP analytics, NIP-09 deletions in the bridge, key management.
+- Nothing has had an external review or audit.
+
+## Next work (prioritized)
+
+1. **External privacy review of `docs/THREAT_MODEL.md`** before writing Match or Circle networking code.
+2. **Encrypted local storage** in the web client (T9/T22), with an OS-keystore or passphrase-derived key.
+3. **Match:** NIP-17 sketch exchange with per-match keys and rotation, and PSI-cardinality previews (OpenMined PSI behind the existing `PsiCardinality` interface; it needs its own review). Includes the event kinds still unassigned in `docs/PROTOCOL.md`.
+4. **Signed taste lists** as Nostr addressable events, replacing the provisional unsigned format.
+5. **Circles:** choose a secure-aggregation protocol with the noise added inside it, keep the per-epoch noise seed away from members (T19), replace the reference `keyedRng` with an audited PRF (T20), and carry it over Marmot/MLS (marmot-ts for a prototype; an audited path before launch).
+6. **DAP creator analytics** (Tier 2): a Janus leader plus an independent helper; resolve the EU ePrivacy question first.
+7. **Bridge:** NIP-09 deletion events for videos made private or deleted, and a consent check before bridging other people's channels.
+8. **First-hop Sybil defences** (not yet simulated): per-source trust learned from feedback, a per-match item cap.
+9. **External security audit** of the Match and Circle protocols and the client before Match launches.
+
+## License
+
+`packages/core`, `packages/bridge` and `apps/web` are Apache-2.0. Self-hosted fonts in
+`apps/web/public/fonts/` are under the SIL Open Font License 1.1.

@@ -18,7 +18,7 @@ About 80% of the client can be assembled from existing code. The parts that are 
 - an OHTTP→relay shim
 
 The biggest decision is **TypeScript vs Rust for the crypto core**:
-- **Rust (audited).** The audited MLS path is Rust: Marmot MDK and OpenMLS, covered by Least Authority's 2026 audit. The TypeScript MLS path (marmot-ts plus ts-mls) is alpha and unaudited.
+- **Rust (partly audited).** Least Authority reviewed the Marmot protocol (7 Nov 2025) and audited White Noise's Rust backend, whitenoise-rs (final report 1 Apr 2026). Whether MDK itself or OpenMLS were in scope is unconfirmed. The TypeScript MLS path (marmot-ts plus ts-mls) is alpha and unaudited.
 - **TypeScript (fast now).** The audited NIP-44 code is the paulmillr TypeScript reference, which suits a TS app.
 
 Recommended shape:
