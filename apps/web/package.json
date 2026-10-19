@@ -19,7 +19,7 @@
   },
   "devDependencies": {
     "@openmined/psi.js": "2.0.6",
-    "@sentry/browser": "10.76.0",
+    "@sentry/browser": "11.4.0",
     "esbuild": "0.28.2",
     "fake-indexeddb": "6.2.5",
     "typescript": "5.9.3",
