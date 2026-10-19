@@ -1,0 +1,21 @@
+// Public API of @match-feed/labeler (the CLI is src/cli.ts).
+export * from './types.ts';
+export { DEFAULT_CONFIG, checkReviewer, loadConfig, parseConfig } from './config.ts';
+export type { LabelerConfig } from './config.ts';
+export { NAMESPACE, VOCABULARY, ILLEGAL_VALUES, REPORT_TYPE_HINTS, checkValues, strongestAction, vocabularyEntry } from './vocabulary.ts';
+export type { VocabularyEntry } from './vocabulary.ts';
+export { TARGET_PREFIXES, parseTargetSpec, subjectKind, targetFromKey, targetKey } from './targets.ts';
+export type { SubjectKind, Target } from './targets.ts';
+export { GENESIS, auditHash, openDriver, sqliteAvailable, verifyAuditChain } from './store.ts';
+export type { Driver } from './store.ts';
+export { LabelerStore } from './repo.ts';
+export { autoBlur, caseIdFor, ingestReports, purge, reviewQueue, runIntake } from './intake.ts';
+export type { DailyStats, IntakeStats, RunIntakeOptions } from './intake.ts';
+export { ESCALATION_TARGETS, PublishError, REASON_MIN, activeLabels, dismissCase, escalateCase, issueLabel, labelTemplate, reopenCase, retractLabel, retractionTemplate } from './labeling.ts';
+export type { LabelInput, LabelerContext } from './labeling.ts';
+export { SIGNER_MODES, createSigner, envSecret } from './signer.ts';
+export type { SignerMode } from './signer.ts';
+export { exportAudit, statementOfReasons, statementsOfReasons, toCsv, transparencySummary } from './transparency.ts';
+export type { StatementOfReasons, TransparencySummary } from './transparency.ts';
+export { ADMIN_HOST, startAdmin } from './admin.ts';
+export type { AdminOptions, AdminServer } from './admin.ts';

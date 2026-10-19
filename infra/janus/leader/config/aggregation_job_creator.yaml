@@ -1,0 +1,13 @@
+database:
+  url: "postgres://janus@postgres:5432/janus"
+health_check_listen_address: "0.0.0.0:8000"
+batch_aggregation_shard_count: 32
+# New tasks are picked up on this schedule (or on restart).
+tasks_update_frequency_s: 300
+aggregation_job_creation_interval_s: 30
+# Small creators have few reports; a job of 1 is fine (both aggregators see every
+# report share anyway, so job size has no privacy effect).
+min_aggregation_job_size: 1
+max_aggregation_job_size: 100
+logging_config:
+  force_json_output: true

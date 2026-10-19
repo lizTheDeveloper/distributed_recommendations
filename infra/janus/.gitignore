@@ -1,0 +1,7 @@
+# Secrets: per-deployment env, task files (shared secrets), creator collector credentials
+.env
+*/.env
+leader/tasks/
+helper/tasks/
+creator/
+test/out/

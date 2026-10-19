@@ -27,11 +27,12 @@ export function endorse(ids: number[], at: Date): HistoryEntry[] {
   return ids.map((n) => ({ videoId: video(n), at, kind: 'endorse' as const, tags: [] }));
 }
 
-export function localIdentity(): { signer: IdentitySigner; pubkey: string } {
+export function localIdentity(): { signer: IdentitySigner; pubkey: string; sk: Uint8Array } {
   const sk = generateSecretKey();
   const pubkey = getPublicKey(sk);
   return {
     pubkey,
+    sk,
     signer: {
       getPublicKey: () => pubkey,
       signEvent: (t) => finalizeEvent(t, sk) as unknown as NostrEventLike,

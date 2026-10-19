@@ -35,13 +35,28 @@ const DAY_MS = 86_400_000;
 
 interface Group {
   video: Video;
-  sources: Map<string, Required<Pick<CandidateSource, "kind" | "strength">> & { via?: string; explicit: boolean }>;
+  sources: Map<
+    string,
+    Required<Pick<CandidateSource, "kind" | "strength">> & { via?: string; explicit: boolean; addedAt?: number }
+  >;
 }
 
-function decay(publishedAt: Date, now: Date, halfLifeDays: number): number {
+/** Source kinds whose recency runs from the pick (`CandidateSource.addedAt`) when given. */
+const PICK_DATED_KINDS: readonly SourceKind[] = ["taste", "match", "circle"];
+
+function decay(since: Date | number, now: Date, halfLifeDays: number): number {
   if (halfLifeDays <= 0) return 1;
-  const ageDays = Math.max(0, (now.getTime() - publishedAt.getTime()) / DAY_MS);
+  const t = typeof since === "number" ? since : since.getTime();
+  const ageDays = Math.max(0, (now.getTime() - t) / DAY_MS);
   return Math.pow(0.5, ageDays / halfLifeDays);
+}
+
+/** `addedAt` in ms when it is a valid Date and the kind is dated by its pick, else undefined. */
+function pickTime(source: CandidateSource): number | undefined {
+  const a = source.addedAt;
+  if (!PICK_DATED_KINDS.includes(source.kind) || !(a instanceof Date)) return undefined;
+  const t = a.getTime();
+  return Number.isFinite(t) ? t : undefined;
 }
 
 function usable(c: Candidate): boolean {
@@ -82,7 +97,9 @@ function byScore(a: RankedItem, b: RankedItem): number {
  * Rank candidates with a recipe, on device.
  *
  * - Candidates for the same video merge; each distinct source adds
- *   `weight[kind] × strength × 0.5^(age / halfLife)`.
+ *   `weight[kind] × strength × 0.5^(age / halfLife)`. Age runs from the video's
+ *   `publishedAt`, or, for taste, match and circle sources that carry `addedAt`,
+ *   from `max(addedAt, publishedAt)` (when the source picked it).
  * - Recipe filters, `seen` and the per-creator cap apply to every slot.
  * - Each taste list contributes to at most `recipe.maxPerTasteList` (default 2) items.
  * - Explore slots sit at a fixed cadence (every `round(1 / exploreShare)` slots).
@@ -117,8 +134,13 @@ export function rank(candidates: readonly Candidate[], recipe: Recipe, opts: Ran
     }
     const explicit = c.source.strength !== undefined;
     const prev = g.sources.get(key);
+    // The newest pick date of the same source wins (a re-pick is fresh again).
+    const t = pickTime(c.source);
+    const addedAt = t === undefined ? prev?.addedAt : prev?.addedAt === undefined ? t : Math.max(t, prev.addedAt);
     if (!prev || strength > prev.strength || (explicit && !prev.explicit && strength === prev.strength)) {
-      g.sources.set(key, { kind, strength, via, explicit: explicit || (prev?.explicit ?? false) });
+      g.sources.set(key, { kind, strength, via, explicit: explicit || (prev?.explicit ?? false), addedAt });
+    } else if (addedAt !== prev.addedAt) {
+      prev.addedAt = addedAt;
     }
   }
 
@@ -160,7 +182,11 @@ export function rank(candidates: readonly Candidate[], recipe: Recipe, opts: Ran
     // A tie (follow, match, ...) outranks an explore source on the same video.
     const contributions: Contribution[] = tied
       .filter((s) => recipe.weights[s.kind] > 0)
-      .map((s) => ({ kind: s.kind, via: s.via, strength: s.strength, value: recipe.weights[s.kind] * s.strength * d }));
+      .map((s) => {
+        // A pick can't predate the upload; a pick date only ever makes it fresher.
+        const sd = s.addedAt === undefined ? d : decay(Math.max(s.addedAt, v.publishedAt.getTime()), now, recipe.recencyHalfLifeDays);
+        return { kind: s.kind, via: s.via, strength: s.strength, value: recipe.weights[s.kind] * s.strength * sd };
+      });
     if (contributions.length === 0) continue;
     scored.push({ video: v, decay: d, contributions });
   }

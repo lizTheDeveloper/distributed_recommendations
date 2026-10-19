@@ -56,6 +56,20 @@ services:
       timeout: 5s
       retries: 5
 
+  valkey:
+    image: valkey/valkey:8.1.10-alpine@sha256:081c2f5cb575efc901aa80ff9cdbd1ec6a301682fd35e1ebb4b0990a4a4a8507
+    <<: *hardening
+    # The entrypoint chowns /data and drops to the valkey user.
+    cap_add: [CHOWN, SETGID, SETUID]
+    read_only: true
+    restart: unless-stopped
+    logging: *logging
+    # Memory only: queued events vanish on restart rather than sit on disk.
+    command: ["valkey-server", "--save", "", "--appendonly", "no", "--loglevel", "warning"]
+    tmpfs:
+      - /data
+    networks: [internal]
+
   glitchtip:
     image: glitchtip/glitchtip:6.2.6@sha256:a3d8eb1b36c1e1603d55ab32711ea3dd8115874742a781a57391a62a16e0dff6
     <<: *hardening
@@ -64,6 +78,8 @@ services:
     depends_on:
       postgres:
         condition: service_healthy
+      valkey:
+        condition: service_started
     environment:
       DATABASE_URL: postgres://glitchtip:${POSTGRES_PASSWORD}@postgres:5432/glitchtip
       SECRET_KEY: ${SECRET_KEY:?set SECRET_KEY in .env}
@@ -72,8 +88,8 @@ services:
       EMAIL_URL: ${EMAIL_URL:-consolemail://}
       # One process: web, task worker and scheduler (retention runs in the scheduler).
       SERVER_ROLE: all_in_one
-      # No Valkey: cache and task queue live in Postgres (empty string disables it).
-      VALKEY_URL: ""
+      # Cache and task queue. Valkey keeps nothing on disk (no persistence below).
+      VALKEY_URL: redis://valkey:6379/0
       # Retention: every event type, including bug reports (captured messages), 30 days.
       GLITCHTIP_RETENTION_DAYS: ${RETENTION_DAYS:-30}
       # Only the operator's accounts. Turn registration off after creating yours.

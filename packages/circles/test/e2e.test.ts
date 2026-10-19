@@ -10,7 +10,9 @@ import { DEFAULT_RECIPE, rank, seededRng } from '../src/core.ts';
 import { CIRCLE_KINDS } from '../src/kinds.ts';
 import { decodeVector } from '../src/masking.ts';
 import { decodeRoundKey, decodeRoundMasked, decodeRoundOpen } from '../src/messages.ts';
+import type { NostrEventLike } from '../src/network.ts';
 import { InMemoryNostrNetwork } from '../src/network.ts';
+import { PAD_BUCKETS } from '../src/padding.ts';
 import { releaseAggregatedEpoch } from '../src/policy.ts';
 import { HOUR, T0, endorse, localIdentity, testClock, video } from './helpers.ts';
 
@@ -26,6 +28,7 @@ const inputs = new Map<string, Uint8Array[]>(); // TEST-ONLY view of each member
 const roundKeys = new Set<string>();
 let firstRound = '';
 let firstEpoch = -1;
+let firstRoundEvents: NostrEventLike[] = [];
 
 async function syncAll(who: CircleMember[] = members) {
   for (const m of who) await m.sync(histories.get(m.identity) ?? []);
@@ -81,7 +84,9 @@ test('create a circle and add 11 members over MLS; everyone converges on one epo
 test('a round over MLS releases the same picks on every device, with t = 3 for 12 members', async () => {
   clock.advance(2 * HOUR); // endorsements happened at T0 + 1h, before the round opens
   firstEpoch = members[0].epoch();
+  const logStart = network.log.length;
   firstRound = await runRound(members[0], members);
+  firstRoundEvents = network.log.slice(logStart);
   const snaps = members.map((m) => m.rounds().find((r) => r.roundId === firstRound)!);
   for (const s of snaps) assert.equal(s?.status, 'released', `status ${s?.status} ${s?.voidReason ?? ''}`);
   assert.equal(new Set(snaps.map((s) => JSON.stringify(s.result))).size, 1);
@@ -126,6 +131,18 @@ test('structural: the relay sees only MLS ciphertext from one-time keys, no ids 
     assert.ok(!json.includes('tube.example'), 'no video id on the relay');
     for (const k of roundKeys) assert.ok(!json.includes(k), 'no round key on the relay');
     if (e.kind === 445) assert.ok(!identities.has(e.pubkey), 'group events are signed by one-time keys');
+  }
+});
+
+test('padding: every message of a round is the same size on the relay; honest members trip no guard', () => {
+  // 1 open + N keys + N masked, no commits in between.
+  assert.equal(firstRoundEvents.length, 1 + 2 * N);
+  const sizes = new Set(firstRoundEvents.map((e) => new TextEncoder().encode(JSON.stringify(e)).length));
+  assert.equal(sizes.size, 1, `one size for open, key and masked messages (${[...sizes]})`);
+  assert.ok(PAD_BUCKETS.length > 0);
+  for (const m of members) {
+    assert.deepEqual(m.rejections, [], `no rejections for ${m.identity.slice(0, 8)}`);
+    assert.equal(m.halted, undefined);
   }
 });
 

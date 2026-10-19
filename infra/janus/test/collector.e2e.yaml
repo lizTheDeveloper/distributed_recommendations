@@ -1,0 +1,23 @@
+# LOCAL TEST ONLY: the creator's collector. Janus's interop collector speaks the DAP-09
+# collection flow and exposes the interop-test HTTP API
+# (draft-dcook-ppm-dap-interop-test-design) on 127.0.0.1:${COLLECTOR_PORT}.
+# Production creators use Janus's `collect` tool instead (see README.md).
+name: dap-collector-e2e
+services:
+  collector:
+    image: us-west2-docker.pkg.dev/divviup-artifacts-public/janus/janus_interop_collector:0.7.143@sha256:4ca4a247fdfc3985137f8f1cb533ae57b15d85a408f9c177024be49d0b1b857e
+    read_only: true
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    tmpfs:
+      - /tmp
+      - /logs
+    ports:
+      - "127.0.0.1:${COLLECTOR_PORT:-19003}:8080"
+    networks: [dap-e2e]
+networks:
+  dap-e2e:
+    name: mf-dap-e2e
+    external: true

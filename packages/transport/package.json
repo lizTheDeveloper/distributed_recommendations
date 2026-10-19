@@ -1,0 +1,31 @@
+{
+  "name": "@match-feed/transport",
+  "version": "0.1.0",
+  "description": "Metadata-private transport for Match traffic: Nostr over Oblivious HTTP (RFC 9458) through a gateway target, plus an opt-out direct WebSocket live client",
+  "license": "Apache-2.0",
+  "type": "module",
+  "private": true,
+  "engines": {
+    "node": ">=22.6"
+  },
+  "exports": {
+    ".": "./src/index.ts",
+    "./target": "./src/target.ts"
+  },
+  "scripts": {
+    "test": "node --experimental-strip-types --disable-warning=ExperimentalWarning --test --test-reporter=spec test/*.test.ts",
+    "typecheck": "tsc -p .",
+    "target": "node --experimental-strip-types --disable-warning=ExperimentalWarning bin/target.ts"
+  },
+  "dependencies": {
+    "hpke": "1.1.7",
+    "nostr-tools": "2.25.2",
+    "ohttp-ts": "0.6.1"
+  },
+  "devDependencies": {
+    "@types/node": "22.20.5",
+    "@types/ws": "8.18.2",
+    "typescript": "5.9.3",
+    "ws": "8.22.0"
+  }
+}

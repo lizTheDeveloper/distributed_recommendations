@@ -1,0 +1,21 @@
+# TLS in front of a Janus aggregator (leader or helper stack, profile "tls").
+# No access log: DAP uploads come straight from viewers' devices, and the IP plus the
+# task id would say "this address watches this creator".
+{
+	email {$ACME_EMAIL}
+	log default {
+		output stderr
+		level WARN
+	}
+}
+
+{$DAP_DOMAIN} {
+	header {
+		Strict-Transport-Security "max-age=31536000"
+		X-Content-Type-Options nosniff
+		-Server
+	}
+	# Browsers upload directly (PUT /tasks/{id}/reports, GET /hpke_config).
+	# Janus 0.7 answers CORS preflights itself for these endpoints.
+	reverse_proxy aggregator:8080
+}

@@ -47,6 +47,14 @@ jobs:
           - package: packages/bridge
             install: packages/bridge
             lockfiles: packages/bridge/package-lock.json
+          # circles and moderation import packages/core from source (no deps of its own).
+          # circles' tests also check that the ts-mls security override survives `npm ci`.
+          - package: packages/circles
+            install: packages/circles
+            lockfiles: packages/circles/package-lock.json
+          - package: packages/moderation
+            install: packages/moderation
+            lockfiles: packages/moderation/package-lock.json
           - package: apps/web
             # apps/web imports packages/match from source, and its build and tests
             # resolve nostr-tools and @noble/* from packages/match/node_modules.

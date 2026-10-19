@@ -61,5 +61,16 @@ export type {
 } from './round.ts';
 export { InMemoryNostrNetwork, MAX_EVENT_BYTES } from './network.ts';
 export type { NostrEventLike, PublishResponse } from './network.ts';
+export { PAD_BUCKETS, PaddingError, bucketFor, isPadBucket, padRumor, serializedLength, unpadContent } from './padding.ts';
+export type { PadBucket, UnsignedRumor } from './padding.ts';
+export {
+  checkCommitAuthorized,
+  checkGroupEvent,
+  checkKeyPackageEvent,
+  checkSenderBinding,
+  checkWelcomeAuthor,
+  leafPubkey,
+} from './authz.ts';
+export type { AuthzResult } from './authz.ts';
 export { CircleMember } from './client.ts';
-export type { CircleMemberOptions, IdentitySigner, SeenMessage } from './client.ts';
+export type { CircleMemberOptions, IdentitySigner, Rejection, SeenMessage } from './client.ts';

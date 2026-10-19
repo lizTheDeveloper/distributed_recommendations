@@ -43,6 +43,21 @@ export interface CandidateSource {
    * path, a circle's normalized count, or a taste list's track record.
    */
   strength?: number;
+  /**
+   * When this source picked the video: a taste-list item's `addedAt`, the time a
+   * match endorsed it, or a circle epoch's release. Optional.
+   *
+   * For `taste`, `match` and `circle` sources the recency decay runs from
+   * `max(addedAt, video.publishedAt)` instead of `publishedAt`, so a fresh pick of
+   * an older video isn't scored as old. Absent, or not a valid `Date`: the decay
+   * uses `publishedAt`, as before. Ignored for `follow` (uploads are about the
+   * upload date), `second` and `explore`.
+   *
+   * `addedAt` comes from the list's author, so a list can keep its picks "fresh" by
+   * re-dating them. The per-list cap (`maxPerTasteList`) and track-record strength
+   * bound what that buys; clients may also clamp it to when they first saw the pick.
+   */
+  addedAt?: Date;
 }
 
 /** One reason a video might be shown. A video may arrive as several candidates. */

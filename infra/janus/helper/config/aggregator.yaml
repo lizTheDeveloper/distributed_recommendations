@@ -1,0 +1,17 @@
+# Helper DAP endpoint. In DAP-09 the helper is driven synchronously by the leader, so
+# this one process is the whole helper; it also garbage-collects its own data.
+# Janus 0.7.x (draft-ietf-ppm-dap-09). Reference: Janus docs/samples/basic_config.
+database:
+  url: "postgres://janus@postgres:5432/janus"
+health_check_listen_address: "0.0.0.0:8000"
+listen_address: "0.0.0.0:8080"
+max_upload_batch_size: 100
+max_upload_batch_write_delay_ms: 250
+batch_aggregation_shard_count: 32
+garbage_collection:
+  gc_frequency_s: 3600
+  report_limit: 5000
+  aggregation_limit: 500
+  collection_limit: 50
+logging_config:
+  force_json_output: true

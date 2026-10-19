@@ -1,0 +1,10 @@
+# LOCAL TEST ONLY. See leader.e2e.yaml.
+services:
+  aggregator:
+    networks:
+      dap-e2e:
+        aliases: [helper-aggregator]
+networks:
+  dap-e2e:
+    name: mf-dap-e2e
+    external: true

@@ -1,0 +1,197 @@
+# DAP LEADER for creator analytics (docs/ANALYTICS_IMPLEMENTATION.md).
+# Run by the creator's home instance. The HELPER is a separate stack (../helper)
+# that MUST be run by a different, independent operator: if one party runs both,
+# it can recombine every viewer's report and the privacy guarantee is gone.
+#
+#   cp .env.example .env   # set PGPASSWORD and DATASTORE_KEYS (see .env.example)
+#   docker compose up -d
+#   docker compose run --rm cli provision-tasks --generate-missing-parameters /tasks/<task>.leader.yaml
+#
+# Janus 0.7.x implements draft-ietf-ppm-dap-09, the version the TypeScript client
+# (@divviup/dap 0.9.1) speaks. Images are pinned by digest; the tag is informational.
+# DOCKERHUB lets you pull Docker Hub images through a mirror (e.g. mirror.gcr.io);
+# the digest is the same content either way.
+
+name: dap-leader
+
+x-logging: &logging
+  # Janus logs no client IPs at the default level. Keep logs small and local.
+  driver: ${LOG_DRIVER:-local}
+  options:
+    max-size: "10m"
+    max-file: "3"
+
+x-hardening: &hardening
+  read_only: true
+  user: "65534:65534"
+  security_opt:
+    - no-new-privileges:true
+  cap_drop:
+    - ALL
+  tmpfs:
+    - /tmp
+
+x-janus: &janus
+  image: us-west2-docker.pkg.dev/divviup-artifacts-public/janus/janus_aggregator:0.7.143@sha256:a3bd90477d202ffb990b2b1f813e283da7b473121b3d3c2c5ef534f0b726a293
+  <<: *hardening
+  restart: unless-stopped
+  logging: *logging
+  networks: [internal]
+  depends_on:
+    migrate:
+      condition: service_completed_successfully
+  healthcheck:
+    test: ["CMD", "wget", "-q", "-O", "/dev/null", "http://127.0.0.1:8000/healthz"]
+    interval: 15s
+    timeout: 5s
+    retries: 5
+
+x-janus-env: &janus-env
+  PGPASSWORD: ${PGPASSWORD:?set PGPASSWORD in .env}
+  # One or more base64url 16-byte keys, comma-separated; the first encrypts new rows.
+  DATASTORE_KEYS: ${DATASTORE_KEYS:?set DATASTORE_KEYS in .env}
+  RUST_LOG: ${RUST_LOG:-info}
+
+services:
+  postgres:
+    # Janus 0.7 requires PostgreSQL 15. 15-alpine was 15.19 when pinned.
+    image: ${DOCKERHUB:-docker.io}/library/postgres:15-alpine@sha256:f7d23353e1b15400d22ebe31189f4d314b87a4c129cc400c8c2d8d4ca127bf81
+    restart: unless-stopped
+    logging: *logging
+    environment:
+      POSTGRES_USER: janus
+      POSTGRES_DB: janus
+      POSTGRES_PASSWORD: ${PGPASSWORD:?set PGPASSWORD in .env}
+    volumes:
+      - leader-db:/var/lib/postgresql/data
+    networks: [internal]
+    security_opt:
+      - no-new-privileges:true
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U janus -d janus"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+  migrate:
+    image: us-west2-docker.pkg.dev/divviup-artifacts-public/janus/janus_db_migrator:0.7.143@sha256:bde44db3290fe8c17c26989783729ab073f6d05f99efe14a032701759495a1fa
+    <<: *hardening
+    restart: "no"
+    logging: *logging
+    networks: [internal]
+    depends_on:
+      postgres:
+        condition: service_healthy
+    command: ["migrate", "run", "--source", "/migrations", "--database-url", "postgres://janus:${PGPASSWORD}@postgres:5432/janus"]
+
+  aggregator:
+    <<: *janus
+    environment:
+      <<: *janus-env
+      BINARY: aggregator
+    # The image entrypoint needs at least one argument.
+    command: ["--config-file", "/etc/janus/aggregator.yaml"]
+    volumes:
+      - ./config/aggregator.yaml:/etc/janus/aggregator.yaml:ro
+    networks: [internal, public]
+    ports:
+      # Put TLS in front (profile "tls" below, or your own proxy). Clients and the
+      # collector need https://LEADER_DOMAIN/.
+      - "${LEADER_BIND:-127.0.0.1}:${LEADER_PORT:-9001}:8080"
+
+  aggregation_job_creator:
+    <<: *janus
+    environment:
+      <<: *janus-env
+      BINARY: aggregation_job_creator
+    # The image entrypoint needs at least one argument.
+    command: ["--config-file", "/etc/janus/aggregation_job_creator.yaml"]
+    volumes:
+      - ./config/aggregation_job_creator.yaml:/etc/janus/aggregation_job_creator.yaml:ro
+
+  aggregation_job_driver:
+    <<: *janus
+    environment:
+      <<: *janus-env
+      BINARY: aggregation_job_driver
+    # The image entrypoint needs at least one argument.
+    command: ["--config-file", "/etc/janus/aggregation_job_driver.yaml"]
+    volumes:
+      - ./config/aggregation_job_driver.yaml:/etc/janus/aggregation_job_driver.yaml:ro
+    # Talks to the helper over the internet.
+    networks: [internal, public]
+
+  collection_job_driver:
+    <<: *janus
+    environment:
+      <<: *janus-env
+      BINARY: collection_job_driver
+    # The image entrypoint needs at least one argument.
+    command: ["--config-file", "/etc/janus/collection_job_driver.yaml"]
+    volumes:
+      - ./config/collection_job_driver.yaml:/etc/janus/collection_job_driver.yaml:ro
+    networks: [internal, public]
+
+  garbage_collector:
+    <<: *janus
+    environment:
+      <<: *janus-env
+      BINARY: garbage_collector
+    # The image entrypoint needs at least one argument.
+    command: ["--config-file", "/etc/janus/garbage_collector.yaml"]
+    volumes:
+      - ./config/garbage_collector.yaml:/etc/janus/garbage_collector.yaml:ro
+
+  # One-off: docker compose run --rm cli provision-tasks --generate-missing-parameters /tasks/<file>
+  cli:
+    <<: *janus
+    restart: "no"
+    profiles: [cli]
+    environment:
+      <<: *janus-env
+      BINARY: janus_cli
+      CONFIG_FILE: /etc/janus/janus_cli.yaml
+    volumes:
+      - ./config/janus_cli.yaml:/etc/janus/janus_cli.yaml:ro
+      - ${TASKS_DIR:-./tasks}:/tasks:ro
+    healthcheck:
+      disable: true
+
+  caddy:
+    image: caddy:2.11.7-alpine@sha256:d8542f48d34a9cf4e4c11a478865229840e87e4c96ea3f439101f31a5d35f75f
+    profiles: [tls]
+    read_only: true
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    cap_add:
+      - NET_BIND_SERVICE
+    restart: unless-stopped
+    logging: *logging
+    depends_on:
+      - aggregator
+    ports:
+      - "80:80"
+      - "443:443"
+    environment:
+      DAP_DOMAIN: ${LEADER_DOMAIN:-}
+      ACME_EMAIL: ${ACME_EMAIL:-}
+    volumes:
+      - ../Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy-data:/data
+      - caddy-config:/config
+    tmpfs:
+      - /tmp
+    networks: [public]
+
+networks:
+  # Postgres and the job workers: no outside access.
+  internal:
+    internal: true
+  public: {}
+
+volumes:
+  leader-db: {}
+  caddy-data: {}
+  caddy-config: {}

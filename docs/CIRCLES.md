@@ -23,7 +23,7 @@ What it does **not** yet protect against is listed under "What is not secure yet
 
 | Option | Checked 2026-10-19 | Decision |
 |---|---|---|
-| **marmot-ts** (`@internet-privacy/marmot-ts`) | 0.5.1 (2026-04-27) installs and works in Node 22: create a group, publish key packages (kind 30443), invite via Welcome (NIP-59 gift wrap, kind 1059), group events (kind 445), remove with an epoch change, self-update. **0.7.0** was published on 2026-10-19, the day of this check. It reworks the API (no `inviteByKeyPackageEvent`) and fixes authorization bugs (see below). Both versions call themselves alpha, "do not use in production". | **Used: 0.5.1**, behind a thin adapter (`client.ts`). We held back from a release that was only hours old. Moving to 0.7.0 is the first follow-up. |
+| **marmot-ts** (`@internet-privacy/marmot-ts`) | 0.5.1 (2026-04-27) installs and works in Node 22: create a group, publish key packages (kind 30443), invite via Welcome (NIP-59 gift wrap, kind 1059), group events (kind 445), remove with an epoch change, self-update. **0.7.0** was published on 2026-10-19, the day of this check. It reworks the API (no `inviteByKeyPackageEvent`) and fixes authorization bugs (see below). Both versions call themselves alpha, "do not use in production". | **Used: 0.5.1**, behind a thin adapter (`client.ts`). We take a release only once it has been out for two weeks (npm `time`: 0.7.0 at 2026-10-19T14:36Z), so the earliest upgrade is 2026-11-02. Until then `authz.ts` re-checks 0.7.0's authorization fixes at the app layer (below). Moving to 0.7.0 is the first follow-up. |
 | ts-mls directly | 2.0.0-rc.16 / 1.6.4; "not undergone a formal security audit" | Not needed, since marmot-ts works. ts-mls is still a direct dependency, for the MLS exporter. |
 | Pairwise NIP-44 among members | — | Not needed. It would have lost forward secrecy and PCS, and needed n² messages. |
 
@@ -46,17 +46,26 @@ const needsUpdatePath = allProposals.length === 0 ||
   ReInit needs a path) and marmot-ts 0.7.0's bundled fork are all correct.
 - **What we did:** `packages/circles/package.json` sets `"overrides": { "ts-mls": "2.0.0-rc.16" }`. Its
   required peer `@noble/ciphers` 2.2.0 is pinned too, along with `@noble/curves` and `@noble/hashes` 2.2.0.
-- **Regression test:** `test/e2e.test.ts` ("remove a member …", "next round …"). The removed member must notice
-  it is out, must receive no round messages, and must fail to decrypt any new-epoch event even when its stale group
-  state is handed those events directly.
+- **Regression tests:**
+  - `test/e2e.test.ts` ("remove a member …", "next round …"). The removed member must notice it is out, must
+    receive no round messages, and must fail to decrypt any new-epoch event even when its stale group state is
+    handed those events directly.
+  - `test/authz.test.ts` ("supply chain: ts-mls is overridden …"): the `overrides` entry, every `ts-mls` entry in
+    `package-lock.json`, and the ts-mls that Node actually resolves (from this package **and** from inside
+    marmot-ts) must be on a known-fixed list (`2.0.0-rc.16`). Dropping the override, or a lockfile that
+    re-resolves marmot-ts's own pin, fails this test.
+  - `test/authz.test.ts` ("regression: … a commit removing ONE member carries an UpdatePath"): builds a
+    single-Remove commit in public wire format with the resolved ts-mls and asserts `commit.path` is present.
 - **Report upstream:** ask marmot-ts to cut a 0.5.x release with the bump, or record that 0.5.x is affected.
   Anyone else on marmot-ts ≤ 0.5.1 with default dependencies has this bug.
 
 ### Other marmot-ts 0.5.1 limits we work around or accept
 
-- **No MLS sender for application messages.** 0.5.1 hands the app only the decrypted bytes.
+- **No MLS sender for application messages.** 0.5.1's API hands the app only the decrypted bytes (with the
+  overridden ts-mls rc.16, the raw ingest result also carries `senderLeafIndex`, which `client.ts` now uses).
   - Workaround: each round message is a Nostr event **signed by the member's identity key**, inside the MLS
-    message. Receivers verify a fresh copy (T25) and check that the signer is a current MLS member.
+    message. Receivers verify a fresh copy (T25), check that the signer is a current MLS member, and check that
+    the signer is the credential identity of the MLS sender leaf (`checkSenderBinding`, below).
   - Cost: the signature is non-repudiable. Anyone who gets the plaintext can prove that member X sent a round
     key or masked vector. A masked vector reveals nothing about X's input, but it does prove participation.
   - Better: use the MLS sender, which MLS already authenticates, once the library exposes it.
@@ -69,6 +78,21 @@ const needsUpdatePath = allProposals.length === 0 ||
   - dropping kind-445 events with extra tags.
 
   A malicious member or relay may be able to exploit these gaps. **Don't ship on 0.5.1.**
+
+### Authorization gaps in 0.5.1 and the app-level guards (`src/authz.ts`)
+
+Until the upgrade, `CircleMember` re-checks what 0.7.0 fixes inside the library. These are checks around the
+library, not patches to it; tests in `test/authz.test.ts`.
+
+| 0.7.0 fix | App-level guard in 0.5.1 | What remains |
+|---|---|---|
+| Authenticate the real Welcome author and require an active admin | `acceptInvite()` tries Welcomes newest first. The author is the NIP-59 seal signer (applesauce checks that the rumor pubkey equals it). After joining, `checkWelcomeAuthor` requires the author to be a member **and** in the group's admin list; otherwise the group state is destroyed and the next Welcome is tried. Test: the same MLS Welcome re-wrapped by a non-admin member and by a stranger is refused | The check runs after `joinGroupFromWelcome` has adopted the state and marked the key package used; 0.7.0 checks before saving anything |
+| Authorize commits against the parent state | `sync()` tracks the state each ingest result was applied to. For every applied commit, `checkCommitAuthorized(parent, child, senderLeafIndex)` (ts-mls rc.16 returns the sender) requires the sender to be an admin in the **parent** state; a non-admin may only self-update (same member set, same group-context extensions). On a violation the member **halts** the circle (`halted`, fail closed): it stops syncing and sending, since MLS state cannot be rolled back at the app layer | 0.5.1 builds its admin callback once per ingest pass. Because each kind-445 event is encrypted under its own epoch's exporter key, consecutive commits land in different passes, so we could not build a batch that exploits the stale list. The guard is defence in depth; the test switches the library check off to show the guard catches an applied unauthorized commit. A halted member needs a fresh invite |
+| Validate member identity proofs during send and ingest | `checkSenderBinding`: the Nostr key that signed an inner round event must be the basic-credential identity of the MLS leaf that sent it (rc.16's `senderLeafIndex`, using the epoch's tree for older-epoch messages). A leaf whose credential claims someone else's pubkey cannot sign as them, so it cannot send round keys and is never counted in P | No MLS-level account proof (0.7.0's `0x8009` leaf proof). An admin can still add a leaf that claims another person's pubkey; it counts as an MLS member (and in `members()`), just not as a round participant |
+| Drop kind-445 events with extra tags | `checkGroupEvent`: exactly one tag, `["h", group id]`, and a valid signature, checked before decryption | 0.7.0 also allows one NIP-40 `expiration` tag; we refuse it |
+| (0.5.1 already checks credential = event pubkey) | `invite()` also verifies the key-package signature and that the author is the invitee (`checkKeyPackageEvent`) | — |
+
+Everything a guard refuses is recorded in `CircleMember.rejections`.
 - **Package exports.** `./extra` (the in-memory store) is not in the export map, and `./mls` points at a missing
   `src/` directory. We wrote a 15-line in-memory store instead.
 - **Retries.** Joiners must catch up on commits from epochs after their Welcome. The client re-feeds events that
@@ -78,17 +102,31 @@ const needsUpdatePath = allProposals.length === 0 ||
 
 ### Metadata the relay sees
 
-Kind-445 events carry the group's `h` tag, are signed by one-time keys, and have sizes that depend on message type:
+Kind-445 events carry the group's `h` tag and are signed by one-time keys. Before padding, their size gave away
+the message type (round-open up to 56.6 KB; key and masked messages a few KB).
 
-| Message type | Size (8 members, 256 candidates) |
-|---|---|
-| round-open | up to 56.6 KB |
-| key and masked messages | a few KB (the smallest kind-445 event measured was 1.7 KB) |
+**Padding (`src/padding.ts`).** The serialized rumor of every round message (what marmot-ts hands to MLS) is padded
+with trailing spaces to exactly one of three buckets. The round-open picks the smallest bucket that fits; every
+key and masked message of that round uses the same bucket. Receivers drop any round message whose plaintext is
+not exactly a bucket long (size checked before parsing). MLS (ChaCha20-Poly1305 inside, no further padding above
+256 bytes) and Marmot's outer ChaCha20-Poly1305 keep the length fixed, so every kind-445 event of a bucket has
+one size. Measured in `test/authz.test.ts`:
+
+| Bucket (serialized rumor) | Holds | Kind-445 event |
+|---|---|---|
+| 8,192 bytes | every key and masked message (≤ 4,096-byte content); a round-open of up to 91 70-character PeerTube watch URLs | 11,592 bytes |
+| 16,384 bytes | a round-open of up to 195 such ids | 22,520 bytes |
+| 45,056 bytes | a maximal round-open (40,000-byte content → 42,176-byte rumor) | 60,752 bytes (under the 64 KiB relay limit) |
+
+`test/e2e.test.ts` checks that all 25 kind-445 events of a 12-member round (1 open, 12 keys, 12 masked) have
+one size. **Cost:** a round in the largest bucket moves 25 × 60.8 KB ≈ 1.5 MB through the relay, and every member
+downloads all of it. **What still leaks:** the bucket (a coarse class of candidate-list size), the number of
+messages per round (1 + 2|P|, so |P| itself) and their timing. Commits and proposals are not padded and remain
+distinguishable from round messages.
 
 Key packages (30443) and Welcomes (1059, with a `p` tag) link identities to the group, as the Least Authority
 review of Marmot noted (DESIGN.md N3). The e2e test checks that the relay log has no video ids, no round keys and
-no identity-signed 445 events. It also shows that **message type and timing leak through size**. Padding every
-round message to one size would close that (see the list below).
+no identity-signed 445 events.
 
 ## 2. The round
 
@@ -138,8 +176,10 @@ The JSON follows PROTOCOL.md's rules:
 - `v: 1`;
 - unknown or missing keys rejected;
 - fixed key order;
-- size checked before parsing: round-open ≤ 40,000 bytes, so the kind-445 event stays under a 64 KiB relay
-  limit (measured maximum 56.6 KB); key and masked messages ≤ 4,096 bytes;
+- size checked before parsing: round-open ≤ 40,000 bytes, so the padded kind-445 event stays under a 64 KiB
+  relay limit (largest bucket: 60,752 bytes); key and masked messages ≤ 4,096 bytes;
+- the transport padding (trailing spaces after the inner JSON in the rumor content, serialized rumor exactly
+  8,192, 16,384 or 45,056 bytes, one bucket per round) is mandatory, and unpadded messages are dropped;
 - candidates must pass PROTOCOL.md's video-id rule and be sorted and unique.
 
 The policy object is core's `CirclePolicy`, checked by `parseCirclePolicy`. Each member also enforces its own
@@ -312,9 +352,10 @@ list below.
 
 - More than c colluding members (or Sybils) reduce or remove the DP protection of the remaining members (§5).
 - Every device sees noised counts; "picks only" is a UI rule (§6).
-- **Size and timing metadata:** round messages differ in size by type (round-open is large), so relays learn when
-  rounds run. Group membership is linkable through Marmot's plaintext `h` tags, key packages and Welcome `p` tags.
-  Pad all round messages to one size; use OHTTP or Tor to relays.
+- **Size and timing metadata:** round messages are now padded to one size per round (§1), so their type no longer
+  shows in size. The bucket, the message count (1 + 2|P|) and timing still show when rounds run and roughly how
+  many took part; commits are not padded. Group membership is linkable through Marmot's plaintext `h` tags, key
+  packages and Welcome `p` tags. Use OHTTP or Tor to relays; consider cover traffic.
 - **Non-repudiation:** round messages are signed with identity keys (§1).
 - Ephemeral X25519 secrets are overwritten after use, but JavaScript cannot guarantee zeroization.
 
@@ -334,7 +375,9 @@ list below.
 **Crypto hygiene:**
 
 - Floating-point Pólya sampling (§5).
-- marmot-ts 0.5.1 lacks 0.7.0's authorization fixes.
+- marmot-ts 0.5.1 lacks 0.7.0's authorization fixes. `authz.ts` re-checks them at the app layer (§1), with the
+  residual gaps listed there (no MLS account proof; Welcome checked after adoption; a halted member needs a new
+  invite).
 - `applesauce-core` 5.2.0, a dependency of marmot-ts, pulls in `nostr-tools` 2.19.4 with `@noble/*` 1.x.
 - The ts-mls version is overridden, which marmot-ts 0.5.1 never tested.
 - No MIP-02 self-update after joining.
@@ -374,8 +417,11 @@ list below.
    - Composition across epochs.
    - An exact sampler replacing the floating-point one.
 5. **Message parsing.** Size-before-parse, strict keys, video-id rule, signature verification on fresh objects
-   (T25), and the membership check of signers.
-6. **Supply chain.**
+   (T25), the membership check of signers, the sender-leaf binding, and the padding rule (exact bucket length,
+   only trailing spaces).
+6. **The app-level authorization guards** (`authz.ts`): the parent-state tracking across `ingest()` yields, the
+   non-admin "self-update only" rule, the fail-closed halt, and the Welcome author check after adoption.
+7. **Supply chain.**
    - `@internet-privacy/marmot-ts`, `ts-mls` and their transitive dependencies (`applesauce-*`, `@hpke/core`,
      duplicated `nostr-tools` and `@noble` 1.x).
    - The npm override.
@@ -406,7 +452,11 @@ Verified on 2026-10-19 unless marked.
 - marmot-ts CHANGELOG 0.7.0 and the README alpha warning (npm, 2026-10-19). ts-mls source for 2.0.0-rc.10,
   rc.16 and 1.6.4 (npm tarballs).
 
-## 11. Follow-ups for other documents (not edited here)
+## 11. Follow-ups for other documents
+
+Done in the 2026-10-19 docs pass (PROTOCOL.md §3 and the Circles section, THREAT_MODEL.md T3/T19/T20 and the new
+Circles threats, DESIGN.md implementation status and open questions). Still open: the core move below.
+
 
 - **PROTOCOL.md §3:**
   - record the chosen aggregation (pairwise masking, distributed Pólya noise, public candidate domain);

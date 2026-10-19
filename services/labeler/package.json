@@ -1,0 +1,29 @@
+{
+  "name": "@match-feed/labeler",
+  "version": "0.1.0",
+  "description": "Moderation labeler for Match Feed: NIP-56 report intake, human review queue, NIP-32 labels with NIP-09 retraction, and an audit log for transparency reports",
+  "license": "Apache-2.0",
+  "type": "module",
+  "private": true,
+  "engines": {
+    "node": ">=22.13"
+  },
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "bin": {
+    "match-feed-labeler": "./src/cli.ts"
+  },
+  "scripts": {
+    "test": "node --experimental-strip-types --disable-warning=ExperimentalWarning --test --test-reporter=spec test/*.test.ts",
+    "labeler": "NODE_USE_ENV_PROXY=1 node --experimental-strip-types --disable-warning=ExperimentalWarning --disable-warning=UNDICI-EHPA src/cli.ts",
+    "typecheck": "tsc -p ."
+  },
+  "dependencies": {
+    "nostr-tools": "2.25.2"
+  },
+  "devDependencies": {
+    "@types/node": "22.20.5",
+    "typescript": "5.9.3"
+  }
+}

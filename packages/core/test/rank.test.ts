@@ -258,3 +258,79 @@ test("a capped list item keeps its other sources", () => {
   assert.deepEqual(out.map((i) => i.video.id), [b.id]);
   assert.equal(out[0].primary, "follow");
 });
+
+// ---------------------------------------------------------------- addedAt (pick-dated recency)
+
+const DAY = 86_400_000;
+const picked = (v: ReturnType<typeof video>, kind: "taste" | "match" | "circle" | "follow" | "second" | "explore", via: string | undefined, addedAt: Date | undefined, strength?: number) => {
+  const c = cand(v, kind, via, strength);
+  if (addedAt !== undefined) c.source.addedAt = addedAt;
+  return c;
+};
+
+test("addedAt: a fresh taste pick of an old video decays from the pick, not the upload", () => {
+  const r = recipe({ recencyHalfLifeDays: 14, exploreShare: 0 });
+  const old = video(1, { ageDays: 400 });
+  const [byUpload] = rank([picked(old, "taste", "Picks", undefined)], r, opts());
+  const [byPick] = rank([picked(old, "taste", "Picks", new Date(NOW.getTime() - 1 * DAY))], r, opts());
+  assert.ok(byUpload.score < 1e-6, "an old upload scores about 0 without addedAt");
+  const fresh = rank([picked(video(2, { ageDays: 1 }), "taste", "Picks", undefined)], r, opts())[0];
+  assert.ok(Math.abs(byPick.score - fresh.score) < 1e-12, "same as a 1-day-old upload");
+});
+
+test("addedAt: applies to match and circle, ignored for follow, second and explore", () => {
+  const r = recipe({ recencyHalfLifeDays: 10, exploreShare: 0 });
+  const added = new Date(NOW.getTime() - 0 * DAY);
+  for (const kind of ["match", "circle"] as const) {
+    const [a] = rank([picked(video(1, { ageDays: 10 }), kind, "X", added, 0.5)], r, opts());
+    const [b] = rank([picked(video(1, { ageDays: 10 }), kind, "X", undefined, 0.5)], r, opts());
+    assert.ok(Math.abs(a.score - 2 * b.score) < 1e-12, kind);
+  }
+  for (const kind of ["follow", "second"] as const) {
+    const [a] = rank([picked(video(1, { ageDays: 10 }), kind, "X", added)], r, opts());
+    const [b] = rank([picked(video(1, { ageDays: 10 }), kind, "X", undefined)], r, opts());
+    assert.equal(a.score, b.score, kind);
+  }
+  const er = recipe({ recencyHalfLifeDays: 10, exploreShare: 0.5 });
+  const [e1] = rank([picked(video(3, { ageDays: 5 }), "explore", undefined, added)], er, opts({ limit: 2 }));
+  const [e2] = rank([picked(video(3, { ageDays: 5 }), "explore", undefined, undefined)], er, opts({ limit: 2 }));
+  assert.equal(e1.score, e2.score);
+});
+
+test("addedAt: never older than publishedAt, future dates count as now, invalid dates fall back", () => {
+  const r = recipe({ recencyHalfLifeDays: 10, exploreShare: 0 });
+  const v = video(1, { ageDays: 10 });
+  const [base] = rank([picked(v, "taste", "L", undefined)], r, opts());
+  const [before] = rank([picked(v, "taste", "L", new Date(NOW.getTime() - 300 * DAY))], r, opts());
+  assert.equal(before.score, base.score, "a pick dated before the upload uses the upload date");
+  const [future] = rank([picked(v, "taste", "L", new Date(NOW.getTime() + 5 * DAY))], r, opts());
+  const [now] = rank([picked(v, "taste", "L", NOW)], r, opts());
+  assert.equal(future.score, now.score);
+  const [invalid] = rank([picked(v, "taste", "L", new Date(Number.NaN))], r, opts());
+  assert.equal(invalid.score, base.score);
+  const [notDate] = rank([{ video: v, source: { kind: "taste", via: "L", addedAt: 1792400000 as unknown as Date } }], r, opts());
+  assert.equal(notDate.score, base.score);
+});
+
+test("addedAt: decay is per source; duplicates keep the newest pick date", () => {
+  const r = recipe({ recencyHalfLifeDays: 10, exploreShare: 0 });
+  const v = video(1, { ageDays: 20 });
+  const fresh = new Date(NOW.getTime());
+  // Two lists: one re-picked it today, one did not date its pick.
+  const [two] = rank([picked(v, "taste", "A", fresh), picked(v, "taste", "B", undefined)], r, opts());
+  const w = r.weights.taste;
+  assert.ok(Math.abs(two.score - (w * 1 + w * 0.25)) < 1e-12);
+  // The same list twice: the newer date wins regardless of order.
+  const older = new Date(NOW.getTime() - 10 * DAY);
+  const [x] = rank([picked(v, "taste", "A", older), picked(v, "taste", "A", fresh)], r, opts());
+  const [y] = rank([picked(v, "taste", "A", fresh), picked(v, "taste", "A", older)], r, opts());
+  assert.ok(Math.abs(x.score - w) < 1e-12);
+  assert.equal(x.score, y.score);
+});
+
+test("addedAt: the per-list cap keeps the freshest picks of a list", () => {
+  const r = recipe({ recencyHalfLifeDays: 14, exploreShare: 0, maxPerTasteList: 2 });
+  const cs = [1, 2, 3, 4].map((n) => picked(video(n, { ageDays: 200 }), "taste", "L", new Date(NOW.getTime() - n * DAY)));
+  const out = rank(cs, r, opts());
+  assert.deepEqual(out.map((i) => i.video.id), [video(1).id, video(2).id]);
+});

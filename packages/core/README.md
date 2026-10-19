@@ -10,7 +10,7 @@ threats: `docs/THREAT_MODEL.md`, wire formats: `docs/PROTOCOL.md`.
 | Module | What it does |
 |---|---|
 | `recipe.ts` | declarative feed recipes (D1): strict `parseRecipe`, `DEFAULT_RECIPE`, `FOLLOWING_CHRONOLOGICAL_RECIPE`, `EXPLORE_SHARE`, `RECIPE_DEFAULTS` |
-| `rank.ts` | `rank(candidates, recipe, {now, limit, rng, seen, exploreRelevance})`: merge, decay, filter, per-creator and per-taste-list caps, explore slots |
+| `rank.ts` | `rank(candidates, recipe, {now, limit, rng, seen, exploreRelevance})`: merge, decay (from the pick's `addedAt` for taste/match/circle sources that carry one), filter, per-creator and per-taste-list caps, explore slots |
 | `explain.ts` | "Why am I seeing this?" lines and chip labels |
 | `similarity.ts` | Jaccard, cosine, sketch similarity; `tagProfile` / `tagRelevance` for on-device explore ranking |
 | `trust.ts` | row-normalized, decaying trust walk for second-degree weights; `tasteListStrength` (track record) |
@@ -28,6 +28,7 @@ threats: `docs/THREAT_MODEL.md`, wire formats: `docs/PROTOCOL.md`.
 | Explore share | **5%**; offer users 2–10% (`EXPLORE_SHARE`); 0 = off | `DEFAULT_RECIPE.exploreShare` |
 | Explore ranking | relevance-ranked on device (`exploreRelevance`, or explore `strength`), seeded tie-break; random only with no signal | `rank` |
 | Taste lists | weight 0.9 (0.15 × match), **≤ 2 items per list per page** (`maxPerTasteList`), strength from track record (`tasteListStrength`) | `DEFAULT_RECIPE`, `rank` |
+| Recency | half-life 14 days (`DEFAULT_RECIPE.recencyHalfLifeDays`). Taste, match and circle sources decay from `max(source.addedAt, publishedAt)` when the source carries `addedAt`, else from `publishedAt`; follow, second and explore always from `publishedAt` | `rank` |
 | Second degree | decay 0.3, 2 hops, per-node cap 0.05 of your trust mass, row-normalized; recipe weight = match weight (decay applied once, in the walk) | `TRUST_WALK_DEFAULTS` |
 | Circles | k ≥ 8 (recommended 12–30); threshold 3 for k ≤ 15, 4 above, derived when absent; ε = 1 per item per epoch; sticky noise; epoch freeze; **picks only, never counts** | `DEFAULT_CIRCLE_POLICY`, `releaseCircleEpoch` |
 | Previews | noised cardinality (discrete Laplace ε = 0.5, floor 5 → "<5"), **≤ 8 accepted previews per target per year**, enforced on the target's device. `minSetSize` (20) is hygiene, not a defense | `DEFAULT_PREVIEW_POLICY`, `noisyPreviewCardinality`; the requester displays a received value with `previewDisplay` (same buckets) |
@@ -58,5 +59,13 @@ The public API only grew; nothing was renamed or removed. Behaviour that changed
 - `circlePicks`: picks sorted by id, `noisedCount` no longer populated (deprecated); `revealThreshold` optional (derived); `circleCandidates` strength is a constant.
 - Previews: `respondToPreview` can refuse with `target-budget`; `prunePreviews` keeps accepted records for a year; the policy gained optional `maxAcceptedPerTargetPerYear`, `epsilon`, `floor`.
 - `buildSketch` defaults to `transport: "nip17"` (max 128 items); pass `"mls"` for 256.
+
+## Compatibility notes (pick-dated recency)
+
+Additive and backward compatible: no existing candidate scores differently.
+- `CandidateSource.addedAt?: Date` is new. For `taste`, `match` and `circle` sources it moves the start of the recency decay to when the source picked the video (`max(addedAt, video.publishedAt)`; a future date counts as now). Before, a creator's fresh pick of a year-old video decayed from the upload date and scored about 0 at the 14-day half-life.
+- Without `addedAt` (or with an invalid one) nothing changes. `follow`, `second` and `explore` ignore it; explore eligibility (≤ 14 days) still uses `publishedAt`; score ties still break by `publishedAt`.
+- Decay is now computed per source rather than per video, so two lists that picked the same video at different times each contribute with their own age. A repeated source (same kind and `via`) keeps its highest strength and its newest `addedAt`.
+- `addedAt` is set by the list's author. The per-list cap and track-record strength bound how much re-dating picks can buy; clients may clamp it (e.g. to when they first saw the pick). Map taste-list v1 `items[].addedAt` (Unix seconds) with `new Date(addedAt * 1000)`.
 
 License: Apache-2.0.

@@ -1,0 +1,15 @@
+# LOCAL TEST ONLY. Joins the leader stack to a shared network that stands in for the
+# internet between the two operators. Used by packages/analytics/test/e2e.test.ts.
+services:
+  aggregator:
+    networks:
+      dap-e2e:
+        aliases: [leader-aggregator]
+  aggregation_job_driver:
+    networks: [dap-e2e]
+  collection_job_driver:
+    networks: [dap-e2e]
+networks:
+  dap-e2e:
+    name: mf-dap-e2e
+    external: true

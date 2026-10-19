@@ -1,0 +1,12 @@
+# Leader DAP endpoint: clients upload reports here, the creator's collector polls here.
+# Janus 0.7.x (draft-ietf-ppm-dap-09). Reference: Janus docs/samples/basic_config.
+database:
+  # Password comes from PGPASSWORD (compose .env), never from this file.
+  url: "postgres://janus@postgres:5432/janus"
+health_check_listen_address: "0.0.0.0:8000"
+listen_address: "0.0.0.0:8080"
+max_upload_batch_size: 100
+max_upload_batch_write_delay_ms: 250
+batch_aggregation_shard_count: 32
+logging_config:
+  force_json_output: true
