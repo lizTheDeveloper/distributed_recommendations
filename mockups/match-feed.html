@@ -1,0 +1,389 @@
+<title>Match Feed Mockups</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Atkinson+Hyperlegible:wght@400;700&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: app shell with a tab strip of four screens; each screen is a working mockup, last one is the network diagram. */
+:root{
+  --bg:#f3f4f7; --surface:#ffffff; --sunk:#e8eaf0; --fg:#1a1d29; --muted:#5c6275; --line:#d5d8e2;
+  --follow:#2d5fa8; --match:#7046c9; --match-soft:#ece5fb; --circle:#0f7c6c; --circle-soft:#dcf2ee;
+  --second:#a85a12; --second-soft:#fbecd9; --explore:#5c6275; --warn:#a8321f;
+  --f-display:"Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --f-body:"Atkinson Hyperlegible", system-ui, -apple-system, sans-serif;
+  --f-mono:"JetBrains Mono", ui-monospace, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#12141c; --surface:#1b1e29; --sunk:#242836; --fg:#e8eaf2; --muted:#9aa0b4; --line:#323749;
+  --follow:#7aa6ea; --match:#b29af0; --match-soft:#2c2442; --circle:#5fcbb8; --circle-soft:#173530;
+  --second:#e8a861; --second-soft:#3a2a17; --explore:#9aa0b4; --warn:#f08a74; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#12141c; --surface:#1b1e29; --sunk:#242836; --fg:#e8eaf2; --muted:#9aa0b4; --line:#323749;
+  --follow:#7aa6ea; --match:#b29af0; --match-soft:#2c2442; --circle:#5fcbb8; --circle-soft:#173530;
+  --second:#e8a861; --second-soft:#3a2a17; --explore:#9aa0b4; --warn:#f08a74; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font:15px/1.5 var(--f-body)}
+.wrap{max-width:1180px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:20px 48px}
+h1,h2,h3{font-family:var(--f-display);text-wrap:balance;margin:0}
+h1{font-size:1.7rem;font-weight:700;letter-spacing:-.01em}
+h2{font-size:1.25rem;font-weight:700}
+h3{font-size:1rem;font-weight:700}
+p{margin:0}
+.mono{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+.muted{color:var(--muted)}
+.intro{display:flex;flex-direction:column;gap:6px;margin-bottom:16px;max-width:70ch}
+.tabs{display:flex;gap:4px;flex-wrap:wrap;border-bottom:1px solid var(--line);margin-bottom:20px}
+.tabs button{font:600 .92rem var(--f-body);background:none;border:0;color:var(--muted);padding:10px 14px;border-bottom:2px solid transparent;cursor:pointer}
+.tabs button[aria-selected="true"]{color:var(--fg);border-color:var(--match)}
+.tabs button:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--match);outline-offset:2px}
+.note{font-size:.85rem;color:var(--muted);border-left:3px solid var(--line);padding-left:10px;max-width:75ch}
+
+/* Feed screen */
+.home{display:grid;grid-template-columns:280px 1fr;gap:20px}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px;display:flex;flex-direction:column;gap:14px;min-width:0}
+.mix label{display:flex;justify-content:space-between;font-size:.85rem}
+.mix input{width:100%}
+.recipe{display:flex;flex-direction:column;gap:6px}
+.recipe select{font:inherit;padding:6px 8px;border-radius:6px;border:1px solid var(--line);background:var(--surface);color:var(--fg)}
+.matchlist{display:flex;flex-direction:column;gap:10px;list-style:none;margin:0;padding:0}
+.matchlist li{display:grid;grid-template-columns:28px 1fr auto;gap:8px;align-items:center;font-size:.9rem}
+.av{width:28px;height:28px;border-radius:50%;display:grid;place-items:center;font:700 .75rem var(--f-display);color:#fff}
+.bar{height:4px;background:var(--sunk);border-radius:2px;margin-top:3px}
+.bar i{display:block;height:100%;border-radius:2px;background:var(--match)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:18px;align-content:start}
+.card{display:flex;flex-direction:column;gap:8px;min-width:0}
+.thumb{aspect-ratio:16/9;max-width:100%;border-radius:8px;position:relative;overflow:hidden}
+.thumb .dur{position:absolute;right:6px;bottom:6px;background:rgba(0,0,0,.72);color:#fff;font:600 .72rem var(--f-mono);padding:1px 5px;border-radius:3px}
+.thumb .host{position:absolute;left:6px;top:6px;background:rgba(0,0,0,.55);color:#fff;font:.7rem var(--f-mono);padding:1px 6px;border-radius:3px}
+.card h3{font-size:.98rem;line-height:1.3}
+.chip{display:inline-flex;align-items:center;gap:6px;font-size:.78rem;font-weight:700;padding:2px 8px;border-radius:999px;width:fit-content}
+.chip::before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor}
+.c-follow{color:var(--follow);background:var(--sunk)}
+.c-match{color:var(--match);background:var(--match-soft)}
+.c-circle{color:var(--circle);background:var(--circle-soft)}
+.c-second{color:var(--second);background:var(--second-soft)}
+.c-explore{color:var(--explore);background:var(--sunk)}
+.why{font-size:.8rem;color:var(--muted);background:none;border:0;padding:0;text-align:left;cursor:pointer;text-decoration:underline dotted;font-family:inherit}
+.whybox{font-size:.82rem;background:var(--sunk);border-radius:6px;padding:8px 10px;display:flex;flex-direction:column;gap:3px}
+.legend{display:flex;flex-wrap:wrap;gap:8px}
+
+/* Creator screen */
+.banner{height:120px;border-radius:10px;background:linear-gradient(120deg,#7a3e1d,#c98a3c 55%,#3d5a3a)}
+.creator-head{display:flex;gap:16px;align-items:flex-end;margin-top:-36px;padding-inline:16px;flex-wrap:wrap}
+.creator-head .av{width:84px;height:84px;font-size:1.6rem;border:4px solid var(--bg);background:#8a4a22}
+.creator-meta{flex:1;min-width:200px;display:flex;flex-direction:column;gap:2px;padding-bottom:6px}
+.actions{display:flex;gap:8px;flex-wrap:wrap;padding-bottom:6px}
+.btn{font:700 .9rem var(--f-body);padding:9px 14px;border-radius:8px;border:1px solid var(--line);background:var(--surface);color:var(--fg);cursor:pointer}
+.btn.follow{background:var(--follow);border-color:var(--follow);color:#fff}
+.btn.match{background:var(--match);border-color:var(--match);color:#fff}
+.btn.on{background:var(--surface);color:var(--fg)}
+.tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:20px}
+.tier{border-top:4px solid var(--line)}
+.tier.t1{border-top-color:var(--follow)} .tier.t2{border-top-color:var(--circle)} .tier.t3{border-top-color:var(--match)}
+.tier ul{margin:0;padding-left:18px;font-size:.88rem;display:flex;flex-direction:column;gap:4px}
+.kv{display:grid;grid-template-columns:auto 1fr;gap:4px 12px;font-size:.85rem}
+.kv dt{color:var(--muted)} .kv dd{margin:0}
+.preview{background:var(--match-soft);border-radius:8px;padding:12px 14px;display:flex;gap:16px;align-items:center;flex-wrap:wrap;margin-top:16px}
+.preview .big{font:700 2rem var(--f-display);color:var(--match)}
+
+/* Modal */
+.scrim{position:fixed;inset:0;background:rgba(10,12,20,.55);display:grid;place-items:center;padding:16px;z-index:20}
+.modal{background:var(--surface);color:var(--fg);border-radius:12px;max-width:520px;width:100%;max-height:90vh;overflow:auto;padding:22px;display:flex;flex-direction:column;gap:14px}
+.opt{display:flex;gap:10px;align-items:flex-start;font-size:.9rem}
+.opt input{margin-top:4px}
+.row{display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap}
+fieldset{border:1px solid var(--line);border-radius:8px;padding:10px 12px;display:flex;flex-direction:column;gap:8px;margin:0}
+legend{font-weight:700;font-size:.85rem;padding:0 4px}
+
+/* Ledger */
+.ledger{display:grid;grid-template-columns:1fr 320px;gap:20px}
+.tablewrap{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:.88rem;min-width:560px}
+th,td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:.75rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:700}
+.pill{font-size:.75rem;font-weight:700;padding:1px 7px;border-radius:4px;background:var(--sunk)}
+.pill.ok{color:var(--circle)} .pill.exp{color:var(--second)}
+.switch{display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:.9rem}
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(20px + env(safe-area-inset-bottom,0px));background:var(--fg);color:var(--bg);padding:8px 14px;border-radius:8px;font-size:.88rem;z-index:30}
+
+/* Network */
+.net{display:grid;grid-template-columns:1fr 340px;gap:20px}
+.diagram{overflow-x:auto;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:10px}
+.diagram svg{display:block;min-width:640px;width:100%;height:auto}
+.diagram text{fill:var(--fg);font-family:var(--f-body);font-size:13px}
+.diagram .small{fill:var(--muted);font-size:11px}
+.layers{display:flex;flex-direction:column;gap:12px}
+.layers .panel{gap:6px}
+.who{font-size:.82rem}
+.who b{color:var(--warn)}
+
+@media (max-width:860px){.home,.ledger,.net{grid-template-columns:1fr}.tiers{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:no-preference){.card .thumb{transition:transform .15s}.card:hover .thumb{transform:translateY(-2px)}}
+</style>
+
+<div class="wrap">
+  <header class="intro">
+    <h1>Match Feed</h1>
+    <p class="muted">Clickable mockups for a federated video app where recommendations come from people you choose to share taste with. All names and videos are examples.</p>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Screens">
+    <button role="tab" id="tab-home" aria-selected="true" data-screen="home">1 · Home feed</button>
+    <button role="tab" id="tab-creator" aria-selected="false" data-screen="creator">2 · Creator page</button>
+    <button role="tab" id="tab-ledger" aria-selected="false" data-screen="ledger">3 · Sharing ledger</button>
+    <button role="tab" id="tab-net" aria-selected="false" data-screen="net">4 · How it distributes</button>
+  </nav>
+
+  <!-- 1. HOME -->
+  <section id="home" class="screen">
+    <div class="home">
+      <aside class="panel" aria-label="Feed controls">
+        <h2>Your feed recipe</h2>
+        <div class="recipe">
+          <label for="recipe" class="muted" style="font-size:.85rem">Ranking runs on this device</label>
+          <select id="recipe">
+            <option>Taste matches (default)</option>
+            <option>Following only, newest first</option>
+            <option>Community recipe: "Slow Craft" by @hearth</option>
+            <option>Import a recipe…</option>
+          </select>
+        </div>
+        <div class="mix">
+          <label for="mix"><span>Following</span><span>Matches</span></label>
+          <input id="mix" type="range" min="0" max="100" value="60">
+          <p class="muted" style="font-size:.8rem"><span id="mixout" class="mono">40 / 60</span> split. Explore is fixed at 10%.</p>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <h3>Matches <span class="muted" style="font-weight:400">· overlap, last 60 days</span></h3>
+          <ul class="matchlist">
+            <li><span class="av" style="background:#7046c9">IO</span><div>Ines Okafor<div class="bar"><i style="width:64%"></i></div></div><span class="mono">0.64</span></li>
+            <li><span class="av" style="background:#2d5fa8">TB</span><div>Theo Brandt<div class="bar"><i style="width:51%"></i></div></div><span class="mono">0.51</span></li>
+            <li><span class="av" style="background:#a85a12">HH</span><div>Hand &amp; Hearth <span class="muted">(creator)</span><div class="bar"><i style="width:43%"></i></div></div><span class="mono">0.43</span></li>
+            <li><span class="av" style="background:#0f7c6c">5</span><div>Circle: Riso people<div class="bar"><i style="width:38%"></i></div></div><span class="mono">0.38</span></li>
+          </ul>
+        </div>
+        <div class="legend">
+          <span class="chip c-follow">Following</span><span class="chip c-match">Match</span><span class="chip c-circle">Circle</span><span class="chip c-second">2nd degree</span><span class="chip c-explore">Explore</span>
+        </div>
+      </aside>
+      <div class="grid" id="feed"></div>
+    </div>
+  </section>
+
+  <!-- 2. CREATOR -->
+  <section id="creator" class="screen" hidden>
+    <div class="banner" role="img" aria-label="Channel banner"></div>
+    <div class="creator-head">
+      <span class="av">HH</span>
+      <div class="creator-meta">
+        <h1>Hand &amp; Hearth</h1>
+        <p class="muted mono" style="font-size:.85rem">@hearth@craft.tube · 182 videos · 9.4k followers · 1.1k taste subscribers</p>
+      </div>
+      <div class="actions">
+        <button class="btn follow" id="btn-follow">Follow</button>
+        <button class="btn" id="btn-taste">Subscribe to taste</button>
+        <button class="btn match" id="btn-match">Request match…</button>
+      </div>
+    </div>
+
+    <div class="preview" aria-live="polite">
+      <span class="big mono">23</span>
+      <div style="flex:1;min-width:220px">
+        <strong>videos in common before you share anything</strong>
+        <p class="muted" style="font-size:.85rem">Computed with private set intersection: you both learn the count, not which videos. Neither side reveals its list until the match is accepted.</p>
+      </div>
+    </div>
+
+    <div class="tiers">
+      <article class="panel tier t1">
+        <h3>Follow</h3>
+        <p class="muted" style="font-size:.85rem">Their uploads appear in your feed.</p>
+        <ul><li>You share nothing</li><li>One-way, public</li><li>Same as PeerTube or Mastodon follow</li></ul>
+      </article>
+      <article class="panel tier t2">
+        <h3>Subscribe to taste</h3>
+        <p class="muted" style="font-size:.85rem">Their public endorsements become a recommendation source.</p>
+        <ul><li>You share nothing</li><li>They publish picks openly, signed with their key</li><li>Treated as public, since 1.1k people read it</li></ul>
+      </article>
+      <article class="panel tier t3">
+        <h3>Match</h3>
+        <p class="muted" style="font-size:.85rem">Mutual, private exchange of recent taste.</p>
+        <ul><li>Both sides share a sketch, end-to-end encrypted</li><li>Each device computes the score locally</li><li>Expires; revocable any time</li></ul>
+      </article>
+    </div>
+  </section>
+
+  <!-- 3. LEDGER -->
+  <section id="ledger" class="screen" hidden>
+    <div class="ledger">
+      <div class="panel" style="gap:10px">
+        <h2>What you share, and with whom</h2>
+        <div class="tablewrap">
+          <table>
+            <thead><tr><th>Peer</th><th>Shares</th><th>Window</th><th>Status</th><th></th></tr></thead>
+            <tbody id="ledgerRows"></tbody>
+          </table>
+        </div>
+        <p class="note">Revoking stops future sketches. It can't recall what a peer already received; the UI says so plainly at the moment of sharing.</p>
+      </div>
+      <aside class="panel">
+        <h2>Controls</h2>
+        <div class="switch"><label for="sw-private">Private watching</label><input type="checkbox" id="sw-private"></div>
+        <p class="muted" style="font-size:.8rem;margin-top:-8px">Nothing you watch now enters any sketch.</p>
+        <div class="switch"><label for="sw-likes">Share endorsements only, not passive watches</label><input type="checkbox" id="sw-likes" checked></div>
+        <div class="switch"><label for="sw-circle">Hide me inside circles (≥5 people)</label><input type="checkbox" id="sw-circle" checked></div>
+        <div class="switch"><label for="sw-2nd">Let my matches' matches see my picks, unattributed</label><input type="checkbox" id="sw-2nd"></div>
+        <h3>Excluded from history</h3>
+        <ul class="muted" style="font-size:.85rem;margin:0;padding-left:18px">
+          <li>3 videos from #health</li><li>Everything watched 22:00–06:00</li>
+        </ul>
+        <button class="btn" id="btn-wipe" style="border-color:var(--warn);color:var(--warn)">Wipe local history…</button>
+      </aside>
+    </div>
+  </section>
+
+  <!-- 4. NETWORK -->
+  <section id="net" class="screen" hidden>
+    <div class="net">
+      <div class="diagram">
+        <svg viewBox="0 0 700 430" role="img" aria-label="Distribution diagram">
+          <defs><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0L10,5L0,10z" fill="var(--muted)"/></marker></defs>
+          <!-- devices -->
+          <rect x="20" y="150" width="190" height="130" rx="10" fill="var(--match-soft)" stroke="var(--match)"/>
+          <text x="35" y="175" font-weight="700">Your device</text>
+          <text x="35" y="198" class="small">watch history (encrypted at rest)</text>
+          <text x="35" y="216" class="small">ranker + feed recipe</text>
+          <text x="35" y="234" class="small">your keypair = your identity</text>
+          <text x="35" y="262" class="small">recs computed here only</text>
+          <rect x="490" y="150" width="190" height="130" rx="10" fill="var(--match-soft)" stroke="var(--match)"/>
+          <text x="505" y="175" font-weight="700">Matched peer</text>
+          <text x="505" y="198" class="small">same software, same rules</text>
+          <text x="505" y="216" class="small">computes score on their side</text>
+          <!-- relays -->
+          <rect x="255" y="170" width="190" height="90" rx="10" fill="var(--sunk)" stroke="var(--line)"/>
+          <text x="270" y="195" font-weight="700">Relays (many, swappable)</text>
+          <text x="270" y="217" class="small">store + forward ciphertext</text>
+          <text x="270" y="235" class="small">see timing + who talks to whom</text>
+          <line x1="210" y1="205" x2="252" y2="205" stroke="var(--match)" stroke-width="2" marker-end="url(#ar)"/>
+          <line x1="445" y1="225" x2="487" y2="225" stroke="var(--match)" stroke-width="2" marker-end="url(#ar)"/>
+          <line x1="487" y1="205" x2="448" y2="205" stroke="var(--match)" stroke-width="2" marker-end="url(#ar)"/>
+          <line x1="252" y1="225" x2="213" y2="225" stroke="var(--match)" stroke-width="2" marker-end="url(#ar)"/>
+          <text x="350" y="150" text-anchor="middle" class="small">E2E-encrypted taste sketches</text>
+          <!-- video layer -->
+          <rect x="20" y="20" width="660" height="90" rx="10" fill="var(--surface)" stroke="var(--follow)"/>
+          <text x="35" y="45" font-weight="700">Video hosting: PeerTube instances, any host</text>
+          <text x="35" y="67" class="small">public catalog via ActivityPub · creators can mirror to several instances</text>
+          <text x="35" y="85" class="small">streaming helped by viewers (P2P) · a takedown on one instance leaves other mirrors up</text>
+          <line x1="115" y1="150" x2="115" y2="113" stroke="var(--follow)" stroke-width="2" marker-end="url(#ar)"/>
+          <text x="122" y="135" class="small">fetch video by ID</text>
+          <!-- public taste -->
+          <rect x="20" y="320" width="660" height="90" rx="10" fill="var(--circle-soft)" stroke="var(--circle)"/>
+          <text x="35" y="345" font-weight="700">Public layer: follows, signed taste lists, community feed recipes</text>
+          <text x="35" y="367" class="small">anyone can read and mirror · no private data here by design</text>
+          <text x="35" y="385" class="small">feed recipes are portable code/config, like Bluesky custom feeds but run on-device</text>
+          <line x1="115" y1="317" x2="115" y2="283" stroke="var(--circle)" stroke-width="2" marker-end="url(#ar)"/>
+        </svg>
+      </div>
+      <div class="layers">
+        <div class="panel"><h3>Who could be pressured, and what they'd hand over</h3>
+          <p class="who"><b>Video host:</b> can be ordered to remove a video. Mirrors on other instances survive. It never sees anyone's recommendations.</p>
+          <p class="who"><b>Relay:</b> holds ciphertext. It does see the metadata of who exchanges sketches with whom, which maps a taste network. Mitigation: Tor or mixnet transport and many relays.</p>
+          <p class="who"><b>Your device:</b> holds the plaintext history. Seizure exposes it. Mitigation: encryption at rest, retention windows, wipe.</p>
+          <p class="who"><b>A match:</b> sees what you shared. That is the point of matching, so this one can't be engineered away.</p>
+        </div>
+        <div class="panel"><h3>Who can't steer the feed</h3>
+          <p class="who">No server ranks. Your ranker reads only peers you chose. A bot farm has to get you to match its accounts before it can move your feed.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div class="scrim" id="modal" hidden>
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="mtitle">
+    <h2 id="mtitle">Match with Hand &amp; Hearth</h2>
+    <p class="muted" style="font-size:.9rem">You'll each send the other a taste sketch. Each device scores overlap and recommends from the other's picks.</p>
+    <fieldset><legend>What goes in your sketch</legend>
+      <label class="opt"><input type="radio" name="what" id="w1" checked> Videos you endorsed (liked or saved)</label>
+      <label class="opt"><input type="radio" name="what" id="w2"> Endorsed + finished watching (≥80%)</label>
+    </fieldset>
+    <fieldset><legend>Window</legend>
+      <label class="opt"><input type="radio" name="win" id="d30"> Last 30 days</label>
+      <label class="opt"><input type="radio" name="win" id="d60" checked> Last 60 days, rolling</label>
+    </fieldset>
+    <dl class="kv">
+      <dt>They'll see</dt><dd><span class="mono">41</span> video IDs, updated weekly</dd>
+      <dt>Excluded</dt><dd>#health, late-night watches</dd>
+      <dt>Expires</dt><dd>90 days unless both renew</dd>
+    </dl>
+    <p class="note">Anything sent can be kept by the recipient. Revoking stops new sketches only.</p>
+    <div class="row"><button class="btn" id="m-cancel">Cancel</button><button class="btn match" id="m-send">Send match request</button></div>
+  </div>
+</div>
+<div class="toast" id="toast" hidden></div>
+
+<script>
+const V=[
+ {t:"Building a cob oven in 40 hours",c:"Hand & Hearth",h:"craft.tube",d:"38:12",k:"follow",g:["#7a3e1d","#d19a52"],why:["You follow Hand & Hearth","Posted 2 days ago"]},
+ {t:"Riso printing a zine, start to finish",c:"Ink Lab",h:"kolektiva.media",d:"22:40",k:"circle",g:["#0f7c6c","#f2c14e"],why:["Picked by 3 of 5 people in Riso people","Circle hides who picked it"]},
+ {t:"Why bridges sing in the wind",c:"Structures Explained",h:"tube.science",d:"14:05",k:"match",g:["#2d5fa8","#9cc3e8"],why:["Ines Okafor endorsed it (overlap 0.64)","Theo Brandt also endorsed it (0.51)","Score: 0.64 + 0.51 = 1.15"]},
+ {t:"Night market in Taichung, no narration",c:"Slow Walks",h:"video.ploud.fr",d:"1:02:33",k:"second",g:["#3a1f4d","#e86f51"],why:["A match of Ines endorsed this","2nd-degree weight ×0.3 · source not named"]},
+ {t:"Repairing a 1978 analog synth",c:"Bench Notes",h:"peertube.tv",d:"47:20",k:"match",g:["#1a1d29","#7046c9"],why:["Theo Brandt endorsed it (0.51)"]},
+ {t:"The commons and the enclosure, lecture 3",c:"Open Seminar",h:"tube.edu",d:"55:09",k:"explore",g:["#5c6275","#c9ccd6"],why:["Explore slot: popular on 4 instances you use","Not personalized"]},
+ {t:"Hand-cut dovetails for beginners",c:"Hand & Hearth",h:"craft.tube",d:"19:47",k:"follow",g:["#8a4a22","#e7c79a"],why:["You follow Hand & Hearth"]},
+ {t:"Fermenting hot sauce at scale",c:"Brine Time",h:"craft.tube",d:"16:30",k:"match",g:["#a8321f","#f2a65a"],why:["Hand & Hearth endorsed it (0.43)"]}
+];
+const L={follow:"Following",match:"Match",circle:"Circle",second:"2nd degree",explore:"Explore"};
+function render(){
+  const m=+document.getElementById("mix").value;
+  document.getElementById("mixout").textContent=(100-m)+" / "+m;
+  const w=k=>k==="follow"?(100-m):k==="match"||k==="circle"?m:k==="second"?m*.3:10;
+  const s=V.map((v,i)=>({v,i,s:w(v.k)-i*2})).sort((a,b)=>b.s-a.s);
+  document.getElementById("feed").innerHTML=s.map(({v,i})=>`
+   <article class="card">
+     <div class="thumb" style="background:linear-gradient(135deg,${v.g[0]},${v.g[1]})"><span class="host">${v.h}</span><span class="dur">${v.d}</span></div>
+     <h3>${v.t}</h3>
+     <span class="muted" style="font-size:.85rem">${v.c}</span>
+     <span class="chip c-${v.k}">${L[v.k]}</span>
+     <button class="why" aria-expanded="false" data-i="${i}">Why am I seeing this?</button>
+     <div class="whybox" id="why${i}" hidden>${v.why.map(x=>`<span>${x}</span>`).join("")}</div>
+   </article>`).join("");
+}
+document.getElementById("mix").addEventListener("input",render);
+document.getElementById("feed").addEventListener("click",e=>{
+  const b=e.target.closest(".why");if(!b)return;
+  const box=document.getElementById("why"+b.dataset.i);box.hidden=!box.hidden;b.setAttribute("aria-expanded",!box.hidden);
+});
+render();
+
+document.querySelectorAll(".tabs button").forEach(b=>b.addEventListener("click",()=>{
+  document.querySelectorAll(".tabs button").forEach(x=>x.setAttribute("aria-selected",x===b));
+  document.querySelectorAll(".screen").forEach(s=>s.hidden=s.id!==b.dataset.screen);
+  try{localStorage.setItem("mf-tab",b.dataset.screen)}catch(e){}
+}));
+const tabFromHash=location.hash.slice(1);
+try{const t=tabFromHash||localStorage.getItem("mf-tab");if(t)document.querySelector(`[data-screen="${t}"]`)?.click()}catch(e){}
+
+const R=[
+ ["Ines Okafor","Endorsements","60 days","ok","Active"],
+ ["Theo Brandt","Endorsements + finished","30 days","ok","Active"],
+ ["Circle: Riso people","Endorsements, pooled","60 days","ok","Active, hidden among 5"],
+ ["Mar Quintero","Endorsements","60 days","exp","Expires in 6 days"]
+];
+const rowsEl=document.getElementById("ledgerRows");
+function rows(){rowsEl.innerHTML=R.map((r,i)=>`<tr><td>${r[0]}</td><td>${r[1]}</td><td class="mono">${r[2]}</td><td><span class="pill ${r[3]}">${r[4]}</span></td><td><button class="btn" style="padding:4px 10px;font-size:.8rem" data-r="${i}">Revoke</button></td></tr>`).join("")}
+rows();
+rowsEl.addEventListener("click",e=>{const b=e.target.closest("[data-r]");if(!b)return;const n=R[b.dataset.r][0];R.splice(b.dataset.r,1);rows();toast("Stopped sharing with "+n)});
+
+const toastEl=document.getElementById("toast");let tt;
+function toast(msg){toastEl.textContent=msg;toastEl.hidden=false;clearTimeout(tt);tt=setTimeout(()=>toastEl.hidden=true,2400)}
+const modal=document.getElementById("modal");
+document.getElementById("btn-match").onclick=()=>{modal.hidden=false;document.getElementById("m-send").focus()};
+document.getElementById("m-cancel").onclick=()=>modal.hidden=true;
+modal.addEventListener("click",e=>{if(e.target===modal)modal.hidden=true});
+document.addEventListener("keydown",e=>{if(e.key==="Escape")modal.hidden=true});
+document.getElementById("m-send").onclick=()=>{modal.hidden=true;const b=document.getElementById("btn-match");b.textContent="Match requested";b.classList.add("on");toast("Match request sent to Hand & Hearth")};
+const fb=document.getElementById("btn-follow");
+fb.onclick=()=>{const on=fb.classList.toggle("on");fb.textContent=on?"Following":"Follow";toast(on?"Following Hand & Hearth":"Unfollowed")};
+const tb=document.getElementById("btn-taste");
+tb.onclick=()=>{const on=tb.classList.toggle("on");tb.textContent=on?"Taste subscribed":"Subscribe to taste";toast(on?"Their public picks now feed your recs":"Taste subscription removed")};
+document.getElementById("btn-wipe").onclick=()=>toast("Mockup only: a real wipe asks you to confirm first");
+</script>
