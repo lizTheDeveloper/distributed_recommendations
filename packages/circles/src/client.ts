@@ -78,6 +78,9 @@ export interface SeenMessage {
   content: string;
 }
 
+/** Give up on an event that stayed unreadable for this many syncs. */
+const MAX_UNREADABLE_TRIES = 8;
+
 const ROUND_CONTEXT_LABEL = `${KDF_PREFIX}round`;
 
 export class CircleMember {
@@ -87,6 +90,8 @@ export class CircleMember {
   group?: MarmotGroup;
   engine?: CircleRoundEngine;
   private readonly seenEvents = new Set<string>();
+  /** Sync passes an event has stayed unreadable for (e.g. commits from before we joined). */
+  private readonly unreadableTries = new Map<string, number>();
   /** Decrypted round messages this member received from others (structural tests). */
   readonly seen: SeenMessage[] = [];
   removed = false;
@@ -228,7 +233,12 @@ export class CircleMember {
     // Events from epochs we have not reached yet come back "unreadable"; they are
     // not marked seen, so the next sync retries them (bounded by relay retention).
     for await (const r of g.ingest(events as never, { maxRetries: 64 })) {
-      if (r.kind === 'unreadable') continue;
+      if (r.kind === 'unreadable') {
+        const tries = (this.unreadableTries.get(r.event.id) ?? 0) + 1;
+        this.unreadableTries.set(r.event.id, tries);
+        if (tries >= MAX_UNREADABLE_TRIES) this.seenEvents.add(r.event.id);
+        continue;
+      }
       this.seenEvents.add(r.event.id);
       if (r.kind !== 'processed' || r.result.kind !== 'applicationMessage') continue;
       const parsed = this.parseRoundRumor(r.result.message);

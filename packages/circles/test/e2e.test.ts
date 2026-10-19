@@ -174,8 +174,16 @@ test('next round in the new epoch: 11 members, only new endorsements, earlier pi
     const ones = [...latest.keys()].filter((i) => latest[i] === 1).map((i) => CANDIDATES[i]);
     assert.deepEqual(ones, [video(20)]);
   }
-  // The removed member received nothing from the new epoch.
+  // The removed member received nothing from the new epoch, and cannot decrypt it
+  // even when it tries: its last group state predates the removal commit.
   assert.equal(leaver.seen.length, leaverSeen);
+  const newEvents = network.log.filter((e) => e.kind === 445 && e.created_at >= Math.floor(at.getTime() / 1000));
+  assert.ok(newEvents.length >= 3 * (N - 1));
+  let decrypted = 0;
+  for await (const res of leaver.group!.ingest(newEvents as never)) {
+    if (res.kind === 'processed' && res.result.kind === 'applicationMessage') decrypted++;
+  }
+  assert.equal(decrypted, 0);
   assert.deepEqual(leaver.engine!.contributedEpochs(), [firstEpoch]);
 });
 
