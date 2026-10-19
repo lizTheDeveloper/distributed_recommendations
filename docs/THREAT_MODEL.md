@@ -38,10 +38,10 @@ mitigation is **decided**, needs an **option to be chosen**, or still needs **re
 
 | # | Threat | Adversary | Sev | Mitigation | Status |
 |---|---|---|---|---|---|
-| T1 | A feed recipe exfiltrates history over the network | A5 | Critical | Recipes are declarative (weights, filters) or run in a WASM sandbox with **no network, storage or clock access**; they get candidate lists only, never raw history | Option (below) |
+| T1 | A feed recipe exfiltrates history over the network | A5 | Critical | Recipes are declarative only (weights, filters); the client evaluates them over candidate lists, never raw history | Decided (D1) |
 | T2 | PSI preview used as an oracle ("did you watch X?") | A3 | High | Preview only after the target accepts a preview request; both sets must have ≥20 items; rate-limit per pair and per requester; this is PSI-cardinality, so we never reveal items [A10] | Decided |
 | T3 | Circle output reveals individual picks (k too small, subtraction, round-to-round diffs) | A1 | High | k ≥ 8, a pick is shown only above a member threshold, DP noise on counts [A13], fixed membership per round, an epoch delay before membership changes take effect | Research (simulate leakage) |
-| T4 | Coerced matching / monitoring by a partner or family member | A2 | High | Silent pause that doesn't change what the peer sees; per-match exclusions; "endorsements only" by default; no read receipts or "last active"; matches expire unless renewed | Option (below) |
+| T4 | Coerced matching / monitoring by a partner or family member | A2 | High | Silent pause that doesn't change what the peer sees; per-match exclusions; "endorsements only" by default; no read receipts or "last active"; matches expire unless renewed | Decided (D2) |
 | T5 | Relay metadata reveals the match graph | A6, A8 | High | NIP-17 gift-wrap hides the sender [N1]; random relay selection; fixed-size padded sketches on a fixed schedule (hides activity level); Oblivious HTTP to relays [S2]; mixnet transport as an option later [S3]. Sealed-sender-style hiding alone falls to timing attacks [S4] | Decided (Tor/mixnet: later) |
 | T6 | P2P streaming leaks viewer IPs per video | A7, A8 | High | P2P off by default for viewers; opt-in with a plain warning [P4] | Decided |
 | T7 | Sybil accounts push content via second-degree propagation or public taste lists | A4 | High | Second degree only through opted-in matches; decaying personalized trust [A14][A15]; per-source trust learned from feedback (DSybil-style) [A22]; cap any one list's share of a feed; sponsored-flag required on lists | Decided; tune by simulation |
@@ -51,7 +51,7 @@ mitigation is **decided**, needs an **option to be chosen**, or still needs **re
 | T11 | Key loss locks a creator out of their identity | — | Medium | Social recovery (threshold guardians) or a hardware-backed key; publish a key-rotation event signed by the old key | Research |
 | T12 | Instance seizure exposes account data (cf. Kolektiva 2023) | A7, A8 | Medium | Instances hold the minimum: no watch history, ever. Encrypted backups. Recommend retention limits to instance admins | Decided for our code; advisory for admins |
 | T13 | Malicious or compromised client release | A10 | Critical | Reproducible builds; signed releases; F-Droid listing; pinned and reviewed dependencies; two-person release sign-off | Decided |
-| T14 | Creator analytics becomes viewer tracking | A7 | Medium | DAP with two non-colluding aggregators [C6]; report only channel totals with minimum batch sizes | Option: who runs the 2nd aggregator |
+| T14 | Creator analytics becomes viewer tracking | A7 | Medium | DAP with two non-colluding aggregators [C6]; report only channel totals with minimum batch sizes; creator opt-in; see ANALYTICS.md | Open (D3) |
 | T15 | Replay or forged sketches | A6 | Medium | Sign every event; nonces and expiry in each sketch; reject stale epochs | Decided |
 | T16 | Public taste lists de-anonymize their owners or feed poisoning attacks | A1, A4 | Medium | Warn curators that lists are public; allow pseudonymous curator keys; don't combine a viewer's private matches with their public list | Decided |
 | T17 | App-store removal or network blocking | A8 | Medium | PWA plus F-Droid and sideloading; relay and instance lists can be swapped; no single domain required | Decided |
@@ -59,7 +59,7 @@ mitigation is **decided**, needs an **option to be chosen**, or still needs **re
 
 ## Decisions that are yours
 
-**D1. Feed-recipe safety (T1)**
+**D1. Feed-recipe safety (T1). DECIDED 2026-10-19: declarative recipes only (JSON weights and filters). No code execution.**
 
 | Option | Pros | Cons |
 |---|---|---|
@@ -67,7 +67,7 @@ mitigation is **decided**, needs an **option to be chosen**, or still needs **re
 | WASM sandbox, no I/O | expressive; still can't exfiltrate | sandbox escapes are possible; bigger attack surface; harder review |
 | Both: declarative by default, WASM behind a warning | flexible | two systems to maintain |
 
-**D2. Coercion handling (T4)**
+**D2. Coercion handling (T4). DECIDED 2026-10-19: quiet pause plus per-match exclusions (baseline).**
 
 | Option | Pros | Cons |
 |---|---|---|
@@ -75,7 +75,7 @@ mitigation is **decided**, needs an **option to be chosen**, or still needs **re
 | Decoy mode: send a plausible but stale or partial sketch | stronger plausible deniability | if discovered, users are endangered; hard to do well |
 | Baseline + safety-planning copy, done with an advocacy org | grounded in real abuse cases | slower; needs partners |
 
-**D3. Second aggregator for creator analytics (T14)**
+**D3. Second aggregator for creator analytics (T14). IN PROGRESS: creator opt-in; see `docs/ANALYTICS.md`.**
 
 | Option | Pros | Cons |
 |---|---|---|
