@@ -120,3 +120,16 @@ def h2(p) -> np.ndarray:
     """Binary entropy in bits."""
     p = np.clip(np.asarray(p, dtype=float), 1e-12, 1 - 1e-12)
     return -(p * np.log2(p) + (1 - p) * np.log2(1 - p))
+
+
+def parallel_map(fn, jobs: list, workers: int | None = None) -> list:
+    """Order-preserving map over a process pool (stdlib). ``workers=1`` runs inline.
+    Results do not depend on the number of workers: every job seeds its own RNGs."""
+    if workers is None:
+        workers = min(len(jobs), os.cpu_count() or 1, 4)
+    if workers <= 1 or len(jobs) <= 1:
+        return [fn(j) for j in jobs]
+    import multiprocessing as mp
+    ctx = mp.get_context("fork") if hasattr(os, "fork") else mp.get_context()
+    with ctx.Pool(workers) as pool:
+        return pool.map(fn, jobs, chunksize=1)

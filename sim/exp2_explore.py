@@ -18,7 +18,7 @@ import time
 
 import numpy as np
 
-from .common import aggregate, md_table, out_path, write_csv
+from .common import aggregate, md_table, out_path, parallel_map, write_csv
 from .recs import Context, RecParams, make_feeds
 from .world import WorldConfig, build_world, gini, gumbel_topk_mask, initial_state
 
@@ -116,25 +116,47 @@ def _watch(w, s, u, vid, r, rng, follow_prob):
     s.follows[u[fol], w.video_creator[vid[fol]]] = True
 
 
+_WORLD_CACHE: dict = {}
+
+
+def _job(args):
+    cfg, seed, share = args[:3]
+    params = args[3] if len(args) > 3 else RecParams()
+    key = cfg.scaled(seed=seed)
+    if key not in _WORLD_CACHE:
+        _WORLD_CACHE.clear()
+        _WORLD_CACHE[key] = build_world(key)
+    return {"seed": seed, **simulate(_WORLD_CACHE[key], share, params, seed)}
+
+
 def run(seeds=(0, 1), cfg: WorldConfig = WorldConfig(n_viewers=2000, n_creators=1000),
-        shares=SHARES, out_dir=None, log=print) -> dict:
-    rows = []
+        shares=SHARES, random_shares=(0.02, 0.05, 0.10), out_dir=None, log=print, workers: int | None = None) -> dict:
+    # "content": explore candidates ranked by on-device tag similarity (default).
+    # "random": explore candidates drawn at random among eligible creators — a
+    # pessimistic bound on the viewer-quality cost.
+    jobs, labels = [], []
     for seed in seeds:
-        w = build_world(cfg.scaled(seed=seed))
         for sh in shares:
-            t0 = time.time()
-            m = simulate(w, sh, RecParams(), seed)
-            rows.append({"seed": seed, **m})
-            log(f"  exp2 seed {seed} share {sh:.2f}: {time.time() - t0:.1f}s "
-                f"TTFV med {m['ttfv_median_wk']} P@20 {m['precision@20']:.3f}")
-    metrics = [k for k in rows[0] if k not in ("seed", "explore_share")]
-    agg = aggregate(rows, ["explore_share"], metrics)
-    base = agg[0]
+            jobs.append((cfg, seed, sh))
+            labels.append("content")
+        for sh in random_shares:
+            jobs.append((cfg, seed, sh, RecParams(explore_noise=1e4)))
+            labels.append("random")
+    t0 = time.time()
+    rows = parallel_map(_job, jobs, workers)
+    for r, lab in zip(rows, labels):
+        r["explore_ranking"] = lab
+        log(f"  exp2 seed {r['seed']} {lab} share {r['explore_share']:.2f}: "
+            f"TTFV median {r['ttfv_median_wk']} P@20 {r['precision@20']:.3f}")
+    log(f"  exp2 total {time.time() - t0:.1f}s")
+    metrics = [k for k in rows[0] if k not in ("seed", "explore_share", "explore_ranking")]
+    agg = aggregate(rows, ["explore_ranking", "explore_share"], metrics)
+    base = next(a for a in agg if a["explore_share"] == 0.0)
     for a in agg:
         a["quality_cost_pct"] = 100.0 * (1 - a["precision@20"] / base["precision@20"])
     write_csv(rows, out_path("exp2_explore_raw.csv", out_dir))
     write_csv(agg, out_path("exp2_explore.csv", out_dir))
-    headers = {"explore_share": "explore share", "ttfv_median_wk": "median TTFV (wk)",
+    headers = {"explore_share": "explore share", "explore_ranking": "explore ranking", "ttfv_median_wk": "median TTFV (wk)",
                "ttfv_mean_capped_wk": "mean TTFV (wk, capped 7)",
                "found_in_1wk": "found ≤1 wk", "found_in_2wk": "found ≤2 wk",
                "found_in_4wk": "found ≤4 wk", "never_in_window": "not found in 6 wk",
@@ -146,10 +168,10 @@ def run(seeds=(0, 1), cfg: WorldConfig = WorldConfig(n_viewers=2000, n_creators=
           f"World: {cfg.n_viewers} viewers, {cfg.n_creators} creators, {cfg.n_rounds} weekly "
           f"rounds, seeds {list(seeds)}. TTFV = weeks from a new creator's first upload to the "
           "first in-feed view by a non-follower (week of upload = 1).", "",
-          md_table(agg, ["explore_share", "ttfv_median_wk", "ttfv_mean_capped_wk",
+          md_table(agg, ["explore_ranking", "explore_share", "ttfv_median_wk", "ttfv_mean_capped_wk",
                          "found_in_1wk", "found_in_2wk", "found_in_4wk", "never_in_window",
                          "first_view_via_explore"], sd=True, headers=headers), "",
-          md_table(agg, ["explore_share", "precision@20", "quality_cost_pct", "creator_gini",
+          md_table(agg, ["explore_ranking", "explore_share", "precision@20", "quality_cost_pct", "creator_gini",
                          "new_creator_impr_share", "new_creator_followers"], sd=True,
                    headers=headers)]
     with open(out_path("exp2_summary.md", out_dir), "w") as f:

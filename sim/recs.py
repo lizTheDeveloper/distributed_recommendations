@@ -198,10 +198,12 @@ def explore_pick(ctx: Context, n_slots: np.ndarray, rng: np.random.Generator,
     if len(cols) == 0:
         return np.full((N, 0), -1, dtype=np.int64)
     allowed = ctx.allowed[:, cols] & ~tie_mask[:, cols]
-    prof = (ctx.Ef + 0.3 * (ctx.w.subs.astype(np.float32) @ ctx.lists.astype(np.float32))
-            + 0.3 * ctx.follow) @ w.video_tags
+    tags = w.video_tags.astype(np.float32)
+    prof = (ctx.Ef @ tags + 0.3 * (ctx.w.subs.astype(np.float32)
+                                   @ (ctx.lists.astype(np.float32) @ tags))
+            + 0.3 * (ctx.follow @ tags))
     prof /= np.maximum(np.linalg.norm(prof, axis=1, keepdims=True), 1e-9)
-    sc = (prof @ w.video_tags[cols].T).astype(np.float32)
+    sc = (prof @ tags[cols].T).astype(np.float32)
     sc += p.explore_noise * gumbel32(rng, sc.shape)
     sub = select_topk(sc, allowed, min(kmax, len(cols)), w.video_creator[cols], cap=1)
     return np.where(sub >= 0, cols[np.maximum(sub, 0)], -1)
