@@ -56,7 +56,10 @@ export function watchId(url: string): { origin: string; id: string } | null {
  * PeerTube embed URL on the video's origin instance. P2P is off unless the viewer
  * turned it on: with P2P, other viewers of the same video can see your IP.
  */
-export function embedUrl(v: Video, opts: { p2p: boolean }): string | null {
+export function embedUrl(
+  v: Video,
+  opts: { p2p: boolean; autoplay?: boolean; muted?: boolean; loop?: boolean; api?: boolean; controls?: boolean },
+): string | null {
   const w = watchId(v.url ?? v.id);
   if (!w) return null;
   const q = new URLSearchParams({
@@ -65,7 +68,17 @@ export function embedUrl(v: Video, opts: { p2p: boolean }): string | null {
     warningTitle: "0",
     title: "0",
   });
+  if (opts.autoplay !== undefined) q.set("autoplay", opts.autoplay ? "1" : "0");
+  if (opts.muted !== undefined) q.set("muted", opts.muted ? "1" : "0");
+  if (opts.loop) q.set("loop", "1");
+  if (opts.api) q.set("api", "1");
+  if (opts.controls === false) q.set("controlBar", "0");
   return `${w.origin}/videos/embed/${encodeURIComponent(w.id)}?${q}`;
+}
+
+/** Origin of the instance that serves a video's embed. */
+export function embedOrigin(v: Video): string | null {
+  return watchId(v.url ?? v.id)?.origin ?? null;
 }
 
 /** Tier 0 link: PeerTube's own stats page for a video (the owner must be signed in). */

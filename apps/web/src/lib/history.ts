@@ -8,8 +8,12 @@ export interface WatchEvent {
   videoId: string;
   /** Unix ms. */
   at: number;
-  /** `watch` = opened the player; `endorse` = explicit like/save. */
-  kind: "watch" | "endorse";
+  /**
+   * `watch` = opened the player or a reel played a few seconds; `endorse` = explicit
+   * like/save; `finish` = the embed reported at least 80% played (Reels, via the
+   * PeerTube embed API).
+   */
+  kind: "watch" | "endorse" | "finish";
   tags: string[];
   /** The chip the video carried when acted on (local only). */
   via?: SourceKind;
@@ -26,7 +30,7 @@ export function loadHistory(x: unknown): WatchEvent[] {
         e !== null &&
         typeof e.videoId === "string" &&
         typeof e.at === "number" &&
-        (e.kind === "watch" || e.kind === "endorse"),
+        (e.kind === "watch" || e.kind === "endorse" || e.kind === "finish"),
     )
     .map((e) => ({ ...e, tags: Array.isArray(e.tags) ? e.tags.filter((t: unknown) => typeof t === "string") : [] }))
     .slice(-HISTORY_CAP);
@@ -60,15 +64,21 @@ export function isEndorsed(history: readonly WatchEvent[], videoId: string): boo
 
 /** Ids to hide from the feed: anything watched. */
 export function seenSet(history: readonly WatchEvent[]): Set<string> {
-  return new Set(history.filter((e) => e.kind === "watch").map((e) => e.videoId));
+  return new Set(history.filter((e) => e.kind === "watch" || e.kind === "finish").map((e) => e.videoId));
+}
+
+export function hasFinished(history: readonly WatchEvent[], videoId: string): boolean {
+  return history.some((e) => e.kind === "finish" && e.videoId === videoId);
 }
 
 /**
- * Entries in core's sketch format, for when Match ships. Endorsements only:
- * opening the player is not a finished watch, so `watch` events never qualify.
+ * Entries in core's sketch format for Match. Endorsements, and finished watches
+ * (≥ 80% played, reported by the embed); each match's consent decides whether
+ * finished watches are shared. Opening the player is not a finished watch, so
+ * `watch` events never qualify.
  */
 export function toSketchHistory(history: readonly WatchEvent[]): HistoryEntry[] {
   return history
-    .filter((e) => e.kind === "endorse")
-    .map((e) => ({ videoId: e.videoId, at: new Date(e.at), kind: "endorse" as const, tags: e.tags }));
+    .filter((e) => e.kind === "endorse" || e.kind === "finish")
+    .map((e) => ({ videoId: e.videoId, at: new Date(e.at), kind: e.kind === "finish" ? ("finish" as const) : ("endorse" as const), tags: e.tags }));
 }

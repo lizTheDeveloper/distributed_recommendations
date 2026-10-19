@@ -1,4 +1,4 @@
-import type { Recipe, SourceKind } from "./core.ts";
+import type { Recipe, RecipeFilters, SourceKind } from "./core.ts";
 import { DEFAULT_RECIPE, EXPLORE_SHARE, FOLLOWING_CHRONOLOGICAL_RECIPE, RECIPE_DEFAULTS, parseRecipe, recipeToJson } from "./core.ts";
 
 export interface BuiltinRecipe {
@@ -50,19 +50,53 @@ export function describeRecipe(r: Recipe): string {
   return `${parts.join("; ")}. ${exploreText(r)}`;
 }
 
-type Patch = Partial<Pick<Recipe, "name" | "recencyHalfLifeDays" | "exploreShare" | "maxPerCreator" | "maxPerTasteList">> & {
+export type RecipePatch = Partial<Pick<Recipe, "name" | "recencyHalfLifeDays" | "exploreShare" | "maxPerCreator" | "maxPerTasteList">> & {
   weights?: Partial<Record<SourceKind, number>>;
+  filters?: Partial<RecipeFilters>;
 };
 
 /** Apply edits and re-validate through core, so the UI can never hold an invalid recipe. */
-export function editRecipe(base: Recipe, patch: Patch): Recipe {
+export function editRecipe(base: Recipe, patch: RecipePatch): Recipe {
   const json = recipeToJson(base) as Record<string, unknown>;
-  const { weights, ...rest } = patch;
+  const { weights, filters, ...rest } = patch;
   Object.assign(json, rest);
   if (weights) json.weights = { ...(json.weights as object), ...weights };
+  if (filters) {
+    // Wire form omits default filters; start from the full set so a patch can clear one.
+    const f = { ...base.filters, ...filters };
+    const out: Record<string, unknown> = {};
+    if (f.excludeTags.length) out.excludeTags = f.excludeTags;
+    if (f.includeLanguages.length) out.includeLanguages = f.includeLanguages;
+    if (f.minDurationSec) out.minDurationSec = f.minDurationSec;
+    if (f.maxDurationSec !== null) out.maxDurationSec = f.maxDurationSec;
+    if (f.excludeCreators.length) out.excludeCreators = f.excludeCreators;
+    if (Object.keys(out).length) json.filters = out;
+    else delete json.filters;
+  }
   return parseRecipe(json);
+}
+
+/** Short label for the current-recipe pill, e.g. "Default · 5% new". */
+export function recipePillText(r: Recipe): string {
+  const name = r.name.length > 28 ? r.name.slice(0, 27) + "…" : r.name;
+  const share = r.exploreShare > 0 && r.weights.explore > 0 ? ` · ${Math.round(r.exploreShare * 100)}% new` : "";
+  return name + share;
+}
+
+/** Plain-language summary of a recipe's filters, or null when there are none. */
+export function filtersText(r: Recipe): string | null {
+  const f = r.filters;
+  const parts: string[] = [];
+  if (f.excludeTags.length) parts.push(`hiding #${f.excludeTags.join(", #")}`);
+  if (f.includeLanguages.length) parts.push(`only ${f.includeLanguages.join(", ")}`);
+  if (f.minDurationSec) parts.push(`at least ${Math.round(f.minDurationSec / 60)} min`);
+  if (f.maxDurationSec !== null) parts.push(`at most ${Math.round(f.maxDurationSec / 60)} min`);
+  if (f.excludeCreators.length) parts.push(`${f.excludeCreators.length} creator${f.excludeCreators.length === 1 ? "" : "s"} hidden`);
+  return parts.length ? parts.join("; ") : null;
 }
 
 export function recipeText(r: Recipe): string {
   return JSON.stringify(recipeToJson(r), null, 2);
 }
+
+export const LANGUAGE_HINT = "Language codes such as en, fr, pt-BR, comma-separated. Videos with no language set always pass.";

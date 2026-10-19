@@ -1,6 +1,6 @@
 // App shell: state, persistence, data loading and screen routing.
 
-import type { Recipe, RankedItem, SourceKind, Video } from "./lib/core.ts";
+import type { Candidate, Recipe, RankedItem, SourceKind, Video } from "./lib/core.ts";
 import { cryptoRng, parseRecipe, rank, recipeToJson, seededRng, tagProfile, tagRelevance } from "./lib/core.ts";
 import type { Catalog, ChannelStats } from "./lib/catalog.ts";
 import { mapLimit } from "./lib/catalog.ts";
@@ -11,11 +11,11 @@ import { emptyImpressions, listStrength, loadImpressions, recordImpression } fro
 import type { ChannelRef } from "./lib/handles.ts";
 import { handleOf, parseChannelInput } from "./lib/handles.ts";
 import type { WatchEvent } from "./lib/history.ts";
-import { DAY_MS, isEndorsed, loadHistory, pruneHistory, record, seenSet, unendorse } from "./lib/history.ts";
+import { DAY_MS, hasFinished, isEndorsed, loadHistory, pruneHistory, record, seenSet, toSketchHistory, unendorse } from "./lib/history.ts";
 import type { Tally } from "./lib/analytics.ts";
 import { countView, emptyTally, loadTally } from "./lib/analytics.ts";
-import { BUILTIN_RECIPES } from "./lib/recipes.ts";
-import type { RetentionDays, Settings } from "./lib/settings.ts";
+import { BUILTIN_RECIPES, editRecipe } from "./lib/recipes.ts";
+import type { FeedView, RetentionDays, Settings } from "./lib/settings.ts";
 import { loadSettings } from "./lib/settings.ts";
 import type { KV } from "./lib/storage.ts";
 import { readJson, writeJson } from "./lib/storage.ts";
@@ -25,12 +25,30 @@ import type { Vault } from "./lib/vault.ts";
 import type { TasteList } from "./lib/tastelist.ts";
 import { parseTasteList } from "./lib/tastelist.ts";
 import { loadVideo, storeVideo } from "./lib/videos.ts";
+import type { Pager, ReelItem, ReelSection } from "./lib/reels.ts";
+import { REELS_MAX_PAGES, applyPage, extendReels, newPager, nextPages, pagerExhausted, removeReel } from "./lib/reels.ts";
+import type { SheetAction, SheetSection, SheetState } from "./lib/sheet.ts";
+import { closedSheet, sheetReduce } from "./lib/sheet.ts";
+import { findNpub } from "./lib/bech32.ts";
+import type { StoredIdentity } from "./lib/match/identity.ts";
+import { loadIdentity, signerFor } from "./lib/match/identity.ts";
+import type { PeerSource } from "./lib/match/service.ts";
+import { MatchService, loadBook, loadMeta } from "./lib/match/service.ts";
+import { WsRelay } from "./lib/match/wsRelay.ts";
+import { configurePsi, lazyPsi, onPsiStatus } from "./lib/match/psi.ts";
+import { framePsi } from "./lib/match/psiFrame.ts";
+import type { DemoSaved } from "./lib/match/demo.ts";
+import { DEMO_NAME, DemoPeer, loadDemoSaved, pickDemoItems } from "./lib/match/demo.ts";
+import { InMemoryRelay } from "./lib/match/pkg.ts";
 import { h } from "./ui/dom.ts";
+import { icon } from "./ui/icons.ts";
 import { homeScreen } from "./ui/home.ts";
 import { followScreen } from "./ui/follow.ts";
 import { recipeScreen } from "./ui/recipe.ts";
 import { settingsScreen } from "./ui/settings.ts";
 import { studioScreen } from "./ui/studio.ts";
+import { matchesScreen } from "./ui/matches.ts";
+import { renderSheet } from "./ui/sheet.ts";
 import { openWatch } from "./ui/watch.ts";
 
 export type Load<T> = { status: "loading" } | { status: "ok"; value: T } | { status: "error"; error: string };
@@ -49,15 +67,44 @@ export interface TasteSub {
   addedAt: number;
 }
 
-export type ScreenId = "home" | "follow" | "recipe" | "settings" | "studio";
+export type ScreenId = "home" | "follow" | "matches" | "studio" | "settings" | "recipe";
 
-export const SCREENS: { id: ScreenId; label: string }[] = [
-  { id: "home", label: "Home feed" },
-  { id: "follow", label: "Follow & taste" },
-  { id: "recipe", label: "Recipe" },
-  { id: "settings", label: "Sharing & settings" },
-  { id: "studio", label: "Creator studio" },
+/** Header tabs (desktop). Mobile shows the same screens in a bottom bar, plus Settings. */
+export const SCREENS: { id: ScreenId; label: string; short: string; icon: string }[] = [
+  { id: "home", label: "Home", short: "Home", icon: "home" },
+  { id: "follow", label: "Follow & taste", short: "Following", icon: "users" },
+  { id: "matches", label: "Matches", short: "Matches", icon: "match" },
+  { id: "studio", label: "Creator studio", short: "Studio", icon: "studio" },
+  { id: "settings", label: "Sharing & privacy", short: "Privacy", icon: "shield" },
 ];
+const ALL_SCREENS: ScreenId[] = ["home", "follow", "matches", "studio", "settings", "recipe"];
+
+/** Someone the viewer could match with: a creator or curator who published an npub, or a typed npub. */
+export interface MatchTarget {
+  pubkey: string;
+  name: string;
+  source: PeerSource;
+  ref?: string;
+}
+
+/** The consent sheet (Matches): what to share when requesting, accepting or editing. */
+export type ConsentDialog =
+  | { mode: "request"; target: MatchTarget }
+  | { mode: "accept"; matchId: string }
+  | { mode: "edit"; matchId: string };
+
+export interface ReelsState {
+  items: ReelItem[];
+  active: number;
+  muted: boolean;
+  paused: boolean;
+  pager: Pager | null;
+  loading: boolean;
+  /** Extra catalog pages fetched for Reels, per instance. */
+  pages: Map<string, { recent: Video[]; trending: Video[] }>;
+  /** Bumped when the list changes, so the view knows to sync. */
+  version: number;
+}
 
 export interface State {
   settings: Settings;
@@ -70,14 +117,24 @@ export interface State {
   impressions: Impressions;
   /** Tags fetched from video detail endpoints (list endpoints omit tags). */
   tagCache: Map<string, string[]>;
+  /** "Not interested" (Reels): never shown again. */
+  hidden: Set<string>;
   screen: ScreenId;
+  view: FeedView;
+  sheet: SheetState;
+  /** Bumped whenever the sheet's contents must be rebuilt. */
+  sheetStamp: number;
   seed: number;
   instances: Map<string, Load<InstanceFeed>>;
   followVideos: Map<string, Load<Video[]>>;
   tasteRes: Map<string, Load<{ videos: Video[]; missing: number }>>;
   videoCache: Map<string, Video>;
   openWhy: Set<string>;
-  studio: { handle: string; load: Load<ChannelStats> | null };
+  studio: { handle: string; load: Load<ChannelStats> | null; npub?: string | null };
+  reels: ReelsState;
+  /** Creator handle → published npub (hex), null = none found. Memory only. */
+  creatorNpub: Map<string, string | null>;
+  consent: ConsentDialog | null;
   /** Transient form state (inputs, errors) keyed by form. */
   ui: Record<string, string | undefined>;
 }
@@ -98,37 +155,65 @@ export interface AppOptions {
   sensitive: SensitiveData;
   /** Plaintext from an older version remains in localStorage (memory vault only). */
   legacyLeft?: boolean;
+  /** Dev tools: on-demand sketches. On in `npm run dev` and the offline demo. */
+  devTools?: boolean;
 }
 
-type PersistKey = "settings" | "follows" | "taste" | "recipe" | "history" | "tally" | "videos" | "impressions" | "tags";
+type PersistKey = "settings" | "follows" | "taste" | "recipe" | "history" | "tally" | "videos" | "impressions" | "tags" | "hidden" | "identity";
 
 export interface App {
   s: State;
   mode: "live" | "snapshot";
   catalog: Catalog;
   vault: Vault;
+  match: MatchService;
+  /** The offline demo's simulated peer (snapshot build only). */
+  demo: DemoPeer | null;
+  /** Demo: replace the simulated peer with a fresh one (new key, no history with you). */
+  newDemoPeer(): Promise<void>;
+  devTools: boolean;
   /** Plaintext from an older version remains in localStorage (memory vault only). */
   legacyLeft: boolean;
   examples: { file: string; list: TasteList }[];
   now(): Date;
   recipe(): Recipe;
   feed(): { items: RankedItem[]; candidates: number; popular: RankedItem[]; personalizedExplore: boolean };
+  /** Reels list (extends itself from the ranked feed as needed). */
+  reelItems(): ReelItem[];
+  loadMoreReels(): void;
   /** Note that a feed item scrolled into view (track record). */
   markShown(id: string): void;
   resolvedLists(): ResolvedTasteList[];
   persist(...keys: PersistKey[]): void;
   rerender(): void;
-  toast(msg: string): void;
+  toast(msg: string, action?: { label: string; run: () => void }): void;
   go(screen: ScreenId): void;
+  setView(v: FeedView): void;
+  sheet(a: SheetAction): void;
+  sheetChanged(): void;
   setRecipe(id: string, custom?: Recipe): void;
+  /** Edit the active recipe (saves a custom copy), re-validated by core. */
+  editRecipe(patch: Parameters<typeof editRecipe>[1]): string | null;
   isFollowing(creator: string): boolean;
   follow(ref: ChannelRef, name?: string): void;
   unfollow(handle: string): void;
   addTaste(sub: TasteSub): void;
   removeTaste(key: string): void;
   watch(v: Video, via?: SourceKind): void;
+  /** Record a watch without opening the player (a reel that played). */
+  noteWatch(v: Video, via?: SourceKind): void;
+  noteFinish(v: Video, via?: SourceKind): void;
   isEndorsed(id: string): boolean;
   toggleEndorse(v: Video, via?: SourceKind): void;
+  notInterested(v: Video): void;
+  share(v: Video): void;
+  /** A creator or curator with a published npub for this item, if any. */
+  matchTarget(item: RankedItem): MatchTarget | null;
+  lookupCreatorNpub(creator: string): void;
+  /** Start the request flow (opens Matches with the consent sheet). */
+  requestMatchWith(t: MatchTarget): void;
+  setIdentity(id: StoredIdentity | null): Promise<void>;
+  setRelays(urls: string[]): void;
   /** Wipe history and crypto-shred the vault key. */
   wipeHistory(): Promise<void>;
   setRetention(days: RetentionDays): void;
@@ -140,10 +225,16 @@ export interface App {
 }
 
 const FEED_LIMIT = 60;
+const REELS_RANK_LIMIT = 400;
 const TAG_CACHE_CAP = 1500;
 /** Explore candidates whose tags are fetched for on-device relevance. */
 const TAG_FETCH_LIMIT = 40;
 const VIDEO_CACHE_CAP = 600;
+const HIDDEN_CAP = 2000;
+/** Unknown sketch items resolved per sync (one request each to the video's origin). */
+const MATCH_RESOLVE_LIMIT = 60;
+/** How often Match checks relays while the app is open (sketches go out only when due). */
+const MATCH_POLL_MS = 60_000;
 
 /** How often the retention sweep checks whether a day has passed. */
 const PRUNE_CHECK_MS = 60 * 60 * 1000;
@@ -179,9 +270,10 @@ export function startApp(opts: AppOptions): App {
     if (v) videoCache.set(v.id, v);
   }
 
+  const settings = readJson(kv, "settings", loadSettings(null), loadSettings);
   const storedTab = kv.get("mf.v1.tab");
   const s: State = {
-    settings: readJson(kv, "settings", loadSettings(null), loadSettings),
+    settings,
     follows: sens<FollowEntry[]>("follows", [], (x) =>
       Array.isArray(x) ? x.filter((f) => f && typeof f.handle === "string" && parseChannelInput(f.handle)) : [],
     ),
@@ -206,7 +298,11 @@ export function startApp(opts: AppOptions): App {
         Array.isArray(x) ? x.filter((e) => Array.isArray(e) && typeof e[0] === "string" && Array.isArray(e[1])) : [],
       ),
     ),
-    screen: SCREENS.some((x) => x.id === storedTab) ? (storedTab as ScreenId) : "home",
+    hidden: new Set(sens<string[]>("hidden", [], (x) => (Array.isArray(x) ? x.filter((i): i is string => typeof i === "string") : []))),
+    screen: ALL_SCREENS.includes(storedTab as ScreenId) ? (storedTab as ScreenId) : "home",
+    view: settings.defaultView,
+    sheet: closedSheet,
+    sheetStamp: 0,
     seed: Math.floor(cryptoRng()() * 2 ** 31),
     instances: new Map(),
     followVideos: new Map(),
@@ -214,46 +310,69 @@ export function startApp(opts: AppOptions): App {
     videoCache,
     openWhy: new Set(),
     studio: { handle: "", load: null },
+    reels: { items: [], active: 0, muted: true, paused: false, pager: null, loading: false, pages: new Map(), version: 0 },
+    creatorNpub: new Map(),
+    consent: null,
     ui: {},
   };
 
   // ---- shell ----
-  const tabs = h("nav", { class: "tabs", role: "tablist", "aria-label": "Screens" });
-  const main = h("main", { id: "screen", role: "tabpanel" });
-  const toastEl = h("div", { class: "toast", role: "status", hidden: true });
-  const themeSel = h(
-    "select",
-    { "aria-label": "Theme", onchange: (e: Event) => {
-      s.settings.theme = (e.target as HTMLSelectElement).value as Settings["theme"];
-      app.persist("settings");
-      app.setTheme();
-    } },
-    h("option", { value: "auto" }, "Theme: system"),
-    h("option", { value: "light" }, "Theme: light"),
-    h("option", { value: "dark" }, "Theme: dark"),
-  );
+  const tabs = h("nav", { class: "tabs", "aria-label": "Screens" });
+  const bottom = h("nav", { class: "bottombar", "aria-label": "Screens" });
+  const main = h("main", { id: "screen" });
+  const sheetHost = h("div", { id: "sheet-host" });
+  const toastEl = h("div", { class: "toast", role: "status", "aria-live": "polite", hidden: true });
+  const gear = h("button", { class: "iconbtn", id: "gear-btn", "aria-label": "Feed settings", title: "Feed settings", onclick: () => app.sheet({ type: "toggle", from: "gear-btn" }) }, icon("gear"));
   for (const sc of SCREENS) {
-    tabs.appendChild(
-      h("button", { role: "tab", id: `tab-${sc.id}`, "data-screen": sc.id, "aria-controls": "screen", onclick: () => app.go(sc.id) }, sc.label),
-    );
+    tabs.appendChild(h("button", { id: `tab-${sc.id}`, "data-screen": sc.id, onclick: () => app.go(sc.id) }, sc.label));
   }
+  for (const sc of SCREENS.filter((x) => x.id !== "settings")) {
+    bottom.appendChild(h("button", { id: `bt-${sc.id}`, "data-screen": sc.id, onclick: () => app.go(sc.id) }, icon(sc.icon), h("span", null, sc.short)));
+  }
+  bottom.appendChild(h("button", { id: "bt-settings", "data-screen": "sheet", "aria-label": "Settings", onclick: () => app.sheet({ type: "toggle", from: "bt-settings" }) }, icon("sliders"), h("span", null, "Settings")));
+  const menuBtn = h("button", { class: "iconbtn", id: "menu-btn", "aria-label": "Menu", "aria-haspopup": "true", "aria-expanded": "false", onclick: () => toggleMenu() }, h("span", { "aria-hidden": "true", class: "dots" }, "⋯"));
+  const menu = h(
+    "div",
+    { class: "menu", id: "app-menu", role: "menu", hidden: true },
+    h("button", { role: "menuitem", onclick: () => (closeMenu(), app.sheet({ type: "open", from: "menu-btn" })) }, icon("sliders", 18), "Feed settings…"),
+    h("button", { role: "menuitem", onclick: () => (closeMenu(), app.go("recipe")) }, "Recipe import & export"),
+    h("button", { role: "menuitem", onclick: () => (closeMenu(), app.go("settings")) }, "Sharing & privacy"),
+    h("button", { role: "menuitem", onclick: () => (closeMenu(), app.go("matches")) }, "Matches"),
+  );
+  function toggleMenu() {
+    const open = menu.hidden;
+    menu.hidden = !open;
+    menuBtn.setAttribute("aria-expanded", String(open));
+    if (open) (menu.querySelector("button") as HTMLElement | null)?.focus();
+  }
+  function closeMenu() {
+    menu.hidden = true;
+    menuBtn.setAttribute("aria-expanded", "false");
+  }
+  document.addEventListener?.("click", (e) => {
+    if (!menu.hidden && !menu.contains(e.target as Node) && e.target !== menuBtn && !menuBtn.contains(e.target as Node)) closeMenu();
+  });
+  menu.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      closeMenu();
+      menuBtn.focus();
+    }
+  });
+
+  const header = h(
+    "header",
+    { class: "topbar" },
+    h("div", { class: "brand" }, h("h1", null, "Match Feed"), h("p", { class: "muted small tagline" }, "Federated video, ranked on this device by a recipe you control.")),
+    tabs,
+    h("div", { class: "topactions" }, gear, h("div", { class: "menuwrap" }, menuBtn, menu)),
+  );
   opts.root.replaceChildren(
     h(
       "div",
       { class: "wrap" },
-      h(
-        "header",
-        { class: "intro" },
-        h(
-          "div",
-          null,
-          h("h1", null, "Match Feed"),
-          h("p", { class: "muted" }, "Federated video, ranked on this device by a recipe you control. Every pick says why it's here."),
-        ),
-        themeSel,
-      ),
+      header,
       opts.mode === "snapshot" && opts.snapshotNote
-        ? h("div", { class: "banner-note", role: "note" }, h("div", null, h("strong", null, "Offline snapshot. "), opts.snapshotNote))
+        ? h("details", { class: "banner-note", role: "note" }, h("summary", null, h("strong", null, "Offline snapshot. "), "No network: playback is off and Match runs against a simulated peer."), h("p", null, opts.snapshotNote))
         : null,
       vault.status === "memory"
         ? h(
@@ -267,24 +386,47 @@ export function startApp(opts: AppOptions): App {
             ),
           )
         : null,
-      tabs,
       main,
     ),
+    bottom,
+    sheetHost,
     toastEl,
   );
 
   let toastTimer: ReturnType<typeof setTimeout> | undefined;
   let renderQueued = false;
+  let sheetBuiltStamp = -1;
+  let sheetOpenRendered = false;
 
   function render() {
     renderQueued = false;
     const active = document.activeElement as HTMLElement | null;
     const focusId = active && main.contains(active) ? active.id : "";
-    for (const b of tabs.querySelectorAll("button")) b.setAttribute("aria-selected", String(b.dataset.screen === s.screen));
-    main.setAttribute("aria-labelledby", `tab-${s.screen}`);
-    const screen = { home: homeScreen, follow: followScreen, recipe: recipeScreen, settings: settingsScreen, studio: studioScreen }[s.screen];
-    main.replaceChildren(screen(app));
-    if (focusId) document.getElementById(focusId)?.focus({ preventScroll: true });
+    for (const b of [...tabs.querySelectorAll("button"), ...bottom.querySelectorAll("button")] as HTMLElement[]) {
+      const on = b.dataset.screen === s.screen || (b.dataset.screen === "sheet" && s.sheet.open);
+      if (on) b.setAttribute("aria-current", "page");
+      else b.removeAttribute("aria-current");
+    }
+    const reelsMode = s.screen === "home" && s.view === "reels";
+    document.body.classList.toggle("reels-mode", reelsMode);
+    const screen = { home: homeScreen, follow: followScreen, recipe: recipeScreen, settings: settingsScreen, studio: studioScreen, matches: matchesScreen }[s.screen];
+    const el = screen(app);
+    // The Reels view is a persistent element (players, scroll position): don't
+    // detach it if it's already there, or every iframe would reload.
+    if (main.firstElementChild !== el || main.childElementCount !== 1) main.replaceChildren(el);
+    if (focusId && !main.contains(document.activeElement)) document.getElementById(focusId)?.focus({ preventScroll: true });
+    // Sheet: rebuilt only when its contents changed, so a background reload doesn't
+    // reset a slider mid-drag.
+    if (s.sheet.open && (!sheetOpenRendered || sheetBuiltStamp !== s.sheetStamp)) {
+      renderSheet(app, sheetHost, !sheetOpenRendered);
+      sheetBuiltStamp = s.sheetStamp;
+      sheetOpenRendered = true;
+    } else if (!s.sheet.open && sheetOpenRendered) {
+      sheetHost.replaceChildren();
+      sheetOpenRendered = false;
+      document.body.classList.remove("sheet-open");
+      if (s.sheet.returnFocus) document.getElementById(s.sheet.returnFocus)?.focus({ preventScroll: true });
+    }
   }
 
   // ---- data loading ----
@@ -400,7 +542,68 @@ export function startApp(opts: AppOptions): App {
   function sensitiveValue(k: SensitiveKey): unknown {
     if (k === "videos") return [...s.videoCache.values()].slice(-VIDEO_CACHE_CAP).map(storeVideo);
     if (k === "tags") return [...s.tagCache.entries()].slice(-TAG_CACHE_CAP);
-    return s[k];
+    if (k === "hidden") return [...s.hidden].slice(-HIDDEN_CAP);
+    if (k === "identity") return app.match.identity;
+    if (k === "matchbook") return app.match.book;
+    if (k === "matchmeta") return app.match.meta;
+    if (k === "demopeer") return app.demo?.save() ?? null;
+    return s[k as "history" | "tally" | "impressions" | "follows" | "taste"];
+  }
+
+  // ---- every video the app knows about, for resolving match sketch items ----
+  function knownVideos(): Map<string, Video> {
+    const m = new Map<string, Video>(s.videoCache);
+    for (const r of s.instances.values()) if (r.status === "ok") for (const v of [...r.value.recent, ...r.value.trending]) m.set(v.id, v);
+    for (const p of s.reels.pages.values()) for (const v of [...p.recent, ...p.trending]) m.set(v.id, v);
+    for (const r of s.followVideos.values()) if (r.status === "ok") for (const v of r.value) m.set(v.id, v);
+    for (const r of s.tasteRes.values()) if (r.status === "ok") for (const v of r.value.videos) m.set(v.id, v);
+    return m;
+  }
+
+  /** My items for similarity: everything I endorsed or finished. */
+  function myMatchItems(): Set<string> {
+    return new Set(s.history.filter((e) => e.kind === "endorse" || e.kind === "finish").map((e) => e.videoId));
+  }
+
+  function matchCandidates(): Candidate[] {
+    if (!app.match.ready) return [];
+    const known = knownVideos();
+    return app.match.candidates(myMatchItems(), (id) => {
+      const v = known.get(id);
+      return v ? withTags(v) : undefined;
+    });
+  }
+
+  let resolving = false;
+  /**
+   * Sketch items are bare video URLs. Ones the app hasn't seen are resolved at the
+   * video's origin instance (like taste-list items), so they can be ranked. This
+   * tells that instance someone at this IP looked the video up; it says nothing
+   * about who sent the sketch.
+   */
+  async function resolveMatchItems() {
+    if (resolving || !app.match.book) return;
+    resolving = true;
+    const known = knownVideos();
+    const todo: string[] = [];
+    for (const rec of Object.values(app.match.book.matches)) {
+      if (rec.status !== "active" || !rec.peerSketch) continue;
+      for (const id of rec.peerSketch.items) if (/^https?:\/\//.test(id) && !known.has(id) && !todo.includes(id)) todo.push(id);
+    }
+    const batch = todo.slice(0, MATCH_RESOLVE_LIMIT);
+    await mapLimit(batch, 4, async (id) => {
+      try {
+        const v = await catalog.resolveVideo(id);
+        if (v) s.videoCache.set(v.id, v);
+      } catch {
+        /* skip: unavailable */
+      }
+    });
+    resolving = false;
+    if (batch.length) {
+      app.persist("videos");
+      app.rerender();
+    }
   }
 
   // ---- retention: drop history outside the sharing window, at start and daily ----
@@ -409,11 +612,117 @@ export function startApp(opts: AppOptions): App {
     if (Date.now() - lastPrune >= DAY_MS) app.pruneNow();
   }
 
+  // ---- Reels ranking: same rank() and recipe as the grid, plus a deeper popular pass ----
+  function reelsRanked(): { item: RankedItem; section: ReelSection }[] {
+    const instances: InstanceFeed[] = [];
+    for (const r of s.instances.values()) {
+      if (r.status !== "ok") continue;
+      const extra = s.reels.pages.get(r.value.origin);
+      instances.push({
+        origin: r.value.origin,
+        recent: [...r.value.recent, ...(extra?.recent ?? [])].map(withTags),
+        trending: [...r.value.trending, ...(extra?.trending ?? [])].map(withTags),
+      });
+    }
+    const followVideos: Video[] = [];
+    for (const r of s.followVideos.values()) if (r.status === "ok") followVideos.push(...r.value);
+    const candidates = [
+      ...buildCandidates({ instances, follows: new Set(s.follows.map((f) => f.handle)), followVideos, tasteLists: app.resolvedLists() }),
+      ...matchCandidates(),
+    ];
+    const prof = profile();
+    const recipe = app.recipe();
+    const seen = new Set([...seenSet(s.history), ...s.hidden]);
+    // Keep committed reels out of `seen` filtering decisions: they're already placed.
+    const items = rank(candidates, recipe, { now: opts.now(), limit: REELS_RANK_LIMIT, rng: seededRng(s.seed), seen, exploreRelevance: prof.size ? tagRelevance(prof) : undefined });
+    let popular: RankedItem[] = [];
+    if (s.settings.showPopular && recipe.weights.taste > 0 && instances.length) {
+      const shown = new Set([...seen, ...items.map((i) => i.video.id)]);
+      // Deeper than the grid's 6 per instance: in Reels these come after the personal feed.
+      popular = rank(buildPopularCandidates(instances), editRecipe(popularRecipe(recipe), { maxPerTasteList: 100 }), { now: opts.now(), limit: REELS_RANK_LIMIT, rng: seededRng(s.seed), seen: shown });
+    }
+    return [...items.map((item) => ({ item, section: "feed" as const })), ...popular.map((item) => ({ item, section: "popular" as const }))];
+  }
+
+  function extendReelsNow(): boolean {
+    const exhausted = !!s.reels.pager && pagerExhausted(s.reels.pager, REELS_MAX_PAGES);
+    const r = extendReels(s.reels.items, reelsRanked(), { meta: (id) => catalog.meta(id), exhausted, exclude: s.hidden });
+    if (r.added) {
+      s.reels.items = r.items;
+      s.reels.version++;
+    }
+    return r.needMore;
+  }
+
+  async function fetchReelPages() {
+    const instancesReady = [...s.instances.values()].filter((r) => r.status === "ok").map((r) => (r as { value: InstanceFeed }).value.origin);
+    if (!instancesReady.length) return;
+    if (!s.reels.pager) s.reels.pager = newPager(instancesReady);
+    const reqs = nextPages(s.reels.pager);
+    if (!reqs.length) return;
+    s.reels.loading = true;
+    app.rerender();
+    await Promise.all(
+      reqs.map(async (req) => {
+        let got: Video[] = [];
+        try {
+          got = await catalog.instancePage(req.origin, req.which, req.start, req.count);
+        } catch {
+          got = [];
+        }
+        s.reels.pager = applyPage(s.reels.pager!, req, got.length);
+        const p = s.reels.pages.get(req.origin) ?? { recent: [], trending: [] };
+        p[req.which] = [...p[req.which], ...got];
+        s.reels.pages.set(req.origin, p);
+      }),
+    );
+    s.reels.loading = false;
+  }
+
+  let reelsBusy = false;
+
+  // ---- Match ----
+  const persistMatch = () => {
+    vault.write("matchbook", app.match.book);
+    vault.write("matchmeta", app.match.meta);
+    if (app.demo) vault.write("demopeer", app.demo.save());
+  };
+  // Live: PSI in a sandboxed frame (the page CSP has no unsafe-eval); artifact: inlined.
+  if (opts.mode === "live") configurePsi(() => framePsi());
+  const match = new MatchService(
+    {
+      now: () => new Date(),
+      psi: lazyPsi(),
+      history: () => toSketchHistory(s.history),
+      persist: () => persistMatch(),
+      onChange: () => app.rerender(),
+      onEvent: (e, text) => {
+        app.toast(text);
+        if (e.type === "sketch" || e.type === "match-active") void resolveMatchItems();
+      },
+    },
+    sens("matchmeta", undefined, loadMeta),
+  );
+  onPsiStatus(() => app.rerender());
+
+  function liveRelay(urls: string[]): WsRelay | null {
+    if (!urls.length) return null;
+    // NIP-42 AUTH, only for relays that demand it, signs with the identity key.
+    return new WsRelay({ urls, authSigner: () => (app.match.identity ? signerFor(app.match.identity) : null) });
+  }
+  function relayLabel(urls: string[]): string {
+    return urls.length ? `${urls.length} relay${urls.length === 1 ? "" : "s"}` : "no relays";
+  }
+
   const app: App = {
     s,
     mode: opts.mode,
     catalog,
     vault,
+    match,
+    demo: null,
+    newDemoPeer: async () => {},
+    devTools: !!opts.devTools,
     legacyLeft: !!opts.legacyLeft,
     examples,
     now: opts.now,
@@ -436,16 +745,19 @@ export function startApp(opts: AppOptions): App {
       const followVideos: Video[] = [];
       for (const r of s.followVideos.values()) if (r.status === "ok") followVideos.push(...r.value);
       const tagged = instances.map((i) => ({ ...i, recent: i.recent.map(withTags), trending: i.trending.map(withTags) }));
-      const candidates = buildCandidates({
-        instances: tagged,
-        follows: new Set(s.follows.map((f) => f.handle)),
-        followVideos,
-        tasteLists: app.resolvedLists(),
-      });
+      const candidates = [
+        ...buildCandidates({
+          instances: tagged,
+          follows: new Set(s.follows.map((f) => f.handle)),
+          followVideos,
+          tasteLists: app.resolvedLists(),
+        }),
+        ...matchCandidates(),
+      ];
       const prof = profile();
       const exploreRelevance = prof.size ? tagRelevance(prof) : undefined;
       const recipe = app.recipe();
-      const seen = seenSet(s.history);
+      const seen = new Set([...seenSet(s.history), ...s.hidden]);
       const items = rank(candidates, recipe, { now: opts.now(), limit: FEED_LIMIT, rng: seededRng(s.seed), seen, exploreRelevance });
       let popular: RankedItem[] = [];
       if (s.settings.showPopular && recipe.weights.taste > 0 && tagged.length) {
@@ -458,6 +770,37 @@ export function startApp(opts: AppOptions): App {
         });
       }
       return { items, candidates: new Set(candidates.map((c) => c.video.id)).size, popular, personalizedExplore: !!exploreRelevance };
+    },
+    reelItems() {
+      if (!reelsBusy) {
+        const needMore = extendReelsNow();
+        if (needMore && s.reels.items.length - s.reels.active <= 4) app.loadMoreReels();
+      }
+      return s.reels.items;
+    },
+    loadMoreReels() {
+      if (reelsBusy) return;
+      reelsBusy = true;
+      void (async () => {
+        try {
+          for (let i = 0; i < REELS_MAX_PAGES; i++) {
+            const before = s.reels.items.length;
+            const needMore = extendReelsNow();
+            if (s.reels.items.length > before && !needMore) break;
+            if (s.reels.items.length - s.reels.active > 6) break;
+            if (s.reels.pager && pagerExhausted(s.reels.pager)) {
+              extendReelsNow();
+              break;
+            }
+            await fetchReelPages();
+            if ([...s.instances.values()].every((r) => r.status !== "ok")) break;
+          }
+        } finally {
+          reelsBusy = false;
+          s.reels.loading = false;
+          app.rerender();
+        }
+      })();
     },
     markShown(id) {
       if (s.settings.privateWatching) return;
@@ -478,22 +821,54 @@ export function startApp(opts: AppOptions): App {
       renderQueued = true;
       (globalThis.requestAnimationFrame ?? ((f: () => void) => setTimeout(f, 0)))(render);
     },
-    toast(msg) {
-      toastEl.textContent = msg;
+    toast(msg, action) {
+      toastEl.replaceChildren(h("span", null, msg));
+      if (action) toastEl.appendChild(h("button", { class: "linkbtn toast-act", onclick: () => { toastEl.hidden = true; action.run(); } }, action.label));
       toastEl.hidden = false;
       clearTimeout(toastTimer);
-      toastTimer = setTimeout(() => (toastEl.hidden = true), 2600);
+      toastTimer = setTimeout(() => (toastEl.hidden = true), action ? 5000 : 2600);
     },
     go(screen) {
       s.screen = screen;
       kv.set("mf.v1.tab", screen);
+      if (s.sheet.open) s.sheet = sheetReduce(s.sheet, { type: "close" });
+      if (screen === "matches") void app.match.sync().catch(() => undefined).then(() => app.match.pump());
       render();
       window.scrollTo?.({ top: 0 });
+    },
+    setView(v) {
+      s.view = v;
+      render();
+      window.scrollTo?.({ top: 0 });
+    },
+    sheet(a) {
+      const before = s.sheet.open;
+      s.sheet = sheetReduce(s.sheet, a);
+      if (s.sheet.open && !before) s.sheetStamp++;
+      render();
+    },
+    sheetChanged() {
+      s.sheetStamp++;
+      app.rerender();
     },
     setRecipe(id, customRecipe) {
       s.recipe = { id, custom: customRecipe ?? s.recipe.custom };
       app.persist("recipe");
+      s.sheetStamp++;
       app.rerender();
+    },
+    editRecipe(patch) {
+      const base = app.recipe();
+      const name = s.recipe.id === "custom" ? base.name : `${base.name} (edited)`.slice(0, 80);
+      try {
+        const next = editRecipe(base, { name, ...patch });
+        s.recipe = { id: "custom", custom: next };
+        app.persist("recipe");
+        app.rerender();
+        return null;
+      } catch (e) {
+        return e instanceof Error ? e.message : String(e);
+      }
     },
     isFollowing(creator) {
       return s.follows.some((f) => f.handle === creator.toLowerCase());
@@ -530,14 +905,23 @@ export function startApp(opts: AppOptions): App {
       app.rerender();
     },
     watch(v, via) {
+      app.noteWatch(v, via);
+      openWatch(app, v, via, () => app.rerender());
+    },
+    noteWatch(v, via) {
       const before = s.history;
       s.history = record(s.history, { videoId: v.id, at: Date.now(), kind: "watch", tags: v.tags, via }, s.settings);
       if (s.history !== before) app.persist("history");
-      if (via) {
+      if (via && !s.settings.privateWatching) {
         s.tally = countView(s.tally, via, s.settings);
         app.persist("tally");
       }
-      openWatch(app, v, via, () => app.rerender());
+    },
+    noteFinish(v, via) {
+      if (hasFinished(s.history, v.id)) return;
+      const before = s.history;
+      s.history = record(s.history, { videoId: v.id, at: Date.now(), kind: "finish", tags: v.tags, via }, s.settings);
+      if (s.history !== before) app.persist("history");
     },
     isEndorsed(id) {
       return isEndorsed(s.history, id);
@@ -553,18 +937,111 @@ export function startApp(opts: AppOptions): App {
         if (s.history !== before) void fetchTagsFor(v).then(() => enrichExploreTags());
       }
       app.persist("history");
+      app.rerender();
+    },
+    notInterested(v) {
+      s.hidden.add(v.id);
+      s.reels.items = removeReel(s.reels.items, v.id);
+      s.reels.version++;
+      // Private watching: hide it for this session, but don't store it.
+      if (!s.settings.privateWatching) app.persist("hidden");
+      app.toast("Hidden. You won't see it again", {
+        label: "Undo",
+        run: () => {
+          s.hidden.delete(v.id);
+          if (!s.settings.privateWatching) app.persist("hidden");
+          app.toast("Restored to your feed");
+          app.rerender();
+        },
+      });
+      app.rerender();
+    },
+    share(v) {
+      const url = v.url ?? v.id;
+      const fallback = () => {
+        const input = h("input", { type: "text", readonly: true, value: url, "aria-label": "Video link", class: "copyfield" });
+        toastEl.replaceChildren(h("span", null, "Copy the link:"), input);
+        toastEl.hidden = false;
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => (toastEl.hidden = true), 8000);
+        input.focus();
+        input.select();
+      };
+      try {
+        const p = navigator.clipboard?.writeText(url);
+        if (!p) return fallback();
+        p.then(() => app.toast("Link copied"), fallback);
+      } catch {
+        fallback();
+      }
+    },
+    matchTarget(item) {
+      if (item.primary === "match") return null;
+      const v = item.video;
+      const creatorKey = s.creatorNpub.get(v.creator.toLowerCase());
+      if (creatorKey) return { pubkey: creatorKey, name: v.creatorName ?? v.creator, source: "creator", ref: v.creator };
+      for (const t of s.taste) {
+        const pk = findNpub(t.list.author);
+        if (pk && t.list.items.some((i) => i.id === v.id)) return { pubkey: pk, name: `Curator of "${t.list.name}"`, source: "curator", ref: t.list.name };
+      }
+      return null;
+    },
+    lookupCreatorNpub(creator) {
+      const key = creator.toLowerCase();
+      if (s.creatorNpub.has(key) || app.mode !== "live") return;
+      const ref = parseChannelInput(creator);
+      if (!ref) return;
+      s.creatorNpub.set(key, null);
+      catalog.channelProfile(ref, s.settings.instances).then(
+        (p) => {
+          const pk = findNpub(p.text);
+          if (pk) {
+            s.creatorNpub.set(key, pk);
+            app.rerender();
+          }
+        },
+        () => {},
+      );
+    },
+    requestMatchWith(t) {
+      s.consent = { mode: "request", target: t };
+      app.go("matches");
+    },
+    async setIdentity(id) {
+      if (!id) {
+        app.match.reset();
+        vault.write("identity", null);
+        app.rerender();
+        return;
+      }
+      vault.write("identity", id);
+      if (app.mode === "snapshot") await startDemo(id);
+      else await app.match.start(id, liveRelay(s.settings.relays), relayLabel(s.settings.relays), null);
+      app.rerender();
+    },
+    setRelays(urls) {
+      s.settings.relays = urls;
+      app.persist("settings");
+      void app.match.setRelay(liveRelay(urls), relayLabel(urls)).then(() => app.match.sync().catch(() => undefined));
+      app.rerender();
     },
     async wipeHistory() {
       s.history = [];
       s.tally = emptyTally();
       s.impressions = emptyImpressions();
+      s.hidden.clear();
       // Tags were fetched for endorsed videos, so the cache would hint at them.
       s.tagCache.clear();
       removeLegacy(kv);
       app.legacyLeft = false;
       // Crypto-shred: delete every ciphertext and the key, then re-encrypt what stays
-      // (follows, taste lists, the taste-list video cache) under a fresh key.
-      const keep = { follows: s.follows, taste: s.taste, videos: sensitiveValue("videos") };
+      // (follows, taste lists, the taste-list video cache, and Match: identity and
+      // matches) under a fresh key.
+      const keep: Record<string, unknown> = { follows: s.follows, taste: s.taste, videos: sensitiveValue("videos") };
+      for (const k of ["identity", "matchbook", "matchmeta", "demopeer"] as const) {
+        const v = sensitiveValue(k);
+        if (v) keep[k] = v;
+      }
       const hadPassphrase = vault.status === "passphrase";
       try {
         await vault.shred(keep);
@@ -598,6 +1075,8 @@ export function startApp(opts: AppOptions): App {
     },
     reloadCatalog() {
       for (const k of [...s.instances.keys()]) if (!s.settings.instances.includes(k)) s.instances.delete(k);
+      s.reels.pages.clear();
+      s.reels.pager = null;
       for (const o of s.settings.instances) void loadInstance(o);
       for (const f of s.follows) void loadFollow(f.handle);
       app.rerender();
@@ -621,23 +1100,88 @@ export function startApp(opts: AppOptions): App {
           app.rerender();
         },
       );
+      if (app.mode === "live") {
+        catalog.channelProfile(ref, s.settings.instances).then(
+          (p) => {
+            const pk = findNpub(p.text);
+            s.creatorNpub.set(handleOf(ref), pk);
+            if (s.studio.handle === handleOf(ref)) s.studio.npub = pk;
+            app.rerender();
+          },
+          () => {
+            if (s.studio.handle === handleOf(ref)) s.studio.npub = null;
+          },
+        );
+      }
     },
     setTheme() {
       const t = s.settings.theme;
       if (t === "auto") document.documentElement.removeAttribute("data-theme");
       else document.documentElement.setAttribute("data-theme", t);
-      themeSel.value = t;
     },
   };
+
+  // ---- offline demo: an in-memory relay and a simulated peer ----
+  const demoRelay = opts.mode === "snapshot" ? new InMemoryRelay() : null;
+  async function makeDemoPeer(saved: DemoSaved | null) {
+    if (!demoRelay) return;
+    app.demo = await DemoPeer.create({ relay: demoRelay, psi: lazyPsi(), now: () => new Date(), items: pickDemoItems([...knownVideos().keys()]), saved });
+    match.driver = app.demo;
+    match.meta.names[app.demo.pubkey] = { name: DEMO_NAME, source: "demo" };
+  }
+  app.newDemoPeer = async () => {
+    await makeDemoPeer(null);
+    vault.write("demopeer", app.demo?.save() ?? null);
+    vault.write("matchmeta", match.meta);
+    app.rerender();
+  };
+  async function startDemo(id: StoredIdentity) {
+    if (!demoRelay) return;
+    await makeDemoPeer(sens<DemoSaved | null>("demopeer", null, loadDemoSaved));
+    await match.start(id, demoRelay, "in-memory demo relay (offline)", sens("matchbook", null, loadBook));
+    await match.pump();
+    void resolveMatchItems();
+  }
 
   app.setTheme();
   app.pruneNow();
   setInterval(maybePrune, PRUNE_CHECK_MS);
   document.addEventListener?.("visibilitychange", () => {
-    if (document.visibilityState === "visible") maybePrune();
+    if (document.visibilityState === "visible") {
+      maybePrune();
+      if (app.match.ready && app.match.relay && !app.demo) void app.match.sync().catch(() => undefined);
+    }
+  });
+  document.addEventListener?.("keydown", (e) => {
+    if (e.key === "Escape" && s.sheet.open) {
+      app.sheet({ type: "key", key: "Escape" });
+    }
   });
   render();
   app.reloadCatalog();
   for (const t of s.taste) void loadTaste(t);
+
+  // Match: restore the identity and book, then check relays now and every minute.
+  // Sketches go out only when due on the weekly schedule.
+  const savedIdentity = sens("identity", null, loadIdentity);
+  if (savedIdentity) {
+    const startMatch = async () => {
+      if (opts.mode === "snapshot") {
+        // The demo peer picks its history from the snapshot, so wait for the catalog.
+        for (let i = 0; i < 40 && [...s.instances.values()].some((r) => r.status === "loading"); i++) await new Promise((r) => setTimeout(r, 50));
+        await startDemo(savedIdentity);
+      } else {
+        await match.start(savedIdentity, liveRelay(s.settings.relays), relayLabel(s.settings.relays), sens("matchbook", null, loadBook));
+        await match.sync().catch(() => undefined);
+        void resolveMatchItems();
+      }
+    };
+    void startMatch();
+  }
+  if (opts.mode === "live") {
+    setInterval(() => {
+      if (document.visibilityState === "visible" && app.match.ready && app.match.relay) void app.match.sync().catch(() => undefined);
+    }, MATCH_POLL_MS);
+  }
   return app;
 }

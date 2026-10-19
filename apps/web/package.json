@@ -14,9 +14,11 @@
     "dev": "node scripts/build.mjs --dev",
     "snapshot": "NODE_USE_ENV_PROXY=1 node scripts/fetch-snapshot.mjs",
     "test": "node --experimental-strip-types --disable-warning=ExperimentalWarning --test test/*.test.ts",
-    "typecheck": "node scripts/typecheck.mjs"
+    "typecheck": "node scripts/typecheck.mjs",
+    "dev-relay": "node scripts/dev-relay.mjs"
   },
   "devDependencies": {
+    "@openmined/psi.js": "2.0.6",
     "esbuild": "0.28.2",
     "fake-indexeddb": "6.2.5",
     "typescript": "5.9.3",

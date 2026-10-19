@@ -1,11 +1,13 @@
 import type { App } from "../app.ts";
 import type { RankedItem, SourceKind } from "../lib/core.ts";
-import { CHIP_LABELS, cryptoRng } from "../lib/core.ts";
+import { CHIP_LABELS } from "../lib/core.ts";
 import { disclosureIndex } from "../lib/candidates.ts";
 import { parseChannelInput } from "../lib/handles.ts";
-import { BUILTIN_RECIPES, exploreText } from "../lib/recipes.ts";
+import { BUILTIN_RECIPES, recipePillText } from "../lib/recipes.ts";
 import { formatDuration, placeholderGradient, videoHost } from "../lib/videos.ts";
 import { h } from "./dom.ts";
+import { icon } from "./icons.ts";
+import { reelsScreen } from "./reels.ts";
 
 export const LEGEND: SourceKind[] = ["follow", "taste", "match", "circle", "second", "explore"];
 
@@ -24,51 +26,6 @@ export function recipePicker(app: App, id: string): HTMLElement {
     app.s.recipe.custom ? h("option", { value: "custom", selected: app.s.recipe.id === "custom" }, `Custom: ${app.s.recipe.custom.name}`) : null,
   );
   return sel;
-}
-
-function sourcesPanel(app: App): HTMLElement {
-  const { s } = app;
-  const status = (st: { status: string; error?: string } | undefined) =>
-    !st || st.status === "loading"
-      ? h("span", { class: "pill" }, "loading")
-      : st.status === "ok"
-        ? h("span", { class: "pill ok" }, "ok")
-        : h("span", { class: "pill bad", title: st.error }, "unreachable");
-  const instRows = s.settings.instances.map((o) => {
-    const st = s.instances.get(o);
-    return h("li", null, h("div", null, h("span", { class: "mono small" }, new URL(o).host)), status(st as never));
-  });
-  const tasteLoaded = s.taste.filter((t) => s.tasteRes.get(t.key)?.status === "ok").length;
-  return h(
-    "div",
-    { class: "stack" },
-    h("h3", null, "Sources"),
-    h(
-      "ul",
-      { class: "list small" },
-      h(
-        "li",
-        null,
-        h("div", null, `Following ${s.follows.length} channel${s.follows.length === 1 ? "" : "s"}`),
-        h("button", { class: "linkbtn", onclick: () => app.go("follow") }, "Manage"),
-      ),
-      h(
-        "li",
-        null,
-        h("div", null, `${s.taste.length} taste list${s.taste.length === 1 ? "" : "s"}`, s.taste.length > tasteLoaded ? h("span", { class: "muted" }, ` (${s.taste.length - tasteLoaded} loading)`) : null),
-        h("button", { class: "linkbtn", onclick: () => app.go("follow") }, "Manage"),
-      ),
-      h(
-        "li",
-        null,
-        h("div", null, "Popular on your instances (separate section)"),
-        h("button", { class: "linkbtn", onclick: () => app.go("settings") }, s.settings.showPopular ? "On" : "Off"),
-      ),
-      h("li", null, h("div", { class: "muted" }, "Matches and circles"), h("span", { class: "pill next" }, "coming next")),
-    ),
-    h("p", { class: "muted small" }, "Catalog read from:"),
-    h("ul", { class: "list" }, instRows),
-  );
 }
 
 function card(app: App, item: RankedItem, disclosures: ReturnType<typeof disclosureIndex>): HTMLElement {
@@ -180,7 +137,36 @@ export function hashId(s: string): string {
   return h1.toString(36);
 }
 
-export function homeScreen(app: App): HTMLElement {
+/** View switch (Reels / Grid) and the current-recipe pill: all Home keeps on screen. */
+export function feedBar(app: App, overlay: boolean): HTMLElement {
+  const { s } = app;
+  const recipe = app.recipe();
+  const seg = (v: "reels" | "grid", label: string) =>
+    h(
+      "button",
+      { class: "seg", id: `view-${v}`, "aria-pressed": String(s.view === v), onclick: () => app.setView(v) },
+      icon(v, 16),
+      h("span", null, label),
+    );
+  return h(
+    "div",
+    { class: "feedbar" + (overlay ? " overlay" : ""), role: "toolbar", "aria-label": "Feed view" },
+    h("div", { class: "segs", role: "group", "aria-label": "View" }, seg("reels", "Reels"), seg("grid", "Grid")),
+    h(
+      "button",
+      {
+        class: "recipe-pill",
+        id: "recipe-pill",
+        "aria-label": `Recipe: ${recipe.name}. Open feed settings`,
+        onclick: () => app.sheet({ type: "open", section: "recipe", from: "recipe-pill" }),
+      },
+      icon("sliders", 15),
+      h("span", null, recipePillText(recipe)),
+    ),
+  );
+}
+
+export function gridView(app: App): HTMLElement {
   const { s } = app;
   const recipe = app.recipe();
   const { items, candidates, popular, personalizedExplore } = app.feed();
@@ -188,45 +174,13 @@ export function homeScreen(app: App): HTMLElement {
   const allFailed = s.instances.size > 0 && [...s.instances.values()].every((x) => x.status === "error");
   const disclosures = disclosureIndex(app.resolvedLists());
   const exploreCount = items.filter((i) => i.primary === "explore").length;
-
-  const aside = h(
-    "aside",
-    { class: "panel", "aria-label": "Feed controls" },
-    h("h2", null, "Your feed recipe"),
-    h(
-      "div",
-      { class: "field" },
-      h("label", { for: "home-recipe", class: "muted" }, "Ranking runs on this device"),
-      recipePicker(app, "home-recipe"),
-      h("p", { class: "muted small" }, exploreText(recipe)),
-      h("div", { class: "row" }, h("button", { class: "btn sm", onclick: () => app.go("recipe") }, "Edit recipe"),
-        recipe.exploreShare > 0
-          ? h("button", { class: "btn sm", onclick: () => { s.seed = Math.floor(cryptoRng()() * 2 ** 31); app.rerender(); } }, "Shuffle new creators")
-          : null),
-    ),
-    sourcesPanel(app),
-    h("div", { class: "legend", "aria-label": "Chip legend" }, LEGEND.map(chip)),
-  );
+  const matchCount = items.filter((i) => i.primary === "match").length;
 
   let body: HTMLElement;
   if (items.length === 0 && loading) {
     body = h("div", { class: "grid", "aria-busy": "true" }, Array.from({ length: 6 }, () => h("div", { class: "card" }, h("div", { class: "skeleton" }))));
   } else if (items.length === 0) {
-    body = h(
-      "div",
-      { class: "empty" },
-      h("h3", null, allFailed ? "Couldn't reach any instance" : "Nothing to show with this recipe yet"),
-      h(
-        "p",
-        { class: "muted small" },
-        allFailed
-          ? "Check your connection, or add a different PeerTube instance in Sharing & settings."
-          : recipe.weights.follow > 0 && s.follows.length === 0 && recipe.weights.taste === 0
-            ? "This recipe only shows channels you follow. Follow a channel, or pick another recipe."
-            : "Follow a channel or subscribe to a taste list to give the ranker something to work with.",
-      ),
-      h("div", { class: "row" }, h("button", { class: "btn follow", onclick: () => app.go("follow") }, "Follow & taste"), allFailed ? h("button", { class: "btn", onclick: () => app.reloadCatalog() }, "Retry") : null),
-    );
+    body = emptyFeed(app, allFailed);
   } else {
     body = h("div", { class: "grid" }, items.map((it) => card(app, it, disclosures)));
     observeShown(app, body);
@@ -248,24 +202,49 @@ export function homeScreen(app: App): HTMLElement {
   return h(
     "section",
     { class: "home" },
-    aside,
+    feedBar(app, false),
     h(
       "div",
-      { style: { "min-width": "0" } },
+      { class: "feedhead" },
+      h("h2", null, recipe.name),
       h(
-        "div",
-        { class: "feedhead" },
-        h("h2", null, recipe.name),
-        h("div", { class: "field mobile-only", style: { flex: "1 0 100%" } }, h("label", { for: "home-recipe-top", class: "muted small" }, "Recipe (ranked on this device; more controls below the feed)"), recipePicker(app, "home-recipe-top")),
-        h(
-          "p",
-          { class: "muted small mono" },
-          loading ? "loading catalog… " : "",
-          `${items.length} of ${candidates} candidates · ${exploreCount} new-creator${exploreCount ? (personalizedExplore ? " (fit to your endorsements)" : " (not personalized)") : ""}`,
-        ),
+        "p",
+        { class: "muted small mono" },
+        loading ? "loading catalog… " : "",
+        `${items.length} of ${candidates} candidates · ${exploreCount} new-creator${exploreCount ? (personalizedExplore ? " (fit to your endorsements)" : " (not personalized)") : ""}${matchCount ? ` · ${matchCount} from matches` : ""}`,
       ),
-      body,
-      popularSection,
+    ),
+    body,
+    popularSection,
+    h("div", { class: "legend", "aria-label": "Chip legend" }, LEGEND.map(chip)),
+  );
+}
+
+export function emptyFeed(app: App, allFailed: boolean): HTMLElement {
+  const recipe = app.recipe();
+  return h(
+    "div",
+    { class: "empty" },
+    h("h3", null, allFailed ? "Couldn't reach any instance" : "Nothing to show with this recipe yet"),
+    h(
+      "p",
+      { class: "muted small" },
+      allFailed
+        ? "Check your connection, or add a different PeerTube instance in Sharing & privacy."
+        : recipe.weights.follow > 0 && app.s.follows.length === 0 && recipe.weights.taste === 0
+          ? "This recipe only shows channels you follow. Follow a channel, or pick another recipe."
+          : "Follow a channel or subscribe to a taste list to give the ranker something to work with.",
+    ),
+    h(
+      "div",
+      { class: "row" },
+      h("button", { class: "btn follow", onclick: () => app.go("follow") }, "Follow & taste"),
+      h("button", { class: "btn", onclick: () => app.sheet({ type: "open", section: "recipe" }) }, "Feed settings"),
+      allFailed ? h("button", { class: "btn", onclick: () => app.reloadCatalog() }, "Retry") : null,
     ),
   );
+}
+
+export function homeScreen(app: App): HTMLElement {
+  return app.s.view === "reels" ? reelsScreen(app) : gridView(app);
 }

@@ -38,7 +38,7 @@ function ledger(app: App): HTMLElement {
             ? row(followHosts.join(", "), "Requests for the public video list of each channel you follow, so the host can tell someone at your IP follows it.", h("span", { class: "pill ok" }, "catalog only"))
             : null,
           row("Video hosts, when you press play", s.settings.p2p ? "The embedded player streams from the host and from other viewers. Other viewers can see your IP." : "The embedded player streams from the host only. Your IP is visible to the host, not to other viewers.", h("span", { class: "pill " + (s.settings.p2p ? "exp" : "ok") }, s.settings.p2p ? "P2P on" : "P2P off")),
-          row("Matches", "Nothing yet.", h("span", { class: "pill next" }, "coming next")),
+          matchRows(app),
           row("Circles", "Nothing yet.", h("span", { class: "pill next" }, "coming next")),
           row(
             "Creators (discovery stats)",
@@ -48,7 +48,7 @@ function ledger(app: App): HTMLElement {
         ),
       ),
     ),
-    h("p", { class: "note" }, "Once Match ships, revoking stops future sketches. It can't recall what a peer already received; the app will say so at the moment you share."),
+    h("p", { class: "note" }, "Revoking a match stops future sketches. It can't recall what a peer already received; the app says so at the moment you share."),
     h("h3", null, "Discovery stats your device would contribute"),
     h("p", { class: "muted small", style: { "margin-top": "-6px" } }, `${total} view${total === 1 ? "" : "s"} counted by how you found them. When the privacy-preserving aggregation (DAP) ships, only totals like these go to creators, split between two servers so neither sees your report. Kept on this device until then.`),
     h(
@@ -64,6 +64,40 @@ function ledger(app: App): HTMLElement {
       ),
     ),
   );
+}
+
+function matchRows(app: App): HTMLElement[] {
+  const m = app.match;
+  const recs = m.records().filter((r) => r.status === "active" || r.status === "requested" || r.status === "incoming");
+  const row = (peer: string, shares: string, status: HTMLElement) => h("tr", null, h("td", null, peer), h("td", null, shares), h("td", null, status));
+  const out: HTMLElement[] = [];
+  if (!m.identity) {
+    out.push(row("Matches", "Nothing. Match isn't set up.", h("span", { class: "pill ok" }, "off")));
+    return out;
+  }
+  out.push(
+    row(
+      app.mode === "snapshot" ? "Relay (in-memory demo)" : app.s.settings.relays.length ? app.s.settings.relays.map((u) => new URL(u).host).join(", ") : "Relays: none",
+      app.mode === "snapshot"
+        ? "Nothing leaves this page."
+        : "Encrypted, padded gift wraps addressed to one-time keys; your IP and when you check. Never their contents.",
+      h("span", { class: "pill ok" }, app.mode === "snapshot" ? "offline" : "encrypted"),
+    ),
+  );
+  for (const r of recs) {
+    const c = r.consent;
+    out.push(
+      row(
+        m.nameOf(r.peer),
+        r.status === "active" ? `${c.includeFinished ? "Endorsements + finished watches" : "Endorsements"}, last ${c.windowDays} days, as an encrypted sketch, weekly` : "Nothing yet (request pending)",
+        h("span", { class: "pill " + (r.status === "active" ? (c.paused ? "exp" : "ok") : "next") }, r.status === "active" ? (c.paused ? "paused quietly" : "active") : r.status === "requested" ? "requested" : "waiting for you"),
+      ),
+    );
+  }
+  if (!recs.length) out.push(row("Matches", "Nothing: no active matches.", h("span", { class: "pill ok" }, "none")));
+  if (app.mode === "live" && recs.some((r) => r.status === "active"))
+    out.push(row("Video hosts of your matches' picks", "A lookup of each new video in a match's sketch at its home instance, so it can be ranked: your IP and the video link.", h("span", { class: "pill ok" }, "catalog only")));
+  return out;
 }
 
 function controls(app: App): HTMLElement {
@@ -120,11 +154,12 @@ function controls(app: App): HTMLElement {
     ...toggle("sw-popular", "Show \"Popular on your instances\"", s.settings.showPopular, (on) => set(() => (s.settings.showPopular = on)), {
       hint: "A separate section after your feed with each instance's trending videos. It never takes slots from your feed.",
     }),
+    h("h3", null, "Match"),
+    h("p", { class: "small" }, "What each match gets (endorsements only, or with finished watches; window; exclusions) and quiet pause are set per match. Passive watches are never shared."),
+    h("div", { class: "row" }, h("button", { class: "btn sm", onclick: () => app.go("matches") }, "Open Matches")),
     h("h3", null, "Coming next"),
-    ...toggle("sw-endorse-only", "Share endorsements only, not passive watches", true, () => {}, { disabled: true }),
     ...toggle("sw-circle8", "Join circles only if they have 8+ people", true, () => {}, { disabled: true }),
-    ...toggle("sw-pause", "Pause sharing quietly", false, () => {}, { disabled: true }),
-    h("p", { class: "hint", style: { "margin-top": "-6px" } }, "These apply to Match and Circle, which aren't in this version. Shown with their planned defaults."),
+    h("p", { class: "hint", style: { "margin-top": "-6px" } }, "Circle isn't in this version. Shown with its planned default."),
     h("h3", null, "Catalog instances"),
     h(
       "ul",

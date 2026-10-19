@@ -17,6 +17,32 @@ export interface Settings {
   theme: Theme;
   /** Sharing window: history older than this many days is deleted on this device. */
   retentionDays: RetentionDays;
+  /** What Home opens with. */
+  defaultView: FeedView;
+  /** Nostr relays for Match (none by default: Match stays local until you add one). */
+  relays: string[];
+}
+
+export type FeedView = "reels" | "grid";
+
+export const MAX_RELAYS = 6;
+
+/**
+ * A relay URL: `wss://` anywhere, or plain `ws://` only on this machine (the local
+ * dev relay). Returns the normalized URL or null.
+ */
+export function parseRelayUrl(text: string): string | null {
+  let u: URL;
+  try {
+    u = new URL(text.trim());
+  } catch {
+    return null;
+  }
+  if (u.username || u.password || u.search || u.hash) return null;
+  const local = u.hostname === "localhost" || u.hostname === "127.0.0.1" || u.hostname === "[::1]";
+  if (u.protocol !== "wss:" && !(u.protocol === "ws:" && local)) return null;
+  const s = u.toString();
+  return s.endsWith("/") && u.pathname === "/" ? s.slice(0, -1) : s;
 }
 
 export const RETENTION_CHOICES = [30, 60, 90] as const;
@@ -36,6 +62,8 @@ export function defaultSettings(): Settings {
     analytics: { contribute: true, perKind },
     theme: "auto",
     retentionDays: DEFAULT_RETENTION,
+    defaultView: "reels",
+    relays: [],
   };
 }
 
@@ -59,6 +87,11 @@ export function loadSettings(x: unknown): Settings {
     if (pk && typeof pk === "object") for (const k of SOURCE_KINDS) d.analytics.perKind[k] = bool(pk[k], true);
   }
   if ((RETENTION_CHOICES as readonly unknown[]).includes(o.retentionDays)) d.retentionDays = o.retentionDays as RetentionDays;
+  if (o.defaultView === "grid" || o.defaultView === "reels") d.defaultView = o.defaultView;
+  if (Array.isArray(o.relays)) {
+    const rs = o.relays.map((r) => (typeof r === "string" ? parseRelayUrl(r) : null)).filter((r): r is string => !!r);
+    d.relays = [...new Set(rs)].slice(0, MAX_RELAYS);
+  }
   if (o.theme === "light" || o.theme === "dark" || o.theme === "auto") d.theme = o.theme;
   return d;
 }

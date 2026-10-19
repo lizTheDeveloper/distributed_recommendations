@@ -1,6 +1,7 @@
 // Offline entry for the single-file artifact build: the network is unavailable, so
 // the catalog is served from a snapshot of real PeerTube API responses through the
 // same core client the live app uses.
+import { installBufferShim } from "./lib/match/buffer.ts";
 import { boot } from "./boot.ts";
 import { createCatalog } from "./lib/catalog.ts";
 import type { Snapshot } from "./lib/snapshotFetch.ts";
@@ -30,6 +31,8 @@ try {
   /* ignore */
 }
 
+installBufferShim();
+
 void boot({
   root: document.getElementById("app")!,
   catalog: createCatalog(snapshotFetch(snap)),
@@ -38,4 +41,5 @@ void boot({
   now: () => fetchedAt,
   snapshotNote: `${count} real videos from ${hosts.join(" and ")}, captured ${fetchedAt.toISOString().slice(0, 10)}. This build can't use the network: no live refresh, playback or URL import, and thumbnails are color placeholders. Ranking, follows, taste lists, recipes and settings all work, and are saved in this browser.`,
   examples: EXAMPLES,
+  devTools: typeof __MF_DEV__ !== "undefined" && __MF_DEV__,
 });

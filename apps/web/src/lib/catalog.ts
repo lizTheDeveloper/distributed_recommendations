@@ -4,6 +4,7 @@
 import type { FetchLike, PeerTubeClient, Video } from "./core.ts";
 import { createPeerTubeClient, peertubeVideoToVideo } from "./core.ts";
 import type { ChannelRef } from "./handles.ts";
+import type { VideoMeta } from "./reels.ts";
 import { watchId } from "./videos.ts";
 
 /** Tier 1 public counts for a channel (ANALYTICS.md). */
@@ -17,8 +18,21 @@ export interface ChannelStats {
   videos: { video: Video; views: number; likes: number }[];
 }
 
+/** Public profile text of a channel, scanned for a Match Feed identity (npub). */
+export interface ChannelProfile {
+  handle: string;
+  displayName?: string;
+  /** Channel description, support text and owner account description. */
+  text: string;
+}
+
 export interface Catalog {
   instanceVideos(origin: string, which: "trending" | "recent", count?: number): Promise<Video[]>;
+  /** One page of an instance's list (core client `start`/`count`), for Reels' infinite scroll. */
+  instancePage(origin: string, which: "trending" | "recent", start: number, count: number): Promise<Video[]>;
+  /** Aspect ratio and live flag seen in PeerTube responses (core's `Video` drops them). */
+  meta(id: string): VideoMeta | undefined;
+  channelProfile(c: ChannelRef, via?: readonly string[]): Promise<ChannelProfile>;
   channelVideos(c: ChannelRef, count?: number): Promise<Video[]>;
   /** Resolve a canonical watch URL to a video via its origin instance. */
   resolveVideo(id: string): Promise<Video | null>;
@@ -31,8 +45,40 @@ export interface Catalog {
   channelStats(c: ChannelRef): Promise<ChannelStats>;
 }
 
-export function createCatalog(fetchFn: FetchLike): Catalog {
+export function createCatalog(rawFetch: FetchLike): Catalog {
   const clients = new Map<string, PeerTubeClient>();
+  const metas = new Map<string, VideoMeta>();
+  const capture = (raw: unknown, origin: string) => {
+    if (typeof raw !== "object" || raw === null) return;
+    const o = raw as Record<string, unknown>;
+    const id = typeof o.url === "string" ? o.url : typeof o.uuid === "string" && o.isLocal === true ? `${origin}/videos/watch/${o.uuid}` : null;
+    if (!id) return;
+    const m: VideoMeta = {};
+    if (typeof o.aspectRatio === "number" && o.aspectRatio > 0 && o.aspectRatio < 10) m.aspectRatio = o.aspectRatio;
+    if (o.isLive === true) m.isLive = true;
+    if (Object.keys(m).length) metas.set(id, m);
+  };
+  // Same responses core parses; this only reads the two fields core's Video omits.
+  const fetchFn: FetchLike = async (url, init) => {
+    const res = await rawFetch(url, init);
+    if (!res.ok) return res;
+    return {
+      ok: res.ok,
+      status: res.status,
+      json: async () => {
+        const body = await res.json();
+        try {
+          const origin = new URL(url).origin;
+          const data = (body as { data?: unknown }).data;
+          if (Array.isArray(data)) for (const r of data) capture(r, origin);
+          else capture(body, origin);
+        } catch {
+          /* not ours to judge */
+        }
+        return body;
+      },
+    };
+  };
   const client = (origin: string) => {
     let c = clients.get(origin);
     if (!c) clients.set(origin, (c = createPeerTubeClient({ baseUrl: origin, fetch: fetchFn })));
@@ -53,6 +99,31 @@ export function createCatalog(fetchFn: FetchLike): Catalog {
     async instanceVideos(origin, which, count = 50) {
       const page = await client(origin).listVideos({ count, sort: which === "trending" ? "-trending" : "-publishedAt" });
       return page.videos;
+    },
+    async instancePage(origin, which, start, count) {
+      const page = await client(origin).listVideos({ start, count, sort: which === "trending" ? "-trending" : "-publishedAt" });
+      return page.videos;
+    },
+    meta: (id) => metas.get(id),
+    async channelProfile(c, via = []) {
+      // Ask instances that already serve the catalog (known to send CORS headers) for
+      // the federated copy first, then the channel's home instance.
+      let info: Record<string, unknown> | undefined;
+      for (const origin of [...via, `https://${c.host}`]) {
+        try {
+          const handle = origin === `https://${c.host}` ? c.name : `${c.name}@${c.host}`;
+          info = await getJson(`${origin}/api/v1/video-channels/${encodeURIComponent(handle)}`);
+          break;
+        } catch {
+          /* next */
+        }
+      }
+      if (!info) throw new Error("channel profile unavailable");
+      const str = (x: unknown) => (typeof x === "string" ? x : "");
+      const owner = (info.ownerAccount ?? {}) as Record<string, unknown>;
+      const p: ChannelProfile = { handle: `${c.name}@${c.host}`, text: [str(info.description), str(info.support), str(owner.description)].join("\n").slice(0, 20_000) };
+      if (typeof info.displayName === "string") p.displayName = info.displayName;
+      return p;
     },
     async channelVideos(c, count = 20) {
       // Ask the channel's home instance first; fall back to nothing (caller reports).

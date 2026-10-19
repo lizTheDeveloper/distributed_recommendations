@@ -10,7 +10,24 @@ import type { KV } from "./storage.ts";
 import { PREFIX } from "./storage.ts";
 import type { Vault } from "./vault.ts";
 
-export const SENSITIVE_KEYS = ["history", "tally", "impressions", "follows", "taste", "videos", "tags"] as const;
+export const SENSITIVE_KEYS = [
+  "history",
+  "tally",
+  "impressions",
+  "follows",
+  "taste",
+  "videos",
+  "tags",
+  // Reels "not interested" ids.
+  "hidden",
+  // Match: the identity secret (local key) or the extension's pubkey, the MatchBook
+  // (per-match secret keys, both sides' sketches), petnames and the activity log, and
+  // the offline demo's simulated peer.
+  "identity",
+  "matchbook",
+  "matchmeta",
+  "demopeer",
+] as const;
 export type SensitiveKey = (typeof SENSITIVE_KEYS)[number];
 export type SensitiveData = Partial<Record<SensitiveKey, unknown>>;
 

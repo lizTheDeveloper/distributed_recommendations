@@ -5,7 +5,7 @@
 //   node scripts/build.mjs --dev [--port N]  # watch + serve dist/ on http://localhost:8080
 
 import * as esbuild from "esbuild";
-import { cpSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { cpSync, existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { createHash } from "node:crypto";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -19,15 +19,50 @@ const port = Number(args[args.indexOf("--port") + 1]) || 8080;
 const FONTS =
   "https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Atkinson+Hyperlegible:wght@400;700&family=JetBrains+Mono:wght@400;600&display=swap";
 
+const matchModules = join(root, "../../packages/match/node_modules");
+// The web app pins its own @openmined/psi.js (2.0.6, same as packages/match) for the
+// browser build; fall back to match's copy.
+const PSI_WEB = [join(root, "node_modules"), matchModules]
+  .map((d) => join(d, "@openmined/psi.js/psi_wasm_web.js"))
+  .find((p) => existsSync(p));
+if (!PSI_WEB) throw new Error("@openmined/psi.js isn't installed: run npm install in apps/web");
+
+/**
+ * packages/match is imported from source (src/lib/match/pkg.ts). Its PSI adapter is
+ * written for Node: `createRequire` from `node:module` loads @openmined/psi.js. In the
+ * browser, `node:module` resolves to shims/node-module.js, which loads psi.js's web
+ * build (WASM embedded): from dist/psi.js on demand in the live build, or inlined in
+ * the single-file artifact. `Buffer` is installed by src/lib/match/buffer.ts.
+ */
+function matchShims(psi /* "script" | "inline" */) {
+  return {
+    name: "match-browser-shims",
+    setup(b) {
+      b.onResolve({ filter: /^node:module$/ }, () => ({ path: join(root, "shims/node-module.js") }));
+      b.onResolve({ filter: /^mf-psi-source$/ }, () => ({ path: join(root, `shims/psi-${psi}.js`) }));
+      b.onResolve({ filter: /^@openmined\/psi\.js\/psi_wasm_web\.js$/ }, () => ({ path: PSI_WEB }));
+      // psi_wasm_web.js only require()s "url" when there's no document (never here).
+      b.onResolve({ filter: /^url$/ }, () => ({ path: "url", external: true }));
+    },
+  };
+}
+
 const common = {
   bundle: true,
   target: ["es2020", "chrome100", "firefox100", "safari15"],
   logLevel: "info",
   legalComments: "none",
+  nodePaths: [join(root, "node_modules"), matchModules],
+  // psi.ts reads import.meta.url only to hand it to createRequire, which the shim ignores.
+  logOverride: { "empty-import-meta": "silent" },
 };
+const appOpts = (dev) => ({ ...common, plugins: [matchShims("script")], define: { __MF_DEV__: String(dev) } });
 
 function copyPublic(dist) {
   cpSync(join(root, "public"), dist, { recursive: true });
+  // The browser build of @openmined/psi.js 2.0.6 (Apache-2.0), loaded only when a
+  // Match preview runs.
+  cpSync(PSI_WEB, join(dist, "psi.js"));
 }
 
 function stampServiceWorker(dist) {
@@ -43,13 +78,14 @@ async function buildApp() {
   rmSync(dist, { recursive: true, force: true });
   mkdirSync(dist, { recursive: true });
   copyPublic(dist);
-  await esbuild.build({ ...common, entryPoints: [join(root, "src/main.ts")], outfile: join(dist, "app.js"), format: "iife", minify: true, sourcemap: "linked" });
+  await esbuild.build({ ...appOpts(false), entryPoints: [join(root, "src/main.ts")], outfile: join(dist, "app.js"), format: "iife", minify: true, sourcemap: "linked" });
   await esbuild.build({ ...common, entryPoints: [join(root, "src/styles.css")], outfile: join(dist, "app.css"), minify: true });
   stampServiceWorker(dist);
 }
 
 async function buildArtifact() {
-  const js = await esbuild.build({ ...common, entryPoints: [join(root, "src/main-artifact.ts")], format: "iife", minify: true, write: false });
+  // The artifact is the offline demo: dev tools on (on-demand sketches), PSI inlined.
+  const js = await esbuild.build({ ...common, plugins: [matchShims("inline")], define: { __MF_DEV__: "true" }, entryPoints: [join(root, "src/main-artifact.ts")], format: "iife", minify: true, write: false });
   // The stylesheet has no imports; inline it verbatim so the theme selectors keep the
   // documented form (esbuild would rewrite [data-theme="light"] to [data-theme=light]).
   const cssText = readFileSync(join(root, "src/styles.css"), "utf8");
@@ -59,6 +95,7 @@ async function buildArtifact() {
   // everything inline except the Google Fonts stylesheet.
   const html = [
     "<title>Match Feed Client</title>",
+    '<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">',
     '<meta name="claude:viewport-fit-sides" content="cover">',
     `<link rel="stylesheet" href="${FONTS}">`,
     `<style>${style}</style>`,
@@ -77,7 +114,7 @@ if (dev) {
   mkdirSync(dist, { recursive: true });
   copyPublic(dist);
   writeFileSync(join(dist, "sw.js"), "// no service worker in dev\n");
-  const ctxJs = await esbuild.context({ ...common, entryPoints: [join(root, "src/main.ts")], outfile: join(dist, "app.js"), format: "iife", sourcemap: "inline" });
+  const ctxJs = await esbuild.context({ ...appOpts(true), entryPoints: [join(root, "src/main.ts")], outfile: join(dist, "app.js"), format: "iife", sourcemap: "inline" });
   const ctxCss = await esbuild.context({ ...common, entryPoints: [join(root, "src/styles.css")], outfile: join(dist, "app.css") });
   await Promise.all([ctxJs.watch(), ctxCss.watch()]);
   const { hosts, port: p } = await ctxJs.serve({ servedir: dist, port });

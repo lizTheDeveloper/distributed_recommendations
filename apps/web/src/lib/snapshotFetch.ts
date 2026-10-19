@@ -26,17 +26,18 @@ export function snapshotFetch(snap: Snapshot): FetchLike {
       if (v.shortUUID) byKey.set(v.shortUUID, v);
     }
   }
-  const page = (data: Raw[], count: number) => ok({ total: data.length, data: data.slice(0, count) });
+  const page = (data: Raw[], count: number, start = 0) => ok({ total: data.length, data: data.slice(start, start + count) });
 
   return async (url) => {
     const u = new URL(url);
     const count = Number(u.searchParams.get("count") ?? 20);
     const sort = u.searchParams.get("sort") ?? "-publishedAt";
+    const start = Number(u.searchParams.get("start") ?? 0);
     const p = u.pathname;
     if (p === "/api/v1/videos") {
       const inst = snap.instances[u.origin];
       if (!inst) return notFound;
-      return page(sort === "-trending" ? inst.trending : inst.recent, count);
+      return page(sort === "-trending" ? inst.trending : inst.recent, count, start);
     }
     let m = /^\/api\/v1\/video-channels\/([^/]+)\/videos$/.exec(p);
     if (m) {
@@ -45,7 +46,7 @@ export function snapshotFetch(snap: Snapshot): FetchLike {
       const vids = all
         .filter((v) => v.channel?.name === name && v.channel?.host === host)
         .sort((a, b) => String(b.publishedAt).localeCompare(String(a.publishedAt)));
-      return page(vids, count);
+      return page(vids, count, start);
     }
     m = /^\/api\/v1\/video-channels\/([^/]+)$/.exec(p);
     if (m) {

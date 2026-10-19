@@ -19,7 +19,12 @@ function tier1(app: App): HTMLElement | null {
   return h(
     "div",
     { class: "stack", style: { gap: "16px" } },
-    h("div", null, h("h2", null, st.displayName ?? name), h("p", { class: "mono small muted" }, st.handle)),
+    h(
+      "div",
+      { class: "row", style: { "justify-content": "space-between" } },
+      h("div", null, h("h2", null, st.displayName ?? name), h("p", { class: "mono small muted" }, st.handle)),
+      matchButton(app, st.displayName ?? name, st.handle),
+    ),
     h(
       "section",
       { class: "panel tier t0", "aria-labelledby": "t0-h" },
@@ -75,6 +80,15 @@ function tier1(app: App): HTMLElement | null {
         : h("p", { class: "muted small" }, "No public videos found."),
     ),
   );
+}
+
+/** "Request match…" when the channel publishes an npub in its description or support text. */
+function matchButton(app: App, name: string, handle: string): HTMLElement | null {
+  const pk = app.s.studio.npub;
+  if (!pk) return null;
+  const live = app.match.liveWith(pk);
+  if (live) return h("button", { class: "btn on", onclick: () => app.go("matches") }, live.status === "active" ? "Matched" : "Match requested");
+  return h("button", { class: "btn match", id: "studio-match", title: "This channel publishes a Match Feed identity (npub)", onclick: () => app.requestMatchWith({ pubkey: pk, name, source: "creator", ref: handle }) }, "Request match…");
 }
 
 function tier2(): HTMLElement {

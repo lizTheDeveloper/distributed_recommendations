@@ -33,6 +33,8 @@ function trim(v) {
     isLocal: v.isLocal,
     views: v.views,
     likes: v.likes,
+    aspectRatio: v.aspectRatio,
+    isLive: v.isLive,
     channel: v.channel && { name: v.channel.name, host: v.channel.host, displayName: v.channel.displayName },
   };
   if (v.language && v.language.id) out.language = { id: v.language.id };

@@ -65,7 +65,7 @@ export function openWatch(app: App, v: Video, via: SourceKind | undefined, onClo
   const closeBtn = h("button", { class: "btn sm", "aria-label": "Close player", onclick: close }, "Close");
   const recorded = s.settings.privateWatching
     ? "Private watching is on: this isn't recorded."
-    : "Recorded on this device only. Endorsements are what a future Match would share, and only if you consent.";
+    : "Recorded on this device only. Endorsements are what your matches can get, and only the ones you agreed to share.";
 
   const scrim = h(
     "div",
@@ -78,7 +78,7 @@ export function openWatch(app: App, v: Video, via: SourceKind | undefined, onClo
       h("div", { class: "row", style: { "justify-content": "space-between" } }, h("div", { class: "row" }, h("span", { class: "muted small" }, v.creatorName ?? v.creator), via ? chip(via) : null), h("span", { class: "muted small mono" }, v.publishedAt.toISOString().slice(0, 10))),
       h("div", { class: "row" }, endorseBtn, followBtn, h("a", { class: "btn", href: watchUrl, target: "_blank", rel: "noopener noreferrer" }, "Open on PeerTube ↗")),
       h("p", { class: "muted small" }, recorded),
-      h("p", { class: "muted small" }, s.settings.p2p ? "P2P streaming is on: other viewers can see your IP." : "P2P streaming is off: other viewers can't see your IP. Change it in Sharing & settings."),
+      h("p", { class: "muted small" }, s.settings.p2p ? "P2P streaming is on: other viewers can see your IP." : "P2P streaming is off: other viewers can't see your IP. Change it in Sharing & privacy."),
     ),
   );
   document.body.appendChild(scrim);
