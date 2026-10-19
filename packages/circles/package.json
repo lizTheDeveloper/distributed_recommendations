@@ -18,7 +18,7 @@
   "dependencies": {
     "@internet-privacy/marmot-ts": "0.5.1",
     "@noble/ciphers": "2.2.0",
-    "@noble/curves": "2.2.0",
+    "@noble/curves": "2.4.0",
     "@noble/hashes": "2.2.0",
     "nostr-tools": "2.25.2",
     "ts-mls": "2.0.0-rc.16"
