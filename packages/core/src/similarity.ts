@@ -1,4 +1,5 @@
 import type { TasteSketch } from "./sketch.ts";
+import type { Video } from "./types.ts";
 import { sketchItems } from "./sketch.ts";
 
 function asSet(xs: Iterable<string>): ReadonlySet<string> {
@@ -54,4 +55,36 @@ export function sketchSimilarity(
 ): number {
   const items = sketchItems(theirs);
   return method === "jaccard" ? jaccard(mine, items) : cosineSets(mine, items);
+}
+
+/**
+ * A viewer's tag profile: lowercased tag → weight, summed over videos they endorsed
+ * or finished (pass a `weight` per video to favour endorsements or recent ones).
+ * Stays on the device.
+ */
+export function tagProfile(
+  videos: Iterable<Pick<Video, "tags">>,
+  weight: (video: Pick<Video, "tags">) => number = () => 1,
+): Map<string, number> {
+  const profile = new Map<string, number>();
+  for (const v of videos) {
+    const w = weight(v);
+    if (!(w > 0) || !Number.isFinite(w)) continue;
+    for (const t of new Set((v.tags ?? []).map((x) => x.toLowerCase()))) profile.set(t, (profile.get(t) ?? 0) + w);
+  }
+  return profile;
+}
+
+/**
+ * An explore relevance scorer for `rank` (`RankOptions.exploreRelevance`): cosine
+ * between the viewer's tag profile and a video's tags, in [0, 1]. This is the
+ * on-device relevance the simulator used to rank explore candidates
+ * (docs/SIMULATION_RESULTS.md, Exp 2).
+ */
+export function tagRelevance(profile: ReadonlyMap<string, number>): (video: Pick<Video, "tags">) => number {
+  return (video) => {
+    const tags = new Map<string, number>();
+    for (const t of video.tags ?? []) tags.set(t.toLowerCase(), 1);
+    return Math.max(0, cosine(profile, tags));
+  };
 }

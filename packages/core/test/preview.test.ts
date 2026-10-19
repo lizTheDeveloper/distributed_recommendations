@@ -2,8 +2,11 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import {
   DEFAULT_PREVIEW_POLICY,
+  PREVIEW_PRIVACY,
   emptyPreviewState,
+  noisyPreviewCardinality,
   parsePreviewPolicy,
+  previewBudgetRemaining,
   prunePreviews,
   requestPreview,
   respondToPreview,
@@ -11,6 +14,7 @@ import {
 } from "../src/preview.ts";
 import type { PreviewResult, PreviewState, PsiCardinality } from "../src/preview.ts";
 import { ValidationError } from "../src/validate.ts";
+import { seededRng } from "../src/rng.ts";
 import { NOW } from "./helpers.ts";
 
 const DAY = 86_400_000;
@@ -60,7 +64,80 @@ test("misc refusals and expiry", () => {
   const accepted = ok(respondToPreview(s, "a", { by: "y", accept: true, now: at(1) }));
   assert.deepEqual(respondToPreview(accepted, "a", { by: "y", accept: true, now: at(1) }), { ok: false, reason: "not-pending" });
   assert.deepEqual(startPreviewRun(accepted, "a", { now: at(8), requesterSetSize: 50, targetSetSize: 50 }), { ok: false, reason: "expired" });
-  assert.equal(prunePreviews(accepted, at(8)).requests.length, 0);
+  // Accepted records count against the target's yearly budget, so they are kept a year.
+  assert.equal(prunePreviews(accepted, at(8)).requests.length, 1);
+  assert.equal(prunePreviews(accepted, at(366)).requests.length, 0);
+  assert.equal(prunePreviews(s, at(8)).requests.length, 0, "pending records go after a week");
+});
+
+test("target-side budget: at most 8 accepted previews per rolling year, from anyone", () => {
+  let s = emptyPreviewState();
+  // Nine different requesters (Sybils defeat per-pair limits), one a month.
+  for (let i = 0; i < 9; i++) {
+    s = ok(requestPreview(s, { id: `r${i}`, requester: `sybil${i}`, target: "tess", now: at(30 * i) }));
+    const r = respondToPreview(s, `r${i}`, { by: "tess", accept: true, now: at(30 * i) });
+    if (i < 8) {
+      s = ok(r);
+      assert.equal(s.requests.find((x) => x.id === `r${i}`)!.acceptedAt, Math.floor(at(30 * i).getTime() / 1000));
+    } else assert.deepEqual(r, { ok: false, reason: "target-budget" });
+  }
+  assert.equal(previewBudgetRemaining(s, "tess", at(240)), 0);
+  // Declining is always possible and doesn't use budget.
+  assert.ok(respondToPreview(s, "r8", { by: "tess", accept: false, now: at(240) }).ok);
+  // Pruning keeps the budget records; once the first acceptance is a year old, one frees up.
+  s = prunePreviews(s, at(300));
+  assert.equal(previewBudgetRemaining(s, "tess", at(300)), 0);
+  assert.equal(previewBudgetRemaining(s, "tess", at(366)), 1);
+  // A smaller budget can be configured, a larger one can't.
+  const strict = { ...DEFAULT_PREVIEW_POLICY, maxAcceptedPerTargetPerYear: 2 };
+  assert.equal(previewBudgetRemaining(emptyPreviewState(), "x", NOW, strict), 2);
+  assert.throws(() => parsePreviewPolicy({ ...DEFAULT_PREVIEW_POLICY, maxAcceptedPerTargetPerYear: 9 }), ValidationError);
+});
+
+test("noised cardinality: discrete Laplace at ε = 0.5 with a floor of 5", () => {
+  const rng = seededRng(3);
+  const n = 20_000;
+  let below = 0;
+  let sum = 0;
+  let exact = 0;
+  for (let i = 0; i < n; i++) {
+    const r = noisyPreviewCardinality(12, rng);
+    if (r.belowFloor) {
+      below++;
+      assert.equal(r.value, undefined);
+      assert.equal(r.label, "<5");
+      continue;
+    }
+    assert.ok(Number.isInteger(r.value) && r.value! >= 5);
+    sum += r.value!;
+    if (r.value === 12) exact++;
+  }
+  // P(noise = 0) = (1 - e^-0.5) / (1 + e^-0.5) ≈ 0.245: most answers are not the true count.
+  assert.ok(Math.abs(exact / n - 0.245) < 0.02, `exact ${exact / n}`);
+  assert.ok(below / n < 0.05);
+  assert.ok(Math.abs(sum / (n - below) - 12) < 0.3);
+  // A small true count is mostly reported as "<5".
+  let small = 0;
+  for (let i = 0; i < 2000; i++) if (noisyPreviewCardinality(1, rng).belowFloor) small++;
+  assert.ok(small / 2000 > 0.9);
+  // Buckets for display.
+  const fixed = (x: number) => () => x;
+  assert.equal(noisyPreviewCardinality(7, fixed(0.5)).bucket, "a-few");
+  assert.equal(noisyPreviewCardinality(15, fixed(0.5)).bucket, "some");
+  assert.equal(noisyPreviewCardinality(40, fixed(0.5)).label, "a lot in common");
+  assert.throws(() => noisyPreviewCardinality(-1, rng), RangeError);
+});
+
+test("privacy fields: optional on the wire, filled by parse, can only be made stricter", () => {
+  const legacy = { v: 1, minSetSize: 20, maxPerPairPerWeek: 1, maxPerRequesterPerWeek: 5, acceptWindowSec: 604800 };
+  const p = parsePreviewPolicy(legacy);
+  assert.equal(p.epsilon, 0.5);
+  assert.equal(p.floor, 5);
+  assert.equal(p.maxAcceptedPerTargetPerYear, 8);
+  assert.equal(parsePreviewPolicy({ ...legacy, epsilon: 0.25, floor: 8 }).epsilon, 0.25);
+  assert.throws(() => parsePreviewPolicy({ ...legacy, epsilon: 1 }), ValidationError);
+  assert.throws(() => parsePreviewPolicy({ ...legacy, floor: 4 }), ValidationError);
+  assert.deepEqual(PREVIEW_PRIVACY, { maxEpsilon: 0.5, minFloor: 5, maxAcceptedPerTargetPerYear: 8 });
 });
 
 test("policy validation keeps the floor of 20", () => {

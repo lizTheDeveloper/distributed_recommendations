@@ -2,7 +2,9 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import {
   DEFAULT_RECIPE,
+  EXPLORE_SHARE,
   FOLLOWING_CHRONOLOGICAL_RECIPE,
+  RECIPE_DEFAULTS,
   parseRecipe,
   parseRecipeJson,
   recipeToJson,
@@ -87,8 +89,31 @@ test("parseRecipeJson enforces size and syntax", () => {
   assert.equal(parseRecipeJson(JSON.stringify(base())).name, "Slow Craft");
 });
 
+test("maxPerTasteList is optional, validated and round-trips", () => {
+  assert.equal(parseRecipe(base()).maxPerTasteList, undefined);
+  const r = parseRecipe({ ...base(), maxPerTasteList: 3 });
+  assert.equal(r.maxPerTasteList, 3);
+  assert.deepEqual(parseRecipe(recipeToJson(r)), r);
+  assert.equal("maxPerTasteList" in recipeToJson(parseRecipe(base())), false);
+  for (const bad of [0, 1.5, 101, "2", null]) {
+    assert.throws(() => parseRecipe({ ...base(), maxPerTasteList: bad }), ValidationError, String(bad));
+  }
+  assert.equal(RECIPE_DEFAULTS.maxPerTasteList, 2);
+});
+
+test("explore share: the recommended 2–10% range parses; 0 still turns it off", () => {
+  for (const share of [0, EXPLORE_SHARE.recommendedMin, EXPLORE_SHARE.default, EXPLORE_SHARE.recommendedMax, 0.5]) {
+    assert.equal(parseRecipe({ ...base(), exploreShare: share }).exploreShare, share);
+  }
+  assert.deepEqual({ ...EXPLORE_SHARE }, { default: 0.05, recommendedMin: 0.02, recommendedMax: 0.1 });
+});
+
 test("built-in recipes", () => {
-  assert.equal(DEFAULT_RECIPE.exploreShare, 0.1);
+  assert.equal(DEFAULT_RECIPE.exploreShare, 0.05);
+  // Taste lists at 0.15 of the match weight (Exp 1); second degree at the match
+  // weight because the walk already applies the 0.3 decay.
+  assert.ok(Math.abs(DEFAULT_RECIPE.weights.taste - 0.15 * DEFAULT_RECIPE.weights.match) < 1e-12);
+  assert.equal(DEFAULT_RECIPE.weights.second, DEFAULT_RECIPE.weights.match);
   assert.ok(DEFAULT_RECIPE.weights.match > DEFAULT_RECIPE.weights.follow);
   assert.equal(FOLLOWING_CHRONOLOGICAL_RECIPE.weights.match, 0);
   assert.equal(FOLLOWING_CHRONOLOGICAL_RECIPE.exploreShare, 0);

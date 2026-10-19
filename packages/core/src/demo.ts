@@ -13,15 +13,19 @@ import {
   FOLLOWING_CHRONOLOGICAL_RECIPE,
   buildSketch,
   circleCandidates,
-  circlePicks,
   createPeerTubeClient,
   decodeSketch,
+  emptyCircleLedger,
   encodeSketch,
+  randomHex,
   rank,
+  releaseCircleEpoch,
   secondDegreeScores,
   seededRng,
   shuffle,
   sketchItems,
+  tagProfile,
+  tagRelevance,
   trustWalk,
 } from "./index.ts";
 
@@ -103,14 +107,24 @@ async function main(): Promise<void> {
   // A public taste list.
   for (const v of pick(21, 4)) candidates.push({ video: v, source: { kind: "taste", via: "Slow Craft by @hearth", strength: 0.8 } });
 
-  // A 12-member circle: popular picks pass the noisy threshold, one-off picks mostly don't.
+  // A 12-member circle: popular picks pass the noisy threshold (3 at k = 12), one-off
+  // picks mostly don't. One release per epoch, sticky noise, picks only (no counts).
   const circlePool = pick(25, 6);
-  const members = Array.from({ length: 12 }, (_, m) =>
-    [circlePool[0], circlePool[1], ...(m < 6 ? [circlePool[2]] : []), circlePool[3 + (m % 3)]].map((v) => v.id),
+  const memberIds = Array.from({ length: 12 }, (_, m) => `member-${m}`);
+  const contributions = new Map(
+    memberIds.map((id, m) => [
+      id,
+      [circlePool[0], circlePool[1], ...(m < 6 ? [circlePool[2]] : []), circlePool[3 + (m % 3)]].map((v) => v.id),
+    ]),
   );
-  const circle = circlePicks(members, DEFAULT_CIRCLE_POLICY, rng);
+  const release = releaseCircleEpoch(
+    emptyCircleLedger(),
+    { epoch: 1, members: memberIds, noiseSeed: randomHex(rng, 32), contributions },
+    DEFAULT_CIRCLE_POLICY,
+  );
+  const circle = release.ok ? release.result : { ok: false as const, members: 0, reason: "too-few-members" as const };
   candidates.push(...circleCandidates(circle, "Riso people", catalog));
-  console.log(`Circle "Riso people": ${circle.ok ? circle.picks.length : 0} picks above the threshold.`);
+  console.log(`Circle "Riso people": ${circle.ok ? circle.picks.length : 0} picks above the threshold (epoch 1, picks only).`);
 
   // Second degree: matches of matches, only through peers who opted in to relay.
   const graph = new Map([
@@ -131,19 +145,22 @@ async function main(): Promise<void> {
   );
   for (const [id, strength] of second) candidates.push({ video: catalog.get(id)!, source: { kind: "second", strength } });
 
-  // Explore: everything else uploaded in the last two weeks.
+  // Explore: everything else uploaded in the last two weeks, ranked on device by how
+  // well its tags fit the tags of what "I" follow and my matches endorsed.
   const tied = new Set(candidates.map((c) => c.video.id));
   for (const v of videos) if (!tied.has(v.id)) candidates.push({ video: v, source: { kind: "explore" } });
+  const myTaste = candidates.filter((c) => c.source.kind === "follow" || c.source.kind === "match").map((c) => c.video);
+  const exploreRelevance = tagRelevance(tagProfile(myTaste));
 
   console.log(`\n${candidates.length} candidates. Recipe: "${DEFAULT_RECIPE.name}" (explore share ${DEFAULT_RECIPE.exploreShare}).\n`);
-  const feed = rank(candidates, DEFAULT_RECIPE, { now, limit, rng });
+  const feed = rank(candidates, DEFAULT_RECIPE, { now, limit, rng, exploreRelevance });
   print(feed);
   const mix = new Map<string, number>();
   for (const item of feed) mix.set(CHIP_LABELS[item.primary], (mix.get(CHIP_LABELS[item.primary]) ?? 0) + 1);
   console.log(`\nMix: ${[...mix].map(([k, n]) => `${k} ${n}`).join(", ")}`);
 
   // Kinds that didn't make the first page: show where their best item landed.
-  const full = rank(candidates, DEFAULT_RECIPE, { now, limit: candidates.length, rng: seededRng(seed) });
+  const full = rank(candidates, DEFAULT_RECIPE, { now, limit: candidates.length, rng: seededRng(seed), exploreRelevance });
   const shown = new Set(feed.map((i) => i.primary));
   for (const kind of ["taste", "second"] as const) {
     if (shown.has(kind)) continue;

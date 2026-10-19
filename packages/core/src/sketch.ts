@@ -58,9 +58,24 @@ export interface SketchState {
   lastSent?: TasteSketch;
 }
 
+/**
+ * How a sketch travels. `nip17` (1:1 gift wraps) is capped at the 128 bucket: a
+ * 256-bucket sketch gift-wraps to about 66 KB, over the 64 KiB event limit many
+ * relays default to. `mls` (circle transport) allows 256.
+ */
+export type SketchTransport = "nip17" | "mls";
+
+/** Largest bucket per transport. */
+export const SKETCH_TRANSPORT_MAX_BUCKET: Readonly<Record<SketchTransport, 64 | 128 | 256>> = {
+  nip17: 128,
+  mls: 256,
+};
+
 export interface BuildSketchOptions {
   now: Date;
   rng: Rng;
+  /** Default `nip17` (largest bucket 128). Pass `mls` to allow the 256 bucket. */
+  transport?: SketchTransport;
   /** Sketch lifetime; default 14 days, at most `SKETCH_LIMITS.maxTtlSec`. */
   ttlSec?: number;
   /** Local hour of a timestamp; default `Date#getHours`. Injected for tests. */
@@ -72,7 +87,9 @@ export const SKETCH_BUCKETS = [64, 128, 256] as const;
 
 // Byte budget: the largest sketch (256 × 120 + 512 = 31,232 bytes) must still fit
 // NIP-44's 65,535-byte plaintext limit after NIP-59 double wrapping (rumor → seal
-// → gift wrap, with base64 growth at each layer). See docs/PROTOCOL.md.
+// → gift wrap, with base64 growth at each layer). Over NIP-17 the 256 bucket would
+// still exceed common 64 KiB relay event limits, so 1:1 sketches stop at 128
+// (`SKETCH_TRANSPORT_MAX_BUCKET`). See docs/PROTOCOL.md.
 export const SKETCH_LIMITS = {
   maxItemLength: 512,
   defaultTtlSec: 14 * 86_400,
@@ -150,13 +167,21 @@ export function selectSketchItems(
     .map(([id]) => id);
 }
 
+function bucketsFor(transport: SketchTransport | undefined): number[] {
+  const max = SKETCH_TRANSPORT_MAX_BUCKET[transport ?? "nip17"];
+  if (max === undefined) throw new RangeError("transport must be nip17 or mls");
+  return SKETCH_BUCKETS.filter((b) => b <= max);
+}
+
 function pack(real: string[], epoch: number, opts: BuildSketchOptions): TasteSketch {
   const ttl = Math.min(opts.ttlSec ?? SKETCH_LIMITS.defaultTtlSec, SKETCH_LIMITS.maxTtlSec);
   const issuedAt = Math.floor(opts.now.getTime() / 1000);
   const nonce = randomHex(opts.rng, 32);
-  let items = real.slice(0, SKETCH_BUCKETS[SKETCH_BUCKETS.length - 1]);
+  const buckets = bucketsFor(opts.transport);
+  // Real items are newest first, so capping keeps the newest.
+  let items = real.slice(0, buckets[buckets.length - 1]);
   for (;;) {
-    for (const bucket of SKETCH_BUCKETS) {
+    for (const bucket of buckets) {
       if (items.length > bucket) continue;
       const padded = items.slice();
       while (padded.length < bucket) padded.push(randomHex(opts.rng, 32));
@@ -174,7 +199,7 @@ function pack(real: string[], epoch: number, opts: BuildSketchOptions): TasteSke
       sketch.padding = randomHex(opts.rng, Math.ceil(room / 2)).slice(0, room);
       return sketch;
     }
-    // Even the largest bucket overflows (very long URLs): drop the oldest item.
+    // Even the transport's largest bucket overflows (very long URLs): drop the oldest item.
     items = items.slice(0, -1);
   }
 }
@@ -212,6 +237,11 @@ export interface ValidateSketchOptions {
   now: Date;
   /** Highest epoch already accepted from this sender; the new one must be greater. */
   lastEpoch?: number;
+  /**
+   * The transport the sketch arrived on. `nip17` rejects the 256 bucket. Omitted:
+   * every bucket is accepted (for callers that don't know the transport).
+   */
+  transport?: SketchTransport;
 }
 
 /**
@@ -227,8 +257,9 @@ export function validateSketch(raw: unknown, opts: ValidateSketchOptions): Taste
   const expiresAt = number(o.expiresAt, "sketch.expiresAt", 0, 1e11, true);
   const nonce = string(o.nonce, "sketch.nonce", 64, PADDING_ITEM);
   const items = array(o.items, "sketch.items", SKETCH_BUCKETS[SKETCH_BUCKETS.length - 1]);
-  if (!(SKETCH_BUCKETS as readonly number[]).includes(items.length)) {
-    fail("sketch.items", `length must be one of ${SKETCH_BUCKETS.join(", ")}`);
+  const allowed = opts.transport ? bucketsFor(opts.transport) : [...SKETCH_BUCKETS];
+  if (!allowed.includes(items.length)) {
+    fail("sketch.items", `length must be one of ${allowed.join(", ")}`);
   }
   const unique = new Set<string>();
   items.forEach((x, i) => {
@@ -255,7 +286,8 @@ export function validateSketch(raw: unknown, opts: ValidateSketchOptions): Taste
 
 /** Parse sketch JSON text with a size cap before `JSON.parse`, then validate. */
 export function decodeSketch(text: string, opts: ValidateSketchOptions): TasteSketch {
-  const max = sketchTargetBytes(SKETCH_BUCKETS[SKETCH_BUCKETS.length - 1]);
+  const buckets = opts.transport ? bucketsFor(opts.transport) : [...SKETCH_BUCKETS];
+  const max = sketchTargetBytes(buckets[buckets.length - 1]);
   if (typeof text !== "string" || utf8Length(text) > max) fail("sketch", `must be JSON text of at most ${max} bytes`);
   let raw: unknown;
   try {

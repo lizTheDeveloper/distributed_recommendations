@@ -2,6 +2,7 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import {
   SKETCH_BUCKETS,
+  SKETCH_TRANSPORT_MAX_BUCKET,
   buildSketch,
   decodeSketch,
   encodeSketch,
@@ -11,7 +12,7 @@ import {
   sketchTargetBytes,
   validateSketch,
 } from "../src/sketch.ts";
-import type { HistoryEntry, SketchConsent } from "../src/sketch.ts";
+import type { HistoryEntry, SketchConsent, SketchTransport } from "../src/sketch.ts";
 import { seededRng } from "../src/rng.ts";
 import { ValidationError } from "../src/validate.ts";
 import { NOW } from "./helpers.ts";
@@ -28,7 +29,7 @@ const consent = (patch: Partial<SketchConsent> = {}): SketchConsent => ({
   paused: false,
   ...patch,
 });
-const opts = (seed = 1, now = NOW) => ({ now, rng: seededRng(seed), hourOf: utcHour });
+const opts = (seed = 1, now = NOW, transport?: SketchTransport) => ({ now, rng: seededRng(seed), hourOf: utcHour, transport });
 const bytes = (s: string) => new TextEncoder().encode(s).length;
 
 function history(n: number): HistoryEntry[] {
@@ -54,14 +55,36 @@ test("selection honors window, finished watches, tags, hours and exclusions", ()
   assert.deepEqual(selectSketchItems(h, { ...c, includeFinished: true }, NOW, utcHour), [id(2), id(1)]);
 });
 
-test("pads to a bucket with nonces and to an exact byte size", () => {
+test("pads to a bucket with nonces and to an exact byte size (MLS transport: up to 256)", () => {
   for (const [n, bucket] of [[0, 64], [41, 64], [64, 64], [65, 128], [200, 256], [400, 256]] as const) {
-    const { sketch } = buildSketch(history(n), consent(), { epoch: 0 }, opts());
+    const { sketch } = buildSketch(history(n), consent(), { epoch: 0 }, opts(1, NOW, "mls"));
     assert.equal(sketch.items.length, bucket, `n=${n}`);
     assert.equal(bytes(encodeSketch(sketch)), sketchTargetBytes(bucket));
     assert.equal(sketchItems(sketch).size, Math.min(n, 256));
     assert.equal(sketch.items.filter(isPaddingItem).length, bucket - Math.min(n, 256));
   }
+});
+
+test("NIP-17 (the default transport) caps sketches at the 128 bucket, keeping the newest items", () => {
+  assert.deepEqual({ ...SKETCH_TRANSPORT_MAX_BUCKET }, { nip17: 128, mls: 256 });
+  for (const [n, bucket] of [[0, 64], [64, 64], [65, 128], [128, 128], [200, 128], [400, 128]] as const) {
+    for (const transport of [undefined, "nip17"] as const) {
+      const { sketch } = buildSketch(history(n), consent(), { epoch: 0 }, opts(1, NOW, transport));
+      assert.equal(sketch.items.length, bucket, `n=${n}`);
+      assert.equal(bytes(encodeSketch(sketch)), sketchTargetBytes(bucket));
+      assert.equal(sketchItems(sketch).size, Math.min(n, 128));
+    }
+  }
+  // history(n) is newest first: the 128 kept are ids 0..127.
+  const { sketch } = buildSketch(history(200), consent(), { epoch: 0 }, opts());
+  assert.deepEqual([...sketchItems(sketch)].sort(), history(128).map((h) => h.videoId).sort());
+  // A NIP-17 receiver rejects the 256 bucket; a transport-agnostic one still accepts it.
+  const big = buildSketch(history(200), consent(), { epoch: 0 }, opts(1, NOW, "mls")).sketch;
+  assert.throws(() => validateSketch(big, { now: NOW, transport: "nip17" }), /length must be one of 64, 128/);
+  assert.throws(() => decodeSketch(encodeSketch(big), { now: NOW, transport: "nip17" }), /bytes/);
+  assert.ok(decodeSketch(encodeSketch(big), { now: NOW }));
+  assert.ok(decodeSketch(encodeSketch(big), { now: NOW, transport: "mls" }));
+  assert.ok(decodeSketch(encodeSketch(sketch), { now: NOW, transport: "nip17" }));
 });
 
 test("very long URLs push to a bigger bucket rather than leak length", () => {
@@ -70,9 +93,14 @@ test("very long URLs push to a bigger bucket rather than leak length", () => {
     at: new Date(NOW.getTime() - HOUR),
     kind: "endorse" as const,
   }));
-  const { sketch } = buildSketch(long, consent(), { epoch: 0 }, opts());
+  const { sketch } = buildSketch(long, consent(), { epoch: 0 }, opts(1, NOW, "mls"));
   assert.equal(sketch.items.length, 256);
   assert.equal(bytes(encodeSketch(sketch)), sketchTargetBytes(256));
+  // Over NIP-17 there is no bigger bucket: the oldest items are dropped instead.
+  const nip17 = buildSketch(long, consent(), { epoch: 0 }, opts()).sketch;
+  assert.equal(nip17.items.length, 128);
+  assert.equal(bytes(encodeSketch(nip17)), sketchTargetBytes(128));
+  assert.ok(sketchItems(nip17).size < 60 && sketchItems(nip17).size > 0);
 });
 
 test("padding nonces never collide with real ids and items are shuffled", () => {

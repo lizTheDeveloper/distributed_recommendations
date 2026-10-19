@@ -1,8 +1,8 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { cosine, cosineSets, jaccard, overlap, sketchSimilarity } from "../src/similarity.ts";
+import { cosine, cosineSets, jaccard, overlap, sketchSimilarity, tagProfile, tagRelevance } from "../src/similarity.ts";
 import { buildSketch } from "../src/sketch.ts";
-import { seededRng } from "../src/rng.ts";
+import { keyedRng, seededRng, sha256 } from "../src/rng.ts";
 import { NOW } from "./helpers.ts";
 
 test("jaccard and set cosine", () => {
@@ -37,4 +37,29 @@ test("sketch similarity ignores padding", () => {
   const mine = ids.slice(0, 5);
   assert.equal(sketchSimilarity(mine, sketch), 5 / 10);
   assert.equal(sketchSimilarity(mine, sketch, "cosine"), 5 / Math.sqrt(50));
+});
+
+test("tag profile and on-device tag relevance", () => {
+  const profile = tagProfile([{ tags: ["Riso", "zine"] }, { tags: ["riso", "riso"] }, { tags: [] }]);
+  assert.deepEqual([...profile], [["riso", 2], ["zine", 1]]);
+  const rel = tagRelevance(profile);
+  assert.ok(rel({ tags: ["riso", "zine"] }) > rel({ tags: ["zine"] }));
+  assert.equal(rel({ tags: ["gaming"] }), 0);
+  assert.equal(rel({ tags: [] }), 0);
+  assert.ok(rel({ tags: ["RISO"] }) <= 1);
+  const weighted = tagProfile([{ tags: ["a"] }, { tags: ["b"] }], (v) => (v.tags[0] === "a" ? 3 : 0));
+  assert.deepEqual([...weighted], [["a", 3]]);
+});
+
+test("sha256 and keyed rng", () => {
+  const hex = (b: Uint8Array) => [...b].map((x) => x.toString(16).padStart(2, "0")).join("");
+  assert.equal(hex(sha256(new TextEncoder().encode("abc"))), "ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad");
+  assert.equal(hex(sha256(new Uint8Array())), "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855");
+  const a = keyedRng("k", "x");
+  const b = keyedRng("k", "x");
+  const xs = Array.from({ length: 20 }, () => a());
+  assert.deepEqual(xs, Array.from({ length: 20 }, () => b()));
+  assert.ok(xs.every((x) => x >= 0 && x < 1));
+  assert.notEqual(keyedRng("k", "y")(), xs[0]);
+  assert.notEqual(keyedRng("k2", "x")(), xs[0]);
 });
