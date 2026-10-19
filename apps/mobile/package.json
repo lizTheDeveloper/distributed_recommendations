@@ -1,7 +1,7 @@
 {
   "name": "@match-feed/mobile",
   "version": "0.1.0",
-  "description": "Android and iOS shells (Capacitor) around the Match Feed web client, shipped as MemeCore.",
+  "description": "Android and iOS shells (Capacitor) around the Match Feed web client, shipped as Meme Video.",
   "license": "Apache-2.0",
   "type": "module",
   "private": true,

@@ -1,0 +1,8 @@
+{
+  "$comment": "The one place the product name and ids live. apps/mobile and apps/desktop both read this file (scripts/apply-brand.mjs, capacitor.config.ts, apps/desktop/scripts/sync-web.mjs). Name-conflict check pending; the id must match a domain the publisher controls (multiverse.school). See docs/SHIPPING.md, Decisions.",
+  "displayName": "Meme Video",
+  "shortName": "Meme Video",
+  "appId": "school.multiverse.memevideo",
+  "publisher": "The Multiverse School",
+  "customUrlScheme": "memevideo"
+}

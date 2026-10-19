@@ -210,7 +210,17 @@ for (const v of Object.values(snapshot.instances).flatMap((i) => [...i.trending,
   const k = `${v.channel?.name}@${v.channel?.host}`;
   counts.set(k, (counts.get(k) ?? 0) + 1);
 }
-for (const handle of TASTE_CURATORS) await captureTaste(handle, true);
+for (const handle of TASTE_CURATORS) {
+  await captureTaste(handle, true);
+  // Their own newest uploads, so following the channel works offline too.
+  const [name, host] = handle.split("@");
+  try {
+    const vids = (await get(`https://${host}/api/v1/video-channels/${encodeURIComponent(name)}/videos?count=3&sort=-publishedAt`)).data ?? [];
+    for (const v of vids) if (v.url && !known.has(v.url)) (snapshot.extra.push(trim(v)), known.add(v.url));
+  } catch (e) {
+    console.warn("taste: uploads", handle, e.message);
+  }
+}
 for (const [handle] of [...counts.entries()].sort((a, b) => b[1] - a[1]).slice(0, TASTE_SCAN)) {
   if (!snapshot.channels[handle]) await captureTaste(handle, false);
 }
