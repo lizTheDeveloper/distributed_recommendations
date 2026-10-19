@@ -67,6 +67,11 @@ export interface CircleMemberOptions {
   /** This member's policy floor (rounds weaker than this are refused). */
   floor?: CirclePolicy;
   noiseTolerance?: (participants: number) => number;
+  /**
+   * ≥ 32 secret bytes that seed this member's noise shares. Persist them (encrypted
+   * at rest, T9) so a restarted device keeps sticky shares. Default: random.
+   */
+  localSecret?: Uint8Array;
   /** TEST ONLY. */
   inspect?: ContributionInspector;
 }
@@ -127,6 +132,7 @@ export class CircleMember {
       identity: this.identity,
       floor: this.opts.floor,
       noiseTolerance: this.opts.noiseTolerance,
+      localSecret: this.opts.localSecret,
       since: this.opts.now(),
       inspect: this.opts.inspect,
     });

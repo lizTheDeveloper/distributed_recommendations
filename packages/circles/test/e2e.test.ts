@@ -50,6 +50,7 @@ before(async () => {
       signer,
       network,
       now: clock.now,
+      localSecret: new Uint8Array(32).fill(i + 1), // deterministic noise in tests only
       inspect: (c) => {
         const list = inputs.get(c.identity) ?? [];
         list.push(c.input);
