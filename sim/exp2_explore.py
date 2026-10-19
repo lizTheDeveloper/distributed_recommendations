@@ -120,28 +120,34 @@ _WORLD_CACHE: dict = {}
 
 
 def _job(args):
-    cfg, seed, share = args[:3]
-    params = args[3] if len(args) > 3 else RecParams()
+    cfg, seed, share, params, ext = args
     key = cfg.scaled(seed=seed)
     if key not in _WORLD_CACHE:
         _WORLD_CACHE.clear()
         _WORLD_CACHE[key] = build_world(key)
-    return {"seed": seed, **simulate(_WORLD_CACHE[key], share, params, seed)}
+    return {"seed": seed, **simulate(_WORLD_CACHE[key], share, params, seed,
+                                     external_rate=ext)}
 
 
-def run(seeds=(0, 1), cfg: WorldConfig = WorldConfig(n_viewers=2000, n_creators=1000),
-        shares=SHARES, random_shares=(0.02, 0.05, 0.10), out_dir=None, log=print, workers: int | None = None) -> dict:
+def run(seeds=(0, 1), cfg: WorldConfig = WorldConfig(n_viewers=1500, n_creators=1000),
+        shares=SHARES, random_shares=(0.05, 0.10), sens_shares=(0.0, 0.02, 0.05),
+        sens_external_rate=2.0, out_dir=None, log=print, workers: int | None = None) -> dict:
     # "content": explore candidates ranked by on-device tag similarity (default).
     # "random": explore candidates drawn at random among eligible creators — a
     # pessimistic bound on the viewer-quality cost.
+    # "content, ext x4": 4x more off-app discovery (seed 0 only) — sensitivity of
+    # the 0% baseline to that assumption.
     jobs, labels = [], []
     for seed in seeds:
         for sh in shares:
-            jobs.append((cfg, seed, sh))
+            jobs.append((cfg, seed, sh, RecParams(), 0.5))
             labels.append("content")
         for sh in random_shares:
-            jobs.append((cfg, seed, sh, RecParams(explore_noise=1e4)))
+            jobs.append((cfg, seed, sh, RecParams(explore_noise=1e4), 0.5))
             labels.append("random")
+    for sh in sens_shares:
+        jobs.append((cfg, seeds[0], sh, RecParams(), sens_external_rate))
+        labels.append(f"content, off-app x{sens_external_rate / 0.5:g}")
     t0 = time.time()
     rows = parallel_map(_job, jobs, workers)
     for r, lab in zip(rows, labels):
@@ -153,7 +159,9 @@ def run(seeds=(0, 1), cfg: WorldConfig = WorldConfig(n_viewers=2000, n_creators=
     agg = aggregate(rows, ["explore_ranking", "explore_share"], metrics)
     base = next(a for a in agg if a["explore_share"] == 0.0)
     for a in agg:
-        a["quality_cost_pct"] = 100.0 * (1 - a["precision@20"] / base["precision@20"])
+        b = next((x for x in agg if x["explore_share"] == 0.0
+                  and x["explore_ranking"] == a["explore_ranking"]), base)
+        a["quality_cost_pct"] = 100.0 * (1 - a["precision@20"] / b["precision@20"])
     write_csv(rows, out_path("exp2_explore_raw.csv", out_dir))
     write_csv(agg, out_path("exp2_explore.csv", out_dir))
     headers = {"explore_share": "explore share", "explore_ranking": "explore ranking", "ttfv_median_wk": "median TTFV (wk)",

@@ -70,7 +70,8 @@ def md_table(rows: list[dict], cols: list[str], digits: int = 3, sd: bool = Fals
                     s = "inf"
                 else:
                     s = f"{v:.{digits}f}"
-                if sd and (c + "_sd") in r and r.get("n", 1) > 1:
+                if (sd and (c + "_sd") in r and r.get("n", 1) > 1
+                        and not math.isnan(r[c + "_sd"])):
                     s += f" ±{r[c + '_sd']:.{digits}f}"
             else:
                 s = str(v)
@@ -86,18 +87,10 @@ def auc(scores: np.ndarray, labels: np.ndarray) -> float:
     npos, nneg = labels.sum(), (~labels).sum()
     if npos == 0 or nneg == 0:
         return float("nan")
-    order = np.argsort(scores, kind="mergesort")
-    s = scores[order]
-    ranks = np.empty(len(s))
-    i = 0
-    while i < len(s):
-        j = i
-        while j + 1 < len(s) and s[j + 1] == s[i]:
-            j += 1
-        ranks[i:j + 1] = (i + j) / 2.0 + 1
-        i = j + 1
-    r = np.empty(len(s))
-    r[order] = ranks
+    uniq, inv, counts = np.unique(scores, return_inverse=True, return_counts=True)
+    start = np.cumsum(counts) - counts                 # 0-based first rank of each value
+    avg_rank = start + (counts + 1) / 2.0               # 1-based average rank
+    r = avg_rank[inv]
     return float((r[labels].sum() - npos * (npos + 1) / 2) / (npos * nneg))
 
 
