@@ -58,6 +58,12 @@ function sourcesPanel(app: App): HTMLElement {
         h("div", null, `${s.taste.length} taste list${s.taste.length === 1 ? "" : "s"}`, s.taste.length > tasteLoaded ? h("span", { class: "muted" }, ` (${s.taste.length - tasteLoaded} loading)`) : null),
         h("button", { class: "linkbtn", onclick: () => app.go("follow") }, "Manage"),
       ),
+      h(
+        "li",
+        null,
+        h("div", null, "Instance trending, as a taste list"),
+        h("button", { class: "linkbtn", onclick: () => app.go("settings") }, s.settings.trendingAsTaste ? "On" : "Off"),
+      ),
       h("li", null, h("div", { class: "muted" }, "Matches and circles"), h("span", { class: "pill next" }, "coming next")),
     ),
     h("p", { class: "muted small" }, "Catalog read from:"),
@@ -224,6 +230,7 @@ export function homeScreen(app: App): HTMLElement {
         "div",
         { class: "feedhead" },
         h("h2", null, recipe.name),
+        h("div", { class: "field mobile-only", style: { flex: "1 0 100%" } }, h("label", { for: "home-recipe-top", class: "muted small" }, "Recipe (ranked on this device; more controls below the feed)"), recipePicker(app, "home-recipe-top")),
         h(
           "p",
           { class: "muted small mono" },

@@ -20,6 +20,7 @@
   --second:#e8a861; --second-soft:#3a2a17; --explore:#9aa0b4; --warn:#f08a74;
   --taste:#ee8fbf; --taste-soft:#3a1c2c; --warn-soft:#3a1f1a; color-scheme:dark}
 *{box-sizing:border-box}
+[hidden]{display:none !important}
 html{-webkit-text-size-adjust:100%}
 body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.5 var(--f-body)}
 .wrap{max-width:1180px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:20px 48px}
@@ -35,8 +36,8 @@ a{color:var(--follow)}
 .hint{font-size:.8rem;color:var(--muted);margin-top:-8px}
 .intro{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:16px;flex-wrap:wrap}
 .intro > div{display:flex;flex-direction:column;gap:6px;max-width:70ch}
-.tabs{display:flex;gap:4px;border-bottom:1px solid var(--line);margin-bottom:20px;overflow-x:auto;scrollbar-width:none}
-.tabs button{font:600 .92rem var(--f-body);background:none;border:0;color:var(--muted);padding:10px 14px;border-bottom:2px solid transparent;cursor:pointer;white-space:nowrap;flex:none}
+.tabs{display:flex;gap:2px 4px;flex-wrap:wrap;border-bottom:1px solid var(--line);margin-bottom:20px}
+.tabs button{font:600 .92rem var(--f-body);background:none;border:0;color:var(--muted);padding:10px 12px;border-bottom:2px solid transparent;cursor:pointer;white-space:nowrap}
 .tabs button[aria-selected="true"]{color:var(--fg);border-color:var(--match)}
 button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,a:focus-visible{outline:2px solid var(--match);outline-offset:2px}
 .note{font-size:.85rem;color:var(--muted);border-left:3px solid var(--line);padding-left:10px;max-width:75ch}
@@ -63,7 +64,8 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
 .card h3 button:hover{text-decoration:underline}
 .card h3 button:focus-visible{outline:2px solid var(--match);outline-offset:2px}
 .byline{display:flex;gap:8px;align-items:center;justify-content:space-between;font-size:.85rem;color:var(--muted);min-width:0}
-.byline span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.byline > span:first-child{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0}
+.byline .pill{flex:none}
 .chips{display:flex;gap:6px;flex-wrap:wrap}
 .chip{display:inline-flex;align-items:center;gap:6px;font-size:.78rem;font-weight:700;padding:2px 8px;border-radius:999px;width:fit-content}
 .chip::before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor}
@@ -88,7 +90,7 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
 .linkbtn{background:none;border:0;padding:0;color:var(--follow);font:inherit;font-size:.8rem;cursor:pointer;text-decoration:underline;flex:none}
 input[type=text],input[type=url],select,textarea{font:inherit;padding:7px 9px;border-radius:6px;border:1px solid var(--line);background:var(--surface);color:var(--fg);min-width:0;max-width:100%}
 textarea{font:.82rem/1.45 var(--f-mono);width:100%;resize:vertical}
-input[type=text],input[type=url]{flex:1 1 180px}
+.row > input[type=text],.row > input[type=url]{flex:1 1 180px}
 input[type=range]{width:100%;accent-color:var(--match)}
 .field{display:flex;flex-direction:column;gap:4px;font-size:.88rem}
 .slider label{display:flex;justify-content:space-between;gap:8px;font-size:.88rem}
@@ -133,6 +135,8 @@ pre{white-space:pre-wrap;overflow-wrap:anywhere;font:.78rem/1.45 var(--f-mono);b
 .player.ph{display:grid;place-items:center;color:#fff;text-align:center;padding:16px}
 .toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(20px + env(safe-area-inset-bottom,0px));background:var(--fg);color:var(--bg);padding:8px 14px;border-radius:8px;font-size:.88rem;z-index:30;max-width:calc(100vw - 32px)}
 
-@media (max-width:860px){.home,.cols,.cols2{grid-template-columns:1fr}}
+@media (max-width:860px){.home,.cols,.cols2{grid-template-columns:1fr}.home > aside{order:2}}
+.mobile-only{display:none}
+@media (max-width:860px){.mobile-only{display:flex}}
 @media (max-width:520px){.grid{grid-template-columns:1fr}.modal{padding:14px}}
 @media (prefers-reduced-motion:no-preference){.card .thumb{transition:transform .15s}.card:hover .thumb{transform:translateY(-2px)}}

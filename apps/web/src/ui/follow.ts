@@ -184,7 +184,7 @@ function tastePanel(app: App): HTMLElement {
       "div",
       { class: "stack" },
       h("h3", null, "Example lists"),
-      h("p", { class: "muted small" }, "Example data, generated automatically from instances' most-viewed videos. Not picked by a person."),
+      h("p", { class: "muted small" }, "Example data, generated automatically from instances' most-viewed recent uploads. Not picked by a person."),
       h("div", { class: "row" }, exampleButtons),
     ),
     h(

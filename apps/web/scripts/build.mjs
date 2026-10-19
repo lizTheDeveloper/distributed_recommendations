@@ -50,9 +50,11 @@ async function buildApp() {
 
 async function buildArtifact() {
   const js = await esbuild.build({ ...common, entryPoints: [join(root, "src/main-artifact.ts")], format: "iife", minify: true, write: false });
-  const css = await esbuild.build({ ...common, entryPoints: [join(root, "src/styles.css")], minify: true, write: false });
+  // The stylesheet has no imports; inline it verbatim so the theme selectors keep the
+  // documented form (esbuild would rewrite [data-theme="light"] to [data-theme=light]).
+  const cssText = readFileSync(join(root, "src/styles.css"), "utf8");
   const script = js.outputFiles[0].text.replace(/<\/(script)/gi, "<\\/$1");
-  const style = css.outputFiles[0].text.replace(/<\/(style)/gi, "<\\/$1");
+  const style = cssText.replace(/<\/(style)/gi, "<\\/$1");
   // claude.ai artifact: content only (no <html>/<head>/<body>), <title> first,
   // everything inline except the Google Fonts stylesheet.
   const html = [

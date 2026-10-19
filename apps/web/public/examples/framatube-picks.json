@@ -1,36 +1,42 @@
 {
   "v": 1,
-  "name": "Example: Framatube most-viewed, one per creator",
+  "name": "Example: Framatube recent standouts",
   "author": "Match Feed example data (not a real curator)",
-  "description": "Example data. Generated automatically from framatube.org's most-viewed local videos, one per channel. Not curated by a person.",
-  "updatedAt": 1792436562,
+  "description": "Example data, generated automatically: the most-viewed of framatube.org's 100 newest local videos, one per channel. Not curated by a person.",
+  "updatedAt": 1792437380,
   "items": [
-    {
-      "id": "https://framatube.org/videos/watch/9c9de5e8-0a1e-484a-b099-e80766180a6d"
-    },
     {
       "id": "https://framatube.org/videos/watch/73556243-7a9b-496c-a740-f80e42ee0ad9"
     },
     {
-      "id": "https://framatube.org/videos/watch/468d043c-262c-47e7-9043-397cdbd16f8f"
+      "id": "https://framatube.org/videos/watch/1546f864-26e0-4a7e-a7e0-b85e97b0e545"
     },
     {
-      "id": "https://framatube.org/videos/watch/66fcff64-d8f9-49c1-8deb-011b115786de"
+      "id": "https://framatube.org/videos/watch/c176a67a-3b50-4e06-87da-cd31f386cc28"
     },
     {
-      "id": "https://framatube.org/videos/watch/d47c62a1-06aa-477a-8884-73ddc416a458"
+      "id": "https://framatube.org/videos/watch/dacd068d-3c10-49ed-a4b2-147ace22af94"
     },
     {
-      "id": "https://framatube.org/videos/watch/bf4a9913-a3b8-4a5f-ae45-611f78bdf526"
+      "id": "https://framatube.org/videos/watch/1dc211eb-7093-4751-a18d-d31253f8a1aa"
     },
     {
-      "id": "https://framatube.org/videos/watch/8e693b9a-e51c-4f5e-a50b-5a322ff383a5"
+      "id": "https://framatube.org/videos/watch/b9f9f6c5-cd4a-4057-98c1-a87f24ff85cf"
     },
     {
-      "id": "https://framatube.org/videos/watch/d39fe8ad-8d1b-447a-976f-dd34e322e1f0"
+      "id": "https://framatube.org/videos/watch/1a3424c4-6177-41ef-bded-651d00ccc2ca"
     },
     {
-      "id": "https://framatube.org/videos/watch/0af4f425-e301-49ad-a5e9-6134a8092900"
+      "id": "https://framatube.org/videos/watch/55b18470-b7ba-4d89-930e-881821cd8f2b"
+    },
+    {
+      "id": "https://framatube.org/videos/watch/c6090ec4-e800-449c-b63e-f46ec93727ef"
+    },
+    {
+      "id": "https://framatube.org/videos/watch/4690f326-de96-442a-9769-18f6ece46993"
+    },
+    {
+      "id": "https://framatube.org/videos/watch/6d60b0a8-5b6e-4f19-97e1-6fe0ae58b610"
     }
   ]
 }

@@ -50,9 +50,11 @@ for (const origin of INSTANCES) {
   console.log(origin, trending.data.length, recent.data.length);
 }
 
-// Example taste lists: one pick per creator from an instance's most-viewed videos.
+// Example taste lists: the most-viewed of an instance's last 100 local uploads, one
+// pick per creator. Recent picks, so they still count under a 14-day half-life.
 async function exampleList(origin, file, name, description) {
-  const body = await get(listUrl(origin, "-views", 60) + "&isLocal=true");
+  const body = await get(listUrl(origin, "-publishedAt", 100) + "&isLocal=true");
+  body.data.sort((a, b) => (b.views ?? 0) - (a.views ?? 0));
   const seen = new Set();
   const items = [];
   for (const v of body.data) {
@@ -79,14 +81,14 @@ if (process.argv.includes("--examples") || !existsSync(join(root, "public/exampl
   await exampleList(
     "https://tilvids.com",
     "tilvids-picks.json",
-    "Example: TILvids most-viewed, one per creator",
-    "Example data. Generated automatically from tilvids.com's most-viewed local videos, one per channel. Not curated by a person.",
+    "Example: TILvids recent standouts",
+    "Example data, generated automatically: the most-viewed of tilvids.com's 100 newest local videos, one per channel. Not curated by a person.",
   );
   await exampleList(
     "https://framatube.org",
     "framatube-picks.json",
-    "Example: Framatube most-viewed, one per creator",
-    "Example data. Generated automatically from framatube.org's most-viewed local videos, one per channel. Not curated by a person.",
+    "Example: Framatube recent standouts",
+    "Example data, generated automatically: the most-viewed of framatube.org's 100 newest local videos, one per channel. Not curated by a person.",
   );
 }
 

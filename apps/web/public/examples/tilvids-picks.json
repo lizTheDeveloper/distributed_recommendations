@@ -1,45 +1,45 @@
 {
   "v": 1,
-  "name": "Example: TILvids most-viewed, one per creator",
+  "name": "Example: TILvids recent standouts",
   "author": "Match Feed example data (not a real curator)",
-  "description": "Example data. Generated automatically from tilvids.com's most-viewed local videos, one per channel. Not curated by a person.",
-  "updatedAt": 1792436561,
+  "description": "Example data, generated automatically: the most-viewed of tilvids.com's 100 newest local videos, one per channel. Not curated by a person.",
+  "updatedAt": 1792437378,
   "items": [
     {
-      "id": "https://tilvids.com/videos/watch/f747058d-3991-4046-a1c9-29c184daa0ff"
+      "id": "https://tilvids.com/videos/watch/976a535d-6f0e-4ae6-9d9f-e1010b35dc6b"
     },
     {
-      "id": "https://tilvids.com/videos/watch/887e7b95-a6b1-4df1-83fd-d5c47f17ec4c"
+      "id": "https://tilvids.com/videos/watch/2167fc7b-5eb2-4e99-bc34-ee3d4fe94457"
     },
     {
-      "id": "https://tilvids.com/videos/watch/41f5284e-b79e-4c84-97e5-664a6ac5a1ee"
+      "id": "https://tilvids.com/videos/watch/41e39266-385a-4f23-b16c-58dc2bb25760"
     },
     {
-      "id": "https://tilvids.com/videos/watch/6897c411-3fc8-48b4-b0bf-e175d743cf56"
+      "id": "https://tilvids.com/videos/watch/b4df0a1d-3701-4edb-b614-e5e39daaf31d"
     },
     {
-      "id": "https://tilvids.com/videos/watch/294b946e-c0f9-4da0-8307-9512ef309755"
+      "id": "https://tilvids.com/videos/watch/3660be6b-d1f9-4780-abab-249827e61a9d"
     },
     {
-      "id": "https://tilvids.com/videos/watch/ee969b40-8b1c-4c74-9331-aa002273c47b"
+      "id": "https://tilvids.com/videos/watch/b57f2472-b720-4681-bbb9-de97cfb86930"
     },
     {
-      "id": "https://tilvids.com/videos/watch/fd4e5870-8c1e-477b-8855-6b8953749f16"
+      "id": "https://tilvids.com/videos/watch/b6aa7416-db0c-4950-9a63-10d353d1cad1"
     },
     {
-      "id": "https://tilvids.com/videos/watch/e0c059cf-dc43-417d-8a32-7e228a0857a1"
+      "id": "https://tilvids.com/videos/watch/2ab40036-a1bd-4f11-82a3-187e1884b591"
     },
     {
-      "id": "https://tilvids.com/videos/watch/a6d493b6-f153-4d1f-b36f-789af343e048"
+      "id": "https://tilvids.com/videos/watch/23593af2-11ca-4569-bc71-bb737885c6f8"
     },
     {
-      "id": "https://tilvids.com/videos/watch/9dad7bae-81ed-486a-a437-4845b718198e"
+      "id": "https://tilvids.com/videos/watch/e60776dc-f55f-4e61-b7ad-75939303e835"
     },
     {
-      "id": "https://tilvids.com/videos/watch/0ea315fa-4899-4167-854c-6374f5a6503e"
+      "id": "https://tilvids.com/videos/watch/c8c20958-7bb4-4a2f-849c-3eb45df31b9e"
     },
     {
-      "id": "https://tilvids.com/videos/watch/78036a7d-ff69-4657-a501-8232cad8491d"
+      "id": "https://tilvids.com/videos/watch/8cf2066b-68b9-4cd3-bf64-d45858f1c238"
     }
   ]
 }

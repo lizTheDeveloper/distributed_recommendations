@@ -21,7 +21,6 @@ export function openWatch(app: App, v: Video, via: SourceKind | undefined, onClo
         src,
         title: v.title,
         allow: "fullscreen; picture-in-picture; autoplay",
-        allowfullscreen: true,
         referrerpolicy: "no-referrer",
         sandbox: "allow-scripts allow-same-origin allow-popups allow-presentation",
       })
