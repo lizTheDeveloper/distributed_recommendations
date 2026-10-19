@@ -1,0 +1,72 @@
+{
+  "chapters": [
+    {
+      "timecode": 22,
+      "title": "KI-Vorstellung: Muse Glimmer"
+    },
+    {
+      "timecode": 115,
+      "title": "KI-Vorstellung: Qwen 3.6 und 3.8"
+    },
+    {
+      "timecode": 222,
+      "title": "Programmieren lassen: Snake"
+    },
+    {
+      "timecode": 294,
+      "title": "Angespielt: Snake Qwen 3.8"
+    },
+    {
+      "timecode": 339,
+      "title": "Angespielt: Snake Muse Glimmer"
+    },
+    {
+      "timecode": 365,
+      "title": "Programmieren lassen: Asteroids"
+    },
+    {
+      "timecode": 409,
+      "title": "Angespielt: Asteroids Qwen 3.8"
+    },
+    {
+      "timecode": 502,
+      "title": "Angespielt: Asteroids Muse Glimmer"
+    },
+    {
+      "timecode": 560,
+      "title": "Programmieren lassen: Doom"
+    },
+    {
+      "timecode": 689,
+      "title": "Angespielt: Doom Qwen 3.6"
+    },
+    {
+      "timecode": 775,
+      "title": "Angespielt: Doom Qwen 3.8"
+    },
+    {
+      "timecode": 889,
+      "title": "Angespielt: Doom Muse Glimmer"
+    },
+    {
+      "timecode": 920,
+      "title": "Programmieren lassen: Art déco Jump&Run"
+    },
+    {
+      "timecode": 1006,
+      "title": "Angespielt: Art déco Jump&Run Qwen 3.8 Version 1"
+    },
+    {
+      "timecode": 1085,
+      "title": "Angespielt: Art déco Jump&Run Qwen 3.8 Version 2"
+    },
+    {
+      "timecode": 1211,
+      "title": "Angespielt: Art déco Jump&Run ChatGPT"
+    },
+    {
+      "timecode": 1334,
+      "title": "Abschließende Worte und Verabschiedung"
+    }
+  ]
+}

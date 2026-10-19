@@ -1,0 +1,350 @@
+{
+  "id": 220181,
+  "uuid": "26abe90d-e7c5-4bfb-a47d-bb17a495e338",
+  "shortUUID": "5LYcavSCrLGFTGus7iBMsY",
+  "url": "https://tube.tchncs.de/videos/watch/26abe90d-e7c5-4bfb-a47d-bb17a495e338",
+  "name": "#short Krähe fängt Erdnuss / Crow catches peanut",
+  "category": {
+    "id": 16,
+    "label": "Animals"
+  },
+  "licence": {
+    "id": 7,
+    "label": "Public Domain Dedication"
+  },
+  "language": {
+    "id": "zxx",
+    "label": "No linguistic content"
+  },
+  "privacy": {
+    "id": 1,
+    "label": "Public"
+  },
+  "nsfw": false,
+  "nsfwFlags": 0,
+  "nsfwSummary": null,
+  "truncatedDescription": "Krähe Arty aka Sharky fängt eine Erdnuss mit dem Schnabel.",
+  "description": "Krähe Arty aka Sharky fängt eine Erdnuss mit dem Schnabel.",
+  "isLocal": true,
+  "duration": 14,
+  "aspectRatio": 0.5625,
+  "views": 25,
+  "viewers": 0,
+  "downloads": 160,
+  "likes": 1,
+  "dislikes": 0,
+  "thumbnailPath": "/lazy-static/thumbnails/8bb1dcc5-18a1-4feb-b25d-421b1e8c8532.jpg",
+  "previewPath": "/lazy-static/thumbnails/25f96adc-3c5d-4de8-8d74-ec4dc448fdc7.jpg",
+  "thumbnails": [
+    {
+      "height": 157,
+      "width": 280,
+      "aspectRatio": "16:9",
+      "fileUrl": "https://tube.tchncs.de/lazy-static/thumbnails/8bb1dcc5-18a1-4feb-b25d-421b1e8c8532.jpg"
+    },
+    {
+      "height": 480,
+      "width": 850,
+      "aspectRatio": "16:9",
+      "fileUrl": "https://tube.tchncs.de/lazy-static/thumbnails/0dc6333a-7b86-4d67-a9ea-0b349c2178b9.jpg"
+    },
+    {
+      "height": 720,
+      "width": 1280,
+      "aspectRatio": "16:9",
+      "fileUrl": "https://tube.tchncs.de/lazy-static/thumbnails/4e120f20-660f-4adf-ae34-a83fa4154faa.jpg"
+    },
+    {
+      "height": 1400,
+      "width": 1400,
+      "aspectRatio": "1:1",
+      "fileUrl": "https://tube.tchncs.de/lazy-static/thumbnails/8e9a495e-d610-47d7-98a6-eb94b10c4f7e.jpg"
+    },
+    {
+      "height": 1080,
+      "width": 1920,
+      "aspectRatio": "16:9",
+      "fileUrl": "https://tube.tchncs.de/lazy-static/thumbnails/25f96adc-3c5d-4de8-8d74-ec4dc448fdc7.jpg"
+    }
+  ],
+  "embedPath": "/videos/embed/5LYcavSCrLGFTGus7iBMsY",
+  "createdAt": "2026-10-03T20:55:53.230Z",
+  "updatedAt": "2026-10-19T09:00:24.410Z",
+  "publishedAt": "2026-10-03T20:57:23.739Z",
+  "originallyPublishedAt": null,
+  "isLive": false,
+  "account": {
+    "url": "https://tube.tchncs.de/accounts/ponyboy",
+    "name": "ponyboy",
+    "host": "tube.tchncs.de",
+    "displayName": "ponyboy",
+    "id": 14138,
+    "avatars": [
+      {
+        "height": 48,
+        "width": 48,
+        "path": "/lazy-static/avatars/409eb3d8-66f5-4a70-b5db-22e36bb25cb9.jpg",
+        "fileUrl": "https://tube.tchncs.de/lazy-static/avatars/409eb3d8-66f5-4a70-b5db-22e36bb25cb9.jpg",
+        "createdAt": "2026-10-09T12:26:30.701Z",
+        "updatedAt": "2026-10-09T12:26:30.701Z"
+      }
+    ]
+  },
+  "channel": {
+    "url": "https://tube.tchncs.de/video-channels/dies_und_das",
+    "name": "dies_und_das",
+    "host": "tube.tchncs.de",
+    "displayName": "Dies und das",
+    "id": 2419,
+    "avatars": []
+  },
+  "comments": 0,
+  "blacklisted": false,
+  "blacklistedReason": null,
+  "streamingPlaylists": [
+    {
+      "id": 5265454,
+      "type": 1,
+      "playlistUrl": "https://media.tube.tchncs.de/streaming-playlists/hls/26abe90d-e7c5-4bfb-a47d-bb17a495e338/b917571b-ca0f-4b73-bcb2-9341cf036989-master.m3u8",
+      "segmentsSha256Url": "https://media.tube.tchncs.de/streaming-playlists/hls/26abe90d-e7c5-4bfb-a47d-bb17a495e338/845e44f9-2f4b-4ab5-a335-afc053062782-segments-sha256.json",
+      "redundancies": [],
+      "files": [
+        {
+          "id": 1003121,
+          "resolution": {
+            "id": 2160,
+            "label": "2160p"
+          },
+          "width": 2160,
+          "height": 3840,
+          "magnetUri": "magnet:?xs=https%3A%2F%2Ftube.tchncs.de%2Flazy-static%2Ftorrents%2F3da69c5f-df93-45ee-9396-10e9c0e92a6f-2160-hls.torrent&xt=urn:btih:20b490234d17c4e08e2577bda75ead5be171c036&dn=%23short+Kr%C3%A4he+f%C3%A4ngt+Erdnuss+%2F+Crow+catches+peanut&tr=https%3A%2F%2Ftube.tchncs.de%2Ftracker%2Fannounce&tr=wss%3A%2F%2Ftube.tchncs.de%3A443%2Ftracker%2Fsocket&ws=https%3A%2F%2Fmedia.tube.tchncs.de%2Fstreaming-playlists%2Fhls%2F26abe90d-e7c5-4bfb-a47d-bb17a495e338%2F337c0219-8a22-4531-bd07-b4159f0cd6c3-2160-fragmented.mp4",
+          "size": 35291775,
+          "fps": 30,
+          "torrentUrl": "https://tube.tchncs.de/lazy-static/torrents/3da69c5f-df93-45ee-9396-10e9c0e92a6f-2160-hls.torrent",
+          "torrentDownloadUrl": "https://tube.tchncs.de/download/torrents/3da69c5f-df93-45ee-9396-10e9c0e92a6f-2160-hls.torrent",
+          "fileUrl": "https://media.tube.tchncs.de/streaming-playlists/hls/26abe90d-e7c5-4bfb-a47d-bb17a495e338/337c0219-8a22-4531-bd07-b4159f0cd6c3-2160-fragmented.mp4",
+          "fileDownloadUrl": "https://tube.tchncs.de/download/streaming-playlists/hls/videos/26abe90d-e7c5-4bfb-a47d-bb17a495e338-2160-fragmented.mp4",
+          "metadataUrl": "https://tube.tchncs.de/api/v1/videos/26abe90d-e7c5-4bfb-a47d-bb17a495e338/metadata/1003121",
+          "hasAudio": true,
+          "hasVideo": true,
+          "playlistUrl": "https://media.tube.tchncs.de/streaming-playlists/hls/26abe90d-e7c5-4bfb-a47d-bb17a495e338/337c0219-8a22-4531-bd07-b4159f0cd6c3-2160.m3u8",
+          "storage": 1
+        },
+        {
+          "id": 1003129,
+          "resolution": {
+            "id": 1080,
+            "label": "1080p"
+          },
+          "width": 1080,
+          "height": 1920,
+          "magnetUri": "magnet:?xs=https%3A%2F%2Ftube.tchncs.de%2Flazy-static%2Ftorrents%2F27ae7030-1373-457b-9e22-d40fc6118a00-1080-hls.torrent&xt=urn:btih:75e94a635806c5bc7a178059df96795b48da7205&dn=%23short+Kr%C3%A4he+f%C3%A4ngt+Erdnuss+%2F+Crow+catches+peanut&tr=https%3A%2F%2Ftube.tchncs.de%2Ftracker%2Fannounce&tr=wss%3A%2F%2Ftube.tchncs.de%3A443%2Ftracker%2Fsocket&ws=https%3A%2F%2Fmedia.tube.tchncs.de%2Fstreaming-playlists%2Fhls%2F26abe90d-e7c5-4bfb-a47d-bb17a495e338%2F8a7c8eb8-0c56-4ec6-9df7-568d5d0cdc7e-1080-fragmented.mp4",
+          "size": 9511090,
+          "fps": 30,
+          "torrentUrl": "https://tube.tchncs.de/lazy-static/torrents/27ae7030-1373-457b-9e22-d40fc6118a00-1080-hls.torrent",
+          "torrentDownloadUrl": "https://tube.tchncs.de/download/torrents/27ae7030-1373-457b-9e22-d40fc6118a00-1080-hls.torrent",
+          "fileUrl": "https://media.tube.tchncs.de/streaming-playlists/hls/26abe90d-e7c5-4bfb-a47d-bb17a495e338/8a7c8eb8-0c56-4ec6-9df7-568d5d0cdc7e-1080-fragmented.mp4",
+          "fileDownloadUrl": "https://tube.tchncs.de/download/streaming-playlists/hls/videos/26abe90d-e7c5-4bfb-a47d-bb17a495e338-1080-fragmented.mp4",
+          "metadataUrl": "https://tube.tchncs.de/api/v1/videos/26abe90d-e7c5-4bfb-a47d-bb17a495e338/metadata/1003129",
+          "hasAudio": true,
+          "hasVideo": true,
+          "playlistUrl": "https://media.tube.tchncs.de/streaming-playlists/hls/26abe90d-e7c5-4bfb-a47d-bb17a495e338/8a7c8eb8-0c56-4ec6-9df7-568d5d0cdc7e-1080.m3u8",
+          "storage": 1
+        },
+        {
+          "id": 1003127,
+          "resolution": {
+            "id": 480,
+            "label": "480p"
+          },
+          "width": 480,
+          "height": 854,
+          "magnetUri": "magnet:?xs=https%3A%2F%2Ftube.tchncs.de%2Flazy-static%2Ftorrents%2F16d912da-fa50-40f0-944f-dfee2a27ee28-480-hls.torrent&xt=urn:btih:8ec2c050993371e9f3a9f2d6060b7952ce31d112&dn=%23short+Kr%C3%A4he+f%C3%A4ngt+Erdnuss+%2F+Crow+catches+peanut&tr=https%3A%2F%2Ftube.tchncs.de%2Ftracker%2Fannounce&tr=wss%3A%2F%2Ftube.tchncs.de%3A443%2Ftracker%2Fsocket&ws=https%3A%2F%2Fmedia.tube.tchncs.de%2Fstreaming-playlists%2Fhls%2F26abe90d-e7c5-4bfb-a47d-bb17a495e338%2Fd65e5c6b-c2fa-49fa-8779-e22b1c836b3a-480-fragmented.mp4",
+          "size": 2261359,
+          "fps": 30,
+          "torrentUrl": "https://tube.tchncs.de/lazy-static/torrents/16d912da-fa50-40f0-944f-dfee2a27ee28-480-hls.torrent",
+          "torrentDownloadUrl": "https://tube.tchncs.de/download/torrents/16d912da-fa50-40f0-944f-dfee2a27ee28-480-hls.torrent",
+          "fileUrl": "https://media.tube.tchncs.de/streaming-playlists/hls/26abe90d-e7c5-4bfb-a47d-bb17a495e338/d65e5c6b-c2fa-49fa-8779-e22b1c836b3a-480-fragmented.mp4",
+          "fileDownloadUrl": "https://tube.tchncs.de/download/streaming-playlists/hls/videos/26abe90d-e7c5-4bfb-a47d-bb17a495e338-480-fragmented.mp4",
+          "metadataUrl": "https://tube.tchncs.de/api/v1/videos/26abe90d-e7c5-4bfb-a47d-bb17a495e338/metadata/1003127",
+          "hasAudio": true,
+          "hasVideo": true,
+          "playlistUrl": "https://media.tube.tchncs.de/streaming-playlists/hls/26abe90d-e7c5-4bfb-a47d-bb17a495e338/d65e5c6b-c2fa-49fa-8779-e22b1c836b3a-480.m3u8",
+          "storage": 1
+        },
+        {
+          "id": 1003128,
+          "resolution": {
+            "id": 360,
+            "label": "360p"
+          },
+          "width": 360,
+          "height": 640,
+          "magnetUri": "magnet:?xs=https%3A%2F%2Ftube.tchncs.de%2Flazy-static%2Ftorrents%2Fcf4edeb2-880e-414f-a543-30f707a17706-360-hls.torrent&xt=urn:btih:39960d194463faeb4984f72d9a52cb32415a804e&dn=%23short+Kr%C3%A4he+f%C3%A4ngt+Erdnuss+%2F+Crow+catches+peanut&tr=https%3A%2F%2Ftube.tchncs.de%2Ftracker%2Fannounce&tr=wss%3A%2F%2Ftube.tchncs.de%3A443%2Ftracker%2Fsocket&ws=https%3A%2F%2Fmedia.tube.tchncs.de%2Fstreaming-playlists%2Fhls%2F26abe90d-e7c5-4bfb-a47d-bb17a495e338%2F46c99697-944e-4ea3-98a4-43c3e37bffe1-360-fragmented.mp4",
+          "size": 1566676,
+          "fps": 30,
+          "torrentUrl": "https://tube.tchncs.de/lazy-static/torrents/cf4edeb2-880e-414f-a543-30f707a17706-360-hls.torrent",
+          "torrentDownloadUrl": "https://tube.tchncs.de/download/torrents/cf4edeb2-880e-414f-a543-30f707a17706-360-hls.torrent",
+          "fileUrl": "https://media.tube.tchncs.de/streaming-playlists/hls/26abe90d-e7c5-4bfb-a47d-bb17a495e338/46c99697-944e-4ea3-98a4-43c3e37bffe1-360-fragmented.mp4",
+          "fileDownloadUrl": "https://tube.tchncs.de/download/streaming-playlists/hls/videos/26abe90d-e7c5-4bfb-a47d-bb17a495e338-360-fragmented.mp4",
+          "metadataUrl": "https://tube.tchncs.de/api/v1/videos/26abe90d-e7c5-4bfb-a47d-bb17a495e338/metadata/1003128",
+          "hasAudio": true,
+          "hasVideo": true,
+          "playlistUrl": "https://media.tube.tchncs.de/streaming-playlists/hls/26abe90d-e7c5-4bfb-a47d-bb17a495e338/46c99697-944e-4ea3-98a4-43c3e37bffe1-360.m3u8",
+          "storage": 1
+        },
+        {
+          "id": 1003126,
+          "resolution": {
+            "id": 0,
+            "label": "Audio only"
+          },
+          "width": 0,
+          "height": 0,
+          "magnetUri": "magnet:?xs=https%3A%2F%2Ftube.tchncs.de%2Flazy-static%2Ftorrents%2Fa2681a68-b9dd-4725-a720-37955fe29052-0-hls.torrent&xt=urn:btih:ea0c306b57465cd82d610f3b8b067def66523941&dn=%23short+Kr%C3%A4he+f%C3%A4ngt+Erdnuss+%2F+Crow+catches+peanut&tr=https%3A%2F%2Ftube.tchncs.de%2Ftracker%2Fannounce&tr=wss%3A%2F%2Ftube.tchncs.de%3A443%2Ftracker%2Fsocket&ws=https%3A%2F%2Fmedia.tube.tchncs.de%2Fstreaming-playlists%2Fhls%2F26abe90d-e7c5-4bfb-a47d-bb17a495e338%2F5c51a06e-830f-463b-8964-f51ad9989f33-0-fragmented.mp4",
+          "size": 173164,
+          "fps": 0,
+          "torrentUrl": "https://tube.tchncs.de/lazy-static/torrents/a2681a68-b9dd-4725-a720-37955fe29052-0-hls.torrent",
+          "torrentDownloadUrl": "https://tube.tchncs.de/download/torrents/a2681a68-b9dd-4725-a720-37955fe29052-0-hls.torrent",
+          "fileUrl": "https://media.tube.tchncs.de/streaming-playlists/hls/26abe90d-e7c5-4bfb-a47d-bb17a495e338/5c51a06e-830f-463b-8964-f51ad9989f33-0-fragmented.mp4",
+          "fileDownloadUrl": "https://tube.tchncs.de/download/streaming-playlists/hls/videos/26abe90d-e7c5-4bfb-a47d-bb17a495e338-0-fragmented.mp4",
+          "metadataUrl": "https://tube.tchncs.de/api/v1/videos/26abe90d-e7c5-4bfb-a47d-bb17a495e338/metadata/1003126",
+          "hasAudio": true,
+          "hasVideo": false,
+          "playlistUrl": "https://media.tube.tchncs.de/streaming-playlists/hls/26abe90d-e7c5-4bfb-a47d-bb17a495e338/5c51a06e-830f-463b-8964-f51ad9989f33-0.m3u8",
+          "storage": 1
+        }
+      ]
+    }
+  ],
+  "files": [
+    {
+      "id": 1003120,
+      "resolution": {
+        "id": 2160,
+        "label": "2160p"
+      },
+      "width": 2160,
+      "height": 3840,
+      "magnetUri": "magnet:?xs=https%3A%2F%2Ftube.tchncs.de%2Flazy-static%2Ftorrents%2Fe8992bf8-9ace-4b8e-b795-1275b95231ca-2160.torrent&xt=urn:btih:f28712e4b5f4d188915bae243708e935319b34cf&dn=%23short+Kr%C3%A4he+f%C3%A4ngt+Erdnuss+%2F+Crow+catches+peanut&tr=https%3A%2F%2Ftube.tchncs.de%2Ftracker%2Fannounce&tr=wss%3A%2F%2Ftube.tchncs.de%3A443%2Ftracker%2Fsocket&ws=https%3A%2F%2Fmedia.tube.tchncs.de%2Fvideos%2Fde41d9c2-7019-425f-8c84-3dbba3e06842-2160.mp4",
+      "size": 35295409,
+      "fps": 30,
+      "torrentUrl": "https://tube.tchncs.de/lazy-static/torrents/e8992bf8-9ace-4b8e-b795-1275b95231ca-2160.torrent",
+      "torrentDownloadUrl": "https://tube.tchncs.de/download/torrents/e8992bf8-9ace-4b8e-b795-1275b95231ca-2160.torrent",
+      "fileUrl": "https://media.tube.tchncs.de/videos/de41d9c2-7019-425f-8c84-3dbba3e06842-2160.mp4",
+      "fileDownloadUrl": "https://tube.tchncs.de/download/web-videos/26abe90d-e7c5-4bfb-a47d-bb17a495e338-2160.mp4",
+      "metadataUrl": "https://tube.tchncs.de/api/v1/videos/26abe90d-e7c5-4bfb-a47d-bb17a495e338/metadata/1003120",
+      "hasAudio": true,
+      "hasVideo": true,
+      "storage": 1
+    },
+    {
+      "id": 1003125,
+      "resolution": {
+        "id": 1080,
+        "label": "1080p"
+      },
+      "width": 1080,
+      "height": 1920,
+      "magnetUri": "magnet:?xs=https%3A%2F%2Ftube.tchncs.de%2Flazy-static%2Ftorrents%2Ffdc085a4-8d2a-442d-ba95-86a26a671b8d-1080.torrent&xt=urn:btih:e9991e0f2d766b92fc4eb5af7c468ffc437daf58&dn=%23short+Kr%C3%A4he+f%C3%A4ngt+Erdnuss+%2F+Crow+catches+peanut&tr=https%3A%2F%2Ftube.tchncs.de%2Ftracker%2Fannounce&tr=wss%3A%2F%2Ftube.tchncs.de%3A443%2Ftracker%2Fsocket&ws=https%3A%2F%2Fmedia.tube.tchncs.de%2Fvideos%2F288b20ef-fd72-42b8-a0cd-1474a1257b9c-1080.mp4",
+      "size": 9514944,
+      "fps": 30,
+      "torrentUrl": "https://tube.tchncs.de/lazy-static/torrents/fdc085a4-8d2a-442d-ba95-86a26a671b8d-1080.torrent",
+      "torrentDownloadUrl": "https://tube.tchncs.de/download/torrents/fdc085a4-8d2a-442d-ba95-86a26a671b8d-1080.torrent",
+      "fileUrl": "https://media.tube.tchncs.de/videos/288b20ef-fd72-42b8-a0cd-1474a1257b9c-1080.mp4",
+      "fileDownloadUrl": "https://tube.tchncs.de/download/web-videos/26abe90d-e7c5-4bfb-a47d-bb17a495e338-1080.mp4",
+      "metadataUrl": "https://tube.tchncs.de/api/v1/videos/26abe90d-e7c5-4bfb-a47d-bb17a495e338/metadata/1003125",
+      "hasAudio": true,
+      "hasVideo": true,
+      "storage": 1
+    },
+    {
+      "id": 1003123,
+      "resolution": {
+        "id": 480,
+        "label": "480p"
+      },
+      "width": 480,
+      "height": 854,
+      "magnetUri": "magnet:?xs=https%3A%2F%2Ftube.tchncs.de%2Flazy-static%2Ftorrents%2Fba78a77b-fac7-4d59-be80-2200156c94ba-480.torrent&xt=urn:btih:8b8705c6bafcecf8315016bbf0c24d9da3c6f4bd&dn=%23short+Kr%C3%A4he+f%C3%A4ngt+Erdnuss+%2F+Crow+catches+peanut&tr=https%3A%2F%2Ftube.tchncs.de%2Ftracker%2Fannounce&tr=wss%3A%2F%2Ftube.tchncs.de%3A443%2Ftracker%2Fsocket&ws=https%3A%2F%2Fmedia.tube.tchncs.de%2Fvideos%2F28bbe479-6209-42bc-8ba0-06c8cc20ab11-480.mp4",
+      "size": 2264909,
+      "fps": 30,
+      "torrentUrl": "https://tube.tchncs.de/lazy-static/torrents/ba78a77b-fac7-4d59-be80-2200156c94ba-480.torrent",
+      "torrentDownloadUrl": "https://tube.tchncs.de/download/torrents/ba78a77b-fac7-4d59-be80-2200156c94ba-480.torrent",
+      "fileUrl": "https://media.tube.tchncs.de/videos/28bbe479-6209-42bc-8ba0-06c8cc20ab11-480.mp4",
+      "fileDownloadUrl": "https://tube.tchncs.de/download/web-videos/26abe90d-e7c5-4bfb-a47d-bb17a495e338-480.mp4",
+      "metadataUrl": "https://tube.tchncs.de/api/v1/videos/26abe90d-e7c5-4bfb-a47d-bb17a495e338/metadata/1003123",
+      "hasAudio": true,
+      "hasVideo": true,
+      "storage": 1
+    },
+    {
+      "id": 1003124,
+      "resolution": {
+        "id": 360,
+        "label": "360p"
+      },
+      "width": 360,
+      "height": 640,
+      "magnetUri": "magnet:?xs=https%3A%2F%2Ftube.tchncs.de%2Flazy-static%2Ftorrents%2Fbc6d19d3-2339-4c6d-8281-2abb879374e3-360.torrent&xt=urn:btih:0ebaaad6eae70b186ed6ddb2badaa9f2563b6614&dn=%23short+Kr%C3%A4he+f%C3%A4ngt+Erdnuss+%2F+Crow+catches+peanut&tr=https%3A%2F%2Ftube.tchncs.de%2Ftracker%2Fannounce&tr=wss%3A%2F%2Ftube.tchncs.de%3A443%2Ftracker%2Fsocket&ws=https%3A%2F%2Fmedia.tube.tchncs.de%2Fvideos%2F5ed9129b-8023-4cb6-901d-c051717f5344-360.mp4",
+      "size": 1570314,
+      "fps": 30,
+      "torrentUrl": "https://tube.tchncs.de/lazy-static/torrents/bc6d19d3-2339-4c6d-8281-2abb879374e3-360.torrent",
+      "torrentDownloadUrl": "https://tube.tchncs.de/download/torrents/bc6d19d3-2339-4c6d-8281-2abb879374e3-360.torrent",
+      "fileUrl": "https://media.tube.tchncs.de/videos/5ed9129b-8023-4cb6-901d-c051717f5344-360.mp4",
+      "fileDownloadUrl": "https://tube.tchncs.de/download/web-videos/26abe90d-e7c5-4bfb-a47d-bb17a495e338-360.mp4",
+      "metadataUrl": "https://tube.tchncs.de/api/v1/videos/26abe90d-e7c5-4bfb-a47d-bb17a495e338/metadata/1003124",
+      "hasAudio": true,
+      "hasVideo": true,
+      "storage": 1
+    },
+    {
+      "id": 1003122,
+      "resolution": {
+        "id": 0,
+        "label": "Audio only"
+      },
+      "width": 0,
+      "height": 0,
+      "magnetUri": "magnet:?xs=https%3A%2F%2Ftube.tchncs.de%2Flazy-static%2Ftorrents%2F6d6e5bbe-041b-4caf-83bb-0bffc04eaa7c-0.torrent&xt=urn:btih:fc9bad717cbff52b6ea2e7cf9beeb8cb31d809df&dn=%23short+Kr%C3%A4he+f%C3%A4ngt+Erdnuss+%2F+Crow+catches+peanut&tr=https%3A%2F%2Ftube.tchncs.de%2Ftracker%2Fannounce&tr=wss%3A%2F%2Ftube.tchncs.de%3A443%2Ftracker%2Fsocket&ws=https%3A%2F%2Fmedia.tube.tchncs.de%2Fvideos%2Fbd12be2f-d743-4b33-b3a2-76412ccfc647-0.mp4",
+      "size": 170782,
+      "fps": 0,
+      "torrentUrl": "https://tube.tchncs.de/lazy-static/torrents/6d6e5bbe-041b-4caf-83bb-0bffc04eaa7c-0.torrent",
+      "torrentDownloadUrl": "https://tube.tchncs.de/download/torrents/6d6e5bbe-041b-4caf-83bb-0bffc04eaa7c-0.torrent",
+      "fileUrl": "https://media.tube.tchncs.de/videos/bd12be2f-d743-4b33-b3a2-76412ccfc647-0.mp4",
+      "fileDownloadUrl": "https://tube.tchncs.de/download/web-videos/26abe90d-e7c5-4bfb-a47d-bb17a495e338-0.mp4",
+      "metadataUrl": "https://tube.tchncs.de/api/v1/videos/26abe90d-e7c5-4bfb-a47d-bb17a495e338/metadata/1003122",
+      "hasAudio": true,
+      "hasVideo": false,
+      "storage": 1
+    }
+  ],
+  "liveSchedules": [],
+  "support": null,
+  "tags": [
+    "krähe",
+    "krähen",
+    "krähencontent",
+    "nebelkrähe",
+    "tiere"
+  ],
+  "commentsPolicy": {
+    "id": 1,
+    "label": "Enabled"
+  },
+  "downloadEnabled": true,
+  "waitTranscoding": true,
+  "inputFileUpdatedAt": null,
+  "state": {
+    "id": 1,
+    "label": "Published"
+  },
+  "trackerUrls": [
+    "https://tube.tchncs.de/tracker/announce",
+    "wss://tube.tchncs.de:443/tracker/socket"
+  ],
+  "embedPrivacyPolicy": {
+    "id": 1,
+    "label": "All allowed"
+  }
+}

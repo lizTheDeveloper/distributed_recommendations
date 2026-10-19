@@ -1,0 +1,319 @@
+{
+  "id": 74051,
+  "uuid": "20dc68b8-9eba-4f38-95fd-fff2be96af60",
+  "shortUUID": "54mu1VokPy788bRUnPCfM7",
+  "url": "https://tube.tchncs.de/videos/watch/20dc68b8-9eba-4f38-95fd-fff2be96af60",
+  "name": "Join the movement - SPX6900",
+  "category": {
+    "id": 14,
+    "label": "Activism"
+  },
+  "licence": {
+    "id": null,
+    "label": "Unknown"
+  },
+  "language": {
+    "id": "en",
+    "label": "English"
+  },
+  "privacy": {
+    "id": 1,
+    "label": "Public"
+  },
+  "nsfw": false,
+  "nsfwFlags": 0,
+  "nsfwSummary": null,
+  "truncatedDescription": "Join the movement!\r\nFlip the stock market 💹🧲\r\n\r\nImpressions of SPX6900 \r\n\r\nVoice: Matt Beck as a guest at \"Persist Forever\" podcast hosted by Southern Fried Chad ",
+  "description": "Join the movement!\r\nFlip the stock market 💹🧲\r\n\r\nImpressions of SPX6900 \r\n\r\nVoice: Matt Beck as a guest at \"Persist Forever\" podcast hosted by Southern Fried Chad ",
+  "isLocal": false,
+  "duration": 162,
+  "aspectRatio": 0.5625,
+  "views": 9,
+  "viewers": 0,
+  "downloads": 37,
+  "likes": 1,
+  "dislikes": 0,
+  "thumbnailPath": "/lazy-static/thumbnails/e79ea926-c330-4a5c-ac83-97f5c890dbcd.jpg",
+  "previewPath": "/lazy-static/thumbnails/8bb852d8-71f2-42ad-a7c2-1758ad3c79ec.jpg",
+  "thumbnails": [
+    {
+      "height": 1080,
+      "width": 1920,
+      "aspectRatio": "16:9",
+      "fileUrl": "https://framatube.org/lazy-static/thumbnails/8bb852d8-71f2-42ad-a7c2-1758ad3c79ec.jpg"
+    },
+    {
+      "height": 1400,
+      "width": 1400,
+      "aspectRatio": "1:1",
+      "fileUrl": "https://framatube.org/lazy-static/thumbnails/3b82085c-a6fd-43df-8d92-e166792b2f83.jpg"
+    },
+    {
+      "height": 720,
+      "width": 1280,
+      "aspectRatio": "16:9",
+      "fileUrl": "https://framatube.org/lazy-static/thumbnails/ff5b10f6-ab37-4285-8cf9-73f1998db918.jpg"
+    },
+    {
+      "height": 480,
+      "width": 850,
+      "aspectRatio": "16:9",
+      "fileUrl": "https://framatube.org/lazy-static/thumbnails/72d1a3c2-13f2-414c-a281-b31db2626102.jpg"
+    },
+    {
+      "height": 157,
+      "width": 280,
+      "aspectRatio": "16:9",
+      "fileUrl": "https://framatube.org/lazy-static/thumbnails/e79ea926-c330-4a5c-ac83-97f5c890dbcd.jpg"
+    }
+  ],
+  "embedPath": "/videos/embed/54mu1VokPy788bRUnPCfM7",
+  "createdAt": "2026-10-18T11:11:20.380Z",
+  "updatedAt": "2026-10-19T18:07:49.452Z",
+  "publishedAt": "2026-10-18T11:11:20.380Z",
+  "originallyPublishedAt": null,
+  "isLive": false,
+  "account": {
+    "url": "https://tube.tchncs.de/accounts/aeon_kn",
+    "name": "aeon_kn",
+    "host": "tube.tchncs.de",
+    "displayName": "aeon_kn",
+    "id": 1156811,
+    "avatars": [
+      {
+        "height": 48,
+        "width": 48,
+        "path": "/lazy-static/avatars/db8e2db6-9771-4ccd-9e86-2e98008069e3.jpg",
+        "fileUrl": "https://framatube.org/lazy-static/avatars/db8e2db6-9771-4ccd-9e86-2e98008069e3.jpg",
+        "createdAt": "2026-09-27T19:27:21.643Z",
+        "updatedAt": "2026-09-27T21:08:42.740Z"
+      }
+    ]
+  },
+  "channel": {
+    "url": "https://tube.tchncs.de/video-channels/aeon_kn_channel",
+    "name": "aeon_kn_channel",
+    "host": "tube.tchncs.de",
+    "displayName": "aeon_kn channel",
+    "id": 4240,
+    "avatars": [
+      {
+        "height": 120,
+        "width": 120,
+        "path": "/lazy-static/avatars/b1da92d7-5e74-42aa-8e95-2e561f8151ec.png",
+        "fileUrl": "https://framatube.org/lazy-static/avatars/b1da92d7-5e74-42aa-8e95-2e561f8151ec.png",
+        "createdAt": "2026-09-27T19:27:22.348Z",
+        "updatedAt": "2026-09-27T19:34:54.050Z"
+      }
+    ]
+  },
+  "comments": 0,
+  "blacklisted": false,
+  "blacklistedReason": null,
+  "streamingPlaylists": [
+    {
+      "id": 3193725,
+      "type": 1,
+      "playlistUrl": "https://media.tube.tchncs.de/streaming-playlists/hls/20dc68b8-9eba-4f38-95fd-fff2be96af60/282403d3-0de2-4eae-9dd1-f92ddceb3a92-master.m3u8",
+      "segmentsSha256Url": "https://media.tube.tchncs.de/streaming-playlists/hls/20dc68b8-9eba-4f38-95fd-fff2be96af60/3b8fff06-7471-4f69-b54d-0d82c8ddf06b-segments-sha256.json",
+      "redundancies": [
+        {
+          "baseUrl": "https://rankett.net/static/redundancy/hls/20dc68b8-9eba-4f38-95fd-fff2be96af60"
+        },
+        {
+          "baseUrl": "https://video.mycrowd.ca/static/redundancy/hls/20dc68b8-9eba-4f38-95fd-fff2be96af60"
+        }
+      ],
+      "files": [
+        {
+          "id": 1661025,
+          "resolution": {
+            "id": 720,
+            "label": "720p"
+          },
+          "width": 720,
+          "height": 1280,
+          "magnetUri": "magnet:?xs=https%3A%2F%2Fframatube.org%2Flazy-static%2Ftorrents%2F3f2de20a-7314-4da2-b645-ec415f5c626f-1280-hls.torrent&xt=urn:btih:3c9eced2f54e0a8f66333413569c0d92660c30c1&dn=Join+the+movement+-+SPX6900&tr=https%3A%2F%2Ftube.tchncs.de%2Ftracker%2Fannounce&tr=wss%3A%2F%2Ftube.tchncs.de%2Ftracker%2Fsocket&ws=https%3A%2F%2Fmedia.tube.tchncs.de%2Fstreaming-playlists%2Fhls%2F20dc68b8-9eba-4f38-95fd-fff2be96af60%2Ff64dc76f-1a11-4dfb-94dc-828cc98a2a5f-720-fragmented.mp4",
+          "size": 33427151,
+          "fps": 30,
+          "torrentUrl": "https://framatube.org/lazy-static/torrents/3f2de20a-7314-4da2-b645-ec415f5c626f-1280-hls.torrent",
+          "torrentDownloadUrl": "https://framatube.org/download/torrents/3f2de20a-7314-4da2-b645-ec415f5c626f-1280-hls.torrent",
+          "fileUrl": "https://media.tube.tchncs.de/streaming-playlists/hls/20dc68b8-9eba-4f38-95fd-fff2be96af60/f64dc76f-1a11-4dfb-94dc-828cc98a2a5f-720-fragmented.mp4",
+          "fileDownloadUrl": "https://tube.tchncs.de/download/streaming-playlists/hls/videos/20dc68b8-9eba-4f38-95fd-fff2be96af60-720-fragmented.mp4",
+          "metadataUrl": "https://tube.tchncs.de/api/v1/videos/20dc68b8-9eba-4f38-95fd-fff2be96af60/metadata/1549744",
+          "hasAudio": true,
+          "hasVideo": true,
+          "playlistUrl": "https://media.tube.tchncs.de/streaming-playlists/hls/20dc68b8-9eba-4f38-95fd-fff2be96af60/f64dc76f-1a11-4dfb-94dc-828cc98a2a5f-720.m3u8",
+          "storage": null
+        },
+        {
+          "id": 1661026,
+          "resolution": {
+            "id": 480,
+            "label": "480p"
+          },
+          "width": 480,
+          "height": 854,
+          "magnetUri": "magnet:?xs=https%3A%2F%2Fframatube.org%2Flazy-static%2Ftorrents%2Fc29f5472-b102-4997-a377-91fa15b515cc-854-hls.torrent&xt=urn:btih:cfbc258657cdda6405e612f62b4a0e2bbf6ec226&dn=Join+the+movement+-+SPX6900&tr=https%3A%2F%2Ftube.tchncs.de%2Ftracker%2Fannounce&tr=wss%3A%2F%2Ftube.tchncs.de%2Ftracker%2Fsocket&ws=https%3A%2F%2Fmedia.tube.tchncs.de%2Fstreaming-playlists%2Fhls%2F20dc68b8-9eba-4f38-95fd-fff2be96af60%2F06adf899-cc61-44d5-b6c0-ec07a09a0d26-480-fragmented.mp4",
+          "size": 20136195,
+          "fps": 30,
+          "torrentUrl": "https://framatube.org/lazy-static/torrents/c29f5472-b102-4997-a377-91fa15b515cc-854-hls.torrent",
+          "torrentDownloadUrl": "https://framatube.org/download/torrents/c29f5472-b102-4997-a377-91fa15b515cc-854-hls.torrent",
+          "fileUrl": "https://media.tube.tchncs.de/streaming-playlists/hls/20dc68b8-9eba-4f38-95fd-fff2be96af60/06adf899-cc61-44d5-b6c0-ec07a09a0d26-480-fragmented.mp4",
+          "fileDownloadUrl": "https://tube.tchncs.de/download/streaming-playlists/hls/videos/20dc68b8-9eba-4f38-95fd-fff2be96af60-480-fragmented.mp4",
+          "metadataUrl": "https://tube.tchncs.de/api/v1/videos/20dc68b8-9eba-4f38-95fd-fff2be96af60/metadata/1549749",
+          "hasAudio": true,
+          "hasVideo": true,
+          "playlistUrl": "https://media.tube.tchncs.de/streaming-playlists/hls/20dc68b8-9eba-4f38-95fd-fff2be96af60/06adf899-cc61-44d5-b6c0-ec07a09a0d26-480.m3u8",
+          "storage": null
+        },
+        {
+          "id": 1661027,
+          "resolution": {
+            "id": 360,
+            "label": "360p"
+          },
+          "width": 360,
+          "height": 640,
+          "magnetUri": "magnet:?xs=https%3A%2F%2Fframatube.org%2Flazy-static%2Ftorrents%2F65c6d7fe-cf44-4a1a-86e0-9122760394f5-640-hls.torrent&xt=urn:btih:a9bc35a2b86ac27015d6459ee2487a16ea2790c5&dn=Join+the+movement+-+SPX6900&tr=https%3A%2F%2Ftube.tchncs.de%2Ftracker%2Fannounce&tr=wss%3A%2F%2Ftube.tchncs.de%2Ftracker%2Fsocket&ws=https%3A%2F%2Fmedia.tube.tchncs.de%2Fstreaming-playlists%2Fhls%2F20dc68b8-9eba-4f38-95fd-fff2be96af60%2F59026c04-eecb-486c-834b-4a9a9ee0138c-360-fragmented.mp4",
+          "size": 14410585,
+          "fps": 30,
+          "torrentUrl": "https://framatube.org/lazy-static/torrents/65c6d7fe-cf44-4a1a-86e0-9122760394f5-640-hls.torrent",
+          "torrentDownloadUrl": "https://framatube.org/download/torrents/65c6d7fe-cf44-4a1a-86e0-9122760394f5-640-hls.torrent",
+          "fileUrl": "https://media.tube.tchncs.de/streaming-playlists/hls/20dc68b8-9eba-4f38-95fd-fff2be96af60/59026c04-eecb-486c-834b-4a9a9ee0138c-360-fragmented.mp4",
+          "fileDownloadUrl": "https://tube.tchncs.de/download/streaming-playlists/hls/videos/20dc68b8-9eba-4f38-95fd-fff2be96af60-360-fragmented.mp4",
+          "metadataUrl": "https://tube.tchncs.de/api/v1/videos/20dc68b8-9eba-4f38-95fd-fff2be96af60/metadata/1549750",
+          "hasAudio": true,
+          "hasVideo": true,
+          "playlistUrl": "https://media.tube.tchncs.de/streaming-playlists/hls/20dc68b8-9eba-4f38-95fd-fff2be96af60/59026c04-eecb-486c-834b-4a9a9ee0138c-360.m3u8",
+          "storage": null
+        },
+        {
+          "id": 1661028,
+          "resolution": {
+            "id": 0,
+            "label": "Audio only"
+          },
+          "width": 0,
+          "height": 0,
+          "magnetUri": "magnet:?xs=https%3A%2F%2Fframatube.org%2Flazy-static%2Ftorrents%2Fc743f687-d46d-4576-b208-06c7859fbb9c-0-hls.torrent&xt=urn:btih:966ec9ea64ca82a87ad49e243f6c1c14fa9f953b&dn=Join+the+movement+-+SPX6900&tr=https%3A%2F%2Ftube.tchncs.de%2Ftracker%2Fannounce&tr=wss%3A%2F%2Ftube.tchncs.de%2Ftracker%2Fsocket&ws=https%3A%2F%2Fmedia.tube.tchncs.de%2Fstreaming-playlists%2Fhls%2F20dc68b8-9eba-4f38-95fd-fff2be96af60%2F0e93b8a3-be3c-46f2-8c84-8f0bc5514c21-0-fragmented.mp4",
+          "size": 2688644,
+          "fps": 0,
+          "torrentUrl": "https://framatube.org/lazy-static/torrents/c743f687-d46d-4576-b208-06c7859fbb9c-0-hls.torrent",
+          "torrentDownloadUrl": "https://framatube.org/download/torrents/c743f687-d46d-4576-b208-06c7859fbb9c-0-hls.torrent",
+          "fileUrl": "https://media.tube.tchncs.de/streaming-playlists/hls/20dc68b8-9eba-4f38-95fd-fff2be96af60/0e93b8a3-be3c-46f2-8c84-8f0bc5514c21-0-fragmented.mp4",
+          "fileDownloadUrl": "https://tube.tchncs.de/download/streaming-playlists/hls/videos/20dc68b8-9eba-4f38-95fd-fff2be96af60-0-fragmented.mp4",
+          "metadataUrl": "https://tube.tchncs.de/api/v1/videos/20dc68b8-9eba-4f38-95fd-fff2be96af60/metadata/1549748",
+          "hasAudio": true,
+          "hasVideo": false,
+          "playlistUrl": "https://media.tube.tchncs.de/streaming-playlists/hls/20dc68b8-9eba-4f38-95fd-fff2be96af60/0e93b8a3-be3c-46f2-8c84-8f0bc5514c21-0.m3u8",
+          "storage": null
+        }
+      ]
+    }
+  ],
+  "files": [
+    {
+      "id": 1661021,
+      "resolution": {
+        "id": 720,
+        "label": "720p"
+      },
+      "width": 720,
+      "height": 1280,
+      "magnetUri": "magnet:?xs=https%3A%2F%2Fframatube.org%2Flazy-static%2Ftorrents%2Fd7a68471-2f3d-4f0e-9d6e-b27207cef79d-1280.torrent&xt=urn:btih:b4e0cf80944ab9dbf4e2bb2a08f59fe11b5bbae6&dn=Join+the+movement+-+SPX6900&tr=https%3A%2F%2Ftube.tchncs.de%2Ftracker%2Fannounce&tr=wss%3A%2F%2Ftube.tchncs.de%2Ftracker%2Fsocket&ws=https%3A%2F%2Fmedia.tube.tchncs.de%2Fvideos%2Fd7ee792d-319a-400f-b517-792e29c23a15-720.mp4",
+      "size": 33502949,
+      "fps": 30,
+      "torrentUrl": "https://framatube.org/lazy-static/torrents/d7a68471-2f3d-4f0e-9d6e-b27207cef79d-1280.torrent",
+      "torrentDownloadUrl": "https://framatube.org/download/torrents/d7a68471-2f3d-4f0e-9d6e-b27207cef79d-1280.torrent",
+      "fileUrl": "https://media.tube.tchncs.de/videos/d7ee792d-319a-400f-b517-792e29c23a15-720.mp4",
+      "fileDownloadUrl": "https://tube.tchncs.de/download/web-videos/20dc68b8-9eba-4f38-95fd-fff2be96af60-720.mp4",
+      "metadataUrl": "https://tube.tchncs.de/api/v1/videos/20dc68b8-9eba-4f38-95fd-fff2be96af60/metadata/1549743",
+      "hasAudio": true,
+      "hasVideo": true,
+      "storage": null
+    },
+    {
+      "id": 1661022,
+      "resolution": {
+        "id": 480,
+        "label": "480p"
+      },
+      "width": 480,
+      "height": 854,
+      "magnetUri": "magnet:?xs=https%3A%2F%2Fframatube.org%2Flazy-static%2Ftorrents%2F7abe2a91-348f-4db3-9bee-d4c176a2eed1-854.torrent&xt=urn:btih:d86eb9e2fc1848200f5a16666cf4851c35d80c67&dn=Join+the+movement+-+SPX6900&tr=https%3A%2F%2Ftube.tchncs.de%2Ftracker%2Fannounce&tr=wss%3A%2F%2Ftube.tchncs.de%2Ftracker%2Fsocket&ws=https%3A%2F%2Fmedia.tube.tchncs.de%2Fvideos%2Ff36ab400-89fd-4439-b9a0-684620858ce8-480.mp4",
+      "size": 20206557,
+      "fps": 30,
+      "torrentUrl": "https://framatube.org/lazy-static/torrents/7abe2a91-348f-4db3-9bee-d4c176a2eed1-854.torrent",
+      "torrentDownloadUrl": "https://framatube.org/download/torrents/7abe2a91-348f-4db3-9bee-d4c176a2eed1-854.torrent",
+      "fileUrl": "https://media.tube.tchncs.de/videos/f36ab400-89fd-4439-b9a0-684620858ce8-480.mp4",
+      "fileDownloadUrl": "https://tube.tchncs.de/download/web-videos/20dc68b8-9eba-4f38-95fd-fff2be96af60-480.mp4",
+      "metadataUrl": "https://tube.tchncs.de/api/v1/videos/20dc68b8-9eba-4f38-95fd-fff2be96af60/metadata/1549746",
+      "hasAudio": true,
+      "hasVideo": true,
+      "storage": null
+    },
+    {
+      "id": 1661023,
+      "resolution": {
+        "id": 360,
+        "label": "360p"
+      },
+      "width": 360,
+      "height": 640,
+      "magnetUri": "magnet:?xs=https%3A%2F%2Fframatube.org%2Flazy-static%2Ftorrents%2F3ebf42d4-5c96-48bf-8f6d-dc9d8877a05c-640.torrent&xt=urn:btih:dc3cb153d82d469a5441d00bf26e09238e78867e&dn=Join+the+movement+-+SPX6900&tr=https%3A%2F%2Ftube.tchncs.de%2Ftracker%2Fannounce&tr=wss%3A%2F%2Ftube.tchncs.de%2Ftracker%2Fsocket&ws=https%3A%2F%2Fmedia.tube.tchncs.de%2Fvideos%2F1f95b808-25fa-43ec-97a4-df2958052732-360.mp4",
+      "size": 14481567,
+      "fps": 30,
+      "torrentUrl": "https://framatube.org/lazy-static/torrents/3ebf42d4-5c96-48bf-8f6d-dc9d8877a05c-640.torrent",
+      "torrentDownloadUrl": "https://framatube.org/download/torrents/3ebf42d4-5c96-48bf-8f6d-dc9d8877a05c-640.torrent",
+      "fileUrl": "https://media.tube.tchncs.de/videos/1f95b808-25fa-43ec-97a4-df2958052732-360.mp4",
+      "fileDownloadUrl": "https://tube.tchncs.de/download/web-videos/20dc68b8-9eba-4f38-95fd-fff2be96af60-360.mp4",
+      "metadataUrl": "https://tube.tchncs.de/api/v1/videos/20dc68b8-9eba-4f38-95fd-fff2be96af60/metadata/1549747",
+      "hasAudio": true,
+      "hasVideo": true,
+      "storage": null
+    },
+    {
+      "id": 1661024,
+      "resolution": {
+        "id": 0,
+        "label": "Audio only"
+      },
+      "width": 0,
+      "height": 0,
+      "magnetUri": "magnet:?xs=https%3A%2F%2Fframatube.org%2Flazy-static%2Ftorrents%2F5217531e-d858-435d-a0eb-f6d04d4f155c-0.torrent&xt=urn:btih:746db2bba9e095224ed67eccf0a193f4fb3d2449&dn=Join+the+movement+-+SPX6900&tr=https%3A%2F%2Ftube.tchncs.de%2Ftracker%2Fannounce&tr=wss%3A%2F%2Ftube.tchncs.de%2Ftracker%2Fsocket&ws=https%3A%2F%2Fmedia.tube.tchncs.de%2Fvideos%2Fd7248af1-47b6-417d-aae4-3c79dbee3211-0.mp4",
+      "size": 2681866,
+      "fps": 0,
+      "torrentUrl": "https://framatube.org/lazy-static/torrents/5217531e-d858-435d-a0eb-f6d04d4f155c-0.torrent",
+      "torrentDownloadUrl": "https://framatube.org/download/torrents/5217531e-d858-435d-a0eb-f6d04d4f155c-0.torrent",
+      "fileUrl": "https://media.tube.tchncs.de/videos/d7248af1-47b6-417d-aae4-3c79dbee3211-0.mp4",
+      "fileDownloadUrl": "https://tube.tchncs.de/download/web-videos/20dc68b8-9eba-4f38-95fd-fff2be96af60-0.mp4",
+      "metadataUrl": "https://tube.tchncs.de/api/v1/videos/20dc68b8-9eba-4f38-95fd-fff2be96af60/metadata/1549745",
+      "hasAudio": true,
+      "hasVideo": false,
+      "storage": null
+    }
+  ],
+  "liveSchedules": [],
+  "support": null,
+  "tags": [],
+  "commentsPolicy": {
+    "id": 1,
+    "label": "Enabled"
+  },
+  "downloadEnabled": true,
+  "waitTranscoding": true,
+  "inputFileUpdatedAt": null,
+  "state": {
+    "id": 1,
+    "label": "Published"
+  },
+  "trackerUrls": [
+    "https://tube.tchncs.de/tracker/announce",
+    "wss://tube.tchncs.de/tracker/socket"
+  ],
+  "embedPrivacyPolicy": {
+    "id": 1,
+    "label": "All allowed"
+  }
+}

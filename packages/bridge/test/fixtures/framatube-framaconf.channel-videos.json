@@ -1,0 +1,332 @@
+{
+  "total": 86,
+  "data": [
+    {
+      "id": 70162,
+      "uuid": "b23d8bd7-28f3-40f0-93b7-f505381ac0c4",
+      "shortUUID": "o1zfWBkmviytA8KjTRM23U",
+      "url": "https://framatube.org/videos/watch/b23d8bd7-28f3-40f0-93b7-f505381ac0c4",
+      "name": "Framaspace : 3 ans de cloud libre (et gratuit) pour les associations - Pierre-Yves Gosset - JdLL2026",
+      "category": {
+        "id": 15,
+        "label": "Science & Technology"
+      },
+      "licence": {
+        "id": 2,
+        "label": "Attribution - Share Alike"
+      },
+      "language": {
+        "id": "fr",
+        "label": "French"
+      },
+      "privacy": {
+        "id": 1,
+        "label": "Public"
+      },
+      "nsfw": false,
+      "nsfwFlags": 0,
+      "nsfwSummary": null,
+      "truncatedDescription": "Framaspace, c'est un projet avec de multiples ambitions :\r\n- accroître la notoriété du logiciel libre Nextcloud (solution de cloud collaboratif : fichiers, agendas, contacts, etc) en France et dans les territoires francophones ;\r\n- fournir jusqu'à...",
+      "description": "Framaspace, c'est un projet avec de multiples ambitions :\r\n- accroître la notoriété du logiciel libre Nextcloud (solution de cloud collaboratif : fichiers, agendas, contacts, etc) en France et dans les territoires francophones ;\r\n- fournir jusqu'à...",
+      "isLocal": true,
+      "duration": 3577,
+      "aspectRatio": 1.7778,
+      "views": 248,
+      "viewers": 0,
+      "downloads": 203,
+      "likes": 1,
+      "dislikes": 0,
+      "thumbnailPath": "/lazy-static/thumbnails/ff3b020a-2be4-4c93-a80f-0ee27cf7d28d.png",
+      "previewPath": "/lazy-static/thumbnails/c16be7fa-8018-41fc-a765-74d3fde3f11b.png",
+      "thumbnails": [
+        {
+          "height": 1080,
+          "width": 1920,
+          "aspectRatio": "16:9",
+          "fileUrl": "https://framatube.org/lazy-static/thumbnails/c16be7fa-8018-41fc-a765-74d3fde3f11b.png"
+        },
+        {
+          "height": 1400,
+          "width": 1400,
+          "aspectRatio": "1:1",
+          "fileUrl": "https://framatube.org/lazy-static/thumbnails/b1701876-3331-441a-b17b-be393b00b65b.png"
+        },
+        {
+          "height": 720,
+          "width": 1280,
+          "aspectRatio": "16:9",
+          "fileUrl": "https://framatube.org/lazy-static/thumbnails/9c4894a3-fe73-441b-b887-868343c783ee.png"
+        },
+        {
+          "height": 480,
+          "width": 850,
+          "aspectRatio": "16:9",
+          "fileUrl": "https://framatube.org/lazy-static/thumbnails/dbea2555-325f-498d-9bee-8e5ce09ccb17.png"
+        },
+        {
+          "height": 157,
+          "width": 280,
+          "aspectRatio": "16:9",
+          "fileUrl": "https://framatube.org/lazy-static/thumbnails/ff3b020a-2be4-4c93-a80f-0ee27cf7d28d.png"
+        }
+      ],
+      "embedPath": "/videos/embed/o1zfWBkmviytA8KjTRM23U",
+      "createdAt": "2026-06-19T12:35:53.062Z",
+      "updatedAt": "2026-10-19T17:10:42.652Z",
+      "publishedAt": "2026-06-19T12:49:55.324Z",
+      "originallyPublishedAt": "2026-06-02T22:00:00.000Z",
+      "isLive": false,
+      "account": {
+        "url": "https://framatube.org/accounts/framasoft",
+        "name": "framasoft",
+        "host": "framatube.org",
+        "displayName": "Framasoft",
+        "id": 3,
+        "avatars": [
+          {
+            "width": 1500,
+            "path": "/lazy-static/avatars/5bcda318-5274-4682-9220-307f378f4382.png",
+            "fileUrl": "https://framatube.org/lazy-static/avatars/5bcda318-5274-4682-9220-307f378f4382.png",
+            "createdAt": "2026-03-11T12:30:47.185Z",
+            "updatedAt": "2026-03-11T12:30:47.185Z"
+          }
+        ]
+      },
+      "channel": {
+        "url": "https://framatube.org/video-channels/framaconf",
+        "name": "framaconf",
+        "host": "framatube.org",
+        "displayName": "FramaConf",
+        "id": 2214,
+        "avatars": [
+          {
+            "width": 1500,
+            "path": "/lazy-static/avatars/0e2d2893-c4b7-4a09-b8ff-e745bd8bdbf1.png",
+            "fileUrl": "https://framatube.org/lazy-static/avatars/0e2d2893-c4b7-4a09-b8ff-e745bd8bdbf1.png",
+            "createdAt": "2026-03-11T12:32:26.712Z",
+            "updatedAt": "2026-03-11T12:32:26.712Z"
+          }
+        ]
+      },
+      "comments": 0
+    },
+    {
+      "id": 70161,
+      "uuid": "d0dc4349-56a9-4388-bc76-b6b1d52efb6c",
+      "shortUUID": "rMSQhMAcPZGuZ36Anqdj2J",
+      "url": "https://framatube.org/videos/watch/d0dc4349-56a9-4388-bc76-b6b1d52efb6c",
+      "name": "PeerTube : une plateforme vidéo qui vous respecte - Booteille - JdLL2026",
+      "category": {
+        "id": 15,
+        "label": "Science & Technology"
+      },
+      "licence": {
+        "id": 2,
+        "label": "Attribution - Share Alike"
+      },
+      "language": {
+        "id": "fr",
+        "label": "French"
+      },
+      "privacy": {
+        "id": 1,
+        "label": "Public"
+      },
+      "nsfw": false,
+      "nsfwFlags": 0,
+      "nsfwSummary": null,
+      "truncatedDescription": "Nous le constatons depuis des années, YouTube s'emmerdifie de plus en plus : la plateforme nous matraque toujours plus de publicités et fait la guerre aux bloqueurs de pub, limite de plus en plus de fonctionnalités aux utilisateurices premium et p...",
+      "description": "Nous le constatons depuis des années, YouTube s'emmerdifie de plus en plus : la plateforme nous matraque toujours plus de publicités et fait la guerre aux bloqueurs de pub, limite de plus en plus de fonctionnalités aux utilisateurices premium et p...",
+      "isLocal": true,
+      "duration": 3165,
+      "aspectRatio": 1.7778,
+      "views": 194,
+      "viewers": 0,
+      "downloads": 142,
+      "likes": 4,
+      "dislikes": 0,
+      "thumbnailPath": "/lazy-static/thumbnails/4d1e6ce9-7a41-418c-b9c3-2ab474304716.png",
+      "previewPath": "/lazy-static/thumbnails/a2f10654-5131-41b2-a290-bd57aa478ec2.png",
+      "thumbnails": [
+        {
+          "height": 1080,
+          "width": 1920,
+          "aspectRatio": "16:9",
+          "fileUrl": "https://framatube.org/lazy-static/thumbnails/a2f10654-5131-41b2-a290-bd57aa478ec2.png"
+        },
+        {
+          "height": 1400,
+          "width": 1400,
+          "aspectRatio": "1:1",
+          "fileUrl": "https://framatube.org/lazy-static/thumbnails/d4a1bba0-176b-4b83-ac5a-7a581bfe867f.png"
+        },
+        {
+          "height": 720,
+          "width": 1280,
+          "aspectRatio": "16:9",
+          "fileUrl": "https://framatube.org/lazy-static/thumbnails/f98bfbb4-ba35-4df6-8d8d-14bda905841d.png"
+        },
+        {
+          "height": 480,
+          "width": 850,
+          "aspectRatio": "16:9",
+          "fileUrl": "https://framatube.org/lazy-static/thumbnails/a475a18b-4263-4ec6-b4e4-78b28cee3081.png"
+        },
+        {
+          "height": 157,
+          "width": 280,
+          "aspectRatio": "16:9",
+          "fileUrl": "https://framatube.org/lazy-static/thumbnails/4d1e6ce9-7a41-418c-b9c3-2ab474304716.png"
+        }
+      ],
+      "embedPath": "/videos/embed/rMSQhMAcPZGuZ36Anqdj2J",
+      "createdAt": "2026-06-19T12:33:20.933Z",
+      "updatedAt": "2026-10-19T18:10:39.831Z",
+      "publishedAt": "2026-06-19T12:39:03.402Z",
+      "originallyPublishedAt": "2026-06-18T22:00:00.000Z",
+      "isLive": false,
+      "account": {
+        "url": "https://framatube.org/accounts/framasoft",
+        "name": "framasoft",
+        "host": "framatube.org",
+        "displayName": "Framasoft",
+        "id": 3,
+        "avatars": [
+          {
+            "width": 1500,
+            "path": "/lazy-static/avatars/5bcda318-5274-4682-9220-307f378f4382.png",
+            "fileUrl": "https://framatube.org/lazy-static/avatars/5bcda318-5274-4682-9220-307f378f4382.png",
+            "createdAt": "2026-03-11T12:30:47.185Z",
+            "updatedAt": "2026-03-11T12:30:47.185Z"
+          }
+        ]
+      },
+      "channel": {
+        "url": "https://framatube.org/video-channels/framaconf",
+        "name": "framaconf",
+        "host": "framatube.org",
+        "displayName": "FramaConf",
+        "id": 2214,
+        "avatars": [
+          {
+            "width": 1500,
+            "path": "/lazy-static/avatars/0e2d2893-c4b7-4a09-b8ff-e745bd8bdbf1.png",
+            "fileUrl": "https://framatube.org/lazy-static/avatars/0e2d2893-c4b7-4a09-b8ff-e745bd8bdbf1.png",
+            "createdAt": "2026-03-11T12:32:26.712Z",
+            "updatedAt": "2026-03-11T12:32:26.712Z"
+          }
+        ]
+      },
+      "comments": 0
+    },
+    {
+      "id": 70160,
+      "uuid": "294c7267-def5-4a67-a5a9-5077c3ca6c0b",
+      "shortUUID": "66MutiveJn7EbyfMeBMvSc",
+      "url": "https://framatube.org/videos/watch/294c7267-def5-4a67-a5a9-5077c3ca6c0b",
+      "name": "Internet : tout cramer pour repartir sur des bases saines. - Pierre-Yves Gosset - JdLL2026",
+      "category": {
+        "id": 15,
+        "label": "Science & Technology"
+      },
+      "licence": {
+        "id": 2,
+        "label": "Attribution - Share Alike"
+      },
+      "language": {
+        "id": "fr",
+        "label": "French"
+      },
+      "privacy": {
+        "id": 1,
+        "label": "Public"
+      },
+      "nsfw": false,
+      "nsfwFlags": 0,
+      "nsfwSummary": null,
+      "truncatedDescription": "En trente ans, Internet est passé d’un réseau distribué de publications interconnectées à un ensemble de plateformes centralisées captant l’essentiel des usages. Une poignée d'acteurs dominants contrôlent l’hébergement, les réseaux sociaux, la dis...",
+      "description": "En trente ans, Internet est passé d’un réseau distribué de publications interconnectées à un ensemble de plateformes centralisées captant l’essentiel des usages. Une poignée d'acteurs dominants contrôlent l’hébergement, les réseaux sociaux, la dis...",
+      "isLocal": true,
+      "duration": 3508,
+      "aspectRatio": 1.7778,
+      "views": 936,
+      "viewers": 0,
+      "downloads": 270,
+      "likes": 6,
+      "dislikes": 0,
+      "thumbnailPath": "/lazy-static/thumbnails/4ee65c01-5e23-4a5b-b46a-71011c1a48e6.jpg",
+      "previewPath": "/lazy-static/thumbnails/3b1eced9-ffad-457d-b457-488187153bee.jpg",
+      "thumbnails": [
+        {
+          "height": 1080,
+          "width": 1920,
+          "aspectRatio": "16:9",
+          "fileUrl": "https://framatube.org/lazy-static/thumbnails/3b1eced9-ffad-457d-b457-488187153bee.jpg"
+        },
+        {
+          "height": 1400,
+          "width": 1400,
+          "aspectRatio": "1:1",
+          "fileUrl": "https://framatube.org/lazy-static/thumbnails/f6e706f2-8a99-4928-b794-04cb95235584.jpg"
+        },
+        {
+          "height": 720,
+          "width": 1280,
+          "aspectRatio": "16:9",
+          "fileUrl": "https://framatube.org/lazy-static/thumbnails/757d9866-52ce-4bc8-9bd0-a38ba7712749.jpg"
+        },
+        {
+          "height": 480,
+          "width": 850,
+          "aspectRatio": "16:9",
+          "fileUrl": "https://framatube.org/lazy-static/thumbnails/503a3400-de9c-4961-9dba-17dcf1318a93.jpg"
+        },
+        {
+          "height": 157,
+          "width": 280,
+          "aspectRatio": "16:9",
+          "fileUrl": "https://framatube.org/lazy-static/thumbnails/4ee65c01-5e23-4a5b-b46a-71011c1a48e6.jpg"
+        }
+      ],
+      "embedPath": "/videos/embed/66MutiveJn7EbyfMeBMvSc",
+      "createdAt": "2026-06-19T12:09:34.454Z",
+      "updatedAt": "2026-10-19T13:40:43.621Z",
+      "publishedAt": "2026-06-19T12:19:41.485Z",
+      "originallyPublishedAt": "2026-06-18T22:00:00.000Z",
+      "isLive": false,
+      "account": {
+        "url": "https://framatube.org/accounts/framasoft",
+        "name": "framasoft",
+        "host": "framatube.org",
+        "displayName": "Framasoft",
+        "id": 3,
+        "avatars": [
+          {
+            "width": 1500,
+            "path": "/lazy-static/avatars/5bcda318-5274-4682-9220-307f378f4382.png",
+            "fileUrl": "https://framatube.org/lazy-static/avatars/5bcda318-5274-4682-9220-307f378f4382.png",
+            "createdAt": "2026-03-11T12:30:47.185Z",
+            "updatedAt": "2026-03-11T12:30:47.185Z"
+          }
+        ]
+      },
+      "channel": {
+        "url": "https://framatube.org/video-channels/framaconf",
+        "name": "framaconf",
+        "host": "framatube.org",
+        "displayName": "FramaConf",
+        "id": 2214,
+        "avatars": [
+          {
+            "width": 1500,
+            "path": "/lazy-static/avatars/0e2d2893-c4b7-4a09-b8ff-e745bd8bdbf1.png",
+            "fileUrl": "https://framatube.org/lazy-static/avatars/0e2d2893-c4b7-4a09-b8ff-e745bd8bdbf1.png",
+            "createdAt": "2026-03-11T12:32:26.712Z",
+            "updatedAt": "2026-03-11T12:32:26.712Z"
+          }
+        ]
+      },
+      "comments": 1
+    }
+  ]
+}

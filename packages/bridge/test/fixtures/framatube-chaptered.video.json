@@ -1,0 +1,317 @@
+{
+  "id": 74061,
+  "uuid": "7516913d-a33b-46ca-9159-8a5523797af8",
+  "shortUUID": "fsAxvMhJTFX4KZizb9JFg7",
+  "url": "https://tube.tchncs.de/videos/watch/7516913d-a33b-46ca-9159-8a5523797af8",
+  "name": "Spiele von lokalen KIs programmieren lassen",
+  "category": {
+    "id": 15,
+    "label": "Science & Technology"
+  },
+  "licence": {
+    "id": 2,
+    "label": "Attribution - Share Alike"
+  },
+  "language": {
+    "id": "de",
+    "label": "German"
+  },
+  "privacy": {
+    "id": 1,
+    "label": "Public"
+  },
+  "nsfw": false,
+  "nsfwFlags": 0,
+  "nsfwSummary": null,
+  "truncatedDescription": "Ich habe verschiedene lokale KIs bzw. große Sprachmodelle (Muse Glimmer und Gwen 3.6/3.8) dazu verwendet, Spiele(-klassiker) mit Python zu programmieren. In diesem Video seht Ihr, was dabei herausgekommen ist und wie ich die Spiele – soweit es mög...",
+  "description": "Ich habe verschiedene lokale KIs bzw. große Sprachmodelle (Muse Glimmer und Gwen 3.6/3.8) dazu verwendet, Spiele(-klassiker) mit Python zu programmieren. In diesem Video seht Ihr, was dabei herausgekommen ist und wie ich die Spiele – soweit es möglich ist – anspiele. Mit dabei sind Snake, Asteroids und soetwas ähnliches wie Doom. Zum Abschluß gibt es noch ein komplexeres retrofuturistisches Jump’n’Run im Art déco Stil, woran sich die lokalen Modelle allerdings ihre digitalen Zähne ausbeißen.\r\n\r\n* Folien, Links, etc.: https://goos-habermann.de/weisheit-10292-Spiele-von-lokalen-KIs-programmieren…",
+  "isLocal": false,
+  "duration": 1398,
+  "aspectRatio": 1.7778,
+  "views": 5,
+  "viewers": 1,
+  "downloads": 21,
+  "likes": 1,
+  "dislikes": 0,
+  "thumbnailPath": "/lazy-static/thumbnails/398484e0-841f-4e80-9481-023a240cca95.png",
+  "previewPath": "/lazy-static/thumbnails/26ed7d32-cade-4294-bba8-69b94bf6814b.png",
+  "thumbnails": [
+    {
+      "height": 1080,
+      "width": 1920,
+      "aspectRatio": "16:9",
+      "fileUrl": "https://framatube.org/lazy-static/thumbnails/26ed7d32-cade-4294-bba8-69b94bf6814b.png"
+    },
+    {
+      "height": 1400,
+      "width": 1400,
+      "aspectRatio": "1:1",
+      "fileUrl": "https://framatube.org/lazy-static/thumbnails/5a11c23d-2cc1-4be3-a75b-9ce73cf222af.png"
+    },
+    {
+      "height": 720,
+      "width": 1280,
+      "aspectRatio": "16:9",
+      "fileUrl": "https://framatube.org/lazy-static/thumbnails/ecac4b03-9230-4adf-b182-0c96df0bb486.png"
+    },
+    {
+      "height": 480,
+      "width": 850,
+      "aspectRatio": "16:9",
+      "fileUrl": "https://framatube.org/lazy-static/thumbnails/8afa7664-d627-4eeb-9386-e9856378db7c.png"
+    },
+    {
+      "height": 157,
+      "width": 280,
+      "aspectRatio": "16:9",
+      "fileUrl": "https://framatube.org/lazy-static/thumbnails/398484e0-841f-4e80-9481-023a240cca95.png"
+    }
+  ],
+  "embedPath": "/videos/embed/fsAxvMhJTFX4KZizb9JFg7",
+  "createdAt": "2026-10-19T12:37:17.135Z",
+  "updatedAt": "2026-10-19T18:38:32.016Z",
+  "publishedAt": "2026-10-19T12:37:17.135Z",
+  "originallyPublishedAt": null,
+  "isLive": false,
+  "account": {
+    "url": "https://tube.tchncs.de/accounts/m23hauke",
+    "name": "m23hauke",
+    "host": "tube.tchncs.de",
+    "displayName": "m23hauke",
+    "id": 98233,
+    "avatars": [
+      {
+        "height": 120,
+        "width": 120,
+        "path": "/lazy-static/avatars/c70d603c-98bc-4c5e-99a4-3dd3a7c93218.png",
+        "fileUrl": "https://framatube.org/lazy-static/avatars/c70d603c-98bc-4c5e-99a4-3dd3a7c93218.png",
+        "createdAt": "2026-03-31T18:35:37.473Z",
+        "updatedAt": "2026-03-31T20:52:30.777Z"
+      }
+    ]
+  },
+  "channel": {
+    "url": "https://tube.tchncs.de/video-channels/ndwls",
+    "name": "ndwls",
+    "host": "tube.tchncs.de",
+    "displayName": "Nicht der Weisheit letzter Schluß",
+    "id": 2518,
+    "avatars": [
+      {
+        "height": 120,
+        "width": 120,
+        "path": "/lazy-static/avatars/6355500a-6362-43cd-98c4-c3476468b361.png",
+        "fileUrl": "https://framatube.org/lazy-static/avatars/6355500a-6362-43cd-98c4-c3476468b361.png",
+        "createdAt": "2026-03-31T18:35:21.804Z",
+        "updatedAt": "2026-03-31T20:25:00.218Z"
+      }
+    ]
+  },
+  "comments": 0,
+  "blacklisted": false,
+  "blacklistedReason": null,
+  "streamingPlaylists": [
+    {
+      "id": 3202153,
+      "type": 1,
+      "playlistUrl": "https://media.tube.tchncs.de/streaming-playlists/hls/7516913d-a33b-46ca-9159-8a5523797af8/1088bc5e-ee25-4bba-a5e4-e385f7a3add1-master.m3u8",
+      "segmentsSha256Url": "https://media.tube.tchncs.de/streaming-playlists/hls/7516913d-a33b-46ca-9159-8a5523797af8/6eeb59cc-9b33-4fbe-9eb4-6fb07d3c0256-segments-sha256.json",
+      "redundancies": [],
+      "files": [
+        {
+          "id": 1661091,
+          "resolution": {
+            "id": 1080,
+            "label": "1080p"
+          },
+          "width": 1920,
+          "height": 1080,
+          "magnetUri": "magnet:?xs=https%3A%2F%2Fframatube.org%2Flazy-static%2Ftorrents%2F4282bd3b-96b9-4fef-a6a1-e134d9a56b71-1080-hls.torrent&xt=urn:btih:9794236651ba8abc226bea8894cba03b7a00668f&dn=Spiele+von+lokalen+KIs+programmieren+lassen&tr=https%3A%2F%2Ftube.tchncs.de%2Ftracker%2Fannounce&tr=wss%3A%2F%2Ftube.tchncs.de%2Ftracker%2Fsocket&ws=https%3A%2F%2Fmedia.tube.tchncs.de%2Fstreaming-playlists%2Fhls%2F7516913d-a33b-46ca-9159-8a5523797af8%2F27e32600-6411-43fa-8dea-513ad9185874-1080-fragmented.mp4",
+          "size": 159944325,
+          "fps": 30,
+          "torrentUrl": "https://framatube.org/lazy-static/torrents/4282bd3b-96b9-4fef-a6a1-e134d9a56b71-1080-hls.torrent",
+          "torrentDownloadUrl": "https://framatube.org/download/torrents/4282bd3b-96b9-4fef-a6a1-e134d9a56b71-1080-hls.torrent",
+          "fileUrl": "https://media.tube.tchncs.de/streaming-playlists/hls/7516913d-a33b-46ca-9159-8a5523797af8/27e32600-6411-43fa-8dea-513ad9185874-1080-fragmented.mp4",
+          "fileDownloadUrl": "https://tube.tchncs.de/download/streaming-playlists/hls/videos/7516913d-a33b-46ca-9159-8a5523797af8-1080-fragmented.mp4",
+          "metadataUrl": "https://tube.tchncs.de/api/v1/videos/7516913d-a33b-46ca-9159-8a5523797af8/metadata/1550410",
+          "hasAudio": true,
+          "hasVideo": true,
+          "playlistUrl": "https://media.tube.tchncs.de/streaming-playlists/hls/7516913d-a33b-46ca-9159-8a5523797af8/27e32600-6411-43fa-8dea-513ad9185874-1080.m3u8",
+          "storage": null
+        },
+        {
+          "id": 1661095,
+          "resolution": {
+            "id": 480,
+            "label": "480p"
+          },
+          "width": 854,
+          "height": 480,
+          "magnetUri": "magnet:?xs=https%3A%2F%2Fframatube.org%2Flazy-static%2Ftorrents%2Fc7f75ee1-3d0c-49c9-b29a-7d95d413ddbf-480-hls.torrent&xt=urn:btih:952d151ca00696cdb948bbba1802469f790036c8&dn=Spiele+von+lokalen+KIs+programmieren+lassen&tr=https%3A%2F%2Ftube.tchncs.de%2Ftracker%2Fannounce&tr=wss%3A%2F%2Ftube.tchncs.de%2Ftracker%2Fsocket&ws=https%3A%2F%2Fmedia.tube.tchncs.de%2Fstreaming-playlists%2Fhls%2F7516913d-a33b-46ca-9159-8a5523797af8%2Fece01d8e-fea9-4d94-9ecb-8fa7935bfcf2-480-fragmented.mp4",
+          "size": 85472396,
+          "fps": 30,
+          "torrentUrl": "https://framatube.org/lazy-static/torrents/c7f75ee1-3d0c-49c9-b29a-7d95d413ddbf-480-hls.torrent",
+          "torrentDownloadUrl": "https://framatube.org/download/torrents/c7f75ee1-3d0c-49c9-b29a-7d95d413ddbf-480-hls.torrent",
+          "fileUrl": "https://media.tube.tchncs.de/streaming-playlists/hls/7516913d-a33b-46ca-9159-8a5523797af8/ece01d8e-fea9-4d94-9ecb-8fa7935bfcf2-480-fragmented.mp4",
+          "fileDownloadUrl": "https://tube.tchncs.de/download/streaming-playlists/hls/videos/7516913d-a33b-46ca-9159-8a5523797af8-480-fragmented.mp4",
+          "metadataUrl": "https://tube.tchncs.de/api/v1/videos/7516913d-a33b-46ca-9159-8a5523797af8/metadata/1550415",
+          "hasAudio": true,
+          "hasVideo": true,
+          "playlistUrl": "https://media.tube.tchncs.de/streaming-playlists/hls/7516913d-a33b-46ca-9159-8a5523797af8/ece01d8e-fea9-4d94-9ecb-8fa7935bfcf2-480.m3u8",
+          "storage": null
+        },
+        {
+          "id": 1661096,
+          "resolution": {
+            "id": 360,
+            "label": "360p"
+          },
+          "width": 640,
+          "height": 360,
+          "magnetUri": "magnet:?xs=https%3A%2F%2Fframatube.org%2Flazy-static%2Ftorrents%2Fecd17ac9-b54f-4703-bddb-04d29d4316aa-360-hls.torrent&xt=urn:btih:4eee06795f4f96befa27e7d40b7ae9ef3fea9c7c&dn=Spiele+von+lokalen+KIs+programmieren+lassen&tr=https%3A%2F%2Ftube.tchncs.de%2Ftracker%2Fannounce&tr=wss%3A%2F%2Ftube.tchncs.de%2Ftracker%2Fsocket&ws=https%3A%2F%2Fmedia.tube.tchncs.de%2Fstreaming-playlists%2Fhls%2F7516913d-a33b-46ca-9159-8a5523797af8%2F4cc8feec-063c-490e-a7d4-1d3f386fd0eb-360-fragmented.mp4",
+          "size": 73270849,
+          "fps": 30,
+          "torrentUrl": "https://framatube.org/lazy-static/torrents/ecd17ac9-b54f-4703-bddb-04d29d4316aa-360-hls.torrent",
+          "torrentDownloadUrl": "https://framatube.org/download/torrents/ecd17ac9-b54f-4703-bddb-04d29d4316aa-360-hls.torrent",
+          "fileUrl": "https://media.tube.tchncs.de/streaming-playlists/hls/7516913d-a33b-46ca-9159-8a5523797af8/4cc8feec-063c-490e-a7d4-1d3f386fd0eb-360-fragmented.mp4",
+          "fileDownloadUrl": "https://tube.tchncs.de/download/streaming-playlists/hls/videos/7516913d-a33b-46ca-9159-8a5523797af8-360-fragmented.mp4",
+          "metadataUrl": "https://tube.tchncs.de/api/v1/videos/7516913d-a33b-46ca-9159-8a5523797af8/metadata/1550416",
+          "hasAudio": true,
+          "hasVideo": true,
+          "playlistUrl": "https://media.tube.tchncs.de/streaming-playlists/hls/7516913d-a33b-46ca-9159-8a5523797af8/4cc8feec-063c-490e-a7d4-1d3f386fd0eb-360.m3u8",
+          "storage": null
+        },
+        {
+          "id": 1661094,
+          "resolution": {
+            "id": 0,
+            "label": "Audio only"
+          },
+          "width": 0,
+          "height": 0,
+          "magnetUri": "magnet:?xs=https%3A%2F%2Fframatube.org%2Flazy-static%2Ftorrents%2F5cc346aa-81c7-4509-8b47-d3e78bd68b60-0-hls.torrent&xt=urn:btih:8ec7119b393de84e32fb670f9480c9c0a3444105&dn=Spiele+von+lokalen+KIs+programmieren+lassen&tr=https%3A%2F%2Ftube.tchncs.de%2Ftracker%2Fannounce&tr=wss%3A%2F%2Ftube.tchncs.de%2Ftracker%2Fsocket&ws=https%3A%2F%2Fmedia.tube.tchncs.de%2Fstreaming-playlists%2Fhls%2F7516913d-a33b-46ca-9159-8a5523797af8%2F397170f8-7a83-4418-8ea5-ab5ceaf59805-0-fragmented.mp4",
+          "size": 43952743,
+          "fps": 0,
+          "torrentUrl": "https://framatube.org/lazy-static/torrents/5cc346aa-81c7-4509-8b47-d3e78bd68b60-0-hls.torrent",
+          "torrentDownloadUrl": "https://framatube.org/download/torrents/5cc346aa-81c7-4509-8b47-d3e78bd68b60-0-hls.torrent",
+          "fileUrl": "https://media.tube.tchncs.de/streaming-playlists/hls/7516913d-a33b-46ca-9159-8a5523797af8/397170f8-7a83-4418-8ea5-ab5ceaf59805-0-fragmented.mp4",
+          "fileDownloadUrl": "https://tube.tchncs.de/download/streaming-playlists/hls/videos/7516913d-a33b-46ca-9159-8a5523797af8-0-fragmented.mp4",
+          "metadataUrl": "https://tube.tchncs.de/api/v1/videos/7516913d-a33b-46ca-9159-8a5523797af8/metadata/1550414",
+          "hasAudio": true,
+          "hasVideo": false,
+          "playlistUrl": "https://media.tube.tchncs.de/streaming-playlists/hls/7516913d-a33b-46ca-9159-8a5523797af8/397170f8-7a83-4418-8ea5-ab5ceaf59805-0.m3u8",
+          "storage": null
+        }
+      ]
+    }
+  ],
+  "files": [
+    {
+      "id": 1661089,
+      "resolution": {
+        "id": 1080,
+        "label": "1080p"
+      },
+      "width": 1920,
+      "height": 1080,
+      "magnetUri": "magnet:?xs=https%3A%2F%2Fframatube.org%2Flazy-static%2Ftorrents%2F4752dae3-b840-4641-8ddf-3daefd096030-1080.torrent&xt=urn:btih:e08a2522106f09970f5d17c30566d81f8353f0b2&dn=Spiele+von+lokalen+KIs+programmieren+lassen&tr=https%3A%2F%2Ftube.tchncs.de%2Ftracker%2Fannounce&tr=wss%3A%2F%2Ftube.tchncs.de%2Ftracker%2Fsocket&ws=https%3A%2F%2Fmedia.tube.tchncs.de%2Fvideos%2Fd4c26d25-28b9-4a7c-a1aa-c13ceea5f270-1080.mp4",
+      "size": 160436395,
+      "fps": 30,
+      "torrentUrl": "https://framatube.org/lazy-static/torrents/4752dae3-b840-4641-8ddf-3daefd096030-1080.torrent",
+      "torrentDownloadUrl": "https://framatube.org/download/torrents/4752dae3-b840-4641-8ddf-3daefd096030-1080.torrent",
+      "fileUrl": "https://media.tube.tchncs.de/videos/d4c26d25-28b9-4a7c-a1aa-c13ceea5f270-1080.mp4",
+      "fileDownloadUrl": "https://tube.tchncs.de/download/web-videos/7516913d-a33b-46ca-9159-8a5523797af8-1080.mp4",
+      "metadataUrl": "https://tube.tchncs.de/api/v1/videos/7516913d-a33b-46ca-9159-8a5523797af8/metadata/1550409",
+      "hasAudio": true,
+      "hasVideo": true,
+      "storage": null
+    },
+    {
+      "id": 1661092,
+      "resolution": {
+        "id": 480,
+        "label": "480p"
+      },
+      "width": 854,
+      "height": 480,
+      "magnetUri": "magnet:?xs=https%3A%2F%2Fframatube.org%2Flazy-static%2Ftorrents%2Ff0c9c9a5-77c6-4f51-9174-7daefd523367-480.torrent&xt=urn:btih:d580c42986abb1d9abebe639292e66709a8dfb93&dn=Spiele+von+lokalen+KIs+programmieren+lassen&tr=https%3A%2F%2Ftube.tchncs.de%2Ftracker%2Fannounce&tr=wss%3A%2F%2Ftube.tchncs.de%2Ftracker%2Fsocket&ws=https%3A%2F%2Fmedia.tube.tchncs.de%2Fvideos%2Ff1f1aebc-a456-4ca6-b03d-7c0ff6afa3bf-480.mp4",
+      "size": 86005298,
+      "fps": 30,
+      "torrentUrl": "https://framatube.org/lazy-static/torrents/f0c9c9a5-77c6-4f51-9174-7daefd523367-480.torrent",
+      "torrentDownloadUrl": "https://framatube.org/download/torrents/f0c9c9a5-77c6-4f51-9174-7daefd523367-480.torrent",
+      "fileUrl": "https://media.tube.tchncs.de/videos/f1f1aebc-a456-4ca6-b03d-7c0ff6afa3bf-480.mp4",
+      "fileDownloadUrl": "https://tube.tchncs.de/download/web-videos/7516913d-a33b-46ca-9159-8a5523797af8-480.mp4",
+      "metadataUrl": "https://tube.tchncs.de/api/v1/videos/7516913d-a33b-46ca-9159-8a5523797af8/metadata/1550412",
+      "hasAudio": true,
+      "hasVideo": true,
+      "storage": null
+    },
+    {
+      "id": 1661093,
+      "resolution": {
+        "id": 360,
+        "label": "360p"
+      },
+      "width": 640,
+      "height": 360,
+      "magnetUri": "magnet:?xs=https%3A%2F%2Fframatube.org%2Flazy-static%2Ftorrents%2Fa1925186-2fc3-44f7-940b-5dc2751342e5-360.torrent&xt=urn:btih:98f8311e77bfef0d6c04bd685c3cdec3e3389537&dn=Spiele+von+lokalen+KIs+programmieren+lassen&tr=https%3A%2F%2Ftube.tchncs.de%2Ftracker%2Fannounce&tr=wss%3A%2F%2Ftube.tchncs.de%2Ftracker%2Fsocket&ws=https%3A%2F%2Fmedia.tube.tchncs.de%2Fvideos%2F6dfd3e11-ef71-4e6f-b885-d6a6bc3f2277-360.mp4",
+      "size": 73815863,
+      "fps": 30,
+      "torrentUrl": "https://framatube.org/lazy-static/torrents/a1925186-2fc3-44f7-940b-5dc2751342e5-360.torrent",
+      "torrentDownloadUrl": "https://framatube.org/download/torrents/a1925186-2fc3-44f7-940b-5dc2751342e5-360.torrent",
+      "fileUrl": "https://media.tube.tchncs.de/videos/6dfd3e11-ef71-4e6f-b885-d6a6bc3f2277-360.mp4",
+      "fileDownloadUrl": "https://tube.tchncs.de/download/web-videos/7516913d-a33b-46ca-9159-8a5523797af8-360.mp4",
+      "metadataUrl": "https://tube.tchncs.de/api/v1/videos/7516913d-a33b-46ca-9159-8a5523797af8/metadata/1550413",
+      "hasAudio": true,
+      "hasVideo": true,
+      "storage": null
+    },
+    {
+      "id": 1661090,
+      "resolution": {
+        "id": 0,
+        "label": "Audio only"
+      },
+      "width": 0,
+      "height": 0,
+      "magnetUri": "magnet:?xs=https%3A%2F%2Fframatube.org%2Flazy-static%2Ftorrents%2F926b838e-fd71-44ad-86bd-117b90a84d20-0.torrent&xt=urn:btih:bcc103f71a77853c83e5d824bd9556ac149ce3bf&dn=Spiele+von+lokalen+KIs+programmieren+lassen&tr=https%3A%2F%2Ftube.tchncs.de%2Ftracker%2Fannounce&tr=wss%3A%2F%2Ftube.tchncs.de%2Ftracker%2Fsocket&ws=https%3A%2F%2Fmedia.tube.tchncs.de%2Fvideos%2F2cfcfa3f-6c51-421e-837a-33e645b6bab6-0.mp4",
+      "size": 43897069,
+      "fps": 0,
+      "torrentUrl": "https://framatube.org/lazy-static/torrents/926b838e-fd71-44ad-86bd-117b90a84d20-0.torrent",
+      "torrentDownloadUrl": "https://framatube.org/download/torrents/926b838e-fd71-44ad-86bd-117b90a84d20-0.torrent",
+      "fileUrl": "https://media.tube.tchncs.de/videos/2cfcfa3f-6c51-421e-837a-33e645b6bab6-0.mp4",
+      "fileDownloadUrl": "https://tube.tchncs.de/download/web-videos/7516913d-a33b-46ca-9159-8a5523797af8-0.mp4",
+      "metadataUrl": "https://tube.tchncs.de/api/v1/videos/7516913d-a33b-46ca-9159-8a5523797af8/metadata/1550411",
+      "hasAudio": true,
+      "hasVideo": false,
+      "storage": null
+    }
+  ],
+  "liveSchedules": [],
+  "support": null,
+  "tags": [
+    "KI",
+    "Künstliche Intelligenz",
+    "Python",
+    "Spieleklassiker"
+  ],
+  "commentsPolicy": {
+    "id": 1,
+    "label": "Enabled"
+  },
+  "downloadEnabled": true,
+  "waitTranscoding": true,
+  "inputFileUpdatedAt": null,
+  "state": {
+    "id": 1,
+    "label": "Published"
+  },
+  "trackerUrls": [
+    "https://tube.tchncs.de/tracker/announce",
+    "wss://tube.tchncs.de/tracker/socket"
+  ],
+  "embedPrivacyPolicy": {
+    "id": 1,
+    "label": "All allowed"
+  }
+}

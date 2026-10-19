@@ -1,0 +1,276 @@
+{
+  "id": 70161,
+  "uuid": "d0dc4349-56a9-4388-bc76-b6b1d52efb6c",
+  "shortUUID": "rMSQhMAcPZGuZ36Anqdj2J",
+  "url": "https://framatube.org/videos/watch/d0dc4349-56a9-4388-bc76-b6b1d52efb6c",
+  "name": "PeerTube : une plateforme vidéo qui vous respecte - Booteille - JdLL2026",
+  "category": {
+    "id": 15,
+    "label": "Science & Technology"
+  },
+  "licence": {
+    "id": 2,
+    "label": "Attribution - Share Alike"
+  },
+  "language": {
+    "id": "fr",
+    "label": "French"
+  },
+  "privacy": {
+    "id": 1,
+    "label": "Public"
+  },
+  "nsfw": false,
+  "nsfwFlags": 0,
+  "nsfwSummary": null,
+  "truncatedDescription": "Nous le constatons depuis des années, YouTube s'emmerdifie de plus en plus : la plateforme nous matraque toujours plus de publicités et fait la guerre aux bloqueurs de pub, limite de plus en plus de fonctionnalités aux utilisateurices premium et p...",
+  "description": "Nous le constatons depuis des années, YouTube s'emmerdifie de plus en plus : la plateforme nous matraque toujours plus de publicités et fait la guerre aux bloqueurs de pub, limite de plus en plus de fonctionnalités aux utilisateurices premium et profite toujours de son outil d'éditorialisation algorithmique puissant pour orienter nos comportements à des fins lucratives.\r\n\r\nEt si YouTube est l'option la plus populaire pour publier et consulter des vidéos en ligne, elle n'est pas pour autant la seule !\r\n\r\nFramasoft édite depuis des années le logiciel PeerTube, qui vous permet de créer votre prop…",
+  "isLocal": true,
+  "duration": 3165,
+  "aspectRatio": 1.7778,
+  "views": 194,
+  "viewers": 0,
+  "downloads": 142,
+  "likes": 4,
+  "dislikes": 0,
+  "thumbnailPath": "/lazy-static/thumbnails/4d1e6ce9-7a41-418c-b9c3-2ab474304716.png",
+  "previewPath": "/lazy-static/thumbnails/a2f10654-5131-41b2-a290-bd57aa478ec2.png",
+  "thumbnails": [
+    {
+      "height": 1080,
+      "width": 1920,
+      "aspectRatio": "16:9",
+      "fileUrl": "https://framatube.org/lazy-static/thumbnails/a2f10654-5131-41b2-a290-bd57aa478ec2.png"
+    },
+    {
+      "height": 1400,
+      "width": 1400,
+      "aspectRatio": "1:1",
+      "fileUrl": "https://framatube.org/lazy-static/thumbnails/d4a1bba0-176b-4b83-ac5a-7a581bfe867f.png"
+    },
+    {
+      "height": 720,
+      "width": 1280,
+      "aspectRatio": "16:9",
+      "fileUrl": "https://framatube.org/lazy-static/thumbnails/f98bfbb4-ba35-4df6-8d8d-14bda905841d.png"
+    },
+    {
+      "height": 480,
+      "width": 850,
+      "aspectRatio": "16:9",
+      "fileUrl": "https://framatube.org/lazy-static/thumbnails/a475a18b-4263-4ec6-b4e4-78b28cee3081.png"
+    },
+    {
+      "height": 157,
+      "width": 280,
+      "aspectRatio": "16:9",
+      "fileUrl": "https://framatube.org/lazy-static/thumbnails/4d1e6ce9-7a41-418c-b9c3-2ab474304716.png"
+    }
+  ],
+  "embedPath": "/videos/embed/rMSQhMAcPZGuZ36Anqdj2J",
+  "createdAt": "2026-06-19T12:33:20.933Z",
+  "updatedAt": "2026-10-19T18:10:39.831Z",
+  "publishedAt": "2026-06-19T12:39:03.402Z",
+  "originallyPublishedAt": "2026-06-18T22:00:00.000Z",
+  "isLive": false,
+  "account": {
+    "url": "https://framatube.org/accounts/framasoft",
+    "name": "framasoft",
+    "host": "framatube.org",
+    "displayName": "Framasoft",
+    "id": 3,
+    "avatars": [
+      {
+        "height": 1500,
+        "width": 1500,
+        "path": "/lazy-static/avatars/5bcda318-5274-4682-9220-307f378f4382.png",
+        "fileUrl": "https://framatube.org/lazy-static/avatars/5bcda318-5274-4682-9220-307f378f4382.png",
+        "createdAt": "2026-03-11T12:30:47.185Z",
+        "updatedAt": "2026-03-11T12:30:47.185Z"
+      }
+    ]
+  },
+  "channel": {
+    "url": "https://framatube.org/video-channels/framaconf",
+    "name": "framaconf",
+    "host": "framatube.org",
+    "displayName": "FramaConf",
+    "id": 2214,
+    "avatars": [
+      {
+        "height": 1500,
+        "width": 1500,
+        "path": "/lazy-static/avatars/0e2d2893-c4b7-4a09-b8ff-e745bd8bdbf1.png",
+        "fileUrl": "https://framatube.org/lazy-static/avatars/0e2d2893-c4b7-4a09-b8ff-e745bd8bdbf1.png",
+        "createdAt": "2026-03-11T12:32:26.712Z",
+        "updatedAt": "2026-03-11T12:32:26.712Z"
+      }
+    ]
+  },
+  "comments": 0,
+  "blacklisted": false,
+  "blacklistedReason": null,
+  "streamingPlaylists": [
+    {
+      "id": 2411181,
+      "type": 1,
+      "playlistUrl": "https://framatube.org/static/streaming-playlists/hls/d0dc4349-56a9-4388-bc76-b6b1d52efb6c/eab9cc4a-bd71-468c-a2ad-4e78b5374830-master.m3u8",
+      "segmentsSha256Url": "https://framatube.org/static/streaming-playlists/hls/d0dc4349-56a9-4388-bc76-b6b1d52efb6c/3e5d15dc-ff05-4478-92fa-84a837b5f55c-segments-sha256.json",
+      "redundancies": [],
+      "files": [
+        {
+          "id": 1638779,
+          "resolution": {
+            "id": 720,
+            "label": "720p"
+          },
+          "width": 1280,
+          "height": 720,
+          "magnetUri": "magnet:?xs=https%3A%2F%2Fframatube.org%2Flazy-static%2Ftorrents%2F288a75ae-f1e5-4f65-88af-002741de441d-720-hls.torrent&xt=urn:btih:4f2350bd72cda863769a045ceaa27f16270db5fd&dn=PeerTube+%3A+une+plateforme+vid%C3%A9o+qui+vous+respecte+-+Booteille+-+JdLL2026&tr=https%3A%2F%2Fframatube.org%2Ftracker%2Fannounce&tr=wss%3A%2F%2Fframatube.org%3A443%2Ftracker%2Fsocket&ws=https%3A%2F%2Fframatube.org%2Fstatic%2Fstreaming-playlists%2Fhls%2Fd0dc4349-56a9-4388-bc76-b6b1d52efb6c%2F7f35cfe2-1b93-4ea9-b501-c745697245e1-720-fragmented.mp4",
+          "size": 206904957,
+          "fps": 25,
+          "torrentUrl": "https://framatube.org/lazy-static/torrents/288a75ae-f1e5-4f65-88af-002741de441d-720-hls.torrent",
+          "torrentDownloadUrl": "https://framatube.org/download/torrents/288a75ae-f1e5-4f65-88af-002741de441d-720-hls.torrent",
+          "fileUrl": "https://framatube.org/static/streaming-playlists/hls/d0dc4349-56a9-4388-bc76-b6b1d52efb6c/7f35cfe2-1b93-4ea9-b501-c745697245e1-720-fragmented.mp4",
+          "fileDownloadUrl": "https://framatube.org/download/streaming-playlists/hls/videos/d0dc4349-56a9-4388-bc76-b6b1d52efb6c-720-fragmented.mp4",
+          "metadataUrl": "https://framatube.org/api/v1/videos/d0dc4349-56a9-4388-bc76-b6b1d52efb6c/metadata/1638779",
+          "hasAudio": true,
+          "hasVideo": true,
+          "playlistUrl": "https://framatube.org/static/streaming-playlists/hls/d0dc4349-56a9-4388-bc76-b6b1d52efb6c/7f35cfe2-1b93-4ea9-b501-c745697245e1-720.m3u8",
+          "storage": 0
+        },
+        {
+          "id": 1638782,
+          "resolution": {
+            "id": 480,
+            "label": "480p"
+          },
+          "width": 854,
+          "height": 480,
+          "magnetUri": "magnet:?xs=https%3A%2F%2Fframatube.org%2Flazy-static%2Ftorrents%2Feb0b627a-e04a-433d-bfd8-e6433f12d62f-480-hls.torrent&xt=urn:btih:89a3fa28a87f5bf3b151b3c4717b830a814aacdf&dn=PeerTube+%3A+une+plateforme+vid%C3%A9o+qui+vous+respecte+-+Booteille+-+JdLL2026&tr=https%3A%2F%2Fframatube.org%2Ftracker%2Fannounce&tr=wss%3A%2F%2Fframatube.org%3A443%2Ftracker%2Fsocket&ws=https%3A%2F%2Fframatube.org%2Fstatic%2Fstreaming-playlists%2Fhls%2Fd0dc4349-56a9-4388-bc76-b6b1d52efb6c%2Ff93516d9-0837-481b-9278-2a4d2c8b7d83-480-fragmented.mp4",
+          "size": 135668422,
+          "fps": 25,
+          "torrentUrl": "https://framatube.org/lazy-static/torrents/eb0b627a-e04a-433d-bfd8-e6433f12d62f-480-hls.torrent",
+          "torrentDownloadUrl": "https://framatube.org/download/torrents/eb0b627a-e04a-433d-bfd8-e6433f12d62f-480-hls.torrent",
+          "fileUrl": "https://framatube.org/static/streaming-playlists/hls/d0dc4349-56a9-4388-bc76-b6b1d52efb6c/f93516d9-0837-481b-9278-2a4d2c8b7d83-480-fragmented.mp4",
+          "fileDownloadUrl": "https://framatube.org/download/streaming-playlists/hls/videos/d0dc4349-56a9-4388-bc76-b6b1d52efb6c-480-fragmented.mp4",
+          "metadataUrl": "https://framatube.org/api/v1/videos/d0dc4349-56a9-4388-bc76-b6b1d52efb6c/metadata/1638782",
+          "hasAudio": true,
+          "hasVideo": true,
+          "playlistUrl": "https://framatube.org/static/streaming-playlists/hls/d0dc4349-56a9-4388-bc76-b6b1d52efb6c/f93516d9-0837-481b-9278-2a4d2c8b7d83-480.m3u8",
+          "storage": 0
+        },
+        {
+          "id": 1638783,
+          "resolution": {
+            "id": 360,
+            "label": "360p"
+          },
+          "width": 640,
+          "height": 360,
+          "magnetUri": "magnet:?xs=https%3A%2F%2Fframatube.org%2Flazy-static%2Ftorrents%2F66c30b9f-fe2d-4f6a-9b04-8200100a0f96-360-hls.torrent&xt=urn:btih:5fc498eeeec984b0ff0938845d245005f42d6b89&dn=PeerTube+%3A+une+plateforme+vid%C3%A9o+qui+vous+respecte+-+Booteille+-+JdLL2026&tr=https%3A%2F%2Fframatube.org%2Ftracker%2Fannounce&tr=wss%3A%2F%2Fframatube.org%3A443%2Ftracker%2Fsocket&ws=https%3A%2F%2Fframatube.org%2Fstatic%2Fstreaming-playlists%2Fhls%2Fd0dc4349-56a9-4388-bc76-b6b1d52efb6c%2Fc013195b-4359-42f7-ae02-401ea563551e-360-fragmented.mp4",
+          "size": 109028765,
+          "fps": 25,
+          "torrentUrl": "https://framatube.org/lazy-static/torrents/66c30b9f-fe2d-4f6a-9b04-8200100a0f96-360-hls.torrent",
+          "torrentDownloadUrl": "https://framatube.org/download/torrents/66c30b9f-fe2d-4f6a-9b04-8200100a0f96-360-hls.torrent",
+          "fileUrl": "https://framatube.org/static/streaming-playlists/hls/d0dc4349-56a9-4388-bc76-b6b1d52efb6c/c013195b-4359-42f7-ae02-401ea563551e-360-fragmented.mp4",
+          "fileDownloadUrl": "https://framatube.org/download/streaming-playlists/hls/videos/d0dc4349-56a9-4388-bc76-b6b1d52efb6c-360-fragmented.mp4",
+          "metadataUrl": "https://framatube.org/api/v1/videos/d0dc4349-56a9-4388-bc76-b6b1d52efb6c/metadata/1638783",
+          "hasAudio": true,
+          "hasVideo": true,
+          "playlistUrl": "https://framatube.org/static/streaming-playlists/hls/d0dc4349-56a9-4388-bc76-b6b1d52efb6c/c013195b-4359-42f7-ae02-401ea563551e-360.m3u8",
+          "storage": 0
+        },
+        {
+          "id": 1638784,
+          "resolution": {
+            "id": 240,
+            "label": "240p"
+          },
+          "width": 426,
+          "height": 240,
+          "magnetUri": "magnet:?xs=https%3A%2F%2Fframatube.org%2Flazy-static%2Ftorrents%2Fe6ab8df6-10fc-44b6-928e-e50e5433f302-240-hls.torrent&xt=urn:btih:22a3be126f6a4d1ed44d7c07a3937900cabe5393&dn=PeerTube+%3A+une+plateforme+vid%C3%A9o+qui+vous+respecte+-+Booteille+-+JdLL2026&tr=https%3A%2F%2Fframatube.org%2Ftracker%2Fannounce&tr=wss%3A%2F%2Fframatube.org%3A443%2Ftracker%2Fsocket&ws=https%3A%2F%2Fframatube.org%2Fstatic%2Fstreaming-playlists%2Fhls%2Fd0dc4349-56a9-4388-bc76-b6b1d52efb6c%2F47cf7ccb-1ca2-49e9-a2ff-640296af4a8f-240-fragmented.mp4",
+          "size": 82125383,
+          "fps": 25,
+          "torrentUrl": "https://framatube.org/lazy-static/torrents/e6ab8df6-10fc-44b6-928e-e50e5433f302-240-hls.torrent",
+          "torrentDownloadUrl": "https://framatube.org/download/torrents/e6ab8df6-10fc-44b6-928e-e50e5433f302-240-hls.torrent",
+          "fileUrl": "https://framatube.org/static/streaming-playlists/hls/d0dc4349-56a9-4388-bc76-b6b1d52efb6c/47cf7ccb-1ca2-49e9-a2ff-640296af4a8f-240-fragmented.mp4",
+          "fileDownloadUrl": "https://framatube.org/download/streaming-playlists/hls/videos/d0dc4349-56a9-4388-bc76-b6b1d52efb6c-240-fragmented.mp4",
+          "metadataUrl": "https://framatube.org/api/v1/videos/d0dc4349-56a9-4388-bc76-b6b1d52efb6c/metadata/1638784",
+          "hasAudio": true,
+          "hasVideo": true,
+          "playlistUrl": "https://framatube.org/static/streaming-playlists/hls/d0dc4349-56a9-4388-bc76-b6b1d52efb6c/47cf7ccb-1ca2-49e9-a2ff-640296af4a8f-240.m3u8",
+          "storage": 0
+        },
+        {
+          "id": 1638780,
+          "resolution": {
+            "id": 0,
+            "label": "Audio only"
+          },
+          "width": 0,
+          "height": 0,
+          "magnetUri": "magnet:?xs=https%3A%2F%2Fframatube.org%2Flazy-static%2Ftorrents%2Fcb5bbfa8-3840-4527-90be-f0243d149b03-0-hls.torrent&xt=urn:btih:069c86164cd36512c2248f848157d728ac2e9b7b&dn=PeerTube+%3A+une+plateforme+vid%C3%A9o+qui+vous+respecte+-+Booteille+-+JdLL2026&tr=https%3A%2F%2Fframatube.org%2Ftracker%2Fannounce&tr=wss%3A%2F%2Fframatube.org%3A443%2Ftracker%2Fsocket&ws=https%3A%2F%2Fframatube.org%2Fstatic%2Fstreaming-playlists%2Fhls%2Fd0dc4349-56a9-4388-bc76-b6b1d52efb6c%2F0150070f-468a-4977-9ef5-01f1ec86f930-0-fragmented.mp4",
+          "size": 51424179,
+          "fps": 0,
+          "torrentUrl": "https://framatube.org/lazy-static/torrents/cb5bbfa8-3840-4527-90be-f0243d149b03-0-hls.torrent",
+          "torrentDownloadUrl": "https://framatube.org/download/torrents/cb5bbfa8-3840-4527-90be-f0243d149b03-0-hls.torrent",
+          "fileUrl": "https://framatube.org/static/streaming-playlists/hls/d0dc4349-56a9-4388-bc76-b6b1d52efb6c/0150070f-468a-4977-9ef5-01f1ec86f930-0-fragmented.mp4",
+          "fileDownloadUrl": "https://framatube.org/download/streaming-playlists/hls/videos/d0dc4349-56a9-4388-bc76-b6b1d52efb6c-0-fragmented.mp4",
+          "metadataUrl": "https://framatube.org/api/v1/videos/d0dc4349-56a9-4388-bc76-b6b1d52efb6c/metadata/1638780",
+          "hasAudio": true,
+          "hasVideo": false,
+          "playlistUrl": "https://framatube.org/static/streaming-playlists/hls/d0dc4349-56a9-4388-bc76-b6b1d52efb6c/0150070f-468a-4977-9ef5-01f1ec86f930-0.m3u8",
+          "storage": 0
+        }
+      ]
+    }
+  ],
+  "files": [
+    {
+      "id": 1638778,
+      "resolution": {
+        "id": 0,
+        "label": "Audio only"
+      },
+      "width": 0,
+      "height": 0,
+      "magnetUri": "magnet:?xs=https%3A%2F%2Fframatube.org%2Flazy-static%2Ftorrents%2Ff771a132-b00b-4ebb-8ec5-b2cd1d852c7e-0.torrent&xt=urn:btih:c58851c4b25d513bc6362de8327cea0e6dc38cce&dn=PeerTube+%3A+une+plateforme+vid%C3%A9o+qui+vous+respecte+-+Booteille+-+JdLL2026&tr=https%3A%2F%2Fframatube.org%2Ftracker%2Fannounce&tr=wss%3A%2F%2Fframatube.org%3A443%2Ftracker%2Fsocket&ws=https%3A%2F%2Fframatube.org%2Fstatic%2Fweb-videos%2F9db0adc3-158c-4b90-85d2-549c9274194a-0.mp4",
+      "size": 51144243,
+      "fps": 0,
+      "torrentUrl": "https://framatube.org/lazy-static/torrents/f771a132-b00b-4ebb-8ec5-b2cd1d852c7e-0.torrent",
+      "torrentDownloadUrl": "https://framatube.org/download/torrents/f771a132-b00b-4ebb-8ec5-b2cd1d852c7e-0.torrent",
+      "fileUrl": "https://framatube.org/static/web-videos/9db0adc3-158c-4b90-85d2-549c9274194a-0.mp4",
+      "fileDownloadUrl": "https://framatube.org/download/web-videos/d0dc4349-56a9-4388-bc76-b6b1d52efb6c-0.mp4",
+      "metadataUrl": "https://framatube.org/api/v1/videos/d0dc4349-56a9-4388-bc76-b6b1d52efb6c/metadata/1638778",
+      "hasAudio": true,
+      "hasVideo": false,
+      "storage": 0
+    }
+  ],
+  "liveSchedules": [],
+  "support": null,
+  "tags": [
+    "JdLL",
+    "JdLL2026"
+  ],
+  "commentsPolicy": {
+    "id": 1,
+    "label": "Enabled"
+  },
+  "downloadEnabled": true,
+  "waitTranscoding": false,
+  "inputFileUpdatedAt": null,
+  "state": {
+    "id": 1,
+    "label": "Published"
+  },
+  "trackerUrls": [
+    "https://framatube.org/tracker/announce",
+    "wss://framatube.org:443/tracker/socket"
+  ],
+  "embedPrivacyPolicy": {
+    "id": 1,
+    "label": "All allowed"
+  }
+}
