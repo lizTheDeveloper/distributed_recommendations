@@ -1,0 +1,9 @@
+mechanism,bits_per_preview
+exact,1.70226
+floor5,-0
+bucket,-0
+dp2,0.874054
+dp1,0.324636
+dp0.5,0.0829121
+floor5+dp1,0.0145518
+floor5+dp0.5,0.0232864

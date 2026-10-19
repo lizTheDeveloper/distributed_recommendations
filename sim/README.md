@@ -13,7 +13,7 @@ change results.
 From the repository root:
 
 ```sh
-python3 -m sim.run --all            # all five experiments, default sizes (~6-7 min total, 4 cores)
+python3 -m sim.run --all            # all five experiments, default sizes (~7.5 min total, 4 cores)
 python3 -m sim.run --exp 1 3        # selected experiments
 python3 -m sim.run --all --quick    # tiny world, smoke test (~20 s)
 python3 -m sim.run --exp 2 --seed 5 --out /tmp/simout --workers 2
@@ -30,7 +30,7 @@ Outputs (default `sim/out/`):
 | `exp5_sybil.csv`, `exp5_summary.md` | Sybil reach (T7) |
 | `ALL_SUMMARIES.md` | all summaries concatenated |
 
-Approximate runtimes on 4 cores: exp1 ~60 s, exp2 ~110 s, exp3 ~50 s, exp4 ~90 s, exp5 ~90 s.
+Reference runtimes on 4 cores: exp1 49 s, exp2 138 s, exp3 48 s, exp4 92 s, exp5 121 s.
 
 ## Tests
 
