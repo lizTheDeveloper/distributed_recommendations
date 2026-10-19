@@ -1,17 +1,26 @@
 // Smoke test for the relay's limits and write policy. Talks to a running strfry
 // (directly, without Caddy) and checks the rules in README.md "Configuration".
 //
-//   node infra/relay/test/smoke.mjs ws://127.0.0.1:7777 <node_modules dir with nostr-tools and ws>
+//   node infra/relay/test/smoke.mjs ws://127.0.0.1:7777 packages/match/node_modules,apps/web/node_modules
+//
+// The second argument lists node_modules directories to load nostr-tools and ws from
+// (comma separated): the repo's own pinned copies, so this script adds no dependency.
 //
 // Run the relay with POLICY_BURST=5 POLICY_RATE=1 so the rate-limit case triggers.
 // Uses throwaway keys and a local relay only; never point this at a public relay.
 
 import { createRequire } from "node:module";
-import { join } from "node:path";
+import { resolve } from "node:path";
 import { randomBytes } from "node:crypto";
 
-const [url = "ws://127.0.0.1:7777", modules = "packages/match/node_modules"] = process.argv.slice(2);
-const req = createRequire(join(process.cwd(), modules, "x.js"));
+const [url = "ws://127.0.0.1:7777", modules = "packages/match/node_modules,apps/web/node_modules"] = process.argv.slice(2);
+const requires = modules.split(",").map((d) => createRequire(resolve(d, "..", "noop.js")));
+const req = (name) => {
+  for (const r of requires) {
+    try { return r(name); } catch (e) { if (e.code !== "MODULE_NOT_FOUND") throw e; }
+  }
+  throw new Error(`${name} not found in ${modules}`);
+};
 const { generateSecretKey, finalizeEvent, getPublicKey } = req("nostr-tools/pure");
 const WebSocket = req("ws");
 

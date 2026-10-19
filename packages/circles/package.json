@@ -1,0 +1,30 @@
+{
+  "name": "@match-feed/circles",
+  "version": "0.1.0",
+  "description": "PROTOTYPE Circles for Match Feed: group taste pooling over MLS (Marmot), pairwise-masked secure aggregation with distributed DP noise, and core's circle output policy. Not audited; not for production.",
+  "license": "Apache-2.0",
+  "type": "module",
+  "private": true,
+  "engines": {
+    "node": ">=22.6"
+  },
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "test": "node --experimental-strip-types --disable-warning=ExperimentalWarning --test --test-reporter=spec test/*.test.ts",
+    "typecheck": "tsc -p ."
+  },
+  "dependencies": {
+    "@internet-privacy/marmot-ts": "0.5.1",
+    "@noble/ciphers": "2.1.1",
+    "@noble/curves": "2.0.1",
+    "@noble/hashes": "2.0.1",
+    "nostr-tools": "2.25.2",
+    "ts-mls": "2.0.0-rc.10"
+  },
+  "devDependencies": {
+    "@types/node": "22.20.5",
+    "typescript": "5.9.3"
+  }
+}

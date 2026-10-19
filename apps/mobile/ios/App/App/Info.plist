@@ -49,7 +49,35 @@
 	<string>Main</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
-		<string>armv7</string>
+		<string>arm64</string>
+	</array>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLName</key>
+			<string>nostr</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>nostr</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleURLName</key>
+			<string>app-share-handoff</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>memevideo</string>
+			</array>
+		</dict>
+	</array>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>fetch</string>
+		<string>processing</string>
+	</array>
+	<key>BGTaskSchedulerPermittedIdentifiers</key>
+	<array>
+		<string>com.transistorsoft.fetch</string>
 	</array>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>

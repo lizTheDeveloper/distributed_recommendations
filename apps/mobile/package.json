@@ -16,7 +16,8 @@
     "sync": "npm run -s prepare-www && cap sync",
     "android:debug": "npm run -s sync && node scripts/android-debug.mjs",
     "ios:open": "npm run -s sync && cap open ios",
-    "test": "node --experimental-strip-types --disable-warning=ExperimentalWarning --test test/*.test.ts"
+    "test": "node --experimental-strip-types --disable-warning=ExperimentalWarning --test test/*.test.ts",
+    "apply-brand": "node scripts/apply-brand.mjs"
   },
   "dependencies": {
     "@aparajita/capacitor-secure-storage": "8.0.1",

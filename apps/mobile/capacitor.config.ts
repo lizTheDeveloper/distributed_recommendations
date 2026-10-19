@@ -45,6 +45,10 @@ const config: CapacitorConfig = {
     // CORS and the page CSP's connect-src.
     CapacitorHttp: { enabled: false },
     CapacitorCookies: { enabled: false },
+    // iOS share extension hands shares over through this App Group (ios-share-extension/).
+    CapacitorShareTarget: {
+      appGroupId: `group.${brand.appId}`,
+    },
     LocalNotifications: {
       smallIcon: "ic_stat_notify",
       iconColor: "#7046c9",

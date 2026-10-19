@@ -1,0 +1,27 @@
+{
+  "name": "@match-feed/desktop",
+  "version": "0.1.0",
+  "description": "Desktop shell (Tauri v2) around the Match Feed web client, shipped as Meme Video.",
+  "license": "Apache-2.0",
+  "type": "module",
+  "private": true,
+  "engines": {
+    "node": ">=22.6"
+  },
+  "scripts": {
+    "prepare-www": "node scripts/sync-web.mjs",
+    "typecheck": "tsc -p tsconfig.json",
+    "check": "npm run -s prepare-www && cd src-tauri && cargo check --locked",
+    "build": "npm run -s prepare-www && tauri build",
+    "build:debug": "npm run -s prepare-www && tauri build --debug",
+    "dev": "npm run -s prepare-www && tauri dev"
+  },
+  "dependencies": {
+    "@tauri-apps/api": "2.12.1"
+  },
+  "devDependencies": {
+    "@tauri-apps/cli": "2.12.1",
+    "esbuild": "0.28.2",
+    "typescript": "5.9.3"
+  }
+}

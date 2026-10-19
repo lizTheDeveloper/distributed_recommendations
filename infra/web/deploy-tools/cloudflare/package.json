@@ -1,0 +1,10 @@
+{
+  "name": "web-deploy-tools-cloudflare",
+  "private": true,
+  "description": "Pinned wrangler used by .github/workflows/deploy-web.yml to upload dist/ to Cloudflare Pages.",
+  "license": "Apache-2.0",
+  "engines": { "node": ">=22.6" },
+  "devDependencies": {
+    "wrangler": "4.147.0"
+  }
+}

@@ -1,0 +1,43 @@
+[package]
+name = "meme-video-desktop"
+version = "0.1.0"
+description = "Desktop shell (Tauri v2) for the Match Feed web client"
+license = "Apache-2.0"
+edition = "2021"
+rust-version = "1.85"
+publish = false
+
+[lib]
+name = "app_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+# All direct dependencies are pinned exactly (=x.y.z, each published at least two weeks before
+# 2026-10-19); Cargo.lock pins the rest. Build with --locked.
+[build-dependencies]
+tauri-build = { version = "=2.7.1", default-features = false, features = [] }
+
+[dependencies]
+# No plugins: no shell, no opener, no fs, no updater, no http. Default features minus
+# "compression" is unnecessary; keep defaults (wry webview, compression of embedded assets).
+tauri = { version = "=2.12.1", features = [] }
+serde = { version = "=1.0.229", features = ["derive"] }
+# OS keychain: keyring-core with the platform-native stores from the keyring-rs maintainers
+# (open-source-cooperative/keyring-rs). See README.md for why not a Tauri keychain plugin.
+keyring-core = "=1.0.0"
+
+[target.'cfg(target_os = "macos")'.dependencies]
+apple-native-keyring-store = "=1.0.2"
+
+[target.'cfg(target_os = "windows")'.dependencies]
+windows-native-keyring-store = "=1.1.0"
+
+[target.'cfg(target_os = "linux")'.dependencies]
+# Secret Service (GNOME Keyring, KWallet) over a pure-Rust D-Bus client: no libdbus at build time.
+zbus-secret-service-keyring-store = { version = "=1.0.1", default-features = false, features = ["rt-tokio-crypto-rust"] }
+
+[profile.release]
+codegen-units = 1
+lto = true
+opt-level = "s"
+panic = "abort"
+strip = true

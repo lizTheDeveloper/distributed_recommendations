@@ -6,6 +6,7 @@
 // Nothing here signs or sends.
 
 import type { EventTemplate, NostrEvent } from './types.ts';
+import type { Label } from './labels.ts';
 import { HEX64, cleanDisplay } from './text.ts';
 
 export const KIND_REPORT = 1984;
@@ -126,6 +127,48 @@ export function parseReport(e: NostrEvent): ParsedReport[] {
       const type = (REPORT_TYPES as readonly string[]).includes(t[2]) ? (t[2] as ReportType) : 'other';
       out.push({ id: e.id, reporter: e.pubkey, createdAt: e.created_at, type, target: `${t[0]}:${t[1]}`, pubkey: p });
     }
+  }
+  return out;
+}
+
+/**
+ * NIP-56 "Client behavior": "if 3+ of your friends report a profile for `nudity`,
+ * clients can have an option to automatically blur". Turns verified reports by
+ * `trusted` pubkeys into synthetic labels (namespace `nip56`) once `threshold`
+ * distinct reporters agree on a target and type. Reports never hide on their own
+ * (see `DEFAULT_LABEL_RULES`), because they are easy to game.
+ */
+export function labelsFromReports(
+  events: readonly NostrEvent[],
+  opts: { trusted: readonly string[]; threshold: number; verify: (e: NostrEvent) => boolean },
+): Label[] {
+  if (opts.threshold < 1) return [];
+  const trusted = new Set(opts.trusted);
+  const groups = new Map<string, { reporters: Set<string>; latest: number; target: string; type: ReportType }>();
+  const seen = new Set<string>();
+  for (const e of events) {
+    if (!e || seen.has(e.id) || !trusted.has(e.pubkey) || e.kind !== KIND_REPORT || !opts.verify(e)) continue;
+    seen.add(e.id);
+    for (const r of parseReport(e)) {
+      const k = `${r.target}|${r.type}`;
+      const g = groups.get(k) ?? { reporters: new Set<string>(), latest: 0, target: r.target, type: r.type };
+      g.reporters.add(r.reporter);
+      g.latest = Math.max(g.latest, r.createdAt);
+      groups.set(k, g);
+    }
+  }
+  const out: Label[] = [];
+  for (const g of groups.values()) {
+    if (g.reporters.size < opts.threshold) continue;
+    out.push({
+      id: `reports:${g.target}:${g.type}`,
+      labeler: 'reports',
+      namespace: 'nip56',
+      value: g.type,
+      targets: [g.target],
+      createdAt: g.latest,
+      reason: `${g.reporters.size} people you trust reported this`,
+    });
   }
   return out;
 }

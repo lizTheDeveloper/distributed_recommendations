@@ -77,9 +77,9 @@ BEGIN {
 
   if (kind == 1059) {
     if (!match($0, /\["expiration","[0-9]+"/)) { respond(id, "reject", "invalid: gift wraps need a NIP-40 expiration tag"); next }
-    exp = substr($0, RSTART + 15, RLENGTH - 16) + 0
-    if (exp <= t) { respond(id, "reject", "invalid: event has expired"); next }
-    if (exp - t > GWTTL) { respond(id, "reject", "invalid: gift wrap expiration too far in the future"); next }
+    expAt = substr($0, RSTART + 15, RLENGTH - 16) + 0
+    if (expAt <= t) { respond(id, "reject", "invalid: event has expired"); next }
+    if (expAt - t > GWTTL) { respond(id, "reject", "invalid: gift wrap expiration too far in the future"); next }
   }
 
   respond(id, "accept", "")

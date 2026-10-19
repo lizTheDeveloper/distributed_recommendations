@@ -1,0 +1,11 @@
+{
+  "name": "web-deploy-tools-ipfs",
+  "private": true,
+  "description": "Pinned CLIs used by .github/workflows/deploy-web.yml: ipfs-car packs dist/ into a CAR, the Storacha CLI uploads it.",
+  "license": "Apache-2.0",
+  "engines": { "node": ">=22.6" },
+  "devDependencies": {
+    "@storacha/cli": "3.0.1",
+    "ipfs-car": "3.1.0"
+  }
+}

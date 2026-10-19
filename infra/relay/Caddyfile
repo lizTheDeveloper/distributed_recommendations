@@ -4,7 +4,6 @@
 # Log policy: no access log (there is no `log` directive in the site block), and
 # the process log below runs at WARN with every client-identifying field removed,
 # so no client IP or User-Agent is written even when an error is logged.
-
 {
 	email {$ACME_EMAIL}
 	# The admin API is not needed in a container; reload by restarting.
@@ -27,11 +26,6 @@
 				client_ip delete
 			}
 		}
-	}
-
-	servers {
-		# Caddy is the edge: trust nobody else's X-Forwarded-For.
-		client_ip_headers X-Real-IP
 	}
 }
 
