@@ -170,6 +170,49 @@ test("validation rejects expired, future, oversized and malformed sketches", () 
   assert.throws(() => decodeSketch("x".repeat(sketchTargetBytes(256) + 1), { now: NOW }), /bytes/);
 });
 
+test("video ids: only canonical-looking http(s) URLs, never ones JSON must escape", () => {
+  const bad = [
+    'https://tube.example/videos/watch/"quoted"',
+    "https://tube.example/videos/watch/back\\slash",
+    "https://tube.example/videos/watch/a\u0000b",
+    "https://tube.example/videos/watch/a\u001fb",
+    "https://tube.example/videos/watch/a\u007fb",
+    "https://tube.example/videos/watch/a\u0085b",
+    "https://tube.example/videos/watch/a\u2028b",
+    "https://tube.example/videos/watch/é",
+    "https://tube.example/videos/watch/<x>",
+    "https://tube.example/videos/watch/a b",
+    "https://tube.example/videos/watch/a\tb",
+    "https:///videos/watch/1",
+    "https://?q=1",
+    "ftp://tube.example/1",
+    "javascript:alert(1)",
+  ];
+  const good = [id(1), "http://[2001:db8::1]:9000/w/abc?start=10#t", "https://tube.example/w/a%22b~c'd|e^f`g{h}"];
+  const at = new Date(NOW.getTime() - HOUR);
+  const h = [...bad, ...good].map((videoId) => ({ videoId, at, kind: "endorse" as const }));
+  assert.deepEqual(new Set(selectSketchItems(h, consent(), NOW, utcHour)), new Set(good));
+  const { sketch } = buildSketch(h, consent(), { epoch: 0 }, opts());
+  assert.deepEqual(sketchItems(sketch), new Set(good));
+  // Every item encodes without JSON escapes, so the sketch is exactly its bucket size.
+  for (const x of sketch.items) assert.equal(JSON.stringify(x).length, x.length + 2);
+  assert.equal(bytes(encodeSketch(sketch)), sketchTargetBytes(sketch.items.length));
+  // validateSketch refuses the same ids on the receiving side; padding nonces stay valid.
+  const realAt = sketch.items.findIndex((x) => !isPaddingItem(x));
+  for (const b of bad) {
+    const s = structuredClone(sketch);
+    s.items[realAt] = b;
+    assert.throws(() => validateSketch(s, { now: NOW }), ValidationError, JSON.stringify(b));
+  }
+  assert.ok(sketch.items.some(isPaddingItem));
+  assert.ok(validateSketch(sketch, { now: NOW }));
+  // A quiet pause re-checks ids carried over from a sketch built under an older rule.
+  const old = structuredClone(sketch);
+  old.items[realAt] = bad[0];
+  const paused = buildSketch([], consent({ paused: true }), { epoch: 1, lastSent: old }, opts(2));
+  assert.equal(sketchItems(paused.sketch).has(bad[0]), false);
+});
+
 test("buckets are the documented sizes", () => {
   assert.deepEqual([...SKETCH_BUCKETS], [64, 128, 256]);
 });

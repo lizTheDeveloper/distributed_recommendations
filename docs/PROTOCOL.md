@@ -115,7 +115,7 @@ What one match sends the other: video ids from the sender's local history, filte
 | `epoch` | integer ≥ 1, strictly increasing per sender and match |
 | `issuedAt`, `expiresAt` | Unix seconds; `0 < expiresAt − issuedAt ≤ 30 days` (default 14) |
 | `nonce` | 32 random bytes, lowercase hex |
-| `items` | length is exactly **64 or 128** over NIP-17, or **64, 128 or 256** over MLS (the bucket); unique; each is a real id (`http(s)://…`, ≤ 512 chars) or a padding nonce |
+| `items` | length is exactly **64 or 128** over NIP-17, or **64, 128 or 256** over MLS (the bucket); unique; each is a real id or a padding nonce. A real id is an `http(s)://` URL with a host, ≤ 512 chars, of printable ASCII only, with no `"`, `\`, `<`, `>`, spaces or control characters (what a URL serializer prints: these are percent-encoded, non-ASCII hosts are punycoded). So ids never need JSON escapes. `selectSketchItems` skips other ids and `validateSketch` rejects them |
 | `padding` | lowercase hex; sized so the encoded sketch is exactly the bucket's byte size |
 
 The encoding is `JSON.stringify` with keys in the order above (`encodeSketch`).
@@ -338,7 +338,7 @@ Rule: seal with my match key once I've announced it; send to the peer's match ke
 | preview-request | `previewId` | only while the match is pending; checked with core `requestPreview` on the target |
 | preview-response | `previewId`, `accept`, `psiRequest` | `psiRequest`: base64 PSI request when `accept`, `""` when not. A spent target budget is sent as `accept: false` |
 | preview-answer | `previewId`, `setSize`, `psiSetup`, `psiResponse` | base64; `setSize` = requester's real item count (self-reported, hygiene only) |
-| preview-result | `previewId`, `floor`, `belowFloor`, `value` | `floor` 5–100. `value` is `null` when `belowFloor`, else an integer ≥ `floor`. It is the **noised** count (`noisyPreviewCardinality`); the exact count is never sent |
+| preview-result | `previewId`, `floor`, `belowFloor`, `value` | `floor` 5–100. `value` is `null` when `belowFloor`, else an integer ≥ `floor`. It is the **noised** count (`noisyPreviewCardinality`); the exact count is never sent. The requester shows it with core `previewDisplay` |
 | renew | `renewId`, `role`, `matchKey`, `expiresAt` | `role` is `propose` or `accept`. A proposal's `expiresAt` ≤ `issuedAt` + 90 days. An accept echoes the proposal's `renewId` and `expiresAt`. `matchKey` is the sender's *next* key. If both sides propose at once, the smaller `renewId` wins |
 | revoke | — | ends the match or withdraws a request; carries no reason |
 

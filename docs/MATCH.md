@@ -29,7 +29,7 @@ States per match: `requested` (A), `incoming` (B), `active`, then one of `declin
 ### Previews (THREAT_MODEL T2; SIMULATION_RESULTS Exp 4)
 
 - A preview is optional and happens while the match is pending.
-- **The target runs PSI as the party that learns |A ∩ B|** (PSI client). It noises the count on its own device with core `noisyPreviewCardinality` (discrete Laplace, ε = 0.5, floor 5) and sends only `{floor, belowFloor, value}`. The requester (PSI server) never sees the exact count.
+- **The target runs PSI as the party that learns |A ∩ B|** (PSI client). It noises the count on its own device with core `noisyPreviewCardinality` (discrete Laplace, ε = 0.5, floor 5) and sends only `{floor, belowFloor, value}`. The requester (PSI server) never sees the exact count; it turns the received value into a bucket and label with core `previewDisplay` (same thresholds).
 - The noising happens inside the state transition (`completeTargetPreview(trueCount, rng)`), so the exact count can't reach the outbox by mistake.
 - **Acceptance is the target user's explicit act.**
   - Core `respondToPreview` enforces the budget: **≤ 8 accepted previews per rolling 365 days, from all requesters together**, counted in the target's own `MatchBook.previews`.
@@ -90,7 +90,7 @@ States per match: `requested` (A), `incoming` (B), `active`, then one of `declin
 - Every wrap expires 14 days after it's sent (a sketch's own `expiresAt` defaults to 14 days too), so the expiration doesn't reveal the type either.
 - **The 64 KiB check.** The 128-bucket NIP-17 sketch wraps to 33,305 bytes when ids are ordinary URLs.
   - Ids containing `"`, `\` or control characters get JSON-escaped twice (once in the sketch, once in the rumor). With enough of them a 128-bucket wrap would pass 64 KiB.
-  - `buildMatchSketch` drops such ids; canonical URLs never contain them. `giftWrap` refuses anything over 65,536 bytes as a backstop.
+  - Core's sketch id rule (`sketch.ts`: `selectSketchItems`, `validateSketch`, and the quiet-pause re-send) refuses such ids, so `buildSketch` never emits them; canonical URLs never contain them. `giftWrap` refuses anything over 65,536 bytes as a backstop.
   - Tests cover both.
 - **Still visible to relays:**
   - a target's identity receives a few first-contact wraps;
@@ -129,6 +129,3 @@ Rumor kinds **3470–3478**: match-request, match-accept, preview-request, previ
 - Cover traffic for handshakes: their timing is user-driven.
 - The second-degree relay list inside the sketch channel (PROTOCOL.md §5) isn't specified yet.
 - Interop vectors: add tests against paulmillr/nip44 vectors (OSS_STACK §4).
-- **Core changes requested** (core was not edited):
-  1. Export a helper that maps a received noised value and floor to `{bucket, label}`, e.g. `previewDisplay(belowFloor, value, floor)`. `packages/match` mirrors `noisyPreviewCardinality`'s thresholds (`previewDisplay` in `state.ts`), and a test pins the two together.
-  2. Tighten `VIDEO_ID` in `sketch.ts` (`selectSketchItems` and `validateSketch`) to refuse `"`, `\` and C0/C1 control characters. The 64 KiB bound for 128-bucket NIP-17 wraps relies on ids not needing JSON escapes. Today `packages/match` filters them before calling `buildSketch`.

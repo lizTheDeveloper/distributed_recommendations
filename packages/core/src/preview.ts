@@ -147,10 +147,33 @@ export function noisyPreviewCardinality(
   if (!Number.isInteger(trueCount) || trueCount < 0) throw new RangeError("trueCount must be a non-negative integer");
   const floor = p.floor!;
   const noised = trueCount + discreteLaplace(p.epsilon!, rng);
-  if (noised < floor) return { belowFloor: true, bucket: "fewer-than-floor", label: `<${floor}` };
-  const bucket: PreviewBucket = noised < Math.max(10, floor + 1) ? "a-few" : noised < 20 ? "some" : "a-lot";
+  return previewDisplay(noised < floor, noised < floor ? null : noised, floor);
+}
+
+/**
+ * Bucket and label for a preview value as the requester receives it: the target's
+ * `belowFloor` flag, the noised value (null below the floor) and the target's floor.
+ * Uses the same thresholds as `noisyPreviewCardinality` (which calls it), so the
+ * requester's display can't drift from the target's. It adds no noise: pass only a
+ * value that `noisyPreviewCardinality` produced. A value below `floor` is shown as
+ * below the floor. Throws `RangeError` on a floor below `PREVIEW_PRIVACY.minFloor`
+ * or a value that is not a non-negative integer.
+ */
+export function previewDisplay(
+  belowFloor: boolean,
+  value: number | null | undefined,
+  floor: number = PREVIEW_PRIVACY.minFloor,
+): NoisyCardinality {
+  if (!Number.isInteger(floor) || floor < PREVIEW_PRIVACY.minFloor) {
+    throw new RangeError(`floor must be an integer >= ${PREVIEW_PRIVACY.minFloor}`);
+  }
+  if (belowFloor || value === null || value === undefined || value < floor) {
+    return { belowFloor: true, bucket: "fewer-than-floor", label: `<${floor}` };
+  }
+  if (!Number.isInteger(value)) throw new RangeError("value must be an integer");
+  const bucket: PreviewBucket = value < Math.max(10, floor + 1) ? "a-few" : value < 20 ? "some" : "a-lot";
   const label = bucket === "a-few" ? "a few in common" : bucket === "some" ? "some in common" : "a lot in common";
-  return { belowFloor: false, value: noised, bucket, label };
+  return { belowFloor: false, value, bucket, label };
 }
 
 export type PreviewStatus = "pending" | "accepted" | "declined" | "done";

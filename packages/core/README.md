@@ -30,8 +30,8 @@ threats: `docs/THREAT_MODEL.md`, wire formats: `docs/PROTOCOL.md`.
 | Taste lists | weight 0.9 (0.15 × match), **≤ 2 items per list per page** (`maxPerTasteList`), strength from track record (`tasteListStrength`) | `DEFAULT_RECIPE`, `rank` |
 | Second degree | decay 0.3, 2 hops, per-node cap 0.05 of your trust mass, row-normalized; recipe weight = match weight (decay applied once, in the walk) | `TRUST_WALK_DEFAULTS` |
 | Circles | k ≥ 8 (recommended 12–30); threshold 3 for k ≤ 15, 4 above, derived when absent; ε = 1 per item per epoch; sticky noise; epoch freeze; **picks only, never counts** | `DEFAULT_CIRCLE_POLICY`, `releaseCircleEpoch` |
-| Previews | noised cardinality (discrete Laplace ε = 0.5, floor 5 → "<5"), **≤ 8 accepted previews per target per year**, enforced on the target's device. `minSetSize` (20) is hygiene, not a defense | `DEFAULT_PREVIEW_POLICY`, `noisyPreviewCardinality` |
-| Sketches | NIP-17 capped at the 128 bucket; 256 only over MLS | `buildSketch({transport})` |
+| Previews | noised cardinality (discrete Laplace ε = 0.5, floor 5 → "<5"), **≤ 8 accepted previews per target per year**, enforced on the target's device. `minSetSize` (20) is hygiene, not a defense | `DEFAULT_PREVIEW_POLICY`, `noisyPreviewCardinality`; the requester displays a received value with `previewDisplay` (same buckets) |
+| Sketches | NIP-17 capped at the 128 bucket; 256 only over MLS. Items are canonical http(s) URLs in printable ASCII: ids with `"`, `\`, `<`, `>`, spaces, control or non-ASCII characters are skipped on build and rejected on validate | `buildSketch({transport})`, `validateSketch` |
 
 ```ts
 import { DEFAULT_RECIPE, rank, seededRng, tagProfile, tagRelevance } from "@match-feed/core";

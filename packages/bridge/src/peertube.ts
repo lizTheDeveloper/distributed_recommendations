@@ -7,6 +7,20 @@ import type { PtCaption, PtChapter, PtPage, PtVideo } from './types.ts';
 
 export type FetchLike = (url: string, init?: RequestInit) => Promise<Response>;
 
+/** Non-2xx answer from PeerTube. `fromPeerTube` is true when the body is JSON
+ * (PeerTube answers errors with application/problem+json), so an HTML error
+ * page from a proxy or WAF is not mistaken for "video gone". */
+export class PeerTubeHttpError extends Error {
+  readonly status: number;
+  readonly fromPeerTube: boolean;
+  constructor(status: number, url: string, fromPeerTube: boolean) {
+    super(`PeerTube ${status} for ${url}`);
+    this.name = 'PeerTubeHttpError';
+    this.status = status;
+    this.fromPeerTube = fromPeerTube;
+  }
+}
+
 export interface PeerTubeClientOptions {
   fetch?: FetchLike;
   minIntervalMs?: number;
@@ -52,7 +66,10 @@ export class PeerTubeClient {
     const res = await this.fetchImpl(url.href, {
       headers: { accept: 'application/json', 'user-agent': this.userAgent },
     });
-    if (!res.ok) throw new Error(`PeerTube ${res.status} for ${url.href}`);
+    if (!res.ok) {
+      const ct = res.headers.get('content-type') ?? '';
+      throw new PeerTubeHttpError(res.status, url.href, /^application\/(problem\+)?json\b/i.test(ct));
+    }
     return (await res.json()) as T;
   }
 

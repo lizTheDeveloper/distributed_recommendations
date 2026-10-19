@@ -85,6 +85,7 @@ export {
   noisyPreviewCardinality,
   parsePreviewPolicy,
   previewBudgetRemaining,
+  previewDisplay,
   prunePreviews,
   requestPreview,
   respondToPreview,

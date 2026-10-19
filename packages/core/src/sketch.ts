@@ -100,7 +100,15 @@ export const SKETCH_LIMITS = {
 } as const;
 
 const PADDING_ITEM = /^[0-9a-f]{64}$/;
-const VIDEO_ID = /^https?:\/\/[^\s]+$/;
+/**
+ * A real video id: an absolute http(s) URL as a URL serializer would print it.
+ * Printable ASCII only, with a non-empty authority, and never `"`, `\`, `<`, `>`,
+ * spaces or control characters. Canonical (WHATWG-serialized) URLs never contain
+ * these: they are percent-encoded, and non-ASCII hosts are punycoded. Refusing them
+ * keeps every id free of JSON escapes, so an item's encoded size equals its length
+ * (the 64 KiB bound for 128-bucket NIP-17 gift wraps relies on this).
+ */
+const VIDEO_ID = /^https?:\/\/(?![/?#])[\x21\x23-\x3b\x3d\x3f-\x5b\x5d-\x7e]+$/;
 const HEX = /^[0-9a-f]*$/;
 const KEYS = ["v", "epoch", "issuedAt", "expiresAt", "nonce", "items", "padding"] as const;
 
@@ -224,7 +232,10 @@ export function buildSketch(
   let real: string[];
   if (consent.paused) {
     const excluded = new Set(consent.excludedVideos ?? []);
-    real = state.lastSent ? [...sketchItems(state.lastSent)].filter((id) => !excluded.has(id)) : [];
+    // Re-check ids too: `lastSent` may predate the current VIDEO_ID rule.
+    real = state.lastSent
+      ? [...sketchItems(state.lastSent)].filter((id) => !excluded.has(id) && VIDEO_ID.test(id))
+      : [];
   } else {
     real = selectSketchItems(history, consent, opts.now, opts.hourOf);
   }

@@ -2,7 +2,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { finalizeEvent, generateSecretKey, getEventHash, getPublicKey } from 'nostr-tools/pure';
 import * as nip44 from 'nostr-tools/nip44';
-import { buildSketch, encodeSketch, seededRng } from '../src/core.ts';
+import { buildSketch, encodeSketch, isPaddingItem, seededRng, sketchItems, sketchTargetBytes } from '../src/core.ts';
 import type { SignedEvent } from '../src/keys.ts';
 import { generateMatchKey, localSigner, matchKeySigner } from '../src/keys.ts';
 import { MATCH_KINDS } from '../src/kinds.ts';
@@ -19,18 +19,31 @@ function revoke(): string {
   return encodeControl('revoke', { v: 1, matchId: HEX, issuedAt: nowSec });
 }
 
+const CONSENT = { windowDays: 60, includeFinished: false, excludedTags: [], excludedHours: [], paused: false };
+const quoted = (n: number) => `https://x/${'"'.repeat(50)}${n}`;
+
 /** A 128-bucket sketch whose items are as long as the bucket allows (worst realistic case). */
 function fullSketch(pathological = false): string {
   const long = (n: number) =>
-    pathological
-      ? `https://x/${'"'.repeat(50)}${n}`
-      : `https://peertube.example.org/videos/watch/${String(n).padStart(8, '0')}-aaaa-4bbb-8ccc-${'d'.repeat(12)}?start=${n}&x=${'y'.repeat(20)}`;
+    `https://peertube.example.org/videos/watch/${String(n).padStart(8, '0')}-aaaa-4bbb-8ccc-${'d'.repeat(12)}?start=${n}&x=${'y'.repeat(20)}`;
   const hist = range(0, 200).map((n, i) => ({ videoId: long(n), at: new Date(T0.getTime() - (i + 1) * 60_000), kind: 'endorse' as const, tags: [] }));
-  const consent = { windowDays: 60, includeFinished: false, excludedTags: [], excludedHours: [], paused: false };
-  const { sketch } = buildSketch(hist, consent, { epoch: 0 }, { now: T0, rng: seededRng(1), transport: 'nip17' });
+  const { sketch } = buildSketch(hist, CONSENT, { epoch: 0 }, { now: T0, rng: seededRng(1), transport: 'nip17' });
   assert.equal(sketch.items.length, 128);
-  return encodeSketch(sketch);
+  if (!pathological) return encodeSketch(sketch);
+  // Core refuses ids that JSON must escape, so hand-build what a non-core sender could
+  // put on the wire: the same bucket, with every item full of `"` and the padding refit.
+  const bad = { ...sketch, items: sketch.items.map((_, n) => quoted(n)), padding: '' };
+  const room = sketchTargetBytes(128) - new TextEncoder().encode(encodeSketch(bad)).length;
+  assert.ok(room >= 0);
+  return encodeSketch({ ...bad, padding: 'a'.repeat(room) });
 }
+
+test('core never puts ids that JSON must escape into a sketch', () => {
+  const hist = range(0, 200).map((n, i) => ({ videoId: quoted(n), at: new Date(T0.getTime() - (i + 1) * 60_000), kind: 'endorse' as const, tags: [] }));
+  const { sketch } = buildSketch(hist, CONSENT, { epoch: 0 }, { now: T0, rng: seededRng(1), transport: 'nip17' });
+  assert.equal(sketchItems(sketch).size, 0);
+  assert.ok(sketch.items.every(isPaddingItem));
+});
 
 test('gift wrap round trip: seal key, recipient, kind and content survive', async () => {
   const sender = generateMatchKey();
@@ -83,7 +96,7 @@ test('control messages and 64-bucket sketches wrap to the same size; 128 is the 
 });
 
 test('a sketch that would exceed 64 KiB after escaping is refused before publishing; relays reject oversize events', async () => {
-  const content = fullSketch(true); // URLs full of `"`, which JSON-escaping doubles
+  const content = fullSketch(true); // URLs full of `"`, which JSON-escaping doubles at each layer
   await assert.rejects(
     giftWrap({ kind: MATCH_KINDS.sketch, content, sender: matchKeySigner(generateMatchKey()), recipient: generateMatchKey().pubkey, now: T0, expiration: exp }),
     RangeError,

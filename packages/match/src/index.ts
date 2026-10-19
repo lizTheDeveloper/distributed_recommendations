@@ -37,7 +37,6 @@ export {
   dueSketches,
   inboxKeys,
   previewBudget,
-  previewDisplay,
   proposeRenew,
   receiveMessage,
   requestMatch,

@@ -28,7 +28,7 @@ import type { MatchKeyPair } from './keys.ts';
 import type { ControlKindName, ControlMessages } from './messages.ts';
 import { MESSAGE_LIMITS, controlKind, decodeControl, encodeControl } from './messages.ts';
 import { MATCH_KINDS, matchKindName } from './kinds.ts';
-import type { NoisyCardinality, PreviewBucket, PreviewPolicy, PreviewState, Rng, SketchConsent, SketchState, TasteSketch, HistoryEntry } from './core.ts';
+import type { NoisyCardinality, PreviewPolicy, PreviewState, Rng, SketchConsent, SketchState, TasteSketch, HistoryEntry } from './core.ts';
 import {
   DEFAULT_PREVIEW_POLICY,
   ValidationError,
@@ -39,6 +39,7 @@ import {
   noisyPreviewCardinality,
   parsePreviewPolicy,
   previewBudgetRemaining,
+  previewDisplay,
   prunePreviews,
   requestPreview,
   respondToPreview,
@@ -190,8 +191,6 @@ export interface IncomingMessage {
 }
 
 const HEX64 = /^[0-9a-f]{64}$/;
-/** No `"`, `\\`, whitespace or control characters (RFC 3986 URLs never need them raw). */
-const WIRE_SAFE_ID = /^https?:\/\/[^\s"\\\u0000-\u001f\u007f-\u009f]+$/;
 
 function sec(d: Date): number {
   return Math.floor(d.getTime() / 1000);
@@ -552,17 +551,6 @@ export function completeTargetPreview(book: MatchBook, matchId: string, opts: { 
   return ok(withRecord(book, next), [msg]);
 }
 
-/**
- * Bucket and label for a received noised value. Mirrors core
- * `noisyPreviewCardinality`'s thresholds (core has no exported helper for this).
- */
-export function previewDisplay(belowFloor: boolean, value: number | null, floor: number): NoisyCardinality {
-  if (belowFloor || value === null) return { belowFloor: true, bucket: 'fewer-than-floor', label: `<${floor}` };
-  const bucket: PreviewBucket = value < Math.max(10, floor + 1) ? 'a-few' : value < 20 ? 'some' : 'a-lot';
-  const label = bucket === 'a-few' ? 'a few in common' : bucket === 'some' ? 'some in common' : 'a lot in common';
-  return { belowFloor: false, value, bucket, label };
-}
-
 // --- Sketches ------------------------------------------------------------------------
 
 /** Active matches whose next sketch is due on the fixed schedule. Paused ones included (D2). */
@@ -589,10 +577,9 @@ export function buildMatchSketch(
   if (rec.status !== 'active' || !rec.myKey || !rec.peerKey) return refuse('not-active');
   if (rec.expiresAt !== undefined && now >= rec.expiresAt) return refuse('expired');
   const ttlSec = Math.min(opts.ttlSec ?? MATCH_TIMING.wrapTtlSec, MATCH_TIMING.wrapTtlSec);
-  // Ids with characters JSON must escape would grow again inside the rumor and could
-  // push a 128-bucket gift wrap past 64 KiB. Canonical URLs never contain them.
-  const history = opts.history.filter((h) => WIRE_SAFE_ID.test(h.videoId));
-  const { sketch, state } = buildSketch(history, rec.consent, rec.sketch, { now: opts.now, rng: opts.rng, transport: 'nip17', ttlSec });
+  // Core's sketch item rule refuses ids that JSON would escape, so a 128-bucket
+  // sketch stays its bucket size inside the rumor (the giftWrap size check is the backstop).
+  const { sketch, state } = buildSketch(opts.history, rec.consent, rec.sketch, { now: opts.now, rng: opts.rng, transport: 'nip17', ttlSec });
   const next: MatchRecord = { ...rec, sketch: state, lastSketchSentAt: now };
   const msg: OutgoingMessage = {
     matchId,

@@ -133,7 +133,7 @@ test('publish: signs, sends to relays, and skips relays that already have the sa
   assert.deepEqual(first.map((r) => r.status), ['published', 'published', 'refused']);
   for (const r of first.filter((x) => x.event)) {
     assert.ok(verifySignedEvent(r.event!));
-    assert.deepEqual(r.relays, [{ relay: 'wss://relay.test', ok: true, message: '' }]);
+    assert.deepEqual(r.relays, [{ relay: 'wss://relay.test', ok: true, message: '', attempts: 1 }]);
   }
   assert.equal(relay.events.length, 2);
 

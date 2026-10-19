@@ -7,6 +7,7 @@ import {
   noisyPreviewCardinality,
   parsePreviewPolicy,
   previewBudgetRemaining,
+  previewDisplay,
   prunePreviews,
   requestPreview,
   respondToPreview,
@@ -126,6 +127,33 @@ test("noised cardinality: discrete Laplace at ε = 0.5 with a floor of 5", () =>
   assert.equal(noisyPreviewCardinality(15, fixed(0.5)).bucket, "some");
   assert.equal(noisyPreviewCardinality(40, fixed(0.5)).label, "a lot in common");
   assert.throws(() => noisyPreviewCardinality(-1, rng), RangeError);
+});
+
+test("previewDisplay: the requester's view of a received value uses the same thresholds", () => {
+  // Matches noisyPreviewCardinality for every value it can emit, at the default and a stricter floor.
+  for (const floor of [5, 8, 12]) {
+    const policy = { ...DEFAULT_PREVIEW_POLICY, floor };
+    const rng = seededRng(9);
+    for (let n = 0; n < 60; n++) {
+      const noisy = noisyPreviewCardinality(n, rng, policy);
+      assert.deepEqual(previewDisplay(noisy.belowFloor, noisy.belowFloor ? null : noisy.value, floor), noisy);
+    }
+  }
+  assert.deepEqual(previewDisplay(true, null, 5), { belowFloor: true, bucket: "fewer-than-floor", label: "<5" });
+  assert.deepEqual(previewDisplay(false, 5), { belowFloor: false, value: 5, bucket: "a-few", label: "a few in common" });
+  assert.equal(previewDisplay(false, 9, 5).bucket, "a-few");
+  assert.equal(previewDisplay(false, 10, 5).bucket, "some");
+  assert.equal(previewDisplay(false, 19, 5).bucket, "some");
+  assert.equal(previewDisplay(false, 20, 5).label, "a lot in common");
+  assert.equal(previewDisplay(false, 12, 12).bucket, "a-few");
+  assert.equal(previewDisplay(false, 13, 12).bucket, "some");
+  // Inconsistent input is shown as below the floor, never as a number.
+  assert.equal(previewDisplay(false, 3, 5).belowFloor, true);
+  assert.equal(previewDisplay(false, null, 5).belowFloor, true);
+  assert.equal(previewDisplay(true, 12, 5).value, undefined);
+  assert.throws(() => previewDisplay(false, 12, 4), RangeError);
+  assert.throws(() => previewDisplay(false, 12, 5.5), RangeError);
+  assert.throws(() => previewDisplay(false, 12.5, 5), RangeError);
 });
 
 test("privacy fields: optional on the wire, filled by parse, can only be made stricter", () => {

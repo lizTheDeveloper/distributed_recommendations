@@ -51,7 +51,18 @@ export interface ToVideoEventOptions {
   creatorPubkey?: string;
   /** Base URL of the instance the JSON came from, used to resolve relative paths (default: origin of video.url). */
   instanceUrl?: string;
+  /**
+   * Set when the event is signed by a bridge/instance key, not by the
+   * creator. Adds a disclosure to `alt`, a NIP-48 `proxy` tag pointing at the
+   * ActivityPub object, and a NIP-32 self-label
+   * `["L", BRIDGE_LABEL_NAMESPACE]`, `["l", "instance-signed", BRIDGE_LABEL_NAMESPACE]`.
+   * `operator` names who runs the bridge (e.g. the instance host).
+   */
+  instanceSigned?: { operator: string };
 }
+
+/** NIP-32 label namespace for bridge provenance labels. */
+export const BRIDGE_LABEL_NAMESPACE = 'match-feed.bridge';
 
 export class BridgeRefusal extends Error {
   readonly uuid: string;
@@ -336,7 +347,10 @@ export function toVideoEvent(v: PtVideo, opts: ToVideoEventOptions = {}): EventT
       `${isShort ? 'Short video' : 'Video'}: "${title}"` +
         (creator ? ` by ${creator}` : '') +
         (duration ? ` (${humanDuration(duration)})` : '') +
-        `. Watch on PeerTube: ${canonical}`,
+        `. Watch on PeerTube: ${canonical}` +
+        (opts.instanceSigned
+          ? `. Bridged to Nostr by ${opts.instanceSigned.operator} with its own key; not signed by the creator.`
+          : ''),
     ),
   ]);
   if (duration !== undefined) tags.push(['duration', String(duration)]);
@@ -385,6 +399,7 @@ export function toVideoEvent(v: PtVideo, opts: ToVideoEventOptions = {}): EventT
   }
 
   if (lang && langNs) tags.push(['L', langNs], ['l', lang, langNs]); // NIP-32 self-label
+  if (opts.instanceSigned) tags.push(['L', BRIDGE_LABEL_NAMESPACE], ['l', 'instance-signed', BRIDGE_LABEL_NAMESPACE]);
 
   const hashtags = new Set((v.tags ?? []).map(normalizeHashtag).filter(Boolean));
   for (const t of hashtags) tags.push(['t', t]);
@@ -396,6 +411,8 @@ export function toVideoEvent(v: PtVideo, opts: ToVideoEventOptions = {}): EventT
 
   tags.push(['r', canonical]);
   tags.push(['origin', 'peertube', v.uuid, canonical]);
+  // NIP-48: PeerTube's video URL is its ActivityPub object id.
+  if (opts.instanceSigned) tags.push(['proxy', canonical, 'activitypub']);
 
   return {
     kind,

@@ -4,7 +4,7 @@ Status: design draft, revision 3 (2026-10-19). Revision 2 checked sources agains
 Revision 3 applies the corrected research notes, the simulation results (`docs/SIMULATION_RESULTS.md`)
 and the code that now exists (see "Implementation status").
 Mockups: `mockups/match-feed.html`. Research: `reports/Distributed video recommendation prior art.md`.
-Companions: `THREAT_MODEL.md`, `PROTOCOL.md` (wire formats), `ANALYTICS.md`, `WEB_APP.md`, `OSS_STACK.md`.
+Companions: `THREAT_MODEL.md`, `PROTOCOL.md` (wire formats), `MATCH.md`, `ANALYTICS.md`, `WEB_APP.md`, `OSS_STACK.md`.
 
 ## Problem
 
@@ -94,6 +94,8 @@ nothing (match + second degree: 0.300 vs. 0.297 for global CF). Taste lists, exp
 slots and an early first match are the levers; none closes the gap in the simulation.
 
 ## Match protocol
+
+The 1:1 part (steps 1–5) is implemented as a prototype in `packages/match` (design and threat notes in `MATCH.md`, wire formats in PROTOCOL.md §6). It runs core's policies (sketches, preview budget and noise, similarity) over Nostr: a pure state machine for the lifecycle (`state.ts`), NIP-59 gift wraps with a NIP-40 expiration (`wrap.ts`), per-match keys separate from the identity key, rotated on renewal (`keys.ts`), control messages padded to the 64-bucket sketch size (`messages.ts`), and OpenMined PSI in cardinality-only mode (`psi.ts`). Its rumor kinds, **3470–3478**, are provisional and unregistered. It has no network relay I/O yet (an in-memory relay for tests), is not wired into the web client, and is not audited. Circles (step 6) and second degree over the network (step 7) are not built.
 
 1. **Preview (PSI-cardinality).**
    - A preview estimates how many videos two users have in common, using PSI-cardinality, not plain PSI, which would reveal the items themselves [A10].
@@ -188,9 +190,9 @@ slots and an early first match are the levers; none closes the gap in the simula
 | Video host / instance | can remove videos; holds account data | mirror across instances; minimal server-side data; encrypted backups |
 | P2P streaming | **viewer IPs, visible to the tracker and other peers.** PeerTube calls this "the main threat to user privacy" [P4] | P2P off by default for viewers; opt-in (v1 web client: `p2p=0` unless enabled) |
 | Relays | who exchanges sketches with whom; for Marmot groups, plaintext pubkeys and group tags | many relays; Oblivious HTTP [S2]; batching, padding and delays; secret per-group discovery keys; mixnet transport [S3]. Sealed-sender-style hiding alone falls to timing attacks [S4] |
-| Identity | key loss; directory chokepoints (did:plc) | separate identity keys from per-match keys; social recovery; key rotation |
+| Identity | key loss; directory chokepoints (did:plc) | separate identity keys from per-match keys (done for 1:1 Match in `packages/match`); social recovery; key rotation |
 | App stores | client distribution | PWA, F-Droid, sideloading |
-| User device | plaintext history | encryption at rest, short retention, wipe. **Not yet implemented in the web client** (plain `localStorage`; wipe exists) |
+| User device | history, follows and taste lists on the device; per-match keys and sketches once Match runs there | encryption at rest, short retention, wipe. **Implemented in the web client** (`apps/web/src/lib/vault.ts`): AES-GCM in IndexedDB under a non-extractable device key or an optional passphrase (PBKDF2), retention by the sharing window, crypto-shredding wipe, memory-only when storage is unavailable. Limits: a full copy of the browser profile decrypts device mode (no OS keystore for web pages); no defense against malware or a malicious build (THREAT_MODEL T9, T22). `packages/match` keeps keys and sketches in a `MatchBook` the caller must store encrypted; nothing stores it yet |
 | Third-party web assets | viewer IPs to font or script CDNs | self-host; strict CSP (done in the live web build) |
 | A match | whatever you shared | none; this is inherent to sharing |
 
@@ -228,9 +230,10 @@ On-device CF and ranking turned out small enough to write directly (`packages/co
 
 | Part | Path | State |
 |---|---|---|
-| Core library | `packages/core` | TypeScript, no runtime dependencies, 97 offline tests. Recipes (D1), `rank` with explore slots and per-list cap, explanations, sketches with padding, transport caps and quiet pause (D2), trust walk, circle output policy with epoch freeze, preview policy with noise and target budget, PeerTube client. Defaults follow the simulation. No cryptography: PSI, NIP-17 wrapping, MLS and secure aggregation are interfaces or not started |
+| Core library | `packages/core` | TypeScript, no runtime dependencies, 99 offline tests. Recipes (D1), `rank` with explore slots and per-list cap, explanations, sketches with padding, transport caps, quiet pause (D2) and a strict video-id rule, trust walk, circle output policy with epoch freeze, preview policy with noise, target budget and display buckets (`previewDisplay`), PeerTube client. Defaults follow the simulation. No cryptography: PSI and NIP-17 wrapping live in `packages/match`; MLS and secure aggregation are not started |
+| Match (1:1) protocol | `packages/match` | Prototype, not audited. Match lifecycle (request, accept, previews, weekly sketches, quiet pause, 90-day expiry, renew with key rotation, revoke) as a pure state machine; NIP-59 gift wraps; per-match keys; uniform 8,192-byte control messages; OpenMined PSI cardinality previews noised on the target's device; provisional rumor kinds 3470–3478; `MatchClient` glue and an in-memory relay. 34 offline tests. Runtime dependencies `nostr-tools` 2.25.2 and `@openmined/psi.js` 2.0.6, pinned, install scripts disabled. No real relay I/O or OHTTP; not used by the web client yet. See `MATCH.md` |
 | PeerTube → NIP-71 bridge | `packages/bridge` | Builds NIP-71 events (addressable 34235/34236 by default, `--regular` for 21/22) from public PeerTube videos; dry run by default; 31 offline tests. No NIP-09 deletions yet |
-| Web client v1 | `apps/web` | Follow, taste lists, recipes, explore slots, creator studio Tiers 0–1, over live PeerTube instances. Match, Circle, second degree, previews and Tier 2 analytics are placeholders. History is not encrypted at rest. See `WEB_APP.md` |
+| Web client v1 | `apps/web` | Follow, taste lists, recipes, explore slots, creator studio Tiers 0–1, over live PeerTube instances. Match, Circle, second degree, previews and Tier 2 analytics are placeholders. History, follows, taste lists and related caches are encrypted at rest in IndexedDB (`src/lib/vault.ts`; optional passphrase), with retention by the sharing window and a crypto-shredding wipe. 30 offline tests. See `WEB_APP.md` |
 | Simulation | `sim` | Python + numpy; five experiments; results in `SIMULATION_RESULTS.md` |
 | Mockups | `mockups/match-feed.html` | static |
 
@@ -246,7 +249,7 @@ Still open:
 - First-hop Sybils: feedback-learned per-source trust, per-match caps.
 - Real-world numbers the simulation can't give: how people pick matches, how often strangers accept previews, how curators build lists.
 - Moderation: subscribe-able labelers (Bluesky-style), applied on-device.
-- Event kinds for recipes, sketch rumors, preview messages and taste lists; a signed taste-list format.
+- Event kinds for recipes and taste lists; a signed taste-list format. Registering (or moving) the provisional Match rumor kinds 3470–3478 before any client ships.
 
 ## Sources
 

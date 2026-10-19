@@ -3,7 +3,7 @@
 
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { DEFAULT_PREVIEW_POLICY, buildSketch, encodeSketch, noisyPreviewCardinality, seededRng, sketchItems } from '../src/core.ts';
+import { DEFAULT_PREVIEW_POLICY, buildSketch, encodeSketch, seededRng, sketchItems } from '../src/core.ts';
 import { generateMatchKey } from '../src/keys.ts';
 import { MATCH_KINDS } from '../src/kinds.ts';
 import { decodeControl } from '../src/messages.ts';
@@ -16,7 +16,6 @@ import {
   completeTargetPreview,
   createMatchBook,
   inboxKeys,
-  previewDisplay,
   proposeRenew,
   receiveMessage,
   requestMatch,
@@ -207,14 +206,6 @@ test('preview: the target noises on-device; only the noised, floored value is se
   assert.ok(seenValues.has('null'), 'sometimes below the floor');
   // Each acceptance allows exactly one run.
   assert.deepEqual(startTargetPreviewRun(run.book, matchId, { targetSetSize: 40, now: T0 }), { ok: false, reason: 'no-answered-preview' });
-});
-
-test('previewDisplay matches core noisyPreviewCardinality buckets and labels', () => {
-  const rng = seededRng(9);
-  for (let n = 0; n < 40; n++) {
-    const noisy = noisyPreviewCardinality(n, rng, DEFAULT_PREVIEW_POLICY);
-    assert.deepEqual(previewDisplay(noisy.belowFloor, noisy.value ?? null, 5), noisy);
-  }
 });
 
 test('preview policy cannot be weakened (core parsePreviewPolicy)', () => {
