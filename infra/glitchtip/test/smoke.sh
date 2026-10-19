@@ -10,7 +10,10 @@
 set -eu
 cd "$(dirname "$0")/.."
 DC="docker compose -p glitchtip-test --env-file test/test.env -f compose.yaml -f test/compose.test.yaml"
-FAKE_IP=203.0.113.99
+# A routable address: GlitchTip ignores documentation and private ranges anyway,
+# so those would prove nothing. Nothing is sent to it; it only appears in headers.
+FAKE_IP=8.8.4.4
+FAKE_PREFIX=8.8.4.
 fail=0
 ok() { echo "ok   $1"; }
 bad() { echo "FAIL $1"; fail=1; }
@@ -58,8 +61,21 @@ done
 [ "$n" = 2 ] && ok "both events stored" || bad "stored $n of 2 events"
 
 DUMP=$($DC exec -T postgres pg_dump -U glitchtip -d glitchtip --data-only 2>/dev/null)
-echo "$DUMP" | grep -q "$FAKE_IP" && bad "the client IP was stored" || ok "no client IP anywhere in the database"
+echo "$DUMP" | grep -q "$FAKE_PREFIX" && bad "the client IP was stored" || ok "no client IP (or truncated IP) anywhere in the database"
 echo "$DUMP" | grep -q '"ip_address"' && bad "an ip_address field was stored" || ok "no ip_address field stored"
+
+# Control: the same header sent straight to GlitchTip (bypassing Caddy, from inside
+# the Docker network) IS recorded, truncated by GlitchTip's default IP scrubbing.
+# This shows the checks above can see an IP when one is stored.
+E3=$(od -An -N16 -tx1 /dev/urandom | tr -d ' \n')
+printf '{"event_id":"%s"}\n{"type":"event"}\n{"event_id":"%s","platform":"javascript","level":"info","message":"synthetic control"}\n' "$E3" "$E3" |
+  $DC exec -T caddy sh -c "cat > /tmp/e && wget -qO- --header 'X-Forwarded-For: $FAKE_IP' --header 'Content-Type: text/plain' --post-file=/tmp/e 'http://glitchtip:8000/api/$PROJECT/envelope/?sentry_key=$KEY&sentry_version=7'" >/dev/null
+seen=""
+for i in $(seq 1 30); do
+  seen=$($DC exec -T postgres pg_dump -U glitchtip -d glitchtip --data-only 2>/dev/null | grep -o "\"ip_address\": *\"$FAKE_PREFIX[0-9]*\"" | head -1)
+  [ -n "$seen" ] && break; sleep 2
+done
+[ -n "$seen" ] && ok "control: bypassing Caddy, GlitchTip stores $seen (so the checks above would catch an IP)" || bad "control: no IP stored even without Caddy; the IP checks prove nothing"
 echo "$DUMP" | grep -q "synthetic bug report" && ok "bug report text stored" || bad "bug report text missing"
 $DC logs 2>&1 | grep -q "$FAKE_IP" && bad "a log contains the client IP" || ok "no log contains the client IP"
 $DC exec -T glitchtip env | grep -q '^GLITCHTIP_RETENTION_DAYS=30' && ok "retention 30 days" || bad "retention not set"

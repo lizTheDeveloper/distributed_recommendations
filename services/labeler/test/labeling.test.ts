@@ -12,7 +12,8 @@ import {
   relayQuery,
   verifyNostrEvent,
 } from '../../../packages/moderation/src/index.ts';
-import type { ModerationPolicy, Video } from '../../../packages/moderation/src/index.ts';
+import type { ModerationPolicy } from '../../../packages/moderation/src/index.ts';
+import type { Video } from '../../../packages/moderation/src/core.ts';
 import { LabelerStore } from '../src/repo.ts';
 import { createSigner } from '../src/signer.ts';
 import { PublishError, activeLabels, dismissCase, escalateCase, issueLabel, retractLabel } from '../src/labeling.ts';

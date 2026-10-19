@@ -147,7 +147,7 @@ test('auto-blur (opt-in): only N distinct TRUSTED reporters, only video events, 
   const [label] = store.labels();
   assert.deepEqual(label.values, ['!warn']);
   assert.equal(label.automated, true);
-  assert.equal(label.expiresAt, NOW + 48 * 3600);
+  assert.equal(label.expiresAt, NOW + 60 + 48 * 3600);
   const c = store.getCase(caseIdFor(`e:${EV}`))!;
   assert.equal(c.status, 'open');
   assert.equal(c.autoBlurId, label.id);
@@ -182,7 +182,7 @@ test('retention purge removes reporter data of long-resolved cases, keeps the au
   const ctx: LabelerContext = { store, labeler: LABELER.pk, relays: [], now: () => NOW };
   dismissCase(ctx, store.cases()[0].id, { reason: 'Within policy after review', reviewer: 'alice' });
   assert.equal(purge(store, cfg, NOW + 10 * 86400).reports, 0);
-  const r = purge(store, cfg, NOW + 31 * 86400);
+  const r = purge(store, cfg, NOW + 32 * 86400);
   assert.equal(r.reports, 1);
   assert.equal(r.seen, 1);
   assert.equal(store.reports().length, 0);

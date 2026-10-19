@@ -49,7 +49,8 @@ function videoRef(x: unknown, path: string, url: string): VideoRef {
 /**
  * Strictly validate a picks set (e.g. from the studio's editor state or a saved
  * draft) and canonicalize pick URLs to `<origin>/videos/watch/<uuid>`. Pick URLs must
- * be PeerTube watch URLs, unique after canonicalization. Throws `ValidationError`.
+ * be PeerTube watch URLs, unique after canonicalization. Optional keys set to
+ * `undefined` (editor state) count as absent. Throws `ValidationError`.
  */
 export function validatePicksSet(x: unknown): PicksSet {
   const L = PICKS_LIMITS;

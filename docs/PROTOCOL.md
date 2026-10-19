@@ -1,6 +1,6 @@
 # Match Feed: wire formats and protocol
 
-Status: draft v1, 2026-10-19, revised the same day to apply `SIMULATION_RESULTS.md`. Companion to `DESIGN.md` and `THREAT_MODEL.md`.
+Status: draft v1, 2026-10-19, revised the same day to apply `SIMULATION_RESULTS.md`, and again to record the Circles prototype (§3, kinds 3480–3482; `CIRCLES.md`). Companion to `DESIGN.md` and `THREAT_MODEL.md`.
 The reference implementation is `packages/core` (TypeScript, no dependencies).
 Where this document and the code disagree, that is a bug; file it against both.
 
@@ -19,6 +19,7 @@ Where this document and the code disagree, that is a bug; file it against both.
 | Feed recipe | `version: 1` | 16 KiB | `parseRecipe`, `parseRecipeJson` |
 | Taste sketch | `v: 1` | exactly 8,192 / 15,872 bytes over NIP-17; also 31,232 over MLS | `buildSketch`, `decodeSketch`, `validateSketch` |
 | Circle policy | `v: 1` | (small, fixed keys) | `parseCirclePolicy` |
+| Circle round messages (kinds 3480–3482, provisional) | `v: 1` | content ≤ 40,000 (open) / 4,096 (key, masked) bytes; padded transport rumor exactly 8,192 / 16,384 / 45,056 bytes | `packages/circles/src/messages.ts`, `padding.ts` |
 | Preview policy | `v: 1` | (small, fixed keys) | `parsePreviewPolicy` |
 
 ## 1. Feed recipe
@@ -187,21 +188,44 @@ Per DESIGN.md, Match protocol step 3:
 
 ## 3. Circles
 
+The prototype that implements this section is `packages/circles` (**not audited, not for production**); its design
+document is `CIRCLES.md`. Core's `circle.ts` holds the policy; `packages/circles` runs it on a securely aggregated,
+already-noised sum.
+
 ### Transport
 
-- Circles run over MLS (RFC 9420) via the Marmot protocol (MLS over Nostr) [DESIGN N2, N3]. MLS gives circles forward secrecy and post-compromise security.
+- Circles run over MLS (RFC 9420) via the Marmot protocol (MLS over Nostr) [DESIGN N2, N3]. MLS gives circles forward secrecy and post-compromise security. The prototype uses marmot-ts 0.5.1 with ts-mls overridden to 2.0.0-rc.16, because the ts-mls that marmot-ts 0.5.1 pins (rc.10) lets a member removed by a single-Remove commit read the next epoch (CIRCLES.md §1). App-level guards re-check marmot-ts 0.7.0's authorization fixes until the upgrade (CIRCLES.md §1, `packages/circles/src/authz.ts`).
 - NIP-17 is not used for groups. It advises against groups larger than about 10, and circles need k ≥ 8.
+- Each round message is an inner Nostr event of kind 3480–3482 (below), **signed by the member's identity key**, carried as the JSON content of an unsigned application rumor inside an MLS application message (Marmot kind 445). Receivers verify a fresh copy of the inner event (T25), require the signer to be a current MLS member and to be the credential identity of the MLS sender leaf. The signature makes participation non-repudiable to anyone holding the plaintext (CIRCLES.md §1).
+- **Padding.** The serialized rumor is padded with trailing spaces after the inner JSON to exactly **8,192, 16,384 or 45,056 bytes**. The round-open picks the smallest bucket that fits; every key and masked message of the round uses the same bucket. Receivers drop round messages of any other length, before parsing. Every kind-445 event of a round therefore has one size (11,592 / 22,520 / 60,752 bytes per bucket). The bucket, message count and timing still leak.
+
+### Kinds (provisional, unregistered)
+
+Inner events only; they never appear on a relay in the clear. They sit next to the Match kinds 3470–3478 (§6).
+
+| Kind | Name | Content (`v: 1`, fixed key order, unknown or missing keys rejected) | Max content |
+|---|---|---|---|
+| 3480 | round-open | `roundId` (64 hex), `circleId` (hex), `epoch` (the MLS epoch), `openedAt`, `keyDeadline`, `maskDeadline` (Unix s; windows ≤ 7 days), `policy` (circle policy below), `candidates` (1–256 video ids, sorted, unique, **public**) | 40,000 bytes |
+| 3481 | round-key | `roundId`, `epoch`, `roundKey` (fresh X25519 public key, 64 hex) | 4,096 bytes |
+| 3482 | round-masked | `roundId`, `epoch`, `participants` (SHA-256 hex digest of the participant set, bound to the epoch), `vector` (base64 of one little-endian uint32 per candidate) | 4,096 bytes |
+
+Inner events carry no tags. Code: `packages/circles/src/kinds.ts`, `messages.ts`.
 
 ### Rounds
 
-1. A round binds to one MLS epoch, so membership is fixed for the round. **Each epoch is released once** (`releaseCircleEpoch`).
+1. A round binds to one MLS epoch, so membership is fixed for the round. **Each epoch is released once** (`releaseCircleEpoch` in core; `releaseAggregatedEpoch` in `packages/circles/src/policy.ts` for an aggregate).
 2. **Epoch freeze.** After a membership change, a past epoch is never recomputed or re-released: asking again returns the stored result, and an epoch older than the newest released one is refused. The new epoch pools only endorsements made during it, and items released in earlier epochs are not evaluated again. Simulation Exp 3: an epoch delay with sticky noise but no freeze still let differencing expose 15–22% of a leaving member's endorsements at k = 8–12; with the freeze, differencing and averaging reduce to a single release.
-3. Members contribute their endorsement sets **through secure aggregation** [DESIGN A12]. No member, and no server, sees another member's raw set. The aggregation protocol is not chosen yet (research item). `circlePicks` in `packages/core` is the post-aggregation policy layer: simulations call it on raw sets, while deployments call it on the aggregate, ideally with the noise added inside the aggregation.
-4. Members who drop out count as absent. If fewer than `minMembers` are present, the round publishes nothing.
+3. Members contribute their endorsement sets **through secure aggregation** [DESIGN A12]. No member, and no server, sees another member's raw set. **Chosen for the prototype** (CIRCLES.md §2–§5):
+   - **Domain:** the round-open's public candidate list (≤ 256 ids). Hashed buckets were rejected because pure-DP noise on every slot makes false picks grow with the domain (CIRCLES.md §3).
+   - **Pairwise additive masking** (Bonawitz et al., CCS 2017) without an aggregator: one-time X25519 keys per round, HKDF-SHA-256 salted with an MLS exporter value for the round, ChaCha20 masks mod 2^32. Every member sums the masked vectors itself.
+   - **Distributed noise:** each member adds a Pólya(1/(m−c)) − Pólya(1/(m−c)) share from its own secret; the shares sum to discrete Laplace(ε). There is no seed (T19). ε holds against up to c colluders, by default ⌈m/3⌉ − 1.
+   - Phases: open → round keys until `keyDeadline` → the participant set P is the keys seen → masked vectors until `maskDeadline` → release.
+4. Members who don't send a round key count as absent. If fewer than `minMembers` are present, the round publishes nothing.
+5. **Void rule: a failed round consumes its epoch.** A missing masked vector at `maskDeadline`, a participant-digest mismatch, two different vectors from one sender or an implausible sum (|value| > 10^6) **voids the epoch permanently**. It is recorded in the ledger like a release, a member never contributes twice in one epoch, and its endorsement cursor has already moved. Reason: a member that withholds its vector can still unmask everyone else's sum, so re-running the epoch would hand out a second output over the same inputs.
 
 ### Circle policy
 
-Agreed in the MLS group context; every client validates it and refuses to take part if it's out of range.
+Agreed in the MLS group context; every client validates it and refuses to take part if it's out of range. In `packages/circles` the policy travels in each round-open, and each member also refuses a round weaker than its own local floor (lower `minMembers`, higher `epsilon` or `maxItemsPerMember`, or a `revealThreshold` below the derived one).
 
 ```json
 { "v": 1, "minMembers": 8, "epsilon": 1, "maxItemsPerMember": 64 }
@@ -217,7 +241,9 @@ Agreed in the MLS group context; every client validates it and refuses to take p
 ### Output
 
 - Each item's count gets two-sided geometric noise with `P(k) ∝ exp(−ε·|k|)`.
-- **Sticky noise.** The noise for an item is derived from a secret per-epoch seed and the video id (SHA-256 in counter mode, `keyedRng`), so the same item gets the same draw for the whole epoch and repeated releases can't be averaged. The seed must stay inside the secure aggregation: a member who knows it can recompute and subtract the noise.
+- **Sticky noise.** The same item gets the same draw for the whole epoch, so repeated releases can't be averaged.
+  - Core's reference path (simulation) derives it from a secret per-epoch seed and the video id (SHA-256 in counter mode, `keyedRng`, T20). A member who knows that seed can recompute and subtract the noise.
+  - `packages/circles` has no shared seed: each member's share comes from HKDF-SHA-256 over its own local secret, keyed by circle and epoch, expanded with ChaCha20; the sampler is floating point and needs an exact replacement before production (CIRCLES.md §5).
 - **Picks only, never counts.** The output is the set of video ids whose noised count reaches the threshold, sorted by id (so order carries no count information). Simulation Exp 3: noisy counts plus one membership change expose 49–94% of a member's endorsements whatever ε is, because the noise cancels in the difference. `CirclePick.noisedCount` is deprecated and never populated.
 - Privacy: ε is per item per epoch. Each member's loss per epoch is at most `ε × maxItemsPerMember` under basic composition.
 - Thresholding happens on the noised count, so a one-person pick can still appear, with small probability: about 10% per item at ε = 1 and threshold 3. That is deliberate: it is what makes any shown pick deniable.
@@ -287,7 +313,7 @@ State is a list of `{id, requester, target, requestedAt, status, acceptedAt?}`, 
 - **First-hop Sybils.** A viewer who matches a mirroring Sybil sees its picks almost every time (Exp 5). Candidate mitigations, not simulated: per-source trust learned from feedback, a per-match cap on items per feed, attribution and one-tap unmatch.
 - **Circle DP accounting across epochs** (not simulated): ε is per item per epoch.
 - **Event kinds** for recipes, sketch rumors and preview messages.
-- **Circle secure aggregation**: which protocol, and whether the DP noise is added inside it (preferred) or after.
+- ~~**Circle secure aggregation**~~: chosen for the prototype (§3: pairwise masking, distributed Pólya noise inside the sum, public candidate domain). Still open: dropout recovery, input validation (a member can send any vector), and an audit.
 - **Wire format for second-degree relay lists.**
 
 ---

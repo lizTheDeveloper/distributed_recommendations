@@ -9,3 +9,8 @@ maximum_attempts_before_failure: 10
 batch_aggregation_shard_count: 32
 logging_config:
   force_json_output: true
+# A collection requested before aggregation finishes is retried after this delay
+# (Janus default 600 s, growing x1.25 to 3600 s).
+min_collection_job_retry_delay_s: 30
+max_collection_job_retry_delay_s: 300
+collection_job_retry_delay_exponential_factor: 1.25
