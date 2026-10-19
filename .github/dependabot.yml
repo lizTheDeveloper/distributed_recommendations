@@ -5,7 +5,7 @@
 # - cooldown: a release must be 14 days old before Dependabot proposes it, so a
 #   compromised publish has time to be noticed and yanked (security updates skip it).
 # - Every update is a PR that CI and a human review; nothing auto-merges.
-# - Add apps/desktop here once it has a package.json.
+# - New package directories must be added below by hand.
 
 version: 2
 
@@ -14,8 +14,11 @@ updates:
     directories:
       - /packages/match
       - /packages/bridge
+      - /packages/circles
+      - /packages/moderation
       - /apps/web
       - /apps/mobile
+      - /apps/desktop
       - /infra/web/deploy-tools/ipfs
       - /infra/web/deploy-tools/cloudflare
     schedule:
@@ -49,6 +52,20 @@ updates:
     groups:
       actions:
         patterns: ["*"]
+
+  - package-ecosystem: cargo
+    directory: /apps/desktop/src-tauri
+    schedule:
+      interval: weekly
+      day: monday
+    cooldown:
+      default-days: 14
+    labels: [dependencies, rust]
+    commit-message:
+      prefix: "deps(desktop)"
+    groups:
+      tauri:
+        patterns: ["tauri*"]
 
   - package-ecosystem: docker-compose
     directory: /infra/relay
