@@ -58,7 +58,15 @@ Small creators will see little Tier 2 detail. That's the honest cost.
    - DP noise on the totals
 3. **Fallback if no helper operator is found:** option B, labeled "estimates" in the studio.
 
-## Open decisions
+## Decisions (2026-10-19)
+
+- **Q1: on by default for viewers, with an easy off switch.**
+  - Every Tier 2 signal can be turned off on its own: channel stats overall, and per channel (e.g. "never report Match or Circle").
+  - **Legal risk to resolve before EU launch:** ePrivacy Art. 5(3) generally requires consent before reading or sending information from a user's device unless it's strictly necessary. Opt-out telemetry may not satisfy it, even when it's aggregated with DAP. Options: default-on outside the EU and opt-in inside it, or get legal advice on whether DAP output counts as anonymous.
+- **Q3: private to the creator by default; the creator can choose to publish it.** Published numbers carry the same thresholds and noise.
+- **Q2: still open** (country stats in our default instance settings).
+
+## Original open decisions
 
 - **Q1. Viewer default for Tier 2.**
   - *Off:* most respectful, but few viewers contribute, so Tier 2 is mostly "<20".

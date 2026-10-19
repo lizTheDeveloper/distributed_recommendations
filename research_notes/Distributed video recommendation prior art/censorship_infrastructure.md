@@ -78,8 +78,8 @@ End-to-end encryption hides content but not who talks to whom, when, or how much
 
 ### Gaps
 - I did not find a published deployment of PIR or mixnets specifically for video recommendation.
-- I did not verify Google's PIR deployments this session (for example, Chrome's or Android's private lookups).
-- I did not verify Nym's current mainnet status or performance figures as of 2026.
+- **Google PIR (partly resolved):** Google's 9 Sept 2021 post "Introducing Android's Private Compute Services" says PCS uses privacy technologies "including Federated Learning, Federated Analytics, and Private information retrieval". Secondary summaries of the open-source PCS code describe homomorphic-encryption-based PIR for downloading dataset slices without the server learning which slice. A Google researcher's talk listing (Kevin Yeo, Nov 2023) mentions a PIR use case "deployed today" without naming it. Password Checkup and Private Set Membership are PSI/PSM-style deployments, not PIR. I found **no** primary source naming a specific Chrome or Android feature that uses PIR. Chrome's privacy-preserving Safe Browsing lookups use OHTTP, not PIR. — [Google Security Blog, 2021](https://security.googleblog.com/2021/09/introducing-androids-private-compute.html); [CrySP talk listing](https://crysp.uwaterloo.ca/speakers/20231123-Yeo)
+- **Nym:** resolved above. It is operating in 2026 as NymVPN, but per Nym itself the mixnet is too slow for everyday use. No official node-count or latency figures were found.
 
 ## 3. PeerTube infrastructure (federation, redundancy, P2P, IP exposure)
 
@@ -105,18 +105,19 @@ PeerTube federates over ActivityPub, lets instances mirror each other's videos (
 Content addressing makes content easy to re-host after takedown, because any copy with the same hash is valid. It does not make content stay online: data persists only while someone pins or seeds it. Public DHTs and request broadcasts leak who requests what. Monitoring studies of IPFS and BitTorrent show this is practical at network scale.
 
 ### Cited Findings
-- Balduf et al. (ICDCS 2022) passively monitored IPFS data requests for 15 months from two nodes, collecting about 2.78×10^10 request entries. They showed that public gateways could be identified and surveilled. The leak comes from IPFS broadcasting Bitswap want-lists to connected peers in addition to DHT routing. — [arXiv 2104.09202](https://arxiv.org/pdf/2104.09202)
-- Henningsen et al. (IFIP Networking 2020) counted about 44,474 IPFS nodes on average and noted that a node connected to every other node could monitor nearly all data requests. — [arXiv 2002.07747](https://arxiv.org/pdf/2002.07747)
+- Balduf, Henningsen, Florian, Rust & Scheuermann, "Monitoring Data Requests in Decentralized Data Storage Systems: A Case Study of IPFS" (ICDCS 2022), passively monitored IPFS for fifteen months "using two spatially diverse monitoring nodes, yielding traces of 2.78 · 10^10 data request entries". They identified and surveilled the nodes behind public IPFS/HTTP gateways. The leak comes from IPFS broadcasting Bitswap `want_list` entries to connected peers, in addition to DHT routing. [verified full text 2026-10-19] — [arXiv 2104.09202](https://arxiv.org/pdf/2104.09202)
+- Henningsen et al. (IFIP Networking 2020) counted "an average of 44474 nodes at every given time" per crawl and noted that a node connected to every other node could monitor nearly all data requests. [node count verified 2026-10-19] — [arXiv 2002.07747](https://arxiv.org/pdf/2002.07747)
 - Wu et al. (IFIP Networking 2024), "Secrets are forever", found sensitive files exposed on IPFS. Possessing a CID grants access, and content is hard to delete once replicated. — [PDF](https://www.securitee.org/files/ipfs_ifipnet2024.pdf)
 - BitTorrent DHT crawling and swarm monitoring (cited in section 1) make large-scale profiling of content providers feasible. — [USENIX LEET'10](https://www.usenix.org/conference/leet-10/spying-world-your-laptop-identifying-and-profiling-content-providers-and-big)
 - Iroh (n0) is a Rust QUIC-based P2P stack. It dials by public key, uses relay servers for NAT traversal, and transfers content-addressed blobs with BLAKE3 verified streaming. Hypercore (Holepunch) is a signed append-only log, discovered via the Hyperswarm DHT by topic hash. [canonical, not re-fetched] — [Iroh docs](https://www.iroh.computer/docs); [holepunchto/hypercore](https://github.com/holepunchto/hypercore)
+  - On exposure (documentation and opinion, not measurement): a Hypercore FAQ states that "Hyperswarm announces IP and Port of the peer" and that because the DHT holds this, "any observer could simply collect this information", along with the advertised topic. It frames encrypting DHT data as a possible future improvement. An open HyperDHT issue discusses privacy-preserving lookups. [fetched 2026-10-19] — [tradle/why-hypercore FAQ](https://github.com/tradle/why-hypercore/blob/master/FAQ.md); [holepunchto/hyperdht#50](https://github.com/holepunchto/hyperdht/issues/50)
 
 ### Inferences
 - Iroh and Hypercore both use key- or topic-based discovery. The discovery key, or a hash of it, is what an observer of the DHT or relay sees. If taste groups are discovered by a topic hash, anyone who knows the topic can enumerate members' IPs. Discovery keys should be secret and per-group.
 - For takedown resistance, combine content addressing (verifiable re-hosting) with several independent pinners or seeders. For privacy, do not use a public DHT for interest-revealing lookups; use private relays plus OHTTP/Tor, or PIR, as in section 2.
 
 ### Gaps
-- I found no peer-reviewed privacy measurement of Iroh or Hypercore/Hyperswarm.
+- I found no peer-reviewed privacy measurement of Iroh or Hypercore/Hyperswarm (re-searched 2026-10-19). Only project docs, GitHub issues, blog posts and a qualitative comparison turned up: "IPFS and Friends", [arXiv 2102.12737](https://arxiv.org/pdf/2102.12737), not read in full.
 - I did not verify current IPFS mitigations, such as double-hashed DHT lookups, this session.
 
 ## 5. Identity and keys (Nostr keypairs, AT Protocol DIDs, recovery)
@@ -128,7 +129,7 @@ Nostr gives full self-sovereignty: identity is a secp256k1 keypair. There is no 
 - did:plc was built in-house by Bluesky and relies on a global directory service that Bluesky has operated. — [atprotocol.dev](https://atprotocol.dev/bluesky-and-did-plc/)
 - In September 2025 Bluesky announced it would spin out the PLC directory into an independent Swiss association, chosen as a "credibly neutral and stable" home. Later reports say the association is formally registered. — [manton.org](https://www.manton.org/2025/09/19/bluesky-is-spinning-out-the.html); [Bluesky announcement mirror](https://hackers.pub/@boltless/019961db-e167-71d2-9d4d-2dffb7689acc)
 - Community critique (opinion, from informal posts) holds that the directory is still a central ledger. — [Lemmy thread](https://lemmy.imagisphe.re/post/1353212/3864704)
-- NIP-44 Cure53 audit finding NOS-01-001 points to a risk in reusing keys between signing and encryption, which bears on single-key identity designs (see section 6). — [Cure53 report](https://cure53.de/audit-report_nip44-implementations.pdf)
+- NIP-44 Cure53 audit finding **NOS-01-007, "Lack of key separation in signing and encryption" (Low)**, points to a risk in reusing the same key for signing and encryption, which bears on single-key identity designs (see section 6). **Correction:** this was previously attributed to NOS-01-001, which is actually "Potential twist attacks in secp256k1 implementations" (Info). [verified against report 2026-10-19] — [Cure53 report](https://cure53.de/audit-report_nip44-implementations.pdf)
 
 ### Inferences
 - For a taste-sharing app, separate long-term identity keys from per-group encryption keys. Support rotation, for example through signed key-succession or delegation records. Offer social recovery (Shamir shares to trusted contacts) or passkey/secure-enclave backups. Nostr's base model has no recovery, and that is a known UX failure mode.
@@ -144,9 +145,16 @@ Nostr gives full self-sovereignty: identity is a secp256k1 keypair. There is no 
 MLS (RFC 9420) is the standard for efficient group key agreement with forward secrecy and post-compromise security, and is the best fit for "taste circles". Nostr NIP-44 is audited but, by design, has **no forward secrecy**. Signal's Double Ratchet suits pairwise exchange. Local-first CRDTs (Automerge) can carry the shared taste state inside encrypted envelopes, but CRDT sync metadata (operation counts, timing) still leaks to relays.
 
 ### Cited Findings
-- Cure53 audited NIP-44 and the JS/TS, Go and Rust implementations from late November to early December 2023. It found 10 issues, all "general weaknesses" with limited exploitation potential. The medium-severity issues were missing range checks (NOS-01-005) and **lack of forward secrecy (NOS-01-006)**. NOS-01-001 is an informational secp256k1 twist-attack concern with uncompressed keys that could leak a private key. Only the JS implementation was audited in its final form, per its maintainer. — [Cure53 audit report](https://cure53.de/audit-report_nip44-implementations.pdf); [paulmillr/nip44](https://github.com/paulmillr/nip44)
+- Cure53 audited NIP-44 and the JS/TS, Go and Rust implementations from late November to early December 2023. It found 10 issues (NOS-01-001 to NOS-01-010), described as "ten general weaknesses", and Cure53 found no exploitable vulnerabilities. The medium-severity issues were missing range checks (NOS-01-005) and **lack of forward secrecy (NOS-01-006)**. The low-severity issues were HMAC timing differences (NOS-01-004) and lack of signing/encryption key separation (NOS-01-007). NOS-01-001 is an informational concern: secp256k1 twist attacks with uncompressed, unverified keys could leak a private key, but the current implementation "was not found to be vulnerable". [verified against report 2026-10-19] Only the JS implementation was audited in its final form, per its maintainer. — [Cure53 audit report](https://cure53.de/audit-report_nip44-implementations.pdf); [paulmillr/nip44](https://github.com/paulmillr/nip44)
 - A Nostr newsletter claims the issues were addressed before the spec was finalized. This is unverified against the primary report. — [Nostr Compass](https://buttondown.com/nostrcompass/archive/nostr-compass-4/)
-- MLS, RFC 9420 (July 2023): asynchronous group key agreement using a ratchet tree, with log-scale cost for adds, removes and updates, forward secrecy and post-compromise security. [canonical, not re-fetched] — [RFC 9420](https://www.rfc-editor.org/rfc/rfc9420)
+- MLS, RFC 9420 (Barnes, Beurdouche, Robert, Millican, Omara & Cohn-Gordon; July 2023; Proposed Standard): efficient asynchronous group key establishment with forward secrecy and post-compromise security, for groups ranging from two members to thousands. It uses a ratchet tree; the log-scale cost of adds, removes and updates is the RFC's design goal but was not re-read here. [abstract and date verified 2026-10-19] — [RFC 9420](https://www.rfc-editor.org/rfc/rfc9420)
+- **MLS over Nostr (Marmot):** Marmot combines MLS with Nostr relays for group messaging, and Least Authority calls it "the successor to NIP-EE", the first MLS-over-Nostr proposal. Its reference app is White Noise, built on the Rust MDK library. [verified 2026-10-19]
+  - Least Authority's Marmot protocol review summary (7 Nov 2025) found no existing threat model and recommended defining one, along with careful use and separation of the MLS extractor key (used for NIP-44 encryption) and key compartmentalization. MIP-05 was excluded as incomplete.
+  - The review notes that Nostr public keys and group tags travel in plaintext Nostr events. A network observer could therefore track group membership and message timing and volume, and an honest-but-curious relay could correlate a user's ephemeral identities with their IP address.
+  - Least Authority completed a final audit of the White Noise Rust backend (whitenoise-rs) on 1 April 2026.
+  - The marmot-protocol repository now marks the spec "Status: adopted" and says the older MIP-era documents describe a deprecated version.
+  - A reported switch from NIP-44 to ChaCha20-Poly1305 for Marmot payloads was seen only in an undated search snippet and is unverified.
+  - Sources: [Least Authority review summary (PDF)](https://leastauthority.com/white-noise-marmot-protocol-review-summary-report/); [Least Authority whitenoise-rs audit post, 7 Apr 2026](https://leastauthority.com/blog/audit-of-white-noise-whitenoise-rs/); [parres-hq/marmot](https://github.com/parres-hq/marmot)
 - Local-first software and Automerge: CRDT documents that sync peer-to-peer and merge without a server. [canonical, not re-fetched] — [Ink & Switch, "Local-first software"](https://www.inkandswitch.com/local-first/); [Automerge](https://automerge.org)
 
 ### Inferences
@@ -154,31 +162,99 @@ MLS (RFC 9420) is the standard for efficient group key agreement with forward se
 - If you build on Nostr, NIP-17/NIP-44 is acceptable for low-stakes data but lacks forward secrecy. A key compromise exposes all past taste exchanges stored on relays.
 
 ### Gaps
-- I did not check the status of MLS-over-Nostr work (for example, the "Marmot"/NIP-EE proposals) as of 2026.
+- ~~MLS-over-Nostr status~~: resolved above. Marmot succeeded NIP-EE and was audited in 2025–26. Its metadata exposure to relays (pubkeys, group tags, IPs) is the main residual risk for taste circles built on it.
 - I did not find audits of MLS implementations such as OpenMLS this session.
 
 ## 7. Legal: US VPPA, GDPR, and developer controller obligations
 
 ### Takeaway
-Watch history is regulated personal data in both the US (VPPA) and the EU (GDPR), and inferences from it can become GDPR special-category data. Who counts as a VPPA "consumer" is before the US Supreme Court (Salazar v. Paramount Global, cert. granted 26 Jan 2026). Under GDPR, decentralization does not remove controller duties. EDPB says parties are assessed on their factual influence, and a developer who only ships software and never processes data has a stronger argument that it is not a controller than one that runs default relays, indexes or recommendation servers.
+Watch history is regulated personal data in both the US (VPPA) and the EU (GDPR), and inferences from it can become GDPR special-category data. Who counts as a VPPA "consumer" is before the US Supreme Court (Salazar v. Paramount Global, cert. granted 26 Jan 2026, argued 14 Oct 2026, undecided as of 19 Oct 2026). Under GDPR, decentralization does not remove controller duties. EDPB says parties are assessed on their factual influence, and a developer who only ships software and never processes data has a stronger argument that it is not a controller than one that runs default relays, indexes or recommendation servers.
 
 ### Cited Findings
 - VPPA (18 U.S.C. § 2710) bars "video tape service providers" from knowingly disclosing personally identifiable information that identifies a consumer as having requested specific video materials. Damages are $2,500 per violation. [canonical, not re-fetched] — [18 U.S.C. § 2710](https://www.law.cornell.edu/uscode/text/18/2710)
-- The Supreme Court granted cert in Salazar v. Paramount Global (No. 25-459) on 26 Jan 2026 to decide whether a "consumer" must subscribe to audiovisual goods or services. The Sixth and D.C. Circuits read it narrowly; the Second (Salazar v. NBA) and Seventh (Gardner v. Me-TV) read it broadly. — [Baker Botts](https://ourtake.bakerbotts.com/post/102med0/supreme-court-to-take-on-definition-of-consumer-under-vppa); [cert petition](https://www.supremecourt.gov/DocketPDF/25/25-459/379417/20251010164519322_25-%20_______Petition%20for%20Writ.pdf); [TCPAWorld](https://tcpaworld.com/2026/01/26/breaking-video-privacy-set-to-be-latest-battleground-as-supreme-court-considers-definition-of-consumer-under-vppa/)
-- EDPB Guidelines 02/2025 on blockchain (draft adopted April 2025; consultation to 9 June 2025): roles are assessed factually per processing activity, and governance is key. "Technical impossibility cannot be invoked to justify non-compliance with GDPR requirements." Decentralised governance is "not a reason not to comply". — [EDPB guidelines PDF](https://www.edpb.europa.eu/system/files/documents/2025-06/edpb-guidelines-on-processing-of-personal-data-through-blockchain-9-june-2025.pdf); [Clifford Chance](https://www.cliffordchance.com/insights/resources/blogs/talking-tech/en/articles/2025/06/edpb-draft-guidelines-on-personal-data-processing-through-blockc.html)
-- Industry pushback (claim): nodes in permissionless systems do not determine purposes or means and should not count as controllers. — [A&O Shearman summary](https://www.aoshearman.com/en/insights/ao-shearman-on-data/edpb-publishes-draft-guidelines-on-personal-data-in-blockchain)
-- CJEU case law on joint controllership and special categories [canonical, not re-fetched]:
-  - Wirtschaftsakademie (C-210/16) and Fashion ID (C-40/17): joint controllership arises from influencing purposes and means, even without access to the data.
-  - OT v Vyriausioji (C-184/20, 2022): data that indirectly reveals sensitive traits can count as special-category data.
-  - Meta v Bundeskartellamt (C-252/21, 2023): processing of browsing data can reveal special categories.
-  - Links: [CURIA C-40/17](https://curia.europa.eu/juris/liste.jsf?num=C-40/17); [CURIA C-184/20](https://curia.europa.eu/juris/liste.jsf?num=C-184/20); [CURIA C-252/21](https://curia.europa.eu/juris/liste.jsf?num=C-252/21)
+- The Supreme Court granted cert in Salazar v. Paramount Global (No. 25-459) on 26 Jan 2026. The question is whether the VPPA "consumer" definition (renter, purchaser or subscriber of "goods or services") covers all of a video tape service provider's offerings or only its audiovisual ones. Salazar subscribed to a 247Sports newsletter and alleges a Meta pixel disclosed his video viewing. The circuit split [verified 2026-10-19]:
+  - Narrow reading: Sixth Circuit (*Salazar v. Paramount Global*, 133 F.4th 642 (2025)) and D.C. Circuit (*Pileggi v. Washington Newspaper Publishing Co.*, 146 F.4th 1219 (2025)).
+  - Broad reading: Second Circuit (*Salazar v. NBA*, 118 F.4th 533 (2024); cert. denied Dec 2025) and Seventh Circuit (*Gardner v. Me-TV*, 132 F.4th 1022 (2025)).
+- **Status as of 2026-10-19:** the case was **argued on 14 October 2026** and **no decision has issued**. A decision is expected by the end of the October 2026 Term, i.e. by about June 2027.
+  - SCOTUSblog's read is that the Court "seemed likely to let" the suit proceed, i.e. to adopt the broader reading of "consumer". Several justices doubted whether Paramount is a "video tape service provider" at all, which was not the question presented. Justice Barrett raised standing, and Justices Kavanaugh and Kagan suggested companies can avoid liability by obtaining consent.
+  - Press accounts of the argument differ in emphasis.
+  - Sources: [SCOTUSblog, 14 Oct 2026](https://www.scotusblog.com/2026/10/court-appears-likely-to-allow-internet-suit-based-on-decades-old-video-privacy-law-to-go-forward/); [Cornell LII case page](https://www.law.cornell.edu/supct/cert/25-459); [Paul Weiss memo](https://www.paulweiss.com/insights/client-memos/supreme-court-to-resolve-circuit-split-concerning-definition-of-consumer-under-vppa); [Baker Botts](https://ourtake.bakerbotts.com/post/102med0/supreme-court-to-take-on-definition-of-consumer-under-vppa); [cert petition](https://www.supremecourt.gov/DocketPDF/25/25-459/379417/20251010164519322_25-%20_______Petition%20for%20Writ.pdf); [TCPAWorld](https://tcpaworld.com/2026/01/26/breaking-video-privacy-set-to-be-latest-battleground-as-supreme-court-considers-definition-of-consumer-under-vppa/)
+- EDPB Guidelines 02/2025 on blockchain. Version 1.1 was adopted on 8 April 2025 for consultation, which ran to 9 June 2025. The **final version 2.0 was adopted on 7 July 2026 after public consultation**, announced on 8 July 2026 alongside a consultation-outcome report and a track-changes version. [verified 2026-10-19]
+  - Roles are assessed factually per processing activity, and governance is key.
+  - The final text keeps: "technical impossibility cannot be invoked to justify non-compliance with GDPR requirements".
+  - On governance it says: "The decentralised governance model used by blockchain leads to a multiplicity of actors… However, neither this fact nor the selection of a particular technical infrastructure can be used as a reason not to comply with the GDPR."
+  - Per Bird & Bird, v2.0's changes are modest. They include a stronger necessity and proportionality assessment, a preference for permissioned blockchains, and more detailed DPIA expectations. These change details are from the law-firm summary and were not diffed by me.
+  - Sources: [EDPB final guidelines v2.0 (PDF)](https://www.edpb.europa.eu/system/files/2026-07/edpb_guidelines_202502_blockchain_v2_en.pdf); [EDPB news, 8 July 2026](https://www.edpb.europa.eu/news/edpb-sheds-light-on-anonymisation-and-web-scraping-for-generative-ai-and-adopts-final-version_en); [Bird & Bird](https://www.twobirds.com/en/insights/2026/netherlands/edpb-adopts-final-guidelines-on-blockchain-and-personal-data-a-practical-guide-for-organisations); earlier draft: [EDPB v1 PDF](https://www.edpb.europa.eu/system/files/documents/2025-06/edpb-guidelines-on-processing-of-personal-data-through-blockchain-9-june-2025.pdf), [Clifford Chance](https://www.cliffordchance.com/insights/resources/blogs/talking-tech/en/articles/2025/06/edpb-draft-guidelines-on-personal-data-processing-through-blockc.html)
+- Industry pushback (claim, made on the 2025 draft): nodes in permissionless systems do not determine purposes or means and should not count as controllers. — [A&O Shearman summary](https://www.aoshearman.com/en/insights/ao-shearman-on-data/edpb-publishes-draft-guidelines-on-personal-data-in-blockchain)
+- CJEU case law on joint controllership and special categories:
+  - Wirtschaftsakademie (C-210/16) and Fashion ID (C-40/17): joint controllership arises from influencing purposes and means, even without access to the data. [canonical, not re-fetched]
+  - **OT v Vyriausioji tarnybinės etikos komisija (C-184/20, Grand Chamber, 1 August 2022)** [verified 2026-10-19 via the OJ notice and law-firm commentary; judgment text not retrievable]:
+    - Publishing personal data "indirectly disclosing the sexual orientation of a natural person" counts as processing special-category data under Art. 9(1) GDPR. The case concerned officials' declarations of private interests published online under Lithuanian anti-corruption law. The detail that the data was the name of a spouse or partner is from prior knowledge and was not re-verified.
+    - The Court did not adopt the Advocate General's narrower "intellectual exercise involving deduction" distinction.
+  - **Meta Platforms v Bundeskartellamt (C-252/21, Grand Chamber, 4 July 2023, ECLI:EU:C:2023:537)** [verified 2026-10-19 via the FRA case-law summary]:
+    - Suppose a user visits websites or apps relating to an Art. 9(1) category, or enters information into them. When a social-network operator collects that data via integrated interfaces, cookies or similar technologies, links it to the user's account and uses it, this is processing of special-category data. It is prohibited unless an Art. 9(2) derogation applies, wherever the processing "allows information falling within one of those categories to be revealed", and "irrespective of whether that information concerns a user of that network or any other natural person".
+    - The Court also held that merely visiting such sites does not make the data "manifestly made public" (Art. 9(2)(e)). Clicking "Like"/"Share" counts only if the user has explicitly chosen beforehand to make it public to an unlimited number of persons.
+  - Links: [CURIA C-40/17](https://curia.europa.eu/juris/liste.jsf?num=C-40/17); [CURIA C-184/20](https://curia.europa.eu/juris/liste.jsf?num=C-184/20); [Ganado Advocates on C-184/20](https://ganado.com/cjeu-widens-the-scope-of-sensitive-personal-data-under-the-gdpr/); [CURIA C-252/21](https://curia.europa.eu/juris/liste.jsf?num=C-252/21); [FRA summary of C-252/21](https://fra.europa.eu/en/node/44533)
 
 ### Inferences
-- Video watch history can reveal sexual orientation, religion, health and politics. Under C-184/20 and C-252/21 reasoning, recommendation inferences built from it may be Article 9 data, which needs explicit consent. Keeping taste vectors on-device and E2E-encrypting any exchange keeps the developer out of the processing loop.
+- Video watch history can reveal sexual orientation, religion, health and politics. Under C-184/20 and C-252/21 reasoning, recommendation inferences built from it may be Article 9 data, which needs explicit consent or another Art. 9(2) derogation. C-252/21 says this applies where processing "allows" such information to be revealed. It also says viewing alone does not make the data "manifestly public", so public "likes" or taste lists count only with an explicit prior choice to publish. Keeping taste vectors on-device and E2E-encrypting any exchange keeps the developer out of the processing loop.
 - Controller exposure grows with the infrastructure the developer runs: default relays, bootstrap servers, analytics, recommendation services. Shipping client software alone is the weakest basis for controllership, though EDPB's factual-influence test means design choices, such as hardcoded defaults, could still count.
 - VPPA risk attaches to a provider that discloses which videos a person watched. A P2P design where peers learn others' viewing (PeerTube-style swarms) or where taste sketches are shared could create disclosure arguments if the app operator is a "video tape service provider". Salazar's outcome will shape that.
 
 ### Gaps
-- I could not determine whether EDPB Guidelines 02/2025 were finalized after consultation, or how they changed.
+- ~~EDPB 02/2025 final status~~: resolved. v2.0 was adopted on 7 July 2026; the detailed diff of changes was not reviewed directly.
 - I found no case law applying VPPA or GDPR controllership to a fully decentralized P2P video app or its developer.
-- I did not check whether the Supreme Court has decided Salazar v. Paramount as of 2026-10-19. A decision would be due by about June 2026 if it was argued in the October 2025 Term.
+- ~~Salazar status~~: resolved. It was argued on 14 Oct 2026 and is undecided as of 2026-10-19, with a decision expected by about June 2027. **Correction:** the earlier note assumed argument in the October 2025 Term and a decision by June 2026; that was wrong, because the January 2026 grant was set for the October 2026 Term.
+
+## Revision log (2026-10-19)
+Second pass to verify unverified items, gaps and "[canonical, not re-fetched]" items against primary sources where they were reachable.
+
+**Corrections**
+- **Cure53 / NIP-44:** the signing/encryption key-reuse risk is **NOS-01-007 (Low)**, not NOS-01-001. NOS-01-001 is the informational twist-attack issue. Ten findings were confirmed (NOS-01-001 to NOS-01-010).
+- **Kolektiva:**
+  - The instance had about 7,800 members (CyberInsider), not "about 8,000 active users".
+  - IP addresses were held only for users who had logged in within the three days before the backup.
+  - The backup also included posts and DMs.
+  - Users were notified on 30 June 2023.
+  - Sources are now EFF directly and CyberInsider.
+- **Telegram (Sept 2024):** disclosure requires a "valid order from the relevant judicial authorities", not merely "valid legal requests".
+- **Salazar v. Paramount:** the gap note wrongly assumed an October 2025 Term argument. The case was argued on 14 Oct 2026 and is undecided; the circuit-split cases are now fully cited.
+- **Signal / Martiny:** the "ephemeral identities" description was replaced with the paper's own summary (SDA; as few as 5 messages; two proposed solutions).
+
+**Newly verified or updated**
+- Damus China removal (2 Feb 2023).
+- Navalny Smart Voting removal by Apple and Google (17 Sept 2021).
+- Durov case timeline and status: under investigation, no trial order reported, travel ban reportedly lifted Nov 2025.
+- LBRY shutdown and receivership (Oct 2023) and Odysee's sale to Forward Research (June 2024).
+- NIP-17 details (draft status, `p` tag visible, NIP-42 AUTH).
+- RFC 9458 (Jan 2024) and RFC 9420 (July 2023).
+- Loopix abstract.
+- Nym 2026 status from Nym's own roadmap.
+- Balduf et al. figures (two monitors, 15 months, 2.78·10^10 entries) and Henningsen's node count.
+- EDPB Guidelines 02/2025 v2.0 adopted 7 July 2026, with quotes re-checked in the final text.
+- CJEU C-184/20 and C-252/21 holdings.
+
+**Added**
+- Chrome Safe Browsing's OHTTP deployment via Fastly (2024).
+- Android Private Compute Services' stated use of PIR (2021).
+- Marmot / MLS-over-Nostr status and Least Authority audit findings.
+- Hyperswarm IP-exposure documentation.
+
+**Still unresolved / caveats**
+- **PeerTube:** no state seizure or takedown found (absence of evidence).
+- **Nostr relays:** no documented government or host pressure found; only speculative discussion.
+- **Google PIR:** no named Chrome or Android feature confirmed to use PIR.
+- **Iroh/Hypercore:** no peer-reviewed privacy measurement exists that I could find.
+- **Nym:** node counts and latency figures are unverified.
+- **CJEU:** C-184/20's fact pattern and full judgment text were not retrieved (EUR-Lex and CURIA did not return content), and C-210/16 and C-40/17 were not re-fetched.
+- **Durov:** status relies on Wikipedia and secondary reports.
+- **Marmot:** the NIP-44 to ChaCha20-Poly1305 change is unverified.
+- **Not re-checked this pass:**
+  - OONI/Russia Tor figures;
+  - DSA/OSA items;
+  - PeerTube privacy guide quotes;
+  - Apple HE/PIR items;
+  - did:plc / PLC directory items;
+  - the Nostr Compass claim;
+  - Wu et al. 2024;
+  - IPFS double-hashing.
