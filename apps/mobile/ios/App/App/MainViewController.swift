@@ -4,11 +4,8 @@ import Capacitor
 
 /// The app's root view controller (set in Main.storyboard instead of CAPBridgeViewController).
 ///
-/// Why: WKWebView exposes `window.webkit.messageHandlers.bridge` to every frame, including the
-/// cross-origin PeerTube embeds the feed loads from arbitrary instances, and Capacitor's
-/// WebViewDelegationHandler does not check which frame a message came from. A hostile instance's
-/// embed could then call native plugins (for example SecureStorage.remove or set). Results go
-/// back only to the main frame, but writes and deletes would still happen.
+/// Why: the feed loads cross-origin PeerTube embeds from arbitrary instances. As defense in
+/// depth, only the app's own main frame may talk to the native bridge.
 ///
 /// The filter below forwards a bridge message only when it comes from the main frame of the app's
 /// own origin (capacitor://localhost). Everything else is dropped. The PSI frame (sandboxed,

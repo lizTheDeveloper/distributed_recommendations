@@ -161,7 +161,7 @@ the vault works as in a browser.
 
 **The native bridge must not be reachable from PeerTube embeds.** Third-party instance JavaScript runs in the embed iframes.
 - *Android:* modern WebViews get `addWebMessageListener` restricted to the app origin. Old WebViews fall back to `addJavascriptInterface`, which every frame can call. `MainActivity` checks `WEB_MESSAGE_LISTENER` and `DOCUMENT_START_SCRIPT` and, if either is missing, shows "update Android System WebView" instead of loading the app.
-- *iOS:* WKWebView exposes `webkit.messageHandlers.bridge` to **all frames**, and Capacitor 8.5.2's `WebViewDelegationHandler` doesn't check the sender frame. A hostile embed could invoke plugins (results go back only to the main frame, but `SecureStorage.set/remove` would execute). `MainViewController` replaces the handler with one that forwards only main-frame messages from the app origin. Worth reporting upstream.
+- *iOS:* `MainViewController` replaces Capacitor's script-message handler with one that forwards only main-frame messages from the app origin (defense in depth; see private security notes).
 
 **Video.**
 - iOS (`MainViewController`, same as Capacitor's defaults, restated): `allowsInlineMediaPlayback = true`, `mediaTypesRequiringUserActionForPlayback = []` (Reels' muted autoplay and the embed API's `play` work without a tap), AirPlay and Picture in Picture allowed. The embed URL already carries `autoplay=1&muted=1`. **Unverified:** inline playback on iPhone also needs `playsinline` on the `<video>` inside PeerTube's player; PeerTube's embed docs don't mention it. If videos jump to fullscreen on iPhone, that is the cause, and it can only be fixed upstream or by not autoplaying on iOS.
