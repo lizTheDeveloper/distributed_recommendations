@@ -17,6 +17,12 @@ export interface ResolvedTasteList {
   videos: Video[];
   /** Track-record strength in [0, 1] (`tasteListStrength`); default 0.5, core's start value. */
   strength?: number;
+  /** Ranker `via` (one per list: core caps per via). Default: the list's name. */
+  via?: string;
+  /** Key for the list's track record (impressions). Default: the list's name. */
+  trackKey?: string;
+  /** Why-line replacing core's generic one (followed creator tastes). */
+  why?: string;
 }
 
 export interface CandidateInput {
@@ -44,7 +50,8 @@ export function buildCandidates(input: CandidateInput): Candidate[] {
 
   for (const t of input.tasteLists) {
     const strength = t.strength ?? DEFAULT_LIST_STRENGTH;
-    for (const v of t.videos) out.push({ video: v, source: { kind: "taste", via: t.list.name, strength } });
+    const via = t.via ?? t.list.name;
+    for (const v of t.videos) out.push({ video: v, source: { kind: "taste", via, strength } });
   }
 
   for (const inst of input.instances) {
@@ -86,21 +93,22 @@ export function popularRecipe(r: Recipe): Recipe {
 /** Map of video id -> taste-list item flags, for sponsored/affiliated labels. */
 export function disclosureIndex(lists: readonly ResolvedTasteList[]): Map<string, { sponsored: string[]; affiliated: string[] }> {
   const m = new Map<string, { sponsored: string[]; affiliated: string[] }>();
-  for (const { list } of lists) {
+  for (const { list, via } of lists) {
+    const name = via ?? list.name;
     for (const it of list.items) {
       if (!it.sponsored && !it.affiliated) continue;
       const e = m.get(it.id) ?? { sponsored: [], affiliated: [] };
-      if (it.sponsored) e.sponsored.push(list.name);
-      if (it.affiliated) e.affiliated.push(list.name);
+      if (it.sponsored) e.sponsored.push(name);
+      if (it.affiliated) e.affiliated.push(name);
       m.set(it.id, e);
     }
   }
   return m;
 }
 
-/** Map of video id -> names of subscribed lists containing it. */
+/** Map of video id -> track-record keys of subscribed lists (and followed tastes) containing it. */
 export function listMembership(lists: readonly ResolvedTasteList[]): Map<string, string[]> {
   const m = new Map<string, string[]>();
-  for (const { list } of lists) for (const it of list.items) m.set(it.id, [...(m.get(it.id) ?? []), list.name]);
+  for (const { list, trackKey } of lists) for (const it of list.items) m.set(it.id, [...(m.get(it.id) ?? []), trackKey ?? list.name]);
   return m;
 }

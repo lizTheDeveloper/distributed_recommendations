@@ -2,7 +2,7 @@
 //
 // Sensitive = anything that reveals what the viewer watches or likes: watch and
 // endorsement history, the discovery tally, feed impressions, follows, taste-list
-// subscriptions, and the two caches keyed by video ids the viewer resolved or
+// subscriptions, followed creator tastes, and the two caches keyed by video ids the viewer resolved or
 // endorsed. These live only in the encrypted vault. Settings, the recipe and the
 // last tab stay in localStorage: they're configuration, not behavior.
 
@@ -16,6 +16,8 @@ export const SENSITIVE_KEYS = [
   "impressions",
   "follows",
   "taste",
+  // Followed creator tastes ("Follow taste"): whose picks you follow.
+  "tastefollows",
   "videos",
   "tags",
   // Reels "not interested" ids.

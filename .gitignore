@@ -1,3 +1,9 @@
 node_modules/
 __pycache__/
 *.pyc
+.gradle/
+build/
+!packages/**/build/
+target/
+*.apk
+*.aab

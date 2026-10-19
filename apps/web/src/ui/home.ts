@@ -79,6 +79,7 @@ function card(app: App, item: RankedItem, disclosures: ReturnType<typeof disclos
             },
             "+ Follow",
           ),
+      cardMenu(app, item),
     ),
     h(
       "div",
@@ -111,6 +112,39 @@ function card(app: App, item: RankedItem, disclosures: ReturnType<typeof disclos
       h("span", { class: "mono", style: { opacity: "0.75" } }, `score ${item.score.toFixed(3)} · ranked on this device`),
     ),
   );
+}
+
+/** The card's ⋯ menu: Follow taste, Creator studio, Not interested. */
+function cardMenu(app: App, item: RankedItem): HTMLElement {
+  const v = item.video;
+  const name = v.creatorName ?? v.creator;
+  const id = "cm-" + hashId(v.id);
+  const st = app.tasteState(v.creator);
+  const details = h("details", { class: "cardmenu", id }) as HTMLDetailsElement;
+  const close = () => (details.open = false);
+  const tasteLabel = st === "following" ? `Following ${name}'s taste…` : st === "unavailable" ? `${name}: no public picks yet` : `Follow ${name}'s taste…`;
+  details.append(
+    h("summary", { "aria-label": `More for ${v.title}`, id: id + "-btn" }, h("span", { "aria-hidden": "true" }, "⋯")),
+    h(
+      "div",
+      { class: "menu", role: "menu" },
+      h("button", { role: "menuitem", disabled: st === "unavailable", onclick: () => (close(), app.openTaste(v.creator, name, id + "-btn")) }, icon("taste", 18), tasteLabel),
+      h("button", { role: "menuitem", onclick: () => (close(), (app.s.ui.studioInput = undefined), app.loadStudio(v.creator), app.go("studio")) }, icon("studio", 18), "Creator studio"),
+      h("button", { role: "menuitem", onclick: () => (close(), app.notInterested(v)) }, icon("eyeoff", 18), "Not interested"),
+    ),
+  );
+  // Look up whether the creator publishes picks only when the menu opens.
+  details.addEventListener("toggle", () => {
+    if (details.open) void app.lookupCreatorTaste(v.creator, v.creatorName);
+  });
+  details.addEventListener("keydown", (e: KeyboardEvent) => {
+    if (e.key === "Escape" && details.open) {
+      e.stopPropagation();
+      close();
+      (details.querySelector("summary") as HTMLElement).focus();
+    }
+  });
+  return details;
 }
 
 /** Feed cards seen at least half on screen feed each taste list's track record. */

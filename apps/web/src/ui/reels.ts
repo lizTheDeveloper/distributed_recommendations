@@ -17,6 +17,7 @@ import { h } from "./dom.ts";
 import { icon } from "./icons.ts";
 import { chip, emptyFeed, feedBar, hashId } from "./home.ts";
 import { EmbedPlayer } from "./player.ts";
+import { tasteButtonText } from "./taste.ts";
 
 const WATCH_AFTER_MS = 3000;
 const NPUB_LOOKUP_AFTER_MS = 1200;
@@ -266,6 +267,15 @@ class ReelsView {
         if (ref && !following) app.follow(ref, v.creatorName);
         this.refresh(n);
       }, { disabled: following }),
+      (() => {
+        const name = v.creatorName ?? v.creator;
+        const t = tasteButtonText(app.tasteState(v.creator), name);
+        return btn("taste-btn" + (t.on ? " on" : ""), "taste", t.label, t.aria, () => app.openTaste(v.creator, name, `rail-${hid}-taste`), {
+          disabled: t.disabled,
+          "aria-haspopup": t.disabled ? undefined : "dialog",
+          title: t.disabled ? "No public picks yet" : undefined,
+        });
+      })(),
       btn("", "eyeoff", "Not interested", `Not interested in ${v.title}`, () => app.notInterested(v)),
       btn("", "share", "Share", `Copy link to ${v.title}`, () => app.share(v)),
       h(
@@ -354,7 +364,11 @@ class ReelsView {
         }
       }, WATCH_AFTER_MS),
       setTimeout(() => {
-        if (this.nodes[this.active] === n) this.app.lookupCreatorNpub(v.creator);
+        if (this.nodes[this.active] === n) {
+          this.app.lookupCreatorNpub(v.creator);
+          // Find out whether the creator publishes picks, so the Taste button can say so.
+          void this.app.lookupCreatorTaste(v.creator, v.creatorName);
+        }
       }, NPUB_LOOKUP_AFTER_MS),
     );
     if (shouldLoadMore(i, this.nodes.length)) this.app.loadMoreReels();
@@ -399,7 +413,7 @@ class ReelsView {
 
   private onKey(e: KeyboardEvent) {
     const { s } = this.app;
-    if (s.screen !== "home" || s.view !== "reels" || s.sheet.open || s.consent || !this.root.isConnected) return;
+    if (s.screen !== "home" || s.view !== "reels" || s.sheet.open || s.consent || s.tasteSheet || !this.root.isConnected) return;
     const t = e.target as HTMLElement | null;
     if (t && (t.closest("input, textarea, select, [contenteditable]") || t.closest(".modal, .scrim"))) return;
     const k = reelKey(e);

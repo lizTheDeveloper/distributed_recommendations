@@ -3,6 +3,8 @@
 
 import type { FetchLike, PeerTubeClient, Video } from "./core.ts";
 import { createPeerTubeClient, peertubeVideoToVideo } from "./core.ts";
+import type { PlaylistBundle } from "./creatortaste.ts";
+import { MAX_PLAYLISTS, isPublicPlaylist } from "./creatortaste.ts";
 import type { ChannelRef } from "./handles.ts";
 import type { VideoMeta } from "./reels.ts";
 import { watchId } from "./videos.ts";
@@ -24,6 +26,8 @@ export interface ChannelProfile {
   displayName?: string;
   /** Channel description, support text and owner account description. */
   text: string;
+  /** Owner account handle, `name@host`. */
+  ownerAccount?: string;
 }
 
 export interface Catalog {
@@ -43,6 +47,12 @@ export interface Catalog {
    */
   videoTags(id: string, via: readonly string[]): Promise<string[] | null>;
   channelStats(c: ChannelRef): Promise<ChannelStats>;
+  /**
+   * A channel's public playlists with their elements, read from the channel's home
+   * instance: the channel's own playlists, then (with `ownerAccount`) the owner
+   * account's. At most MAX_PLAYLISTS, most recently updated first.
+   */
+  creatorPlaylists(c: ChannelRef, ownerAccount?: string): Promise<PlaylistBundle[]>;
 }
 
 export function createCatalog(rawFetch: FetchLike): Catalog {
@@ -70,7 +80,8 @@ export function createCatalog(rawFetch: FetchLike): Catalog {
         try {
           const origin = new URL(url).origin;
           const data = (body as { data?: unknown }).data;
-          if (Array.isArray(data)) for (const r of data) capture(r, origin);
+          // Playlist elements wrap the video: `{ position, type, video }`.
+          if (Array.isArray(data)) for (const r of data) capture(r && typeof r === "object" && "video" in r ? (r as { video: unknown }).video : r, origin);
           else capture(body, origin);
         } catch {
           /* not ours to judge */
@@ -123,6 +134,7 @@ export function createCatalog(rawFetch: FetchLike): Catalog {
       const owner = (info.ownerAccount ?? {}) as Record<string, unknown>;
       const p: ChannelProfile = { handle: `${c.name}@${c.host}`, text: [str(info.description), str(info.support), str(owner.description)].join("\n").slice(0, 20_000) };
       if (typeof info.displayName === "string") p.displayName = info.displayName;
+      if (str(owner.name) && str(owner.host)) p.ownerAccount = `${str(owner.name)}@${str(owner.host)}`;
       return p;
     },
     async channelVideos(c, count = 20) {
@@ -172,6 +184,42 @@ export function createCatalog(rawFetch: FetchLike): Catalog {
       if (typeof info.displayName === "string") stats.displayName = info.displayName;
       if (typeof info.followersCount === "number") stats.followers = info.followersCount;
       return stats;
+    },
+    async creatorPlaylists(c, ownerAccount) {
+      const origin = `https://${c.host}`;
+      const lists: unknown[] = [];
+      const page = await getJson(`${origin}/api/v1/video-channels/${encodeURIComponent(c.name)}/video-playlists?count=50&sort=-updatedAt`);
+      if (Array.isArray(page.data)) lists.push(...page.data);
+      const [acct, acctHost] = (ownerAccount ?? "").split("@");
+      if (acct && acctHost === c.host) {
+        try {
+          const ap = await getJson(`${origin}/api/v1/accounts/${encodeURIComponent(acct)}/video-playlists?count=50&sort=-updatedAt`);
+          if (Array.isArray(ap.data)) lists.push(...ap.data);
+        } catch {
+          /* the channel's own playlists are enough */
+        }
+      }
+      const seen = new Set<string>();
+      const pick = lists
+        .filter((p): p is Record<string, unknown> => {
+          if (!isPublicPlaylist(p)) return false;
+          const o = p as Record<string, unknown>;
+          if (typeof o.uuid !== "string" || seen.has(o.uuid) || o.videosLength === 0) return false;
+          seen.add(o.uuid);
+          return true;
+        })
+        .sort((a, b) => String(b.updatedAt ?? "").localeCompare(String(a.updatedAt ?? "")))
+        .slice(0, MAX_PLAYLISTS);
+      return mapLimit(pick, 3, async (p) => {
+        let elements: unknown[] = [];
+        try {
+          const els = await getJson(`${origin}/api/v1/video-playlists/${encodeURIComponent(String(p.uuid))}/videos?count=100`);
+          if (Array.isArray(els.data)) elements = els.data;
+        } catch {
+          /* skip this playlist */
+        }
+        return { origin, playlist: p, elements };
+      });
     },
   };
 }

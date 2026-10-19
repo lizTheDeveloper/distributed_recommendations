@@ -2,7 +2,7 @@
 
 import type { Candidate, Recipe, RankedItem, SourceKind, Video } from "./lib/core.ts";
 import { cryptoRng, parseRecipe, rank, recipeToJson, seededRng, tagProfile, tagRelevance } from "./lib/core.ts";
-import type { Catalog, ChannelStats } from "./lib/catalog.ts";
+import type { Catalog, ChannelProfile, ChannelStats } from "./lib/catalog.ts";
 import { mapLimit } from "./lib/catalog.ts";
 import type { InstanceFeed, ResolvedTasteList } from "./lib/candidates.ts";
 import { buildCandidates, buildPopularCandidates, listMembership, popularRecipe } from "./lib/candidates.ts";
@@ -30,6 +30,10 @@ import { REELS_MAX_PAGES, applyPage, extendReels, newPager, nextPages, pagerExha
 import type { SheetAction, SheetSection, SheetState } from "./lib/sheet.ts";
 import { closedSheet, sheetReduce } from "./lib/sheet.ts";
 import { findNpub } from "./lib/bech32.ts";
+import type { TasteFollow, TasteResolution } from "./lib/creatortaste.ts";
+import { applyResolution, creatorTasteList, creatorVias, loadTasteFollows, refreshDue, resolveCreatorTaste, rewriteWhy, trackKey } from "./lib/creatortaste.ts";
+import { tasteDeps } from "./lib/tastesources.ts";
+import { renderTasteSheet } from "./ui/taste.ts";
 import type { StoredIdentity } from "./lib/match/identity.ts";
 import { loadIdentity, signerFor } from "./lib/match/identity.ts";
 import type { PeerSource } from "./lib/match/service.ts";
@@ -66,6 +70,9 @@ export interface TasteSub {
   list: TasteList;
   addedAt: number;
 }
+
+/** A creator's taste, as the Taste button shows it. */
+export type TasteState = "following" | "available" | "unavailable" | "loading" | "unknown";
 
 export type ScreenId = "home" | "follow" | "matches" | "studio" | "settings" | "recipe";
 
@@ -135,6 +142,12 @@ export interface State {
   /** Creator handle → published npub (hex), null = none found. Memory only. */
   creatorNpub: Map<string, string | null>;
   consent: ConsentDialog | null;
+  /** Followed creator tastes (vault: who you follow is sensitive). */
+  tasteFollows: TasteFollow[];
+  /** Creator handle → where their public picks were found (memory; refreshed on demand). */
+  tasteLookup: Map<string, Load<TasteResolution>>;
+  /** The open "Follow taste" sheet. */
+  tasteSheet: { handle: string; name: string; returnFocus?: string } | null;
   /** Transient form state (inputs, errors) keyed by form. */
   ui: Record<string, string | undefined>;
 }
@@ -157,9 +170,11 @@ export interface AppOptions {
   legacyLeft?: boolean;
   /** Dev tools: on-demand sketches. On in `npm run dev` and the offline demo. */
   devTools?: boolean;
+  /** Offline artifact: channels whose public playlists are in the snapshot. */
+  snapshotTasteChannels?: string[];
 }
 
-type PersistKey = "settings" | "follows" | "taste" | "recipe" | "history" | "tally" | "videos" | "impressions" | "tags" | "hidden" | "identity";
+type PersistKey = "settings" | "follows" | "taste" | "tastefollows" | "recipe" | "history" | "tally" | "videos" | "impressions" | "tags" | "hidden" | "identity";
 
 export interface App {
   s: State;
@@ -199,6 +214,20 @@ export interface App {
   unfollow(handle: string): void;
   addTaste(sub: TasteSub): void;
   removeTaste(key: string): void;
+  /** Follow taste: state of a creator's public picks for the Taste button. */
+  tasteState(creator: string): TasteState;
+  /** Find a creator's public picks (memoized; `force` refetches). */
+  lookupCreatorTaste(creator: string, name?: string, force?: boolean): Promise<void>;
+  openTaste(creator: string, name?: string, from?: string): void;
+  closeTaste(): void;
+  followTaste(handle: string): void;
+  unfollowTaste(handle: string): void;
+  setTasteEnabled(handle: string, on: boolean): void;
+  /** Refetch followed tastes now (one, or all). */
+  refreshTastes(handle?: string): void;
+  /** A video known from a followed taste or the local cache. */
+  tasteVideo(id: string): Video | undefined;
+  snapshotTasteChannels: string[];
   watch(v: Video, via?: SourceKind): void;
   /** Record a watch without opening the player (a reel that played). */
   noteWatch(v: Video, via?: SourceKind): void;
@@ -313,6 +342,9 @@ export function startApp(opts: AppOptions): App {
     reels: { items: [], active: 0, muted: true, paused: false, pager: null, loading: false, pages: new Map(), version: 0 },
     creatorNpub: new Map(),
     consent: null,
+    tasteFollows: sens<TasteFollow[]>("tastefollows", [], loadTasteFollows),
+    tasteLookup: new Map(),
+    tasteSheet: null,
     ui: {},
   };
 
@@ -321,6 +353,7 @@ export function startApp(opts: AppOptions): App {
   const bottom = h("nav", { class: "bottombar", "aria-label": "Screens" });
   const main = h("main", { id: "screen" });
   const sheetHost = h("div", { id: "sheet-host" });
+  const tasteHost = h("div", { id: "taste-host" });
   const toastEl = h("div", { class: "toast", role: "status", "aria-live": "polite", hidden: true });
   const gear = h("button", { class: "iconbtn", id: "gear-btn", "aria-label": "Feed settings", title: "Feed settings", onclick: () => app.sheet({ type: "toggle", from: "gear-btn" }) }, icon("gear"));
   for (const sc of SCREENS) {
@@ -390,6 +423,7 @@ export function startApp(opts: AppOptions): App {
     ),
     bottom,
     sheetHost,
+    tasteHost,
     toastEl,
   );
 
@@ -427,6 +461,7 @@ export function startApp(opts: AppOptions): App {
       document.body.classList.remove("sheet-open");
       if (s.sheet.returnFocus) document.getElementById(s.sheet.returnFocus)?.focus({ preventScroll: true });
     }
+    renderTasteSheet(app, tasteHost);
   }
 
   // ---- data loading ----
@@ -547,6 +582,7 @@ export function startApp(opts: AppOptions): App {
     if (k === "matchbook") return app.match.book;
     if (k === "matchmeta") return app.match.meta;
     if (k === "demopeer") return app.demo?.save() ?? null;
+    if (k === "tastefollows") return s.tasteFollows;
     return s[k as "history" | "tally" | "impressions" | "follows" | "taste"];
   }
 
@@ -557,7 +593,58 @@ export function startApp(opts: AppOptions): App {
     for (const p of s.reels.pages.values()) for (const v of [...p.recent, ...p.trending]) m.set(v.id, v);
     for (const r of s.followVideos.values()) if (r.status === "ok") for (const v of r.value) m.set(v.id, v);
     for (const r of s.tasteRes.values()) if (r.status === "ok") for (const v of r.value.videos) m.set(v.id, v);
+    for (const [id, v] of tasteVideos) m.set(id, v);
     return m;
+  }
+
+  // ---- Follow taste: creators' public picks ----
+  /** Channel profiles, shared by the npub and taste lookups (one request per creator). */
+  const profiles = new Map<string, Promise<ChannelProfile>>();
+  function profileFor(ref: { name: string; host: string }): Promise<ChannelProfile> {
+    const key = handleOf(ref);
+    let p = profiles.get(key);
+    if (!p) {
+      p = catalog.channelProfile(ref, opts.mode === "live" ? s.settings.instances : []);
+      p.catch(() => profiles.delete(key));
+      profiles.set(key, p);
+    }
+    return p;
+  }
+  /** Video data carried by followed tastes (playlists include it). */
+  let tasteVideos = new Map<string, Video>();
+  function rebuildTasteVideos() {
+    const m = new Map<string, Video>();
+    for (const f of s.tasteFollows) for (const sv of f.taste?.videos ?? []) {
+      const v = loadVideo(sv);
+      if (v) m.set(v.id, v);
+    }
+    tasteVideos = m;
+  }
+  rebuildTasteVideos();
+  /** Picks without video data (Nostr, linked lists) are resolved at their origin, like taste-list items. */
+  const TASTE_RESOLVE_LIMIT = 40;
+  async function resolveTastePicks(f: TasteFollow) {
+    const todo = (f.taste?.items ?? []).map((i) => i.id).filter((id) => !tasteVideos.has(id) && !s.videoCache.has(id)).slice(0, TASTE_RESOLVE_LIMIT);
+    if (!todo.length) return;
+    await mapLimit(todo, 4, async (id) => {
+      try {
+        const v = await catalog.resolveVideo(id);
+        if (v) s.videoCache.set(v.id, v);
+      } catch {
+        /* unavailable */
+      }
+    });
+    app.persist("videos");
+    app.rerender();
+  }
+  function saveTasteFollows() {
+    rebuildTasteVideos();
+    app.persist("tastefollows");
+    s.reels.version++;
+  }
+  function refreshDueTastes() {
+    const now = Date.now();
+    for (const f of s.tasteFollows) if (refreshDue(f, now)) void app.lookupCreatorTaste(f.handle, f.name, true);
   }
 
   /** My items for similarity: everything I endorsed or finished. */
@@ -626,15 +713,16 @@ export function startApp(opts: AppOptions): App {
     }
     const followVideos: Video[] = [];
     for (const r of s.followVideos.values()) if (r.status === "ok") followVideos.push(...r.value);
+    const lists = app.resolvedLists();
     const candidates = [
-      ...buildCandidates({ instances, follows: new Set(s.follows.map((f) => f.handle)), followVideos, tasteLists: app.resolvedLists() }),
+      ...buildCandidates({ instances, follows: new Set(s.follows.map((f) => f.handle)), followVideos, tasteLists: lists }),
       ...matchCandidates(),
     ];
     const prof = profile();
     const recipe = app.recipe();
     const seen = new Set([...seenSet(s.history), ...s.hidden]);
     // Keep committed reels out of `seen` filtering decisions: they're already placed.
-    const items = rank(candidates, recipe, { now: opts.now(), limit: REELS_RANK_LIMIT, rng: seededRng(s.seed), seen, exploreRelevance: prof.size ? tagRelevance(prof) : undefined });
+    const items = rewriteWhy(rank(candidates, recipe, { now: opts.now(), limit: REELS_RANK_LIMIT, rng: seededRng(s.seed), seen, exploreRelevance: prof.size ? tagRelevance(prof) : undefined }), lists);
     let popular: RankedItem[] = [];
     if (s.settings.showPopular && recipe.weights.taste > 0 && instances.length) {
       const shown = new Set([...seen, ...items.map((i) => i.video.id)]);
@@ -737,6 +825,13 @@ export function startApp(opts: AppOptions): App {
         const r = s.tasteRes.get(t.key);
         if (r?.status === "ok") out.push({ list: t.list, videos: r.value.videos, strength: listStrength(s.impressions, t.list.name, endorsed) });
       }
+      // Followed creator tastes: kind taste, via = creator name, own track record.
+      const active = s.tasteFollows.filter((f) => f.enabled && f.taste?.items.length);
+      const vias = creatorVias(active, s.taste.map((t) => t.list.name));
+      for (const f of active) {
+        const r = creatorTasteList(f, vias.get(f.handle)!, app.tasteVideo, listStrength(s.impressions, trackKey(f.handle), endorsed));
+        if (r) out.push(r);
+      }
       return out;
     },
     feed() {
@@ -745,12 +840,13 @@ export function startApp(opts: AppOptions): App {
       const followVideos: Video[] = [];
       for (const r of s.followVideos.values()) if (r.status === "ok") followVideos.push(...r.value);
       const tagged = instances.map((i) => ({ ...i, recent: i.recent.map(withTags), trending: i.trending.map(withTags) }));
+      const lists = app.resolvedLists();
       const candidates = [
         ...buildCandidates({
           instances: tagged,
           follows: new Set(s.follows.map((f) => f.handle)),
           followVideos,
-          tasteLists: app.resolvedLists(),
+          tasteLists: lists,
         }),
         ...matchCandidates(),
       ];
@@ -758,7 +854,7 @@ export function startApp(opts: AppOptions): App {
       const exploreRelevance = prof.size ? tagRelevance(prof) : undefined;
       const recipe = app.recipe();
       const seen = new Set([...seenSet(s.history), ...s.hidden]);
-      const items = rank(candidates, recipe, { now: opts.now(), limit: FEED_LIMIT, rng: seededRng(s.seed), seen, exploreRelevance });
+      const items = rewriteWhy(rank(candidates, recipe, { now: opts.now(), limit: FEED_LIMIT, rng: seededRng(s.seed), seen, exploreRelevance }), lists);
       let popular: RankedItem[] = [];
       if (s.settings.showPopular && recipe.weights.taste > 0 && tagged.length) {
         const shown = new Set([...seen, ...items.map((i) => i.video.id)]);
@@ -904,6 +1000,100 @@ export function startApp(opts: AppOptions): App {
       if (t) app.toast(`Removed "${t.list.name}"`);
       app.rerender();
     },
+    tasteState(creator) {
+      const key = creator.toLowerCase();
+      if (s.tasteFollows.some((f) => f.handle === key)) return "following";
+      const look = s.tasteLookup.get(key);
+      if (!look) return "unknown";
+      if (look.status === "loading") return "loading";
+      if (look.status === "error") return "unknown";
+      return look.value.taste ? "available" : "unavailable";
+    },
+    async lookupCreatorTaste(creator, name, force = false) {
+      const key = creator.toLowerCase();
+      const ref = parseChannelInput(key);
+      if (!ref) return;
+      const cur = s.tasteLookup.get(key);
+      if (cur && !force && cur.status !== "error") return;
+      if (cur?.status === "loading") return;
+      s.tasteLookup.set(key, { status: "loading" });
+      app.rerender();
+      if (force) profiles.delete(key);
+      const deps = tasteDeps({ catalog, ref, profile: () => profileFor(ref), relays: s.settings.relays, live: opts.mode === "live", now: () => Date.now() });
+      try {
+        const r = await resolveCreatorTaste(key, name ?? ref.name, deps);
+        s.tasteLookup.set(key, { status: "ok", value: r });
+        const i = s.tasteFollows.findIndex((f) => f.handle === key);
+        if (i >= 0) {
+          const next = applyResolution(s.tasteFollows[i], r);
+          s.tasteFollows = s.tasteFollows.map((f, k) => (k === i ? next : f));
+          saveTasteFollows();
+          void resolveTastePicks(next);
+        }
+      } catch (e) {
+        s.tasteLookup.set(key, { status: "error", error: errText(e) });
+      }
+      app.rerender();
+    },
+    openTaste(creator, name, from) {
+      const key = creator.toLowerCase();
+      s.tasteSheet = { handle: key, name: name ?? s.tasteFollows.find((f) => f.handle === key)?.name ?? key, returnFocus: from };
+      render();
+      void app.lookupCreatorTaste(key, name);
+    },
+    closeTaste() {
+      const back = s.tasteSheet?.returnFocus;
+      s.tasteSheet = null;
+      render();
+      if (back) document.getElementById(back)?.focus({ preventScroll: true });
+    },
+    followTaste(handle) {
+      const key = handle.toLowerCase();
+      const look = s.tasteLookup.get(key);
+      const r = look?.status === "ok" ? look.value : null;
+      if (!r?.taste) {
+        app.toast("No public picks to follow yet");
+        return;
+      }
+      if (s.tasteFollows.some((f) => f.handle === key)) return;
+      const f: TasteFollow = { handle: key, name: r.name, enabled: true, addedAt: Date.now(), checkedAt: r.checkedAt, taste: r.taste };
+      s.tasteFollows = [...s.tasteFollows, f];
+      saveTasteFollows();
+      app.toast(`Following ${r.name}'s taste: ${r.taste.items.length} pick${r.taste.items.length === 1 ? "" : "s"}`);
+      void resolveTastePicks(f);
+      app.rerender();
+    },
+    unfollowTaste(handle) {
+      const key = handle.toLowerCase();
+      const f = s.tasteFollows.find((x) => x.handle === key);
+      if (!f) return;
+      s.tasteFollows = s.tasteFollows.filter((x) => x.handle !== key);
+      saveTasteFollows();
+      app.toast(`Unfollowed ${f.name}'s taste`, {
+        label: "Undo",
+        run: () => {
+          if (s.tasteFollows.some((x) => x.handle === key)) return;
+          s.tasteFollows = [...s.tasteFollows, f];
+          saveTasteFollows();
+          app.rerender();
+        },
+      });
+      app.rerender();
+    },
+    setTasteEnabled(handle, on) {
+      s.tasteFollows = s.tasteFollows.map((f) => (f.handle === handle ? { ...f, enabled: on } : f));
+      saveTasteFollows();
+      app.sheetChanged();
+    },
+    refreshTastes(handle) {
+      const list = handle ? s.tasteFollows.filter((f) => f.handle === handle) : s.tasteFollows;
+      for (const f of list) void app.lookupCreatorTaste(f.handle, f.name, true);
+      if (list.length) app.toast(list.length === 1 ? `Checking ${list[0].name}'s picks…` : `Checking ${list.length} creators' picks…`);
+    },
+    tasteVideo(id) {
+      return tasteVideos.get(id) ?? s.videoCache.get(id);
+    },
+    snapshotTasteChannels: opts.snapshotTasteChannels ?? [],
     watch(v, via) {
       app.noteWatch(v, via);
       openWatch(app, v, via, () => app.rerender());
@@ -992,7 +1182,7 @@ export function startApp(opts: AppOptions): App {
       const ref = parseChannelInput(creator);
       if (!ref) return;
       s.creatorNpub.set(key, null);
-      catalog.channelProfile(ref, s.settings.instances).then(
+      profileFor(ref).then(
         (p) => {
           const pk = findNpub(p.text);
           if (pk) {
@@ -1037,7 +1227,7 @@ export function startApp(opts: AppOptions): App {
       // Crypto-shred: delete every ciphertext and the key, then re-encrypt what stays
       // (follows, taste lists, the taste-list video cache, and Match: identity and
       // matches) under a fresh key.
-      const keep: Record<string, unknown> = { follows: s.follows, taste: s.taste, videos: sensitiveValue("videos") };
+      const keep: Record<string, unknown> = { follows: s.follows, taste: s.taste, tastefollows: s.tasteFollows, videos: sensitiveValue("videos") };
       for (const k of ["identity", "matchbook", "matchmeta", "demopeer"] as const) {
         const v = sensitiveValue(k);
         if (v) keep[k] = v;
@@ -1145,21 +1335,30 @@ export function startApp(opts: AppOptions): App {
 
   app.setTheme();
   app.pruneNow();
-  setInterval(maybePrune, PRUNE_CHECK_MS);
+  setInterval(() => {
+    maybePrune();
+    refreshDueTastes();
+  }, PRUNE_CHECK_MS);
   document.addEventListener?.("visibilitychange", () => {
     if (document.visibilityState === "visible") {
       maybePrune();
+      refreshDueTastes();
       if (app.match.ready && app.match.relay && !app.demo) void app.match.sync().catch(() => undefined);
     }
   });
   document.addEventListener?.("keydown", (e) => {
-    if (e.key === "Escape" && s.sheet.open) {
+    if (e.key === "Escape" && s.tasteSheet) {
+      app.closeTaste();
+    } else if (e.key === "Escape" && s.sheet.open) {
       app.sheet({ type: "key", key: "Escape" });
     }
   });
   render();
   app.reloadCatalog();
   for (const t of s.taste) void loadTaste(t);
+  // Followed tastes: use the saved picks now, refetch those older than a day.
+  for (const f of s.tasteFollows) void resolveTastePicks(f);
+  refreshDueTastes();
 
   // Match: restore the identity and book, then check relays now and every minute.
   // Sketches go out only when due on the weekly schedule.
