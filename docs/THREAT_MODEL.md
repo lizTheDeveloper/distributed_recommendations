@@ -86,7 +86,10 @@ mitigation is **decided**, needs an **option to be chosen**, or still needs **re
 ## Process
 
 1. **Before any code:** review this model with 1–2 outside privacy engineers.
-2. **Use audited primitives only:** Marmot/OpenMLS, NIP-44 implementations covered by the Cure53 audit, OpenMined PSI. Never roll our own crypto.
+2. **Prefer audited primitives; never roll our own crypto.** Audit status as of 2026-10-19 (see `docs/OSS_STACK.md`):
+   - Marmot protocol + whitenoise-rs (Rust): audited by Least Authority in 2026. Whether MDK itself was in scope is unconfirmed. marmot-ts is alpha and unaudited, so use it for the prototype only.
+   - NIP-44: the Cure53 audit covered paulmillr/nip44. Confirm that nostr-tools ships the same code.
+   - OpenMined PSI: **no audit**. Commission one, or budget for it in the pre-launch audit.
 3. **Before Match launches:** an external security audit of the Match and Circle protocols and the client. Cure53, Least Authority and Trail of Bits have audited comparable systems.
 4. **Simulate T3, T2 and T7** (circle leakage, preview leakage, Sybil reach) and publish the results.
 5. **Ongoing:**
