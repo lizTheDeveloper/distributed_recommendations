@@ -36,7 +36,11 @@ pub fn run() {
             secrets::secret_remove
         ])
         .setup(|app| {
-            secrets::init_store()?;
+            // No keychain (e.g. no Secret Service on a minimal Linux desktop) is not fatal: the
+            // secret commands then return an error and the web app keeps its IndexedDB key.
+            if let Err(e) = secrets::init_store() {
+                eprintln!("OS keychain unavailable: {e}");
+            }
             let title = app.config().product_name.clone().unwrap_or_else(|| "Meme Video".into());
             WebviewWindowBuilder::new(app, "main", WebviewUrl::App("index.html".into()))
                 .title(title)
