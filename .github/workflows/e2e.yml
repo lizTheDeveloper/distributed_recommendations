@@ -1,0 +1,131 @@
+# Docker end-to-end suites, run by hand (Actions → "E2E (Docker)" → Run workflow).
+#
+# Not on push or pull_request: these build or pull several hundred MB of images and take
+# minutes each. ci.yml runs the unit tests of the same packages, and the relay smoke test,
+# on every push. Run this before merging changes to infra/ or to packages/transport,
+# packages/analytics, and after Dependabot bumps an image digest.
+#
+# Every suite talks only to containers on the runner, with synthetic data and
+# throwaway keys. Same supply-chain rules as ci.yml (T13): actions pinned by SHA,
+# `npm ci` from lockfiles with install scripts off, no secrets, read-only token.
+
+name: E2E (Docker)
+
+on:
+  workflow_dispatch:
+    inputs:
+      suite:
+        description: Which suite to run
+        type: choice
+        default: all
+        options: [all, relay, ohttp, analytics, glitchtip, umami]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: e2e-${{ github.ref }}
+  cancel-in-progress: false
+
+env:
+  NODE_VERSION: "22.22.0"
+  npm_config_audit: "false"
+  npm_config_fund: "false"
+  npm_config_update_notifier: "false"
+
+jobs:
+  relay:
+    name: relay smoke (strfry + write policy)
+    if: inputs.suite == 'all' || inputs.suite == 'relay'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+          cache-dependency-path: |
+            packages/match/package-lock.json
+            apps/web/package-lock.json
+      # The smoke test uses the repo's pinned nostr-tools (packages/match) and ws (apps/web).
+      - name: npm ci (packages/match, apps/web)
+        run: |
+          (cd packages/match && npm ci --ignore-scripts)
+          (cd apps/web && npm ci --ignore-scripts)
+      - name: Relay smoke test (infra/relay/test/run.sh)
+        run: infra/relay/test/run.sh
+
+  ohttp:
+    name: OHTTP relay → gateway → target → strfry
+    if: inputs.suite == 'all' || inputs.suite == 'ohttp'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+          cache-dependency-path: |
+            packages/match/package-lock.json
+            packages/transport/package-lock.json
+      # The Docker test runs two Match clients (packages/match from source).
+      - name: npm ci (packages/match, packages/transport)
+        run: |
+          (cd packages/match && npm ci --ignore-scripts)
+          (cd packages/transport && npm ci --ignore-scripts)
+      - name: infra/ohttp/e2e/run.sh
+        run: infra/ohttp/e2e/run.sh
+      - name: Logs on failure
+        if: failure()
+        run: docker ps -a && for c in $(docker ps -aq); do docker logs --tail 50 "$c" 2>&1; done
+
+  analytics:
+    name: analytics DAP (Janus leader + helper)
+    if: inputs.suite == 'all' || inputs.suite == 'analytics'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+          cache-dependency-path: packages/analytics/package-lock.json
+      - name: npm ci (packages/analytics)
+        working-directory: packages/analytics
+        run: npm ci --ignore-scripts
+      - name: npm run test:e2e
+        working-directory: packages/analytics
+        run: npm run test:e2e
+
+  glitchtip:
+    name: GlitchTip smoke (crash reports, no IPs)
+    if: inputs.suite == 'all' || inputs.suite == 'glitchtip'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: infra/glitchtip/test/smoke.sh
+        run: sh infra/glitchtip/test/smoke.sh
+
+  umami:
+    name: Umami smoke (usage analytics, no IPs)
+    if: inputs.suite == 'all' || inputs.suite == 'umami'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: infra/umami/test/smoke.sh
+        run: sh infra/umami/test/smoke.sh

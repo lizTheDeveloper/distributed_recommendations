@@ -178,3 +178,12 @@ test('planReport: PeerTube report to the hosting instance first, NIP-56 when a N
   const nonPt = planReport({ video: video('https://example.org/clip.mp4'), type: 'spam' });
   assert.equal(nonPt.peertube, undefined);
 });
+
+test('planReport: labelers address the NIP-56 part only', () => {
+  const pk = keypair(3).pk;
+  const lab = keypair(4).pk;
+  const plan = planReport({ video: video(WATCH), type: 'spam', meta: { eventId: 'e'.repeat(64), pubkey: pk }, labelers: [lab], now: 10 });
+  assert.deepEqual(plan.nostr?.tags, [['e', 'e'.repeat(64), 'spam'], ['p', pk], ['p', lab]]);
+  assert.ok(plan.notes.some((n) => /addressed to the labeler/.test(n)));
+  assert.equal(JSON.stringify(plan.peertube?.body).includes(lab), false);
+});

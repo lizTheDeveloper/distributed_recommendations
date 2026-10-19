@@ -96,7 +96,7 @@ States per match: `requested` (A), `incoming` (B), `active`, then one of `declin
   - a target's identity receives a few first-contact wraps;
   - the timing of user-driven handshakes;
   - which keys receive traffic, and how often;
-  - IP addresses (use OHTTP or Tor; T5).
+  - IP addresses (use OHTTP, prototype in `packages/transport` and docs/TRANSPORT.md, or Tor; T5).
 
   The mitigations are the fixed weekly schedule and random relay choice from the peer's inbox list. The second is the transport's job, not this package's.
 
@@ -124,8 +124,11 @@ Rumor kinds **3470–3478**: match-request, match-accept, preview-request, previ
 
 ## Open items
 
-- A real `RelayLike` over WebSockets with random inbox-relay selection (NIP-17 kind 10050) and OHTTP. Never point tests at public relays.
+- Transport. Two real `RelayLike`s now exist, plus the web app's own WebSocket adapter (`apps/web/src/lib/match/wsRelay.ts`, NIP-42 AUTH on demand):
+  - `packages/transport` `OhttpRelay`: Match traffic over Oblivious HTTP through a Nostr gateway target (`infra/ohttp`; docs/TRANSPORT.md). Prototype; two clients run the whole lifecycle through it in Docker (`infra/ohttp/e2e/run.sh`). Not wired into apps/web.
+  - `packages/transport` `LiveRelay`: direct WebSockets with reconnect and backoff; every relay sees the IP.
+  - Still open: random inbox-relay selection from the peer's NIP-17 kind 10050 list (in OHTTP mode the gateway's `NOSTR_RELAYS` replace it); polling cost of `MatchClient.sync()` over OHTTP (it asks for all wraps, so call it on a timer); NIP-42 AUTH isn't available through the gateway. Never point tests at public relays.
 - A persistent PSI client key, so a preview survives an app restart. psi.js offers `createFromKey`; the key would have to live in the encrypted book.
-- Cover traffic for handshakes: their timing is user-driven.
+- Cover traffic for handshakes: their timing is user-driven. `OhttpRelay`'s `constant-rate` mode hides the client side of the timing from the OHTTP relay, but wraps still appear on public relays when sent; no gateway-side mixing or cover publishes yet (docs/TRANSPORT.md, "The timing caveat").
 - The second-degree relay list inside the sketch channel (PROTOCOL.md §5) isn't specified yet.
 - Interop vectors: add tests against paulmillr/nip44 vectors (OSS_STACK §4).

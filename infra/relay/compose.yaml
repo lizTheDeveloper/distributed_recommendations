@@ -50,6 +50,10 @@ services:
       POLICY_IDLE_FORGET: ${POLICY_IDLE_FORGET:-300}
       POLICY_GIFTWRAP_MAX_TTL: ${POLICY_GIFTWRAP_MAX_TTL:-2678400}
       POLICY_ALLOWED_KINDS: ${POLICY_ALLOWED_KINDS:-}
+      # Empty by default: no address gets more than the per-IP limit above.
+      POLICY_TRUSTED_SOURCES: ${POLICY_TRUSTED_SOURCES:-}
+      POLICY_TRUSTED_RATE: ${POLICY_TRUSTED_RATE:-50}
+      POLICY_TRUSTED_BURST: ${POLICY_TRUSTED_BURST:-500}
     volumes:
       - ./strfry.conf:/etc/strfry.conf:ro
       - ./policy:/app/policy:ro

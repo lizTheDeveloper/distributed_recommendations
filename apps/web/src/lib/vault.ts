@@ -25,6 +25,12 @@ export type VaultStatus = "device" | "passphrase" | "memory";
 
 export interface Vault {
   readonly status: VaultStatus;
+  /**
+   * Device mode only: where the key lives. "browser" = a non-extractable key in
+   * IndexedDB; "native" = raw key bytes in the OS keystore (Android Keystore, iOS
+   * Keychain, desktop keychain) through the native shell's bridge.
+   */
+  readonly keyStore?: "browser" | "native";
   /** Why the vault is memory-only. */
   readonly reason?: string;
   /** Decrypt every stored record. Records that fail to decrypt are dropped. */
@@ -62,7 +68,25 @@ export interface VaultOptions {
   iterations?: number;
   /** Shown in the memory-mode note when `store` or `subtle` is missing. */
   unavailableReason?: string;
+  /**
+   * The native shell's keystore (window.MatchFeedNative.secrets). When given, the
+   * device key is 32 random bytes kept there as "vault-key" (base64) instead of a
+   * CryptoKey in IndexedDB. Records under an older IndexedDB device key are
+   * re-encrypted under it in one transaction, and the old key is deleted.
+   * Passphrase mode is unchanged.
+   */
+  native?: KeySecrets | null;
 }
+
+/** The part of the native bridge's `secrets` the vault uses. */
+export interface KeySecrets {
+  get(name: "vault-key"): Promise<string | null>;
+  set(name: "vault-key", value: string): Promise<void>;
+  remove(name: "vault-key"): Promise<void>;
+}
+
+const b64 = (b: Uint8Array) => btoa(String.fromCharCode(...b));
+const unb64 = (t: string) => Uint8Array.from(atob(t), (c) => c.charCodeAt(0));
 
 /** OWASP's 2023 figure for PBKDF2-HMAC-SHA-256. WebCrypto has no Argon2 or scrypt. */
 export const PBKDF2_ITERATIONS = 600_000;
@@ -126,7 +150,19 @@ export async function openVault(opts: VaultOptions): Promise<OpenResult> {
   const random = opts.random ?? ((b) => globalThis.crypto.getRandomValues(b));
   const iterations = opts.iterations ?? PBKDF2_ITERATIONS;
 
-  const newDeviceKey = () => subtle.generateKey({ name: "AES-GCM", length: 256 }, false, ["encrypt", "decrypt"]) as Promise<CryptoKey>;
+  const native = opts.native ?? null;
+  const importRaw = (raw: Uint8Array) => subtle.importKey("raw", raw as Uint8Array<ArrayBuffer>, "AES-GCM", false, ["encrypt", "decrypt"]);
+  /** A new device key: in the native keystore when there is one, else a non-extractable CryptoKey. */
+  const newDeviceKey = async (): Promise<CryptoKey> => {
+    if (!native) return subtle.generateKey({ name: "AES-GCM", length: 256 }, false, ["encrypt", "decrypt"]) as Promise<CryptoKey>;
+    const raw = random(new Uint8Array(32));
+    await native.set("vault-key", b64(raw));
+    const key = await importRaw(raw);
+    raw.fill(0);
+    return key;
+  };
+  /** The [KEY, key] record to store for a device key (none when the key is native). */
+  const keyPut = (key: CryptoKey): [string, unknown][] => (native ? [] : [[KEY, key]]);
 
   async function seal(key: CryptoKey, name: string, json: string): Promise<Box> {
     const iv = random(new Uint8Array(12));
@@ -165,15 +201,34 @@ export async function openVault(opts: VaultOptions): Promise<OpenResult> {
   /** Fresh device key + meta; deletes every existing record unless kept. */
   async function freshDevice(keep: Record<string, unknown> = {}): Promise<CryptoKey> {
     const key = await newDeviceKey();
-    const put: [string, unknown][] = [
-      [KEY, key],
-      [META, { v: 1, mode: "device" } satisfies Meta],
-    ];
+    const put: [string, unknown][] = [...keyPut(key), [META, { v: 1, mode: "device" } satisfies Meta]];
     for (const [name, value] of Object.entries(keep)) put.push([REC + name, await seal(key, name, JSON.stringify(value))]);
     const keepKeys = new Set(put.map(([k]) => k));
     const del = (await store!.keys()).filter((k) => !keepKeys.has(k));
     await store!.apply({ put, del });
     return key;
+  }
+
+  /**
+   * Re-encrypt every record that opens under `old` with `next` (a keystore key) and
+   * delete the IndexedDB key, in one transaction. Records already under `next` stay.
+   */
+  async function migrateToNative(old: CryptoKey, next: CryptoKey): Promise<CryptoKey> {
+    const put: [string, unknown][] = [[META, { v: 1, mode: "device" } satisfies Meta]];
+    for (const rk of await recordKeys()) {
+      const name = rk.slice(REC.length);
+      const box = await store!.get(rk);
+      if (!isBox(box)) continue;
+      let json: string | null = null;
+      try {
+        json = await open(old, name, box);
+      } catch {
+        json = null; // already under the new key, or unreadable
+      }
+      if (json !== null) put.push([rk, await seal(next, name, json)]);
+    }
+    await store!.apply({ put, del: [KEY] });
+    return next;
   }
 
   function makeVault(initialKey: CryptoKey, initialStatus: "device" | "passphrase"): Vault {
@@ -229,6 +284,9 @@ export async function openVault(opts: VaultOptions): Promise<OpenResult> {
       get status() {
         return status;
       },
+      get keyStore() {
+        return status === "device" ? (native ? "native" : "browser") : undefined;
+      },
       readAll: () =>
         enqueue(async () => {
           await drain();
@@ -261,13 +319,14 @@ export async function openVault(opts: VaultOptions): Promise<OpenResult> {
           const next = await derive(passphrase, salt, iterations);
           const meta: Meta = { v: 1, mode: "passphrase", iterations, salt, check: await checkBox(next) };
           await rekey(next, { put: [[META, meta]], del: [KEY] });
+          if (native) await native.remove("vault-key").catch(() => undefined);
           status = "passphrase";
         }),
       clearPassphrase: () =>
         enqueue(async () => {
           if (status === "device") return;
           const next = await newDeviceKey();
-          await rekey(next, { put: [[KEY, next], [META, { v: 1, mode: "device" } satisfies Meta]], del: [] });
+          await rekey(next, { put: [...keyPut(next), [META, { v: 1, mode: "device" } satisfies Meta]], del: native ? [KEY] : [] });
           status = "device";
         }),
     };
@@ -290,7 +349,26 @@ export async function openVault(opts: VaultOptions): Promise<OpenResult> {
     }
     const stored = isMeta(meta) ? await store.get(KEY) : undefined;
     let key: CryptoKey;
-    if (isAesKey(stored)) {
+    if (native) {
+      const raw = await native.get("vault-key");
+      if (raw) {
+        const bytes = unb64(raw);
+        key = await importRaw(bytes);
+        bytes.fill(0);
+        if (isAesKey(stored)) {
+          // Left over from before: records under it were already moved (or the move was
+          // interrupted after the keystore write). Move whatever still opens with it.
+          key = await migrateToNative(stored as CryptoKey, key);
+        }
+      } else if (isAesKey(stored)) {
+        // First start in the native shell: move records from the IndexedDB key to a keystore key.
+        key = await migrateToNative(stored as CryptoKey, await newDeviceKey());
+      } else {
+        // First run, or the keystore lost the key (e.g. restored onto a new device): the
+        // ciphertext can't be read any more, so drop it.
+        key = await freshDevice();
+      }
+    } else if (isAesKey(stored)) {
       key = stored as CryptoKey;
     } else {
       // First run, or the key is gone: existing ciphertext can't be read, so drop it.
@@ -376,7 +454,7 @@ export function idbRecordStore(factory: IDBFactory | undefined = globalThis.inde
 }
 
 /** Open the browser's vault: IndexedDB + WebCrypto, else a memory vault with a reason. */
-export async function openBrowserVault(): Promise<OpenResult> {
+export async function openBrowserVault(native: KeySecrets | null = null): Promise<OpenResult> {
   const subtle = globalThis.crypto?.subtle;
   if (!subtle) return openVault({ store: null, subtle: null, unavailableReason: "WebCrypto isn't available (the page isn't in a secure context)." });
   let store: RecordStore;
@@ -385,5 +463,5 @@ export async function openBrowserVault(): Promise<OpenResult> {
   } catch (e) {
     return openVault({ store: null, subtle, unavailableReason: `IndexedDB isn't available here (${e instanceof Error ? e.message : String(e)}).` });
   }
-  return openVault({ store, subtle });
+  return openVault({ store, subtle, native });
 }

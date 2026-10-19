@@ -29,7 +29,8 @@ curl -s https://$GATEWAY_SITE/ohttp-keys | xxd | head   # application/ohttp-keys
   - the gateway runs at `LOG_LEVEL=WARN`;
   - the target prints one startup line.
 - Give the gateway's address a per-IP allowance on the upstream relays: every user
-  arrives from it (docs/TRANSPORT.md, "Rate limiting").
+  arrives from it (docs/TRANSPORT.md, "Rate limiting"). On `infra/relay` that is
+  `POLICY_TRUSTED_SOURCES` (infra/relay/README.md, "Trusted gateway sources").
 - **The key pin** clients ship is the SHA-256 of the X25519 config. Get it with
   `fetchKeyConfig()` from `packages/transport`, through the relay. Changing
   `SEED_SECRET_KEY` rotates the key: ship the new pin first.
@@ -59,7 +60,8 @@ KEEP=1 infra/ohttp/e2e/run.sh             # keep the stacks running afterwards
 It starts three separate Compose projects:
 
 1. strfry, from `infra/relay/compose.yaml` unchanged, apart from its nofile ulimit
-   (`e2e/nostr.override.yaml`);
+   (`e2e/nostr.override.yaml`), with Docker's private ranges in
+   `POLICY_TRUSTED_SOURCES` (the target connects without Caddy);
 2. the gateway stack, on plain HTTP;
 3. the relay stack, published on `127.0.0.1:18081`.
 
@@ -67,6 +69,7 @@ Then it runs `packages/transport/test/e2e-docker.test.ts` (two Match clients, ke
 pinning, target allow-list), and fails if any relay or gateway log line holds an
 IP address or a 64-hex value.
 
+- CI: run by hand with `.github/workflows/e2e.yml` (suite `ohttp`).
 - Behind a registry rate limit: `REGISTRY_MIRROR=mirror.gcr.io/library` (same
   digests).
 - Behind a TLS-intercepting proxy: `EXTRA_CA_FILE=/path/ca.pem`, used only during

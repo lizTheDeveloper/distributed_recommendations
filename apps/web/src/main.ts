@@ -23,7 +23,5 @@ void boot({
   loadCrashReporter: scriptLoader("./crash.js"),
 });
 
-// Offline shell for the installed PWA. Never caches API responses or history.
-if ("serviceWorker" in navigator && location.protocol === "https:") {
-  navigator.serviceWorker.register("./sw.js").catch(() => {});
-}
+// The service worker (offline shell, update prompt) is registered by the app
+// (src/app.ts) once it starts, so it can show "Update available".

@@ -32,6 +32,8 @@ export interface ReportPlanInput {
   startAt?: number;
   endAt?: number;
   now?: number;
+  /** Labelers (hex) to address the NIP-56 report to; see `BuildReportOptions.labelers`. */
+  labelers?: readonly string[];
 }
 
 export interface ReportPlan {
@@ -70,8 +72,10 @@ export function planReport(input: ReportPlanInput): ReportPlan {
     plan.nostr = buildReport({ type: 'video', eventId: m.eventId, pubkey: m.pubkey, ...(m.address ? { address: m.address } : {}) }, input.type, {
       content: input.details,
       createdAt: input.now,
+      ...(input.labelers?.length ? { labelers: input.labelers } : {}),
     });
     plan.notes.push('A public Nostr report (NIP-56) is also prepared. It is signed by you and visible to anyone.');
+    if (input.labelers?.length) plan.notes.push(`It is addressed to ${input.labelers.length === 1 ? 'the labeler' : `${input.labelers.length} labelers`} you chose, who can review it.`);
   }
   if (input.type === 'illegal') {
     plan.notes.push(

@@ -1,6 +1,9 @@
 # Creator analytics
 
 Status: draft, 2026-10-19. Decision D3 in `docs/THREAT_MODEL.md`.
+Tier 2 option A has a prototype: `packages/analytics` and `infra/janus`, described in
+**`docs/ANALYTICS_IMPLEMENTATION.md`** (protocol versions, what each party learns,
+operator obligations, open issues). Not wired into apps/web yet.
 
 ## The core point
 
@@ -15,7 +18,7 @@ and which taste lists they read. Only that metric needs private aggregation.
 |---|---|---|---|---|
 | 0. Host-side | views, watch time, retention, peak viewers; countries only if the admin enables them | PeerTube's built-in video stats, which combine local, remote-instance and embed views (since v4.2, June 2022) [1][2] | none new: the host already serves these requests | exists today |
 | 1. Public signals | followers, taste-list subscribers, endorsement counts, appearances in public taste lists | public events | none: already public | build: just counting |
-| 2. Discovery channel | share of views from Follow / Taste / Match / Circle / Explore / 2nd degree | viewer devices | **high per viewer**: reveals someone's private network | needs private aggregation |
+| 2. Discovery channel | share of views from Follow / Taste / Match / Circle / Explore / 2nd degree (implemented as share of **viewers**; see below) | viewer devices | **high per viewer**: reveals someone's private network | prototype: `packages/analytics` + `infra/janus` (DAP); not in the app yet |
 
 ## Consent: it takes two sides
 
@@ -40,6 +43,14 @@ breakdown of 12 views; any split of 12 views is close to identifying. Mitigation
 
 Small creators will see little Tier 2 detail. That's the honest cost.
 
+**Deviation in the implementation: viewers, not views.** The prototype counts each
+viewer once per creator per 28-day window, for the channel that brought them most
+(one Prio3Histogram report per device), not every view. That bounds each viewer's
+contribution, which the DP noise needs (sensitivity 2), and stops the number of
+uploads from revealing how much someone watched. The studio should say "share of
+viewers who found you through…". Details: `docs/ANALYTICS_IMPLEMENTATION.md`,
+"What a report counts".
+
 ## Who runs the second aggregator (option A)
 
 | Option | Notes |
@@ -51,7 +62,7 @@ Small creators will see little Tier 2 detail. That's the honest cost.
 ## Proposed default (subject to Q1–Q3)
 
 1. **v1:** Tiers 0 and 1. These are free and private today.
-2. **v1.1:** Tier 2 via option A.
+2. **v1.1:** Tier 2 via option A (prototype built; `docs/ANALYTICS_IMPLEMENTATION.md`).
    - creator opt-in
    - the creator's home instance runs the leader; Divvi Up or a partner runs the helper
    - channel-level only, 28-day window, threshold of 20

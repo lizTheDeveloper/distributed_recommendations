@@ -41,8 +41,12 @@ trap cleanup EXIT
 docker network inspect "$E2E_INTERNET_NETWORK" >/dev/null 2>&1 || docker network create "$E2E_INTERNET_NETWORK" >/dev/null
 
 echo "e2e: 1/4 Nostr relay (strfry from infra/relay)"
-# The gateway is one IP for every user: give it a generous per-IP allowance.
-POLICY_RATE=200 POLICY_BURST=2000 $NOSTR up -d --wait strfry
+# The gateway is one IP for every user: give it the trusted-source allowance
+# (infra/relay/README.md "Trusted gateway sources"). The target connects to strfry
+# directly on the Compose network, so strfry sees its container address; trust
+# Docker's default address pools. Everyone else keeps the default 2/s, burst 30.
+POLICY_TRUSTED_SOURCES=172.16.0.0/12,192.168.0.0/16 POLICY_TRUSTED_RATE=200 POLICY_TRUSTED_BURST=2000 \
+  $NOSTR up -d --wait strfry
 
 echo "e2e: 2/4 OHTTP gateway + target"
 SEED_SECRET_KEY=$(od -An -N32 -tx1 /dev/urandom | tr -d ' \n')

@@ -7,14 +7,34 @@ import { loadSensitive } from "./lib/localdata.ts";
 import type { Vault } from "./lib/vault.ts";
 import { openBrowserVault } from "./lib/vault.ts";
 import { h } from "./ui/dom.ts";
+import { APP_NAME } from "./brand.ts";
+import type { MatchFeedNative } from "./lib/native.ts";
+import { nativeBridge } from "./lib/native.ts";
 
-export type BootOptions = Omit<AppOptions, "vault" | "sensitive" | "legacyLeft">;
+export type BootOptions = Omit<AppOptions, "vault" | "sensitive" | "legacyLeft" | "native">;
+
+/**
+ * The native shell's bridge, if its keystore answers. On Linux desktops without a
+ * Secret Service the keychain fails: then the vault keeps its browser key instead
+ * of falling back to memory, and the app says where the key lives.
+ */
+async function usableNative(): Promise<{ native: MatchFeedNative | undefined; keystore: boolean }> {
+  const native = nativeBridge();
+  if (!native) return { native, keystore: false };
+  try {
+    await native.secrets.get("vault-key");
+    return { native, keystore: true };
+  } catch {
+    return { native, keystore: false };
+  }
+}
 
 export async function boot(opts: BootOptions): Promise<void> {
-  const opened = await openBrowserVault();
+  const { native, keystore } = await usableNative();
+  const opened = await openBrowserVault(keystore && native ? native.secrets : null);
   const vault = opened.kind === "ready" ? opened.vault : await unlockScreen(opts.root, opened.unlock, opened.reset);
   const { data, legacyLeft } = await loadSensitive(vault, opts.kv);
-  startApp({ ...opts, vault, sensitive: data, legacyLeft });
+  startApp({ ...opts, vault, sensitive: data, legacyLeft, native: native ? { bridge: native, keystore } : undefined });
 }
 
 /** Passphrase prompt. Resolves once unlocked, or after a confirmed fresh start. */
@@ -49,7 +69,7 @@ function unlockScreen(root: HTMLElement, unlock: (p: string) => Promise<Vault | 
           h(
             "section",
             { class: "panel unlock", "aria-labelledby": "unlock-h" },
-            h("h1", { id: "unlock-h" }, "Unlock Match Feed"),
+            h("h1", { id: "unlock-h" }, `Unlock ${APP_NAME}`),
             h("p", { class: "muted", id: "unlock-hint" }, "Your history, follows and taste lists on this device are encrypted with your passphrase."),
             h(
               "form",

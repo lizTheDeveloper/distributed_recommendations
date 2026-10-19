@@ -75,3 +75,37 @@ export function loadIdentity(x: unknown): StoredIdentity | null {
   if (o.kind === "nip07" && typeof o.pubkey === "string" && HEX64.test(o.pubkey)) return { kind: "nip07", pubkey: o.pubkey, createdAt };
   return null;
 }
+
+/** The part of the native bridge's `secrets` the identity uses. */
+export interface IdentitySecrets {
+  get(name: "nostr-secret-key"): Promise<string | null>;
+  set(name: "nostr-secret-key", value: string): Promise<void>;
+  remove(name: "nostr-secret-key"): Promise<void>;
+}
+
+/** What the vault stores for a local key whose secret lives in the OS keystore. */
+export type KeystoreIdentity = { kind: "local"; keystore: true; pubkey: string; createdAt: number; imported: boolean };
+
+/**
+ * The vault record for an identity. In a native shell a local secret goes to the OS
+ * keystore ("nostr-secret-key") and the vault keeps only the pubkey (mobile README
+ * hook 3). In a browser, or for a NIP-07 identity, it is stored as before.
+ */
+export async function storableIdentity(id: StoredIdentity | null, secrets: IdentitySecrets | null): Promise<StoredIdentity | KeystoreIdentity | null> {
+  if (!id || id.kind !== "local" || !secrets) return id;
+  await secrets.set("nostr-secret-key", id.secret);
+  return { kind: "local", keystore: true, pubkey: id.pubkey, createdAt: id.createdAt, imported: id.imported };
+}
+
+/** Back from the vault: a keystore identity gets its secret from the keystore (null if gone). */
+export async function hydrateIdentity(x: unknown, secrets: IdentitySecrets | null): Promise<StoredIdentity | null> {
+  const o = x as Partial<KeystoreIdentity> | null;
+  if (o && o.kind === "local" && o.keystore === true) {
+    if (!secrets || typeof o.pubkey !== "string" || !HEX64.test(o.pubkey)) return null;
+    const secret = await secrets.get("nostr-secret-key").catch(() => null);
+    if (!secret || !HEX64.test(secret)) return null;
+    if ((await localSigner(secret).getPublicKey()) !== o.pubkey) return null;
+    return { kind: "local", secret, pubkey: o.pubkey, createdAt: typeof o.createdAt === "number" ? o.createdAt : 0, imported: o.imported === true };
+  }
+  return loadIdentity(x);
+}

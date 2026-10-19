@@ -68,6 +68,19 @@ jobs:
               packages/bridge/package-lock.json
               packages/moderation/package-lock.json
               services/labeler/package-lock.json
+          # Unit tests only. The Docker end-to-end suites (OHTTP stacks, Janus) are in
+          # e2e.yml, run by hand; here they skip (no OHTTP_E2E_RELAY_URL, no ANALYTICS_E2E).
+          - package: packages/transport
+            # Its tests import packages/match from source (MatchClient, PSI), which
+            # resolves nostr-tools and psi.js from packages/match/node_modules.
+            install: packages/match packages/transport
+            lockfiles: |
+              packages/match/package-lock.json
+              packages/transport/package-lock.json
+          - package: packages/analytics
+            # Imports packages/core from source (no dependencies of its own).
+            install: packages/analytics
+            lockfiles: packages/analytics/package-lock.json
           - package: apps/web
             # apps/web imports packages/match from source, and its build and tests
             # resolve nostr-tools and @noble/* from packages/match/node_modules.
@@ -218,39 +231,14 @@ jobs:
           docker run --rm -v "$PWD/Caddyfile:/etc/caddy/Caddyfile:ro" "$CADDY_IMAGE" \
             caddy fmt /etc/caddy/Caddyfile | diff -u Caddyfile -
 
-      - name: Start strfry with the relay config
+      # Starts strfry with this config and policy (POLICY_BURST=5, one trusted gateway
+      # prefix), runs test/smoke.mjs (limits, NIP-40, write policy, rate limit, trusted
+      # gateway source), the retention command, and fails if the logs contain an IP.
+      - name: Smoke test, retention command, no IPs in logs
+        working-directory: .
         env:
           STRFRY_IMAGE: ${{ steps.images.outputs.strfry }}
-        run: |
-          docker run -d --name relay-ci --read-only --tmpfs /tmp \
-            --cap-drop ALL --security-opt no-new-privileges:true \
-            -p 127.0.0.1:7777:7777 -e POLICY_BURST=5 -e POLICY_RATE=1 \
-            -v "$PWD/strfry.conf:/etc/strfry.conf:ro" -v "$PWD/policy:/app/policy:ro" \
-            --mount type=tmpfs,destination=/app/strfry-db,tmpfs-mode=1777 \
-            "$STRFRY_IMAGE" --config=/etc/strfry.conf --verbosity=WARNING \
-            "--set=relay.info.name=CI relay" relay
-          for _ in $(seq 1 30); do
-            curl -fsS -H 'Accept: application/nostr+json' http://127.0.0.1:7777/ >/dev/null && exit 0
-            sleep 1
-          done
-          docker logs relay-ci
-          exit 1
-
-      - name: Smoke test (limits, NIP-40, write policy, rate limit)
-        working-directory: .
-        run: node infra/relay/test/smoke.mjs ws://127.0.0.1:7777 packages/match/node_modules,apps/web/node_modules
-
-      - name: Retention job command runs
-        run: docker exec relay-ci /app/strfry --config=/etc/strfry.conf --verbosity=WARNING delete --age=2851200 '--filter={"kinds":[1059]}'
-
-      - name: Logs contain no client IP
-        run: |
-          docker logs relay-ci > relay.log 2>&1
-          cat relay.log
-          if grep -E '203\.0\.113\.|172\.17\.|127\.0\.0\.1' relay.log; then
-            echo "::error::relay logs contain an IP address"
-            exit 1
-          fi
+        run: infra/relay/test/run.sh
 
   dco:
     name: DCO sign-off
@@ -297,4 +285,4 @@ jobs:
           go install "github.com/rhysd/actionlint/cmd/actionlint@${ACTIONLINT_VERSION}"
           "$(go env GOPATH)/bin/actionlint" -color
       - name: shellcheck scripts
-        run: shellcheck .github/scripts/*.sh infra/relay/policy/*.sh
+        run: shellcheck .github/scripts/*.sh infra/relay/policy/*.sh infra/relay/test/*.sh

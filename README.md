@@ -14,9 +14,14 @@ matches plus public creator taste lists plus on-device ranking on an open protoc
 Status: early. The first tier (Follow, Subscribe to taste, explore slots) works in a web
 client over live PeerTube instances, with local history encrypted at rest. The 1:1 Match
 protocol exists as a tested prototype package (`packages/match`: gift-wrapped messages,
-per-match keys, PSI previews) with no real relay networking yet and no UI. Circles exist
+per-match keys, PSI previews) with no UI yet; a metadata-private transport for it
+(Oblivious HTTP through a Nostr gateway, `packages/transport`) works end to end in Docker
+but isn't wired into the client. Circles exist
 as a tested prototype package too (`packages/circles`: MLS groups, secure aggregation,
-distributed DP noise), also without real relays or UI. Android, iOS and desktop shells wrap
+distributed DP noise), also without real relays or UI. Private creator analytics (DAP,
+`packages/analytics` + Janus), a moderation labeler service and creator taste-list
+publishing are prototypes; opt-in crash reports and usage analytics have self-hosted
+servers. Android, iOS and desktop shells wrap
 the web client (working app name **Meme Video**, name check pending). See "Status" below.
 
 ## Try it
@@ -34,15 +39,22 @@ the web client (working app name **Meme Video**, name check pending). See "Statu
 | `packages/circles/` | `@match-feed/circles`: Circles prototype (not audited). MLS groups over Nostr via marmot-ts with a ts-mls security override, pairwise-masked secure aggregation, distributed Pólya noise, core's circle policy on the aggregate, app-level authorization guards, fixed-size padded round messages; provisional kinds 3480–3482. In-memory relay only. Apache-2.0 |
 | `packages/moderation/` | `@match-feed/moderation`: on-device moderation: NIP-56 and PeerTube abuse reports, NIP-32 labelers, block and mute lists, app-store defaults, a pre-filter for `rank()`. Not wired into the web client yet. Apache-2.0 |
 | `packages/bridge/` | `@match-feed/bridge`: publishes public PeerTube videos as Nostr NIP-71 video events. Library plus a dry-run-by-default CLI. Apache-2.0 |
+| `packages/transport/` | `@match-feed/transport`: Match traffic over Oblivious HTTP (prototype, not audited). `OhttpRelay` client (ohttp-ts, pinned gateway keys, fixed size buckets, on-demand or constant-rate), a Nostr gateway target, and `LiveRelay` (direct WebSockets, opt-out). Not wired into the web client. Apache-2.0 |
+| `packages/analytics/` | `@match-feed/analytics`: Tier 2 creator discovery stats over DAP (prototype, not audited). On-device ledger, one Prio3Histogram report per viewer per creator per 28-day window via `@divviup/dap`, device-side config checks, post-processing with the "<20" threshold. Not wired into the web client. Apache-2.0 |
+| `packages/taste/` | `@match-feed/taste`: publishes a creator's public picks as a NIP-51 video curation set (kind 30005) and as taste-list v1 JSON; strict parsers for both. Dry-run CLI. Apache-2.0 |
+| `services/labeler/` | `@match-feed/labeler`: moderation labeler service. NIP-56 report intake, human review queue (CLI and local web admin), NIP-32 labels with NIP-09 retraction, hash-chained audit log and transparency reports. Apache-2.0 |
 | `apps/web/` | The v1 web client (PWA): follows, taste lists, recipes, explore slots, creator studio; sensitive local state encrypted at rest in IndexedDB. Vanilla TypeScript built with esbuild. Apache-2.0 |
 | `apps/mobile/` | Android and iOS shells (Capacitor 8) around `apps/web/dist`, with the `window.MatchFeedNative` bridge (secure key storage, background fetch, share target, deep links, notifications). Branding in `brand.json` |
 | `apps/desktop/` | Desktop shell (Tauri 2) for Linux, macOS and Windows; OS-keychain secrets only, no plugins |
-| `infra/relay/` | Self-hostable strfry relay behind Caddy, with a write policy and retention; tested in CI |
+| `infra/relay/` | Self-hostable strfry relay behind Caddy, with a write policy (per-IP limits plus an opt-in allowance for trusted gateways) and retention; tested in CI |
+| `infra/ohttp/` | OHTTP relay (Caddy) and OHTTP gateway (Cloudflare privacy-gateway-server-go + the Nostr target) as **separate stacks for separate operators**, plus a local e2e |
+| `infra/janus/` | DAP aggregators (Janus 0.7.143): leader and helper as separate stacks for separate operators, and a task generator |
+| `infra/labeler/` | Docker Compose deployment of `services/labeler` |
+| `infra/glitchtip/`, `infra/umami/` | Self-hosted servers for the web app's opt-in crash/bug reports (GlitchTip) and cookie-free usage analytics (Umami), with IP-stripping Caddy fronts and smoke tests |
 | `infra/web/` | Pinned deploy CLIs (Cloudflare Pages, IPFS) and the `security.txt` template for web releases (`docs/DEPLOY.md`) |
-| `.github/` | CI (`workflows/ci.yml`), gated web release with provenance (`workflows/deploy-web.yml`), Dependabot |
-| `packages/analytics/`, `packages/taste/`, `packages/transport/`, `services/labeler/`, `infra/janus/`, `infra/glitchtip/`, `infra/umami/` | Work in progress in parallel streams (DAP creator analytics, taste-list publishing, OHTTP transport, a moderation labeler, opt-in crash reports). Not described here yet; see each directory |
+| `.github/` | CI (`workflows/ci.yml`), manual Docker e2e suites (`workflows/e2e.yml`), gated web release with provenance (`workflows/deploy-web.yml`), Dependabot |
 | `sim/` | Python + numpy simulation harness: recommender quality, explore share, circle leakage, preview leakage, Sybil reach |
-| `docs/` | Design, threat model, wire formats, Match, Circles, web app, shipping, deploying, naming, analytics, open-source stack, simulation results |
+| `docs/` | Design, threat model, wire formats, Match, Match transport, Circles, web app, shipping, deploying, naming, analytics (design and implementation), telemetry, open-source stack, simulation results |
 | `reports/` | Prior-art research report |
 | `research_notes/` | Source-verification and research notes behind the report |
 | `mockups/` | Static HTML mockup |
@@ -96,6 +108,46 @@ npm run typecheck
 
 Integration hooks for the web client: [`packages/moderation/README.md`](packages/moderation/README.md).
 
+### Match transport (OHTTP)
+
+```sh
+cd packages/match && npm ci && cd ../transport   # its tests run real Match clients from packages/match
+npm ci              # .npmrc: ignore-scripts, save-exact
+npm test            # 37 tests: 34 offline (in-process gateway); 3 Docker tests skip unless OHTTP_E2E_RELAY_URL is set
+npm run typecheck
+cd ../.. && infra/ohttp/e2e/run.sh   # Docker: OHTTP relay → gateway → target → strfry, two Match clients, log checks
+```
+
+Details: [`docs/TRANSPORT.md`](docs/TRANSPORT.md), [`infra/ohttp/README.md`](infra/ohttp/README.md).
+
+### Creator analytics (DAP, prototype)
+
+```sh
+cd packages/analytics
+npm ci              # .npmrc: ignore-scripts, save-exact
+npm test            # 70 tests: 69 offline; the Docker e2e skips
+npm run typecheck
+npm run test:e2e    # Docker: separate Janus leader and helper stacks, 80 synthetic viewers, ~2–3 min
+```
+
+Details: [`docs/ANALYTICS_IMPLEMENTATION.md`](docs/ANALYTICS_IMPLEMENTATION.md), [`infra/janus/README.md`](infra/janus/README.md).
+
+### Taste-list publishing and the moderation labeler
+
+```sh
+cd packages/bridge && npm ci && cd ../taste   # taste has no lockfile; it uses packages/bridge's nostr-tools and tsc
+npm test            # offline (29 tests)
+npm run typecheck
+npm run cli -- publish --picks taste.json      # dry run: prints the event and the JSON
+
+cd ../../services/labeler   # also needs npm ci in packages/bridge and packages/moderation
+npm ci
+npm test            # offline (34 tests), in-memory relay
+npm run labeler -- --help
+```
+
+Details: [`packages/taste/README.md`](packages/taste/README.md), [`services/labeler/README.md`](services/labeler/README.md), [`infra/labeler/README.md`](infra/labeler/README.md).
+
 ### PeerTube → NIP-71 bridge
 
 ```sh
@@ -148,11 +200,17 @@ npm run build               # tauri build for this OS (Linux needs webkit2gtk-4.
 Setup, signing and store steps: [`apps/mobile/README.md`](apps/mobile/README.md),
 [`apps/desktop/README.md`](apps/desktop/README.md), [`docs/SHIPPING.md`](docs/SHIPPING.md).
 
-### Relay and releases
+### Servers, CI and releases
 
-`infra/relay/` runs a strfry relay with Docker Compose ([`infra/relay/README.md`](infra/relay/README.md)).
+`infra/relay/` runs a strfry relay with Docker Compose ([`infra/relay/README.md`](infra/relay/README.md));
+`infra/relay/test/run.sh` runs its smoke test against a local container. The other stacks
+(`infra/ohttp`, `infra/janus`, `infra/labeler`, `infra/glitchtip`, `infra/umami`) and who
+must run each one are in [`docs/DEPLOY.md`](docs/DEPLOY.md) §7: the OHTTP relay and gateway,
+and the Janus leader and helper, must be run by different parties.
 Web releases go through `.github/workflows/deploy-web.yml` and publish only after the owner opts in
-([`docs/DEPLOY.md`](docs/DEPLOY.md)). CI runs every package's tests on each push (`.github/workflows/ci.yml`).
+([`docs/DEPLOY.md`](docs/DEPLOY.md)). CI runs every package's unit tests on each push
+(`.github/workflows/ci.yml`); the Docker suites (relay, OHTTP, Janus, GlitchTip, Umami) run
+by hand with `.github/workflows/e2e.yml`.
 
 ### Simulation
 
@@ -172,8 +230,9 @@ Details: [`sim/README.md`](sim/README.md).
 | Document | Contents |
 |---|---|
 | [`docs/DESIGN.md`](docs/DESIGN.md) | The design: tiers, ship order, defaults, match and circle protocols, decisions, implementation status, sources |
-| [`docs/THREAT_MODEL.md`](docs/THREAT_MODEL.md) | Assets, adversaries, threats T1–T33 with mitigations and which are implemented |
+| [`docs/THREAT_MODEL.md`](docs/THREAT_MODEL.md) | Assets, adversaries, threats T1–T34 with mitigations and which are implemented |
 | [`docs/MATCH.md`](docs/MATCH.md) | The 1:1 Match protocol in `packages/match`: keys, wire privacy, previews, limits, open items |
+| [`docs/TRANSPORT.md`](docs/TRANSPORT.md) | Match traffic over Oblivious HTTP: who learns what, the timing caveat, rate limiting without IPs, keys, modes |
 | [`docs/CIRCLES.md`](docs/CIRCLES.md) | The Circles prototype in `packages/circles`: MLS library choice and the ts-mls finding, authorization guards, padding, the round, aggregation, distributed noise, what is not secure yet |
 | [`docs/PROTOCOL.md`](docs/PROTOCOL.md) | Wire formats: recipes, taste sketches, circles (kinds 3480–3482, provisional), previews, second degree, Match messages (provisional) |
 | [`docs/SHIPPING.md`](docs/SHIPPING.md) | From prototype to store apps: owner decisions, phases (web, Android, iOS, desktop), release engineering |
@@ -182,6 +241,8 @@ Details: [`sim/README.md`](sim/README.md).
 | [`docs/SIMULATION_RESULTS.md`](docs/SIMULATION_RESULTS.md) | What the simulation found and the parameters it set |
 | [`docs/WEB_APP.md`](docs/WEB_APP.md) | Web client data flow, local state, provisional taste-list format |
 | [`docs/ANALYTICS.md`](docs/ANALYTICS.md) | Creator analytics tiers and decisions |
+| [`docs/ANALYTICS_IMPLEMENTATION.md`](docs/ANALYTICS_IMPLEMENTATION.md) | The Tier 2 DAP prototype: protocol versions, what each party learns, operator obligations, failure modes |
+| [`docs/TELEMETRY.md`](docs/TELEMETRY.md) | Opt-in crash reports, bug reports and usage analytics: what is sent, retention, operator obligations |
 | [`docs/OSS_STACK.md`](docs/OSS_STACK.md) | Open-source building blocks, licenses, audit status |
 | [`reports/Distributed video recommendation prior art.md`](reports/Distributed%20video%20recommendation%20prior%20art.md) | Prior-art report, with a 2026-10-19 update on what the simulation confirmed or refuted |
 
@@ -197,30 +258,36 @@ Details: [`sim/README.md`](sim/README.md).
 - Circles (`packages/circles`, prototype): a full round over real MLS among 12 members in tests: pairwise-masked aggregation, distributed noise with no seed (T19), core's output policy, epoch freeze and the void rule, member removal locking the member out (with the ts-mls override, T27), app-level authorization guards around marmot-ts 0.5.1 (T28) and fixed-size round messages (T30).
 - On-device moderation library (`packages/moderation`): reports, labelers, blocks and an app-store-ready policy, ready to wire into the apps.
 - Native shells: an Android debug APK and a Linux .deb build; the iOS project is generated. CI covers every package; web builds are reproducible and releases attested.
+- Match transport over Oblivious HTTP (`packages/transport`, `infra/ohttp`, prototype): two Match clients run the whole lifecycle through an OHTTP relay, Cloudflare's gateway, our Nostr target and strfry in Docker, with pinned gateway keys, fixed message sizes and no IPs or keys in the logs. The relay's write policy has an opt-in allowance for the gateway's address.
+- Creator analytics Tier 2 over DAP (`packages/analytics`, `infra/janus`, prototype): reports from synthetic viewers go through separate Janus leader and helper stacks, with DP noise at both and the "<20" threshold. It counts viewers, not views.
+- A moderation labeler service (`services/labeler`, `infra/labeler`) and creator taste-list publishing (`packages/taste`).
+- Opt-in crash reports, bug reports and usage analytics in the web client, with self-hosted GlitchTip and Umami that store no IPs (`docs/TELEMETRY.md`).
 
 **Not built yet**
-- Match over real relays (WebSocket relay I/O, inbox-relay selection, OHTTP), and any Match UI in the web client.
+- Match in the web client: the UI, and the OHTTP transport wired in (`docs/TRANSPORT.md`, "Hooks for the web app"); random inbox-relay selection; an operator for the OHTTP relay who isn't the gateway's operator.
 - Circles over real relays, in the UI, and on an audited MLS stack: the prototype runs on alpha marmot-ts 0.5.1 (upgrade to 0.7.0 from 2026-11-02 at the earliest), has no dropout recovery and no input validation against malicious members.
 - Moderation, native secure storage, notifications and background checks are not wired into the web client; the shells have not run on a device; no store build is signed.
-- Signed taste lists (the format is provisional; lists are imported by URL or paste).
-- DAP analytics, identity-key recovery.
+- Signed taste lists in the web client: `packages/taste` publishes them, but the web app still reads the provisional formats.
+- DAP analytics in the web client, and an independent helper operator (D3). Open issues: the aggregators see uploaders' IPs (no OHTTP for uploads yet), no Sybil defence, the leader can mount an n−1 attack that only DP noise blunts.
+- A deployed labeler, with staff and an appeals policy.
+- Identity-key recovery.
 - Registered event kinds: the Match rumor kinds 3470–3478 and Circle kinds 3480–3482 are provisional.
 - Nothing has had an external review or audit; OpenMined PSI has no published audit.
 
 ## Next work (prioritized)
 
 1. **External privacy review of `docs/THREAT_MODEL.md`** before Match talks to real relays.
-2. **Match over real relays:** a WebSocket `RelayLike` with random inbox-relay selection (NIP-17 kind 10050) and Oblivious HTTP (T5). Register or move the provisional rumor kinds 3470–3478.
+2. **Match over real relays:** wire `packages/transport` into the web client (OHTTP by default, direct WebSockets as an explicit choice), find a separate operator for the OHTTP relay, add random inbox-relay selection (NIP-17 kind 10050) for direct mode, and upgrade the gateway to privacy-gateway-server-go v0.0.4 after review. Register or move the provisional rumor kinds 3470–3478.
 3. **Wire Match into the web client UI:** requests, previews, pause, renew and revoke screens, with the `MatchBook` (per-match keys and sketches) stored in the encrypted vault.
 4. **Signed taste lists** as Nostr addressable events, replacing the provisional unsigned format.
 5. **Circles:** move to marmot-ts 0.7.0 once it is two weeks old (2026-11-02), replacing the ts-mls override check with one on its bundled fork and dropping app-level guards it makes redundant (T27, T28); then real relay I/O, an exact noise sampler (T20), dropout recovery, input validation (T29), and an audited MLS path (MDK) before launch. Move `releaseAggregatedEpoch` into core.
 6. **Wire the native shells and moderation into the web client:** the vault key in the OS keystore, incoming links and shares, opt-in notifications (hooks in `apps/mobile/README.md`), and the moderation pre-filter, Report and Block (hooks in `packages/moderation/README.md`). Test the shells on devices, including the native-bridge frame restriction (T31).
-7. **DAP creator analytics** (Tier 2): a Janus leader plus an independent helper; resolve the EU ePrivacy question first.
+7. **DAP creator analytics** (Tier 2): wire `packages/analytics` into the web client (hooks in `docs/ANALYTICS_IMPLEMENTATION.md` §8), sign up an independent helper operator, route uploads and HPKE-config fetches through OHTTP so neither aggregator sees IPs, and resolve the EU ePrivacy question first.
 8. **Bridge:** a consent check before bridging other people's channels. (NIP-09 deletions, the T23 signing policy, NIP-42 AUTH and relay retries are done.)
 9. **First-hop Sybil defences** (not yet simulated): per-source trust learned from feedback, a per-match item cap.
 10. **External security audit** of the Match and Circle protocols, OpenMined PSI and the client before Match launches.
 
 ## License
 
-`packages/core`, `packages/match`, `packages/bridge`, `packages/circles`, `packages/moderation` and `apps/web` are Apache-2.0. Self-hosted fonts in
+`packages/core`, `packages/match`, `packages/bridge`, `packages/circles`, `packages/moderation`, `packages/transport`, `packages/analytics`, `packages/taste`, `services/labeler` and `apps/web` are Apache-2.0. Self-hosted fonts in
 `apps/web/public/fonts/` are under the SIL Open Font License 1.1.

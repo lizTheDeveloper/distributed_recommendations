@@ -196,10 +196,14 @@ bucket. Instead (`ratelimit.ts`):
   IPs (Caddy needs a rate-limit plugin or the relay provider's own limits).
 - **Upstream relays** see every user as the gateway's IP. `infra/relay`'s write
   policy limits per IP (2 events/s, burst 30), which is far too low for a gateway.
-  - Give the gateway's IP its own allowance: a `POLICY_*` exemption list in
-    `infra/relay` (not built yet).
-  - Or connect the target to strfry inside a shared network without Caddy (the
-    e2e does this; strfry then warns that `X-Real-IP` is empty).
+  - List the gateway's address in `POLICY_TRUSTED_SOURCES` (infra/relay/README.md,
+    "Trusted gateway sources"). It gets its own bucket, 50 events/s, burst 500 by
+    default (`POLICY_TRUSTED_RATE`, `POLICY_TRUSTED_BURST`); the gift-wrap rules
+    still apply. Empty by default.
+  - If the target connects to strfry inside a shared Docker network without Caddy,
+    strfry sees the target container's address (and warns that `X-Real-IP` is
+    empty): list that address or the network's subnet. The e2e does this.
+  - Other people's relays need their own arrangement with the gateway operator.
 - **Per-user anonymous limits** need unlinkable tokens: Privacy Pass (RFC 9576–9578).
   The client redeems a token per request; the issuer authenticates the user once,
   without linking tokens to requests. That's the right next step if abuse appears.
@@ -360,12 +364,12 @@ Never point any of this at public relays.
 
 ## Follow-ups
 
-- Wire into `apps/web` (above). Add `packages/transport` to CI's test matrix and
-  to `.github/dependabot.yml` (npm; Docker for `infra/ohttp`).
+- Wire into `apps/web` (above). (CI now runs the unit tests in the `node` matrix,
+  and the Docker e2e in the manual `.github/workflows/e2e.yml`; Dependabot covers
+  the npm package and the `infra/ohttp` compose files and Dockerfiles.)
 - Upgrade the gateway to privacy-gateway-server-go v0.0.4 after the cooldown, for
   X-Wing. hpke would need X-Wing for clients to use it.
-- `infra/relay`: a per-IP allowance for the gateway in the write policy.
 - Privacy Pass for anonymous per-user rate limits.
 - Gateway-side mixing (delay and batch publishes), and cover publishes toward Nostr.
-- THREAT_MODEL T5 and MATCH.md "Open items" still say OHTTP isn't implemented;
-  update them when this is wired into a client.
+- THREAT_MODEL T5 and MATCH.md "Open items" now record the prototype; update them
+  again when it is wired into a client.

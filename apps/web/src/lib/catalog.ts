@@ -8,6 +8,8 @@ import { MAX_PLAYLISTS, isPublicPlaylist } from "./creatortaste.ts";
 import type { ChannelRef } from "./handles.ts";
 import type { VideoMeta } from "./reels.ts";
 import { watchId } from "./videos.ts";
+import type { VideoMeta as ModerationMeta } from "./moderation/pkg.ts";
+import { peertubeVideoMeta } from "./moderation/pkg.ts";
 
 /** Tier 1 public counts for a channel (ANALYTICS.md). */
 export interface ChannelStats {
@@ -36,6 +38,8 @@ export interface Catalog {
   instancePage(origin: string, which: "trending" | "recent", start: number, count: number): Promise<Video[]>;
   /** Aspect ratio and live flag seen in PeerTube responses (core's `Video` drops them). */
   meta(id: string): VideoMeta | undefined;
+  /** Moderation facts from the same responses: PeerTube `nsfw`/`nsfwFlags`, owner account, description. */
+  modMeta(id: string): ModerationMeta | undefined;
   channelProfile(c: ChannelRef, via?: readonly string[]): Promise<ChannelProfile>;
   channelVideos(c: ChannelRef, count?: number): Promise<Video[]>;
   /** Resolve a canonical watch URL to a video via its origin instance. */
@@ -58,6 +62,7 @@ export interface Catalog {
 export function createCatalog(rawFetch: FetchLike): Catalog {
   const clients = new Map<string, PeerTubeClient>();
   const metas = new Map<string, VideoMeta>();
+  const modMetas = new Map<string, ModerationMeta>();
   const capture = (raw: unknown, origin: string) => {
     if (typeof raw !== "object" || raw === null) return;
     const o = raw as Record<string, unknown>;
@@ -67,6 +72,11 @@ export function createCatalog(rawFetch: FetchLike): Catalog {
     if (typeof o.aspectRatio === "number" && o.aspectRatio > 0 && o.aspectRatio < 10) m.aspectRatio = o.aspectRatio;
     if (o.isLive === true) m.isLive = true;
     if (Object.keys(m).length) metas.set(id, m);
+    const mm = peertubeVideoMeta(o);
+    if (mm.nsfw || mm.nsfwFlags || mm.account || mm.description) {
+      if (mm.description) mm.description = mm.description.slice(0, 2000);
+      modMetas.set(id, mm);
+    }
   };
   // Same responses core parses; this only reads the two fields core's Video omits.
   const fetchFn: FetchLike = async (url, init) => {
@@ -116,6 +126,7 @@ export function createCatalog(rawFetch: FetchLike): Catalog {
       return page.videos;
     },
     meta: (id) => metas.get(id),
+    modMeta: (id) => modMetas.get(id),
     async channelProfile(c, via = []) {
       // Ask instances that already serve the catalog (known to send CORS headers) for
       // the federated copy first, then the channel's home instance.

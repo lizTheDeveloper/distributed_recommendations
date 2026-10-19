@@ -11,13 +11,13 @@ and T8 (payola) through labels on curators and lists.
 - License: Apache-2.0.
 
 ```sh
-npm test          # node:test, offline: 56 tests
+npm test          # node:test, offline: 59 tests
 npm run typecheck # tsc, strict
 ```
 
 | Module | What it does |
 |---|---|
-| `reports.ts` | NIP-56 kind-1984 report builder (video, creator, taste list); `parseReport`; `labelsFromReports` (reports from people you trust, with a threshold) |
+| `reports.ts` | NIP-56 kind-1984 report builder (video, creator, taste list), optionally addressed to labelers (`labelers`: one untyped `["p", <labeler>]` tag each, as `services/labeler` intake expects); `parseReport`; `labelsFromReports` (reports from people you trust, with a threshold) |
 | `peertube.ts` | `prepareAbuseReport` for `POST /api/v1/abuses`; `PeerTubeModerationClient` (injectable `fetch`): `submitAbuse` (requires confirmation), `resolveAccountId`, `instanceConfig`, `publicBlocklistLog`, `blockStatus`, `instanceDefaults`; `parseMuteFeed`, `foldBlocklistActions` |
 | `plan.ts` | `planReport`: one Report button produces a PeerTube report to the hosting instance (primary) plus an optional NIP-56 event and notes for the confirmation screen |
 | `labels.ts` | NIP-32 kind-1985 parsing (mark rules, `ugc`, NIP-40 expiry, NIP-09 retraction); `selfLabels` (including NIP-36 `content-warning`); `fetchLabels` (filters by labeler only); `LabelIndex`; `buildLabelEvent` for labeler tooling |
@@ -99,6 +99,7 @@ The package is not wired in yet; others are editing `apps/`. Each hook below nam
    - `planReport({video, meta, type, details})` → show `plan.notes` and both parts.
    - On confirm, call `client.submitAbuse(plan.peertube, { accessToken, confirmed: true })`.
    - PeerTube needs a user token on that instance (or on the viewer's home instance, via `viaInstance`, which forwards the report). The app needs a PeerTube login flow (`/api/v1/oauth-clients/local` then `/api/v1/users/token`). That flow is not built, and CORS for authenticated POSTs from our origin is **unverified**.
+   - Pass `labelers` (hex pubkeys the viewer chose) to `planReport` / `buildReport` to address the NIP-56 event to them; publish it to the viewer's relays plus the labelers' advertised relays.
    - Sign `plan.nostr` with the existing identity (`identity` in the vault, or NIP-07) and publish it only to the user's own relays (`settings.relays`; none by default).
    - Creators and taste lists use `buildReport({type: 'creator' | 'taste-list', …}, type)`.
 8. **Block.** Add "Block creator", "Block instance" and "Mute tag" to the card menu (`addBlock`). Matches get "Block", which should also `revokeMatch`. Taste lists get "Block list". Settings gets a block-list editor (`removeBlock`) and a field to import a mute list by npub (`parsePubkey` → `fetchMuteList` → `importMuteList`).

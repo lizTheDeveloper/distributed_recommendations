@@ -39,8 +39,8 @@ Recommended shape:
 | 7 | On-device ranking | Hand-written item/user-kNN in TS; **transformers.js** for embeddings; **sqlite-vec** WASM or **Orama** | disco-rec; onnxruntime-web; Python sim: implicit, recommenders, RecBole | MIT/Apache |
 | 8 | Trust / Sybil | Own Monte Carlo PPR over **graphology**; **Vertex** DVM as a hint | GrapeRank (AGPL); MeritRank (GPL-2 Python); @nostr-dev-kit/wot | MIT |
 | 9 | Feed recipes | **JSON schema plus CEL** (`@marcbachmann/cel-js` or `@bufbuild/cel`) | json-logic-js; QuickJS-WASM sandbox (opt-in tier) | MIT / Apache-2.0 |
-| 10 | DP and analytics | **OpenDP** (simulation and server-side DP); **Janus/libprio** (DAP) | Tumult, Google DP/PyDP; skip analytics in v1 | MIT; MPL-2.0 |
-| 11 | Transport privacy | Relays: **nostr-rs-relay** or **strfry**; **ohttp-ts** with **Cloudflare privacy-gateway** | khatru (Go); Arti (Rust, desktop); Nym mix-fetch | MIT; GPL-3 (strfry, server) |
+| 10 | DP and analytics | **OpenDP** (simulation and server-side DP); **Janus/libprio** (DAP); **@divviup/dap** client. Built: `packages/analytics` + `infra/janus` (DAP-09, Janus 0.7.143) | Tumult, Google DP/PyDP; libprio-rs → WASM client (DAP-17+); skip analytics in v1 | MIT; MPL-2.0 |
+| 11 | Transport privacy | Relays: **strfry** (built: `infra/relay`); **ohttp-ts** + **hpke** (panva) client, **Cloudflare privacy-gateway-server-go** gateway, Caddy as the OHTTP relay, our own Nostr target (built: `packages/transport`, `infra/ohttp`) | nostr-rs-relay, khatru (Go); gruberb/ohttp-gateway; Arti (Rust, desktop); Nym mix-fetch | MIT; BSD-3 (gateway); GPL-3 (strfry, server) |
 | 12 | Local storage | **@sqlite.org/sqlite-wasm** (OPFS) or **Dexie**; WebCrypto/libsodium encryption | wa-sqlite; Evolu; Automerge (device sync) | Apache-2.0 |
 | 13 | Moderation | Subscribable **NIP-32 labels** applied on-device (own code); **PDQ** for operators | Ozone (atproto-only), ROOST coop/osprey | — / Apache-2.0 |
 | 14 | Supply chain | **Sigstore** (cosign, sigstore-js); **SLSA generator**; F-Droid reproducible builds | in-toto; diffoscope (tool) | Apache-2.0 |
@@ -219,9 +219,10 @@ The catalog is about 10^5–10^6 PeerTube videos and the candidate pool is match
 | **OpenDP** | https://github.com/opendp/opendp | Rust / Python | MIT (repo LICENSE) | 0.16.0, 2026-10 | production (Harvard); unvetted parts gated as "contrib" **[prior knowledge]** | choose and validate circle noise parameters; simulate T3 | no TS binding; on-device noise must be our own TS (discrete mechanisms) |
 | Tumult Analytics / Core | https://github.com/opendp/tumult-analytics | Py | Apache-2.0 | 0.21.0, 2026-06 | production (moved under OpenDP) | aggregate creator stats server-side | Spark-based |
 | Google DP / PyDP | https://github.com/google/differential-privacy, https://github.com/OpenMined/PyDP | Go/C++/Java / Py | Apache-2.0 | 2026 | production | alternative | — |
-| **Janus** (DAP aggregator) | https://github.com/divviup/janus | Rust | MPL-2.0 | janus_client 0.7.143, 2026-10 | runs Divvi Up (Firefox); README says "**Experimental** implementation" | creator reach counts (C6, T14) | two non-colluding operators needed (D3) |
+| **Janus** (DAP aggregator) | https://github.com/divviup/janus | Rust | MPL-2.0 | 0.7.143, 2026-10 (`release/0.7` = DAP-09, supported; `release/0.8` = DAP-15, unmaintained since 2025-08; `main` between drafts) | runs Divvi Up (Firefox); README says "**Experimental** implementation" | creator reach counts (C6, T14). **Used:** `infra/janus` leader and helper stacks, 0.7.143 images pinned by digest | two non-colluding operators needed (D3) |
 | libprio-rs | https://github.com/divviup/libprio-rs | Rust | MPL-2.0 (+ Apache/MIT parts) | 0.18.1, 2026-09 | production | Prio3 VDAFs | — |
-| divviup-ts | https://github.com/divviup/divviup-ts | TS | MPL-2.0 | repo 2026-09; **npm @divviup/dap 0.9.1 (2024-11)** | client SDK | upload reports from the PWA | npm lags the repo; check DAP draft version compatibility |
+| divviup-ts | https://github.com/divviup/divviup-ts | TS | MPL-2.0 | npm **@divviup/dap 0.9.1 (2024-11)**; repo active (bumps to 2026-10-14) | client SDK | upload reports from the PWA. **Used:** `packages/analytics` (Prio3Histogram), behind a `DapClient` interface | **Correction (checked 2026-10-19):** npm doesn't lag the repo in protocol. Both 0.9.1 and `main` speak DAP-09 / VDAF-08, so it pairs only with Janus 0.7. Moving past DAP-09 means a new client (libprio-rs → WASM; docs/ANALYTICS_IMPLEMENTATION.md §1) |
+| @hpke/core, hpke-js (dajiaji) | https://github.com/dajiaji/hpke-js | TS | MIT | @hpke/core 1.9.0, hpke-js 1.8.0 (2026-03) | maintained; no third-party audit found | HPKE sealing inside `@divviup/dap` | 1.9.0 is past the CVE-2025-64767 nonce-reuse fix (1.7.5); a second HPKE library next to panva's `hpke` used for OHTTP (§11) |
 | Divvi Up service | https://divviup.org | — | — | ©2026; Firefox and Horizontal listed | production | hosted 2nd aggregator (D3 option) | pricing by contact |
 | cloudflare/daphne | https://github.com/cloudflare/daphne | Rust | BSD-3 | **archived** | — | — | avoid |
 
@@ -233,8 +234,10 @@ The catalog is about 10^5–10^6 PeerTube videos and the candidate pool is match
 | **strfry** | https://github.com/hoytech/strfry | C++ | GPL-3.0 | 2026-09 | production, high-performance; negentropy | big public relay | GPL is fine for an unmodified separate server |
 | khatru | Go module `fiatjaf.com/nostr/khatru` (GitHub repo archived 2026-01-24) | Go | Unlicense | — | production | custom relay policies (rate limits, kind filters, auth) | moved, with small API breaks |
 | **ohttp-ts** | https://github.com/thibmeu/ohttp-ts | TS | MIT | 0.6.1, 2026-09-30 | early, active | OHTTP client encapsulation in the browser (S2) | **Nostr relays speak WebSocket, so we must build an OHTTP gateway target that publishes to or queries relays**; subscriptions become polling |
-| martinthomson/ohttp | https://github.com/martinthomson/ohttp | Rust | MIT OR Apache-2.0 | 0.8.0, 2026-07 | production (Firefox) | gateway-side library | — |
-| Cloudflare privacy-gateway-server-go / -relay | https://github.com/cloudflare/privacy-gateway-server-go, https://github.com/cloudflare/privacy-gateway-relay | Go / JS (Workers) | BSD-3 | 2026 | production | ready gateway and relay pair | relay and gateway must be **different operators** |
+| **hpke** (panva) | https://github.com/panva/hpke | TS | MIT | 1.1.7 | maintained; no third-party audit found | HPKE under ohttp-ts. **Used:** `packages/transport` | X25519 / HKDF-SHA256 / AES-128-GCM suite only on our side; no X-Wing yet |
+| martinthomson/ohttp | https://github.com/martinthomson/ohttp | Rust | MIT OR Apache-2.0 | 0.8.0, 2026-07 | production (Firefox) | gateway-side library | its `ohttp-server` is a test server, not a deployable gateway |
+| **Cloudflare privacy-gateway-server-go** / -relay | https://github.com/cloudflare/privacy-gateway-server-go, https://github.com/cloudflare/privacy-gateway-relay | Go / JS (Workers) | BSD-3 | server v0.0.3 (v0.0.4 tagged 2026-10-14, adds X-Wing) | "reference implementation – use in production at your own risk"; no key rotation | **Chosen gateway** (`infra/ohttp/gateway`, built from the source zip, SHA-256 pinned). The relay side is Caddy (`infra/ohttp/relay`) or a managed relay | relay and gateway must be **different operators**; upgrade to v0.0.4 after the 14-day cooldown |
+| gruberb/ohttp-gateway | crate `ohttp-gateway` 1.0.2 | Rust | MPL-2.0 | 2026 | one maintainer | gateway with key rotation and size limits (on the Mozilla crate) | not chosen: default `RUST_LOG=debug` logs every decapsulated request; reconsider for key rotation |
 | Arti (Tor in Rust) | gitlab.torproject.org/tpo/core/arti; crate `arti-client` 0.47.0 | Rust | MIT OR Apache-2.0 | 2.6.0, 2026-09 | production client; relay role unfinished | Tor for the desktop (Tauri) and maybe Android build | no browser; blocked in some states |
 | Nym mix-fetch / SDK | https://github.com/nymtech/nym | Rust / TS | libs Apache-2.0/MIT; apps GPL-3 | mix-fetch 3.0.0, 2026-10 | production network; TS SDK had an outage notice **[status unclear]** | mixnet option (S3) for the PWA | latency; depends on the Nym network |
 | iroh | https://github.com/n0-computer/iroh | Rust | MIT OR Apache-2.0 | 1.3.0, 2026-09 | production (1.x) | future direct device-to-device transport | exposes IPs to peers |
@@ -259,7 +262,7 @@ Browsers have no OS keystore. The best available option is a non-extractable Web
 
 | Candidate | URL | Lang | License | Last | Maturity | Fit | Gotchas |
 |---|---|---|---|---|---|---|---|
-| NIP-32 labels / NIP-56 reports | https://github.com/nostr-protocol/nips | spec | — | 2026-10 | in use (Coracle, Ditto **[unverified]**) | subscribe to labeler pubkeys and apply on-device | **no open-source Nostr labeler service found**; we build a small one or reuse ROOST tools behind it |
+| NIP-32 labels / NIP-56 reports | https://github.com/nostr-protocol/nips | spec | — | 2026-10 | in use (Coracle, Ditto **[unverified]**) | subscribe to labeler pubkeys and apply on-device | **no open-source Nostr labeler service found**, so we built a small one: `services/labeler` (+ `infra/labeler`); ROOST tools could sit behind it later |
 | Ozone | https://github.com/bluesky-social/ozone | TS (Next.js) | MIT OR Apache-2.0 | 2026-10 | production (Bluesky) | the model for "subscribable labelers"; reuse UI ideas | atproto-specific |
 | ROOST coop | https://github.com/roostorg/coop | TS | Apache-2.0 | 2026-10 | early-production (diVine forked it) | review queues and enforcement for a labeler service | — |
 | ROOST osprey | https://github.com/roostorg/osprey | Py | Apache-2.0 | 2026-10 | production (from Discord **[unverified]**) | rules engine for spam and abuse signals | — |
@@ -314,7 +317,7 @@ Whatever we pick, use the **DCO** (not a CLA) so the project can never be relice
 
 Ordered by ship order in DESIGN.md.
 
-1. **Taste-list event format.** Use NIP-51 lists if they fit, plus per-entry `sponsored`/`affiliated` tags, track-record weighting and list-share caps (T8, T16). Small spec plus code.
+1. **Taste-list event format.** Use NIP-51 lists if they fit, plus per-entry `sponsored`/`affiliated` tags, track-record weighting and list-share caps (T8, T16). Small spec plus code. *Started:* `packages/taste` (NIP-51 kind 30005 curation sets and taste-list v1 JSON, publish and parse).
 2. **PeerTube→Nostr catalog bridge or indexer.** Crawl via the REST API or Sepia, publish or resolve NIP-71 events with an `origin` tag, and keep stable video IDs across mirrored instances. No existing bridge was found.
 3. **On-device ranker.** User-kNN over sketches, explore-slot allocator, per-creator exposure caps and popularity calibration, an explanation generator ("because Match X endorsed…"), and recipe evaluation glue.
 4. **Recipe schema and editor.** JSON plus CEL, signing, a UI, and a test corpus of hostile recipes (T1).
@@ -323,7 +326,7 @@ Ordered by ship order in DESIGN.md.
    - Safety: nonces and epochs (T15), rate limits and minimum set size (T2), silent pause and exclusions (T4).
    - Keys: per-match key derivation and rotation (T10).
 6. **Sketch format.** Fixed-size padding, a fixed send schedule and cover traffic (T5).
-7. **OHTTP → relay gateway target.** An HTTP endpoint behind a Cloudflare-style gateway that publishes and queries Nostr relays.
+7. **OHTTP → relay gateway target.** An HTTP endpoint behind a Cloudflare-style gateway that publishes and queries Nostr relays. *Prototype built:* `packages/transport` (`bin/target.ts`, client `OhttpRelay`), `infra/ohttp`; docs/TRANSPORT.md. Not wired into apps/web.
 8. **Circle aggregation layer** inside MLS:
    - secure aggregation or threshold reveal
    - discrete DP noise in TS
@@ -332,9 +335,9 @@ Ordered by ship order in DESIGN.md.
    
    No library does this; use OpenDP in Python to pick parameters.
 9. **Personalized trust walk** (PPR / TrustWalker-style) with DSybil-style per-source feedback weights (T7), plus a Vertex client as an optional hint.
-10. **Labeler subscription** on-device (NIP-32), plus a small labeler service (ROOST coop or osprey can sit behind it).
+10. **Labeler subscription** on-device (NIP-32), plus a small labeler service (ROOST coop or osprey can sit behind it). *Built:* on-device in `packages/moderation`; service in `services/labeler`.
 11. **Encrypted local store.** WebCrypto/libsodium record encryption, retention windows and a fast wipe (T9).
-12. **Creator analytics.** DAP task definitions, client upload (divviup-ts) and operator agreements (D3).
+12. **Creator analytics.** DAP task definitions, client upload (divviup-ts) and operator agreements (D3). *Prototype built:* `packages/analytics`, `infra/janus` (docs/ANALYTICS_IMPLEMENTATION.md); the helper operator and agreements are still open.
 13. **Simulation harness** (Python): implicit, recommenders, networkx, OpenDP and openmined.psi, plus nostr-sdk for protocol-level bots (T2, T3, T7, explore-slot share, Gini).
 14. **Native glue (later):** Capacitor and Tauri plugins for the keystore and for MDK (UniFFI), if we take the audited Rust MLS path.
 15. **Release pipeline:** reproducible web and Android builds, Sigstore/SLSA provenance, F-Droid metadata and in-toto two-person sign-off.

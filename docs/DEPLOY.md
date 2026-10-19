@@ -7,10 +7,12 @@ create. Nothing deploys until the owner opts in.
 
 | Piece | Where | Purpose |
 |---|---|---|
-| CI | `.github/workflows/ci.yml` | Tests and typechecks for every package, sim unit tests, reproducible-build check, relay config test, DCO sign-off, workflow lint |
+| CI | `.github/workflows/ci.yml` | Tests and typechecks for every package, sim unit tests, reproducible-build check, relay config and smoke test, DCO sign-off, workflow lint |
+| Docker e2e (manual) | `.github/workflows/e2e.yml` | Run by hand (Actions → "E2E (Docker)"): relay smoke, OHTTP relay → gateway → strfry, Janus leader + helper, GlitchTip and Umami smoke tests. Not on push |
 | Web release | `.github/workflows/deploy-web.yml` | Build `apps/web/dist`, attest, then optionally publish to GitHub Pages, Cloudflare Pages and IPFS |
-| Dependency updates | `.github/dependabot.yml` | npm, GitHub Actions, Cargo (desktop), Gradle (Android), Docker Compose images, pip; 14-day cooldown |
+| Dependency updates | `.github/dependabot.yml` | npm, GitHub Actions, Cargo (desktop), Gradle (Android), Docker Compose images, Dockerfile base images, pip; 14-day cooldown |
 | Relay | `infra/relay/` | Self-hosted strfry + Caddy; see [`infra/relay/README.md`](../infra/relay/README.md) |
+| Server stacks | `infra/ohttp/`, `infra/janus/`, `infra/labeler/`, `infra/glitchtip/`, `infra/umami/` | OHTTP relay and gateway, DAP aggregators, moderation labeler, crash/bug reports, usage analytics; see §7 |
 | Release tools | `infra/web/` | Pinned deploy CLIs and the `security.txt` template |
 
 Supply chain (T13): actions are pinned by full commit SHA (version in a comment), npm
@@ -42,6 +44,9 @@ All under the repository's **Settings**.
   `node (packages/core)`, `node (packages/match)`, `node (packages/bridge)`,
   `node (apps/web)`, `sim (Python 3.13)`, `web build is reproducible`,
   `relay config (strfry + Caddy)`, `DCO sign-off`, `lint workflows (actionlint)`.
+  Consider also requiring the other `node (…)` matrix checks (`packages/circles`,
+  `packages/moderation`, `packages/taste`, `packages/transport`, `packages/analytics`,
+  `services/labeler`). The Docker e2e workflow is manual and can't be a required check.
 - Tag ruleset for `web-v*`: only maintainers may create, update or delete these tags,
   because pushing one starts a release.
 
@@ -248,3 +253,49 @@ SHA-256 manifest). A test that injected `Date.now()` into `sw.js` made the check
 
 The relay is deployed by hand on a host you control: [`infra/relay/README.md`](../infra/relay/README.md).
 It needs no repository secrets. CI tests its configuration on every push.
+
+If an OHTTP gateway (§7) publishes to this relay, list the gateway's egress address in
+`POLICY_TRUSTED_SOURCES` (infra/relay/README.md, "Trusted gateway sources"); otherwise
+the per-IP write limit (2 events/s, burst 30) throttles every OHTTP user at once.
+
+## 7. Other server stacks, and who runs what
+
+Every stack is Docker Compose with images pinned by digest, read-only root filesystems,
+no added capabilities, no client-IP logging, and an `.env.example`. None needs repository
+secrets, and none is deployed by a workflow. Several are privacy-relevant only if they are
+run by **different parties**: putting them on one host, one cloud account or one admin
+team defeats them.
+
+| Stack | Who runs it | Must be separate from | Docs |
+|---|---|---|---|
+| `infra/relay` (Nostr relay) | the app's operator, or anyone | — | `infra/relay/README.md` |
+| `infra/ohttp/gateway` (OHTTP gateway + Nostr target) | the app's operator | the OHTTP relay's operator | `infra/ohttp/README.md`, `docs/TRANSPORT.md` |
+| `infra/ohttp/relay` (OHTTP relay) | **a different party**: a managed OHTTP relay (e.g. Fastly, or Cloudflare's relay service when the gateway isn't on Cloudflare) or a partner | the gateway's operator (no shared host, provider account, admins or logs) | same |
+| `infra/janus/leader` (DAP leader) | the creator's home instance | the helper | `infra/janus/README.md`, `docs/ANALYTICS_IMPLEMENTATION.md` §5 |
+| `infra/janus/helper` (DAP helper) | **an independent operator** (Divvi Up, a partner nonprofit, an unrelated instance) who signs the operator agreement | the leader (different legal entity, admins, hosting account, database) | same |
+| `infra/labeler` (moderation labeler) | whoever staffs moderation (e.g. The Multiverse School) | — | `infra/labeler/README.md`, `services/labeler/README.md` |
+| `infra/glitchtip` (crash and bug reports) | the app's operator | — | `infra/glitchtip/README.md`, `docs/TELEMETRY.md` |
+| `infra/umami` (usage analytics) | the app's operator | — | `infra/umami/README.md`, `docs/TELEMETRY.md` |
+
+Why the separation matters:
+- **OHTTP:** the relay sees client IPs but only ciphertext; the gateway sees requests but
+  not IPs. If one party runs both, or they share logs, it learns IP ↔ keys ↔ events, and
+  OHTTP protects nothing (THREAT_MODEL T5).
+- **DAP:** each report is split into two shares, one per aggregator. Whoever holds both
+  can read every viewer's discovery channel. The helper's DP noise also protects viewers
+  from the creator (THREAT_MODEL T14).
+
+Order of operations for the private Match transport:
+1. Run `infra/relay` (or pick relays that agree to carry the traffic) and add the
+   gateway's address to `POLICY_TRUSTED_SOURCES`.
+2. Run `infra/ohttp/gateway` with `NOSTR_RELAYS` pointing at them; record the key pin
+   (`fetchKeyConfig()` through the relay).
+3. Have the other party run `infra/ohttp/relay` (or a managed relay) with `GATEWAY_URL`
+   pointing at your gateway and `CORS_ORIGIN` set to the app's origin.
+4. Ship the OHTTP relay URL and the key pin with the app (docs/TRANSPORT.md, "Hooks for
+   the web app"; not wired yet).
+
+Before and after updating any of these stacks, run the matching suite in
+`.github/workflows/e2e.yml`, or locally: `infra/relay/test/run.sh`,
+`infra/ohttp/e2e/run.sh`, `cd packages/analytics && npm run test:e2e`,
+`sh infra/glitchtip/test/smoke.sh`, `sh infra/umami/test/smoke.sh`.

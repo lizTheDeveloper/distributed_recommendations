@@ -28,7 +28,21 @@ export interface Settings {
    * All off until the viewer says yes. Separate from `analytics` (creator discovery stats).
    */
   telemetry: TelemetryConsent;
+  /** First-run onboarding finished or skipped (src/ui/onboarding.ts). */
+  onboarded: boolean;
+  /** Topics picked at onboarding: a starting tag profile for explore relevance, until the first endorsement. */
+  topics: string[];
+  /** Native shells only: opt-in local notifications for match requests (off by default). */
+  nativeNotify: boolean;
+  /** Native shells only: opt-in background relay checks (off by default; device-key mode only). */
+  nativeBackground: boolean;
 }
+
+/** Topics offered at onboarding (common PeerTube tags; lowercase). */
+export const ONBOARDING_TOPICS = [
+  "linux", "opensource", "privacy", "programming", "science", "music", "gaming", "art", "blender", "diy",
+  "cooking", "education", "climate", "history", "politics", "film",
+] as const;
 
 export type FeedView = "reels" | "grid";
 
@@ -72,6 +86,10 @@ export function defaultSettings(): Settings {
     defaultView: "reels",
     relays: [],
     telemetry: defaultConsent(),
+    onboarded: false,
+    topics: [],
+    nativeNotify: false,
+    nativeBackground: false,
   };
 }
 
@@ -101,6 +119,10 @@ export function loadSettings(x: unknown): Settings {
     d.relays = [...new Set(rs)].slice(0, MAX_RELAYS);
   }
   d.telemetry = loadConsent(o.telemetry);
+  d.onboarded = bool(o.onboarded, false);
+  if (Array.isArray(o.topics)) d.topics = [...new Set(o.topics.filter((t): t is string => typeof t === "string" && /^[\p{L}\p{N}_-]{1,32}$/u.test(t)).map((t) => t.toLowerCase()))].slice(0, 12);
+  d.nativeNotify = bool(o.nativeNotify, false);
+  d.nativeBackground = bool(o.nativeBackground, false);
   if (o.theme === "light" || o.theme === "dark" || o.theme === "auto") d.theme = o.theme;
   return d;
 }

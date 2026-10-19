@@ -60,6 +60,14 @@ export interface BuildReportOptions {
    * addressable event and is ignored by clients that don't know it.
    */
   includeAddress?: boolean;
+  /**
+   * Labelers to address the report to (hex pubkeys). NIP-56 has no addressing, so
+   * each one gets an extra `["p", <labeler>]` tag WITHOUT a report type; the
+   * reported `e`/`p` tags keep theirs. A labeler's intake asks relays for
+   * `{"kinds":[1984],"#p":[<labeler>]}` (services/labeler, "Report addressing").
+   * Optional: without it the event is exactly what it was before.
+   */
+  labelers?: readonly string[];
 }
 
 const ADDRESS = /^(\d{1,5}):([0-9a-f]{64}):(.{0,512})$/s;
@@ -89,6 +97,17 @@ export function buildReport(target: ReportTarget, type: ReportType, opts: BuildR
       check(m && m[2] === target.pubkey, 'address must be <kind>:<author pubkey>:<d>');
       if (target.type === 'taste-list') check(m[1] === '30005', 'a taste list is a kind 30005 curation set');
       tags.push(['a', target.address, ...hint]);
+    }
+  }
+  if (opts.labelers?.length) {
+    check(opts.labelers.length <= 8, 'at most 8 labelers per report');
+    const seen = new Set<string>();
+    for (const l of opts.labelers) {
+      check(typeof l === 'string' && HEX64.test(l), 'labeler must be 64 lowercase hex characters');
+      // A typed `p` for the same key (reporting the labeler itself) stays as it is.
+      if (seen.has(l) || tags.some((t) => t[0] === 'p' && t[1] === l && t.length === 2)) continue;
+      seen.add(l);
+      tags.push(['p', l]);
     }
   }
   if (opts.label) {

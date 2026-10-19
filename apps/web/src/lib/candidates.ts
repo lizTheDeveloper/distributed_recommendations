@@ -51,7 +51,13 @@ export function buildCandidates(input: CandidateInput): Candidate[] {
   for (const t of input.tasteLists) {
     const strength = t.strength ?? DEFAULT_LIST_STRENGTH;
     const via = t.via ?? t.list.name;
-    for (const v of t.videos) out.push({ video: v, source: { kind: "taste", via, strength } });
+    const added = pickDates(t.list);
+    for (const v of t.videos) {
+      const at = added.get(v.id);
+      // Core decays taste sources from max(addedAt, publishedAt) when given (pick-dated
+      // recency); a date in the future counts as now there.
+      out.push({ video: v, source: { kind: "taste", via, strength, ...(at ? { addedAt: at } : {}) } });
+    }
   }
 
   for (const inst of input.instances) {
@@ -110,5 +116,17 @@ export function disclosureIndex(lists: readonly ResolvedTasteList[]): Map<string
 export function listMembership(lists: readonly ResolvedTasteList[]): Map<string, string[]> {
   const m = new Map<string, string[]>();
   for (const { list, trackKey } of lists) for (const it of list.items) m.set(it.id, [...(m.get(it.id) ?? []), trackKey ?? list.name]);
+  return m;
+}
+
+/**
+ * When the list's author picked each item: taste-list v1 `items[].addedAt` (Unix
+ * seconds; the NIP-51 `pick` tag carries the same field). Invalid values are left out.
+ */
+export function pickDates(list: TasteList): Map<string, Date> {
+  const m = new Map<string, Date>();
+  for (const it of list.items) {
+    if (typeof it.addedAt === "number" && Number.isInteger(it.addedAt) && it.addedAt > 0) m.set(it.id, new Date(it.addedAt * 1000));
+  }
   return m;
 }

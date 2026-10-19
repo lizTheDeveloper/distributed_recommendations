@@ -29,6 +29,11 @@ export const SENSITIVE_KEYS = [
   "matchbook",
   "matchmeta",
   "demopeer",
+  // Moderation (packages/moderation): block and mute lists, labeler subscriptions, the
+  // NSFW choice, cached label events and instance defaults. Says whom the viewer avoids.
+  "moderation",
+  // Creator studio: the draft of "Publish my picks" (picked from your endorsements).
+  "picks",
 ] as const;
 export type SensitiveKey = (typeof SENSITIVE_KEYS)[number];
 export type SensitiveData = Partial<Record<SensitiveKey, unknown>>;

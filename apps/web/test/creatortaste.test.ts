@@ -332,3 +332,45 @@ test("offline snapshot: a curator's public playlist resolves through the same ca
     assert.equal(r2.taste, null);
   }
 });
+
+test("Nostr source reads packages/taste `pick` tags: per-pick addedAt, flags and notes reach rank() and the cards", async () => {
+  const { buildCurationSet } = await import("../src/lib/taste/pkg.ts");
+  const u1 = "https://a.example/videos/watch/22222222-2222-4222-8222-222222222222";
+  const u2 = "https://a.example/videos/watch/33333333-3333-4333-8333-333333333333";
+  const e1 = videoEvent(21, u1);
+  const e2 = videoEvent(21, u2);
+  const picked = Math.floor(now.getTime() / 1000) - 3600;
+  const { template } = buildCurationSet(
+    {
+      d: "picks",
+      title: "Fresh picks",
+      items: [
+        { url: u1, video: { kind: 21, pubkey: bridgePk, id: e1.id, url: u1 }, addedAt: picked - 86_400, sponsored: false, affiliated: true, note: "my friend" },
+        { url: u2, video: { kind: 21, pubkey: bridgePk, id: e2.id, url: u2 }, addedAt: picked, sponsored: true, affiliated: false },
+      ],
+    },
+    { createdAt: picked },
+  );
+  const set = sign(creatorSk, template.kind, template.tags, template.created_at, template.content);
+  const r = await resolveCreatorTaste(CH, "blender", deps({ npub: true, relays: true, nostrEvents: [set, e1, e2] }));
+  assert.equal(r.taste?.source, "nostr");
+  assert.deepEqual(r.taste?.items.map((i) => i.id), [u2, u1], "newest pick first");
+  assert.equal(r.taste?.items[0].addedAt, picked);
+  assert.equal(r.taste?.items[0].sponsored, true);
+  assert.equal(r.taste?.items[1].affiliated, true);
+  assert.equal(r.taste?.items[1].note, "my friend");
+  assert.deepEqual(r.taste?.refs, [`30005:${creatorPk}:picks`]);
+
+  // Into the ranker: a fresh pick of a year-old video decays from the pick date.
+  const old = (id: string) => loadVideo({ id, title: "Old", creator: "alice@a.example", publishedAt: new Date(now.getTime() - 365 * 86_400_000).toISOString(), tags: [], durationSec: 60 })!;
+  const f: TasteFollow = { handle: CH, name: "Blender", enabled: true, addedAt: 0, checkedAt: 0, taste: r.taste };
+  const list = creatorTasteList(f, "Blender", (id) => old(id))!;
+  const cands = buildCandidates({ instances: [], follows: new Set(), followVideos: [], tasteLists: [list] });
+  assert.equal(cands[0].source.addedAt?.getTime(), picked * 1000);
+  const ranked = rank(cands, DEFAULT_RECIPE, { now, limit: 5, rng: seededRng(1) });
+  assert.equal(ranked.length, 2);
+  assert.ok(ranked[0].score > 0.05, `pick-dated score ${ranked[0].score}`);
+  const d = disclosureIndex([list]);
+  assert.deepEqual(d.get(u2)?.sponsored, ["Blender"]);
+  assert.deepEqual(d.get(u1)?.affiliated, ["Blender"]);
+});

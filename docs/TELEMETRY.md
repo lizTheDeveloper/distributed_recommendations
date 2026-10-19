@@ -259,5 +259,6 @@ Whoever runs `infra/glitchtip` and `infra/umami` for a build that points at them
   carries no id, no URL and no content.
 - **Umami sessions** are a hash of site, user-agent and a monthly salt (no IP), so
   "unique visitors" mean "browser versions", not people.
-- Not in CI yet: `check:telemetry` needs Playwright and the smoke tests need Docker
-  (`.github/` wasn't changed here).
+- Not in CI on every push: `check:telemetry` needs Playwright (not in any workflow
+  yet), and the server smoke tests need Docker, so they run by hand in
+  `.github/workflows/e2e.yml` (suites `glitchtip`, `umami`).

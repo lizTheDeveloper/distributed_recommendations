@@ -16,6 +16,12 @@ updates:
       - /packages/bridge
       - /packages/circles
       - /packages/moderation
+      - /packages/transport
+      - /packages/analytics
+      - /services/labeler
+      # packages/taste has no lockfile on purpose: it imports packages/bridge and
+      # packages/core from source and resolves nostr-tools (and tsc) from
+      # packages/bridge, which is covered above. Add it here if it gets its own lockfile.
       - /apps/web
       - /apps/mobile
       - /apps/desktop
@@ -38,6 +44,8 @@ updates:
         patterns: ["@capacitor/*"]
       deploy-tools:
         patterns: ["wrangler", "ipfs-car", "@storacha/*"]
+      ohttp:
+        patterns: ["ohttp-ts", "hpke", "bhttp-ts"]
 
   - package-ecosystem: github-actions
     directory: /
@@ -96,6 +104,49 @@ updates:
     labels: [dependencies, docker]
     commit-message:
       prefix: "deps(relay)"
+
+  # The other self-hosted stacks. Images are pinned by digest in compose.yaml. Run the
+  # matching suite in .github/workflows/e2e.yml (manual) on each of these PRs.
+  # Check by hand: images named through a variable (Janus's
+  # `${DOCKERHUB:-docker.io}/library/postgres`) and the `ARG ..._IMAGE` defaults in
+  # infra/ohttp/gateway/Dockerfile.*, which Dependabot may not follow. The same
+  # node/golang digests are repeated in infra/ohttp/e2e/run.sh (mirror override).
+  - package-ecosystem: docker-compose
+    directories:
+      - /infra/ohttp/gateway
+      - /infra/ohttp/relay
+      - /infra/janus/leader
+      - /infra/janus/helper
+      - /infra/glitchtip
+      - /infra/umami
+    schedule:
+      interval: weekly
+      day: monday
+    cooldown:
+      default-days: 14
+    labels: [dependencies, docker]
+    commit-message:
+      prefix: "deps(infra)"
+    groups:
+      caddy:
+        patterns: ["caddy"]
+      postgres:
+        patterns: ["postgres", "*/postgres"]
+
+  # Base images of the images built here: the labeler (FROM lines) and the OHTTP
+  # gateway/target (ARG defaults, see above).
+  - package-ecosystem: docker
+    directories:
+      - /infra/labeler
+      - /infra/ohttp/gateway
+    schedule:
+      interval: weekly
+      day: monday
+    cooldown:
+      default-days: 14
+    labels: [dependencies, docker]
+    commit-message:
+      prefix: "deps(images)"
 
   - package-ecosystem: pip
     directory: /.github/ci

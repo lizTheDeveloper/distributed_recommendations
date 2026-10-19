@@ -19,6 +19,7 @@ import type { TasteItem, TasteList } from "./tastelist.ts";
 import { parseTasteList, parseTasteListJson } from "./tastelist.ts";
 import type { StoredVideo } from "./videos.ts";
 import { loadVideo, storeVideo, watchId } from "./videos.ts";
+import { readCreatorPicks } from "./taste/pkg.ts";
 
 export type TasteSourceKind = "nostr" | "url" | "playlists";
 export const SOURCE_ORDER: readonly TasteSourceKind[] = ["nostr", "url", "playlists"];
@@ -356,18 +357,29 @@ export async function resolveCreatorTaste(handle: string, fallbackName: string, 
   else if (!deps.relays.length || !deps.nostrQuery) attempts.push({ source: "nostr", outcome: "skipped", note: "no relays configured" });
   else {
     try {
-      const sets = await curationSets(await deps.nostrQuery({ kinds: [KIND_VIDEO_CURATION], authors: [pk], limit: 20 }), pk, deps.verify);
-      const refs = sets.sets.flatMap((s) => s.refs);
-      if (!refs.length) attempts.push({ source: "nostr", outcome: "none", note: "no public video curation set (kind 30005) from this npub" });
-      else {
-        const evs: NostrEvent[] = [];
-        for (const f of refFilters(refs)) evs.push(...(await deps.nostrQuery(f)));
-        const items = await curationItems(sets, evs, deps.verify);
-        if (!items.length) attempts.push({ source: "nostr", outcome: "none", note: "its videos don't point back to PeerTube (no origin or r tag)" });
-        else {
-          attempts.push({ source: "nostr", outcome: "found", note: `${items.length} picks` });
-          return done({ ...base, source: "nostr", pubkey: pk, detail: sets.sets.map((s) => s.title).join(", ").slice(0, 200), refs: sets.sets.map((s) => `${KIND_VIDEO_CURATION}:${pk}:${s.d}`), items, videos: [] });
+      // packages/taste's strict reader: newest version per `d`, signatures checked,
+      // per-pick `addedAt`, sponsored/affiliated flags and notes from `pick` tags.
+      const query = deps.nostrQuery;
+      const { sets, rejected } = await readCreatorPicks(pk, {
+        query: (f) => query(f as NostrFilter) as never,
+        verify: (e) => deps.verify(e as unknown as NostrEvent),
+      });
+      const items: TasteItem[] = [];
+      const seen = new Set<string>();
+      for (const s of sets) {
+        for (const it of [...s.list.items].sort((a, b) => (b.addedAt ?? s.set.createdAt) - (a.addedAt ?? s.set.createdAt))) {
+          if (seen.has(it.id) || !watchId(it.id)) continue;
+          seen.add(it.id);
+          items.push({ ...it, addedAt: it.addedAt ?? s.set.createdAt });
+          if (items.length >= CREATOR_TASTE_MAX_ITEMS) break;
         }
+        if (items.length >= CREATOR_TASTE_MAX_ITEMS) break;
+      }
+      if (!sets.length) attempts.push({ source: "nostr", outcome: "none", note: rejected.length ? `no valid video curation set (kind 30005) from this npub: ${rejected[0].reason}`.slice(0, 160) : "no public video curation set (kind 30005) from this npub" });
+      else if (!items.length) attempts.push({ source: "nostr", outcome: "none", note: "its videos don't point back to PeerTube (no origin or r tag)" });
+      else {
+        attempts.push({ source: "nostr", outcome: "found", note: `${items.length} picks` });
+        return done({ ...base, source: "nostr", pubkey: pk, detail: sets.map((s) => s.set.title || s.set.d).join(", ").slice(0, 200), refs: sets.map((s) => `${KIND_VIDEO_CURATION}:${pk}:${s.set.d}`), items, videos: [] });
       }
     } catch (e) {
       attempts.push({ source: "nostr", outcome: "error", note: errNote(e) });

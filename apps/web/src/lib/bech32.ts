@@ -54,8 +54,8 @@ export function bech32Encode(hrp: string, bytes: Uint8Array): string {
   return hrp + "1" + [...data, ...checksum].map((d) => CHARSET[d]).join("");
 }
 
-export function bech32Decode(text: string): { hrp: string; bytes: Uint8Array } | null {
-  if (text.length > 200 || text !== text.toLowerCase()) return null;
+export function bech32Decode(text: string, maxLength = 200): { hrp: string; bytes: Uint8Array } | null {
+  if (text.length > maxLength || text !== text.toLowerCase()) return null;
   const pos = text.lastIndexOf("1");
   if (pos < 1 || pos + 7 > text.length) return null;
   const hrp = text.slice(0, pos);
@@ -122,4 +122,22 @@ export function findNpub(text: string | undefined | null): string | null {
 export function shortNpub(pubkeyHex: string): string {
   const n = npubEncode(pubkeyHex);
   return `${n.slice(0, 10)}…${n.slice(-4)}`;
+}
+
+/**
+ * NIP-19 `nprofile1…` (TLV: type 0 = 32-byte pubkey, type 1 = relay hints) to its
+ * hex pubkey, or null. Relay hints are ignored: Match uses the viewer's own relays.
+ */
+export function parseNprofile(text: string): string | null {
+  const d = bech32Decode(text.trim().toLowerCase().replace(/^nostr:/, ""), 2000);
+  if (!d || d.hrp !== "nprofile") return null;
+  const b = d.bytes;
+  for (let i = 0; i + 2 <= b.length; ) {
+    const t = b[i];
+    const len = b[i + 1];
+    if (i + 2 + len > b.length) return null;
+    if (t === 0 && len === 32) return bytesToHex(b.slice(i + 2, i + 34));
+    i += 2 + len;
+  }
+  return null;
 }

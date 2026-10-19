@@ -17,6 +17,7 @@ small write-policy plugin for rate limits and gift-wrap rules.
 | `Caddyfile` | TLS, security headers, WebSocket proxy, IP-free logging |
 | `.env.example` | everything that differs per deployment |
 | `test/smoke.mjs` | checks limits and policy against a running relay; CI runs it (`relay` job) |
+| `test/run.sh` | starts strfry, runs the smoke test and the retention command, checks the logs for IPs |
 
 ## Quick start
 
@@ -46,12 +47,58 @@ What the protocol needs (`docs/PROTOCOL.md`, `docs/MATCH.md`) and where it is se
 | Seals and wraps backdate `created_at` by up to 2 days (NIP-59) | `events.rejectEventsOlderThanSeconds` | 3 years (default). Wraps are bounded by their expiration instead |
 | Retention for gift wraps | `retention` service | Deletes kind 1059 with `created_at` older than 33 days (`GIFTWRAP_RETENTION_SECONDS`), every hour. A backstop for wraps stored before the policy existed |
 | Rate limits | write policy | Per connection IP token bucket: `POLICY_RATE` events/s (2), burst `POLICY_BURST` (30). REQ load is bounded by strfry's own limits: 50 subscriptions per connection, 500 events per filter, 200 filters per REQ |
+| A gateway that carries many users (OHTTP) | `POLICY_TRUSTED_SOURCES`, `POLICY_TRUSTED_RATE`, `POLICY_TRUSTED_BURST` | Empty by default. Listed addresses get their own bucket, 50 events/s, burst 500; see below |
 | NIP-42 AUTH, optional | `RELAY_AUTH` | Off by default; see below |
 | No IP logging | strfry `--verbosity=WARNING`, `logging.invalidEvents = false`; Caddy has no access log and a filtered process log | See "Logs" |
 | Optional: only the app's kinds | `POLICY_ALLOWED_KINDS` | Empty accepts every kind. For an app-only relay: `0,5,1059,10002,10050,34235,34236` |
 
 `APP_NAME` sets the NIP-11 name (`"$APP_NAME relay"`); it is the only place the app's
 name appears in the relay setup.
+
+### Trusted gateway sources
+
+The OHTTP Nostr gateway (`infra/ohttp/gateway`, docs/TRANSPORT.md) publishes and
+queries for every user of the private transport, so this relay sees all of them as
+one IP. Under the per-IP limit (2 events/s, burst 30) a handful of users would use up
+the gateway's bucket and everyone's messages would be rejected. List the gateway's
+address so it gets a larger bucket of its own:
+
+```sh
+# .env
+POLICY_TRUSTED_SOURCES=198.51.100.7,2001:db8::7   # the gateway host's egress addresses
+POLICY_TRUSTED_RATE=50                            # events/s per listed address
+POLICY_TRUSTED_BURST=500
+```
+
+- **Default is safe:** empty, so no address gets more than `POLICY_RATE`/`POLICY_BURST`.
+- **Still a limit, not an exemption.** Each listed address has its own token bucket.
+  The gift-wrap expiration rules and `POLICY_ALLOWED_KINDS` apply as usual. The
+  defaults match the target's own global limit (`RATE_GLOBAL=50/200` in
+  `infra/ohttp/gateway/.env.example`); the target also limits per recipient key and
+  per query, because it can't see user IPs (docs/TRANSPORT.md, "Rate limiting
+  without IPs").
+- **Format:** exact IPv4 or IPv6 addresses, or IPv4 CIDR prefixes from `/8` to `/32`,
+  separated by commas or spaces. Write IPv6 the way strfry prints it (lower case, zeros
+  compressed: `2001:db8::7`, not `2001:0db8:0:0:0:0:0:7`); IPv6 prefixes are not
+  supported. Invalid entries are ignored and the plugin logs only how many (never the
+  entry) at startup.
+- **Which address to list:**
+  - Gateway on another host, connecting to `wss://RELAY_DOMAIN` through Caddy: its public
+    egress address. Caddy overwrites `X-Real-IP` with the TCP peer, so a client cannot
+    claim a trusted address.
+  - Target on the same Docker host, joined to this stack's network and connecting to
+    `ws://strfry:7777` without Caddy: strfry falls back to the TCP peer (and warns once
+    that `X-Real-IP` is empty), so list the target container's address or the
+    network's subnet. Pin the subnet in Compose if you trust a CIDR. Every container
+    on that subnet gets the allowance.
+- **Never** publish strfry's port 7777 while a trusted source is set: a direct client
+  could then send its own `X-Real-IP` and claim the gateway's address.
+- **What it gives away:** nothing new about users. The relay already sees the gateway's
+  IP on every request; the list only names it. It doesn't reveal which users use OHTTP.
+- Trust only gateways you run or have an agreement with. A listed address can write
+  25 times as much as anyone else, so a compromised gateway can flood the relay at that
+  rate. Abuse through the gateway is limited at the target (per recipient key and per
+  query) and, per client IP, at the OHTTP relay.
 
 ### NIP-42 AUTH
 
@@ -73,8 +120,10 @@ encryption; the wrap is signed by a one-time key). The operator **can** see:
 
 - **Client IP addresses** of every connection (Caddy sees the TCP peer and passes it to
   strfry in `X-Real-IP` for rate limiting). They're held in memory only (see "Logs"), but
-  a malicious operator could log them. Users who need to hide their IP from relays need
-  Tor/a VPN today; OHTTP (T5) is not built yet.
+  a malicious operator could log them. Clients that use the OHTTP transport
+  (`packages/transport`, docs/TRANSPORT.md) reach the relay through the gateway, so
+  the relay sees the gateway's IP instead of theirs. The web app doesn't use it yet;
+  until it does, users who need to hide their IP from relays need Tor or a VPN.
 - **Recipient keys**: each wrap's `p` tag (an identity key for match requests, a
   per-match key afterwards) and which `#p` each connection asks for. So one connection
   links an IP to the keys it reads, unless the client spreads its keys over relays or
@@ -130,22 +179,20 @@ Write the log policy in your relay's privacy page (`RELAY_PRIVACY_URL`, shown in
 ## Testing
 
 CI (`.github/workflows/ci.yml`, job `relay`) checks `docker compose config`, runs
-`caddy validate` and `caddy fmt`, starts strfry with this config, runs
+`caddy validate` and `caddy fmt`, then runs `test/run.sh`, which starts strfry with this config, runs
 `test/smoke.mjs` (NIP-11, 33 KB wrap accepted, > 64 KiB rejected, NIP-40, gift-wrap
-expiration rules, rate limit), runs the retention command, and fails if the logs
-contain an IP. To run it locally from the repo root:
+expiration rules, rate limit, trusted gateway source), runs the retention command, and
+fails if the logs contain an IP. The trusted-source checks run when `SMOKE_TRUSTED_IP`
+is set: a trusted address in `POLICY_TRUSTED_SOURCES` gets past the default burst, still
+needs gift-wrap expirations, and an address just outside the prefix keeps the default
+limit. To run it locally from the repo root:
 
 ```sh
 (cd packages/match && npm ci) && (cd apps/web && npm ci)
-cd infra/relay
-docker run -d --name relay-test -p 127.0.0.1:7777:7777 -e POLICY_BURST=5 -e POLICY_RATE=1 \
-  -v "$PWD/strfry.conf:/etc/strfry.conf:ro" -v "$PWD/policy:/app/policy:ro" \
-  --mount type=tmpfs,destination=/app/strfry-db,tmpfs-mode=1777 \
-  "$(docker compose --env-file .env.example config --images | grep -m1 /strfry)" \
-  --config=/etc/strfry.conf --verbosity=WARNING relay
-cd ../.. && node infra/relay/test/smoke.mjs ws://127.0.0.1:7777 packages/match/node_modules,apps/web/node_modules
-docker logs relay-test; docker rm -f relay-test
+infra/relay/test/run.sh            # KEEP=1 leaves the container running
 ```
+
+The same suite is in the manual `.github/workflows/e2e.yml` (suite `relay`).
 
 To try the whole stack on one machine, set `RELAY_DOMAIN=localhost`. Caddy then uses
 its own local CA instead of Let's Encrypt, and `wss://localhost` works with
@@ -155,9 +202,11 @@ public relay.
 ## Known limits
 
 - Rate limits are per IP, so users behind one NAT, VPN exit or Tor exit share a bucket.
-  Buckets reset when strfry restarts.
+  Buckets reset when strfry restarts. A gateway that carries many users needs an entry
+  in `POLICY_TRUSTED_SOURCES` (above).
 - The relay can't tell Match traffic from other gift wraps; it only enforces sizes and
   expirations.
-- No OHTTP gateway (T5) yet. When it exists, it will go in front of this relay.
+- The OHTTP gateway (`infra/ohttp`, T5) goes in front of this relay as one more
+  client. It needs a trusted-source entry here; NIP-42 AUTH isn't available through it.
 - `HEAD /` makes Caddy log a harmless "Unsolicited response" line, because strfry sends a
   body. It contains no IP.

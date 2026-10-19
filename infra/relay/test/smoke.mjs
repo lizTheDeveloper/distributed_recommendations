@@ -7,6 +7,9 @@
 // (comma separated): the repo's own pinned copies, so this script adds no dependency.
 //
 // Run the relay with POLICY_BURST=5 POLICY_RATE=1 so the rate-limit case triggers.
+// To also check the trusted-gateway allowance (README.md "Trusted gateway sources"),
+// start it with POLICY_TRUSTED_SOURCES=203.0.113.8/30 POLICY_TRUSTED_BURST=50 and set
+// SMOKE_TRUSTED_IP=203.0.113.10 for this script; without SMOKE_TRUSTED_IP that case is skipped.
 // Uses throwaway keys and a local relay only; never point this at a public relay.
 
 import { createRequire } from "node:module";
@@ -27,6 +30,7 @@ const WebSocket = req("ws");
 // A documentation-range address. Caddy would overwrite X-Real-IP; here the test sets
 // it so it can check that the IP never reaches the logs.
 const FAKE_IP = "203.0.113.77";
+const TRUSTED_IP = process.env.SMOKE_TRUSTED_IP ?? "";
 const now = () => Math.floor(Date.now() / 1000);
 let failures = 0;
 const check = (name, ok, detail = "") => {
@@ -34,9 +38,9 @@ const check = (name, ok, detail = "") => {
   if (!ok) failures++;
 };
 
-function connect() {
+function connect(ip = FAKE_IP) {
   return new Promise((resolve, reject) => {
-    const ws = new WebSocket(url, { headers: { "X-Real-IP": FAKE_IP } });
+    const ws = new WebSocket(url, { headers: { "X-Real-IP": ip } });
     const waiters = new Map();
     const subs = new Map();
     ws.on("message", (raw) => {
@@ -109,6 +113,28 @@ const results = [];
 for (let i = 0; i < 12; i++) results.push(await c.publish(wrap({ expiration: now() + 86400, contentBytes: 64, p: recipient })));
 const limited = results.filter((m) => m[2] === false && /rate-limited/.test(m[3])).length;
 check("per-IP rate limit kicks in", limited > 0, `${limited}/12 rate-limited`);
+
+// Trusted gateway source: its own, larger bucket; the gift-wrap rules still apply.
+if (TRUSTED_IP) {
+  const g = await connect(TRUSTED_IP);
+  const burst = [];
+  for (let i = 0; i < 20; i++) burst.push(await g.publish(wrap({ expiration: now() + 86400, contentBytes: 64, p: recipient })));
+  const ok = burst.filter((m) => m[2] === true).length;
+  check("trusted gateway source gets its larger allowance", ok === 20, `${ok}/20 accepted`);
+  r = await g.publish(wrap({ p: recipient }));
+  check("trusted gateway source still needs gift-wrap expiration", r[2] === false && /expiration/.test(r[3]), r[3]);
+  g.close();
+  // An address just outside the trusted range keeps the default bucket (burst 5).
+  const outside = TRUSTED_IP.replace(/\.(\d+)$/, (_, last) => `.${(Number(last) + 2) % 256}`);
+  const o = await connect(outside);
+  const rest = [];
+  for (let i = 0; i < 12; i++) rest.push(await o.publish(wrap({ expiration: now() + 86400, contentBytes: 64, p: recipient })));
+  const outLimited = rest.filter((m) => m[2] === false && /rate-limited/.test(m[3])).length;
+  check("address outside the trusted range keeps the default limit", outLimited > 0, `${outLimited}/12 rate-limited`);
+  o.close();
+} else {
+  console.log("skip trusted gateway source (set SMOKE_TRUSTED_IP)");
+}
 c.close();
 
 console.log(failures ? `${failures} check(s) failed` : "all relay checks passed");

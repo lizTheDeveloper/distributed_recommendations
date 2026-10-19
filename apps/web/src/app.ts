@@ -65,6 +65,30 @@ import type { Diagnostics, FeedbackInput } from "./lib/telemetry/feedback.ts";
 import { sendFeedback } from "./lib/telemetry/feedback.ts";
 import { createErrorLog, deviceFacts } from "./lib/telemetry/diagnostics.ts";
 import type { Route } from "./lib/telemetry/scrub.ts";
+import { APP_NAME } from "./brand.ts";
+import type { MatchFeedNative } from "./lib/native.ts";
+import { matchNotice, notificationId } from "./lib/native.ts";
+import type { IncomingAction } from "./lib/incoming.ts";
+import { fromNative, fromShareParams, startRoute } from "./lib/incoming.ts";
+import { hydrateIdentity, storableIdentity } from "./lib/match/identity.ts";
+import type { BlockKind, HiddenVideo, LabelIndex, ModeratedItem, ModerationContext, NostrEvent as ModEvent, SourceMeta, Verdict } from "./lib/moderation/pkg.ts";
+import {
+  PeerTubeModerationClient,
+  applyModeration,
+  attachVerdicts,
+  buildLabelIndex,
+  fetchLabelEvents,
+  moderateVideo,
+  parsePubkey,
+  relayQuery as modRelayQuery,
+  verifyNostrEvent as verifyModEvent,
+} from "./lib/moderation/pkg.ts";
+import type { ModState } from "./lib/modstate.ts";
+import { INSTANCE_REFRESH_S, LABEL_EVENTS_CAP, LABEL_REFRESH_S, block as addBlockTo, effectivePolicy, labelRelays, loadModState, sourceMetaFor, storeModState, unblock as removeBlockFrom } from "./lib/modstate.ts";
+import type { PicksDraft } from "./lib/picks.ts";
+import { loadPicksDraft } from "./lib/picks.ts";
+import { openIncoming } from "./ui/incoming.ts";
+import { openOnboarding, shouldOnboard } from "./ui/onboarding.ts";
 
 export type Load<T> = { status: "loading" } | { status: "ok"; value: T } | { status: "error"; error: string };
 
@@ -163,6 +187,21 @@ export interface State {
   ui: Record<string, string | undefined>;
   /** The one-time telemetry question is showing. */
   consentAsk: boolean;
+  /** Moderation: policy, cached labels and instance defaults (vault: `moderation`). */
+  mod: ModState;
+  /** Videos the last feed/Reels pass hid, with reasons ("N hidden"). */
+  modHidden: HiddenVideo[];
+  /** Blurred items the viewer chose to show this session (never stored). */
+  revealed: Set<string>;
+  /** Creator studio: the "Publish my picks" draft (vault: `picks`). */
+  picks: PicksDraft;
+  /** Browser connectivity (navigator.onLine and online/offline events). */
+  online: boolean;
+  /** A new service worker is installed and waiting ("Update available"). */
+  updateReady: boolean;
+  /** "Install app": the deferred beforeinstallprompt event, if the browser offered one. */
+  installPrompt: { prompt(): Promise<void>; userChoice?: Promise<{ outcome: string }> } | null;
+  installed: boolean;
 }
 
 export interface AppOptions {
@@ -189,9 +228,11 @@ export interface AppOptions {
   telemetry?: TelemetryConfig | null;
   /** Loads the crash reporter bundle (only called after opt-in). */
   loadCrashReporter?: () => Promise<CrashReporter>;
+  /** The native shell's bridge (window.MatchFeedNative), and whether its keystore works. */
+  native?: { bridge: MatchFeedNative; keystore: boolean };
 }
 
-type PersistKey = "settings" | "follows" | "taste" | "tastefollows" | "recipe" | "history" | "tally" | "videos" | "impressions" | "tags" | "hidden" | "identity";
+type PersistKey = "settings" | "follows" | "taste" | "tastefollows" | "recipe" | "history" | "tally" | "videos" | "impressions" | "tags" | "hidden" | "identity" | "moderation" | "picks";
 
 export interface App {
   s: State;
@@ -209,7 +250,7 @@ export interface App {
   examples: { file: string; list: TasteList }[];
   now(): Date;
   recipe(): Recipe;
-  feed(): { items: RankedItem[]; candidates: number; popular: RankedItem[]; personalizedExplore: boolean };
+  feed(): { items: ModeratedItem[]; candidates: number; popular: ModeratedItem[]; personalizedExplore: boolean; hidden: HiddenVideo[] };
   /** Reels list (extends itself from the ranked feed as needed). */
   reelItems(): ReelItem[];
   loadMoreReels(): void;
@@ -278,6 +319,40 @@ export interface App {
   sendFeedback(input: FeedbackInput): Promise<void>;
   /** Open the bug report form (Sharing & privacy). */
   openFeedback(): void;
+  /** The native shell's bridge, or undefined in a browser. */
+  native: MatchFeedNative | undefined;
+  /** The keystore answered (vault and identity keys are kept there). */
+  nativeKeystore: boolean;
+  // ---- moderation (packages/moderation) ----
+  /** The policy in force (iOS native: NSFW always hidden). */
+  modPolicy(): import("./lib/moderation/pkg.ts").ModerationPolicy;
+  modContext(): ModerationContext;
+  /** Verdict for one video (watch view, deep links). */
+  verdict(v: Video): Verdict;
+  setModeration(next: ModState["policy"], msg?: string): void;
+  block(kind: BlockKind, value: string, label?: string): void;
+  unblock(kind: BlockKind, value: string): void;
+  /** Block a person by Nostr key: also revokes a live match with them. */
+  blockPerson(pubkey: string, name: string): Promise<void>;
+  addLabeler(input: string, relays: string[]): string | null;
+  removeLabeler(pubkey: string): void;
+  refreshLabels(force?: boolean): Promise<void>;
+  isRevealed(id: string): boolean;
+  reveal(id: string): void;
+  /** Sign with the Match identity (or NIP-07) and send to the viewer's relays (+ extra). */
+  publishSigned(template: { kind: number; created_at: number; tags: string[][]; content: string }, extraRelays?: readonly string[]): Promise<{ event: ModEvent; results: { relay: string; ok: boolean; message?: string }[] }>;
+  // ---- native hooks (apps/mobile/bridge/types.ts) ----
+  setNativeNotify(on: boolean): Promise<void>;
+  setNativeBackground(on: boolean): Promise<void>;
+  /** Show a confirmation for a deep link, share or shortcut (never acts without it). */
+  handleIncoming(a: IncomingAction): void;
+  // ---- PWA ----
+  promptInstall(): Promise<void>;
+  applyUpdate(): void;
+  // ---- picks / onboarding ----
+  savePicks(): void;
+  finishOnboarding(): void;
+  openOnboarding(): void;
 }
 
 const FEED_LIMIT = 60;
@@ -374,6 +449,14 @@ export function startApp(opts: AppOptions): App {
     tasteSheet: null,
     ui: {},
     consentAsk: false,
+    mod: sens<ModState>("moderation", loadModState(null), loadModState),
+    modHidden: [],
+    revealed: new Set(),
+    picks: sens("picks", loadPicksDraft(null), loadPicksDraft),
+    online: globalThis.navigator?.onLine ?? true,
+    updateReady: false,
+    installPrompt: null,
+    installed: !!globalThis.matchMedia?.("(display-mode: standalone)").matches,
   };
 
   // ---- telemetry (opt-in; nothing loads or sends before consent) ----
@@ -391,11 +474,14 @@ export function startApp(opts: AppOptions): App {
   // ---- shell ----
   const tabs = h("nav", { class: "tabs", "aria-label": "Screens" });
   const bottom = h("nav", { class: "bottombar", "aria-label": "Screens" });
-  const main = h("main", { id: "screen" });
+  const main = h("main", { id: "screen", tabindex: "-1" });
   const sheetHost = h("div", { id: "sheet-host" });
   const tasteHost = h("div", { id: "taste-host" });
   const toastEl = h("div", { class: "toast", role: "status", "aria-live": "polite", hidden: true });
   const consentHost = h("div", { id: "consent-host" });
+  /** Offline and "Update available" notices (live region, so changes are announced). */
+  const statusHost = h("div", { id: "status-host", role: "status", "aria-live": "polite" });
+  const skip = h("a", { class: "skiplink", href: "#screen" }, "Skip to content");
   const gear = h("button", { class: "iconbtn", id: "gear-btn", "aria-label": "Feed settings", title: "Feed settings", onclick: () => app.sheet({ type: "toggle", from: "gear-btn" }) }, icon("gear"));
   for (const sc of SCREENS) {
     tabs.appendChild(h("button", { id: `tab-${sc.id}`, "data-screen": sc.id, onclick: () => app.go(sc.id) }, sc.label));
@@ -437,15 +523,17 @@ export function startApp(opts: AppOptions): App {
   const header = h(
     "header",
     { class: "topbar" },
-    h("div", { class: "brand" }, h("h1", null, "Match Feed"), h("p", { class: "muted small tagline" }, "Federated video, ranked on this device by a recipe you control.")),
+    h("div", { class: "brand" }, h("h1", null, APP_NAME), h("p", { class: "muted small tagline" }, "Federated video, ranked on this device by a recipe you control.")),
     tabs,
     h("div", { class: "topactions" }, gear, h("div", { class: "menuwrap" }, menuBtn, menu)),
   );
   opts.root.replaceChildren(
+    skip,
     h(
       "div",
       { class: "wrap" },
       header,
+      statusHost,
       opts.mode === "snapshot" && opts.snapshotNote
         ? h("details", { class: "banner-note", role: "note" }, h("summary", null, h("strong", null, "Offline snapshot. "), "No network: playback is off and Match runs against a simulated peer."), h("p", null, opts.snapshotNote))
         : null,
@@ -506,7 +594,32 @@ export function startApp(opts: AppOptions): App {
     }
     renderTasteSheet(app, tasteHost);
     syncConsentCard(app, consentHost);
+    renderStatus();
     app.telemetry.screen(currentRoute());
+  }
+
+  let statusKey = "";
+  function renderStatus() {
+    const key = `${s.online}|${s.updateReady}`;
+    if (key === statusKey) return;
+    statusKey = key;
+    statusHost.replaceChildren(
+      !s.online
+        ? h(
+            "div",
+            { class: "banner-note offline", id: "offline-note" },
+            h("div", null, h("strong", null, "You're offline. "), "New videos need the network, so the feed shows what's already loaded. Settings, Matches, your history and the history wipe still work. Nothing you watched is cached for offline use."),
+          )
+        : null,
+      s.updateReady
+        ? h(
+            "div",
+            { class: "banner-note update", id: "update-note" },
+            h("div", null, h("strong", null, "Update available. "), `A new version of ${APP_NAME} is ready.`),
+            h("button", { class: "btn sm", id: "update-btn", onclick: () => app.applyUpdate() }, "Reload"),
+          )
+        : null,
+    );
   }
 
   // ---- data loading ----
@@ -530,7 +643,9 @@ export function startApp(opts: AppOptions): App {
   const endorsedIds = () => new Set(s.history.filter((e) => e.kind === "endorse").map((e) => e.videoId));
   function profile() {
     const endorsed = s.history.filter((e) => e.kind === "endorse").map((e) => ({ tags: e.tags.length ? e.tags : (s.tagCache.get(e.videoId) ?? []) }));
-    return tagProfile(endorsed);
+    const p = tagProfile(endorsed);
+    // Onboarding topics are a starting point until the first endorsement with tags.
+    return p.size || !s.settings.topics.length ? p : tagProfile([{ tags: s.settings.topics }]);
   }
   let enriching = false;
   /**
@@ -623,12 +738,51 @@ export function startApp(opts: AppOptions): App {
     if (k === "videos") return [...s.videoCache.values()].slice(-VIDEO_CACHE_CAP).map(storeVideo);
     if (k === "tags") return [...s.tagCache.entries()].slice(-TAG_CACHE_CAP);
     if (k === "hidden") return [...s.hidden].slice(-HIDDEN_CAP);
-    if (k === "identity") return app.match.identity;
+    if (k === "identity") return identityRecord;
+    if (k === "moderation") return storeModState(s.mod);
+    if (k === "picks") return s.picks;
     if (k === "matchbook") return app.match.book;
     if (k === "matchmeta") return app.match.meta;
     if (k === "demopeer") return app.demo?.save() ?? null;
     if (k === "tastefollows") return s.tasteFollows;
     return s[k as "history" | "tally" | "impressions" | "follows" | "taste"];
+  }
+  /** What the vault holds for the identity: with a native keystore, the pubkey only. */
+  let identityRecord: unknown = opts.sensitive.identity ?? null;
+  const nativeSecrets = opts.native?.keystore ? opts.native.bridge.secrets : null;
+
+  // ---- moderation: the pre-filter before rank() (packages/moderation) ----
+  let modLabels: LabelIndex = buildLabelIndex(s.mod.labelEvents, { labelers: s.mod.policy.settings.labelers.map((l) => l.pubkey), verify: verifyModEvent });
+  const rebuildLabels = () => {
+    modLabels = buildLabelIndex(s.mod.labelEvents, { labelers: s.mod.policy.settings.labelers.map((l) => l.pubkey), verify: verifyModEvent });
+  };
+  /** Owners of taste sources (by `via`), so blocking a person or a list drops what they recommend. */
+  function tasteOwners(lists: readonly ResolvedTasteList[]): Map<string, SourceMeta> {
+    const m = new Map<string, SourceMeta>();
+    for (const t of s.taste) {
+      const pk = findNpub(t.list.author);
+      m.set(t.list.name, { list: t.list.name, ...(pk ? { pubkey: pk } : {}) });
+    }
+    const active = s.tasteFollows.filter((f) => f.enabled && f.taste?.items.length);
+    const vias = creatorVias(active, s.taste.map((t) => t.list.name));
+    for (const f of active) {
+      const via = vias.get(f.handle);
+      if (!via) continue;
+      const t = f.taste!;
+      m.set(via, t.source === "nostr" && t.refs[0] ? { list: t.refs[0], ...(t.pubkey ? { pubkey: t.pubkey } : {}) } : { list: trackKey(f.handle) });
+    }
+    void lists;
+    return m;
+  }
+  function matchPeers(): Map<string, string> {
+    const m = new Map<string, string>();
+    for (const r of app.match.records()) m.set(app.match.nameOf(r.peer), r.peer);
+    return m;
+  }
+  function moderate(cands: Candidate[], lists: readonly ResolvedTasteList[]) {
+    const ctx = app.modContext();
+    const src = sourceMetaFor(tasteOwners(lists), matchPeers());
+    return applyModeration(cands, app.modPolicy(), { ...ctx, sourceMeta: (source) => src(source) });
   }
 
   // ---- every video the app knows about, for resolving match sketch items ----
@@ -766,15 +920,29 @@ export function startApp(opts: AppOptions): App {
     const prof = profile();
     const recipe = app.recipe();
     const seen = new Set([...seenSet(s.history), ...s.hidden]);
+    const m = moderate(candidates, lists);
     // Keep committed reels out of `seen` filtering decisions: they're already placed.
-    const items = rewriteWhy(rank(candidates, recipe, { now: opts.now(), limit: REELS_RANK_LIMIT, rng: seededRng(s.seed), seen, exploreRelevance: prof.size ? tagRelevance(prof) : undefined }), lists);
-    let popular: RankedItem[] = [];
+    const items = attachVerdicts(rewriteWhy(rank(m.allowed, recipe, { now: opts.now(), limit: REELS_RANK_LIMIT, rng: seededRng(s.seed), seen, exploreRelevance: prof.size ? tagRelevance(prof) : undefined }), lists), m);
+    let popular: ModeratedItem[] = [];
+    const hidden = [...m.hidden];
     if (s.settings.showPopular && recipe.weights.taste > 0 && instances.length) {
       const shown = new Set([...seen, ...items.map((i) => i.video.id)]);
+      const pm = moderate(buildPopularCandidates(instances), []);
+      hidden.push(...pm.hidden);
       // Deeper than the grid's 6 per instance: in Reels these come after the personal feed.
-      popular = rank(buildPopularCandidates(instances), editRecipe(popularRecipe(recipe), { maxPerTasteList: 100 }), { now: opts.now(), limit: REELS_RANK_LIMIT, rng: seededRng(s.seed), seen: shown });
+      popular = attachVerdicts(rank(pm.allowed, editRecipe(popularRecipe(recipe), { maxPerTasteList: 100 }), { now: opts.now(), limit: REELS_RANK_LIMIT, rng: seededRng(s.seed), seen: shown }), pm);
     }
+    noteHidden(hidden, "reels");
     return [...items.map((item) => ({ item, section: "feed" as const })), ...popular.map((item) => ({ item, section: "popular" as const }))];
+  }
+
+  /** "N hidden": the union of what the grid and Reels passes hid, newest pass per view. */
+  const hiddenBy = { grid: [] as HiddenVideo[], reels: [] as HiddenVideo[] };
+  function noteHidden(h: HiddenVideo[], view: "grid" | "reels") {
+    hiddenBy[view] = h;
+    const m = new Map<string, HiddenVideo>();
+    for (const x of [...hiddenBy.grid, ...hiddenBy.reels]) if (!m.has(x.video.id)) m.set(x.video.id, x);
+    s.modHidden = [...m.values()];
   }
 
   function extendReelsNow(): boolean {
@@ -830,13 +998,43 @@ export function startApp(opts: AppOptions): App {
       persist: () => persistMatch(),
       onChange: () => app.rerender(),
       onEvent: (e, text) => {
+        // A request from someone the viewer blocked is declined without showing it.
+        if (e.type === "match-requested" && app.modPolicy().blocks.npubs.includes(e.peer)) {
+          void app.match.decline(e.matchId).catch(() => undefined);
+          return;
+        }
         app.toast(text);
         if (e.type === "sketch" || e.type === "match-active") void resolveMatchItems();
+        if ((e.type === "match-requested" || e.type === "match-active") && s.settings.nativeNotify) notifyNative(e.type === "match-requested" ? "request" : "accept", e.matchId);
       },
     },
     sens("matchmeta", undefined, loadMeta),
   );
   onPsiStatus(() => app.rerender());
+
+  /** Native local notification, generic text only (no petname, npub or video). */
+  function notifyNative(kind: "request" | "accept", matchId: string) {
+    const n = opts.native?.bridge.notifications;
+    if (!n || document.visibilityState === "visible") return;
+    const t = matchNotice(kind, APP_NAME);
+    void n.notify({ id: notificationId(`${kind}:${matchId}`), ...t }).catch(() => undefined);
+  }
+  /** Native background wake-ups: a relay check and due weekly sketches, within ~25 s. */
+  function enableBackground() {
+    const b = opts.native?.bridge.background;
+    if (!b) return Promise.resolve("restricted" as const);
+    return b
+      .enable(
+        async () => {
+          if (!app.match.ready || !app.match.relay || vault.status === "passphrase") return;
+          await Promise.race([app.match.sync().catch(() => undefined), new Promise((r) => setTimeout(r, 20_000))]);
+          await vault.flush().catch(() => undefined);
+        },
+        { minimumIntervalMinutes: 30 },
+      )
+      .catch(() => "restricted" as const);
+  }
+  let swRegistration: ServiceWorkerRegistration | null = null;
 
   function liveRelay(urls: string[]): WsRelay | null {
     if (!urls.length) return null;
@@ -899,18 +1097,26 @@ export function startApp(opts: AppOptions): App {
       const exploreRelevance = prof.size ? tagRelevance(prof) : undefined;
       const recipe = app.recipe();
       const seen = new Set([...seenSet(s.history), ...s.hidden]);
-      const items = rewriteWhy(rank(candidates, recipe, { now: opts.now(), limit: FEED_LIMIT, rng: seededRng(s.seed), seen, exploreRelevance }), lists);
-      let popular: RankedItem[] = [];
+      const m = moderate(candidates, lists);
+      const items = attachVerdicts(rewriteWhy(rank(m.allowed, recipe, { now: opts.now(), limit: FEED_LIMIT, rng: seededRng(s.seed), seen, exploreRelevance }), lists), m);
+      let popular: ModeratedItem[] = [];
+      const hidden = [...m.hidden];
       if (s.settings.showPopular && recipe.weights.taste > 0 && tagged.length) {
         const shown = new Set([...seen, ...items.map((i) => i.video.id)]);
-        popular = rank(buildPopularCandidates(tagged), popularRecipe(recipe), {
-          now: opts.now(),
-          limit: 6 * tagged.length,
-          rng: seededRng(s.seed),
-          seen: shown,
-        });
+        const pm = moderate(buildPopularCandidates(tagged), []);
+        hidden.push(...pm.hidden);
+        popular = attachVerdicts(
+          rank(pm.allowed, popularRecipe(recipe), {
+            now: opts.now(),
+            limit: 6 * tagged.length,
+            rng: seededRng(s.seed),
+            seen: shown,
+          }),
+          pm,
+        );
       }
-      return { items, candidates: new Set(candidates.map((c) => c.video.id)).size, popular, personalizedExplore: !!exploreRelevance };
+      noteHidden(hidden, "grid");
+      return { items, candidates: new Set(m.allowed.map((c) => c.video.id)).size, popular, personalizedExplore: !!exploreRelevance, hidden: s.modHidden };
     },
     reelItems() {
       if (!reelsBusy) {
@@ -1257,11 +1463,19 @@ export function startApp(opts: AppOptions): App {
     async setIdentity(id) {
       if (!id) {
         app.match.reset();
+        identityRecord = null;
         vault.write("identity", null);
+        if (nativeSecrets) await nativeSecrets.remove("nostr-secret-key").catch(() => undefined);
         app.rerender();
         return;
       }
-      vault.write("identity", id);
+      // Native shell: the secret goes to the OS keystore, the vault keeps the pubkey.
+      try {
+        identityRecord = await storableIdentity(id, nativeSecrets);
+      } catch {
+        identityRecord = id; // keystore refused: keep it encrypted in the vault as before
+      }
+      vault.write("identity", identityRecord);
       if (app.mode === "snapshot") await startDemo(id);
       else await app.match.start(id, liveRelay(s.settings.relays), relayLabel(s.settings.relays), null);
       app.rerender();
@@ -1285,7 +1499,8 @@ export function startApp(opts: AppOptions): App {
       // (follows, taste lists, the taste-list video cache, and Match: identity and
       // matches) under a fresh key.
       const keep: Record<string, unknown> = { follows: s.follows, taste: s.taste, tastefollows: s.tasteFollows, videos: sensitiveValue("videos") };
-      for (const k of ["identity", "matchbook", "matchmeta", "demopeer"] as const) {
+      // Moderation (blocks, labelers) and the picks draft are choices, not history.
+      for (const k of ["identity", "matchbook", "matchmeta", "demopeer", "moderation", "picks"] as const) {
         const v = sensitiveValue(k);
         if (v) keep[k] = v;
       }
@@ -1360,6 +1575,177 @@ export function startApp(opts: AppOptions): App {
           },
         );
       }
+    },
+    native: opts.native?.bridge,
+    nativeKeystore: !!opts.native?.keystore,
+    modPolicy() {
+      return effectivePolicy(s.mod.policy, opts.native?.bridge.platform);
+    },
+    modContext() {
+      return { labels: modLabels, instances: s.mod.instances, videoMeta: (v: Video) => catalog.modMeta(v.id) };
+    },
+    verdict(v) {
+      return moderateVideo(v, app.modPolicy(), app.modContext());
+    },
+    setModeration(next, msg) {
+      const labelersChanged = next.settings.labelers.map((l) => l.pubkey).join() !== s.mod.policy.settings.labelers.map((l) => l.pubkey).join();
+      s.mod = { ...s.mod, policy: next };
+      if (labelersChanged) rebuildLabels();
+      app.persist("moderation");
+      // Committed reels stay in place, so drop the ones the new policy hides.
+      const ctx = app.modContext();
+      const kept = s.reels.items.filter((r) => moderateVideo(r.item.video, app.modPolicy(), ctx).action !== "hide");
+      if (kept.length !== s.reels.items.length) s.reels.items = kept;
+      s.reels.version++;
+      s.sheetStamp++;
+      if (msg) app.toast(msg);
+      app.rerender();
+    },
+    block(kind, value, label) {
+      let next = s.mod.policy;
+      try {
+        next = addBlockTo(next, kind, value);
+        // Blocking a creator also drops their taste picks as a source.
+        if (kind === "creator") next = addBlockTo(next, "tasteList", trackKey(value));
+      } catch (e) {
+        app.toast(e instanceof Error ? e.message : String(e));
+        return;
+      }
+      const before = s.mod.policy;
+      app.setModeration(next);
+      app.toast(`${label ?? "Blocked"}. Hidden on this device only`, { label: "Undo", run: () => app.setModeration(before, "Restored") });
+    },
+    unblock(kind, value) {
+      let next = removeBlockFrom(s.mod.policy, kind, value);
+      if (kind === "creator") next = removeBlockFrom(next, "tasteList", trackKey(value));
+      app.setModeration(next, "Unblocked");
+    },
+    async blockPerson(pubkey, name) {
+      const live = app.match.liveWith(pubkey);
+      app.block("npub", pubkey, `Blocked ${name}`);
+      if (live && live.status === "active") await app.match.revoke(live.id).catch(() => undefined);
+      else if (live) await app.match.decline(live.id).catch(() => undefined);
+    },
+    addLabeler(input, relays) {
+      let pk: string;
+      try {
+        pk = parsePubkey(input);
+      } catch {
+        return "That isn't an npub. It starts with npub1 and is 63 characters long.";
+      }
+      const cur = s.mod.policy.settings;
+      if (cur.labelers.some((l) => l.pubkey === pk)) return "Already subscribed.";
+      if (cur.labelers.length >= 8) return "Up to 8 labelers.";
+      const sub = { pubkey: pk, ...(relays.length ? { relays: relays.slice(0, 8) } : {}) };
+      app.setModeration({ ...s.mod.policy, settings: { ...cur, labelers: [...cur.labelers, sub] } }, "Labeler added. Its labels apply once they're fetched");
+      void app.refreshLabels(true);
+      return null;
+    },
+    removeLabeler(pubkey) {
+      const cur = s.mod.policy.settings;
+      s.mod.labelEvents = s.mod.labelEvents.filter((e) => e.pubkey !== pubkey);
+      app.setModeration({ ...s.mod.policy, settings: { ...cur, labelers: cur.labelers.filter((l) => l.pubkey !== pubkey) } }, "Labeler removed");
+    },
+    async refreshLabels(force = false) {
+      const st = s.mod.policy.settings;
+      const nowS = Math.floor(Date.now() / 1000);
+      if (app.mode !== "live" || !st.labelers.length) return;
+      if (!force && nowS - s.mod.labelsAt < LABEL_REFRESH_S) return;
+      const relays = labelRelays(s.settings.relays, st);
+      if (!relays.length) return;
+      try {
+        // Read-only REQ by labeler (authors), never by video: relays learn which labelers you follow.
+        const evs = await fetchLabelEvents({ labelers: st.labelers.map((l) => l.pubkey), relays, query: modRelayQuery({ timeoutMs: 8000 }), since: s.mod.labelsAt ? s.mod.labelsAt - 3600 : undefined });
+        const byId = new Map(s.mod.labelEvents.map((e) => [e.id, e]));
+        for (const e of evs) byId.set(e.id, e);
+        s.mod = { ...s.mod, labelEvents: [...byId.values()].slice(-LABEL_EVENTS_CAP), labelsAt: nowS };
+        rebuildLabels();
+        app.persist("moderation");
+        s.reels.version++;
+        app.rerender();
+      } catch {
+        /* keep the cached labels */
+      }
+    },
+    isRevealed(id) {
+      return s.revealed.has(id);
+    },
+    reveal(id) {
+      s.revealed.add(id);
+      s.reels.version++;
+      app.rerender();
+    },
+    async publishSigned(template, extraRelays = []) {
+      const id = app.match.identity;
+      if (!id) throw new Error("Set up a Nostr identity on the Matches screen first.");
+      const relays = [...new Set([...s.settings.relays, ...extraRelays])];
+      if (!relays.length) throw new Error("Add a relay on the Matches screen first.");
+      const event = (await signerFor(id).signEvent(template as never)) as unknown as ModEvent;
+      if (!verifyModEvent(event)) throw new Error("The signer returned an invalid event.");
+      const { relayPublisher } = await import("./lib/taste/pkg.ts");
+      const res = await relayPublisher({ authSigner: undefined })(relays, event as never);
+      return { event, results: res.map((r: { relay: string; ok: boolean; message?: string }) => ({ relay: r.relay, ok: r.ok, message: r.message })) };
+    },
+    async setNativeNotify(on) {
+      const n = opts.native?.bridge.notifications;
+      if (!n) return;
+      if (on) {
+        // Prompts the OS dialog: only ever from this switch's tap.
+        const p = await n.requestPermission().catch(() => "denied" as const);
+        if (p !== "granted") {
+          app.toast("Notifications are off in your system settings");
+          s.settings.nativeNotify = false;
+        } else s.settings.nativeNotify = true;
+      } else s.settings.nativeNotify = false;
+      app.persist("settings");
+      app.rerender();
+    },
+    async setNativeBackground(on) {
+      const b = opts.native?.bridge.background;
+      if (!b) return;
+      if (on && vault.status === "passphrase") {
+        app.toast("Background checks need the device key: nobody can type the passphrase in the background");
+        return;
+      }
+      s.settings.nativeBackground = on;
+      app.persist("settings");
+      if (on) {
+        const r = await enableBackground();
+        if (r !== "available") {
+          s.settings.nativeBackground = false;
+          app.persist("settings");
+          app.toast(r === "denied" ? "Background refresh is off in your system settings" : "Background refresh is restricted on this device");
+        }
+      } else await b.disable().catch(() => undefined);
+      app.rerender();
+    },
+    handleIncoming(a) {
+      openIncoming(app, a);
+    },
+    async promptInstall() {
+      const p = s.installPrompt;
+      if (!p) return;
+      s.installPrompt = null;
+      await p.prompt();
+      const choice = await p.userChoice?.catch(() => undefined);
+      if (choice?.outcome === "accepted") app.toast(`${APP_NAME} is installed`);
+      app.rerender();
+    },
+    applyUpdate() {
+      const reg = swRegistration;
+      if (reg?.waiting) reg.waiting.postMessage("skip-waiting");
+      else location.reload();
+    },
+    savePicks() {
+      app.persist("picks");
+    },
+    finishOnboarding() {
+      s.settings.onboarded = true;
+      app.persist("settings");
+      app.rerender();
+    },
+    openOnboarding() {
+      openOnboarding(app);
     },
     telemetry: null as unknown as Telemetry,
     telemetryConfig,
@@ -1504,9 +1890,21 @@ export function startApp(opts: AppOptions): App {
 
   // Match: restore the identity and book, then check relays now and every minute.
   // Sketches go out only when due on the weekly schedule.
-  const savedIdentity = sens("identity", null, loadIdentity);
-  if (savedIdentity) {
+  const rawIdentity = opts.sensitive.identity ?? null;
+  if (rawIdentity) {
     const startMatch = async () => {
+      // A keystore identity gets its secret from the OS keystore; an older vault
+      // record moves its secret there now (mobile README hook 3).
+      const savedIdentity = (await hydrateIdentity(rawIdentity, nativeSecrets)) ?? loadIdentity(rawIdentity);
+      if (!savedIdentity) return;
+      if (nativeSecrets && savedIdentity.kind === "local" && !(rawIdentity as { keystore?: boolean }).keystore) {
+        try {
+          identityRecord = await storableIdentity(savedIdentity, nativeSecrets);
+          vault.write("identity", identityRecord);
+        } catch {
+          /* keystore refused: keep the vault copy */
+        }
+      }
       if (opts.mode === "snapshot") {
         // The demo peer picks its history from the snapshot, so wait for the catalog.
         for (let i = 0; i < 40 && [...s.instances.values()].some((r) => r.status === "loading"); i++) await new Promise((r) => setTimeout(r, 50));
@@ -1523,6 +1921,111 @@ export function startApp(opts: AppOptions): App {
     setInterval(() => {
       if (document.visibilityState === "visible" && app.match.ready && app.match.relay) void app.match.sync().catch(() => undefined);
     }, MATCH_POLL_MS);
+  }
+
+  // ---- moderation refresh: labels every few hours, instance defaults daily (live only) ----
+  async function refreshInstanceDefaults() {
+    const nowS = Math.floor(Date.now() / 1000);
+    if (app.mode !== "live" || nowS - s.mod.instancesAt < INSTANCE_REFRESH_S) return;
+    const client = new PeerTubeModerationClient({ fetch: (u, i) => fetch(u, i) });
+    const out = [];
+    // Only the catalog instances: they already serve the feed. No point queries
+    // (blocklist/status), so nothing reveals which accounts the viewer looked at.
+    for (const origin of s.settings.instances) {
+      try {
+        out.push(await client.instanceDefaults(origin));
+      } catch {
+        /* unreachable: keep going */
+      }
+    }
+    s.mod = { ...s.mod, instances: out, instancesAt: nowS };
+    app.persist("moderation");
+    s.reels.version++;
+    app.rerender();
+  }
+  if (app.mode === "live") {
+    setTimeout(() => {
+      void app.refreshLabels();
+      void refreshInstanceDefaults();
+    }, 4000);
+    setInterval(() => {
+      void app.refreshLabels();
+      void refreshInstanceDefaults();
+    }, PRUNE_CHECK_MS);
+  }
+
+  // ---- native hooks (apps/mobile/bridge/types.ts); all absent in a browser ----
+  const nb = opts.native?.bridge;
+  nb?.incoming?.onIncoming((item) => {
+    const a = fromNative(item);
+    if (a) app.handleIncoming(a);
+  });
+  nb?.notifications?.onOpen((route) => {
+    if (route && ALL_SCREENS.includes(route as ScreenId)) app.go(route as ScreenId);
+  });
+  if (nb?.background && s.settings.nativeBackground && vault.status !== "passphrase") void enableBackground();
+
+  // ---- PWA: shortcuts, share target, install, offline, updates ----
+  try {
+    const params = new URLSearchParams(globalThis.location?.search ?? "");
+    const route = startRoute(params, ALL_SCREENS);
+    if (route.view) s.view = route.view;
+    if (route.screen) s.screen = route.screen as ScreenId;
+    const shared = fromShareParams(params);
+    if (params.toString()) history.replaceState?.(null, "", location.pathname);
+    if (shared) setTimeout(() => app.handleIncoming(shared), 300);
+    if (route.view || route.screen) render();
+  } catch {
+    /* no location (tests) */
+  }
+  globalThis.addEventListener?.("beforeinstallprompt", (e: Event) => {
+    e.preventDefault();
+    s.installPrompt = e as unknown as State["installPrompt"];
+    app.rerender();
+  });
+  globalThis.addEventListener?.("appinstalled", () => {
+    s.installed = true;
+    s.installPrompt = null;
+    app.rerender();
+  });
+  globalThis.addEventListener?.("online", () => {
+    s.online = true;
+    app.rerender();
+    if (app.mode === "live") app.reloadCatalog();
+  });
+  globalThis.addEventListener?.("offline", () => {
+    s.online = false;
+    app.rerender();
+  });
+  // The service worker (live https builds only; native shells drop sw.js). A new
+  // version waits until the viewer reloads, so a tab never runs mixed versions.
+  if (app.mode === "live" && !nb && "serviceWorker" in navigator && location.protocol === "https:") {
+    navigator.serviceWorker
+      .register("./sw.js")
+      .then((reg) => {
+        swRegistration = reg;
+        const waiting = () => {
+          if (reg.waiting && navigator.serviceWorker.controller) {
+            s.updateReady = true;
+            app.rerender();
+          }
+        };
+        waiting();
+        reg.addEventListener("updatefound", () => reg.installing?.addEventListener("statechange", waiting));
+      })
+      .catch(() => {});
+    let reloading = false;
+    navigator.serviceWorker.addEventListener("controllerchange", () => {
+      if (reloading || !s.updateReady) return;
+      reloading = true;
+      location.reload();
+    });
+  }
+
+  // ---- first run: a short, skippable onboarding (existing users skip it) ----
+  if (!s.settings.onboarded) {
+    if (!shouldOnboard(s)) app.finishOnboarding();
+    else setTimeout(() => openOnboarding(app), 0);
   }
   return app;
 }

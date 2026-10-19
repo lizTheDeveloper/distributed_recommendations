@@ -14,6 +14,15 @@
 #      and at most POLICY_GIFTWRAP_MAX_TTL seconds ahead (docs/PROTOCOL.md: sketches
 #      expire <= 30 days after issue, control messages after 14 days).
 #   3. Optional kind allow-list (POLICY_ALLOWED_KINDS, comma separated; empty = all).
+#   4. Trusted gateway sources (POLICY_TRUSTED_SOURCES; empty by default = none):
+#      addresses that carry many users' traffic, such as the OHTTP Nostr gateway
+#      (docs/TRANSPORT.md), get their own, larger bucket per address:
+#      POLICY_TRUSTED_RATE events/second, burst POLICY_TRUSTED_BURST. Still a
+#      limit, not an exemption, and rules 2 and 3 still apply. Entries are exact
+#      IPv4 or IPv6 addresses, or IPv4 CIDR prefixes (a.b.c.d/n), separated by
+#      commas or spaces. IPv6 entries must be written the way strfry renders
+#      addresses (inet_ntop: lower case, zeros compressed, e.g. 2001:db8::7).
+#      Invalid entries are ignored, with a count (never the entry) on stderr.
 #
 # JSON is matched with patterns rather than parsed. That is safe here because strfry
 # hands the plugin its own normalised, compact JSON, and every quote inside `content`
@@ -38,6 +47,30 @@ function respond(id, action, msg) {
   printf "{\"id\":\"%s\",\"action\":\"%s\",\"msg\":\"%s\"}\n", id, action, msg
   fflush()
 }
+# IPv4 dotted quad to a number, or -1.
+function ip4num(s,   n, o, i, v) {
+  n = split(s, o, ".")
+  if (n != 4) return -1
+  v = 0
+  for (i = 1; i <= 4; i++) {
+    if (o[i] !~ /^[0-9]+$/ || length(o[i]) > 3 || o[i] + 0 > 255) return -1
+    v = v * 256 + o[i]
+  }
+  return v
+}
+function trusted(ip,   i, a, block) {
+  if (nTrusted == 0 || ip == "") return 0
+  ip = tolower(ip)
+  if (ip in trustExact) return 1
+  if (nTrustNet == 0) return 0
+  a = ip4num(ip)
+  if (a < 0) return 0
+  for (i = 1; i <= nTrustNet; i++) {
+    block = 2 ^ (32 - trustLen[i])
+    if (int(a / block) == int(trustNet[i] / block)) return 1
+  }
+  return 0
+}
 function prune(t,   k) {
   for (k in seen) if (t - seen[k] > IDLE) { delete seen[k]; delete tokens[k] }
   lastPrune = t
@@ -52,6 +85,26 @@ BEGIN {
     n = split(ENVIRON["POLICY_ALLOWED_KINDS"], parts, /[ ,]+/)
     for (i = 1; i <= n; i++) if (parts[i] != "") { allowed[parts[i] + 0] = 1; nAllowed++ }
   }
+  TRATE  = (ENVIRON["POLICY_TRUSTED_RATE"]  != "" ? ENVIRON["POLICY_TRUSTED_RATE"]  : 50) + 0
+  TBURST = (ENVIRON["POLICY_TRUSTED_BURST"] != "" ? ENVIRON["POLICY_TRUSTED_BURST"] : 500) + 0
+  nTrusted = 0; nTrustNet = 0; bad = 0
+  if (ENVIRON["POLICY_TRUSTED_SOURCES"] != "") {
+    n = split(ENVIRON["POLICY_TRUSTED_SOURCES"], parts, /[ ,]+/)
+    for (i = 1; i <= n; i++) {
+      e = tolower(parts[i])
+      if (e == "") continue
+      if (e ~ /^[0-9.]+\/[0-9]+$/) {
+        split(e, cidr, "/")
+        if (ip4num(cidr[1]) < 0 || cidr[2] + 0 < 8 || cidr[2] + 0 > 32) { bad++; continue }
+        nTrustNet++; trustNet[nTrustNet] = ip4num(cidr[1]); trustLen[nTrustNet] = cidr[2] + 0
+      } else if (ip4num(e) >= 0 || (e ~ /^[0-9a-f:.]+$/ && e ~ /:/)) {
+        trustExact[e] = 1
+      } else { bad++; continue }
+      nTrusted++
+    }
+  }
+  # Report only counts: never echo addresses into the strfry log.
+  if (bad > 0) printf "write-policy: ignored %d invalid POLICY_TRUSTED_SOURCES entr%s\n", bad, (bad == 1 ? "y" : "ies") > "/dev/stderr"
   lastPrune = now()
 }
 {
@@ -66,10 +119,12 @@ BEGIN {
   if (nAllowed > 0 && !(kind in allowed)) { respond(id, "reject", "blocked: kind not accepted by this relay"); next }
 
   # Rate limit live client writes only (not import/stream/sync by the operator).
+  # A trusted gateway address gets the larger POLICY_TRUSTED_* bucket.
   if (src == "IP4" || src == "IP6") {
-    if (!(ip in tokens)) { tokens[ip] = BURST; seen[ip] = t }
-    tokens[ip] += (t - seen[ip]) * RATE
-    if (tokens[ip] > BURST) tokens[ip] = BURST
+    if (trusted(ip)) { r = TRATE; b = TBURST } else { r = RATE; b = BURST }
+    if (!(ip in tokens)) { tokens[ip] = b; seen[ip] = t }
+    tokens[ip] += (t - seen[ip]) * r
+    if (tokens[ip] > b) tokens[ip] = b
     seen[ip] = t
     if (tokens[ip] < 1) { respond(id, "reject", "rate-limited: slow down"); next }
     tokens[ip] -= 1

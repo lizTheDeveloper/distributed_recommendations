@@ -87,3 +87,32 @@ test('labelsFromReports needs threshold distinct trusted reporters and ignores o
   const forged = { ...rep(friends[2], 9), content: 'tampered' };
   assert.deepEqual(labelsFromReports([...two, forged], opts), []);
 });
+
+test('labelers: each gets an untyped p tag after the reported tags (labeler addressing)', () => {
+  const lab1 = keypair(91).pk;
+  const lab2 = keypair(92).pk;
+  const v = buildReport({ type: 'video', eventId: EVENT, pubkey: author.pk }, 'spam', { createdAt: 5, labelers: [lab1, lab2, lab1] });
+  assert.deepEqual(v.tags, [
+    ['e', EVENT, 'spam'],
+    ['p', author.pk],
+    ['p', lab1],
+    ['p', lab2],
+  ]);
+  const c = buildReport({ type: 'creator', pubkey: author.pk }, 'impersonation', { createdAt: 5, labelers: [lab1] });
+  assert.deepEqual(c.tags, [['p', author.pk, 'impersonation'], ['p', lab1]]);
+  // Reporting the labeler itself keeps the typed p (a report about the labeler) and adds the address.
+  const self = buildReport({ type: 'creator', pubkey: lab1 }, 'spam', { createdAt: 5, labelers: [lab1] });
+  assert.deepEqual(self.tags, [['p', lab1, 'spam'], ['p', lab1]]);
+  // parseReport still sees the reported target and author, not the labeler.
+  const parsed = parseReport({ ...v, id: 'x'.repeat(64), pubkey: reporter.pk, sig: '' } as never);
+  assert.deepEqual(parsed.map((r) => r.target), [`e:${EVENT}`]);
+  assert.equal(parsed[0].pubkey, author.pk);
+});
+
+test('labelers: optional and validated; without them the event is unchanged', () => {
+  const a = buildReport({ type: 'video', eventId: EVENT, pubkey: author.pk }, 'spam', { createdAt: 5 });
+  const b = buildReport({ type: 'video', eventId: EVENT, pubkey: author.pk }, 'spam', { createdAt: 5, labelers: [] });
+  assert.deepEqual(a, b);
+  assert.throws(() => buildReport({ type: 'creator', pubkey: author.pk }, 'spam', { labelers: ['npub1abc'] }), /labeler/);
+  assert.throws(() => buildReport({ type: 'creator', pubkey: author.pk }, 'spam', { labelers: Array.from({ length: 9 }, (_, i) => keypair(100 + i).pk) }), /at most 8/);
+});
