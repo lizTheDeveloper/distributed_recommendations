@@ -289,3 +289,65 @@ State is a list of `{id, requester, target, requestedAt, status, acceptedAt?}`, 
 - **Event kinds** for recipes, sketch rumors and preview messages.
 - **Circle secure aggregation**: which protocol, and whether the DP noise is added inside it (preferred) or after.
 - **Wire format for second-degree relay lists.**
+
+---
+
+<!-- BEGIN section added by packages/match (2026-10-19). PROVISIONAL. -->
+## 6. Match messages (provisional; added by `packages/match`)
+
+This section fixes the event kinds and the message schemas that sections 2 and 4 left open. Design and key scheme: `MATCH.md`. Code: `packages/match/src/messages.ts`, `kinds.ts`, `wrap.ts`.
+
+### Kinds
+
+Rumor kinds, **provisional and unregistered**. The NIP registry listed no kinds in 3000–3999 on 2026-10-19. They are regular kinds (NIP-01), and they never appear outside a gift wrap.
+
+| Kind | Message | Sealed by | Wrapped to (`p`) |
+|---|---|---|---|
+| 3470 | match-request | requester identity | target identity |
+| 3471 | match-accept | target identity | requester match key |
+| 3472 | preview-request | requester match key | target identity (or match key once known) |
+| 3473 | preview-response | target identity (match key once active) | requester match key |
+| 3474 | preview-answer | requester match key | target identity (or match key once known) |
+| 3475 | preview-result | target identity (match key once active) | requester match key |
+| 3476 | sketch (§2 format, unchanged) | sender match key | peer match key |
+| 3477 | renew | sender's current match key | peer's current match key |
+| 3478 | revoke | sender match key (identity if the sender never announced one) | peer match key (identity if unknown) |
+
+Rule: seal with my match key once I've announced it; send to the peer's match key once I know it; otherwise use the identity. Receivers accept a control message sealed by the peer's identity, current match key, or previous match key (for 14 days after a rotation). They accept sketches only from the peer's match keys, and only at their own match keys.
+
+### Envelope
+
+- Rumor: `{kind, created_at = now, tags: [], content, pubkey = seal key}`, with `id` = NIP-01 hash.
+- Seal: kind 13, `tags: []`, `content` = NIP-44 v2 encryption of the rumor JSON to the recipient, `created_at` = now minus up to 2 days (random).
+- Gift wrap: kind 1059, signed by a one-time key, `tags: [["p", recipient], ["expiration", t]]`, `created_at` jittered the same way.
+  - `t` = the sketch's `expiresAt` for sketches, `now + 14 days` for control messages. Both are 14 days by default.
+- The wrap's JSON must be ≤ 65,536 bytes. NIP-44 plaintexts ≤ 65,535 bytes.
+
+### Control-message rules
+
+- UTF-8 JSON, `v: 1`, keys exactly as listed and in that order, then `padding`.
+- `padding` is a string of `"0"` that makes the encoding **exactly 8,192 bytes** (the 64-bucket sketch size). Receivers check the size before parsing.
+- Unknown or missing keys are rejected.
+- Ids (`matchId`, `previewId`, `renewId`) and keys are 64 lowercase hex characters; ids are random 32-byte values.
+- `issuedAt`: integer Unix seconds. Receivers reject messages older than 14 days or more than 300 s in the future.
+
+| Message | Fields after `v`, `matchId`, `issuedAt` | Rules |
+|---|---|---|
+| match-request | `matchKey`, `durationDays` | `durationDays` 1–90. `matchId` is new to the target. The target may hold only one live match per peer |
+| match-accept | `matchKey`, `expiresAt` | `issuedAt < expiresAt ≤ issuedAt + durationDays × 86,400` (and ≤ 90 days). Must arrive within 7 days of the request |
+| preview-request | `previewId` | only while the match is pending; checked with core `requestPreview` on the target |
+| preview-response | `previewId`, `accept`, `psiRequest` | `psiRequest`: base64 PSI request when `accept`, `""` when not. A spent target budget is sent as `accept: false` |
+| preview-answer | `previewId`, `setSize`, `psiSetup`, `psiResponse` | base64; `setSize` = requester's real item count (self-reported, hygiene only) |
+| preview-result | `previewId`, `floor`, `belowFloor`, `value` | `floor` 5–100. `value` is `null` when `belowFloor`, else an integer ≥ `floor`. It is the **noised** count (`noisyPreviewCardinality`); the exact count is never sent |
+| renew | `renewId`, `role`, `matchKey`, `expiresAt` | `role` is `propose` or `accept`. A proposal's `expiresAt` ≤ `issuedAt` + 90 days. An accept echoes the proposal's `renewId` and `expiresAt`. `matchKey` is the sender's *next* key. If both sides propose at once, the smaller `renewId` wins |
+| revoke | — | ends the match or withdraws a request; carries no reason |
+
+### PSI messages (§4)
+
+- PSI is OpenMined PSI, cardinality-only (`reveal_intersection = false`), GCS setup with fpr 1e-9.
+- **Both sets are padded to exactly 128 items** with random 64-hex nonces (the newest 128 real items are kept). So the PSI messages reveal no set sizes, and each fits one control message.
+- Order of play:
+  1. The target creates the request (it is the PSI client).
+  2. The requester answers with setup and response (the PSI server). It refuses requests with more than 128 elements, or with `reveal_intersection` set.
+  3. The target computes |A ∩ B|, runs core `startPreviewRun`, then sends `noisyPreviewCardinality`'s output.
+<!-- END section added by packages/match -->
