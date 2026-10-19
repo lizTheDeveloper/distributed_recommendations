@@ -1,0 +1,164 @@
+{
+  "total": 24223,
+  "data": [
+    {
+      "id": 74061,
+      "uuid": "7516913d-a33b-46ca-9159-8a5523797af8",
+      "shortUUID": "fsAxvMhJTFX4KZizb9JFg7",
+      "url": "https://tube.tchncs.de/videos/watch/7516913d-a33b-46ca-9159-8a5523797af8",
+      "name": "Spiele von lokalen KIs programmieren lassen",
+      "language": {
+        "id": "de",
+        "label": "German"
+      },
+      "nsfw": false,
+      "isLocal": false,
+      "duration": 1398,
+      "thumbnailPath": "/lazy-static/thumbnails/398484e0-841f-4e80-9481-023a240cca95.png",
+      "previewPath": "/lazy-static/thumbnails/26ed7d32-cade-4294-bba8-69b94bf6814b.png",
+      "thumbnails": [
+        {
+          "height": 1080,
+          "width": 1920,
+          "aspectRatio": "16:9",
+          "fileUrl": "https://framatube.org/lazy-static/thumbnails/26ed7d32-cade-4294-bba8-69b94bf6814b.png"
+        },
+        {
+          "height": 1400,
+          "width": 1400,
+          "aspectRatio": "1:1",
+          "fileUrl": "https://framatube.org/lazy-static/thumbnails/5a11c23d-2cc1-4be3-a75b-9ce73cf222af.png"
+        },
+        {
+          "height": 720,
+          "width": 1280,
+          "aspectRatio": "16:9",
+          "fileUrl": "https://framatube.org/lazy-static/thumbnails/ecac4b03-9230-4adf-b182-0c96df0bb486.png"
+        }
+      ],
+      "createdAt": "2026-10-19T12:37:17.135Z",
+      "publishedAt": "2026-10-19T12:37:17.135Z",
+      "isLive": false,
+      "account": {
+        "id": 98233,
+        "name": "m23hauke",
+        "displayName": "m23hauke",
+        "url": "https://tube.tchncs.de/accounts/m23hauke",
+        "host": "tube.tchncs.de"
+      },
+      "channel": {
+        "id": 2518,
+        "name": "ndwls",
+        "displayName": "Nicht der Weisheit letzter Schluß",
+        "url": "https://tube.tchncs.de/video-channels/ndwls",
+        "host": "tube.tchncs.de"
+      }
+    },
+    {
+      "id": 74060,
+      "uuid": "71ae0d8f-0ad9-4249-beec-67d5d4ace5e3",
+      "shortUUID": "f3bKqY5W9NdgQXKjEsGxAT",
+      "url": "https://aperi.tube/videos/watch/71ae0d8f-0ad9-4249-beec-67d5d4ace5e3",
+      "name": "Teaser Conférence ARTiculée \"De l'Art face aux Enjeux Socio-Ecologiques\"",
+      "language": {
+        "id": "fr",
+        "label": "French"
+      },
+      "nsfw": false,
+      "isLocal": false,
+      "duration": 120,
+      "thumbnailPath": "/lazy-static/thumbnails/08b5f1b7-932a-4a0b-bd20-ee6c68000912.jpg",
+      "previewPath": "/lazy-static/thumbnails/1f494e1d-7cc2-4660-8781-b028aefc62f3.jpg",
+      "thumbnails": [
+        {
+          "height": 480,
+          "width": 850,
+          "aspectRatio": "16:9",
+          "fileUrl": "https://framatube.org/lazy-static/thumbnails/4d93bf57-16d2-46eb-ae8f-4b19b9135e4f.jpg"
+        },
+        {
+          "height": 157,
+          "width": 280,
+          "aspectRatio": "16:9",
+          "fileUrl": "https://framatube.org/lazy-static/thumbnails/08b5f1b7-932a-4a0b-bd20-ee6c68000912.jpg"
+        },
+        {
+          "height": 720,
+          "width": 1280,
+          "aspectRatio": "16:9",
+          "fileUrl": "https://framatube.org/lazy-static/thumbnails/c0b39d9c-2ed2-40a8-97ea-da437fa42ca4.jpg"
+        }
+      ],
+      "createdAt": "2026-10-19T12:27:26.515Z",
+      "publishedAt": "2026-10-19T12:27:26.515Z",
+      "isLive": false,
+      "account": {
+        "id": 22450,
+        "name": "stph_guest",
+        "displayName": "stph_guest",
+        "url": "https://aperi.tube/accounts/stph_guest",
+        "host": "aperi.tube"
+      },
+      "channel": {
+        "id": 2155,
+        "name": "valem",
+        "displayName": "Valem",
+        "url": "https://aperi.tube/video-channels/valem",
+        "host": "aperi.tube"
+      }
+    },
+    {
+      "id": 74059,
+      "uuid": "2f6c6bf7-ce24-4bf0-8456-1a5c46e5484a",
+      "shortUUID": "6RDMkcKS6663rJMhDL4ysf",
+      "url": "https://tube.tchncs.de/videos/watch/2f6c6bf7-ce24-4bf0-8456-1a5c46e5484a",
+      "name": "Zwischenfazit meines Mimentanen Status  #Archery #Bogenbau #Bogenschießen #Bogensport #DIY",
+      "language": {
+        "id": "de",
+        "label": "German"
+      },
+      "nsfw": false,
+      "isLocal": false,
+      "duration": 902,
+      "thumbnailPath": "/lazy-static/thumbnails/b09fed1d-23c9-4dad-8488-f395bebd2e60.png",
+      "previewPath": "/lazy-static/thumbnails/8b5458d4-28a1-43c0-bcbe-9d8700b7fe7e.png",
+      "thumbnails": [
+        {
+          "height": 1080,
+          "width": 1920,
+          "aspectRatio": "16:9",
+          "fileUrl": "https://framatube.org/lazy-static/thumbnails/8b5458d4-28a1-43c0-bcbe-9d8700b7fe7e.png"
+        },
+        {
+          "height": 1400,
+          "width": 1400,
+          "aspectRatio": "1:1",
+          "fileUrl": "https://framatube.org/lazy-static/thumbnails/58612c9d-7874-4bad-bbd1-33bf057f6e23.png"
+        },
+        {
+          "height": 720,
+          "width": 1280,
+          "aspectRatio": "16:9",
+          "fileUrl": "https://framatube.org/lazy-static/thumbnails/055b0ac9-0bf2-4d03-bdde-46c86e7eab83.png"
+        }
+      ],
+      "createdAt": "2026-10-19T11:41:04.897Z",
+      "publishedAt": "2026-10-19T11:41:04.897Z",
+      "isLive": false,
+      "account": {
+        "id": 8479,
+        "name": "rebel",
+        "displayName": "rebel",
+        "url": "https://tube.tchncs.de/accounts/rebel",
+        "host": "tube.tchncs.de"
+      },
+      "channel": {
+        "id": 3916,
+        "name": "archery_time",
+        "displayName": "TreffNix - Archery Time ",
+        "url": "https://tube.tchncs.de/video-channels/archery_time",
+        "host": "tube.tchncs.de"
+      }
+    }
+  ]
+}

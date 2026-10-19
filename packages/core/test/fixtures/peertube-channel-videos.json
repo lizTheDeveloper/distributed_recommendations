@@ -1,0 +1,99 @@
+{
+  "total": 410,
+  "data": [
+    {
+      "id": 74061,
+      "uuid": "7516913d-a33b-46ca-9159-8a5523797af8",
+      "shortUUID": "fsAxvMhJTFX4KZizb9JFg7",
+      "url": "https://tube.tchncs.de/videos/watch/7516913d-a33b-46ca-9159-8a5523797af8",
+      "name": "Spiele von lokalen KIs programmieren lassen",
+      "language": {
+        "id": "de",
+        "label": "German"
+      },
+      "nsfw": false,
+      "isLocal": false,
+      "duration": 1398,
+      "thumbnailPath": "/lazy-static/thumbnails/398484e0-841f-4e80-9481-023a240cca95.png",
+      "previewPath": "/lazy-static/thumbnails/26ed7d32-cade-4294-bba8-69b94bf6814b.png",
+      "thumbnails": [
+        {
+          "height": 1080,
+          "width": 1920,
+          "aspectRatio": "16:9",
+          "fileUrl": "https://framatube.org/lazy-static/thumbnails/26ed7d32-cade-4294-bba8-69b94bf6814b.png"
+        },
+        {
+          "height": 1400,
+          "width": 1400,
+          "aspectRatio": "1:1",
+          "fileUrl": "https://framatube.org/lazy-static/thumbnails/5a11c23d-2cc1-4be3-a75b-9ce73cf222af.png"
+        }
+      ],
+      "createdAt": "2026-10-19T12:37:17.135Z",
+      "publishedAt": "2026-10-19T12:37:17.135Z",
+      "isLive": false,
+      "account": {
+        "id": 98233,
+        "name": "m23hauke",
+        "displayName": "m23hauke",
+        "url": "https://tube.tchncs.de/accounts/m23hauke",
+        "host": "tube.tchncs.de"
+      },
+      "channel": {
+        "id": 2518,
+        "name": "ndwls",
+        "displayName": "Nicht der Weisheit letzter Schluß",
+        "url": "https://tube.tchncs.de/video-channels/ndwls",
+        "host": "tube.tchncs.de"
+      }
+    },
+    {
+      "id": 74024,
+      "uuid": "a3b65e3c-2e52-4a49-84fb-96eba6b5c397",
+      "shortUUID": "mdwi5MSUvyiVPVDPAf853t",
+      "url": "https://tube.tchncs.de/videos/watch/a3b65e3c-2e52-4a49-84fb-96eba6b5c397",
+      "name": "Tux-Flash-2026-10-15-KI,ArtCraft,Linux Mint 27,Tux-Tage 2026 fallen aus,Wayland,Cosmic",
+      "language": {
+        "id": "de",
+        "label": "German"
+      },
+      "nsfw": false,
+      "isLocal": false,
+      "duration": 5261,
+      "thumbnailPath": "/lazy-static/thumbnails/7bcc0a52-ac58-42b2-a542-205c092cb974.jpg",
+      "previewPath": "/lazy-static/thumbnails/c4f1f4af-de2b-45a3-94a8-2de619d673ae.jpg",
+      "thumbnails": [
+        {
+          "height": 1080,
+          "width": 1920,
+          "aspectRatio": "16:9",
+          "fileUrl": "https://framatube.org/lazy-static/thumbnails/c4f1f4af-de2b-45a3-94a8-2de619d673ae.jpg"
+        },
+        {
+          "height": 157,
+          "width": 280,
+          "aspectRatio": "16:9",
+          "fileUrl": "https://framatube.org/lazy-static/thumbnails/7bcc0a52-ac58-42b2-a542-205c092cb974.jpg"
+        }
+      ],
+      "createdAt": "2026-10-16T14:47:01.366Z",
+      "publishedAt": "2026-10-16T14:47:01.366Z",
+      "isLive": false,
+      "account": {
+        "id": 98233,
+        "name": "m23hauke",
+        "displayName": "m23hauke",
+        "url": "https://tube.tchncs.de/accounts/m23hauke",
+        "host": "tube.tchncs.de"
+      },
+      "channel": {
+        "id": 2518,
+        "name": "ndwls",
+        "displayName": "Nicht der Weisheit letzter Schluß",
+        "url": "https://tube.tchncs.de/video-channels/ndwls",
+        "host": "tube.tchncs.de"
+      }
+    }
+  ]
+}

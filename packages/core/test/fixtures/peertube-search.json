@@ -1,0 +1,99 @@
+{
+  "total": 126,
+  "data": [
+    {
+      "id": 11451,
+      "uuid": "16f7dde9-eec2-4096-b105-ae7233a0fcb7",
+      "shortUUID": "3Qv2z5JFAmLWTdWNXbLrni",
+      "url": "https://share.tube/videos/watch/16f7dde9-eec2-4096-b105-ae7233a0fcb7",
+      "name": "frame 2 , 2 bread loafs, 308 seconds and why when you don't know someone they are likely to be duck?",
+      "language": {
+        "id": null,
+        "label": "Unknown"
+      },
+      "nsfw": false,
+      "isLocal": false,
+      "duration": 179,
+      "thumbnailPath": "/lazy-static/thumbnails/53bf406c-5b82-4040-9050-87e5176ca45a.jpg",
+      "previewPath": "/lazy-static/thumbnails/c9e28898-b50c-4bed-b99d-451073579711.jpg",
+      "thumbnails": [
+        {
+          "height": 315,
+          "width": 560,
+          "aspectRatio": "16:9",
+          "fileUrl": "https://framatube.org/lazy-static/thumbnails/c9e28898-b50c-4bed-b99d-451073579711.jpg"
+        },
+        {
+          "height": 110,
+          "width": 200,
+          "aspectRatio": "16:9",
+          "fileUrl": "https://framatube.org/lazy-static/thumbnails/53bf406c-5b82-4040-9050-87e5176ca45a.jpg"
+        }
+      ],
+      "createdAt": "2018-11-14T16:23:15.678Z",
+      "publishedAt": "2018-11-14T16:23:15.678Z",
+      "isLive": false,
+      "account": {
+        "id": 8887,
+        "name": "aha",
+        "displayName": "aha",
+        "url": "https://share.tube/accounts/aha",
+        "host": "share.tube"
+      },
+      "channel": {
+        "id": 843,
+        "name": "b3ffd2a0-e20f-4334-b249-c39f012658ea",
+        "displayName": "Default aha channel",
+        "url": "https://share.tube/video-channels/b3ffd2a0-e20f-4334-b249-c39f012658ea",
+        "host": "share.tube"
+      }
+    },
+    {
+      "id": 11452,
+      "uuid": "c52cbe67-90d2-44a5-8975-7419cd9ac58b",
+      "shortUUID": "qmbByjxWPkpaALUaTpLAtV",
+      "url": "https://share.tube/videos/watch/c52cbe67-90d2-44a5-8975-7419cd9ac58b",
+      "name": "frame 1 , 2 bread loafs, 308 seconds and why when you don't know someone they are likely to be duck?",
+      "language": {
+        "id": null,
+        "label": "Unknown"
+      },
+      "nsfw": false,
+      "isLocal": false,
+      "duration": 129,
+      "thumbnailPath": "/lazy-static/thumbnails/63bab893-5cdc-43f7-9025-64097ac27529.jpg",
+      "previewPath": "/lazy-static/thumbnails/cdbd092d-ab4c-41dc-acb7-1109216843e6.jpg",
+      "thumbnails": [
+        {
+          "height": 315,
+          "width": 560,
+          "aspectRatio": "16:9",
+          "fileUrl": "https://framatube.org/lazy-static/thumbnails/cdbd092d-ab4c-41dc-acb7-1109216843e6.jpg"
+        },
+        {
+          "height": 110,
+          "width": 200,
+          "aspectRatio": "16:9",
+          "fileUrl": "https://framatube.org/lazy-static/thumbnails/63bab893-5cdc-43f7-9025-64097ac27529.jpg"
+        }
+      ],
+      "createdAt": "2018-11-12T18:21:53.360Z",
+      "publishedAt": "2018-11-12T18:21:53.360Z",
+      "isLive": false,
+      "account": {
+        "id": 8887,
+        "name": "aha",
+        "displayName": "aha",
+        "url": "https://share.tube/accounts/aha",
+        "host": "share.tube"
+      },
+      "channel": {
+        "id": 843,
+        "name": "b3ffd2a0-e20f-4334-b249-c39f012658ea",
+        "displayName": "Default aha channel",
+        "url": "https://share.tube/video-channels/b3ffd2a0-e20f-4334-b249-c39f012658ea",
+        "host": "share.tube"
+      }
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "name": "@match-feed/core",
+  "version": "0.1.0",
+  "description": "On-device ranking, taste sketches and privacy policy for Match Feed, a federated video app with user-controlled recommendations.",
+  "license": "Apache-2.0",
+  "type": "module",
+  "private": true,
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "engines": {
+    "node": ">=22.6"
+  },
+  "scripts": {
+    "test": "node --experimental-strip-types --no-warnings --test test/*.test.ts",
+    "demo": "node --experimental-strip-types --no-warnings src/demo.ts"
+  }
+}
