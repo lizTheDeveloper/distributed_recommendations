@@ -42,9 +42,25 @@ export function ephemeralSigner(): Signer {
   return secretKeySigner(generateSecretKey());
 }
 
-/** BIP-340 signature + id check (nostr-tools). */
+/**
+ * BIP-340 signature + id check (nostr-tools). nostr-tools' verifyEvent caches
+ * its verdict in a symbol property on the object, and object spread copies
+ * symbols, so a tampered copy of an event that once verified would pass
+ * (THREAT_MODEL T25). Always verify a fresh object built only from the NIP-01
+ * fields. Used for our own signer's output and for events read from relays.
+ */
 export function verifySignedEvent(e: SignedEvent): boolean {
-  return verifyEvent({ ...e, tags: e.tags.map((t) => [...t]) });
+  if (!e || typeof e !== 'object' || !Array.isArray(e.tags)) return false;
+  if (!e.tags.every((t) => Array.isArray(t))) return false;
+  return verifyEvent({
+    id: e.id,
+    pubkey: e.pubkey,
+    created_at: e.created_at,
+    kind: e.kind,
+    tags: e.tags.map((t) => [...t]),
+    content: e.content,
+    sig: e.sig,
+  });
 }
 
 /**

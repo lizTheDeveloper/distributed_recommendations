@@ -139,7 +139,7 @@ Details: [`sim/README.md`](sim/README.md).
 - Match over real relays (WebSocket relay I/O, inbox-relay selection, OHTTP), and any Match UI in the web client.
 - Circles networking and cryptography: MLS/Marmot, secure aggregation.
 - Signed taste lists (the format is provisional; lists are imported by URL or paste).
-- DAP analytics, NIP-09 deletions in the bridge, identity-key recovery.
+- DAP analytics, identity-key recovery.
 - Registered event kinds: the Match rumor kinds 3470–3478 are provisional.
 - Nothing has had an external review or audit; OpenMined PSI has no published audit.
 
@@ -151,7 +151,7 @@ Details: [`sim/README.md`](sim/README.md).
 4. **Signed taste lists** as Nostr addressable events, replacing the provisional unsigned format.
 5. **Circles:** choose a secure-aggregation protocol with the noise added inside it, keep the per-epoch noise seed away from members (T19), replace the reference `keyedRng` with an audited PRF (T20), and carry it over Marmot/MLS (marmot-ts for a prototype; an audited path before launch).
 6. **DAP creator analytics** (Tier 2): a Janus leader plus an independent helper; resolve the EU ePrivacy question first.
-7. **Bridge:** NIP-09 deletion events for videos made private or deleted, the signing policy (T23), and a consent check before bridging other people's channels.
+7. **Bridge:** a consent check before bridging other people's channels. (NIP-09 deletions, the T23 signing policy, NIP-42 AUTH and relay retries are done.)
 8. **First-hop Sybil defences** (not yet simulated): per-source trust learned from feedback, a per-match item cap.
 9. **External security audit** of the Match and Circle protocols, OpenMined PSI and the client before Match launches.
 

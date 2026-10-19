@@ -65,14 +65,14 @@ function sameEvent(a: { kind: number; tags: string[][]; content: string }, b: Ev
   return a.kind === b.kind && a.content === b.content && JSON.stringify(a.tags) === JSON.stringify(b.tags);
 }
 
-async function relaysNeedingEvent(relays: string[], event: SignedEvent, opts: SyncOptions, relayOpts: RelayOptions): Promise<{ need: string[]; existingIds: Map<string, string> }> {
+async function relaysNeedingEvent(relays: string[], event: SignedEvent, opts: SyncOptions, relayOpts: RelayOptions): Promise<{ need: string[]; existing: Map<string, { id: string; created_at: number }> }> {
   const d = event.tags.find((t) => t[0] === 'd')?.[1];
   const r = event.tags.find((t) => t[0] === 'r')?.[1];
   const filter: Record<string, unknown> = { kinds: [event.kind], authors: [event.pubkey], limit: 5 };
   if (d !== undefined) filter['#d'] = [d];
   else if (r) filter['#r'] = [r];
   const need: string[] = [];
-  const existingIds = new Map<string, string>();
+  const existingByRelay = new Map<string, { id: string; created_at: number }>();
   for (const relay of relays) {
     try {
       const existing = (await query(relay, filter, relayOpts)).filter((e) => e.pubkey === event.pubkey && (!opts.verify || opts.verify(e)));
@@ -80,13 +80,13 @@ async function relaysNeedingEvent(relays: string[], event: SignedEvent, opts: Sy
       // Regular (21/22): any existing event for this video means "already bridged"; they cannot be edited.
       const latest = existing.sort((x, y) => y.created_at - x.created_at)[0];
       const covered = d !== undefined ? latest && sameEvent(latest, event) : existing.length > 0;
-      if (covered) existingIds.set(relay, latest.id);
+      if (covered) existingByRelay.set(relay, { id: latest.id, created_at: latest.created_at });
       else need.push(relay);
     } catch {
       need.push(relay); // can't tell; publishing is idempotent enough
     }
   }
-  return { need, existingIds };
+  return { need, existing: existingByRelay };
 }
 
 type Detail = { video?: PtVideo; status?: number; error?: string };
@@ -171,7 +171,9 @@ export async function sync(
         emit({ ...base, status: 'built', template, event });
         continue;
       }
-      const { need, existingIds } = (opts.skipUnchanged ?? true) ? await relaysNeedingEvent(relays, event, opts, relayOpts) : { need: relays, existingIds: new Map<string, string>() };
+      const { need, existing } = (opts.skipUnchanged ?? true)
+        ? await relaysNeedingEvent(relays, event, opts, relayOpts)
+        : { need: relays, existing: new Map<string, { id: string; created_at: number }>() };
       const relayResults: PublishResult[] = relays
         .filter((r) => !need.includes(r))
         .map((relay) => ({ relay, ok: true, message: 'unchanged; not re-sent' }));
@@ -185,14 +187,16 @@ export async function sync(
           const d = event.tags.find((t) => t[0] === 'd')?.[1];
           const key = stateKey(event.pubkey, video.uuid);
           const old = state.entries[key];
+          const stored = [...existing.values()].sort((x, y) => y.created_at - x.created_at)[0];
           const entry: BridgedEntry = {
             uuid: video.uuid,
             instance: client.base,
             channel,
             pubkey: event.pubkey,
             kind: event.kind,
-            eventId: sent ? event.id : (existingIds.values().next().value ?? event.id),
-            createdAt: event.created_at,
+            // Nothing sent: record the newest version the relays already hold.
+            eventId: sent ? event.id : (stored?.id ?? event.id),
+            createdAt: sent ? event.created_at : (stored?.created_at ?? event.created_at),
             url: video.url,
             title: template.tags.find((t) => t[0] === 'title')?.[1] ?? video.name,
             relays: [...new Set([...(old?.status === 'live' ? old.relays : []), ...okRelays])].sort(),
@@ -218,12 +222,12 @@ export async function sync(
       const base = { uuid: entry.uuid, title: entry.title };
       try {
         const d = await fetchDetail(entry.uuid);
-        if (!d.video && d.status === undefined) {
+        const gone = goneReason(d.video, d.status);
+        if (!gone && !d.video) {
           // Network error, 5xx, 429, or a non-PeerTube error page: never delete on doubt.
           emit({ ...base, status: 'error', reason: `could not check for deletion: ${d.error}` });
           continue;
         }
-        const gone = goneReason(d.video, d.status);
         if (!gone) continue; // still public (outside --limit, or transiently refused): keep
         const template = toDeletionRequest(entry, gone.text);
         if (!signer) {

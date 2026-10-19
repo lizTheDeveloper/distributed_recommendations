@@ -81,3 +81,15 @@ test('signWith rejects a signer that alters the event', async () => {
   const { pubkey: _p, ...template } = VECTOR;
   await assert.rejects(signWith(sneaky, template), /modified/);
 });
+
+test('verifySignedEvent ignores a cached nostr-tools verdict carried over by object spread (T25)', async () => {
+  const { finalizeEvent, verifyEvent } = await import('nostr-tools/pure');
+  const sk = parseSecretKey(SK3);
+  const good = finalizeEvent({ kind: 1, created_at: 1700000000, tags: [], content: 'original' }, sk);
+  assert.equal(verifyEvent(good), true); // sets the cached verdict
+  const tampered = { ...good, content: 'tampered' };
+  assert.equal(verifyEvent(tampered), true, 'precondition: nostr-tools trusts the copied verdict');
+  assert.equal(verifySignedEvent(tampered as never), false);
+  assert.equal(verifySignedEvent(good as never), true);
+  assert.equal(verifySignedEvent({ ...good, tags: [['x', 1]] } as never), false);
+});
