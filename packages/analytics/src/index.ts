@@ -58,4 +58,5 @@ export {
   publishable,
 } from "./collect.ts";
 export type { ChannelStat, DiscoveryStats, PostprocessInput } from "./collect.ts";
+export { cryptoRng, seededRng } from "./core.ts";
 export { nextRunDelayMs, viewFromElsewhere, viewFromRankedItem, viewFromSearch } from "./hooks.ts";
