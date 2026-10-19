@@ -70,7 +70,12 @@ export interface OhttpRelayOptions {
   tickJitter?: number;
   /** constant-rate: request size. Default 40,960 (fits one 33 KB sketch wrap or two control wraps). */
   uniformRequestBytes?: number;
-  /** Response size for requests with queries. constant-rate uses it for every request. Default 262,144 (on-demand), 65,536 (constant-rate). */
+  /**
+   * Response size for requests with queries (constant-rate: for every request). One of
+   * RESPONSE_BUCKETS. Default 65,536: about three 19 KB wraps or one 33 KB sketch per
+   * page; bigger answers page. Raise it to 262,144 to sync large inboxes in fewer
+   * round trips at 4× the download per poll.
+   */
   responseBytes?: number;
   /** Events per query page. Default 50. */
   pageLimit?: number;
@@ -125,6 +130,7 @@ export class OhttpRelay {
   private closed = false;
   private clientP: Promise<{ client: OHTTPClient; key: SelectedKeyConfig }> | null = null;
   private readonly polls = new Set<() => void>();
+  private readonly inflight = new Set<AbortController>();
   /** The pin of the key config in use (after the first request). Persist it for TOFU. */
   pin: string | undefined;
 
@@ -143,7 +149,7 @@ export class OhttpRelay {
       tickMs: opts.tickMs ?? 300_000,
       tickJitter: opts.tickJitter ?? 0.25,
       uniformRequestBytes: opts.uniformRequestBytes ?? 40_960,
-      responseBytes: opts.responseBytes ?? (constant ? 65_536 : 262_144),
+      responseBytes: opts.responseBytes ?? 65_536,
       pageLimit: opts.pageLimit ?? 50,
       maxPages: opts.maxPages ?? 20,
       splitKeys: opts.splitKeys ?? false,
@@ -229,6 +235,7 @@ export class OhttpRelay {
     if (this.timer) clearTimeout(this.timer);
     this.timer = null;
     for (const stop of [...this.polls]) stop();
+    for (const c of this.inflight) c.abort();
     for (const p of this.queue.splice(0)) p.reject(new TransportError('transport closed'));
   }
 
@@ -331,6 +338,10 @@ export class OhttpRelay {
         }
         const { batch, size, respBytes } = taken;
         if (batch.length === 0 && !constant) break;
+        if (this.closed) {
+          for (const p of batch) p.reject(new TransportError('transport closed'));
+          break;
+        }
         try {
           const res = await this.exchange(
             batch.map((p) => p.op),
@@ -382,14 +393,22 @@ export class OhttpRelay {
         body,
       });
       const { init, context } = await client.encapsulateRequest(inner);
-      const res = await this.fetchFn(this.o.relayUrl, {
-        ...init,
-        credentials: 'omit',
-        cache: 'no-store',
-        redirect: 'error',
-        referrerPolicy: 'no-referrer',
-        signal: AbortSignal.timeout(this.o.timeoutMs),
-      } as RequestInit);
+      if (this.closed) throw new TransportError('transport closed');
+      const ctrl = new AbortController();
+      this.inflight.add(ctrl);
+      let res: Response;
+      try {
+        res = await this.fetchFn(this.o.relayUrl, {
+          ...init,
+          credentials: 'omit',
+          cache: 'no-store',
+          redirect: 'error',
+          referrerPolicy: 'no-referrer',
+          signal: AbortSignal.any([ctrl.signal, AbortSignal.timeout(this.o.timeoutMs)]),
+        } as RequestInit);
+      } finally {
+        this.inflight.delete(ctrl);
+      }
       if (!res.ok) {
         await res.arrayBuffer().catch(() => undefined);
         // A rotated gateway key shows up as a 4xx from the gateway. Re-fetch the

@@ -1,0 +1,107 @@
+# An Oblivious HTTP relay (RFC 9458 §6) for ONE gateway, built from plain Caddy.
+#
+# Run by a party other than the gateway operator. It learns client IPs and
+# sizes/timing, never content (encrypted to the gateway's key) and never which
+# Nostr keys or relays a request is about.
+#
+# What it does (RFC 9458 §6.2 and §8):
+# - forwards only POST /gateway (message/ohttp-req) and GET /ohttp-keys, to the
+#   one configured gateway; it is not an open proxy;
+# - strips every client header except Content-Type and Content-Length, so neither
+#   the IP nor browser fingerprints (User-Agent, Accept-Language, cookies) reach
+#   the gateway;
+# - adds no Forwarded / X-Forwarded-For; writes no access log.
+{
+	email {$ACME_EMAIL}
+	admin off
+
+	log default {
+		output stderr
+		level WARN
+		format filter {
+			wrap json
+			fields {
+				request>remote_ip delete
+				request>remote_port delete
+				request>client_ip delete
+				request>headers delete
+				request>uri delete
+				request>tls delete
+				remote_ip delete
+				remote_addr delete
+				client_ip delete
+			}
+		}
+	}
+}
+
+# RELAY_SITE: the relay's public name (automatic TLS), or "http://:8081" locally.
+{$RELAY_SITE} {
+	header {
+		Strict-Transport-Security "max-age=31536000"
+		X-Content-Type-Options "nosniff"
+		Referrer-Policy "no-referrer"
+		-Server
+	}
+
+	# Browsers (the PWA) send a CORS preflight for message/ohttp-req.
+	@preflight {
+		method OPTIONS
+		path /gateway /ohttp-keys
+	}
+	handle @preflight {
+		header Access-Control-Allow-Origin "{$CORS_ORIGIN}"
+		header Access-Control-Allow-Methods "POST, GET"
+		header Access-Control-Allow-Headers "Content-Type"
+		header Access-Control-Max-Age "86400"
+		respond 204
+	}
+
+	@encapsulated {
+		method POST
+		path /gateway
+		header Content-Type message/ohttp-req
+	}
+	@keys {
+		method GET
+		path /ohttp-keys
+	}
+
+	handle @encapsulated {
+		request_body {
+			max_size 96KB
+		}
+		header Access-Control-Allow-Origin "{$CORS_ORIGIN}"
+		header Cache-Control "no-store"
+		reverse_proxy {$GATEWAY_URL} {
+			# Send exactly: Host (the gateway's), Content-Type, Content-Length.
+			header_up -*
+			header_up Host {upstream_hostport}
+			header_up Content-Type message/ohttp-req
+			header_up -X-Forwarded-For
+			header_up -X-Forwarded-Host
+			header_up -X-Forwarded-Proto
+			header_down -*
+			header_down Content-Type message/ohttp-res
+		}
+	}
+
+	handle @keys {
+		header Access-Control-Allow-Origin "{$CORS_ORIGIN}"
+		reverse_proxy {$GATEWAY_URL} {
+			header_up -*
+			header_up Host {upstream_hostport}
+			header_up -X-Forwarded-For
+			header_up -X-Forwarded-Host
+			header_up -X-Forwarded-Proto
+			header_down -*
+			header_down Content-Type application/ohttp-keys
+			# Cached by the relay's clients only; lets the gateway see fewer fetches.
+			header_down Cache-Control "max-age=3600"
+		}
+	}
+
+	handle {
+		respond 404
+	}
+}

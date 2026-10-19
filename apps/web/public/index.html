@@ -3,21 +3,26 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Match Feed</title>
-<meta name="description" content="Federated video, ranked on your device by a recipe you control.">
+<title>__APP_NAME__</title>
+<meta name="description" content="__APP_DESCRIPTION__">
+<meta name="application-name" content="__APP_NAME__">
+<meta name="apple-mobile-web-app-title" content="__APP_NAME__">
+<meta name="mobile-web-app-capable" content="yes">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'wasm-unsafe-eval'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' https: data:; connect-src 'self' https: wss: ws://localhost:* ws://127.0.0.1:*; frame-src 'self' https:; media-src https:; object-src 'none'; base-uri 'self'; form-action 'none'">
 <meta name="referrer" content="no-referrer">
-<meta name="theme-color" content="#7046c9">
+<meta name="theme-color" content="__THEME_COLOR__" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="__THEME_COLOR_DARK__" media="(prefers-color-scheme: dark)">
+<meta name="color-scheme" content="light dark">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" href="icon.svg" type="image/svg+xml">
-<link rel="apple-touch-icon" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-maskable-192.png">
 <link rel="preload" href="fonts/AtkinsonHyperlegible-400-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="fonts.css">
 <link rel="stylesheet" href="app.css">
 </head>
 <body>
-<div id="app"><p style="padding:16px">Loading Match Feed…</p></div>
-<noscript><p style="padding:16px">Match Feed ranks videos on your device, so it needs JavaScript.</p></noscript>
+<div id="app"><p style="padding:16px">Loading __APP_NAME__…</p></div>
+<noscript><p style="padding:16px">__APP_NAME__ ranks videos on your device, so it needs JavaScript.</p></noscript>
 <script src="app.js" defer></script>
 </body>
 </html>

@@ -1,0 +1,14 @@
+# Local e2e only: the relay is published on loopback for the test clients and
+# reaches the gateway's front over the shared "internet" network.
+services:
+  relay:
+    ports: !override
+      - "127.0.0.1:${E2E_RELAY_PORT:-18081}:80"
+    networks:
+      - default
+      - internet
+
+networks:
+  internet:
+    external: true
+    name: ${E2E_INTERNET_NETWORK:-ohttp-e2e-internet}

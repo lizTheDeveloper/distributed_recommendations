@@ -1,0 +1,9 @@
+{
+  "$comment": "The one place apps/web takes its display name from: header, page titles, the manifest, the artifact title and every UI string (src/brand.ts). Keep in step with apps/mobile/brand.json. Storage keys (mf.v1.*) and the IndexedDB name (match-feed) are internal and deliberately not derived from this.",
+  "name": "Meme Video",
+  "shortName": "Meme Video",
+  "description": "Federated video, ranked on your device by a recipe you control.",
+  "themeColor": "#7046c9",
+  "themeColorDark": "#12141c",
+  "backgroundColor": "#f3f4f7"
+}

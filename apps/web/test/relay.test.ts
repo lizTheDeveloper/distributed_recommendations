@@ -6,7 +6,7 @@ import type { SocketLike } from "../src/lib/match/wsRelay.ts";
 import { WsRelay, matchesFilter } from "../src/lib/match/wsRelay.ts";
 import type { SignedEvent } from "../src/lib/match/pkg.ts";
 import { GIFT_WRAP_KIND, INSECURE_plaintextPsiForTests, InMemoryRelay, MatchClient, localSigner, generateMatchKey } from "../src/lib/match/pkg.ts";
-import { finalizeEvent, generateSecretKey } from "../../../packages/match/node_modules/nostr-tools/lib/esm/pure.js";
+import { finalizeEvent, generateSecretKey } from "nostr-tools/pure";
 
 /**
  * A fake relay behind fake sockets: stores events in the match package's

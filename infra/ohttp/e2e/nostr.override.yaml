@@ -1,0 +1,5 @@
+# Local e2e only: run infra/relay's strfry unchanged, minus the nofile ulimit
+# (some sandboxes and rootless Docker refuse to raise it; a test needs few files).
+services:
+  strfry:
+    ulimits: !reset {}

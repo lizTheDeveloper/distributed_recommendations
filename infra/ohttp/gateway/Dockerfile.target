@@ -1,6 +1,7 @@
 # The Nostr gateway target (packages/transport/bin/target.ts): the HTTP resource
 # behind the OHTTP gateway that speaks NIP-01 to the configured relays.
-# Build context: the repository root (compose.yaml sets it).
+# Build context: packages/transport (compose.yaml sets it; its .dockerignore keeps
+# node_modules and tests out).
 #
 # Behind a TLS-intercepting proxy, pass its CA as `--secret id=extra_ca,src=...`.
 
@@ -9,13 +10,13 @@ ARG NODE_IMAGE=node:22.22.0-alpine@sha256:e4bf2a82ad0a4037d28035ae71529873c069b1
 FROM ${NODE_IMAGE}
 ENV NODE_ENV=production
 WORKDIR /app
-COPY packages/transport/package.json packages/transport/package-lock.json packages/transport/.npmrc ./
+COPY package.json package-lock.json .npmrc ./
 # Exact versions from the lockfile, no install scripts (.npmrc), no dev dependencies.
 RUN --mount=type=secret,id=extra_ca \
     if [ -s /run/secrets/extra_ca ]; then export NODE_EXTRA_CA_CERTS=/run/secrets/extra_ca; fi; \
     npm ci --omit=dev --ignore-scripts --no-audit --no-fund && npm cache clean --force
-COPY packages/transport/src ./src
-COPY packages/transport/bin ./bin
+COPY src ./src
+COPY bin ./bin
 USER node
 EXPOSE 8080
 HEALTHCHECK --interval=30s --timeout=3s CMD wget -q -O /dev/null http://127.0.0.1:8080/health || exit 1

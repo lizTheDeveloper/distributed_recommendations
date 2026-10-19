@@ -1,0 +1,8 @@
+# security.txt (RFC 9116) for the Meme Video web client.
+# From infra/web/.well-known/security.txt. The email inbox and the Canonical origin
+# are still placeholders there, so they are left out here (the build refuses
+# example.org values). Add both once the owner has them, and renew Expires yearly.
+Contact: https://github.com/lizthedotdev/distributed_recommendations/security/advisories/new
+Expires: 2027-10-18T23:59:59.000Z
+Preferred-Languages: en
+Policy: https://github.com/lizthedotdev/distributed_recommendations/blob/main/SECURITY.md

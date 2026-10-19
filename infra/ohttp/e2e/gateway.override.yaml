@@ -1,0 +1,23 @@
+# Local e2e only: plain HTTP, no published ports except via the shared
+# "internet" network, and the target pointed at strfry from infra/relay.
+services:
+  front:
+    ports: !reset []
+    networks:
+      - edge
+      - internet
+  target:
+    environment:
+      NOSTR_RELAYS: ws://strfry:7777
+    networks:
+      - inner
+      - egress
+      - nostr
+
+networks:
+  internet:
+    external: true
+    name: ${E2E_INTERNET_NETWORK:-ohttp-e2e-internet}
+  nostr:
+    external: true
+    name: ${E2E_NOSTR_NETWORK:-ohttp-e2e-nostr_relay}

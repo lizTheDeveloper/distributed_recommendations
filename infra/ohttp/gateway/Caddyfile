@@ -1,0 +1,83 @@
+# Front of the OHTTP gateway: TLS, size limits, and only the two resources an
+# OHTTP relay needs. Everything else the Go gateway serves (/gateway-echo,
+# /gateway-metadata, /ohttp-configs, /health, the index page) stays internal.
+#
+# The only client of this endpoint is the OHTTP relay (run by another party), so
+# the "client IP" here is the relay's. It's still not logged: no access log, and
+# the process log drops every request field (same policy as infra/relay).
+{
+	email {$ACME_EMAIL}
+	admin off
+
+	log default {
+		output stderr
+		level WARN
+		format filter {
+			wrap json
+			fields {
+				request>remote_ip delete
+				request>remote_port delete
+				request>client_ip delete
+				request>headers delete
+				request>uri delete
+				request>tls delete
+				remote_ip delete
+				remote_addr delete
+				client_ip delete
+			}
+		}
+	}
+}
+
+# GATEWAY_SITE: the gateway's public name, e.g. ohttp-gateway.example.org (automatic
+# TLS). For local development, "http://:8080" (no TLS).
+{$GATEWAY_SITE} {
+	header {
+		Strict-Transport-Security "max-age=31536000"
+		X-Content-Type-Options "nosniff"
+		Referrer-Policy "no-referrer"
+		Cache-Control "no-store"
+		-Server
+	}
+
+	@encapsulated {
+		method POST
+		path /gateway
+		header Content-Type message/ohttp-req
+	}
+	@keys {
+		method GET
+		path /ohttp-keys
+	}
+
+	handle @encapsulated {
+		# An encapsulated request carries at most an 80 KiB padded body
+		# (packages/transport REQUEST_BUCKETS) plus ~100 bytes of framing.
+		request_body {
+			max_size 96KB
+		}
+		reverse_proxy gateway:8080 {
+			header_up -X-Forwarded-For
+			header_up -X-Forwarded-Host
+			header_up -X-Forwarded-Proto
+			header_up -Forwarded
+			header_up -Via
+			header_down -Server
+		}
+	}
+
+	handle @keys {
+		reverse_proxy gateway:8080 {
+			header_up -X-Forwarded-For
+			header_up -X-Forwarded-Host
+			header_up -X-Forwarded-Proto
+			# The Go gateway randomizes max-age between 12 and 36 hours; keep it.
+			header_down -Server
+		}
+		header -Cache-Control
+	}
+
+	handle {
+		respond 404
+	}
+}

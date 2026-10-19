@@ -18,7 +18,7 @@
 
 import { WebSocketServer } from "ws";
 import { randomBytes } from "node:crypto";
-import { verifyEvent } from "../../../packages/match/node_modules/nostr-tools/lib/esm/pure.js";
+import { verifyEvent } from "nostr-tools/pure";
 
 const args = process.argv.slice(2);
 const flag = (name) => args.includes(name);
@@ -161,7 +161,7 @@ wss.on("connection", (ws, req) => {
 });
 
 wss.on("listening", () => {
-  console.log(`Match Feed dev relay on ${url} (in memory${requireAuth ? ", NIP-42 AUTH required" : ""}). Add it under Matches → Relays. Ctrl+C to stop.`);
+  console.log(`Local dev relay on ${url} (in memory${requireAuth ? ", NIP-42 AUTH required" : ""}). Add it under Matches → Relays. Ctrl+C to stop.`);
 });
 wss.on("error", (e) => {
   console.error(`dev relay: ${e.message}`);

@@ -30,7 +30,7 @@ test('publish and query through OHTTP; concurrent calls share one padded request
 
     const got = await t.query({ kinds: [1059], '#p': [p] });
     assert.deepEqual(got.map((e) => e.id).sort(), evs.map((e) => e.id).sort());
-    assert.equal(sizes.at(-1)!.responseBytes, 262_144);
+    assert.equal(sizes.at(-1)!.responseBytes, 65_536);
     assert.equal(t.pin, s.gateway.pin);
   } finally {
     t.close();
@@ -50,8 +50,9 @@ test('the OHTTP relay sees only fixed ciphertext sizes, whatever the payload', a
     await t.query({ '#p': [randomPubkey()] });
     const gw = s.forwarded.filter((f) => f.path === '/gateway').map((f) => f.bytes);
     // Ciphertext = 7-byte header + 32-byte enc + BHTTP framing + padded body + 16-byte tag.
-    // Three different wrap sizes went out as one size; two different queries as another.
-    assert.equal(gw.length, 5);
+    // Three different wrap sizes went out as one size; the queries (the first one
+    // pages: 77 KB of wraps don't fit one 64 KiB response) as another.
+    assert.ok(gw.length >= 5);
     assert.equal(new Set(gw.slice(0, 3)).size, 1, `publishes: ${gw.slice(0, 3).join(', ')}`);
     assert.equal(new Set(gw.slice(3)).size, 1, `queries: ${gw.slice(3).join(', ')}`);
     assert.ok(gw[0] - 40_960 < 160 && gw[3] - 4_096 < 160, `small constant overhead over the bucket: ${gw[0] - 40_960}, ${gw[3] - 4_096}`);

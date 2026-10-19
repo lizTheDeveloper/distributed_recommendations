@@ -29,7 +29,7 @@ import { snapshotFetch, snapshotTasteChannels } from "../src/lib/snapshotFetch.t
 import { emptyImpressions, listStrength, recordImpression } from "../src/lib/trackrecord.ts";
 import { loadVideo } from "../src/lib/videos.ts";
 import { npubEncode as encodeNpub } from "../src/lib/bech32.ts";
-import { finalizeEvent, generateSecretKey, getPublicKey } from "../../../packages/match/node_modules/nostr-tools/lib/esm/pure.js";
+import { finalizeEvent, generateSecretKey, getPublicKey } from "nostr-tools/pure";
 
 const now = new Date("2026-10-19T12:00:00Z");
 const ORIGIN = "https://tube.example";

@@ -1,19 +1,19 @@
 {
   "name": "@match-feed/web",
   "version": "0.1.0",
-  "description": "Match Feed web client (v1: follow, taste lists, recipes, on-device ranking over live PeerTube data).",
+  "description": "Meme Video web client (follow, taste lists, recipes, Reels, Match, on-device ranking over live PeerTube data).",
   "license": "Apache-2.0",
   "type": "module",
   "private": true,
   "engines": {
-    "node": ">=22.6"
+    "node": "22.22.0"
   },
   "scripts": {
     "build": "node scripts/build.mjs",
     "build:artifact": "node scripts/build.mjs --artifact-only",
     "dev": "node scripts/build.mjs --dev",
     "snapshot": "NODE_USE_ENV_PROXY=1 node scripts/fetch-snapshot.mjs",
-    "test": "node --experimental-strip-types --disable-warning=ExperimentalWarning --test test/*.test.ts",
+    "test": "node --import ./test/deps-hook.mjs --experimental-strip-types --disable-warning=ExperimentalWarning --test test/*.test.ts",
     "typecheck": "node scripts/typecheck.mjs",
     "dev-relay": "node scripts/dev-relay.mjs",
     "check:telemetry": "node scripts/telemetry-check.mjs"

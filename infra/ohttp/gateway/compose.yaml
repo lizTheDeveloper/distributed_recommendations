@@ -1,0 +1,128 @@
+# OHTTP gateway + Nostr target (docs/TRANSPORT.md). One operator runs this stack.
+# The OHTTP relay in ../relay MUST be run by a different party: if the same party
+# runs both, it sees client IPs and decrypted requests together, and OHTTP buys
+# nothing.
+#
+#   cp .env.example .env    # set GATEWAY_SITE, ACME_EMAIL, SEED_SECRET_KEY, NOSTR_RELAYS
+#   docker compose up -d --build
+#
+#   front   Caddy: TLS, 96 KB body cap, only POST /gateway and GET /ohttp-keys
+#   gateway Cloudflare privacy-gateway-server-go (decapsulates; forwards only to the target)
+#   target  packages/transport bin/target.ts (NIP-01 to NOSTR_RELAYS over WebSockets)
+#
+# Networks: `edge` (front ↔ gateway), `inner` (gateway ↔ target, internal: no
+# internet), `egress` (target → Nostr relays). The gateway can reach nothing but
+# the target; the target is not published.
+#
+# Images are digest-pinned; the two built images pin their bases by digest and
+# their sources by checksum (gateway) or lockfile (target).
+
+name: ohttp-gateway
+
+x-logging: &logging
+  driver: ${LOG_DRIVER:-local}
+  options:
+    max-size: "10m"
+    max-file: "3"
+
+x-hardening: &hardening
+  read_only: true
+  security_opt:
+    - no-new-privileges:true
+  cap_drop:
+    - ALL
+
+services:
+  front:
+    image: caddy:2.11.7-alpine@sha256:d8542f48d34a9cf4e4c11a478865229840e87e4c96ea3f439101f31a5d35f75f
+    <<: *hardening
+    cap_add:
+      - NET_BIND_SERVICE
+    restart: unless-stopped
+    logging: *logging
+    depends_on:
+      - gateway
+    ports:
+      - "${FRONT_BIND:-0.0.0.0}:${FRONT_HTTP_PORT:-80}:80"
+      - "${FRONT_BIND:-0.0.0.0}:${FRONT_HTTPS_PORT:-443}:443"
+    environment:
+      GATEWAY_SITE: ${GATEWAY_SITE:?set GATEWAY_SITE in .env}
+      ACME_EMAIL: ${ACME_EMAIL:?set ACME_EMAIL in .env}
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy-data:/data
+      - caddy-config:/config
+    tmpfs:
+      - /tmp
+    networks:
+      - edge
+
+  gateway:
+    build:
+      context: .
+      dockerfile: Dockerfile.gateway
+      args:
+        GO_IMAGE: ${GO_IMAGE:-golang:1.25.14-alpine@sha256:1ae0735f00daffa3aaf1363a5184c0d2dc55c78e3db4ec70241cdac97bf84b59}
+      secrets:
+        - extra_ca
+    image: app-ohttp-gateway:v0.0.3
+    <<: *hardening
+    restart: unless-stopped
+    logging: *logging
+    environment:
+      PORT: "8080"
+      # 32 random bytes, hex. Fixed so the key (and clients' pins) survive restarts.
+      # Rotate by changing it, after shipping the new pin (docs/TRANSPORT.md).
+      SEED_SECRET_KEY: ${SEED_SECRET_KEY:?set SEED_SECRET_KEY in .env (openssl rand -hex 32)}
+      CONFIGURATION_ID: ${CONFIGURATION_ID:-1}
+      # Clients address the target by this name; nothing else is reachable.
+      ALLOWED_TARGET_ORIGINS: nostr-target.internal
+      TARGET_REWRITES: '{"nostr-target.internal":{"Scheme":"http","Host":"target:8080"}}'
+      # Debug logs request paths and errors; WARN logs neither.
+      LOG_LEVEL: WARN
+      LOG_SECRETS: "false"
+      GATEWAY_DEBUG: "false"
+    networks:
+      - edge
+      - inner
+
+  target:
+    build:
+      context: ../../../packages/transport
+      dockerfile: ../../infra/ohttp/gateway/Dockerfile.target
+      args:
+        NODE_IMAGE: ${NODE_IMAGE:-node:22.22.0-alpine@sha256:e4bf2a82ad0a4037d28035ae71529873c069b13eb0455466ae0bc13363826e34}
+      secrets:
+        - extra_ca
+    image: app-ohttp-target:dev
+    <<: *hardening
+    restart: unless-stopped
+    logging: *logging
+    environment:
+      PORT: "8080"
+      NOSTR_RELAYS: ${NOSTR_RELAYS:?set NOSTR_RELAYS in .env (comma-separated wss:// URLs)}
+      ALLOWED_KINDS: ${ALLOWED_KINDS:-1059}
+      UPSTREAM_TIMEOUT_MS: ${UPSTREAM_TIMEOUT_MS:-5000}
+      RATE_GLOBAL: ${RATE_GLOBAL:-50/200}
+      RATE_RECIPIENT: ${RATE_RECIPIENT:-0.5/60}
+      RATE_QUERY: ${RATE_QUERY:-1/30}
+    tmpfs:
+      - /tmp
+    networks:
+      - inner
+      - egress
+
+secrets:
+  # Empty unless you build behind a TLS-intercepting proxy (see the Dockerfiles).
+  extra_ca:
+    file: ${EXTRA_CA_FILE:-/dev/null}
+
+networks:
+  edge: {}
+  inner:
+    internal: true
+  egress: {}
+
+volumes:
+  caddy-data: {}
+  caddy-config: {}
