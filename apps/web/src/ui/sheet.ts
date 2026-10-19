@@ -144,6 +144,7 @@ function links(app: App): HTMLElement {
     link("Sharing & privacy", () => app.go("settings")),
     link("Creator studio", () => app.go("studio")),
     link("Recipe import & export", () => app.go("recipe")),
+    app.telemetryConfig.glitchtip && app.mode === "live" ? link("Report a bug or send feedback", () => app.openFeedback()) : null,
   );
 }
 
