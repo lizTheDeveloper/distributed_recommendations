@@ -12,8 +12,10 @@ import type { ChannelRef } from "./lib/handles.ts";
 import { handleOf, parseChannelInput } from "./lib/handles.ts";
 import type { WatchEvent } from "./lib/history.ts";
 import { DAY_MS, hasFinished, isEndorsed, loadHistory, pruneHistory, record, seenSet, toSketchHistory, unendorse } from "./lib/history.ts";
-import type { Tally } from "./lib/analytics.ts";
-import { countView, emptyTally, loadTally } from "./lib/analytics.ts";
+import type { DiscoveryState } from "./lib/discovery.ts";
+import { configsDue, emptyDiscovery, helperAllowlist, loadDiscovery, noteView, validConfigs } from "./lib/discovery.ts";
+import type { TaskConfig, UploadJob } from "./lib/analytics/pkg.ts";
+import { clearLedger, configFilter, configPointerFromDescription, fromWebSettings, nextRunDelayMs, parseTaskConfig, planReports, taskConfigFromNostrEvent, CONFIG_MAX_BYTES } from "./lib/analytics/pkg.ts";
 import { BUILTIN_RECIPES, editRecipe } from "./lib/recipes.ts";
 import type { FeedView, RetentionDays, Settings } from "./lib/settings.ts";
 import { loadSettings } from "./lib/settings.ts";
@@ -32,13 +34,15 @@ import { closedSheet, sheetReduce } from "./lib/sheet.ts";
 import { findNpub } from "./lib/bech32.ts";
 import type { TasteFollow, TasteResolution } from "./lib/creatortaste.ts";
 import { applyResolution, creatorTasteList, creatorVias, loadTasteFollows, refreshDue, resolveCreatorTaste, rewriteWhy, trackKey } from "./lib/creatortaste.ts";
-import { tasteDeps } from "./lib/tastesources.ts";
+import { relayQuery as relayQueryFor, tasteDeps } from "./lib/tastesources.ts";
 import { renderTasteSheet } from "./ui/taste.ts";
 import type { StoredIdentity } from "./lib/match/identity.ts";
 import { loadIdentity, signerFor } from "./lib/match/identity.ts";
 import type { PeerSource } from "./lib/match/service.ts";
 import { MatchService, loadBook, loadMeta } from "./lib/match/service.ts";
 import { WsRelay } from "./lib/match/wsRelay.ts";
+import { OhttpRelay } from "./lib/transport/pkg.ts";
+import type { RelayLike } from "./lib/match/pkg.ts";
 import { configurePsi, lazyPsi, onPsiStatus } from "./lib/match/psi.ts";
 import { framePsi } from "./lib/match/psiFrame.ts";
 import type { DemoSaved } from "./lib/match/demo.ts";
@@ -154,7 +158,8 @@ export interface State {
   taste: TasteSub[];
   recipe: { id: string; custom: Recipe | null };
   history: WatchEvent[];
-  tally: Tally;
+  /** Tier 2 discovery stats: per-window creator/channel ledger, pending reports, creators' configs (vault). */
+  discovery: DiscoveryState;
   /** Feed items actually seen, for taste-list track records (local only). */
   impressions: Impressions;
   /** Tags fetched from video detail endpoints (list endpoints omit tags). */
@@ -232,7 +237,7 @@ export interface AppOptions {
   native?: { bridge: MatchFeedNative; keystore: boolean };
 }
 
-type PersistKey = "settings" | "follows" | "taste" | "tastefollows" | "recipe" | "history" | "tally" | "videos" | "impressions" | "tags" | "hidden" | "identity" | "moderation" | "picks";
+type PersistKey = "settings" | "follows" | "taste" | "tastefollows" | "recipe" | "history" | "analytics" | "videos" | "impressions" | "tags" | "hidden" | "identity" | "moderation" | "picks";
 
 export interface App {
   s: State;
@@ -285,6 +290,8 @@ export interface App {
   refreshTastes(handle?: string): void;
   /** A video known from a followed taste or the local cache. */
   tasteVideo(id: string): Video | undefined;
+  /** Any video the app has loaded this session (catalog, follows, lists, matches) or cached. */
+  knownVideo(id: string): Video | undefined;
   snapshotTasteChannels: string[];
   watch(v: Video, via?: SourceKind): void;
   /** Record a watch without opening the player (a reel that played). */
@@ -301,6 +308,9 @@ export interface App {
   requestMatchWith(t: MatchTarget): void;
   setIdentity(id: StoredIdentity | null): Promise<void>;
   setRelays(urls: string[]): void;
+  /** The private relay (OHTTP) compiled into this build, if any. */
+  ohttp: { relayUrl: string } | null;
+  setTransport(t: "direct" | "ohttp", strict?: boolean): void;
   /** Wipe history and crypto-shred the vault key. */
   wipeHistory(): Promise<void>;
   setRetention(days: RetentionDays): void;
@@ -321,6 +331,8 @@ export interface App {
   openFeedback(): void;
   /** The native shell's bridge, or undefined in a browser. */
   native: MatchFeedNative | undefined;
+  /** Independent DAP helpers this build trusts (empty: Tier 2 uploads off). */
+  dapHelpers: readonly string[];
   /** The keystore answered (vault and identity keys are kept there). */
   nativeKeystore: boolean;
   // ---- moderation (packages/moderation) ----
@@ -356,6 +368,10 @@ export interface App {
 }
 
 const FEED_LIMIT = 60;
+/** Independent DAP helpers this build trusts (MF_DAP_HELPERS at build time). Empty: Tier 2 uploads are off. */
+/** The private relay for Match compiled into this build (null: option hidden). */
+const OHTTP = typeof __MF_OHTTP__ === "object" && __MF_OHTTP__ ? __MF_OHTTP__ : null;
+const DAP_HELPERS = helperAllowlist(typeof __MF_DAP_HELPERS__ === "string" ? __MF_DAP_HELPERS__ : "");
 const REELS_RANK_LIMIT = 400;
 const TAG_CACHE_CAP = 1500;
 /** Explore candidates whose tags are fetched for on-device relevance. */
@@ -366,6 +382,8 @@ const HIDDEN_CAP = 2000;
 const MATCH_RESOLVE_LIMIT = 60;
 /** How often Match checks relays while the app is open (sketches go out only when due). */
 const MATCH_POLL_MS = 60_000;
+/** Over the private relay (OHTTP), checks are spaced out: each one downloads padded pages. */
+const OHTTP_POLL_MS = 5 * 60_000;
 
 /** How often the retention sweep checks whether a day has passed. */
 const PRUNE_CHECK_MS = 60 * 60 * 1000;
@@ -422,7 +440,7 @@ export function startApp(opts: AppOptions): App {
     }),
     recipe: { id: recipeId, custom },
     history: sens("history", [], loadHistory),
-    tally: sens("tally", emptyTally(), loadTally),
+    discovery: loadDiscovery(opts.sensitive.analyticsLedger, opts.sensitive.analyticsJobs, opts.sensitive.analyticsConfigs, DAP_HELPERS, new Date()),
     impressions: sens("impressions", emptyImpressions(), loadImpressions),
     tagCache: new Map(
       sens<[string, string[]][]>("tags", [], (x) =>
@@ -535,7 +553,7 @@ export function startApp(opts: AppOptions): App {
       header,
       statusHost,
       opts.mode === "snapshot" && opts.snapshotNote
-        ? h("details", { class: "banner-note", role: "note" }, h("summary", null, h("strong", null, "Offline snapshot. "), "No network: playback is off and Match runs against a simulated peer."), h("p", null, opts.snapshotNote))
+        ? h("details", { class: "banner-note" }, h("summary", null, h("strong", null, "Offline snapshot. "), "No network: playback is off and Match runs against a simulated peer."), h("p", null, opts.snapshotNote))
         : null,
       vault.status === "memory"
         ? h(
@@ -604,6 +622,7 @@ export function startApp(opts: AppOptions): App {
     if (key === statusKey) return;
     statusKey = key;
     statusHost.replaceChildren(
+      ...[
       !s.online
         ? h(
             "div",
@@ -619,6 +638,7 @@ export function startApp(opts: AppOptions): App {
             h("button", { class: "btn sm", id: "update-btn", onclick: () => app.applyUpdate() }, "Reload"),
           )
         : null,
+      ].filter((x): x is HTMLDivElement => !!x),
     );
   }
 
@@ -745,7 +765,11 @@ export function startApp(opts: AppOptions): App {
     if (k === "matchmeta") return app.match.meta;
     if (k === "demopeer") return app.demo?.save() ?? null;
     if (k === "tastefollows") return s.tasteFollows;
-    return s[k as "history" | "tally" | "impressions" | "follows" | "taste"];
+    if (k === "analyticsLedger") return s.discovery.ledger;
+    if (k === "analyticsJobs") return s.discovery.jobs;
+    if (k === "analyticsConfigs") return s.discovery.configs;
+    if (k === "tally") return null;
+    return s[k as "history" | "impressions" | "follows" | "taste"];
   }
   /** What the vault holds for the identity: with a native keystore, the pubkey only. */
   let identityRecord: unknown = opts.sensitive.identity ?? null;
@@ -1035,13 +1059,26 @@ export function startApp(opts: AppOptions): App {
       .catch(() => "restricted" as const);
   }
   let swRegistration: ServiceWorkerRegistration | null = null;
+  const usingOhttp = () => app.mode === "live" && !!OHTTP && s.settings.matchTransport === "ohttp";
 
-  function liveRelay(urls: string[]): WsRelay | null {
+  /** Match's relay: the private OHTTP relay when chosen (and compiled in), else WebSockets to the viewer's relays. */
+  function liveRelay(urls: string[]): RelayLike | null {
+    if (usingOhttp()) {
+      return new OhttpRelay({
+        relayUrl: OHTTP!.relayUrl,
+        pins: OHTTP!.pins,
+        ...(OHTTP!.targetOrigin ? { targetOrigin: OHTTP!.targetOrigin } : {}),
+        mode: s.settings.ohttpStrict ? "constant-rate" : "on-demand",
+        splitKeys: s.settings.ohttpStrict,
+        fetch: ((u: RequestInfo | URL, i?: RequestInit) => fetch(u, { ...i, credentials: "omit", referrerPolicy: "no-referrer" })) as typeof fetch,
+      }) as unknown as RelayLike;
+    }
     if (!urls.length) return null;
     // NIP-42 AUTH, only for relays that demand it, signs with the identity key.
     return new WsRelay({ urls, authSigner: () => (app.match.identity ? signerFor(app.match.identity) : null) });
   }
   function relayLabel(urls: string[]): string {
+    if (usingOhttp()) return "private relay (OHTTP)";
     return urls.length ? `${urls.length} relay${urls.length === 1 ? "" : "s"}` : "no relays";
   }
 
@@ -1159,7 +1196,19 @@ export function startApp(opts: AppOptions): App {
     persist(...keys) {
       for (const k of keys) {
         if (k === "recipe") writeJson(kv, "recipe", { id: s.recipe.id, custom: s.recipe.custom ? recipeToJson(s.recipe.custom) : null });
-        else if (k === "settings") writeJson(kv, "settings", s.settings);
+        else if (k === "settings") {
+          writeJson(kv, "settings", s.settings);
+          // Contribution turned off: delete the tally and every pending report now.
+          if (!s.settings.analytics.contribute && (s.discovery.jobs.length || Object.keys(s.discovery.ledger.windows).length)) {
+            s.discovery = { ...s.discovery, ledger: clearLedger(), jobs: [] };
+            vault.write("analyticsLedger", s.discovery.ledger);
+            vault.write("analyticsJobs", []);
+          }
+        } else if (k === "analytics") {
+          vault.write("analyticsLedger", s.discovery.ledger);
+          vault.write("analyticsJobs", s.discovery.jobs);
+          vault.write("analyticsConfigs", s.discovery.configs);
+        }
         else vault.write(k, sensitiveValue(k));
       }
     },
@@ -1353,6 +1402,9 @@ export function startApp(opts: AppOptions): App {
     tasteVideo(id) {
       return tasteVideos.get(id) ?? s.videoCache.get(id);
     },
+    knownVideo(id) {
+      return knownVideos().get(id);
+    },
     snapshotTasteChannels: opts.snapshotTasteChannels ?? [],
     watch(v, via) {
       app.noteWatch(v, via);
@@ -1362,9 +1414,12 @@ export function startApp(opts: AppOptions): App {
       const before = s.history;
       s.history = record(s.history, { videoId: v.id, at: Date.now(), kind: "watch", tags: v.tags, via }, s.settings);
       if (s.history !== before) app.persist("history");
-      if (via && !s.settings.privateWatching) {
-        s.tally = countView(s.tally, via, s.settings);
-        app.persist("tally");
+      // Tier 2: count the creator and how they were found (never the video). No `via`
+      // (a link, the studio, a shared video) counts as "other".
+      const next = noteView(s.discovery, v.creator, via, new Date(), s.settings);
+      if (next !== s.discovery) {
+        s.discovery = next;
+        app.persist("analytics");
       }
     },
     noteFinish(v, via) {
@@ -1480,6 +1535,18 @@ export function startApp(opts: AppOptions): App {
       else await app.match.start(id, liveRelay(s.settings.relays), relayLabel(s.settings.relays), null);
       app.rerender();
     },
+    ohttp: OHTTP ? { relayUrl: OHTTP.relayUrl } : null,
+    setTransport(t, strict) {
+      s.settings.matchTransport = t;
+      if (strict !== undefined) s.settings.ohttpStrict = strict;
+      app.persist("settings");
+      const prev = app.match.relay as { close?: () => void } | null;
+      void app.match.setRelay(liveRelay(s.settings.relays), relayLabel(s.settings.relays)).then(() => {
+        prev?.close?.();
+        return app.match.sync().catch(() => undefined);
+      });
+      app.rerender();
+    },
     setRelays(urls) {
       s.settings.relays = urls;
       app.persist("settings");
@@ -1488,7 +1555,7 @@ export function startApp(opts: AppOptions): App {
     },
     async wipeHistory() {
       s.history = [];
-      s.tally = emptyTally();
+      s.discovery = emptyDiscovery();
       s.impressions = emptyImpressions();
       s.hidden.clear();
       // Tags were fetched for endorsed videos, so the cache would hint at them.
@@ -1577,6 +1644,7 @@ export function startApp(opts: AppOptions): App {
       }
     },
     native: opts.native?.bridge,
+    dapHelpers: DAP_HELPERS,
     nativeKeystore: !!opts.native?.keystore,
     modPolicy() {
       return effectivePolicy(s.mod.policy, opts.native?.bridge.platform);
@@ -1623,8 +1691,8 @@ export function startApp(opts: AppOptions): App {
     async blockPerson(pubkey, name) {
       const live = app.match.liveWith(pubkey);
       app.block("npub", pubkey, `Blocked ${name}`);
-      if (live && live.status === "active") await app.match.revoke(live.id).catch(() => undefined);
-      else if (live) await app.match.decline(live.id).catch(() => undefined);
+      if (live && live.status === "active") await app.match.revoke(live.matchId).catch(() => undefined);
+      else if (live) await app.match.decline(live.matchId).catch(() => undefined);
     },
     addLabeler(input, relays) {
       let pk: string;
@@ -1918,8 +1986,16 @@ export function startApp(opts: AppOptions): App {
     void startMatch();
   }
   if (opts.mode === "live") {
+    // Direct relays: every minute while visible. OHTTP: every few minutes (each sync
+    // downloads padded pages; docs/TRANSPORT.md "Sync cadence").
+    let lastPoll = 0;
     setInterval(() => {
-      if (document.visibilityState === "visible" && app.match.ready && app.match.relay) void app.match.sync().catch(() => undefined);
+      const every = usingOhttp() ? OHTTP_POLL_MS : MATCH_POLL_MS;
+      if (Date.now() - lastPoll < every - 1000) return;
+      if (document.visibilityState === "visible" && app.match.ready && app.match.relay) {
+        lastPoll = Date.now();
+        void app.match.sync().catch(() => undefined);
+      }
     }, MATCH_POLL_MS);
   }
 
@@ -1952,6 +2028,113 @@ export function startApp(opts: AppOptions): App {
       void app.refreshLabels();
       void refreshInstanceDefaults();
     }, PRUNE_CHECK_MS);
+  }
+
+  // ---- Tier 2 discovery stats (packages/analytics; docs/ANALYTICS_IMPLEMENTATION.md §8) ----
+  // The old per-kind tally can't become a per-creator ledger; it is dropped.
+  if (opts.sensitive.tally !== undefined && opts.sensitive.tally !== null) vault.write("tally", null);
+  /** Look up task configs for creators in the ledger: Nostr (known npub, your relays) or the channel description. */
+  async function refreshConfigs() {
+    if (app.mode !== "live" || !DAP_HELPERS.length || !s.settings.analytics.contribute || s.settings.privateWatching) return;
+    const due = configsDue(s.discovery, Date.now());
+    if (!due.length) return;
+    const now = new Date();
+    const configs = { ...s.discovery.configs };
+    // One REQ with several authors, so a relay doesn't see one lookup per watched creator.
+    const npubs = new Map<string, string>();
+    for (const c of due) {
+      const pk = s.creatorNpub.get(c);
+      if (pk) npubs.set(pk, c);
+    }
+    if (npubs.size && s.settings.relays.length) {
+      try {
+        const evs = await relayQueryFor(s.settings.relays)({ ...configFilter([...npubs.keys()][0]), authors: [...npubs.keys()], limit: npubs.size });
+        for (const e of evs) {
+          const c = npubs.get(e.pubkey);
+          if (!c || configs[c]?.config) continue;
+          const r = taskConfigFromNostrEvent(e, { creator: c, now, allowedHelpers: DAP_HELPERS, pubkey: e.pubkey, verify: (x) => verifyModEvent(x as ModEvent) });
+          if (r.ok) configs[c] = { config: r.config, checkedAt: now.getTime() };
+        }
+      } catch {
+        /* try again tomorrow */
+      }
+    }
+    for (const c of due) {
+      if (configs[c]?.config && configs[c].checkedAt === now.getTime()) continue;
+      const ref = parseChannelInput(c);
+      if (!ref) continue;
+      let found: TaskConfig | null = null;
+      let reason = "no config published";
+      try {
+        const p = await profileFor(ref);
+        const url = configPointerFromDescription(p.text, c);
+        if (url) {
+          const res = await fetch(url.toString(), { credentials: "omit", referrerPolicy: "no-referrer", redirect: "error", headers: { accept: "application/json" } });
+          const text = res.ok ? await res.text() : "";
+          const r = text.length <= CONFIG_MAX_BYTES ? parseTaskConfig(text, { creator: c, now, allowedHelpers: DAP_HELPERS }) : { ok: false as const, reason: "too-large" };
+          if (r.ok) found = r.config;
+          else reason = r.reason;
+        }
+      } catch {
+        reason = "unreachable";
+      }
+      configs[c] = found ? { config: found, checkedAt: now.getTime() } : { config: null, checkedAt: now.getTime(), reason };
+    }
+    s.discovery = { ...s.discovery, configs };
+    app.persist("analytics");
+  }
+  let dapLoad: Promise<{ divviupClient: () => unknown; runUploads: (jobs: UploadJob[], o: unknown) => Promise<{ jobs: UploadJob[]; sent: number }> }> | null = null;
+  function loadDap() {
+    // dist/dap.js (same origin, CSP 'self'), injected only when a report is actually due.
+    dapLoad ??= new Promise((resolve, reject) => {
+      const g = globalThis as { __MF_DAP__?: unknown };
+      if (g.__MF_DAP__) return resolve(g.__MF_DAP__ as never);
+      const el = document.createElement("script");
+      el.src = "./dap.js";
+      el.onload = () => (g.__MF_DAP__ ? resolve(g.__MF_DAP__ as never) : reject(new Error("dap.js didn't load")));
+      el.onerror = () => reject(new Error("dap.js didn't load"));
+      document.head.appendChild(el);
+    });
+    return dapLoad.catch((e) => {
+      dapLoad = null;
+      throw e;
+    });
+  }
+  /** One tick: plan closed windows, then send at most one due report. */
+  async function discoveryTick() {
+    if (app.mode !== "live" || !DAP_HELPERS.length || s.settings.privateWatching || !s.online) return;
+    await refreshConfigs();
+    const settings = fromWebSettings(s.settings);
+    const configs = validConfigs(s.discovery);
+    const rng = cryptoRng();
+    const plan = planReports(s.discovery.ledger, s.discovery.jobs, { now: new Date(), settings, configs, rng });
+    s.discovery = { ...s.discovery, ledger: plan.ledger, jobs: plan.jobs };
+    app.persist("analytics");
+    if (!plan.jobs.some((j) => j.notBefore * 1000 <= Date.now())) return;
+    const dap = await loadDap();
+    const res = await dap.runUploads(plan.jobs, {
+      now: new Date(),
+      settings,
+      configs,
+      client: dap.divviupClient(),
+      rng,
+      persist: (jobs: UploadJob[]) => {
+        s.discovery = { ...s.discovery, jobs };
+        app.persist("analytics");
+      },
+    });
+    s.discovery = { ...s.discovery, jobs: res.jobs };
+    app.persist("analytics");
+  }
+  if (app.mode === "live" && DAP_HELPERS.length) {
+    const loop = (ms: number) =>
+      setTimeout(() => {
+        void discoveryTick()
+          .catch(() => undefined)
+          .finally(() => loop(nextRunDelayMs(cryptoRng())));
+      }, ms);
+    // Not at launch: a few minutes in, then every 10 to 30 minutes at random.
+    loop(3 * 60_000 + Math.floor(cryptoRng()() * 120_000));
   }
 
   // ---- native hooks (apps/mobile/bridge/types.ts); all absent in a browser ----
@@ -1999,7 +2182,7 @@ export function startApp(opts: AppOptions): App {
   });
   // The service worker (live https builds only; native shells drop sw.js). A new
   // version waits until the viewer reloads, so a tab never runs mixed versions.
-  if (app.mode === "live" && !nb && "serviceWorker" in navigator && location.protocol === "https:") {
+  if (app.mode === "live" && !nb && "serviceWorker" in navigator && (location.protocol === "https:" || location.hostname === "localhost" || location.hostname === "127.0.0.1")) {
     navigator.serviceWorker
       .register("./sw.js")
       .then((reg) => {

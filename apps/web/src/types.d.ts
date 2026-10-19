@@ -12,3 +12,9 @@ declare const __MF_DEV__: boolean;
 
 /** Set by scripts/build.mjs from MF_GLITCHTIP_DSN, MF_UMAMI_HOST, MF_UMAMI_WEBSITE_ID (empty: telemetry hidden). */
 declare const __MF_TELEMETRY__: { glitchtipDsn?: string; umamiHost?: string; umamiWebsiteId?: string; appVersion?: string } | undefined;
+
+/** Set by scripts/build.mjs from MF_DAP_HELPERS: independent DAP helper origins this build trusts (empty: Tier 2 uploads off). */
+declare const __MF_DAP_HELPERS__: string | undefined;
+
+/** Set by scripts/build.mjs from MF_OHTTP_RELAY_URL / MF_OHTTP_PINS / MF_OHTTP_TARGET_ORIGIN (null: the private-relay option is hidden). */
+declare const __MF_OHTTP__: { relayUrl: string; pins: string[]; targetOrigin?: string } | null | undefined;

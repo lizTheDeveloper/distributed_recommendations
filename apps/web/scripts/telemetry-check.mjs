@@ -122,9 +122,17 @@ const gtEnvelopes = () => gt.requests.filter((r) => r.method === "POST").map((r)
 const ctx = await browser.newContext({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 2, isMobile: true, hasTouch: true, serviceWorkers: "block" });
 let page = await newPage(ctx);
 
+/** First run shows the onboarding dialog; skip it the way a viewer would. */
+async function skipOnboarding(p) {
+  const skip = p.locator("#onb-skip");
+  if (await skip.isVisible().catch(() => false)) await skip.click();
+}
+
 // 1. First launch: nothing asked, nothing sent.
 await page.goto(site.origin + "/");
 await page.waitForSelector(".bottombar");
+await page.waitForSelector("#onboarding", { timeout: 5000 }).catch(() => {});
+await skipOnboarding(page);
 await sleep(3000);
 check("first launch: no question on first paint", (await page.locator("#telemetry-card").count()) === 0);
 check("first launch: zero requests to GlitchTip/Umami, crash.js not fetched", toTelemetry().length === 0 && crashJs().length === 0, `${toTelemetry().length} requests`);
@@ -220,7 +228,9 @@ await ctx.close();
 const ctx2 = await browser.newContext({ viewport: { width: 390, height: 844 }, serviceWorkers: "block" });
 page = await newPage(ctx2);
 await page.goto(plain.origin + "/");
-await page.evaluate(() => localStorage.setItem("mf.v1.settings", JSON.stringify({ telemetry: { crash: true, diagnostics: true, usage: true, prompt: { state: "answered", launches: 5 } } })));
+await page.waitForSelector("#onboarding", { timeout: 5000 }).catch(() => {});
+await skipOnboarding(page);
+await page.evaluate(() => localStorage.setItem("mf.v1.settings", JSON.stringify({ onboarded: true, telemetry: { crash: true, diagnostics: true, usage: true, prompt: { state: "answered", launches: 5 } } })));
 const n0 = seen.length;
 await page.reload();
 await page.waitForSelector(".bottombar");

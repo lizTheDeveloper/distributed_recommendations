@@ -18,6 +18,10 @@ import { icon } from "./icons.ts";
 import { chip, emptyFeed, feedBar, hashId } from "./home.ts";
 import { EmbedPlayer } from "./player.ts";
 import { tasteButtonText } from "./taste.ts";
+import type { ModeratedItem } from "../lib/moderation/pkg.ts";
+import { blurCover, labelChips, openBlock, openReport, shownVerdict } from "./moderation.ts";
+import { isDialogOpen, openDialog } from "./dialog.ts";
+import { hiddenLink } from "./moderation.ts";
 
 const WATCH_AFTER_MS = 3000;
 const NPUB_LOOKUP_AFTER_MS = 1200;
@@ -35,6 +39,9 @@ interface ReelNode {
   playerMuted: boolean;
   mode: PlayerMode;
   watched: boolean;
+  /** Blurred by moderation: no autoplay, a cover with "Show anyway". */
+  blurred: boolean;
+  cover: HTMLElement | null;
   timers: ReturnType<typeof setTimeout>[];
 }
 
@@ -55,12 +62,12 @@ class ReelsView {
   private emptyEl: HTMLElement | null = null;
 
   constructor(readonly app: App) {
-    this.scroller = h("div", { class: "reels", id: "reels", role: "feed", "aria-label": "Reels", "aria-busy": "false" });
+    this.scroller = h("div", { class: "reels", id: "reels", "aria-busy": "false" });
     this.end = h("div", { class: "reel-end", "aria-live": "polite" });
     this.scroller.appendChild(this.end);
     this.bar = feedBar(app, true);
     this.hint = h("p", { class: "reels-hint muted small" }, "↑ ↓ or j k to move · space to pause · m to mute");
-    this.root = h("section", { class: "reels-screen", "aria-label": "Reels" }, this.bar, this.scroller, this.hint);
+    this.root = h("section", { class: "reels-screen", "aria-labelledby": "reels-h" }, h("h2", { class: "sr-only", id: "reels-h" }, "Reels"), this.bar, this.scroller, this.hint);
     const IO = (globalThis as { IntersectionObserver?: typeof IntersectionObserver }).IntersectionObserver;
     if (IO) {
       this.io = new IO(
@@ -116,6 +123,7 @@ class ReelsView {
               h("strong", null, "That's everything for now"),
               h("span", { class: "muted small" }, "Follow more channels, subscribe to a taste list, or change the recipe for more."),
               h("div", { class: "row", style: { "justify-content": "center" } }, h("button", { class: "btn sm", onclick: () => app.go("follow") }, "Follow & taste"), h("button", { class: "btn sm", onclick: () => app.sheet({ type: "open", section: "recipe" }) }, "Feed settings")),
+              hiddenLink(app, app.s.modHidden, "reels-hidden"),
             )
         : "",
     );
@@ -192,7 +200,7 @@ class ReelsView {
       info,
       rail,
     );
-    const n: ReelNode = { id: v.id, item: r, el, media, tap, rail, info, player: null, playerMuted: true, mode: "none", watched: false, timers: [] };
+    const n: ReelNode = { id: v.id, item: r, el, media, tap, rail, info, player: null, playerMuted: true, mode: "none", watched: false, blurred: false, cover: null, timers: [] };
     this.refresh(n);
     return n;
   }
@@ -207,6 +215,21 @@ class ReelsView {
     const refocus = focusEl && focusEl.id && (n.rail.contains(focusEl) || n.info.contains(focusEl)) ? focusEl.id : "";
     const open = app.s.openWhy.has(v.id);
     const d = disclosureIndex(app.resolvedLists()).get(v.id);
+    const verdict = shownVerdict(app, v.id, (item as ModeratedItem).moderation);
+    const blurred = verdict?.action === "blur";
+    if (blurred !== n.blurred) {
+      n.blurred = blurred;
+      n.cover?.remove();
+      n.cover = blurred ? blurCover(app, v.id, verdict!) : null;
+      if (n.cover) n.media.appendChild(n.cover);
+      n.el.classList.toggle("is-blurred", blurred);
+      if (blurred) this.teardown(n);
+      else if (n.mode === "play" || n.mode === "preload") {
+        const mode = n.mode;
+        n.mode = "none";
+        this.apply(n, mode);
+      }
+    }
     n.info.replaceChildren(
       h(
         "div",
@@ -214,11 +237,12 @@ class ReelsView {
         h("span", { class: "reel-creator", title: v.creator }, v.creatorName ?? v.creator),
         h("span", { class: "reel-host mono" }, videoHost(v), v.durationSec ? ` · ${formatDuration(v.durationSec)}` : ""),
       ),
-      h("h3", { class: "reel-title" }, v.title),
+      h("h3", { class: "reel-title" }, blurred ? "Title hidden (sensitive)" : v.title),
       h(
         "div",
         { class: "chips" },
         chip(item.primary),
+        ...labelChips(verdict),
         section === "popular" ? h("span", { class: "pill reel-pill" }, "Popular on your instances") : null,
         fallback ? h("span", { class: "pill reel-pill" }, "Longer video") : null,
         d?.sponsored.length ? h("span", { class: "pill spon" }, "Sponsored") : null,
@@ -290,6 +314,7 @@ class ReelsView {
           : btn("match", "match", "Match", `Request match with ${target.name}`, () => app.requestMatchWith(target))
         : null,
       this.live ? btn("", muted ? "mute" : "volume", muted ? "Muted" : "Sound", muted ? "Unmute" : "Mute", () => this.toggleMute(), { "aria-pressed": String(!muted) }) : null,
+      btn("", "more", "More", `More for ${v.title}: report, block`, () => this.more(n), { "aria-haspopup": "dialog" }),
     ];
     n.rail.replaceChildren(...(railButtons.filter(Boolean) as HTMLElement[]));
     if (refocus) document.getElementById(refocus)?.focus({ preventScroll: true });
@@ -297,8 +322,28 @@ class ReelsView {
     n.tap.setAttribute("aria-label", app.s.reels.paused ? "Play" : "Pause");
   }
 
+  /** The rail's ⋯: Report, Block or mute, Creator studio. */
+  private more(n: ReelNode) {
+    const v = n.item.item.video;
+    const from = `rail-${hashId(v.id)}-more`;
+    const d = openDialog({
+      id: "reel-more",
+      title: v.creatorName ?? v.creator,
+      returnFocus: from,
+      body: () => [
+        h(
+          "div",
+          { class: "stack menu-list" },
+          h("button", { class: "btn", id: "more-report", onclick: () => (d.close(), openReport(this.app, v, from)) }, icon("flag", 18), "Report…"),
+          h("button", { class: "btn", id: "more-block", onclick: () => (d.close(), openBlock(this.app, v, from)) }, icon("block", 18), "Block or mute…"),
+          h("button", { class: "btn", id: "more-studio", onclick: () => (d.close(), (this.app.s.ui.studioInput = undefined), this.app.loadStudio(v.creator), this.app.go("studio")) }, icon("studio", 18), "Creator studio"),
+        ),
+      ],
+    });
+  }
+
   private mount(n: ReelNode, autoplay: boolean) {
-    if (!this.live) return;
+    if (!this.live || n.blurred) return;
     const muted = this.app.s.reels.muted;
     const p = new EmbedPlayer(n.item.item.video, { p2p: this.app.s.settings.p2p, muted, autoplay });
     p.onReady = () => {
@@ -413,7 +458,7 @@ class ReelsView {
 
   private onKey(e: KeyboardEvent) {
     const { s } = this.app;
-    if (s.screen !== "home" || s.view !== "reels" || s.sheet.open || s.consent || s.tasteSheet || !this.root.isConnected) return;
+    if (s.screen !== "home" || s.view !== "reels" || s.sheet.open || s.consent || s.tasteSheet || isDialogOpen() || !this.root.isConnected) return;
     const t = e.target as HTMLElement | null;
     if (t && (t.closest("input, textarea, select, [contenteditable]") || t.closest(".modal, .scrim"))) return;
     const k = reelKey(e);

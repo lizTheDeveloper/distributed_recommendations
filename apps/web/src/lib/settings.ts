@@ -36,6 +36,15 @@ export interface Settings {
   nativeNotify: boolean;
   /** Native shells only: opt-in background relay checks (off by default; device-key mode only). */
   nativeBackground: boolean;
+  /**
+   * How Match reaches Nostr (docs/TRANSPORT.md): "direct" = WebSockets to `relays`
+   * (they see your IP); "ohttp" = the private relay compiled into the build, through
+   * Oblivious HTTP (the gateway's relays replace `relays`). Only offered when the
+   * build has a private relay.
+   */
+  matchTransport: "direct" | "ohttp";
+  /** OHTTP strict timing: constant-rate cover traffic and one key per request (slower, ~30 MB/day). */
+  ohttpStrict: boolean;
 }
 
 /** Topics offered at onboarding (common PeerTube tags; lowercase). */
@@ -90,6 +99,8 @@ export function defaultSettings(): Settings {
     topics: [],
     nativeNotify: false,
     nativeBackground: false,
+    matchTransport: "ohttp",
+    ohttpStrict: false,
   };
 }
 
@@ -123,6 +134,9 @@ export function loadSettings(x: unknown): Settings {
   if (Array.isArray(o.topics)) d.topics = [...new Set(o.topics.filter((t): t is string => typeof t === "string" && /^[\p{L}\p{N}_-]{1,32}$/u.test(t)).map((t) => t.toLowerCase()))].slice(0, 12);
   d.nativeNotify = bool(o.nativeNotify, false);
   d.nativeBackground = bool(o.nativeBackground, false);
+  // Existing installs that already chose relays keep them (direct) until they switch.
+  d.matchTransport = o.matchTransport === "direct" || o.matchTransport === "ohttp" ? o.matchTransport : d.relays.length ? "direct" : "ohttp";
+  d.ohttpStrict = bool(o.ohttpStrict, false);
   if (o.theme === "light" || o.theme === "dark" || o.theme === "auto") d.theme = o.theme;
   return d;
 }

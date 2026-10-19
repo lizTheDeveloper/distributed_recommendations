@@ -55,6 +55,35 @@ function telemetryEnv() {
 }
 const telemetry = telemetryEnv();
 
+/**
+ * Tier 2 discovery stats (docs/ANALYTICS_IMPLEMENTATION.md): the independent DAP
+ * helpers this build trusts, comma-separated https origins (https://helper.example.org).
+ * Empty (the default) keeps uploads off: the device only keeps its own tally.
+ */
+const dapHelpers = (process.env.MF_DAP_HELPERS ?? "").trim();
+
+/**
+ * Private relay for Match (docs/TRANSPORT.md): Nostr over Oblivious HTTP. Empty hides
+ * the option. MF_OHTTP_RELAY_URL is the OHTTP relay's resource for our gateway (run by
+ * someone other than the gateway); MF_OHTTP_PINS the SHA-256 pins of the gateway key
+ * config (required: no trust-on-first-use in the app); MF_OHTTP_TARGET_ORIGIN optional.
+ */
+function ohttpEnv() {
+  const relayUrl = (process.env.MF_OHTTP_RELAY_URL ?? "").trim();
+  const pins = (process.env.MF_OHTTP_PINS ?? "").split(/[\s,]+/).filter(Boolean);
+  const targetOrigin = (process.env.MF_OHTTP_TARGET_ORIGIN ?? "").trim();
+  if (!relayUrl) return { config: null, origin: null };
+  const u = new URL(relayUrl);
+  const local = u.hostname === "localhost" || u.hostname === "127.0.0.1";
+  if (u.protocol !== "https:" && !(u.protocol === "http:" && local)) throw new Error("MF_OHTTP_RELAY_URL must be https (http only for localhost)");
+  if (!pins.length || !pins.every((p) => /^[0-9a-f]{64}$/.test(p))) throw new Error("MF_OHTTP_PINS: one or more SHA-256 hex pins of the gateway key config are required");
+  return { config: { relayUrl, pins, ...(targetOrigin ? { targetOrigin } : {}) }, origin: u.origin };
+}
+const ohttp = ohttpEnv();
+for (const h of dapHelpers.split(/[\s,]+/).filter(Boolean)) {
+  if (!/^https:\/\/[^/\s@]+\/?$/.test(h)) throw new Error(`MF_DAP_HELPERS: ${h} must be an https origin, e.g. https://helper.example.org`);
+}
+
 const FONTS =
   "https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Atkinson+Hyperlegible:wght@400;700&family=JetBrains+Mono:wght@400;600&display=swap";
 
@@ -65,12 +94,14 @@ const FONTS =
 // so `npm ci` in apps/web alone is enough and the output depends on one lockfile.
 const PSI_WEB = join(root, "node_modules/@openmined/psi.js/psi_wasm_web.js");
 if (!existsSync(PSI_WEB)) throw new Error("@openmined/psi.js isn't installed: run npm ci in apps/web");
-const OWN_DEPS = /^(nostr-tools|nostr-wasm|@noble\/[^/]+|@scure\/[^/]+)(\/.*)?$/;
+const OWN_DEPS = /^(nostr-tools|nostr-wasm|@noble\/[^/]+|@scure\/[^/]+|ohttp-ts|hpke|bhttp-ts|@divviup\/[^/]+)(\/.*)?$/;
 const ownDeps = {
   name: "apps-web-deps",
   setup(b) {
     b.onResolve({ filter: OWN_DEPS }, async (args) => {
       if (args.pluginData === "own") return undefined;
+      // Imports from inside node_modules (e.g. @divviup's own @noble/hashes 1.x) resolve normally.
+      if (/[\\/]node_modules[\\/]/.test(args.importer)) return undefined;
       const r = await b.resolve(args.path, { resolveDir: root, kind: args.kind, pluginData: "own" });
       if (r.errors.length) return { errors: r.errors };
       return { path: r.path, sideEffects: r.sideEffects };
@@ -110,7 +141,7 @@ const common = {
 const appOpts = (dev) => ({
   ...common,
   plugins: [ownDeps, matchShims("script")],
-  define: { __MF_DEV__: String(dev), __MF_TELEMETRY__: JSON.stringify(telemetry.config) },
+  define: { __MF_DEV__: String(dev), __MF_TELEMETRY__: JSON.stringify(telemetry.config), __MF_DAP_HELPERS__: JSON.stringify(dapHelpers), __MF_OHTTP__: JSON.stringify(ohttp.config) },
 });
 
 /**
@@ -120,10 +151,11 @@ const appOpts = (dev) => ({
  * policy correct if connect-src is ever narrowed.
  */
 function stampCsp(dist) {
-  if (!telemetry.origins.length) return;
+  const origins = [...telemetry.origins, ...(ohttp.origin ? [ohttp.origin] : [])];
+  if (!origins.length) return;
   const p = join(dist, "index.html");
   const html = readFileSync(p, "utf8");
-  const next = html.replace(/connect-src 'self'/, `connect-src 'self' ${telemetry.origins.join(" ")}`);
+  const next = html.replace(/connect-src 'self'/, `connect-src 'self' ${origins.join(" ")}`);
   if (next === html) throw new Error("index.html CSP has no connect-src 'self' to extend");
   writeFileSync(p, next);
 }
@@ -176,6 +208,11 @@ function brandPublic(dist) {
   writeFileSync(join(dist, "manifest.webmanifest"), JSON.stringify(manifest, null, 2) + "\n");
 }
 
+/** dist/dap.js: the DAP report client (@divviup/dap), injected only when a discovery-stats report is due. */
+async function buildDap(dist, dev) {
+  await esbuild.build({ ...common, entryPoints: [join(root, "src/lib/analytics/dap-entry.ts")], outfile: join(dist, "dap.js"), format: "iife", minify: !dev, sourcemap: dev ? "inline" : false });
+}
+
 function copyPublic(dist) {
   cpSync(join(root, "public"), dist, { recursive: true });
   brandPublic(dist);
@@ -209,7 +246,7 @@ function stampServiceWorker(dist) {
   const hash = createHash("sha256");
   for (const f of files) hash.update(f + "\0").update(readFileSync(join(dist, f))).update("\0");
   const id = hash.digest("hex").slice(0, 16);
-  const precache = ["./", ...files.filter((f) => !/\.map$/.test(f) && f !== "crash.js" && !f.startsWith("examples/") && !f.startsWith(".well-known/")).map((f) => "./" + f)];
+  const precache = ["./", ...files.filter((f) => !/\.map$/.test(f) && f !== "crash.js" && f !== "dap.js" && !f.startsWith("examples/") && !f.startsWith(".well-known/")).map((f) => "./" + f)];
   const p = join(dist, "sw.js");
   const src = readFileSync(p, "utf8");
   if (!src.includes("__BUILD__") || !src.includes("__PRECACHE__")) throw new Error("sw.js placeholders missing");
@@ -224,6 +261,7 @@ async function buildApp() {
   await esbuild.build({ ...appOpts(false), entryPoints: [join(root, "src/main.ts")], outfile: join(dist, "app.js"), format: "iife", minify: true, sourcemap: "linked" });
   await esbuild.build({ ...common, entryPoints: [join(root, "src/styles.css")], outfile: join(dist, "app.css"), minify: true });
   await buildCrashReporter(dist, false);
+  await buildDap(dist, false);
   stampCsp(dist);
   stampServiceWorker(dist);
 }
@@ -231,7 +269,7 @@ async function buildApp() {
 async function buildArtifact() {
   // The artifact is the offline demo: dev tools on (on-demand sketches), PSI inlined.
   // Telemetry stays disabled offline: no endpoints compiled in (and the app ignores them in snapshot mode).
-  const js = await esbuild.build({ ...common, plugins: [ownDeps, matchShims("inline")], define: { __MF_DEV__: "true", __MF_TELEMETRY__: JSON.stringify({ appVersion }) }, entryPoints: [join(root, "src/main-artifact.ts")], format: "iife", minify: true, write: false });
+  const js = await esbuild.build({ ...common, plugins: [ownDeps, matchShims("inline")], define: { __MF_DEV__: "true", __MF_TELEMETRY__: JSON.stringify({ appVersion }), __MF_DAP_HELPERS__: '""', __MF_OHTTP__: "null" }, entryPoints: [join(root, "src/main-artifact.ts")], format: "iife", minify: true, write: false });
   // The stylesheet has no imports; inline it verbatim so the theme selectors keep the
   // documented form (esbuild would rewrite [data-theme="light"] to [data-theme=light]).
   const cssText = readFileSync(join(root, "src/styles.css"), "utf8");
@@ -261,6 +299,7 @@ if (dev) {
   copyPublic(dist);
   stampCsp(dist);
   await buildCrashReporter(dist, true);
+  await buildDap(dist, true);
   writeFileSync(join(dist, "sw.js"), "// no service worker in dev\n");
   const ctxJs = await esbuild.context({ ...appOpts(true), entryPoints: [join(root, "src/main.ts")], outfile: join(dist, "app.js"), format: "iife", sourcemap: "inline" });
   const ctxCss = await esbuild.context({ ...common, entryPoints: [join(root, "src/styles.css")], outfile: join(dist, "app.css") });

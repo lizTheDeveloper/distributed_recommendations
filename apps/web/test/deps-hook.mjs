@@ -7,7 +7,7 @@ import { register } from "node:module";
 register(
   "data:text/javascript," +
     encodeURIComponent(`
-const OWN = /^(nostr-tools|nostr-wasm|@noble\\/[^/]+|@scure\\/[^/]+|@openmined\\/psi\\.js)(\\/.*)?$/;
+const OWN = /^(nostr-tools|nostr-wasm|@noble\\/[^/]+|@scure\\/[^/]+|@openmined\\/psi\\.js|ohttp-ts|hpke|bhttp-ts|@divviup\\/[^/]+|ws)(\\/.*)?$/;
 const ROOT = ${JSON.stringify(new URL("../package.json", import.meta.url).href)};
 export async function resolve(spec, ctx, next) {
   if (OWN.test(spec) && ctx.parentURL && !ctx.parentURL.startsWith(new URL(".", ROOT).href + "node_modules/")) {

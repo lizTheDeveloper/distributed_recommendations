@@ -8,6 +8,8 @@ import { formatDuration, placeholderGradient, videoHost } from "../lib/videos.ts
 import { h } from "./dom.ts";
 import { icon } from "./icons.ts";
 import { reelsScreen } from "./reels.ts";
+import type { ModeratedItem } from "../lib/moderation/pkg.ts";
+import { blurCover, hiddenLink, labelChips, openBlock, openHidden, openReport, shownVerdict } from "./moderation.ts";
 
 export const LEGEND: SourceKind[] = ["follow", "taste", "match", "circle", "second", "explore"];
 
@@ -28,20 +30,22 @@ export function recipePicker(app: App, id: string): HTMLElement {
   return sel;
 }
 
-function card(app: App, item: RankedItem, disclosures: ReturnType<typeof disclosureIndex>): HTMLElement {
+function card(app: App, item: ModeratedItem, disclosures: ReturnType<typeof disclosureIndex>): HTMLElement {
   const v = item.video;
+  const verdict = shownVerdict(app, v.id, item.moderation);
+  const blurred = verdict?.action === "blur";
   const whyId = "why-" + hashId(v.id);
   const open = app.s.openWhy.has(v.id);
   const host = videoHost(v);
   const following = app.isFollowing(v.creator);
   const d = disclosures.get(v.id);
   const thumb = h(
-    "button",
+    blurred ? "div" : "button",
     {
-      class: "thumb",
+      class: "thumb" + (blurred ? " blurred" : ""),
       style: { background: placeholderGradient(v.creator + v.title) },
-      "aria-label": `Play ${v.title}`,
-      onclick: () => app.watch(v, item.primary),
+      "aria-label": blurred ? undefined : `Play ${v.title}`,
+      onclick: blurred ? undefined : () => app.watch(v, item.primary),
     },
     v.thumbnailUrl && app.mode === "live"
       ? h("img", {
@@ -55,12 +59,13 @@ function card(app: App, item: RankedItem, disclosures: ReturnType<typeof disclos
       : h("span", { class: "ph", "aria-hidden": "true" }, v.title),
     h("span", { class: "host" }, host),
     v.durationSec ? h("span", { class: "dur" }, formatDuration(v.durationSec)) : null,
+    blurred ? blurCover(app, v.id, verdict!) : null,
   );
   return h(
     "article",
     { class: "card", "data-vid": v.id },
     thumb,
-    h("h3", null, h("button", { onclick: () => app.watch(v, item.primary) }, v.title)),
+    h("h3", { class: blurred ? "blurred-title" : undefined }, blurred ? h("span", { class: "muted" }, "Title hidden (sensitive)") : h("button", { onclick: () => app.watch(v, item.primary) }, v.title)),
     h(
       "div",
       { class: "byline" },
@@ -85,6 +90,7 @@ function card(app: App, item: RankedItem, disclosures: ReturnType<typeof disclos
       "div",
       { class: "chips" },
       chip(item.primary),
+      ...labelChips(verdict),
       d?.sponsored.length ? h("span", { class: "pill spon", title: `Marked sponsored in ${d.sponsored.join(", ")}` }, "Sponsored") : null,
       d?.affiliated.length ? h("span", { class: "pill spon", title: `Marked affiliated in ${d.affiliated.join(", ")}` }, "Affiliated") : null,
     ),
@@ -114,7 +120,7 @@ function card(app: App, item: RankedItem, disclosures: ReturnType<typeof disclos
   );
 }
 
-/** The card's ⋯ menu: Follow taste, Creator studio, Not interested. */
+/** The card's ⋯ menu: Follow taste, Creator studio, Not interested, Block or mute, Report. */
 function cardMenu(app: App, item: RankedItem): HTMLElement {
   const v = item.video;
   const name = v.creatorName ?? v.creator;
@@ -135,6 +141,8 @@ function cardMenu(app: App, item: RankedItem): HTMLElement {
       h("button", { role: "menuitem", disabled: st === "unavailable", onclick: () => (close(), app.openTaste(v.creator, name, id + "-btn")) }, icon("taste", 18), tasteLabel),
       h("button", { role: "menuitem", onclick: () => (close(), (app.s.ui.studioInput = undefined), app.loadStudio(v.creator), app.go("studio")) }, icon("studio", 18), "Creator studio"),
       h("button", { role: "menuitem", onclick: () => (close(), app.notInterested(v)) }, icon("eyeoff", 18), "Not interested"),
+      h("button", { role: "menuitem", onclick: () => (close(), openBlock(app, v, id + "-btn")) }, icon("block", 18), "Block or mute…"),
+      h("button", { role: "menuitem", onclick: () => (close(), openReport(app, v, id + "-btn")) }, icon("flag", 18), "Report…"),
     ),
   );
   // Look up whether the creator publishes picks only when the menu opens.
@@ -204,13 +212,16 @@ export function feedBar(app: App, overlay: boolean): HTMLElement {
       icon("sliders", 15),
       h("span", null, recipePillText(recipe)),
     ),
+    s.modHidden.length
+      ? h("button", { class: "recipe-pill hidden-pill", id: overlay ? "reels-hidden-pill" : "grid-hidden-pill", "aria-haspopup": "dialog", onclick: () => openHidden(app, overlay ? "reels-hidden-pill" : "grid-hidden-pill") }, `${s.modHidden.length} hidden`)
+      : null,
   );
 }
 
 export function gridView(app: App): HTMLElement {
   const { s } = app;
   const recipe = app.recipe();
-  const { items, candidates, popular, personalizedExplore } = app.feed();
+  const { items, candidates, popular, personalizedExplore, hidden } = app.feed();
   const loading = [...s.instances.values()].some((x) => x.status === "loading");
   const allFailed = s.instances.size > 0 && [...s.instances.values()].every((x) => x.status === "error");
   const disclosures = disclosureIndex(app.resolvedLists());
@@ -256,6 +267,7 @@ export function gridView(app: App): HTMLElement {
       ),
     ),
     body,
+    hiddenLink(app, hidden, "grid-hidden"),
     popularSection,
     h("div", { class: "legend", "aria-label": "Chip legend" }, LEGEND.map(chip)),
   );
@@ -266,11 +278,13 @@ export function emptyFeed(app: App, allFailed: boolean): HTMLElement {
   return h(
     "div",
     { class: "empty" },
-    h("h3", null, allFailed ? "Couldn't reach any instance" : "Nothing to show with this recipe yet"),
+    h("h3", null, !app.s.online ? "You're offline" : allFailed ? "Couldn't reach any instance" : "Nothing to show with this recipe yet"),
     h(
       "p",
       { class: "muted small" },
-      allFailed
+      !app.s.online
+        ? "Videos load when you're back online. Your settings, follows and history are here."
+        : allFailed
         ? "Check your connection, or add a different PeerTube instance in Sharing & privacy."
         : recipe.weights.follow > 0 && app.s.follows.length === 0 && recipe.weights.taste === 0
           ? "This recipe only shows channels you follow. Follow a channel, or pick another recipe."

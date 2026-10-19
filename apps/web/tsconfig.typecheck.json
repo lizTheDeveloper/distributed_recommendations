@@ -1,0 +1,24 @@
+{
+  "$comment": "Typecheck only (scripts/typecheck.mjs). Maps the bare imports of packages/* (imported from source) to apps/web's own node_modules types. Kept out of tsconfig.json because esbuild reads that file's paths, and these point at .d.ts files.",
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "nostr-tools": [
+        "./node_modules/nostr-tools/lib/types/index.d.ts"
+      ],
+      "nostr-tools/*": [
+        "./node_modules/nostr-tools/lib/types/*.d.ts"
+      ],
+      "ohttp-ts": [
+        "./node_modules/ohttp-ts/dist/index.d.mts"
+      ],
+      "hpke": [
+        "./node_modules/hpke/index.d.ts"
+      ],
+      "@divviup/dap": [
+        "./node_modules/@divviup/dap/dist/index.d.ts"
+      ]
+    }
+  }
+}

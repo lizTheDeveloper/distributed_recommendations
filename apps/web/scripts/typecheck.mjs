@@ -5,7 +5,7 @@ import { spawnSync } from "node:child_process";
 import { createRequire } from "node:module";
 
 const tsc = createRequire(import.meta.url).resolve("typescript/bin/tsc");
-const r = spawnSync(process.execPath, [tsc, "-p", ".", "--pretty", "false"], { encoding: "utf8" });
+const r = spawnSync(process.execPath, [tsc, "-p", "tsconfig.typecheck.json", "--pretty", "false"], { encoding: "utf8" });
 const lines = (r.stdout + r.stderr).split("\n").filter(Boolean);
 const isCore = (l) => l.startsWith("../../packages/");
 const errorStarts = lines.filter((l) => /error TS\d+/.test(l));

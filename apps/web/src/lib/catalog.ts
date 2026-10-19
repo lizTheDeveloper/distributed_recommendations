@@ -22,7 +22,7 @@ export interface ChannelStats {
   videos: { video: Video; views: number; likes: number }[];
 }
 
-/** Public profile text of a channel, scanned for a Match Feed identity (npub). */
+/** Public profile text of a channel, scanned for a Nostr identity (npub). */
 export interface ChannelProfile {
   handle: string;
   displayName?: string;

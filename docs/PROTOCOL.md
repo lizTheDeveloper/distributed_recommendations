@@ -377,3 +377,46 @@ Rule: seal with my match key once I've announced it; send to the peer's match ke
   2. The requester answers with setup and response (the PSI server). It refuses requests with more than 128 elements, or with `reveal_intersection` set.
   3. The target computes |A ∩ B|, runs core `startPreviewRun`, then sends `noisyPreviewCardinality`'s output.
 <!-- END section added by packages/match -->
+
+## 7. Creator picks: the `pick` tag (provisional; `packages/taste`, read by `apps/web`)
+
+A creator's public picks ("Follow taste", WEB_APP.md) go out in two formats built from one set: a NIP-51 **video curation set** (kind 30005, public items only) and the taste-list v1 JSON (WEB_APP.md, "Taste list format, v1"). NIP-51 has no per-item date or disclosure field, so each pick in the set also carries one `pick` tag. Like taste-list v1, this is **provisional**: not registered with NIPs, and it may change before either format becomes normative.
+
+```
+["pick", <ref>, <canonical watch URL>, <addedAt>, <flags>, <note>?]
+```
+
+| Position | Value | Rules | Taste-list v1 field |
+|---|---|---|---|
+| 1 `ref` | the pick's `a` value (`<kind>:<pubkey>:<d>`), or its `e` id when it has no `a` | must equal an `a` or `e` ref in the same event | — |
+| 2 URL | `<origin>/videos/watch/<uuid>` | canonical PeerTube watch URL (`/w/<short>` is canonicalized when building); for an `a` ref with an addressable video kind (34235/34236), the uuid must equal the ref's `d` | `items[].id` |
+| 3 `addedAt` | Unix seconds as a decimal string, or `""` | integer ≥ 0, not in the future by more than the client allows | `items[].addedAt` |
+| 4 `flags` | `""`, `sponsored`, `affiliated` or `sponsored,affiliated` | nothing else | `items[].sponsored`, `items[].affiliated` |
+| 5 `note` | optional, ≤ 280 characters | no control or bidi characters (Conventions) | `items[].note` |
+
+Event shape (`buildCurationSet`):
+
+```
+["d", "picks"], ["title", "Slow craft picks"], ["description", "…"]?, ["image", "https://…"]?,
+["alt", "Video curation set: Slow craft picks"],
+["a", "34235:<bridge pubkey>:<peertube uuid>", <relay>?],
+["e", <video event id>, <relay or "">, <bridge pubkey>]      ← when the id is known
+["pick", "34235:<bridge pubkey>:<uuid>", "https://host/videos/watch/<uuid>", "1792400000", "affiliated", "note"],
+…
+content: ""
+```
+
+- **Order.** NIP-51 appends new items, so refs and picks run oldest first; readers treat the last as the newest.
+- **Limits.** ≤ 256 picks, ≤ 512 refs, ≤ 1,040 tags, ≤ 1,024 characters per tag value, ≤ 64 KiB serialized (checked when building and when parsing).
+- **Unbridged picks.** A pick whose video has no NIP-71 event (from `packages/bridge`) is left out of the set and kept only in the JSON list.
+- **Other clients.** `pick` is a multi-letter tag: relays don't index it and other NIP-51 clients ignore it. Sets without `pick` tags (plain `e`/`a` refs) still parse; their picks get the set's `created_at` as `addedAt` and no flags.
+
+**Reading (apps/web, Follow taste source 1).** `readCreatorPicks(pubkey)` from `packages/taste`:
+1. `REQ {kinds: [30005], authors: [pubkey]}` on the viewer's own relays only (read-only, no NIP-42 AUTH).
+2. Each event goes through the strict `parseCurationSet` (structure, limits, the rules above); the newest version per `d` wins, then its id and Schnorr signature are checked on a fresh object (THREAT_MODEL T25).
+3. The referenced video events are fetched and verified; a pick URL that disagrees with its video event's `origin`/`r` tag drops the pick (`resolveCurationSet`).
+4. The result is a taste-list v1 object. Its items keep `addedAt`, `sponsored`, `affiliated` and `note`.
+
+**Ranking.** Each pick's `addedAt` reaches core `rank()` as `CandidateSource.addedAt = new Date(addedAt * 1000)`, so taste sources decay from `max(addedAt, publishedAt)` (§1 and packages/core, "pick-dated recency"). `addedAt` is the curator's claim: the per-list cap and the list's track record bound what re-dating can buy, and a date in the future counts as now. `sponsored`/`affiliated` show as **Sponsored**/**Affiliated** on the card, exactly as for v1 lists.
+
+**Publishing (apps/web Creator studio, "Publish my picks").** Dry run by default; publishing signs with the viewer's own signer (the Match identity key or a NIP-07 extension) and sends only to the relays they configured. Unpublishing is a NIP-09 request for the set's address (`buildSetDeletion`).

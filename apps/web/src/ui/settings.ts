@@ -8,21 +8,28 @@ import { parseInstance } from "../lib/handles.ts";
 import { h, toggle } from "./dom.ts";
 import { LEGEND } from "./home.ts";
 import { telemetryLedgerText, telemetryPanel } from "./telemetry.ts";
+import { moderationPanel } from "./moderation.ts";
+import { keyStoreLabel } from "../lib/native.ts";
+import { channelTotals } from "../lib/discovery.ts";
+import { APP_NAME } from "../brand.ts";
 
 function ledger(app: App): HTMLElement {
   const { s } = app;
   const hosts = s.settings.instances.map((o) => new URL(o).host);
   const followHosts = [...new Set(s.follows.map((f) => f.handle.split("@")[1]))].filter((x) => !hosts.includes(x));
   const row = (peer: string, shares: string, status: HTMLElement) => h("tr", null, h("td", null, peer), h("td", null, shares), h("td", null, status));
-  const total = LEGEND.reduce((n, k) => n + s.tally[k], 0);
-  const max = Math.max(1, ...LEGEND.map((k) => s.tally[k]));
+  const tally = channelTotals(s.discovery.ledger);
+  const total = LEGEND.reduce((n, k) => n + tally[k], 0) + tally.other;
+  const max = Math.max(1, ...LEGEND.map((k) => tally[k]));
+  const helpers = app.dapHelpers;
+  const opted = Object.values(s.discovery.configs).filter((c) => c.config).length;
   return h(
     "section",
     { class: "panel", style: { gap: "10px" }, "aria-labelledby": "ledger-h" },
     h("h2", { id: "ledger-h" }, "What you share, and with whom"),
     h(
       "div",
-      { class: "tablewrap" },
+      { class: "tablewrap", tabindex: "0", role: "region", "aria-label": "Table (scrolls sideways)" },
       h(
         "table",
         null,
@@ -51,15 +58,20 @@ function ledger(app: App): HTMLElement {
           telemetryRow(app),
           row(
             "Creators (discovery stats)",
-            s.settings.analytics.contribute ? "Nothing sent yet: aggregation isn't live. Your device keeps the tally below until it is." : "Nothing. You turned contribution off.",
-            h("span", { class: "pill " + (s.settings.analytics.contribute ? "next" : "ok") }, s.settings.analytics.contribute ? "on, not yet sent" : "off"),
+            !s.settings.analytics.contribute
+              ? "Nothing. You turned contribution off."
+              : !helpers.length || app.mode === "snapshot"
+                ? "Nothing: this build has no approved independent helper, so no report can be sent. Your device keeps the tally below."
+                : `For creators who opted in (${opted} so far): once per 28 days, one encrypted, noised "how I found this creator" report, split between the creator's server and an independent helper so neither sees it. Never which videos.`,
+            h("span", { class: "pill " + (s.settings.analytics.contribute ? "next" : "ok") }, !s.settings.analytics.contribute ? "off" : helpers.length && app.mode === "live" ? `on${s.discovery.jobs.length ? `, ${s.discovery.jobs.length} pending` : ""}` : "on, nothing sent"),
           ),
         ),
       ),
     ),
     h("p", { class: "note" }, "Revoking a match stops future sketches. It can't recall what a peer already received; the app says so at the moment you share."),
     h("h3", null, "Discovery stats your device would contribute"),
-    h("p", { class: "muted small", style: { "margin-top": "-6px" } }, `${total} view${total === 1 ? "" : "s"} counted by how you found them. When the privacy-preserving aggregation (DAP) ships, only totals like these go to creators, split between two servers so neither sees your report. Kept on this device until then.`),
+    h("p", { class: "muted small", style: { "margin-top": "-6px" } }, `${total} view${total === 1 ? "" : "s"} in the current 28-day window${Object.keys(s.discovery.ledger.windows).length > 1 ? "s" : ""}, counted per creator by how you found them (no videos or times). For a creator who opted in, your device sends one report per window: just the way you found them most, encrypted for DAP aggregation and noised, so the creator only ever sees totals of 20 or more. `,
+      h("a", { href: "https://github.com/lizthedotdev/distributed_recommendations/blob/main/docs/ANALYTICS_IMPLEMENTATION.md", target: "_blank", rel: "noopener noreferrer" }, "How it works")),
     h(
       "div",
       { class: "stack" },
@@ -67,8 +79,8 @@ function ledger(app: App): HTMLElement {
         h(
           "div",
           null,
-          h("div", { class: "row small", style: { "justify-content": "space-between" } }, h("span", null, CHIP_LABELS[k], s.settings.analytics.perKind[k] ? "" : " (off)"), h("span", { class: "mono" }, String(s.tally[k]))),
-          h("div", { class: "bar" }, h("i", { style: { width: `${(s.tally[k] / max) * 100}%`, background: `var(--${k})` } })),
+          h("div", { class: "row small", style: { "justify-content": "space-between" } }, h("span", null, CHIP_LABELS[k], s.settings.analytics.perKind[k] ? "" : " (off)"), h("span", { class: "mono" }, String(tally[k]))),
+          h("div", { class: "bar" }, h("i", { style: { width: `${(tally[k] / max) * 100}%`, background: `var(--${k})` } })),
         ),
       ),
     ),
@@ -254,7 +266,9 @@ function storageStatus(app: App): HTMLElement {
     h("strong", null, v.status === "passphrase" ? "Encrypted with your passphrase. " : "Encrypted on this device. "),
     v.status === "passphrase"
       ? "History, follows and taste lists are stored as AES-256-GCM ciphertext under a key derived from your passphrase. It isn't stored anywhere."
-      : "History, follows and taste lists are stored as AES-256-GCM ciphertext under a key this browser keeps and page scripts can't export. That keeps them out of plaintext site data, backups and sync of it, and other browser profiles. It doesn't protect against malware, anyone using this browser profile, or a full copy of the profile (a passphrase helps there).",
+      : v.keyStore === "native"
+        ? `History, follows, taste lists and moderation choices are stored as AES-256-GCM ciphertext under a key kept in ${keyStoreLabel(app.native?.platform)}. It doesn't protect against malware or anyone using this unlocked device; the app holds the key in memory while it runs.`
+        : "History, follows and taste lists are stored as AES-256-GCM ciphertext under a key this browser keeps and page scripts can't export. That keeps them out of plaintext site data, backups and sync of it, and other browser profiles. It doesn't protect against malware, anyone using this browser profile, or a full copy of the profile (a passphrase helps there).",
   );
 }
 
@@ -323,8 +337,57 @@ function passphrase(app: App): HTMLElement | null {
   );
 }
 
+/** Install, offline and native-shell settings. */
+function appPanel(app: App): HTMLElement {
+  const { s } = app;
+  const nb = app.native;
+  const ios = /iphone|ipad|ipod/i.test(globalThis.navigator?.userAgent ?? "") && !nb;
+  return h(
+    "section",
+    { class: "panel", id: "app-panel", "aria-labelledby": "app-h" },
+    h("h2", { id: "app-h" }, "App"),
+    nb
+      ? h("p", { class: "small" }, `You're using the ${nb.platform === "desktop" ? "desktop" : nb.platform === "ios" ? "iOS" : "Android"} app.`)
+      : s.installed
+        ? h("p", { class: "small", id: "install-status" }, `${APP_NAME} is installed on this device.`)
+        : s.installPrompt
+          ? h("div", { class: "stack" }, h("p", { class: "small" }, `Install ${APP_NAME} to open it like an app, from your home screen or dock. It opens offline too.`), h("div", { class: "row" }, h("button", { class: "btn match", id: "install-btn", onclick: () => void app.promptInstall() }, "Install app")))
+          : h(
+              "p",
+              { class: "small", id: "install-status" },
+              ios ? `To install: tap Share, then "Add to Home Screen".` : app.mode === "snapshot" ? "Installing needs the live web app (this is the offline snapshot)." : `To install, use your browser's "Install app" or "Add to Home screen" menu item.`,
+            ),
+    h("details", { class: "small" }, h("summary", null, "What's kept for offline use"), h(
+      "ul",
+      null,
+      h("li", null, "Only the app itself: its page, script, styles, fonts, icons and the Match preview module. It's cached per version and replaced when you reload into an update."),
+      h("li", null, "Never cached: video lists, videos, thumbnails, channel pages, relay messages or anything from PeerTube instances. Your history lives only in the encrypted store, so nothing in the cache shows what you watched, and other browser profiles don't share it."),
+      h("li", null, "Offline, the app opens with your settings, Matches and history; the feed needs the network."),
+    )),
+    nb?.notifications
+      ? toggle("sw-native-notify", "Notify me about match requests", s.settings.nativeNotify, (on) => void app.setNativeNotify(on), {
+          hint: "Off by default. The notification only says there's a request, never who sent it.",
+        })
+      : null,
+    nb?.background
+      ? toggle("sw-native-bg", "Check for match messages in the background", s.settings.nativeBackground, (on) => void app.setNativeBackground(on), {
+          disabled: app.vault.status === "passphrase",
+          hint:
+            app.vault.status === "passphrase"
+              ? "Unavailable with a passphrase: nobody is there to type it."
+              : "Off by default. Your relays then see check-ins at times the system picks, not only while the app is open.",
+        })
+      : null,
+    nb?.platform === "desktop"
+      ? h("p", { class: "hint" }, "In the desktop app, links that open other sites (\"Open on PeerTube\") don't open yet: the app has no permission to start your browser. Copy the link with Share instead.")
+      : null,
+    s.settings.onboarded ? h("button", { class: "linkbtn", id: "onb-again", onclick: () => app.openOnboarding() }, "Show the welcome steps again") : null,
+  );
+}
+
 export function settingsScreen(app: App): HTMLElement {
   const cols = h("section", { class: "cols" }, ledger(app), controls(app));
+  const extra = h("section", { class: "cols2" }, moderationPanel(app), appPanel(app));
   const tel = telemetryPanel(app);
-  return tel ? h("div", { class: "stack", style: { gap: "20px" } }, cols, tel) : cols;
+  return h("div", { class: "stack", style: { gap: "20px" } }, cols, extra, tel);
 }

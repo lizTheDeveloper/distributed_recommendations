@@ -2,6 +2,9 @@ import type { App } from "../app.ts";
 import { formatDuration, statsUrl } from "../lib/videos.ts";
 import { h, toggle } from "./dom.ts";
 import { tasteButton } from "./taste.ts";
+import { publishPanel } from "./publish.ts";
+import { openDialog } from "./dialog.ts";
+import { CONFIG_D_TAG, CONFIG_KIND, parseTaskConfig } from "../lib/analytics/pkg.ts";
 
 const fmtN = (n: number) => n.toLocaleString("en-US");
 
@@ -56,7 +59,7 @@ function tier1(app: App): HTMLElement | null {
       top.length
         ? h(
             "div",
-            { class: "tablewrap" },
+            { class: "tablewrap", tabindex: "0", role: "region", "aria-label": "Table (scrolls sideways)" },
             h(
               "table",
               null,
@@ -89,27 +92,99 @@ function matchButton(app: App, name: string, handle: string): HTMLElement | null
   if (!pk) return null;
   const live = app.match.liveWith(pk);
   if (live) return h("button", { class: "btn on", onclick: () => app.go("matches") }, live.status === "active" ? "Matched" : "Match requested");
-  return h("button", { class: "btn match", id: "studio-match", title: "This channel publishes a Match Feed identity (npub)", onclick: () => app.requestMatchWith({ pubkey: pk, name, source: "creator", ref: handle }) }, "Request match…");
+  return h("button", { class: "btn match", id: "studio-match", title: "This channel publishes a Nostr identity (npub)", onclick: () => app.requestMatchWith({ pubkey: pk, name, source: "creator", ref: handle }) }, "Request match…");
 }
 
-function tier2(): HTMLElement {
+/**
+ * Tier 2, creator side (ANALYTICS.md decisions: creator opt-in, off by default;
+ * private to the creator unless they choose to publish). Opting in = publishing the
+ * public task config your instance's operator made with infra/janus new-task.mjs,
+ * as a signed Nostr event (kind 30078) or a file linked from the channel description.
+ */
+/** The config's own helper, so its structure can be checked here; the build's allowlist is shown separately. */
+function declaredHelper(text: string): string[] {
+  try {
+    const h = (JSON.parse(text) as { helper?: unknown }).helper;
+    return typeof h === "string" ? [h] : [];
+  } catch {
+    return [];
+  }
+}
+
+function tier2(app: App): HTMLElement {
+  const { s } = app;
+  const handle = s.studio.handle;
+  const text = s.ui.t2Config ?? "";
+  let parsed: ReturnType<typeof parseTaskConfig> | null = null;
+  if (text.trim() && handle) parsed = parseTaskConfig(text.trim(), { creator: handle.toLowerCase(), now: new Date(), allowedHelpers: declaredHelper(text) });
+  const cfg = parsed?.ok ? parsed.config : null;
+  const helperOk = !!cfg && app.dapHelpers.includes(new URL(cfg.helper).origin);
+  const publish = s.ui.t2Publish === "1";
+  const finalCfg = cfg ? { ...cfg, publish } : null;
+  const json = finalCfg ? JSON.stringify(finalCfg) : "";
+  const sendNostr = () => {
+    const d = openDialog({
+      id: "t2-confirm",
+      title: "Publish your discovery-stats config?",
+      returnFocus: "t2-nostr",
+      body: () => [
+        h("p", { class: "small" }, "Signs a public event (kind 30078) with your Match identity and sends it to your relays. Viewers' devices that find it start sending one encrypted, noised report about you per 28 days."),
+        h("div", { class: "row end" }, h("button", { class: "btn", onclick: () => d.close() }, "Cancel"), h("button", { class: "btn warn solid", id: "t2-confirm-yes", onclick: async () => {
+          d.close();
+          try {
+            const r = await app.publishSigned({ kind: CONFIG_KIND, created_at: Math.floor(Date.now() / 1000), tags: [["d", CONFIG_D_TAG], ["alt", "Discovery-stats task config"]], content: json });
+            app.toast(`Sent to ${r.results.filter((x) => x.ok).length} of ${r.results.length} relays`);
+          } catch (e) {
+            app.toast(e instanceof Error ? e.message : String(e));
+          }
+        } }, "Sign and publish")),
+      ],
+    });
+  };
   return h(
     "aside",
     { class: "panel tier t2", "aria-labelledby": "t2-h" },
-    h("div", { class: "row", style: { "justify-content": "space-between" } }, h("h2", { id: "t2-h" }, "How people found you"), h("span", { class: "pill next" }, "coming next")),
-    h("p", { class: "muted small" }, "Tier 2: how many views came from Follow, Taste lists, Match, Circle, Explore and 2nd degree. This is about viewers, so it needs private aggregation: two independent servers add up encrypted reports, and nobody (you included) sees who watched."),
+    h("div", { class: "row", style: { "justify-content": "space-between" } }, h("h2", { id: "t2-h" }, "How people found you"), h("span", { class: "pill next" }, "opt-in")),
+    h("p", { class: "muted small" }, "Tier 2: the share of your viewers who found you through Follow, Taste lists, Match, Circle, Explore, 2nd degree, search or elsewhere. Two independent servers add up encrypted reports (DAP), and nobody, you included, sees who watched."),
     h("h3", null, "Decided defaults"),
     h(
       "ul",
       { class: "small", style: { margin: "0", "padding-left": "18px", display: "flex", "flex-direction": "column", gap: "4px" } },
-      h("li", null, "Creator opt-in: off until you turn it on."),
+      h("li", null, "Off until you opt in by publishing your task config."),
       h("li", null, "Private to you by default; you can choose to publish your numbers, with the same thresholds and noise."),
       h("li", null, "Viewers contribute by default and can turn off any signal."),
-      h("li", null, "Channel totals only, never per video; 28-day windows; counts under 20 show as \"<20\"; totals are lightly noised."),
+      h("li", null, "Channel totals only, never per video; 28-day windows; counts under 20 show as \"<20\"; totals are noised."),
     ),
-    ...toggle("sw-t2", "Collect discovery-channel stats for my channel", false, () => {}, { disabled: true }),
-    ...toggle("sw-t2-pub", "Publish them on my channel", false, () => {}, { disabled: true }),
-    h("p", { class: "note" }, "Small channels will mostly see \"<20\". That is the honest cost of not identifying individual viewers."),
+    h("h3", null, "Opt in"),
+    h("p", { class: "small" }, "Your instance's operator makes a task for you (infra/janus, new-task.mjs) and gives you task-config.json. The collector key stays with you. Paste the config to check it:"),
+    h("label", { for: "t2-config", class: "small" }, "task-config.json"),
+    h("textarea", { id: "t2-config", rows: 4, placeholder: '{"v":1,"kind":"discovery-channels",…}', oninput: (e: Event) => ((s.ui.t2Config = (e.target as HTMLTextAreaElement).value), app.rerender()) }, text),
+    !handle ? h("p", { class: "hint" }, "Load your channel above first: the config must name it.") : null,
+    parsed && !parsed.ok ? h("p", { class: "err", role: "alert" }, `Not accepted: ${parsed.reason}`) : null,
+    cfg
+      ? h(
+          "div",
+          { class: "stack" },
+          h("p", { class: "okmsg" }, `Valid for ${cfg.creator}. Leader ${new URL(cfg.leader).host}, helper ${new URL(cfg.helper).host} (${cfg.helperOperator}), ε = ${cfg.dp.epsilon}.`),
+          helperOk ? null : h("p", { class: "note" }, `This build doesn't list ${new URL(cfg.helper).host} as an approved independent helper, so viewers of this build won't send reports for it.`),
+          ...toggle("t2-publish", "Publish my numbers on my channel", publish, (on) => ((s.ui.t2Publish = on ? "1" : undefined), app.rerender()), { hint: "Off: only you can collect and read them. On: the config says you publish them (same thresholds and noise)." }),
+          h(
+            "div",
+            { class: "row" },
+            h("button", { class: "btn sm", id: "t2-nostr", disabled: !app.match.identity || !s.settings.relays.length || app.mode !== "live", onclick: sendNostr }, "Publish config on Nostr…"),
+            h("button", { class: "btn sm", id: "t2-download", onclick: () => {
+              const url = URL.createObjectURL(new Blob([json], { type: "application/json" }));
+              const a = h("a", { href: url, download: "task-config.json", hidden: true });
+              document.body.appendChild(a);
+              a.click();
+              a.remove();
+              setTimeout(() => URL.revokeObjectURL(url), 1000);
+            } }, "Download for my instance"),
+          ),
+          h("p", { class: "hint" }, `Hosting it yourself: put it on ${handle.split("@")[1] ?? "your instance"} and add a line "discovery-stats: https://…/task-config.json" to your channel description.`),
+        )
+      : null,
+    h("p", { class: "note" }, "Reading your numbers: collect at least 7 days after a window ends (infra/janus README, \"collect\"); counts under 20 show as \"<20\". Showing them here is coming next."),
   );
 }
 
@@ -140,7 +215,8 @@ export function studioScreen(app: App): HTMLElement {
           : null,
       ),
       tier1(app),
+      publishPanel(app),
     ),
-    tier2(),
+    tier2(app),
   );
 }

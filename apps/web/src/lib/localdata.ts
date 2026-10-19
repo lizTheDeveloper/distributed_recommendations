@@ -32,6 +32,12 @@ export const SENSITIVE_KEYS = [
   // Moderation (packages/moderation): block and mute lists, labeler subscriptions, the
   // NSFW choice, cached label events and instance defaults. Says whom the viewer avoids.
   "moderation",
+  // Tier 2 discovery stats (packages/analytics): per 28-day window, creator and
+  // channel counts (no video ids or times), pending encrypted reports, and the cache
+  // of creators' published task configs. Says which creators you watched.
+  "analyticsLedger",
+  "analyticsJobs",
+  "analyticsConfigs",
   // Creator studio: the draft of "Publish my picks" (picked from your endorsements).
   "picks",
 ] as const;

@@ -41,7 +41,7 @@ function ago(t: number): string {
 function avatar(name: string, pubkey: string): HTMLElement {
   const hue = parseInt(pubkey.slice(0, 4), 16) % 360;
   const letters = name.replace(/[^A-Za-z0-9 ]/g, "").split(/\s+/).filter(Boolean).slice(0, 2).map((w) => w[0]).join("").toUpperCase() || "?";
-  return h("span", { class: "av", style: { background: `hsl(${hue} 45% 40%)` }, "aria-hidden": "true" }, letters);
+  return h("span", { class: "av", style: { background: `hsl(${hue} 45% 32%)` }, "aria-hidden": "true" }, letters);
 }
 
 function consentSummary(c: SketchConsent): string {
@@ -143,6 +143,38 @@ function identityPanel(app: App): HTMLElement {
 
 // ---- relays ----
 
+/** Direct relays or the private relay (OHTTP), when this build has one (docs/TRANSPORT.md). */
+function transportChoice(app: App): HTMLElement | null {
+  const { s } = app;
+  if (!app.ohttp) return null;
+  const mode = s.settings.matchTransport;
+  return h(
+    "fieldset",
+    { class: "fieldset", id: "transport" },
+    h("legend", null, "How Match reaches relays"),
+    h(
+      "label",
+      { class: "radio" },
+      h("input", { type: "radio", name: "transport", id: "tr-ohttp", checked: mode === "ohttp", onchange: () => app.setTransport("ohttp") }),
+      h("span", null, h("strong", null, "Private relay (OHTTP)"), h("span", { class: "muted small block" }, `Through ${new URL(app.ohttp.relayUrl).host}, which sees your IP but not what you send; the gateway behind it sees what you send but not your IP. It uses its operator's Nostr relays instead of your list, and relays that require sign-in (NIP-42) can't be used. Checks run every few minutes.`)),
+    ),
+    mode === "ohttp"
+      ? h(
+          "label",
+          { class: "check indent" },
+          h("input", { type: "checkbox", id: "tr-strict", checked: s.settings.ohttpStrict, onchange: (e: Event) => app.setTransport("ohttp", (e.target as HTMLInputElement).checked) }),
+          h("span", null, "Strict timing", h("span", { class: "muted small block" }, "Sends same-size requests on a fixed schedule, so not even the timing shows when you're active. Slower delivery and about 30 MB a day.")),
+        )
+      : null,
+    h(
+      "label",
+      { class: "radio" },
+      h("input", { type: "radio", name: "transport", id: "tr-direct", checked: mode === "direct", onchange: () => app.setTransport("direct") }),
+      h("span", null, h("strong", null, "Direct"), h("span", { class: "muted small block" }, "Faster, to the relays in your list. They see your IP and when you check.")),
+    ),
+  );
+}
+
 function relaysPanel(app: App): HTMLElement {
   const { s } = app;
   if (app.mode === "snapshot") {
@@ -174,7 +206,8 @@ function relaysPanel(app: App): HTMLElement {
     "section",
     { class: "panel", "aria-labelledby": "relays-h" },
     h("h2", { id: "relays-h" }, "Relays"),
-    h("p", { class: "muted small" }, "Match messages travel as encrypted, padded gift wraps through Nostr relays you choose. None are set by default, so nothing is sent until you add one. Relays see your IP, when you check for messages, and that some key receives traffic; never what's inside."),
+    transportChoice(app),
+    h("p", { class: "muted small" }, app.ohttp && s.settings.matchTransport === "ohttp" ? "Your relay list below is used for direct mode, and by features that read public data (creators' signed picks, labelers, publishing your picks)." : "Match messages travel as encrypted, padded gift wraps through Nostr relays you choose. None are set by default, so nothing is sent until you add one. Relays see your IP, when you check for messages, and that some key receives traffic; never what's inside."),
     relays.length
       ? h(
           "ul",
@@ -415,6 +448,7 @@ function incoming(app: App, recs: MatchRecord[]): HTMLElement | null {
           [
             h("button", { class: "btn match sm", id: `accept-${rec.matchId.slice(0, 8)}`, disabled: busy || previewOpen, title: previewOpen ? "Answer the preview first" : undefined, onclick: () => { app.s.consent = { mode: "accept", matchId: rec.matchId }; app.rerender(); } }, "Accept match…"),
             h("button", { class: "btn sm", disabled: busy, onclick: () => act(app, rec.matchId, () => app.match.decline(rec.matchId), "Declined") }, "Decline"),
+            blockPersonButton(app, rec),
           ],
         );
       }),
@@ -440,6 +474,20 @@ function outgoing(app: App, recs: MatchRecord[]): HTMLElement | null {
         ),
       ),
     ),
+  );
+}
+
+/** Block: declines or revokes the match and drops anything from this key (sketches, lists, requests). */
+function blockPersonButton(app: App, rec: MatchRecord): HTMLElement {
+  return h(
+    "button",
+    {
+      class: "btn sm warn",
+      id: `block-${rec.matchId.slice(0, 8)}`,
+      title: "Ends the match, declines future requests from this key and hides what it recommends",
+      onclick: () => void app.blockPerson(rec.peer, app.match.nameOf(rec.peer)),
+    },
+    "Block",
   );
 }
 
@@ -509,6 +557,7 @@ function active(app: App, recs: MatchRecord[]): HTMLElement | null {
             h("button", { class: "btn sm", onclick: () => { app.s.consent = { mode: "edit", matchId: rec.matchId }; app.rerender(); } }, "What I share…"),
             app.devTools ? h("button", { class: "btn sm", id: `sketch-${rec.matchId.slice(0, 8)}`, disabled: busy, title: "Dev builds only: off the weekly schedule", onclick: () => act(app, rec.matchId, () => app.match.sendSketchNow(rec.matchId), "Sketch sent") }, "Send sketch now (dev)") : null,
             revokeControl(app, rec),
+            blockPersonButton(app, rec),
           ],
         );
       }),
@@ -535,7 +584,7 @@ function ledger(app: App, recs: MatchRecord[]): HTMLElement {
     rows.length
       ? h(
           "div",
-          { class: "tablewrap" },
+          { class: "tablewrap", tabindex: "0", role: "region", "aria-label": "Table (scrolls sideways)" },
           h(
             "table",
             null,
