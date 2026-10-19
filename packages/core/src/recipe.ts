@@ -37,12 +37,40 @@ export interface Recipe {
   weights: Record<SourceKind, number>;
   /** Half-life of the recency decay, in days. 0 disables decay. */
   recencyHalfLifeDays: number;
-  /** Share of feed slots reserved for explore (new, untied creators), 0..0.5. */
+  /**
+   * Share of feed slots reserved for explore (new, untied creators), 0..0.5.
+   * Recommended 0.02–0.10, default 0.05 (`EXPLORE_SHARE`); 0 turns explore off.
+   */
   exploreShare: number;
   /** Most items any one creator may occupy in one ranked page. */
   maxPerCreator: number;
+  /**
+   * Most items any one taste list (one `via`) may contribute to one ranked page.
+   * Optional on the wire; absent means `RECIPE_DEFAULTS.maxPerTasteList` (2).
+   * Items past the cap lose that list's contribution (they can still rank on
+   * other sources). See docs/SIMULATION_RESULTS.md, Exp 5 (P2).
+   */
+  maxPerTasteList?: number;
   filters: RecipeFilters;
 }
+
+/**
+ * Explore-share guidance from docs/SIMULATION_RESULTS.md, Exp 2: 5% finds 66% of new
+ * creators in their first week at no measurable viewer cost; below 2% leaves creators
+ * locked out; above 10% buys little. Validation still accepts 0..0.5 (0 = off) so
+ * existing recipes keep parsing; UIs should offer `recommendedMin`..`recommendedMax`.
+ */
+export const EXPLORE_SHARE = {
+  default: 0.05,
+  recommendedMin: 0.02,
+  recommendedMax: 0.1,
+} as const;
+
+/** Defaults applied by the ranker when an optional recipe field is absent. */
+export const RECIPE_DEFAULTS = {
+  /** Exp 5: capping each list at 2 items per feed cut list-lure reach from 54% to 2%. */
+  maxPerTasteList: 2,
+} as const;
 
 /** Limits enforced by `parseRecipe`. Recipes are untrusted community input. */
 export const RECIPE_LIMITS = {
@@ -53,6 +81,7 @@ export const RECIPE_LIMITS = {
   maxHalfLifeDays: 3650,
   maxExploreShare: 0.5,
   maxPerCreator: 100,
+  maxPerTasteList: 100,
   maxDurationSec: 86_400,
   maxTags: 64,
   maxTagLength: 64,
@@ -72,6 +101,7 @@ const TOP_KEYS = [
   "recencyHalfLifeDays",
   "exploreShare",
   "maxPerCreator",
+  "maxPerTasteList",
   "filters",
 ] as const;
 const FILTER_KEYS = [
@@ -110,6 +140,9 @@ export function parseRecipe(json: unknown): Recipe {
   const recencyHalfLifeDays = number(o.recencyHalfLifeDays, "recipe.recencyHalfLifeDays", 0, L.maxHalfLifeDays);
   const exploreShare = number(o.exploreShare, "recipe.exploreShare", 0, L.maxExploreShare);
   const maxPerCreator = number(o.maxPerCreator, "recipe.maxPerCreator", 1, L.maxPerCreator, true);
+  const maxPerTasteList = has(o, "maxPerTasteList")
+    ? number(o.maxPerTasteList, "recipe.maxPerTasteList", 1, L.maxPerTasteList, true)
+    : undefined;
 
   const f = has(o, "filters") ? plainObject(o.filters, "recipe.filters", FILTER_KEYS) : {};
   const lower = (xs: string[]) => [...new Set(xs.map((x) => x.toLowerCase()))];
@@ -139,6 +172,7 @@ export function parseRecipe(json: unknown): Recipe {
 
   const recipe: Recipe = { version: 1, name, weights, recencyHalfLifeDays, exploreShare, maxPerCreator, filters };
   if (author !== undefined) recipe.author = author;
+  if (maxPerTasteList !== undefined) recipe.maxPerTasteList = maxPerTasteList;
   return recipe;
 }
 
@@ -172,21 +206,43 @@ export function recipeToJson(recipe: Recipe): object {
   out.recencyHalfLifeDays = recipe.recencyHalfLifeDays;
   out.exploreShare = recipe.exploreShare;
   out.maxPerCreator = recipe.maxPerCreator;
+  if (recipe.maxPerTasteList !== undefined) out.maxPerTasteList = recipe.maxPerTasteList;
   if (Object.keys(filters).length) out.filters = filters;
   return out;
 }
 
 /**
- * The default mix from the mockup: following 40 / matches 60, second degree at 0.3x
- * the match weight, and 10% of slots reserved for explore.
+ * The default mix: follows and matches, a little taste list, explore at 5%.
+ *
+ * How the weights map from docs/SIMULATION_RESULTS.md. The simulator scaled each
+ * signal to [0, 1] per viewer and mixed them as `peer + 0.15·lists + 0.1·follows`,
+ * where "peer" is first- plus second-degree match CF. A recipe weight multiplies a
+ * strength that is also in [0, 1], so the simulator's relative weights map onto this
+ * scale by multiplying with the match weight (6):
+ *
+ * - `taste: 0.9` = 0.15 × 6. Exp 1: a taste-heavy mix (lists 0.6 relative, i.e. 3.6
+ *   here, close to the old default of 3) lost 16% P@20 and concentrated exposure;
+ *   at 0.15 lists are neutral for warm users and help newcomers with no matches.
+ *   Lists are further capped at `RECIPE_DEFAULTS.maxPerTasteList` items per page.
+ * - `second: 6` = 1.0 × match. The simulator applied the 0.3 decay once, inside the
+ *   trust walk, and then added second-degree trust to first-degree at equal weight.
+ *   `trustWalk` now applies that decay (damping 0.3) and reports trust on the same
+ *   scale as match similarity, so a recipe weight below the match weight would apply
+ *   the decay twice (the old 1.8 = 0.3 × 6 plus the walk's own damping).
+ * - `follow: 4` is kept as a product choice, not taken from the simulator (0.1, i.e.
+ *   0.6 here): follows are explicit user intent, and the synthetic follow graph is
+ *   popularity-driven, which the simulator's endorsement model does not reward.
+ * - `circle: 6` is unchanged (circles were simulated for privacy, not mix quality).
+ * - `exploreShare: 0.05` (Exp 2; see `EXPLORE_SHARE`). `explore` only sets the score
+ *   explore items display: they compete with each other, not with the rest.
  */
 export const DEFAULT_RECIPE: Recipe = parseRecipe({
   version: 1,
   name: "Following + matches",
   author: "Match Feed",
-  weights: { follow: 4, taste: 3, match: 6, circle: 6, second: 1.8, explore: 1 },
+  weights: { follow: 4, taste: 0.9, match: 6, circle: 6, second: 6, explore: 1 },
   recencyHalfLifeDays: 14,
-  exploreShare: 0.1,
+  exploreShare: EXPLORE_SHARE.default,
   maxPerCreator: 2,
 });
 
