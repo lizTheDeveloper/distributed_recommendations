@@ -70,12 +70,15 @@ export interface BuildSketchOptions {
 /** Allowed lengths of `items`. */
 export const SKETCH_BUCKETS = [64, 128, 256] as const;
 
+// Byte budget: the largest sketch (256 × 120 + 512 = 31,232 bytes) must still fit
+// NIP-44's 65,535-byte plaintext limit after NIP-59 double wrapping (rumor → seal
+// → gift wrap, with base64 growth at each layer). See docs/PROTOCOL.md.
 export const SKETCH_LIMITS = {
   maxItemLength: 512,
   defaultTtlSec: 14 * 86_400,
   maxTtlSec: 30 * 86_400,
   clockSkewSec: 300,
-  bytesPerItem: 160,
+  bytesPerItem: 120,
   overheadBytes: 512,
 } as const;
 
