@@ -150,7 +150,7 @@ function controls(app: App): HTMLElement {
     "aside",
     { class: "panel", "aria-label": "Controls" },
     h("h2", null, "Controls"),
-    ...toggle("sw-private", "Private watching", s.settings.privateWatching, (on) => set(() => (s.settings.privateWatching = on), on ? "Private watching on: nothing is recorded" : "Private watching off"), {
+    ...toggle("sw-private", "Private watching", s.settings.privateWatching, (on) => (set(() => (s.settings.privateWatching = on), on ? "Private watching on: nothing is recorded" : "Private watching off"), app.telemetry.event("private-watching", { on })), {
       hint: "Nothing you watch or endorse is recorded while this is on, and nothing is counted for discovery stats.",
     }),
     ...toggle("sw-p2p", "Peer-to-peer streaming", s.settings.p2p, (on) => set(() => (s.settings.p2p = on)), {

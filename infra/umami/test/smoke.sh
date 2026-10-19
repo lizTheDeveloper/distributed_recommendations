@@ -31,7 +31,7 @@ done
 ok "stack up behind Caddy (https://localhost:8444)"
 
 TOKEN=$(curl -sk https://localhost:8444/api/auth/login -H 'Content-Type: application/json' -d '{"username":"admin","password":"umami"}' | sed -n 's/.*"token":"\([^"]*\)".*/\1/p')
-SITE=$(curl -sk https://localhost:8444/api/websites -H "Authorization: Bearer $TOKEN" -H 'Content-Type: application/json' -d '{"name":"app (test)","domain":"app"}' | sed -n 's/.*"id":"\([^"]*\)".*/\1/p' | head -1)
+SITE=$(curl -sk https://localhost:8444/api/websites -H "Authorization: Bearer $TOKEN" -H 'Content-Type: application/json' -d '{"name":"app (test)","domain":"app.example"}' | sed -n 's/.*"id":"\([^"]*\)".*/\1/p' | head -1)
 [ -n "$SITE" ] && ok "test website $SITE" || { bad "couldn't create a website"; exit 1; }
 
 post() { # $1 = base URL, $2 = JSON payload (as the web app's client builds it)

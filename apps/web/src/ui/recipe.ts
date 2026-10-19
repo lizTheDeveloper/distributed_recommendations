@@ -148,6 +148,7 @@ function io(app: App, r: Recipe): HTMLElement {
       const rec = parseRecipeJson(importArea.value);
       s.recipe = { id: "custom", custom: rec };
       app.persist("recipe");
+      app.telemetry.event("recipe-imported");
       s.ui.recipeImport = "";
       s.ui.importError = undefined;
       s.ui.importOk = `Applied "${rec.name}". It's now your custom recipe.`;

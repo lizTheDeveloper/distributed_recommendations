@@ -15,7 +15,8 @@
     "snapshot": "NODE_USE_ENV_PROXY=1 node scripts/fetch-snapshot.mjs",
     "test": "node --experimental-strip-types --disable-warning=ExperimentalWarning --test test/*.test.ts",
     "typecheck": "node scripts/typecheck.mjs",
-    "dev-relay": "node scripts/dev-relay.mjs"
+    "dev-relay": "node scripts/dev-relay.mjs",
+    "check:telemetry": "node scripts/telemetry-check.mjs"
   },
   "devDependencies": {
     "@openmined/psi.js": "2.0.6",
