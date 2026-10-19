@@ -120,8 +120,12 @@ function cardMenu(app: App, item: RankedItem): HTMLElement {
   const name = v.creatorName ?? v.creator;
   const id = "cm-" + hashId(v.id);
   const st = app.tasteState(v.creator);
-  const details = h("details", { class: "cardmenu", id }) as HTMLDetailsElement;
-  const close = () => (details.open = false);
+  // Re-renders rebuild cards, so the open menu is remembered in UI state.
+  const details = h("details", { class: "cardmenu", id, open: app.s.ui.cardMenu === v.id }) as HTMLDetailsElement;
+  const close = () => {
+    details.open = false;
+    app.s.ui.cardMenu = undefined;
+  };
   const tasteLabel = st === "following" ? `Following ${name}'s taste…` : st === "unavailable" ? `${name}: no public picks yet` : `Follow ${name}'s taste…`;
   details.append(
     h("summary", { "aria-label": `More for ${v.title}`, id: id + "-btn" }, h("span", { "aria-hidden": "true" }, "⋯")),
@@ -135,7 +139,10 @@ function cardMenu(app: App, item: RankedItem): HTMLElement {
   );
   // Look up whether the creator publishes picks only when the menu opens.
   details.addEventListener("toggle", () => {
-    if (details.open) void app.lookupCreatorTaste(v.creator, v.creatorName);
+    if (details.open) {
+      app.s.ui.cardMenu = v.id;
+      void app.lookupCreatorTaste(v.creator, v.creatorName);
+    } else if (app.s.ui.cardMenu === v.id) app.s.ui.cardMenu = undefined;
   });
   details.addEventListener("keydown", (e: KeyboardEvent) => {
     if (e.key === "Escape" && details.open) {

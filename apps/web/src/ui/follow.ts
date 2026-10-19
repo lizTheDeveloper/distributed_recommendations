@@ -3,6 +3,7 @@ import { handleOf, parseChannelInput } from "../lib/handles.ts";
 import { TASTE_LIST_LIMITS, errorText, parseTasteListJson } from "../lib/tastelist.ts";
 import { h } from "./dom.ts";
 import { hashId } from "./home.ts";
+import { creatorTastePanel, tasteButton } from "./taste.ts";
 
 const FORMAT_EXAMPLE = `{
   "v": 1,
@@ -54,14 +55,19 @@ function followPanel(app: App): HTMLElement {
       "li",
       null,
       h("div", { class: "stack", style: { gap: "2px" } }, h("strong", null, f.name ?? f.handle), h("span", { class: "mono small muted" }, f.handle), h("div", null, status)),
-      h("button", { class: "btn sm", "aria-label": `Unfollow ${f.name ?? f.handle}`, onclick: () => app.unfollow(f.handle) }, "Unfollow"),
+      h(
+        "div",
+        { class: "row", style: { gap: "6px" } },
+        tasteButton(app, f.handle, f.name ?? f.handle, "ft-" + hashId(f.handle)),
+        h("button", { class: "btn sm", "aria-label": `Unfollow ${f.name ?? f.handle}`, onclick: () => app.unfollow(f.handle) }, "Unfollow"),
+      ),
     );
   });
   return h(
     "section",
     { class: "panel tier t0", "aria-labelledby": "follow-h" },
     h("h2", { id: "follow-h" }, "Follow channels"),
-    h("p", { class: "muted small" }, "Their uploads feed the Following source. You share nothing: the list lives on this device, and the app reads each channel's public video list from its home instance."),
+    h("p", { class: "muted small" }, "Their uploads feed the Following source; Follow taste adds what they recommend. You share nothing: the list lives on this device, and the app reads each channel's public video list from its home instance."),
     h("form", { class: "row", onsubmit: submit }, h("label", { for: "follow-input", class: "muted small", style: { flex: "1 0 100%" } }, "Channel"), input, h("button", { class: "btn follow", type: "submit" }, "Follow")),
     s.ui.followError ? h("p", { class: "err", role: "alert" }, s.ui.followError) : null,
     app.mode === "snapshot" ? h("p", { class: "note" }, "Offline snapshot: only channels that appear in the snapshot have videos.") : null,
@@ -216,6 +222,7 @@ export function followScreen(app: App): HTMLElement {
     { class: "cols2" },
     followPanel(app),
     tastePanel(app),
+    creatorTastePanel(app),
     h(
       "section",
       { class: "panel tier t2", style: { "grid-column": "1 / -1" } },

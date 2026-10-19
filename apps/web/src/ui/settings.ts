@@ -37,6 +37,13 @@ function ledger(app: App): HTMLElement {
           followHosts.length
             ? row(followHosts.join(", "), "Requests for the public video list of each channel you follow, so the host can tell someone at your IP follows it.", h("span", { class: "pill ok" }, "catalog only"))
             : null,
+          row(
+            "Creators' instances (Follow taste)",
+            app.mode === "snapshot"
+              ? "Nothing: playlists come from the snapshot."
+              : `Requests for a creator's public profile and playlists when you look at their Taste${s.settings.relays.length ? ", and read-only queries for their signed list on your relays (no AUTH)" : ""}, refreshed daily for the ${s.tasteFollows.length} you follow. The host can tell someone at your IP looked. Nothing goes to the creator.`,
+            h("span", { class: "pill ok" }, "public data only"),
+          ),
           row("Video hosts, when you press play", s.settings.p2p ? "The embedded player streams from the host and from other viewers. Other viewers can see your IP." : "The embedded player streams from the host only. Your IP is visible to the host, not to other viewers.", h("span", { class: "pill " + (s.settings.p2p ? "exp" : "ok") }, s.settings.p2p ? "P2P on" : "P2P off")),
           matchRows(app),
           row("Circles", "Nothing yet.", h("span", { class: "pill next" }, "coming next")),

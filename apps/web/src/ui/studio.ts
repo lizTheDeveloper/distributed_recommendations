@@ -1,6 +1,7 @@
 import type { App } from "../app.ts";
 import { formatDuration, statsUrl } from "../lib/videos.ts";
 import { h, toggle } from "./dom.ts";
+import { tasteButton } from "./taste.ts";
 
 const fmtN = (n: number) => n.toLocaleString("en-US");
 
@@ -23,7 +24,7 @@ function tier1(app: App): HTMLElement | null {
       "div",
       { class: "row", style: { "justify-content": "space-between" } },
       h("div", null, h("h2", null, st.displayName ?? name), h("p", { class: "mono small muted" }, st.handle)),
-      matchButton(app, st.displayName ?? name, st.handle),
+      h("div", { class: "row" }, tasteButton(app, st.handle, st.displayName ?? name, "studio-taste", "btn"), matchButton(app, st.displayName ?? name, st.handle)),
     ),
     h(
       "section",

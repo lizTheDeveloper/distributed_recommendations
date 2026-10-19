@@ -4,6 +4,11 @@
 //   npm run snapshot              # refresh src/snapshot/snapshot.json
 //   npm run snapshot -- --examples  # also rewrite the example taste lists
 //
+// For "Follow taste" offline, it also captures the public profile and public
+// playlists (with their elements) of a few channels: some curators known to keep
+// public playlists of other creators' videos, and the snapshot channels that have
+// public playlists at all. Everything is public, unauthenticated data.
+//
 // Only public, unauthenticated endpoints are used. Raw objects are trimmed to the
 // fields the app reads, and thumbnails are dropped (the artifact sandbox can't load
 // external images anyway).
@@ -15,6 +20,12 @@ import { fileURLToPath } from "node:url";
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const INSTANCES = ["https://framatube.org", "https://tilvids.com"];
 const PER_LIST = 30;
+// Channels known (2026-10-19) to keep public playlists of other creators' videos.
+const TASTE_CURATORS = ["wex_channel@tilvids.com", "puppuccino_channel@tilvids.com", "the_tech_beast_channel@tilvids.com"];
+// Snapshot channels checked for public playlists (most-represented first).
+const TASTE_SCAN = 24;
+const TASTE_PLAYLISTS = 4;
+const TASTE_ELEMENTS = 30;
 
 async function get(url) {
   const res = await fetch(url, { headers: { accept: "application/json" } });
@@ -119,6 +130,89 @@ for (const file of ["tilvids-picks.json", "framatube-picks.json"]) {
       console.warn("skip", item.id, e.message);
     }
   }
+}
+
+// ---- Follow taste: public profiles and playlists for a few channels ----
+snapshot.channels = {};
+snapshot.playlistVideos = {};
+const str = (x) => (typeof x === "string" ? x : undefined);
+const trimPlaylist = (p) => ({
+  uuid: p.uuid,
+  url: p.url,
+  displayName: p.displayName,
+  privacy: p.privacy && { id: p.privacy.id },
+  type: p.type && { id: p.type.id },
+  videosLength: p.videosLength,
+  updatedAt: p.updatedAt,
+  videoChannel: p.videoChannel && { name: p.videoChannel.name, host: p.videoChannel.host },
+});
+const trimElement = (e) => ({
+  position: e.position,
+  type: e.type,
+  video: e.video && { ...trim(e.video), account: e.video.account && { name: e.video.account.name, host: e.video.account.host }, privacy: e.video.privacy && { id: e.video.privacy.id } },
+});
+async function captureTaste(handle, mustHave) {
+  const [name, host] = handle.split("@");
+  const origin = `https://${host}`;
+  let info;
+  try {
+    info = await get(`${origin}/api/v1/video-channels/${encodeURIComponent(name)}`);
+  } catch (e) {
+    console.warn("taste: skip", handle, e.message);
+    return;
+  }
+  const owner = info.ownerAccount ?? {};
+  const isPub = (p) => p.privacy?.id === 1 && p.type?.id === 1 && p.videosLength > 0;
+  const chan = (await get(`${origin}/api/v1/video-channels/${encodeURIComponent(name)}/video-playlists?count=50&sort=-updatedAt`)).data ?? [];
+  let acct = [];
+  if (owner.name && owner.host === host) {
+    try {
+      acct = (await get(`${origin}/api/v1/accounts/${encodeURIComponent(owner.name)}/video-playlists?count=50&sort=-updatedAt`)).data ?? [];
+    } catch {
+      acct = [];
+    }
+  }
+  const pub = [...chan, ...acct].filter(isPub);
+  if (!pub.length && !mustHave) return;
+  const keep = [...new Map(pub.map((p) => [p.uuid, p])).values()].sort((a, b) => String(b.updatedAt).localeCompare(String(a.updatedAt))).slice(0, TASTE_PLAYLISTS);
+  for (const p of keep) {
+    try {
+      const els = (await get(`${origin}/api/v1/video-playlists/${p.uuid}/videos?count=${TASTE_ELEMENTS}`)).data ?? [];
+      snapshot.playlistVideos[p.uuid] = els.map(trimElement);
+    } catch (e) {
+      console.warn("taste: playlist", p.uuid, e.message);
+    }
+  }
+  // Channels whose playlists hold only their own uploads: keep two elements each,
+  // enough for the app to say "No public picks yet", to keep the artifact small.
+  const own = (e) => !e.video || `${e.video.account?.name}@${e.video.account?.host}` === `${owner.name}@${owner.host}`;
+  if (!mustHave && keep.every((p) => (snapshot.playlistVideos[p.uuid] ?? []).every(own))) {
+    keep.splice(2);
+    for (const p of keep) snapshot.playlistVideos[p.uuid] = (snapshot.playlistVideos[p.uuid] ?? []).slice(0, 2);
+    for (const k of Object.keys(snapshot.playlistVideos)) if (!keep.some((p) => p.uuid === k) && (chan.concat(acct)).some((p) => p.uuid === k)) delete snapshot.playlistVideos[k];
+  }
+  const kept = new Set(keep.map((p) => p.uuid));
+  snapshot.channels[handle] = {
+    info: {
+      displayName: str(info.displayName),
+      description: str(info.description)?.slice(0, 600),
+      support: str(info.support)?.slice(0, 600),
+      ownerAccount: { name: owner.name, host: owner.host, description: str(owner.description)?.slice(0, 600) },
+    },
+    playlists: chan.filter((p) => kept.has(p.uuid)).map(trimPlaylist),
+    accountPlaylists: acct.filter((p) => kept.has(p.uuid)).map(trimPlaylist),
+  };
+  const others = keep.flatMap((p) => snapshot.playlistVideos[p.uuid] ?? []).filter((e) => e.video && `${e.video.account?.name}@${e.video.account?.host}` !== `${owner.name}@${owner.host}`).length;
+  console.log("taste:", handle, keep.length, "public playlists,", others, "items by others");
+}
+const counts = new Map();
+for (const v of Object.values(snapshot.instances).flatMap((i) => [...i.trending, ...i.recent])) {
+  const k = `${v.channel?.name}@${v.channel?.host}`;
+  counts.set(k, (counts.get(k) ?? 0) + 1);
+}
+for (const handle of TASTE_CURATORS) await captureTaste(handle, true);
+for (const [handle] of [...counts.entries()].sort((a, b) => b[1] - a[1]).slice(0, TASTE_SCAN)) {
+  if (!snapshot.channels[handle]) await captureTaste(handle, false);
 }
 
 mkdirSync(join(root, "src/snapshot"), { recursive: true });

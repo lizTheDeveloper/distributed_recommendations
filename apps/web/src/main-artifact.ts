@@ -5,7 +5,7 @@ import { installBufferShim } from "./lib/match/buffer.ts";
 import { boot } from "./boot.ts";
 import { createCatalog } from "./lib/catalog.ts";
 import type { Snapshot } from "./lib/snapshotFetch.ts";
-import { snapshotFetch } from "./lib/snapshotFetch.ts";
+import { snapshotFetch, snapshotTasteChannels } from "./lib/snapshotFetch.ts";
 import { browserKV } from "./lib/storage.ts";
 import { DEFAULT_INSTANCES } from "./lib/settings.ts";
 import { EXAMPLES } from "./examples.ts";
@@ -39,7 +39,8 @@ void boot({
   kv,
   mode: "snapshot",
   now: () => fetchedAt,
-  snapshotNote: `${count} real videos from ${hosts.join(" and ")}, captured ${fetchedAt.toISOString().slice(0, 10)}. This build can't use the network: no live refresh, playback or URL import, and thumbnails are color placeholders. Ranking, follows, taste lists, recipes and settings all work, and are saved in this browser.`,
+  snapshotNote: `${count} real videos from ${hosts.join(" and ")}, captured ${fetchedAt.toISOString().slice(0, 10)}. This build can't use the network: no live refresh, playback or URL import, and thumbnails are color placeholders. Ranking, follows, taste lists, Follow taste (public playlists of a few channels), recipes and settings all work, and are saved in this browser.`,
   examples: EXAMPLES,
+  snapshotTasteChannels: snapshotTasteChannels(snap),
   devTools: typeof __MF_DEV__ !== "undefined" && __MF_DEV__,
 });

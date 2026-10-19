@@ -11,6 +11,7 @@ import type { Settings } from "../lib/settings.ts";
 import { h, toggle } from "./dom.ts";
 import { icon } from "./icons.ts";
 import { recipeControls } from "./recipe.ts";
+import { tasteFollowList } from "./taste.ts";
 
 function section(id: string, title: string, ...children: (HTMLElement | HTMLElement[] | null)[]): HTMLElement {
   return h("section", { class: "sheet-sec", id: `sh-sec-${id}`, "aria-labelledby": `sh-sec-${id}-h` }, h("h3", { id: `sh-sec-${id}-h` }, title), ...children.flat().filter(Boolean));
@@ -127,7 +128,7 @@ function sources(app: App): HTMLElement {
   return h(
     "ul",
     { class: "list small" },
-    h("li", null, h("div", null, `Following ${s.follows.length} channel${s.follows.length === 1 ? "" : "s"} · ${s.taste.length} taste list${s.taste.length === 1 ? "" : "s"}`)),
+    h("li", null, h("div", null, `Following ${s.follows.length} channel${s.follows.length === 1 ? "" : "s"} · ${s.taste.length} taste list${s.taste.length === 1 ? "" : "s"} · ${s.tasteFollows.length} creator taste${s.tasteFollows.length === 1 ? "" : "s"}`)),
     h("li", null, h("div", null, `${active} active match${active === 1 ? "" : "es"}`), h("span", { class: "pill " + (active ? "ok" : "") }, app.match.ready ? app.match.relayLabel : "not set up")),
     s.settings.instances.map((o) => h("li", null, h("span", { class: "mono" }, new URL(o).host), status(s.instances.get(o) as never))),
   );
@@ -178,7 +179,7 @@ export function renderSheet(app: App, host: HTMLElement, first: boolean): void {
     ),
     section("filters", "Filters", filters(app)),
     section("view", "View", view(app)),
-    section("more", "More", links(app), h("h4", null, "Sources"), sources(app)),
+    section("more", "More", links(app), h("h4", null, "Sources"), sources(app), h("h4", null, "Creators' taste you follow"), tasteFollowList(app, true)),
   );
   const panel = h(
     "div",
