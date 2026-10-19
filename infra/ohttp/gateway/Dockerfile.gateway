@@ -1,0 +1,39 @@
+# Cloudflare privacy-gateway-server-go (BSD-3-Clause), built from the Go module
+# proxy's source zip, checked against a pinned SHA-256, with the module's go.sum
+# verifying every dependency. Run unmodified as a separate program.
+#
+# Why v0.0.3 and not v0.0.4: v0.0.4 was tagged 2026-10-14, inside the repo's
+# 14-day cooldown for new releases (.github/dependabot.yml). It adds X-Wing
+# (ML-KEM-768 + X25519) configs; move to it after review (docs/TRANSPORT.md).
+#
+# Base images are digest-pinned. GO_IMAGE can be pulled through a registry mirror
+# by overriding it with the same digest (infra/ohttp/e2e/run.sh does).
+#
+# Behind a TLS-intercepting proxy (some CI and sandboxes), pass its CA as a build
+# secret: `--secret id=extra_ca,src=/path/ca.pem`. Without it nothing changes.
+
+ARG GO_IMAGE=golang:1.25.14-alpine@sha256:1ae0735f00daffa3aaf1363a5184c0d2dc55c78e3db4ec70241cdac97bf84b59
+ARG RUN_IMAGE=gcr.io/distroless/static-debian12:nonroot@sha256:afa5c872c891853ca7fcf1f12c3edb23f7eeef36189728842dd51042ff57f7ab
+
+FROM ${GO_IMAGE} AS build
+ARG PGS_VERSION=v0.0.3
+ARG PGS_ZIP_SHA256=3dd2a7310c36105565e2fed6e860097713ffb4d5b3cd96d1f9d939ca6be0f414
+ENV CGO_ENABLED=0 GOTOOLCHAIN=local GOFLAGS=-mod=readonly
+WORKDIR /src
+RUN --mount=type=secret,id=extra_ca \
+    if [ -s /run/secrets/extra_ca ]; then cat /etc/ssl/certs/ca-certificates.crt /run/secrets/extra_ca > /tmp/ca.pem; else cp /etc/ssl/certs/ca-certificates.crt /tmp/ca.pem; fi
+ENV SSL_CERT_FILE=/tmp/ca.pem
+RUN wget -q -O src.zip "https://proxy.golang.org/github.com/cloudflare/privacy-gateway-server-go/@v/${PGS_VERSION}.zip" \
+ && echo "${PGS_ZIP_SHA256}  src.zip" | sha256sum -c - \
+ && unzip -q src.zip \
+ && mv "github.com/cloudflare/privacy-gateway-server-go@${PGS_VERSION}" app
+WORKDIR /src/app
+RUN --mount=type=secret,id=extra_ca \
+    go mod download && go mod verify \
+ && go build -trimpath -ldflags='-s -w -buildid=' -o /out/privacy-gateway-server .
+
+FROM ${RUN_IMAGE}
+COPY --from=build /out/privacy-gateway-server /privacy-gateway-server
+USER nonroot
+EXPOSE 8080
+ENTRYPOINT ["/privacy-gateway-server"]

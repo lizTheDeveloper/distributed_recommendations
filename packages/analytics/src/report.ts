@@ -50,6 +50,8 @@ export interface UploadJob {
   attempts: number;
   /** The encoded DAP report, once generated (base64url). Retries resend the same bytes. */
   report?: string;
+  /** Last failure, for local diagnostics only. */
+  lastError?: string;
 }
 
 /**

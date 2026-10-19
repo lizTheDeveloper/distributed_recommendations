@@ -195,5 +195,5 @@ with no user info, and nothing is fetched by the shell.
 - [ ] `nostr:npub…` link from another app.
 - [ ] Notification permission prompt only after the opt-in tap; tapping a notification routes to Matches.
 - [ ] Background fetch fires (Android: `adb shell cmd jobscheduler run -f school.multiverse.memevideo 999`; iOS: Xcode's simulate background fetch).
-- [ ] A PeerTube embed calling `webkit.messageHandlers.bridge.postMessage(...)` is dropped (Xcode console shows "Dropped a native bridge message").
+- [ ] The native bridge ignores everything except the app's main frame (test steps in the private security notes).
 - [ ] TalkBack / VoiceOver pass over the main screens.

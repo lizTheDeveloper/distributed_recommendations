@@ -1,0 +1,10 @@
+# Local test overlay: Caddy on https://localhost:8444 with its own local CA.
+# Used by test/smoke.sh. The umami port is also published on 127.0.0.1:3001 for
+# the control request (bypassing Caddy).
+services:
+  caddy:
+    ports: !override
+      - "127.0.0.1:8444:443"
+  umami:
+    ports:
+      - "127.0.0.1:3001:3000"

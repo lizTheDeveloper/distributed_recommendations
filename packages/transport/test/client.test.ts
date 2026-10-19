@@ -49,11 +49,12 @@ test('the OHTTP relay sees only fixed ciphertext sizes, whatever the payload', a
     await t.query({ '#p': [p] });
     await t.query({ '#p': [randomPubkey()] });
     const gw = s.forwarded.filter((f) => f.path === '/gateway').map((f) => f.bytes);
-    // Ciphertext = 7-byte header + 32-byte enc + BHTTP framing + body + 16-byte tag.
-    const distinct = [...new Set(gw)];
-    assert.ok(distinct.length <= 2, `sizes seen by the relay: ${distinct.join(', ')}`);
-    const overhead = gw.map((b, i) => b - [40_960, 40_960, 40_960, 4_096, 4_096][i]);
-    assert.equal(new Set(overhead).size, 1, 'constant framing overhead');
+    // Ciphertext = 7-byte header + 32-byte enc + BHTTP framing + padded body + 16-byte tag.
+    // Three different wrap sizes went out as one size; two different queries as another.
+    assert.equal(gw.length, 5);
+    assert.equal(new Set(gw.slice(0, 3)).size, 1, `publishes: ${gw.slice(0, 3).join(', ')}`);
+    assert.equal(new Set(gw.slice(3)).size, 1, `queries: ${gw.slice(3).join(', ')}`);
+    assert.ok(gw[0] - 40_960 < 160 && gw[3] - 4_096 < 160, `small constant overhead over the bucket: ${gw[0] - 40_960}, ${gw[3] - 4_096}`);
   } finally {
     t.close();
     await s.close();

@@ -55,6 +55,19 @@ jobs:
           - package: packages/moderation
             install: packages/moderation
             lockfiles: packages/moderation/package-lock.json
+          - package: packages/taste
+            # No lockfile of its own: it imports packages/bridge and packages/core from
+            # source, so nostr-tools resolves from, and tsc runs from, packages/bridge.
+            install: packages/bridge
+            lockfiles: packages/bridge/package-lock.json
+          - package: services/labeler
+            # Imports packages/bridge and packages/moderation from source; their
+            # nostr-tools resolves from their own node_modules.
+            install: packages/bridge packages/moderation services/labeler
+            lockfiles: |
+              packages/bridge/package-lock.json
+              packages/moderation/package-lock.json
+              services/labeler/package-lock.json
           - package: apps/web
             # apps/web imports packages/match from source, and its build and tests
             # resolve nostr-tools and @noble/* from packages/match/node_modules.

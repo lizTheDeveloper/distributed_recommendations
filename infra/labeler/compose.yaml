@@ -1,0 +1,82 @@
+# Moderation labeler for the app: report intake on a timer, plus on-demand
+# reviewer tools. No inbound ports: the labeler only connects out to relays.
+#
+#   cp .env.example .env && cp labeler.config.example.json labeler.config.json
+#   $EDITOR .env labeler.config.json
+#   mkdir -p secrets && chmod 700 secrets      # see README.md "Keys"
+#   docker compose build
+#   docker compose up -d intake
+#   docker compose run --rm cli queue
+#   docker compose --profile admin up admin    # web admin on the host's 127.0.0.1:8787
+#
+# The base image is pinned by digest in the Dockerfile. No component logs client
+# IP addresses: there are no inbound connections except the optional admin on
+# loopback, which logs nothing about requests. See README.md "Logs".
+
+name: app-labeler
+
+x-logging: &logging
+  # Small, rotated, local logs (counts and relay URLs only). LOG_DRIVER=none keeps none.
+  driver: ${LOG_DRIVER:-local}
+  options:
+    max-size: "10m"
+    max-file: "3"
+
+x-labeler: &labeler
+  build:
+    context: ../..
+    dockerfile: infra/labeler/Dockerfile
+  image: match-feed-labeler:local
+  read_only: true
+  security_opt:
+    - no-new-privileges:true
+  cap_drop:
+    - ALL
+  logging: *logging
+  environment:
+    LABELER_CONFIG: /config/labeler.config.json
+    # Keys are read from files under ./secrets (mounted read-only), never from argv.
+    # Set the one matching LABELER_SIGNER in .env; leave the other empty.
+    LABELER_BUNKER_URL_FILE: ${LABELER_BUNKER_URL_FILE:-}
+    LABELER_BUNKER_CLIENT_KEY_FILE: ${LABELER_BUNKER_CLIENT_KEY_FILE:-}
+    LABELER_SECRET_KEY_FILE: ${LABELER_SECRET_KEY_FILE:-}
+    LABELER_REVIEWER: ${LABELER_REVIEWER:-}
+    # Set to 1 when an outbound HTTPS proxy must be used (HTTPS_PROXY in .env).
+    NODE_USE_ENV_PROXY: ${NODE_USE_ENV_PROXY:-}
+    HTTPS_PROXY: ${HTTPS_PROXY:-}
+  volumes:
+    - ./labeler.config.json:/config/labeler.config.json:ro
+    - ./secrets:/run/labeler-secrets:ro
+    - labeler-data:/data
+  tmpfs:
+    - /tmp
+
+services:
+  # Pulls reports addressed to the labeler every INTAKE_INTERVAL_MINUTES. Queues
+  # only. If you turn on autoBlur in the config (off by default), it needs a
+  # signer: add "--signer", "key" (a bunker would need approval per event) to the
+  # command, and see README.md "Auto-blur".
+  intake:
+    <<: *labeler
+    restart: unless-stopped
+    command: ["intake", "--watch", "${INTAKE_INTERVAL_MINUTES:-15}"]
+    stop_grace_period: 15s
+
+  # Reviewer CLI: docker compose run --rm cli <command> ...
+  cli:
+    <<: *labeler
+    profiles: [tools]
+    stdin_open: true
+    tty: true
+
+  # Local web admin. Host networking so it can bind the HOST's 127.0.0.1 and
+  # nothing else (Linux only). Reach it from your machine with
+  #   ssh -L 8787:127.0.0.1:8787 <host>
+  admin:
+    <<: *labeler
+    profiles: [admin]
+    network_mode: host
+    command: ["admin", "--port", "${ADMIN_PORT:-8787}", "--signer", "${LABELER_SIGNER:-bunker}"]
+
+volumes:
+  labeler-data: {}

@@ -1,0 +1,17 @@
+{
+  "v": 1,
+  "labeler": "npub1replacewiththelabelerspublickey",
+  "publishRelays": ["wss://relay.example.org"],
+  "intakeRelays": ["wss://relay.example.org"],
+  "store": "/data/labeler.sqlite",
+  "rateLimit": { "perDay": 20, "maxOpen": 50 },
+  "maxReportAgeDays": 30,
+  "trustedReporters": [],
+  "ignoredReporters": [],
+  "autoBlur": { "enabled": false, "threshold": 3, "ttlHours": 72 },
+  "retention": { "resolvedReportDays": 90 },
+  "reviewers": [],
+  "contact": "moderation@example.org",
+  "policyUrl": "https://example.org/labeler/policy",
+  "appealUrl": "https://example.org/labeler/appeal"
+}

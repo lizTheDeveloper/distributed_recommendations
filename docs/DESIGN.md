@@ -2,7 +2,8 @@
 
 Status: design draft, revision 3 (2026-10-19). Revision 2 checked sources against primary material.
 Revision 3 applies the corrected research notes, the simulation results (`docs/SIMULATION_RESULTS.md`)
-and the code that now exists (see "Implementation status").
+and the code that now exists (see "Implementation status"). Updated 2026-10-19 for the Circles prototype
+(`CIRCLES.md`), on-device moderation and the native app shells.
 Mockups: `mockups/match-feed.html`. Research: `reports/Distributed video recommendation prior art.md`.
 Companions: `THREAT_MODEL.md`, `PROTOCOL.md` (wire formats), `MATCH.md`, `ANALYTICS.md`, `WEB_APP.md`, `OSS_STACK.md`.
 
@@ -96,7 +97,7 @@ slots and an early first match are the levers; none closes the gap in the simula
 
 ## Match protocol
 
-The 1:1 part (steps 1–5) is implemented as a prototype in `packages/match` (design and threat notes in `MATCH.md`, wire formats in PROTOCOL.md §6). It runs core's policies (sketches, preview budget and noise, similarity) over Nostr: a pure state machine for the lifecycle (`state.ts`), NIP-59 gift wraps with a NIP-40 expiration (`wrap.ts`), per-match keys separate from the identity key, rotated on renewal (`keys.ts`), control messages padded to the 64-bucket sketch size (`messages.ts`), and OpenMined PSI in cardinality-only mode (`psi.ts`). Its rumor kinds, **3470–3478**, are provisional and unregistered. It has no network relay I/O yet (an in-memory relay for tests), is not wired into the web client, and is not audited. Circles (step 6) and second degree over the network (step 7) are not built.
+The 1:1 part (steps 1–5) is implemented as a prototype in `packages/match` (design and threat notes in `MATCH.md`, wire formats in PROTOCOL.md §6). It runs core's policies (sketches, preview budget and noise, similarity) over Nostr: a pure state machine for the lifecycle (`state.ts`), NIP-59 gift wraps with a NIP-40 expiration (`wrap.ts`), per-match keys separate from the identity key, rotated on renewal (`keys.ts`), control messages padded to the 64-bucket sketch size (`messages.ts`), and OpenMined PSI in cardinality-only mode (`psi.ts`). Its rumor kinds, **3470–3478**, are provisional and unregistered. It has no network relay I/O yet (an in-memory relay for tests), is not wired into the web client, and is not audited. Circles (step 6) exist as a separate prototype, `packages/circles` (`CIRCLES.md`; kinds 3480–3482 in PROTOCOL.md §3). Second degree over the network (step 7) is not built.
 
 1. **Preview (PSI-cardinality).**
    - A preview estimates how many videos two users have in common, using PSI-cardinality, not plain PSI, which would reveal the items themselves [A10].
@@ -132,6 +133,13 @@ The 1:1 part (steps 1–5) is implemented as a prototype in `packages/match` (de
      - Members who drop out count as absent; below k present members the round publishes nothing.
      - Utility at k = 12, t = 3, ε = 1: 86% recall and 77% precision of true group picks.
      - ε is per item per epoch. A member's loss per epoch is at most ε × items contributed under basic composition; multi-epoch accounting is not yet simulated.
+   - **Prototype: `packages/circles`** (not audited, not for production; design and limits in `CIRCLES.md`):
+     - **Transport:** MLS over Nostr via marmot-ts 0.5.1, with ts-mls overridden to 2.0.0-rc.16 because the pinned rc.10 let a member removed by a single-Remove commit read the next epoch (THREAT_MODEL T27). App-level guards (`src/authz.ts`) re-check marmot-ts 0.7.0's authorization fixes until the upgrade, which waits until 0.7.0 has been out two weeks (T28).
+     - **Aggregation chosen:** pairwise additive masking (Bonawitz et al. [A12]) with no aggregator (every member sums the masked vectors), over a **public candidate list** of ≤ 256 ids carried in the round-open; hashed buckets were rejected because pure-DP noise on every slot makes false picks grow with the domain (`CIRCLES.md` §3).
+     - **Noise inside the aggregation, no seed:** each member adds a Pólya share; the shares sum to discrete Laplace(ε) (T19). The price: ε holds against at most c colluders (default ⌈m/3⌉ − 1), so Exp 3's "everyone but the target colludes" result does not carry over (T3).
+     - **Void rule:** any dropout after the key phase, or any inconsistency, voids the epoch permanently; a void consumes the epoch like a release. With 5% per-member dropout a 12-member round completes about 54% of the time.
+     - **Metadata:** round messages are padded to one size per round (T30); identity-signed inner events make participation non-repudiable.
+     - Not yet: real relay I/O, dropout recovery, input validation against malicious members (T29), an exact noise sampler, the web UI.
 7. **Second degree.**
    - Picks from matches of matches are discounted and unattributed, and count only when the person in the middle opts in.
    - Propagation uses a personalized, decaying trust walk seeded from you: personalized PageRank [A23][A24], TrustWalker [A14] or MeritRank [A15]. This is not EigenTrust, which computes global trust anchored on pre-trusted peers [A16].
@@ -231,10 +239,15 @@ On-device CF and ranking turned out small enough to write directly (`packages/co
 
 | Part | Path | State |
 |---|---|---|
-| Core library | `packages/core` | TypeScript, no runtime dependencies, 99 offline tests. Recipes (D1), `rank` with explore slots and per-list cap, explanations, sketches with padding, transport caps, quiet pause (D2) and a strict video-id rule, trust walk, circle output policy with epoch freeze, preview policy with noise, target budget and display buckets (`previewDisplay`), PeerTube client. Defaults follow the simulation. No cryptography: PSI and NIP-17 wrapping live in `packages/match`; MLS and secure aggregation are not started |
+| Core library | `packages/core` | TypeScript, no runtime dependencies, 104 offline tests. Recipes (D1), `rank` with explore slots and per-list cap, explanations, sketches with padding, transport caps, quiet pause (D2) and a strict video-id rule, trust walk, circle output policy with epoch freeze, preview policy with noise, target budget and display buckets (`previewDisplay`), PeerTube client. Defaults follow the simulation. No cryptography: PSI and NIP-17 wrapping live in `packages/match`; MLS and secure aggregation are not started |
 | Match (1:1) protocol | `packages/match` | Prototype, not audited. Match lifecycle (request, accept, previews, weekly sketches, quiet pause, 90-day expiry, renew with key rotation, revoke) as a pure state machine; NIP-59 gift wraps; per-match keys; uniform 8,192-byte control messages; OpenMined PSI cardinality previews noised on the target's device; provisional rumor kinds 3470–3478; `MatchClient` glue and an in-memory relay. 34 offline tests. Runtime dependencies `nostr-tools` 2.25.2 and `@openmined/psi.js` 2.0.6, pinned, install scripts disabled. No real relay I/O or OHTTP; not used by the web client yet. See `MATCH.md` |
 | PeerTube → NIP-71 bridge | `packages/bridge` | Builds NIP-71 events (addressable 34235/34236 by default, `--regular` for 21/22) from public PeerTube videos; dry run by default; signing via NIP-46 bunker (preferred), creator key or labelled instance key; NIP-09 deletion requests for videos made private/unlisted, blocked or removed (tracked in a local state file); NIP-42 AUTH and relay retries; 58 offline tests |
 | Web client v1 | `apps/web` | Follow, taste lists, recipes, explore slots, creator studio Tiers 0–1, over live PeerTube instances. Match, Circle, second degree, previews and Tier 2 analytics are placeholders. History, follows, taste lists and related caches are encrypted at rest in IndexedDB (`src/lib/vault.ts`; optional passphrase), with retention by the sharing window and a crypto-shredding wipe. 30 offline tests. See `WEB_APP.md` |
+| Circles | `packages/circles` | Prototype, not audited (`CIRCLES.md`). MLS groups via marmot-ts 0.5.1 + ts-mls 2.0.0-rc.16 (override is a security fix, guarded by a regression test); pairwise-masked secure aggregation; distributed Pólya noise; core's circle policy on the aggregate with epoch freeze, void rule and ledger; app-level authorization guards around marmot-ts (`authz.ts`); fixed-size round-message padding (`padding.ts`); provisional kinds 3480–3482. 43 offline tests, including 12 members over real MLS. In-memory relay only; not in the web client |
+| Moderation | `packages/moderation` | On-device moderation library (T18): NIP-56 and PeerTube abuse reports (sent only after confirmation), NIP-32 labels from subscribed labelers, block and NIP-51 mute lists, app-store defaults (NSFW hidden, two-step adult opt-in), `applyModeration` pre-filter before `rank()`. 56 offline tests. Not wired into apps/web yet (hooks in its README); no labeler service runs yet |
+| Android and iOS shells | `apps/mobile` | Capacitor 8 wrapping `apps/web/dist` (name and id in `brand.json`: Meme Video, `school.multiverse.memevideo`; naming check pending, `NAMING.md`). `window.MatchFeedNative` bridge: Keystore/Keychain secrets, background fetch, share target, deep links, opt-in notifications. Android debug and unsigned release APKs build; iOS project generated, not built. Native bridge restricted to the app's main frame (T31, T32). 5 offline tests. apps/web does not call the bridge yet. See `SHIPPING.md` |
+| Desktop shell | `apps/desktop` | Tauri 2, no plugins; IPC only for three keychain commands (T33); Linux .deb builds and runs; macOS/Windows not built; auto-update off by design |
+| CI, release, infra | `.github/`, `infra/` | CI runs every package's tests and typechecks (including circles, moderation, taste and services/labeler), sim tests, a reproducible web-build check, relay config tests, DCO and actionlint; a gated web release with provenance to Pages, Cloudflare Pages and IPFS (`DEPLOY.md`); Dependabot for npm, Actions, Cargo, Gradle, Compose and pip; a self-hostable strfry relay (`infra/relay`) |
 | Simulation | `sim` | Python + numpy; five experiments; results in `SIMULATION_RESULTS.md` |
 | Mockups | `mockups/match-feed.html` | static |
 
@@ -245,11 +258,11 @@ time to first view; exposure concentration under match-heavy vs. taste-heavy fee
 repeated previews; Circle output leakage across k and ε; Sybil reach.
 
 Still open:
-- Which secure-aggregation protocol Circles use, and whether the DP noise is added inside it (preferred).
+- ~~Which secure-aggregation protocol Circles use, and whether the DP noise is added inside it.~~ Chosen for the prototype: pairwise masking with distributed Pólya noise inside the sum, over a public candidate list (`CIRCLES.md`). Still open for Circles: dropout recovery, input validation against malicious members, behaviour beyond c colluders, an exact sampler, and an audit.
 - Circle DP accounting across epochs.
 - First-hop Sybils: feedback-learned per-source trust, per-match caps.
 - Real-world numbers the simulation can't give: how people pick matches, how often strangers accept previews, how curators build lists.
-- Moderation: subscribe-able labelers (Bluesky-style), applied on-device.
+- Moderation: the on-device side exists (`packages/moderation`: labelers, reports, blocks, applied before `rank()`); open are who runs a labeler (staff, appeals, policy), the PeerTube login needed to file reports, and wiring it into the apps.
 - Event kinds for recipes and taste lists; a signed taste-list format. Registering (or moving) the provisional Match rumor kinds 3470–3478 before any client ships.
 
 ## Sources

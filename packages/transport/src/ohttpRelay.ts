@@ -100,7 +100,6 @@ export class TransportError extends Error {
 
 interface Pending {
   op: Op;
-  bytes: number;
   resolve: (r: OpResult) => void;
   reject: (e: Error) => void;
 }
@@ -265,10 +264,9 @@ export class OhttpRelay {
 
   private enqueue(op: Op): Promise<OpResult> {
     if (this.closed) return Promise.reject(new TransportError('transport closed'));
-    const bytes = JSON.stringify(op).length + 1;
     if (op.op === 'publish' && eventBytes(op.event) > 65_536) return Promise.reject(new TransportError('event over 64 KiB'));
     return new Promise((resolve, reject) => {
-      this.queue.push({ op, bytes, resolve, reject });
+      this.queue.push({ op, resolve, reject });
       if (this.o.mode === 'on-demand' && !this.timer && !this.flushing) this.schedule();
     });
   }

@@ -4,7 +4,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import type { ExchangeResponse, Op } from '../src/protocol.ts';
-import { RESPONSE_BUCKETS, decodeResponse, encodeRequest, padJson } from '../src/protocol.ts';
+import { decodeResponse, encodeRequest, padJson } from '../src/protocol.ts';
 import { TokenBuckets } from '../src/ratelimit.ts';
 import { createTarget } from '../src/target.ts';
 import type { Target } from '../src/target.ts';
@@ -234,7 +234,7 @@ test('the target process (bin/target.ts) logs one startup line and nothing about
     await waitFor(() => out.includes('listening'), 10_000);
     const p = randomPubkey();
     const ev = wrapLike(p);
-    const post = (body: string | Uint8Array) => fetch(`http://127.0.0.1:${port}/v1/exchange`, { method: 'POST', headers: { 'content-type': 'application/json' }, body });
+    const post = (body: string | Uint8Array<ArrayBuffer>) => fetch(`http://127.0.0.1:${port}/v1/exchange`, { method: 'POST', headers: { 'content-type': 'application/json' }, body });
     const ok = await post(encodeRequest({ v: 1, respBytes: 4_096, ops: [{ op: 'publish', event: ev }, { op: 'query', filter: { '#p': [p] } }] }, 4_096));
     assert.equal(ok.status, 200);
     const r = decodeResponse(new Uint8Array(await ok.arrayBuffer()), 4_096);

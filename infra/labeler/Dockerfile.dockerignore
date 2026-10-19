@@ -1,0 +1,14 @@
+# Build context is the repo root; send only what the image needs.
+*
+!packages/core/src/**
+!packages/moderation/package.json
+!packages/moderation/package-lock.json
+!packages/moderation/.npmrc
+!packages/moderation/src/**
+!packages/bridge/package.json
+!packages/bridge/package-lock.json
+!packages/bridge/src/**
+!services/labeler/package.json
+!services/labeler/package-lock.json
+!services/labeler/.npmrc
+!services/labeler/src/**

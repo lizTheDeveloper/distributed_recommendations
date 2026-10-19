@@ -9,7 +9,7 @@ create. Nothing deploys until the owner opts in.
 |---|---|---|
 | CI | `.github/workflows/ci.yml` | Tests and typechecks for every package, sim unit tests, reproducible-build check, relay config test, DCO sign-off, workflow lint |
 | Web release | `.github/workflows/deploy-web.yml` | Build `apps/web/dist`, attest, then optionally publish to GitHub Pages, Cloudflare Pages and IPFS |
-| Dependency updates | `.github/dependabot.yml` | npm, GitHub Actions, Docker Compose images, pip; 14-day cooldown |
+| Dependency updates | `.github/dependabot.yml` | npm, GitHub Actions, Cargo (desktop), Gradle (Android), Docker Compose images, pip; 14-day cooldown |
 | Relay | `infra/relay/` | Self-hosted strfry + Caddy; see [`infra/relay/README.md`](../infra/relay/README.md) |
 | Release tools | `infra/web/` | Pinned deploy CLIs and the `security.txt` template |
 

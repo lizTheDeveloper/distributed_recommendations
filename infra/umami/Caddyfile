@@ -1,0 +1,68 @@
+# TLS front for Umami. Caddy gets and renews certificates automatically
+# (ports 80 and 443 must reach this host).
+#
+# IP policy: client addresses never leave Caddy. Every forwarding header is
+# removed before proxying, so Umami sees no client address
+# (no IP for its session hash, no geolocation). No access log, and the process
+# log drops every client-identifying field. Same policy as infra/relay.
+{
+	email {$ACME_EMAIL}
+	admin off
+
+	log default {
+		output stderr
+		level WARN
+		format filter {
+			wrap json
+			fields {
+				request>remote_ip delete
+				request>remote_port delete
+				request>client_ip delete
+				request>headers delete
+				request>uri delete
+				request>tls delete
+				remote_ip delete
+				remote_addr delete
+				client_ip delete
+			}
+		}
+	}
+}
+
+{$UMAMI_DOMAIN} {
+	header {
+		Strict-Transport-Security "max-age=31536000"
+		X-Content-Type-Options "nosniff"
+		Referrer-Policy "no-referrer"
+		-Server
+	}
+
+	# Browsers only need POST /api/send; the dashboard is for the operator.
+	# Umami's own tracker script and other public scripts aren't needed (the app
+	# posts events itself), so they're not served.
+	@scripts path /script.js /recorder.js /telemetry.js /api/scripts/*
+	respond @scripts 404
+	# Request bodies over 64 KB are refused (a usage event is a few hundred bytes).
+	request_body {
+		max_size 64KB
+	}
+
+	reverse_proxy umami:3000 {
+		# Don't tell Umami who the client is.
+		header_up -X-Forwarded-For
+		header_up -X-Real-IP
+		header_up -X-Appengine-User-IP
+		header_up -X-NF-Client-Connection-IP
+		header_up -DO-Connecting-IP
+		header_up -X-Umami-Client-IP
+		header_up -CF-IPCountry
+		header_up -Forwarded
+		header_up -True-Client-IP
+		header_up -CF-Connecting-IP
+		header_up -X-Client-IP
+		header_up -X-Cluster-Client-IP
+		header_up -Fastly-Client-IP
+		header_up -X-Forwarded
+		header_up -Forwarded-For
+	}
+}

@@ -11,7 +11,7 @@ function echoTarget() {
     seen,
     async handle(req: Request): Promise<Response> {
       const body = await req.text();
-      seen.push({ url: req.url, method: req.method, headers: [...req.headers], body });
+      seen.push({ url: req.url, method: req.method, headers: Array.from(req.headers as unknown as Iterable<[string, string]>), body });
       return new Response(`echo:${body}`, { status: 201, headers: { 'content-type': 'text/plain', 'x-secret-header': 'drop-me' } });
     },
   };
