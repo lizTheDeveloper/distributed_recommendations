@@ -54,6 +54,17 @@ import { studioScreen } from "./ui/studio.ts";
 import { matchesScreen } from "./ui/matches.ts";
 import { renderSheet } from "./ui/sheet.ts";
 import { openWatch } from "./ui/watch.ts";
+import { syncConsentCard } from "./ui/telemetry.ts";
+import type { TelemetryConfig } from "./lib/telemetry/config.ts";
+import { available as telemetryAvailable, resolveConfig } from "./lib/telemetry/config.ts";
+import type { TelemetryConsent } from "./lib/telemetry/consent.ts";
+import { askDelay, noteLaunch } from "./lib/telemetry/consent.ts";
+import type { Telemetry, CrashReporter } from "./lib/telemetry/controller.ts";
+import { createTelemetry } from "./lib/telemetry/controller.ts";
+import type { Diagnostics, FeedbackInput } from "./lib/telemetry/feedback.ts";
+import { sendFeedback } from "./lib/telemetry/feedback.ts";
+import { createErrorLog, deviceFacts } from "./lib/telemetry/diagnostics.ts";
+import type { Route } from "./lib/telemetry/scrub.ts";
 
 export type Load<T> = { status: "loading" } | { status: "ok"; value: T } | { status: "error"; error: string };
 
@@ -150,6 +161,8 @@ export interface State {
   tasteSheet: { handle: string; name: string; returnFocus?: string } | null;
   /** Transient form state (inputs, errors) keyed by form. */
   ui: Record<string, string | undefined>;
+  /** The one-time telemetry question is showing. */
+  consentAsk: boolean;
 }
 
 export interface AppOptions {
@@ -172,6 +185,10 @@ export interface AppOptions {
   devTools?: boolean;
   /** Offline artifact: channels whose public playlists are in the snapshot. */
   snapshotTasteChannels?: string[];
+  /** Opt-in telemetry endpoints compiled into this build (none: hidden). Never used in snapshot mode. */
+  telemetry?: TelemetryConfig | null;
+  /** Loads the crash reporter bundle (only called after opt-in). */
+  loadCrashReporter?: () => Promise<CrashReporter>;
 }
 
 type PersistKey = "settings" | "follows" | "taste" | "tastefollows" | "recipe" | "history" | "tally" | "videos" | "impressions" | "tags" | "hidden" | "identity";
@@ -251,6 +268,16 @@ export interface App {
   reloadCatalog(): void;
   loadStudio(handle: string): void;
   setTheme(): void;
+  /** Opt-in crash reports, bug-report diagnostics and usage analytics. */
+  telemetry: Telemetry;
+  telemetryConfig: TelemetryConfig;
+  /** Save new telemetry choices and start or stop reporters accordingly. */
+  setTelemetry(next: TelemetryConsent, msg?: string): void;
+  /** What "attach diagnostics" would add to a bug report right now. */
+  diagnostics(): Diagnostics;
+  sendFeedback(input: FeedbackInput): Promise<void>;
+  /** Open the bug report form (Sharing & privacy). */
+  openFeedback(): void;
 }
 
 const FEED_LIMIT = 60;
@@ -346,7 +373,20 @@ export function startApp(opts: AppOptions): App {
     tasteLookup: new Map(),
     tasteSheet: null,
     ui: {},
+    consentAsk: false,
   };
+
+  // ---- telemetry (opt-in; nothing loads or sends before consent) ----
+  const telemetryConfig = opts.mode === "snapshot" ? resolveConfig(null) : (opts.telemetry ?? resolveConfig(null));
+  const sessionStart = Date.now();
+  const displayMode = () => (globalThis.matchMedia?.("(display-mode: standalone)").matches ? "installed" : "browser");
+  const device = deviceFacts();
+  // Recent errors, scrubbed, in memory only: offered as bug-report diagnostics.
+  const errorLog = createErrorLog();
+  const currentRoute = (): Route =>
+    s.sheet.open ? "feed-settings" : s.screen === "home" ? (s.view === "reels" ? "home-reels" : "home-grid") : s.screen;
+  globalThis.addEventListener?.("error", (e) => errorLog.add((e as ErrorEvent).error ?? (e as ErrorEvent).message, currentRoute(), Date.now() - sessionStart));
+  globalThis.addEventListener?.("unhandledrejection", (e) => errorLog.add((e as PromiseRejectionEvent).reason, currentRoute(), Date.now() - sessionStart));
 
   // ---- shell ----
   const tabs = h("nav", { class: "tabs", "aria-label": "Screens" });
@@ -355,6 +395,7 @@ export function startApp(opts: AppOptions): App {
   const sheetHost = h("div", { id: "sheet-host" });
   const tasteHost = h("div", { id: "taste-host" });
   const toastEl = h("div", { class: "toast", role: "status", "aria-live": "polite", hidden: true });
+  const consentHost = h("div", { id: "consent-host" });
   const gear = h("button", { class: "iconbtn", id: "gear-btn", "aria-label": "Feed settings", title: "Feed settings", onclick: () => app.sheet({ type: "toggle", from: "gear-btn" }) }, icon("gear"));
   for (const sc of SCREENS) {
     tabs.appendChild(h("button", { id: `tab-${sc.id}`, "data-screen": sc.id, onclick: () => app.go(sc.id) }, sc.label));
@@ -371,6 +412,7 @@ export function startApp(opts: AppOptions): App {
     h("button", { role: "menuitem", onclick: () => (closeMenu(), app.go("recipe")) }, "Recipe import & export"),
     h("button", { role: "menuitem", onclick: () => (closeMenu(), app.go("settings")) }, "Sharing & privacy"),
     h("button", { role: "menuitem", onclick: () => (closeMenu(), app.go("matches")) }, "Matches"),
+    telemetryConfig.glitchtip ? h("button", { role: "menuitem", onclick: () => (closeMenu(), app.openFeedback()) }, "Report a bug or send feedback…") : null,
   );
   function toggleMenu() {
     const open = menu.hidden;
@@ -424,6 +466,7 @@ export function startApp(opts: AppOptions): App {
     bottom,
     sheetHost,
     tasteHost,
+    consentHost,
     toastEl,
   );
 
@@ -462,6 +505,8 @@ export function startApp(opts: AppOptions): App {
       if (s.sheet.returnFocus) document.getElementById(s.sheet.returnFocus)?.focus({ preventScroll: true });
     }
     renderTasteSheet(app, tasteHost);
+    syncConsentCard(app, consentHost);
+    app.telemetry.screen(currentRoute());
   }
 
   // ---- data loading ----
@@ -933,6 +978,7 @@ export function startApp(opts: AppOptions): App {
       window.scrollTo?.({ top: 0 });
     },
     setView(v) {
+      if (v !== s.view) app.telemetry.event("view-mode", { view: v });
       s.view = v;
       render();
       window.scrollTo?.({ top: 0 });
@@ -940,7 +986,10 @@ export function startApp(opts: AppOptions): App {
     sheet(a) {
       const before = s.sheet.open;
       s.sheet = sheetReduce(s.sheet, a);
-      if (s.sheet.open && !before) s.sheetStamp++;
+      if (s.sheet.open && !before) {
+        s.sheetStamp++;
+        app.telemetry.event("feed-settings-opened");
+      }
       render();
     },
     sheetChanged() {
@@ -950,6 +999,7 @@ export function startApp(opts: AppOptions): App {
     setRecipe(id, customRecipe) {
       s.recipe = { id, custom: customRecipe ?? s.recipe.custom };
       app.persist("recipe");
+      app.telemetry.event("recipe-selected", { kind: id === "custom" ? "custom" : "built-in", recipe: ["default", "following", "discovery", "custom"].includes(id) ? id : "other" });
       s.sheetStamp++;
       app.rerender();
     },
@@ -974,6 +1024,7 @@ export function startApp(opts: AppOptions): App {
       if (s.follows.some((f) => f.handle === handle)) return;
       s.follows = [...s.follows, { handle, name, addedAt: Date.now() }];
       app.persist("follows");
+      app.telemetry.event("follow-creator");
       app.toast(`Following ${name ?? handle}`);
       void loadFollow(handle);
       app.rerender();
@@ -983,12 +1034,14 @@ export function startApp(opts: AppOptions): App {
       s.follows = s.follows.filter((x) => x.handle !== handle);
       s.followVideos.delete(handle);
       app.persist("follows");
+      app.telemetry.event("unfollow-creator");
       app.toast(`Unfollowed ${f?.name ?? handle}`);
       app.rerender();
     },
     addTaste(sub) {
       s.taste = [...s.taste.filter((t) => t.key !== sub.key), sub];
       app.persist("taste");
+      app.telemetry.event("subscribe-taste-list", { source: sub.source });
       app.toast(`Subscribed to "${sub.list.name}"`);
       void loadTaste(sub);
     },
@@ -1059,6 +1112,7 @@ export function startApp(opts: AppOptions): App {
       const f: TasteFollow = { handle: key, name: r.name, enabled: true, addedAt: Date.now(), checkedAt: r.checkedAt, taste: r.taste };
       s.tasteFollows = [...s.tasteFollows, f];
       saveTasteFollows();
+      app.telemetry.event("follow-taste");
       app.toast(`Following ${r.name}'s taste: ${r.taste.items.length} pick${r.taste.items.length === 1 ? "" : "s"}`);
       void resolveTastePicks(f);
       app.rerender();
@@ -1124,6 +1178,7 @@ export function startApp(opts: AppOptions): App {
         const before = s.history;
         s.history = record(s.history, { videoId: v.id, at: Date.now(), kind: "endorse", tags: v.tags, via }, s.settings);
         app.toast(s.history === before ? "Private watching is on: not recorded" : "Endorsed. Kept on this device only");
+        app.telemetry.event("endorse");
         if (s.history !== before) void fetchTagsFor(v).then(() => enrichExploreTags());
       }
       app.persist("history");
@@ -1135,6 +1190,7 @@ export function startApp(opts: AppOptions): App {
       s.reels.version++;
       // Private watching: hide it for this session, but don't store it.
       if (!s.settings.privateWatching) app.persist("hidden");
+      app.telemetry.event("not-interested");
       app.toast("Hidden. You won't see it again", {
         label: "Undo",
         run: () => {
@@ -1147,6 +1203,7 @@ export function startApp(opts: AppOptions): App {
       app.rerender();
     },
     share(v) {
+      app.telemetry.event("share");
       const url = v.url ?? v.id;
       const fallback = () => {
         const input = h("input", { type: "text", readonly: true, value: url, "aria-label": "Video link", class: "copyfield" });
@@ -1304,6 +1361,55 @@ export function startApp(opts: AppOptions): App {
         );
       }
     },
+    telemetry: null as unknown as Telemetry,
+    telemetryConfig,
+    setTelemetry(next, msg) {
+      const before = s.settings.telemetry;
+      s.settings.telemetry = next;
+      app.persist("settings");
+      app.telemetry.apply();
+      if (next.usage && !before.usage) app.telemetry.event("app-open", { view: s.view, display: displayMode() });
+      if (msg) app.toast(msg);
+      app.rerender();
+    },
+    diagnostics() {
+      const st = s.settings;
+      return {
+        ...device,
+        appVersion: telemetryConfig.appVersion,
+        recentErrors: errorLog.list(),
+        settings: {
+          privateWatching: st.privateWatching,
+          p2p: st.p2p,
+          popularSection: st.showPopular,
+          discoveryStats: st.analytics.contribute,
+          defaultView: st.defaultView,
+          theme: st.theme,
+          retentionDays: st.retentionDays,
+          passphrase: vault.status === "passphrase",
+          storage: vault.status === "memory" ? "memory-only" : "encrypted",
+          relaysConfigured: st.relays.length > 0,
+          recipe: s.recipe.id === "custom" ? "custom" : s.recipe.id,
+          crashReports: st.telemetry.crash,
+          usageAnalytics: st.telemetry.usage,
+        },
+      };
+    },
+    async sendFeedback(input) {
+      if (!telemetryConfig.glitchtip) throw new Error("Bug reports aren't set up in this build.");
+      await sendFeedback(telemetryConfig.glitchtip, input, telemetryConfig.appVersion, (u, i) => fetch(u, i));
+      app.telemetry.event("bug-report-sent", { category: input.category });
+    },
+    openFeedback() {
+      s.ui.fbOpen = "1";
+      if (s.screen !== "settings") app.go("settings");
+      else app.rerender();
+      setTimeout(() => {
+        const el = document.getElementById("fb-form");
+        el?.scrollIntoView?.({ block: "start" });
+        document.getElementById("fb-text")?.focus({ preventScroll: true });
+      }, 50);
+    },
     setTheme() {
       const t = s.settings.theme;
       if (t === "auto") document.documentElement.removeAttribute("data-theme");
@@ -1333,6 +1439,40 @@ export function startApp(opts: AppOptions): App {
     void resolveMatchItems();
   }
 
+  // ---- telemetry wiring ----
+  app.telemetry = createTelemetry({
+    config: telemetryConfig,
+    consent: () => s.settings.telemetry,
+    loadCrashReporter: opts.loadCrashReporter ?? (() => Promise.reject(new Error("no crash reporter in this build"))),
+    fetch: (u, i) => fetch(u, i),
+    device,
+    environment: app.devTools ? "development" : "production",
+  });
+  // Feature-used events for Match: counts only, never who.
+  const countAfter = <A extends unknown[], R>(fn: (...a: A) => Promise<R>, name: string) =>
+    async (...a: A): Promise<R> => {
+      const r = await fn(...a);
+      app.telemetry.event(name);
+      return r;
+    };
+  match.requestMatch = countAfter(match.requestMatch.bind(match), "match-requested");
+  match.requestPreview = countAfter(match.requestPreview.bind(match), "preview-requested");
+  match.accept = countAfter(match.accept.bind(match), "match-accepted");
+  if (telemetryAvailable(telemetryConfig)) {
+    s.settings.telemetry = noteLaunch(s.settings.telemetry);
+    app.persist("settings");
+    // Ask once, later: on the second launch (after a short delay), or after a few
+    // minutes of use in the first session. Never on first paint, never as a modal.
+    const delay = askDelay(s.settings.telemetry, Date.now(), sessionStart, true);
+    if (delay !== null && delay < 2 ** 31 - 1) {
+      setTimeout(() => {
+        if (askDelay(s.settings.telemetry, Date.now(), sessionStart, true) === null) return;
+        s.consentAsk = true;
+        app.rerender();
+      }, delay);
+    }
+  }
+
   app.setTheme();
   app.pruneNow();
   setInterval(() => {
@@ -1354,6 +1494,8 @@ export function startApp(opts: AppOptions): App {
     }
   });
   render();
+  app.telemetry.apply();
+  if (s.settings.telemetry.usage) app.telemetry.event("app-open", { view: s.view, display: displayMode() });
   app.reloadCatalog();
   for (const t of s.taste) void loadTaste(t);
   // Followed tastes: use the saved picks now, refetch those older than a day.

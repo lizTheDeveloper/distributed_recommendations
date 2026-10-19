@@ -41,7 +41,7 @@ Requires Node 22.6+. Android also needs JDK 21 and the Android SDK; iOS needs ma
 
 ```sh
 cd apps/mobile
-npm ci                     # .npmrc: ignore-scripts, save-exact, before=2026-10-05
+npm ci                     # .npmrc: ignore-scripts, save-exact
 npm test                   # link classifier tests (offline)
 npm run typecheck
 npm run sync               # web build -> www/ -> android/ and ios/ (runs apps/web `npm run build` only if dist/ is missing)
@@ -143,7 +143,8 @@ None of this is done; apps/web is being edited by someone else. In order of valu
 5. **Notifications (opt-in, off by default).** A switch in Matches or Sharing & privacy. On turning it on, call `requestPermission()` from that tap. After a relay check that finds a new request or accept, `notify({ id, title: "New match request", body: "Open Meme Video to review it.", route: "matches" })`, with no petname, npub or video in the text (lock screen). `id`: a stable 31-bit number per event so repeats replace each other. `onOpen(route)` navigates.
 6. **Background checks (opt-in, off by default).** A switch "Check for match messages in the background". `background.enable(async () => { await service.check(); })`, where the check runs without UI: open the vault (device mode only; disable the switch in passphrase mode, since there's nobody to type it), fetch from relays, `sendDueSketches`, persist the MatchBook, maybe `notify`. Must finish in about 25 s. Tell the user plainly that relays then see check-ins at times the OS picks, not only while the app is open (T5).
 7. **Labels.** Use `native.platform` in the storage panel ("Key stored in Android Keystore" / "iOS Keychain" / "OS keychain").
-8. **No changes needed:** the service worker (sync drops `sw.js`; registration is https-only and already `.catch`es), `target="_blank"` links (Capacitor opens external URLs in the system browser), the player iframe's `allow="autoplay; fullscreen; picture-in-picture"` (already set).
+8. **Product name in the UI.** The header and other copy say "Match Feed". The shell sets `<title>` and the manifest name from `brand.json`, but text inside `app.js` comes from apps/web. Read the name from one constant there (or from `document.title` at boot) so a rename is one edit.
+9. **No changes needed:** the service worker (sync drops `sw.js`; registration is https-only and already `.catch`es), `target="_blank"` links (Capacitor opens external URLs in the system browser), the player iframe's `allow="autoplay; fullscreen; picture-in-picture"` (already set).
 
 ## WebView model, video and CSP
 

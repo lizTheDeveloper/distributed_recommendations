@@ -33,7 +33,6 @@
     "active": true,
     "targets": [
       "deb",
-      "appimage",
       "dmg",
       "app",
       "msi",
@@ -60,7 +59,7 @@
         ]
       },
       "appimage": {
-        "bundleMediaFramework": true
+        "bundleMediaFramework": false
       }
     }
   },

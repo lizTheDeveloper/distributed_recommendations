@@ -1,5 +1,7 @@
 import type { SourceKind } from "./core.ts";
 import { SOURCE_KINDS } from "./core.ts";
+import type { TelemetryConsent } from "./telemetry/consent.ts";
+import { defaultConsent, loadConsent } from "./telemetry/consent.ts";
 
 export type Theme = "auto" | "light" | "dark";
 
@@ -21,6 +23,11 @@ export interface Settings {
   defaultView: FeedView;
   /** Nostr relays for Match (none by default: Match stays local until you add one). */
   relays: string[];
+  /**
+   * Opt-in crash reports, bug-report diagnostics and usage analytics (docs/TELEMETRY.md).
+   * All off until the viewer says yes. Separate from `analytics` (creator discovery stats).
+   */
+  telemetry: TelemetryConsent;
 }
 
 export type FeedView = "reels" | "grid";
@@ -64,6 +71,7 @@ export function defaultSettings(): Settings {
     retentionDays: DEFAULT_RETENTION,
     defaultView: "reels",
     relays: [],
+    telemetry: defaultConsent(),
   };
 }
 
@@ -92,6 +100,7 @@ export function loadSettings(x: unknown): Settings {
     const rs = o.relays.map((r) => (typeof r === "string" ? parseRelayUrl(r) : null)).filter((r): r is string => !!r);
     d.relays = [...new Set(rs)].slice(0, MAX_RELAYS);
   }
+  d.telemetry = loadConsent(o.telemetry);
   if (o.theme === "light" || o.theme === "dark" || o.theme === "auto") d.theme = o.theme;
   return d;
 }

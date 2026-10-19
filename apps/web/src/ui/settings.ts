@@ -7,6 +7,7 @@ import { MIN_PASSPHRASE } from "../lib/vault.ts";
 import { parseInstance } from "../lib/handles.ts";
 import { h, toggle } from "./dom.ts";
 import { LEGEND } from "./home.ts";
+import { telemetryLedgerText, telemetryPanel } from "./telemetry.ts";
 
 function ledger(app: App): HTMLElement {
   const { s } = app;
@@ -47,6 +48,7 @@ function ledger(app: App): HTMLElement {
           row("Video hosts, when you press play", s.settings.p2p ? "The embedded player streams from the host and from other viewers. Other viewers can see your IP." : "The embedded player streams from the host only. Your IP is visible to the host, not to other viewers.", h("span", { class: "pill " + (s.settings.p2p ? "exp" : "ok") }, s.settings.p2p ? "P2P on" : "P2P off")),
           matchRows(app),
           row("Circles", "Nothing yet.", h("span", { class: "pill next" }, "coming next")),
+          telemetryRow(app),
           row(
             "Creators (discovery stats)",
             s.settings.analytics.contribute ? "Nothing sent yet: aggregation isn't live. Your device keeps the tally below until it is." : "Nothing. You turned contribution off.",
@@ -71,6 +73,12 @@ function ledger(app: App): HTMLElement {
       ),
     ),
   );
+}
+
+function telemetryRow(app: App): HTMLElement | null {
+  const t = telemetryLedgerText(app);
+  if (!t) return null;
+  return h("tr", null, h("td", null, t.who), h("td", null, t.what), h("td", null, h("span", { class: "pill " + (t.ok ? "ok" : "exp") }, t.status)));
 }
 
 function matchRows(app: App): HTMLElement[] {
@@ -316,5 +324,7 @@ function passphrase(app: App): HTMLElement | null {
 }
 
 export function settingsScreen(app: App): HTMLElement {
-  return h("section", { class: "cols" }, ledger(app), controls(app));
+  const cols = h("section", { class: "cols" }, ledger(app), controls(app));
+  const tel = telemetryPanel(app);
+  return tel ? h("div", { class: "stack", style: { gap: "20px" } }, cols, tel) : cols;
 }

@@ -9,3 +9,6 @@ declare var Buffer: {
 
 /** Set by scripts/build.mjs: true for `npm run dev` and the offline artifact. */
 declare const __MF_DEV__: boolean;
+
+/** Set by scripts/build.mjs from MF_GLITCHTIP_DSN, MF_UMAMI_HOST, MF_UMAMI_WEBSITE_ID (empty: telemetry hidden). */
+declare const __MF_TELEMETRY__: { glitchtipDsn?: string; umamiHost?: string; umamiWebsiteId?: string; appVersion?: string } | undefined;
