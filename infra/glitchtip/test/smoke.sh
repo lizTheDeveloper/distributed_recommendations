@@ -61,7 +61,7 @@ done
 [ "$n" = 2 ] && ok "both events stored" || bad "stored $n of 2 events"
 
 DUMP=$($DC exec -T postgres pg_dump -U glitchtip -d glitchtip --data-only 2>/dev/null)
-echo "$DUMP" | grep -q "$FAKE_PREFIX" && bad "the client IP was stored" || ok "no client IP (or truncated IP) anywhere in the database"
+echo "$DUMP" | grep -qF "$FAKE_PREFIX" && bad "the client IP was stored" || ok "no client IP (or truncated IP) anywhere in the database"
 echo "$DUMP" | grep -q '"ip_address"' && bad "an ip_address field was stored" || ok "no ip_address field stored"
 
 # Control: the same header sent straight to GlitchTip (bypassing Caddy, from inside
@@ -77,7 +77,7 @@ for i in $(seq 1 30); do
 done
 [ -n "$seen" ] && ok "control: bypassing Caddy, GlitchTip stores $seen (so the checks above would catch an IP)" || bad "control: no IP stored even without Caddy; the IP checks prove nothing"
 echo "$DUMP" | grep -q "synthetic bug report" && ok "bug report text stored" || bad "bug report text missing"
-$DC logs 2>&1 | grep -q "$FAKE_IP" && bad "a log contains the client IP" || ok "no log contains the client IP"
+$DC logs 2>&1 | grep -qF "$FAKE_IP" && bad "a log contains the client IP" || ok "no log contains the client IP"
 $DC exec -T glitchtip env | grep -q '^GLITCHTIP_RETENTION_DAYS=30' && ok "retention 30 days" || bad "retention not set"
 
 [ $fail = 0 ] && echo "glitchtip smoke test passed" || { echo "glitchtip smoke test FAILED"; exit 1; }
