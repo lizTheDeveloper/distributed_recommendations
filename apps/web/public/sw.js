@@ -1,7 +1,7 @@
 // Minimal service worker: caches the app shell so the installed PWA opens offline.
 // Same-origin GETs only, network first. PeerTube API calls and media are never cached.
 const CACHE = "mf-shell-__BUILD__";
-const SHELL = ["./", "./index.html", "./app.js", "./app.css", "./manifest.webmanifest", "./icon.svg"];
+const SHELL = ["./", "./index.html", "./app.js", "./app.css", "./manifest.webmanifest", "./icon.svg", "./fonts.css"];
 
 self.addEventListener("install", (e) => {
   e.waitUntil(caches.open(CACHE).then((c) => c.addAll(SHELL)).then(() => self.skipWaiting()));

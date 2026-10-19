@@ -115,8 +115,8 @@ function controls(app: App): HTMLElement {
         toggle(`sw-a-${k}`, `Report views from ${CHIP_LABELS[k]}`, a.perKind[k], (on) => set(() => (a.perKind[k] = on)), { disabled: !a.contribute }),
       ),
     ),
-    ...toggle("sw-trending", "Use instance trending as a taste list", s.settings.trendingAsTaste, (on) => set(() => (s.settings.trendingAsTaste = on)), {
-      hint: "Each instance's trending videos count as a weak public taste list (half strength).",
+    ...toggle("sw-popular", "Show \"Popular on your instances\"", s.settings.showPopular, (on) => set(() => (s.settings.showPopular = on)), {
+      hint: "A separate section after your feed with each instance's trending videos. It never takes slots from your feed.",
     }),
     h("h3", null, "Coming next"),
     ...toggle("sw-endorse-only", "Share endorsements only, not passive watches", true, () => {}, { disabled: true }),

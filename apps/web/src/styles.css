@@ -140,3 +140,4 @@ pre{white-space:pre-wrap;overflow-wrap:anywhere;font:.78rem/1.45 var(--f-mono);b
 @media (max-width:860px){.mobile-only{display:flex}}
 @media (max-width:520px){.grid{grid-template-columns:1fr}.modal{padding:14px}}
 @media (prefers-reduced-motion:no-preference){.card .thumb{transition:transform .15s}.card:hover .thumb{transform:translateY(-2px)}}
+.popular{margin-top:32px;padding-top:20px;border-top:1px solid var(--line)}

@@ -14,7 +14,7 @@
     "dev": "node scripts/build.mjs --dev",
     "snapshot": "NODE_USE_ENV_PROXY=1 node scripts/fetch-snapshot.mjs",
     "test": "node --experimental-strip-types --disable-warning=ExperimentalWarning --test test/*.test.ts",
-    "typecheck": "tsc -p ."
+    "typecheck": "node scripts/typecheck.mjs"
   },
   "devDependencies": {
     "esbuild": "0.28.2",

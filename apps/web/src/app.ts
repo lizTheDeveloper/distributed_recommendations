@@ -1,11 +1,13 @@
 // App shell: state, persistence, data loading and screen routing.
 
 import type { Recipe, RankedItem, SourceKind, Video } from "./lib/core.ts";
-import { cryptoRng, parseRecipe, rank, recipeToJson, seededRng } from "./lib/core.ts";
+import { cryptoRng, parseRecipe, rank, recipeToJson, seededRng, tagProfile, tagRelevance } from "./lib/core.ts";
 import type { Catalog, ChannelStats } from "./lib/catalog.ts";
 import { mapLimit } from "./lib/catalog.ts";
 import type { InstanceFeed, ResolvedTasteList } from "./lib/candidates.ts";
-import { buildCandidates } from "./lib/candidates.ts";
+import { buildCandidates, buildPopularCandidates, listMembership, popularRecipe } from "./lib/candidates.ts";
+import type { Impressions } from "./lib/trackrecord.ts";
+import { emptyImpressions, listStrength, loadImpressions, recordImpression } from "./lib/trackrecord.ts";
 import type { ChannelRef } from "./lib/handles.ts";
 import { handleOf, parseChannelInput } from "./lib/handles.ts";
 import type { WatchEvent } from "./lib/history.ts";
@@ -61,6 +63,10 @@ export interface State {
   recipe: { id: string; custom: Recipe | null };
   history: WatchEvent[];
   tally: Tally;
+  /** Feed items actually seen, for taste-list track records (local only). */
+  impressions: Impressions;
+  /** Tags fetched from video detail endpoints (list endpoints omit tags). */
+  tagCache: Map<string, string[]>;
   screen: ScreenId;
   seed: number;
   instances: Map<string, Load<InstanceFeed>>;
@@ -85,7 +91,7 @@ export interface AppOptions {
   examples: { file: string; list: unknown }[];
 }
 
-type PersistKey = "settings" | "follows" | "taste" | "recipe" | "history" | "tally" | "videos";
+type PersistKey = "settings" | "follows" | "taste" | "recipe" | "history" | "tally" | "videos" | "impressions" | "tags";
 
 export interface App {
   s: State;
@@ -94,7 +100,9 @@ export interface App {
   examples: { file: string; list: TasteList }[];
   now(): Date;
   recipe(): Recipe;
-  feed(): { items: RankedItem[]; candidates: number };
+  feed(): { items: RankedItem[]; candidates: number; popular: RankedItem[]; personalizedExplore: boolean };
+  /** Note that a feed item scrolled into view (track record). */
+  markShown(id: string): void;
   resolvedLists(): ResolvedTasteList[];
   persist(...keys: PersistKey[]): void;
   rerender(): void;
@@ -116,6 +124,9 @@ export interface App {
 }
 
 const FEED_LIMIT = 60;
+const TAG_CACHE_CAP = 1500;
+/** Explore candidates whose tags are fetched for on-device relevance. */
+const TAG_FETCH_LIMIT = 40;
 const VIDEO_CACHE_CAP = 600;
 
 export function startApp(opts: AppOptions): App {
@@ -161,6 +172,12 @@ export function startApp(opts: AppOptions): App {
     recipe: { id: recipeId, custom },
     history: readJson(kv, "history", [], loadHistory),
     tally: readJson(kv, "tally", emptyTally(), loadTally),
+    impressions: readJson(kv, "impressions", emptyImpressions(), loadImpressions),
+    tagCache: new Map(
+      readJson<[string, string[]][]>(kv, "tags", [], (x) =>
+        Array.isArray(x) ? x.filter((e) => Array.isArray(e) && typeof e[0] === "string" && Array.isArray(e[1])) : [],
+      ),
+    ),
     screen: SCREENS.some((x) => x.id === storedTab) ? (storedTab as ScreenId) : "home",
     seed: Math.floor(cryptoRng()() * 2 ** 31),
     instances: new Map(),
@@ -243,7 +260,58 @@ export function startApp(opts: AppOptions): App {
       s.instances.set(origin, { status: "error", error: errText(e) });
     }
     app.rerender();
+    void enrichExploreTags();
   }
+
+  // ---- on-device explore relevance ----
+  const withTags = (v: Video): Video => (v.tags.length || !s.tagCache.has(v.id) ? v : { ...v, tags: s.tagCache.get(v.id)! });
+  const endorsedIds = () => new Set(s.history.filter((e) => e.kind === "endorse").map((e) => e.videoId));
+  function profile() {
+    const endorsed = s.history.filter((e) => e.kind === "endorse").map((e) => ({ tags: e.tags.length ? e.tags : (s.tagCache.get(e.videoId) ?? []) }));
+    return tagProfile(endorsed);
+  }
+  let enriching = false;
+  /**
+   * List endpoints omit tags. Once the viewer has endorsed something with tags, fetch
+   * details for the newest explore candidates so core can rank them by relevance.
+   * The requests are the same for everyone (newest public uploads), so they reveal
+   * nothing about the profile; the profile itself never leaves the device.
+   */
+  async function enrichExploreTags() {
+    if (enriching || profile().size === 0) return;
+    enriching = true;
+    const recent: { v: Video; origin: string }[] = [];
+    for (const r of s.instances.values()) if (r.status === "ok") for (const v of r.value.recent) recent.push({ v, origin: r.value.origin });
+    const todo = recent
+      .filter(({ v }) => !v.tags.length && !s.tagCache.has(v.id))
+      .sort((a, b) => b.v.publishedAt.getTime() - a.v.publishedAt.getTime())
+      .slice(0, TAG_FETCH_LIMIT);
+    await mapLimit(todo, 4, async ({ v, origin }) => {
+      const tags = await catalog.videoTags(v.id, [origin]);
+      if (tags) s.tagCache.set(v.id, tags);
+    });
+    enriching = false;
+    if (todo.length) {
+      app.persist("tags");
+      app.rerender();
+    }
+  }
+
+  async function fetchTagsFor(v: Video) {
+    if (v.tags.length || s.tagCache.has(v.id)) return;
+    // Instances that listed this video hold a copy; ask them before the origin.
+    const via: string[] = [];
+    for (const r of s.instances.values()) {
+      if (r.status === "ok" && [...r.value.recent, ...r.value.trending].some((x) => x.id === v.id)) via.push(r.value.origin);
+    }
+    const tags = await catalog.videoTags(v.id, via);
+    if (tags) {
+      s.tagCache.set(v.id, tags);
+      app.persist("tags");
+    }
+  }
+
+  let impressionTimer: ReturnType<typeof setTimeout> | undefined;
 
   async function loadFollow(handle: string) {
     const ref = parseChannelInput(handle);
@@ -301,9 +369,10 @@ export function startApp(opts: AppOptions): App {
     },
     resolvedLists() {
       const out: ResolvedTasteList[] = [];
+      const endorsed = endorsedIds();
       for (const t of s.taste) {
         const r = s.tasteRes.get(t.key);
-        if (r?.status === "ok") out.push({ list: t.list, videos: r.value.videos });
+        if (r?.status === "ok") out.push({ list: t.list, videos: r.value.videos, strength: listStrength(s.impressions, t.list.name, endorsed) });
       }
       return out;
     },
@@ -312,20 +381,42 @@ export function startApp(opts: AppOptions): App {
       for (const r of s.instances.values()) if (r.status === "ok") instances.push(r.value);
       const followVideos: Video[] = [];
       for (const r of s.followVideos.values()) if (r.status === "ok") followVideos.push(...r.value);
+      const tagged = instances.map((i) => ({ ...i, recent: i.recent.map(withTags), trending: i.trending.map(withTags) }));
       const candidates = buildCandidates({
-        instances,
+        instances: tagged,
         follows: new Set(s.follows.map((f) => f.handle)),
         followVideos,
         tasteLists: app.resolvedLists(),
-        trendingAsTaste: s.settings.trendingAsTaste,
       });
-      const items = rank(candidates, app.recipe(), { now: opts.now(), limit: FEED_LIMIT, rng: seededRng(s.seed), seen: seenSet(s.history) });
-      return { items, candidates: new Set(candidates.map((c) => c.video.id)).size };
+      const prof = profile();
+      const exploreRelevance = prof.size ? tagRelevance(prof) : undefined;
+      const recipe = app.recipe();
+      const seen = seenSet(s.history);
+      const items = rank(candidates, recipe, { now: opts.now(), limit: FEED_LIMIT, rng: seededRng(s.seed), seen, exploreRelevance });
+      let popular: RankedItem[] = [];
+      if (s.settings.showPopular && recipe.weights.taste > 0 && tagged.length) {
+        const shown = new Set([...seen, ...items.map((i) => i.video.id)]);
+        popular = rank(buildPopularCandidates(tagged), popularRecipe(recipe), {
+          now: opts.now(),
+          limit: 6 * tagged.length,
+          rng: seededRng(s.seed),
+          seen: shown,
+        });
+      }
+      return { items, candidates: new Set(candidates.map((c) => c.video.id)).size, popular, personalizedExplore: !!exploreRelevance };
+    },
+    markShown(id) {
+      if (s.settings.privateWatching) return;
+      const lists = listMembership(app.resolvedLists()).get(id) ?? [];
+      if (!recordImpression(s.impressions, id, lists)) return;
+      clearTimeout(impressionTimer);
+      impressionTimer = setTimeout(() => app.persist("impressions"), 1000);
     },
     persist(...keys) {
       for (const k of keys) {
         if (k === "recipe") writeJson(kv, "recipe", { id: s.recipe.id, custom: s.recipe.custom ? recipeToJson(s.recipe.custom) : null });
         else if (k === "videos") writeJson(kv, "videos", [...s.videoCache.values()].slice(-VIDEO_CACHE_CAP).map(storeVideo));
+        else if (k === "tags") writeJson(kv, "tags", [...s.tagCache.entries()].slice(-TAG_CACHE_CAP));
         else writeJson(kv, k, s[k]);
       }
     },
@@ -406,13 +497,15 @@ export function startApp(opts: AppOptions): App {
         const before = s.history;
         s.history = record(s.history, { videoId: v.id, at: Date.now(), kind: "endorse", tags: v.tags, via }, s.settings);
         app.toast(s.history === before ? "Private watching is on: not recorded" : "Endorsed. Kept on this device only");
+        if (s.history !== before) void fetchTagsFor(v).then(() => enrichExploreTags());
       }
       app.persist("history");
     },
     wipeHistory() {
       s.history = [];
       s.tally = emptyTally();
-      app.persist("history", "tally");
+      s.impressions = emptyImpressions();
+      app.persist("history", "tally", "impressions");
       app.toast("Local history wiped");
       app.rerender();
     },

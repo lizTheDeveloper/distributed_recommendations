@@ -58,7 +58,7 @@ async function buildArtifact() {
   // claude.ai artifact: content only (no <html>/<head>/<body>), <title> first,
   // everything inline except the Google Fonts stylesheet.
   const html = [
-    "<title>Match Feed (offline snapshot)</title>",
+    "<title>Match Feed Client</title>",
     '<meta name="claude:viewport-fit-sides" content="cover">',
     `<link rel="stylesheet" href="${FONTS}">`,
     `<style>${style}</style>`,

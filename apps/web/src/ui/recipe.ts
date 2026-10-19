@@ -1,14 +1,14 @@
 import type { App } from "../app.ts";
 import type { Recipe, SourceKind } from "../lib/core.ts";
-import { CHIP_LABELS, RECIPE_LIMITS, parseRecipeJson } from "../lib/core.ts";
-import { BUILTIN_RECIPES, editRecipe, recipeText } from "../lib/recipes.ts";
+import { CHIP_LABELS, EXPLORE_SHARE, RECIPE_LIMITS, parseRecipeJson } from "../lib/core.ts";
+import { describeRecipe, editRecipe, listCap, recipeText } from "../lib/recipes.ts";
 import { errorText } from "../lib/tastelist.ts";
 import { h } from "./dom.ts";
 import { recipePicker } from "./home.ts";
 
 const KIND_NOTES: Record<SourceKind, string> = {
   follow: "Channels you follow.",
-  taste: "Taste lists you subscribe to, plus instance trending if that's on.",
+  taste: "Taste lists you subscribe to. Each list's strength comes from its track record with you.",
   match: "No source yet: Match is coming next.",
   circle: "No source yet: Circle is coming next.",
   second: "No source yet: needs Match.",
@@ -96,7 +96,7 @@ function editor(app: App, r: Recipe): HTMLElement {
       { class: "field" },
       h("label", { for: "recipe-pick", class: "muted" }, "Active recipe"),
       recipePicker(app, "recipe-pick"),
-      h("p", { class: "muted small" }, BUILTIN_RECIPES.find((b) => b.id === app.s.recipe.id)?.blurb ?? (r.author ? `Custom recipe by ${r.author}.` : "Your custom recipe.")),
+      h("p", { class: "muted small" }, describeRecipe(r)),
     ),
     h("div", { class: "field" }, h("label", { for: "recipe-name" }, "Name"), nameInput),
     app.s.ui.recipeError ? h("p", { class: "err", role: "alert" }, app.s.ui.recipeError) : null,
@@ -104,8 +104,20 @@ function editor(app: App, r: Recipe): HTMLElement {
     h("p", { class: "muted small", style: { "margin-top": "-8px" } }, "Moving any slider saves a custom copy; the built-ins stay as they are. 0 turns a source off."),
     weightSliders,
     h("h3", null, "Shape"),
-    slider(app, "explore-share", "Explore share", "Share of slots reserved for new creators. They compete only with each other.", r.exploreShare, 0, 0.5, 0.01, (n) => `${Math.round(n * 100)}%`, (n) => ({ exploreShare: n })),
+    slider(
+      app,
+      "explore-share",
+      "Explore share",
+      `Slots reserved for new creators; they compete only with each other. Recommended ${EXPLORE_SHARE.recommendedMin * 100}–${EXPLORE_SHARE.recommendedMax * 100}% (default ${EXPLORE_SHARE.default * 100}%): below 2% new creators rarely get seen, above 10% adds little. 0 = off.`,
+      r.exploreShare,
+      0,
+      Math.max(EXPLORE_SHARE.recommendedMax, r.exploreShare),
+      0.01,
+      (n) => (n === 0 ? "off" : `${Math.round(n * 100)}%`),
+      (n) => ({ exploreShare: n }),
+    ),
     slider(app, "half-life", "Recency half-life", "A video's score halves every this many days. 0 = no decay.", r.recencyHalfLifeDays, 0, 90, 1, (n) => (n === 0 ? "off" : `${n} days`), (n) => ({ recencyHalfLifeDays: n })),
+    slider(app, "per-list", "Max per taste list", "Most videos any one taste list can place in your feed. Keeps one list (or a list inflated by fake accounts) from taking over.", listCap(r), 1, 10, 1, (n) => String(n), (n) => ({ maxPerTasteList: n })),
     slider(app, "per-creator", "Max per creator", "Most videos any one creator can hold in the feed.", r.maxPerCreator, 1, 10, 1, (n) => String(n), (n) => ({ maxPerCreator: n })),
     r.filters.excludeTags.length || r.filters.includeLanguages.length || r.filters.excludeCreators.length || r.filters.minDurationSec || r.filters.maxDurationSec !== null
       ? h("p", { class: "note" }, "This recipe has filters (tags, languages, durations or creators). Edit them in the JSON and re-import.")

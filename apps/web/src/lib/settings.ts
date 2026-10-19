@@ -6,8 +6,8 @@ export type Theme = "auto" | "light" | "dark";
 export interface Settings {
   /** PeerTube instance origins the catalog is read from. */
   instances: string[];
-  /** Treat each instance's trending list as a (weak) public taste list. */
-  trendingAsTaste: boolean;
+  /** Show a separate "Popular on your instances" section after the personal feed. */
+  showPopular: boolean;
   /** When on, nothing you watch or endorse is recorded. */
   privateWatching: boolean;
   /** Peer-to-peer streaming in the player. Off: other viewers can't see your IP. */
@@ -24,7 +24,7 @@ export function defaultSettings(): Settings {
   for (const k of SOURCE_KINDS) perKind[k] = true;
   return {
     instances: [...DEFAULT_INSTANCES],
-    trendingAsTaste: true,
+    showPopular: true,
     privateWatching: false,
     p2p: false,
     analytics: { contribute: true, perKind },
@@ -42,7 +42,7 @@ export function loadSettings(x: unknown): Settings {
     const xs = o.instances.filter((s): s is string => typeof s === "string" && /^https:\/\/[^/]+$/.test(s));
     d.instances = [...new Set(xs)].slice(0, 8);
   }
-  d.trendingAsTaste = bool(o.trendingAsTaste, d.trendingAsTaste);
+  d.showPopular = bool(o.showPopular ?? o.trendingAsTaste, d.showPopular); // trendingAsTaste: pre-cap name
   d.privateWatching = bool(o.privateWatching, d.privateWatching);
   d.p2p = bool(o.p2p, d.p2p);
   const a = o.analytics as Record<string, unknown> | undefined;

@@ -131,7 +131,7 @@ export function keyedRng(key: string, label: string): Rng {
   const enc = new TextEncoder();
   const prefix = enc.encode(`${key}\u0000${label}\u0000`);
   let counter = 0;
-  let block = new Uint8Array(0);
+  let block: Uint8Array = new Uint8Array(0);
   let pos = 0;
   const next32 = (): number => {
     if (pos + 4 > block.length) {

@@ -3,7 +3,7 @@ import type { RankedItem, SourceKind } from "../lib/core.ts";
 import { CHIP_LABELS, cryptoRng } from "../lib/core.ts";
 import { disclosureIndex } from "../lib/candidates.ts";
 import { parseChannelInput } from "../lib/handles.ts";
-import { BUILTIN_RECIPES } from "../lib/recipes.ts";
+import { BUILTIN_RECIPES, exploreText } from "../lib/recipes.ts";
 import { formatDuration, placeholderGradient, videoHost } from "../lib/videos.ts";
 import { h } from "./dom.ts";
 
@@ -61,8 +61,8 @@ function sourcesPanel(app: App): HTMLElement {
       h(
         "li",
         null,
-        h("div", null, "Instance trending, as a taste list"),
-        h("button", { class: "linkbtn", onclick: () => app.go("settings") }, s.settings.trendingAsTaste ? "On" : "Off"),
+        h("div", null, "Popular on your instances (separate section)"),
+        h("button", { class: "linkbtn", onclick: () => app.go("settings") }, s.settings.showPopular ? "On" : "Off"),
       ),
       h("li", null, h("div", { class: "muted" }, "Matches and circles"), h("span", { class: "pill next" }, "coming next")),
     ),
@@ -101,7 +101,7 @@ function card(app: App, item: RankedItem, disclosures: ReturnType<typeof disclos
   );
   return h(
     "article",
-    { class: "card" },
+    { class: "card", "data-vid": v.id },
     thumb,
     h("h3", null, h("button", { onclick: () => app.watch(v, item.primary) }, v.title)),
     h(
@@ -156,6 +156,24 @@ function card(app: App, item: RankedItem, disclosures: ReturnType<typeof disclos
   );
 }
 
+/** Feed cards seen at least half on screen feed each taste list's track record. */
+function observeShown(app: App, grid: HTMLElement) {
+  const IO = (globalThis as { IntersectionObserver?: typeof IntersectionObserver }).IntersectionObserver;
+  if (!IO) return;
+  const io = new IO(
+    (entries) => {
+      for (const e of entries) {
+        if (!e.isIntersecting) continue;
+        const id = (e.target as HTMLElement).dataset.vid;
+        if (id) app.markShown(id);
+        io.unobserve(e.target);
+      }
+    },
+    { threshold: 0.5 },
+  );
+  for (const c of grid.querySelectorAll<HTMLElement>(".card")) io.observe(c);
+}
+
 export function hashId(s: string): string {
   let h1 = 5381;
   for (let i = 0; i < s.length; i++) h1 = (Math.imul(h1, 33) ^ s.charCodeAt(i)) >>> 0;
@@ -165,7 +183,7 @@ export function hashId(s: string): string {
 export function homeScreen(app: App): HTMLElement {
   const { s } = app;
   const recipe = app.recipe();
-  const { items, candidates } = app.feed();
+  const { items, candidates, popular, personalizedExplore } = app.feed();
   const loading = [...s.instances.values()].some((x) => x.status === "loading");
   const allFailed = s.instances.size > 0 && [...s.instances.values()].every((x) => x.status === "error");
   const disclosures = disclosureIndex(app.resolvedLists());
@@ -180,13 +198,7 @@ export function homeScreen(app: App): HTMLElement {
       { class: "field" },
       h("label", { for: "home-recipe", class: "muted" }, "Ranking runs on this device"),
       recipePicker(app, "home-recipe"),
-      h(
-        "p",
-        { class: "muted small" },
-        recipe.exploreShare > 0 && recipe.weights.explore > 0
-          ? `${Math.round(recipe.exploreShare * 100)}% of slots stay reserved for new creators you have no tie to.`
-          : "No explore slots in this recipe.",
-      ),
+      h("p", { class: "muted small" }, exploreText(recipe)),
       h("div", { class: "row" }, h("button", { class: "btn sm", onclick: () => app.go("recipe") }, "Edit recipe"),
         recipe.exploreShare > 0
           ? h("button", { class: "btn sm", onclick: () => { s.seed = Math.floor(cryptoRng()() * 2 ** 31); app.rerender(); } }, "Shuffle new creators")
@@ -217,7 +229,21 @@ export function homeScreen(app: App): HTMLElement {
     );
   } else {
     body = h("div", { class: "grid" }, items.map((it) => card(app, it, disclosures)));
+    observeShown(app, body);
   }
+  const popularSection = popular.length
+    ? h(
+        "section",
+        { class: "popular", "aria-labelledby": "popular-h" },
+        h(
+          "div",
+          { class: "feedhead" },
+          h("h2", { id: "popular-h" }, "Popular on your instances"),
+          h("p", { class: "muted small" }, "Each instance's trending list, kept out of your feed so it can't crowd out the lists you chose. Not personalized."),
+        ),
+        h("div", { class: "grid" }, popular.map((it) => card(app, it, disclosures))),
+      )
+    : null;
 
   return h(
     "section",
@@ -235,10 +261,11 @@ export function homeScreen(app: App): HTMLElement {
           "p",
           { class: "muted small mono" },
           loading ? "loading catalog… " : "",
-          `${items.length} of ${candidates} candidates · ${exploreCount} new-creator`,
+          `${items.length} of ${candidates} candidates · ${exploreCount} new-creator${exploreCount ? (personalizedExplore ? " (fit to your endorsements)" : " (not personalized)") : ""}`,
         ),
       ),
       body,
+      popularSection,
     ),
   );
 }

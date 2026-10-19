@@ -46,6 +46,16 @@ const snapshot = { fetchedAt: new Date().toISOString(), instances: {}, extra: []
 for (const origin of INSTANCES) {
   const trending = await get(listUrl(origin, "-trending", PER_LIST));
   const recent = await get(listUrl(origin, "-publishedAt", PER_LIST));
+  // List endpoints omit tags; fetch them for recent videos so the offline build can
+  // rank explore by tag relevance, as the live app does after an endorsement.
+  for (const v of recent.data) {
+    if (Array.isArray(v.tags)) continue;
+    try {
+      v.tags = (await get(`${origin}/api/v1/videos/${v.uuid}`)).tags ?? [];
+    } catch {
+      v.tags = [];
+    }
+  }
   snapshot.instances[origin] = { trending: trending.data.map(trim), recent: recent.data.map(trim) };
   console.log(origin, trending.data.length, recent.data.length);
 }

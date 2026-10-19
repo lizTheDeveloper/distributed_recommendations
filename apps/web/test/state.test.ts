@@ -4,7 +4,7 @@ import { countView, emptyTally, loadTally } from "../src/lib/analytics.ts";
 import { isEndorsed, loadHistory, record, seenSet, toSketchHistory, unendorse } from "../src/lib/history.ts";
 import { defaultSettings, loadSettings } from "../src/lib/settings.ts";
 import { memoryKV, readJson, writeJson, browserKV } from "../src/lib/storage.ts";
-import { editRecipe, BUILTIN_RECIPES } from "../src/lib/recipes.ts";
+import { editRecipe, BUILTIN_RECIPES, DISCOVERY_RECIPE } from "../src/lib/recipes.ts";
 import { parseChannelInput, parseInstance } from "../src/lib/handles.ts";
 import { embedUrl, formatDuration, watchId } from "../src/lib/videos.ts";
 
@@ -15,6 +15,7 @@ test("decided defaults: P2P off, analytics on per signal, private watching off",
   assert.equal(s.analytics.contribute, true);
   assert.ok(Object.values(s.analytics.perKind).every(Boolean));
   assert.deepEqual(loadSettings({ p2p: "yes", instances: ["javascript:x", "https://ok.example"] }).instances, ["https://ok.example"]);
+  assert.equal(loadSettings({ trendingAsTaste: false }).showPopular, false, "old setting name migrates");
 });
 
 test("private watching records nothing; endorsements feed the sketch format", () => {
@@ -62,6 +63,9 @@ test("recipe edits are re-validated by core parseRecipe", () => {
   assert.equal(editRecipe(base, { weights: { explore: 2 } }).weights.explore, 2);
   assert.equal(editRecipe(base, { weights: { explore: 2 } }).weights.follow, base.weights.follow);
   assert.throws(() => editRecipe(base, { exploreShare: 0.9 }), /recipe\.exploreShare/);
+  assert.equal(editRecipe(base, { maxPerTasteList: 4 }).maxPerTasteList, 4);
+  assert.throws(() => editRecipe(base, { maxPerTasteList: 0 }), /recipe\.maxPerTasteList/);
+  assert.ok(DISCOVERY_RECIPE.exploreShare <= 0.1, "built-ins stay within the recommended explore range");
 });
 
 test("handles, instances and embed URLs", () => {

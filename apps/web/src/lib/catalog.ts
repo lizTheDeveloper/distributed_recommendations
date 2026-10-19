@@ -22,6 +22,12 @@ export interface Catalog {
   channelVideos(c: ChannelRef, count?: number): Promise<Video[]>;
   /** Resolve a canonical watch URL to a video via its origin instance. */
   resolveVideo(id: string): Promise<Video | null>;
+  /**
+   * Tags for a video (list endpoints omit them). Asks `via` instances first (ones that
+   * listed the video, so they hold a federated copy and are known to allow CORS),
+   * then the origin. Returns null if nobody answers.
+   */
+  videoTags(id: string, via: readonly string[]): Promise<string[] | null>;
   channelStats(c: ChannelRef): Promise<ChannelStats>;
 }
 
@@ -58,6 +64,18 @@ export function createCatalog(fetchFn: FetchLike): Catalog {
       if (!w) return null;
       const v = await client(w.origin).getVideo(w.id);
       return { ...v, id }; // keep the list's id so membership checks match
+    },
+    async videoTags(id, via) {
+      const w = watchId(id);
+      if (!w) return null;
+      for (const origin of [...new Set([...via, w.origin])]) {
+        try {
+          return (await client(origin).getVideo(w.id)).tags;
+        } catch {
+          /* try the next instance */
+        }
+      }
+      return null;
     },
     async channelStats(c) {
       const origin = `https://${c.host}`;
