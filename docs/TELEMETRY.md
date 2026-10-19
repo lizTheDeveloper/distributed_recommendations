@@ -2,7 +2,7 @@
 
 Status: implemented in the web client, 2026-10-19. Code: `apps/web/src/lib/telemetry/`,
 `apps/web/src/ui/telemetry.ts`, `apps/web/src/telemetry/crash-entry.ts`. Servers:
-`infra/glitchtip/`, `infra/umami/`. Threat: THREAT_MODEL.md T27.
+`infra/glitchtip/`, `infra/umami/`. Threat: THREAT_MODEL.md T34.
 
 This is **about the app**, for the people who build it. It is separate from the
 **discovery stats for creators** (ANALYTICS.md Tier 2, `settings.analytics`), which
@@ -125,7 +125,7 @@ explains why). Sent only while the switch is on. **The complete list:**
 | `subscribe-taste-list` | `source`: url/paste/example | subscribe to a taste list (never which) |
 | `match-requested`, `match-accepted`, `preview-requested` | — | the Match action succeeded (never with whom) |
 | `endorse`, `not-interested`, `share` | — | the action (never on what) |
-| `recipe-selected` | `kind`: built-in/custom; `recipe`: default/following/discovery/custom/other | a recipe is chosen or edited |
+| `recipe-selected` | `kind`: built-in/custom; `recipe`: default/following/discovery/custom/other | a recipe is picked (built-in or the custom one) |
 | `recipe-imported` | — | a recipe was imported (never its contents) |
 | `view-mode` | `view`: reels/grid | Home switches view |
 | `feed-settings-opened` | — | the feed settings sheet opens |

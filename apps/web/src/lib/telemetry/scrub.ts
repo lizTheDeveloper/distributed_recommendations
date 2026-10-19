@@ -1,4 +1,4 @@
-// Strict scrubbing for anything telemetry sends (THREAT_MODEL.md T27,
+// Strict scrubbing for anything telemetry sends (THREAT_MODEL.md T34,
 // docs/TELEMETRY.md). Crash reports keep only the error type, a scrubbed message,
 // stack frames reduced to function + bundle file + line, the app's route name and
 // coarse device facts. Everything else in a Sentry event is dropped by allow-list,
