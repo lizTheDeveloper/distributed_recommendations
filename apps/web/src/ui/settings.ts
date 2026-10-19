@@ -204,7 +204,7 @@ function storageStatus(app: App): HTMLElement {
     h("strong", null, v.status === "passphrase" ? "Encrypted with your passphrase. " : "Encrypted on this device. "),
     v.status === "passphrase"
       ? "History, follows and taste lists are stored as AES-256-GCM ciphertext under a key derived from your passphrase. It isn't stored anywhere."
-      : "History, follows and taste lists are stored as AES-256-GCM ciphertext. The key is kept by this browser and can't be exported by page scripts. This keeps your history out of plaintext files, backups and other browser profiles; it doesn't protect against malware or anyone using this browser profile.",
+      : "History, follows and taste lists are stored as AES-256-GCM ciphertext under a key this browser keeps and page scripts can't export. That keeps them out of plaintext site data, backups and sync of it, and other browser profiles. It doesn't protect against malware, anyone using this browser profile, or a full copy of the profile (a passphrase helps there).",
   );
 }
 

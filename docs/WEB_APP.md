@@ -7,7 +7,7 @@ Companion to `DESIGN.md`, `PROTOCOL.md` and `ANALYTICS.md`. Where this document 
 
 v1 ships the first tier of the ship order in DESIGN.md: **Follow, Subscribe to taste and reserved explore slots**,
 with on-device ranking by `packages/core` `rank()`. Match, Circle, second degree, previews and Tier 2 creator
-analytics appear in the UI only as "coming next" placeholders. v1 has no crypto and no private matching.
+analytics appear in the UI only as "coming next" placeholders. v1 has no private matching. The only cryptography is local encryption at rest (see Local state).
 
 ## Data flow
 
@@ -58,22 +58,37 @@ The counts live in `impressions` (unique ids, capped). They stay on the device, 
 
 ## Local state
 
-Everything is in `localStorage` under `mf.v1.*`, with every access wrapped; if storage fails, the app runs from memory for the session.
+Local state is split in two. Configuration stays in `localStorage` under `mf.v1.*`. Anything that shows what the viewer watches or likes is encrypted at rest in IndexedDB (THREAT_MODEL.md T9). Every access is wrapped; when storage fails, the app runs from memory for the session.
 
-| Key | Contents |
-|---|---|
-| `settings` | instances, trending-as-taste, private watching, P2P, analytics switches, theme |
-| `follows` | `{handle, name?, addedAt}` |
-| `taste` | subscribed lists (validated again on load) |
-| `recipe` | active recipe id, plus a custom recipe in wire form (re-parsed by `parseRecipe` on load) |
-| `history` | `{videoId, at, kind: "watch" \| "endorse", tags, via?}`, capped at 2,000. Not written while private watching is on |
-| `tally` | local discovery-channel counts (below) |
-| `videos` | cache of resolved taste-list videos (600 max) |
-| `impressions` | ids of feed items seen, overall and per taste list, for track records (2,000 / 500 per list) |
-| `tags` | tags fetched from video detail endpoints (1,500 max) |
+| Key | Where | Contents |
+|---|---|---|
+| `settings` | localStorage | instances, popular section, private watching, P2P, analytics switches, theme, `retentionDays` (30/60/90, default 60) |
+| `recipe` | localStorage | active recipe id, plus a custom recipe in wire form (re-parsed by `parseRecipe` on load) |
+| `tab` | localStorage | last screen |
+| `history` | vault | `{videoId, at, kind: "watch" \| "endorse", tags, via?}`, capped at 2,000 and limited to the sharing window. Not written while private watching is on |
+| `tally` | vault | local discovery-channel counts (below) |
+| `impressions` | vault | ids of feed items seen, overall and per taste list, for track records (2,000 / 500 per list) |
+| `follows` | vault | `{handle, name?, addedAt}` |
+| `taste` | vault | subscribed lists (validated again on load) |
+| `videos` | vault | cache of resolved taste-list videos (600 max) |
+| `tags` | vault | tags fetched from video detail endpoints (1,500 max). Includes videos you endorsed, so it counts as sensitive |
 
 - `toSketchHistory()` maps history to core's `HistoryEntry` for when Match ships. It passes **endorsements only**: opening the player is not a finished watch.
-- **Wipe local history** clears `history`, `tally` and `impressions`, after an in-page confirmation. Follows, lists, recipes and the tag cache (public catalog data) stay.
+- **Private watching** records nothing: no history, impressions or tally.
+
+### Encryption at rest (`src/lib/vault.ts`)
+
+- **Cipher:** WebCrypto only. AES-GCM with a 256-bit key, a fresh random 96-bit IV per write, and the record name as additional authenticated data, so a ciphertext copied into another record fails to decrypt. Each record is one IndexedDB value `{iv, ct}` in database `match-feed`, store `vault`, key `rec:<name>`.
+- **Key, default (device mode):** a non-extractable `CryptoKey` generated on first run and stored in the same IndexedDB store. Page scripts can use it but can't export its bytes.
+- **Key, optional (passphrase mode):** a setting under Sharing & settings, labeled optional. The key is derived with PBKDF2-HMAC-SHA-256 at 600,000 iterations and a random 16-byte salt. WebCrypto has no Argon2 or scrypt, so PBKDF2 is the strongest KDF available without a dependency. Only the salt, the iteration count and an encrypted check value are stored, and the app asks for the passphrase at startup. **Tradeoff:** a forgotten passphrase means lost history, follows and taste lists. The unlock screen's only way out is "start fresh", which deletes them. Turning the passphrase on or off re-encrypts every record in one transaction.
+- **Migration:** on the first start after this change, any plaintext `mf.v1.history`, `tally`, `impressions`, `follows`, `taste`, `videos` and `tags` in localStorage is encrypted into the vault. The plaintext is deleted only after the ciphertext is stored; if that write fails, it stays and the migration retries on the next start.
+- **Retention:** history older than the sharing window (`retentionDays`) is deleted when the app starts, when the setting changes, and once a day after that (an hourly check, plus a check when the tab becomes visible). Impressions and the tally carry no timestamps, so they're bounded by their caps and cleared by the wipe.
+- **Wipe local history** (in-page confirmation) clears `history`, `tally`, `impressions` and the tag cache, and crypto-shreds the vault. It deletes every ciphertext record and the key (or the passphrase salt and check) in one transaction, then writes what stays (follows, taste lists, the taste-list video cache) under a brand-new device key. Any plaintext left by an older version is deleted too. A wipe turns passphrase mode off, and the toast says so. Settings and recipes stay.
+- **Fallback:** if IndexedDB or WebCrypto is unavailable or broken (no secure context, a blocked or sandboxed origin, some private windows, or IndexedDB not opening within 4 s), the app uses a memory-only vault. Sensitive state lives in memory for the tab. A banner at the top and the Local history panel both say so. Nothing sensitive is ever written to localStorage as a fallback. Plaintext left by an older version is read for the session but not deleted, since deleting it there would lose it. The panel mentions it, and the wipe removes it.
+
+**What this protects against.** Casual forensic or disk access, such as someone grepping the profile directory or a disk image for video URLs. Tools, backups and sync that copy site storage, since localStorage no longer holds history. Other OS users and other browser profiles, which can't run this origin's scripts with this profile's key. With crypto-shredding, a wipe is final even where IndexedDB leaves deleted pages on disk until compaction, as long as the key is gone too. In passphrase mode, also a full copy of the browser profile, up to the cost of guessing the passphrase.
+
+**What it doesn't protect against.** Malware on the device. A compromised or malicious build of this origin's JavaScript, which can ask the browser to decrypt everything. Anyone using the unlocked browser profile, who can simply open the app. In device mode, someone with a complete copy of the profile directory: the key is stored beside the ciphertext. Non-extractable stops page scripts from exporting it, not disk forensics. Device mode adds no OS-keystore protection, because browsers don't expose one to web pages. Full-disk encryption remains the main defense against a seized device. Ciphertext sizes and write times are visible, and settings and recipes are not encrypted.
 
 ## Viewer analytics switch (ANALYTICS.md Q1)
 
@@ -126,4 +141,4 @@ The live build self-hosts its fonts (`public/fonts/`, OFL 1.1; Latin and Latin-e
 
 ## Offline artifact build
 
-`apps/web/dist-artifact/index.html` is one self-contained file for the claude.ai artifact sandbox, which blocks network access. It bundles a snapshot of real API responses (`src/snapshot/snapshot.json`, about 125 videos from framatube.org and tilvids.com). A snapshot-backed `fetch` serves those responses to the *same* core client, so ranking, follows (of channels in the snapshot), taste lists, recipes, settings and the studio all run the real code. Thumbnails are gradient placeholders, playback and URL import are disabled, and a banner says so. Ranking uses the capture time as "now", so explore slots and recency read as they did that day.
+`apps/web/dist-artifact/index.html` is one self-contained file for the claude.ai artifact sandbox, which blocks network access. It bundles a snapshot of real API responses (`src/snapshot/snapshot.json`, about 125 videos from framatube.org and tilvids.com). A snapshot-backed `fetch` serves those responses to the *same* core client, so ranking, follows (of channels in the snapshot), taste lists, recipes, settings and the studio all run the real code. Thumbnails are gradient placeholders, playback and URL import are disabled, and a banner says so. Ranking uses the capture time as "now", so explore slots and recency read as they did that day. Storage works as in the live build: encrypted in IndexedDB when the sandbox's origin allows it, otherwise memory-only with the banner described under Local state. Retention uses the real clock, not the capture time.
