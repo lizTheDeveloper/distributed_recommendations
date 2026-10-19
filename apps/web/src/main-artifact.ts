@@ -1,7 +1,7 @@
 // Offline entry for the single-file artifact build: the network is unavailable, so
 // the catalog is served from a snapshot of real PeerTube API responses through the
 // same core client the live app uses.
-import { startApp } from "./app.ts";
+import { boot } from "./boot.ts";
 import { createCatalog } from "./lib/catalog.ts";
 import type { Snapshot } from "./lib/snapshotFetch.ts";
 import { snapshotFetch } from "./lib/snapshotFetch.ts";
@@ -30,7 +30,7 @@ try {
   /* ignore */
 }
 
-startApp({
+void boot({
   root: document.getElementById("app")!,
   catalog: createCatalog(snapshotFetch(snap)),
   kv,

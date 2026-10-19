@@ -1,10 +1,10 @@
 // Live entry: real PeerTube instances over the network.
-import { startApp } from "./app.ts";
+import { boot } from "./boot.ts";
 import { createCatalog } from "./lib/catalog.ts";
 import { browserKV } from "./lib/storage.ts";
 import { EXAMPLES } from "./examples.ts";
 
-startApp({
+void boot({
   root: document.getElementById("app")!,
   catalog: createCatalog((url, init) => fetch(url, init)),
   kv: browserKV(),

@@ -1,7 +1,9 @@
 import type { App } from "../app.ts";
 import type { SourceKind } from "../lib/core.ts";
 import { CHIP_LABELS } from "../lib/core.ts";
-import { DEFAULT_INSTANCES } from "../lib/settings.ts";
+import type { RetentionDays } from "../lib/settings.ts";
+import { DEFAULT_INSTANCES, RETENTION_CHOICES } from "../lib/settings.ts";
+import { MIN_PASSPHRASE } from "../lib/vault.ts";
 import { parseInstance } from "../lib/handles.ts";
 import { h, toggle } from "./dom.ts";
 import { LEGEND } from "./home.ts";
@@ -142,21 +144,132 @@ function controls(app: App): HTMLElement {
       ? h("button", { class: "linkbtn", onclick: () => { s.settings.instances = [...DEFAULT_INSTANCES]; app.persist("settings"); app.reloadCatalog(); } }, "Reset to defaults")
       : null,
     h("h3", null, "Local history"),
-    h("p", { class: "small" }, `${watches} watch${watches === 1 ? "" : "es"} and ${endorses} endorsement${endorses === 1 ? "" : "s"} stored in this browser only.`),
+    h(
+      "p",
+      { class: "small" },
+      `${watches} watch${watches === 1 ? "" : "es"} and ${endorses} endorsement${endorses === 1 ? "" : "s"} `,
+      app.vault.status === "memory" ? "in memory for this tab only." : "stored in this browser only.",
+    ),
+    storageStatus(app),
+    h(
+      "div",
+      { class: "switch" },
+      h("label", { for: "retention" }, "Keep history for"),
+      h(
+        "select",
+        {
+          id: "retention",
+          "aria-describedby": "retention-hint",
+          onchange: (e: Event) => {
+            const days = Number((e.target as HTMLSelectElement).value) as RetentionDays;
+            app.setRetention(days);
+            app.toast(`History older than ${days} days is deleted`);
+          },
+        },
+        RETENTION_CHOICES.map((d) => h("option", { value: String(d), selected: s.settings.retentionDays === d }, `${d} days`)),
+      ),
+    ),
+    h("p", { class: "hint", id: "retention-hint" }, "Your sharing window. Older watches and endorsements are deleted from this device when the app starts and once a day."),
+    passphrase(app),
     confirming
       ? h(
           "div",
           { class: "confirm", role: "alertdialog", "aria-labelledby": "wipe-q" },
           h("strong", { id: "wipe-q" }, "Wipe all local history?"),
-          h("p", null, `This deletes ${watches + endorses} events and the discovery tally from this browser. Follows, taste lists and recipes stay. It can't be undone.`),
+          h("p", null, `This deletes ${watches + endorses} events, the discovery tally and feed impressions, and destroys the encryption key they were stored under. Follows, taste lists and recipes stay (re-encrypted under a new key). It can't be undone.`),
           h(
             "div",
             { class: "row end" },
             h("button", { class: "btn sm", id: "wipe-cancel", onclick: () => { s.ui.wipeConfirm = undefined; app.rerender(); } }, "Cancel"),
-            h("button", { class: "btn sm warn solid", id: "wipe-yes", onclick: () => { s.ui.wipeConfirm = undefined; app.wipeHistory(); } }, "Wipe history"),
+            h("button", { class: "btn sm warn solid", id: "wipe-yes", onclick: () => { s.ui.wipeConfirm = undefined; void app.wipeHistory(); } }, "Wipe history"),
           ),
         )
       : h("button", { class: "btn warn", id: "btn-wipe", onclick: () => { s.ui.wipeConfirm = "1"; app.rerender(); requestAnimationFrame(() => document.getElementById("wipe-cancel")?.focus()); } }, "Wipe local history…"),
+  );
+}
+
+function storageStatus(app: App): HTMLElement {
+  const v = app.vault;
+  if (v.status === "memory")
+    return h(
+      "p",
+      { class: "note", id: "storage-status", role: "note" },
+      h("strong", null, "Not saved. "),
+      `${v.reason ?? ""} History, follows and taste lists stay in memory until you close this tab; nothing is written unencrypted.`,
+      app.legacyLeft ? " Unencrypted history from an older version is still in this browser: wiping removes it." : "",
+    );
+  return h(
+    "p",
+    { class: "note", id: "storage-status" },
+    h("strong", null, v.status === "passphrase" ? "Encrypted with your passphrase. " : "Encrypted on this device. "),
+    v.status === "passphrase"
+      ? "History, follows and taste lists are stored as AES-256-GCM ciphertext under a key derived from your passphrase. It isn't stored anywhere."
+      : "History, follows and taste lists are stored as AES-256-GCM ciphertext. The key is kept by this browser and can't be exported by page scripts. This keeps your history out of plaintext files, backups and other browser profiles; it doesn't protect against malware or anyone using this browser profile.",
+  );
+}
+
+function passphrase(app: App): HTMLElement | null {
+  const { s } = app;
+  if (app.vault.status === "memory") return null;
+  const busy = s.ui.passBusy === "1";
+  const run = async (fn: () => Promise<void>, ok: string) => {
+    s.ui.passBusy = "1";
+    s.ui.passError = undefined;
+    app.rerender();
+    try {
+      await fn();
+      s.ui.passOpen = undefined;
+      app.toast(ok);
+    } catch (e) {
+      s.ui.passError = e instanceof Error ? e.message : String(e);
+    }
+    s.ui.passBusy = undefined;
+    app.rerender();
+  };
+  if (app.vault.status === "passphrase")
+    return h(
+      "div",
+      { class: "stack" },
+      h("p", { class: "hint", style: { "margin-top": "0" } }, "Passphrase on: you'll type it each time the app opens."),
+      h("div", { class: "row" }, h("button", { class: "btn sm", id: "pass-off", disabled: busy, onclick: () => run(() => app.vault.clearPassphrase(), "Passphrase removed; a device key protects your history") }, busy ? "Working…" : "Turn off passphrase")),
+      s.ui.passError ? h("p", { class: "err", role: "alert" }, s.ui.passError) : null,
+    );
+  if (s.ui.passOpen !== "1")
+    return h(
+      "div",
+      { class: "stack" },
+      h("div", { class: "row" }, h("button", { class: "btn sm", id: "pass-open", onclick: () => { s.ui.passOpen = "1"; app.rerender(); requestAnimationFrame(() => document.getElementById("pass-1")?.focus()); } }, "Add a passphrase (optional)…")),
+    );
+  const p1 = h("input", { type: "password", id: "pass-1", autocomplete: "new-password", disabled: busy, "aria-describedby": "pass-hint" });
+  const p2 = h("input", { type: "password", id: "pass-2", autocomplete: "new-password", disabled: busy });
+  const submit = (e: Event) => {
+    e.preventDefault();
+    if (p1.value.length < MIN_PASSPHRASE) s.ui.passError = `Use at least ${MIN_PASSPHRASE} characters.`;
+    else if (p1.value !== p2.value) s.ui.passError = "The two passphrases don't match.";
+    else return void run(() => app.vault.setPassphrase(p1.value), "Passphrase set");
+    app.rerender();
+  };
+  return h(
+    "form",
+    { class: "confirm", onsubmit: submit, "aria-labelledby": "pass-h" },
+    h("strong", { id: "pass-h" }, "Passphrase (optional)"),
+    h(
+      "p",
+      { id: "pass-hint" },
+      "Adds protection if someone copies this browser profile: the key is derived from your passphrase (PBKDF2, 600,000 rounds) instead of being stored. You'll type it each time the app opens. ",
+      h("strong", null, "If you forget it, your history, follows and taste lists can't be recovered."),
+    ),
+    h("label", { for: "pass-1" }, "Passphrase"),
+    p1,
+    h("label", { for: "pass-2" }, "Repeat it"),
+    p2,
+    s.ui.passError ? h("p", { class: "err", role: "alert" }, s.ui.passError) : null,
+    h(
+      "div",
+      { class: "row end" },
+      h("button", { class: "btn sm", type: "button", onclick: () => { s.ui.passOpen = undefined; s.ui.passError = undefined; app.rerender(); } }, "Cancel"),
+      h("button", { class: "btn sm match", type: "submit", disabled: busy }, busy ? "Working…" : "Set passphrase"),
+    ),
   );
 }
 

@@ -38,6 +38,17 @@ export function record(history: WatchEvent[], ev: WatchEvent, settings: Pick<Set
   return [...history, ev].slice(-HISTORY_CAP);
 }
 
+export const DAY_MS = 24 * 60 * 60 * 1000;
+
+/**
+ * Drop events older than the sharing window (`days`). Returns the same array when
+ * nothing is removed, so callers can skip a write.
+ */
+export function pruneHistory(history: WatchEvent[], days: number, nowMs: number): WatchEvent[] {
+  const cutoff = nowMs - days * DAY_MS;
+  return history.some((e) => e.at < cutoff) ? history.filter((e) => e.at >= cutoff) : history;
+}
+
 /** Remove an endorsement (un-endorse). */
 export function unendorse(history: WatchEvent[], videoId: string): WatchEvent[] {
   return history.filter((e) => !(e.kind === "endorse" && e.videoId === videoId));

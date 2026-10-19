@@ -88,9 +88,9 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
 .btn.warn.solid{background:var(--warn);color:#fff}
 .btn.on{background:var(--surface);color:var(--fg)}
 .linkbtn{background:none;border:0;padding:0;color:var(--follow);font:inherit;font-size:.8rem;cursor:pointer;text-decoration:underline;flex:none}
-input[type=text],input[type=url],select,textarea{font:inherit;padding:7px 9px;border-radius:6px;border:1px solid var(--line);background:var(--surface);color:var(--fg);min-width:0;max-width:100%}
+input[type=text],input[type=url],input[type=password],select,textarea{font:inherit;padding:7px 9px;border-radius:6px;border:1px solid var(--line);background:var(--surface);color:var(--fg);min-width:0;max-width:100%}
 textarea{font:.82rem/1.45 var(--f-mono);width:100%;resize:vertical}
-.row > input[type=text],.row > input[type=url]{flex:1 1 180px}
+.row > input[type=text],.row > input[type=url],.row > input[type=password]{flex:1 1 180px}
 input[type=range]{width:100%;accent-color:var(--match)}
 .field{display:flex;flex-direction:column;gap:4px;font-size:.88rem}
 .slider label{display:flex;justify-content:space-between;gap:8px;font-size:.88rem}
@@ -141,3 +141,5 @@ pre{white-space:pre-wrap;overflow-wrap:anywhere;font:.78rem/1.45 var(--f-mono);b
 @media (max-width:520px){.grid{grid-template-columns:1fr}.modal{padding:14px}}
 @media (prefers-reduced-motion:no-preference){.card .thumb{transition:transform .15s}.card:hover .thumb{transform:translateY(-2px)}}
 .popular{margin-top:32px;padding-top:20px;border-top:1px solid var(--line)}
+.unlock{max-width:440px;margin:48px auto}
+.unlock form{display:flex;flex-direction:column;gap:10px}

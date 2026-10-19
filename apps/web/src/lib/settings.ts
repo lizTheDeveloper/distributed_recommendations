@@ -15,7 +15,13 @@ export interface Settings {
   /** Contribute anonymous discovery-channel stats (ANALYTICS.md Q1: on by default). */
   analytics: { contribute: boolean; perKind: Record<SourceKind, boolean> };
   theme: Theme;
+  /** Sharing window: history older than this many days is deleted on this device. */
+  retentionDays: RetentionDays;
 }
+
+export const RETENTION_CHOICES = [30, 60, 90] as const;
+export type RetentionDays = (typeof RETENTION_CHOICES)[number];
+export const DEFAULT_RETENTION: RetentionDays = 60;
 
 export const DEFAULT_INSTANCES = ["https://framatube.org", "https://tilvids.com"];
 
@@ -29,6 +35,7 @@ export function defaultSettings(): Settings {
     p2p: false,
     analytics: { contribute: true, perKind },
     theme: "auto",
+    retentionDays: DEFAULT_RETENTION,
   };
 }
 
@@ -51,6 +58,7 @@ export function loadSettings(x: unknown): Settings {
     const pk = a.perKind as Record<string, unknown> | undefined;
     if (pk && typeof pk === "object") for (const k of SOURCE_KINDS) d.analytics.perKind[k] = bool(pk[k], true);
   }
+  if ((RETENTION_CHOICES as readonly unknown[]).includes(o.retentionDays)) d.retentionDays = o.retentionDays as RetentionDays;
   if (o.theme === "light" || o.theme === "dark" || o.theme === "auto") d.theme = o.theme;
   return d;
 }

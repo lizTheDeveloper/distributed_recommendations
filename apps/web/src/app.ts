@@ -11,14 +11,17 @@ import { emptyImpressions, listStrength, loadImpressions, recordImpression } fro
 import type { ChannelRef } from "./lib/handles.ts";
 import { handleOf, parseChannelInput } from "./lib/handles.ts";
 import type { WatchEvent } from "./lib/history.ts";
-import { isEndorsed, loadHistory, record, seenSet, unendorse } from "./lib/history.ts";
+import { DAY_MS, isEndorsed, loadHistory, pruneHistory, record, seenSet, unendorse } from "./lib/history.ts";
 import type { Tally } from "./lib/analytics.ts";
 import { countView, emptyTally, loadTally } from "./lib/analytics.ts";
 import { BUILTIN_RECIPES } from "./lib/recipes.ts";
-import type { Settings } from "./lib/settings.ts";
+import type { RetentionDays, Settings } from "./lib/settings.ts";
 import { loadSettings } from "./lib/settings.ts";
 import type { KV } from "./lib/storage.ts";
 import { readJson, writeJson } from "./lib/storage.ts";
+import type { SensitiveData, SensitiveKey } from "./lib/localdata.ts";
+import { removeLegacy } from "./lib/localdata.ts";
+import type { Vault } from "./lib/vault.ts";
 import type { TasteList } from "./lib/tastelist.ts";
 import { parseTasteList } from "./lib/tastelist.ts";
 import { loadVideo, storeVideo } from "./lib/videos.ts";
@@ -89,6 +92,12 @@ export interface AppOptions {
   snapshotNote?: string;
   /** Bundled example taste lists. */
   examples: { file: string; list: unknown }[];
+  /** Encrypted store for sensitive state (a memory vault when unavailable). */
+  vault: Vault;
+  /** Decrypted sensitive state, loaded before the app starts. */
+  sensitive: SensitiveData;
+  /** Plaintext from an older version remains in localStorage (memory vault only). */
+  legacyLeft?: boolean;
 }
 
 type PersistKey = "settings" | "follows" | "taste" | "recipe" | "history" | "tally" | "videos" | "impressions" | "tags";
@@ -97,6 +106,9 @@ export interface App {
   s: State;
   mode: "live" | "snapshot";
   catalog: Catalog;
+  vault: Vault;
+  /** Plaintext from an older version remains in localStorage (memory vault only). */
+  legacyLeft: boolean;
   examples: { file: string; list: TasteList }[];
   now(): Date;
   recipe(): Recipe;
@@ -117,7 +129,11 @@ export interface App {
   watch(v: Video, via?: SourceKind): void;
   isEndorsed(id: string): boolean;
   toggleEndorse(v: Video, via?: SourceKind): void;
-  wipeHistory(): void;
+  /** Wipe history and crypto-shred the vault key. */
+  wipeHistory(): Promise<void>;
+  setRetention(days: RetentionDays): void;
+  /** Delete history outside the sharing window. */
+  pruneNow(): void;
   reloadCatalog(): void;
   loadStudio(handle: string): void;
   setTheme(): void;
@@ -129,8 +145,20 @@ const TAG_CACHE_CAP = 1500;
 const TAG_FETCH_LIMIT = 40;
 const VIDEO_CACHE_CAP = 600;
 
+/** How often the retention sweep checks whether a day has passed. */
+const PRUNE_CHECK_MS = 60 * 60 * 1000;
+
 export function startApp(opts: AppOptions): App {
-  const { kv, catalog } = opts;
+  const { kv, catalog, vault } = opts;
+  /** Read decrypted sensitive state, validated like the plaintext reads. */
+  function sens<T>(key: SensitiveKey, fallback: T, check?: (x: unknown) => T): T {
+    if (!(key in opts.sensitive)) return fallback;
+    try {
+      return check ? check(opts.sensitive[key]) : (opts.sensitive[key] as T);
+    } catch {
+      return fallback;
+    }
+  }
   const examples = opts.examples.map((e) => ({ file: e.file, list: parseTasteList(e.list) }));
 
   const storedRecipe = readJson<{ id?: unknown; custom?: unknown }>(kv, "recipe", {});
@@ -146,7 +174,7 @@ export function startApp(opts: AppOptions): App {
       : "default";
 
   const videoCache = new Map<string, Video>();
-  for (const sv of readJson<unknown[]>(kv, "videos", [], (x) => (Array.isArray(x) ? x : []))) {
+  for (const sv of sens<unknown[]>("videos", [], (x) => (Array.isArray(x) ? x : []))) {
     const v = loadVideo(sv);
     if (v) videoCache.set(v.id, v);
   }
@@ -154,10 +182,10 @@ export function startApp(opts: AppOptions): App {
   const storedTab = kv.get("mf.v1.tab");
   const s: State = {
     settings: readJson(kv, "settings", loadSettings(null), loadSettings),
-    follows: readJson<FollowEntry[]>(kv, "follows", [], (x) =>
+    follows: sens<FollowEntry[]>("follows", [], (x) =>
       Array.isArray(x) ? x.filter((f) => f && typeof f.handle === "string" && parseChannelInput(f.handle)) : [],
     ),
-    taste: readJson<TasteSub[]>(kv, "taste", [], (x) => {
+    taste: sens<TasteSub[]>("taste", [], (x) => {
       if (!Array.isArray(x)) return [];
       const out: TasteSub[] = [];
       for (const t of x) {
@@ -170,11 +198,11 @@ export function startApp(opts: AppOptions): App {
       return out;
     }),
     recipe: { id: recipeId, custom },
-    history: readJson(kv, "history", [], loadHistory),
-    tally: readJson(kv, "tally", emptyTally(), loadTally),
-    impressions: readJson(kv, "impressions", emptyImpressions(), loadImpressions),
+    history: sens("history", [], loadHistory),
+    tally: sens("tally", emptyTally(), loadTally),
+    impressions: sens("impressions", emptyImpressions(), loadImpressions),
     tagCache: new Map(
-      readJson<[string, string[]][]>(kv, "tags", [], (x) =>
+      sens<[string, string[]][]>("tags", [], (x) =>
         Array.isArray(x) ? x.filter((e) => Array.isArray(e) && typeof e[0] === "string" && Array.isArray(e[1])) : [],
       ),
     ),
@@ -226,6 +254,18 @@ export function startApp(opts: AppOptions): App {
       ),
       opts.mode === "snapshot" && opts.snapshotNote
         ? h("div", { class: "banner-note", role: "note" }, h("div", null, h("strong", null, "Offline snapshot. "), opts.snapshotNote))
+        : null,
+      vault.status === "memory"
+        ? h(
+            "div",
+            { class: "banner-note", role: "note", id: "memory-note" },
+            h(
+              "div",
+              null,
+              h("strong", null, "History isn't saved in this browser. "),
+              `${vault.reason ?? ""} Follows, taste lists, watches and endorsements are kept in memory and are gone when you close this tab. Nothing is written unencrypted.`,
+            ),
+          )
         : null,
       tabs,
       main,
@@ -357,10 +397,24 @@ export function startApp(opts: AppOptions): App {
     app.rerender();
   }
 
+  function sensitiveValue(k: SensitiveKey): unknown {
+    if (k === "videos") return [...s.videoCache.values()].slice(-VIDEO_CACHE_CAP).map(storeVideo);
+    if (k === "tags") return [...s.tagCache.entries()].slice(-TAG_CACHE_CAP);
+    return s[k];
+  }
+
+  // ---- retention: drop history outside the sharing window, at start and daily ----
+  let lastPrune = 0;
+  function maybePrune() {
+    if (Date.now() - lastPrune >= DAY_MS) app.pruneNow();
+  }
+
   const app: App = {
     s,
     mode: opts.mode,
     catalog,
+    vault,
+    legacyLeft: !!opts.legacyLeft,
     examples,
     now: opts.now,
     recipe() {
@@ -415,9 +469,8 @@ export function startApp(opts: AppOptions): App {
     persist(...keys) {
       for (const k of keys) {
         if (k === "recipe") writeJson(kv, "recipe", { id: s.recipe.id, custom: s.recipe.custom ? recipeToJson(s.recipe.custom) : null });
-        else if (k === "videos") writeJson(kv, "videos", [...s.videoCache.values()].slice(-VIDEO_CACHE_CAP).map(storeVideo));
-        else if (k === "tags") writeJson(kv, "tags", [...s.tagCache.entries()].slice(-TAG_CACHE_CAP));
-        else writeJson(kv, k, s[k]);
+        else if (k === "settings") writeJson(kv, "settings", s.settings);
+        else vault.write(k, sensitiveValue(k));
       }
     },
     rerender() {
@@ -501,13 +554,47 @@ export function startApp(opts: AppOptions): App {
       }
       app.persist("history");
     },
-    wipeHistory() {
+    async wipeHistory() {
       s.history = [];
       s.tally = emptyTally();
       s.impressions = emptyImpressions();
-      app.persist("history", "tally", "impressions");
-      app.toast("Local history wiped");
+      // Tags were fetched for endorsed videos, so the cache would hint at them.
+      s.tagCache.clear();
+      removeLegacy(kv);
+      app.legacyLeft = false;
+      // Crypto-shred: delete every ciphertext and the key, then re-encrypt what stays
+      // (follows, taste lists, the taste-list video cache) under a fresh key.
+      const keep = { follows: s.follows, taste: s.taste, videos: sensitiveValue("videos") };
+      const hadPassphrase = vault.status === "passphrase";
+      try {
+        await vault.shred(keep);
+        app.toast(
+          vault.status === "memory"
+            ? "Local history wiped"
+            : hadPassphrase
+              ? "Local history wiped and its key destroyed. The passphrase was removed too; set a new one if you want it"
+              : "Local history wiped and its key destroyed",
+        );
+      } catch {
+        app.toast("Wiped from this session, but the browser refused to delete stored data");
+      }
       app.rerender();
+    },
+    setRetention(days) {
+      s.settings.retentionDays = days;
+      app.persist("settings");
+      lastPrune = 0;
+      app.pruneNow();
+      app.rerender();
+    },
+    pruneNow() {
+      lastPrune = Date.now();
+      const kept = pruneHistory(s.history, s.settings.retentionDays, lastPrune);
+      if (kept !== s.history) {
+        s.history = kept;
+        app.persist("history");
+        app.rerender();
+      }
     },
     reloadCatalog() {
       for (const k of [...s.instances.keys()]) if (!s.settings.instances.includes(k)) s.instances.delete(k);
@@ -544,6 +631,11 @@ export function startApp(opts: AppOptions): App {
   };
 
   app.setTheme();
+  app.pruneNow();
+  setInterval(maybePrune, PRUNE_CHECK_MS);
+  document.addEventListener?.("visibilitychange", () => {
+    if (document.visibilityState === "visible") maybePrune();
+  });
   render();
   app.reloadCatalog();
   for (const t of s.taste) void loadTaste(t);

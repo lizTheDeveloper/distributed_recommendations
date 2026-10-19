@@ -1,0 +1,26 @@
+{
+  "name": "@match-feed/match",
+  "version": "0.1.0",
+  "description": "Private Match protocol for Match Feed: match lifecycle, NIP-17 gift-wrapped sketch exchange, per-match keys and PSI-cardinality previews",
+  "license": "Apache-2.0",
+  "type": "module",
+  "private": true,
+  "engines": {
+    "node": ">=22.6"
+  },
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "test": "node --experimental-strip-types --disable-warning=ExperimentalWarning --test --test-reporter=spec test/*.test.ts",
+    "typecheck": "tsc -p ."
+  },
+  "dependencies": {
+    "@openmined/psi.js": "2.0.6",
+    "nostr-tools": "2.25.2"
+  },
+  "devDependencies": {
+    "@types/node": "22.20.5",
+    "typescript": "5.9.3"
+  }
+}
