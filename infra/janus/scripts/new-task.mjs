@@ -9,6 +9,8 @@
 //   leader/tasks/<name>.leader.yaml   for the leader's `janus_cli provision-tasks`
 //   helper/tasks/<name>.helper.yaml   send to the helper operator over a secure channel, then delete
 //   creator/<name>/collector.secret.json   the creator's collector credentials (mode 0600)
+//   creator/<name>/collector-credential.json   the same in Janus `collect --collector-credential-file`
+//                                     format (only when this script generated the collector key)
 //   creator/<name>/task-config.json   the PUBLIC task config the creator publishes (see the
 //                                     analytics package, config.ts)
 //
@@ -117,6 +119,10 @@ if (Buffer.from(taskId, "base64url").length !== 32 || b64u(Buffer.from(taskId, "
 const verifyKey = b64u(randomBytes(VERIFY_KEY_BYTES));
 const aggregatorToken = token();
 const collectorToken = a["collector-auth-token"] ?? token();
+// A collector we generated uses a Bearer token (what Janus's `collect` tool sends with
+// --collector-credential-file). An external collector (e.g. the interop collector in
+// the e2e test) sends DAP-Auth-Token.
+const collectorTokenType = collectorPrivate ? "Bearer" : "DapAuth";
 const minBatch = Number(a["min-batch-size"]);
 if (!Number.isInteger(minBatch) || minBatch < 20) throw new Error("--min-batch-size must be an integer >= 20");
 const now = Math.floor(Date.now() / 1000);
@@ -161,7 +167,7 @@ function taskYaml(role) {
       `    type: Bearer`,
       `    token: "${aggregatorToken}"`,
       `  collector_auth_token_hash:`,
-      `    type: DapAuth`,
+      `    type: ${collectorTokenType}`,
       `    hash: "${sha(collectorToken)}"`,
     );
   } else {
@@ -207,7 +213,7 @@ const files = [
       {
         taskId,
         leader: leaderUrl,
-        collectorAuthToken: { type: "DapAuth", token: collectorToken },
+        collectorAuthToken: { type: collectorTokenType, token: collectorToken },
         collectorHpkeConfig: collectorHpke,
         collectorHpkePrivateKey: collectorPrivate ?? null,
         vdaf: taskConfig.vdaf,
@@ -219,4 +225,17 @@ const files = [
   ),
   w(join(out, "creator", name, "task-config.json"), JSON.stringify(taskConfig, null, 2) + "\n", 0o644),
 ];
+if (collectorPrivate) {
+  // janus_collector::PrivateCollectorCredential (release/0.7, collector/src/credential.rs).
+  files.push(
+    w(
+      join(out, "creator", name, "collector-credential.json"),
+      JSON.stringify(
+        { aead: "AesGcm128", id: collectorHpke.id, kdf: "Sha256", kem: "X25519HkdfSha256", private_key: collectorPrivate, public_key: collectorHpke.publicKey, token: collectorToken },
+        null,
+        2,
+      ) + "\n",
+    ),
+  );
+}
 console.log(JSON.stringify({ taskId, files }, null, 2));

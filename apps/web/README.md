@@ -5,8 +5,8 @@ The Match Feed client: Follow, Subscribe to taste, explore slots, recipes, a ver
 with `packages/core` `rank()`; Match runs `packages/match` over Nostr relays you add. Design notes,
 data flow and the provisional taste-list format are in [`docs/WEB_APP.md`](../../docs/WEB_APP.md).
 
-- Fonts are self-hosted (`public/fonts/`, OFL); in normal use the live build contacts only PeerTube instances, plus the host of any taste-list URL you import (or a creator links), and relays only if you add them.
-- Vanilla TypeScript with a 40-line DOM helper; no framework. Dev dependencies, all pinned: `esbuild` 0.28.2, `typescript` 5.9.3, `fake-indexeddb` 6.2.5 (tests), `ws` 8.21.3 (the dev relay) and `@openmined/psi.js` 2.0.6 (its browser build is copied to `dist/psi.js` or inlined in the artifact). `.npmrc` sets `ignore-scripts`: psi.js declares build tools as dependencies (`protoc-gen-js` has a download postinstall and a vulnerable `adm-zip`); none of them is run or bundled. `packages/core` and `packages/match` (with its nostr-tools) are imported from source (`src/lib/core.ts`, `src/lib/match/pkg.ts`).
+- Fonts are self-hosted (`public/fonts/`, OFL); in normal use the live build contacts only PeerTube instances, plus the host of any taste-list URL you import (or a creator links), and relays only if you add them. Opt-in crash reports, bug reports and usage analytics contact the operator's GlitchTip/Umami only if the build was configured with them **and** the viewer said yes ([`docs/TELEMETRY.md`](../../docs/TELEMETRY.md)).
+- Vanilla TypeScript with a 40-line DOM helper; no framework. Dev dependencies, all pinned: `esbuild` 0.28.2, `typescript` 5.9.3, `fake-indexeddb` 6.2.5 (tests), `ws` 8.21.3 (the dev relay), `@sentry/browser` 10.76.0 (bundled only into `dist/crash.js`, loaded after opt-in) and `@openmined/psi.js` 2.0.6 (its browser build is copied to `dist/psi.js` or inlined in the artifact). `.npmrc` sets `ignore-scripts`: psi.js declares build tools as dependencies (`protoc-gen-js` has a download postinstall and a vulnerable `adm-zip`); none of them is run or bundled. `packages/core` and `packages/match` (with its nostr-tools) are imported from source (`src/lib/core.ts`, `src/lib/match/pkg.ts`).
 - Static output, so any static host works. It's an installable PWA (manifest, icons, and a small service worker that caches only the app shell, never API data).
 
 ## Run
@@ -21,7 +21,12 @@ npm run typecheck      # tsc via scripts/typecheck.mjs: fails on app errors; err
 npm run snapshot       # refresh the offline snapshot (network; add -- --examples to regenerate example lists)
 npm run build:artifact # only the single-file artifact
 npm run dev-relay      # in-memory Nostr relay on ws://127.0.0.1:7777 for Match (add -- --auth for NIP-42)
+npm run check:telemetry # headless opt-in check against local mock servers (needs PLAYWRIGHT_MODULE; see the script)
 ```
+
+Opt-in telemetry endpoints come from the environment at build time and are hidden when empty:
+`MF_GLITCHTIP_DSN=https://<key>@errors.example.org/1 MF_UMAMI_HOST=https://stats.example.org MF_UMAMI_WEBSITE_ID=<uuid> npm run build`.
+The offline artifact is always built without them.
 
 To try Match locally: run `npm run dev-relay` and `npm run dev`, open the app in two browser profiles, create a key in each (Matches), add `ws://127.0.0.1:7777` under Relays, paste one npub into the other's "Request a match", and press "Check for messages" on each side as you go. Previews need 20+ endorsements on each side (endorse reels). Never point development at public relays.
 
@@ -37,7 +42,7 @@ To serve a build: `python3 -m http.server -d dist 8080`. The service worker regi
 | Matches | identity (create, import nsec, or NIP-07) with npub copy; relays (none by default) with status; request by npub or from a creator/curator; incoming requests with the preview flow (target sees its remaining yearly budget; requester sees the noised count, "<5" below five); consent sheet (endorsements only or + finished watches, window, exclusions); active matches with similarity, renew, quiet pause, revoke (in-page confirm); sharing ledger; activity log. Offline: a "Demo peer (simulated)" |
 | Follow & taste | follow by `name@host` or channel URL; taste lists by URL, pasted JSON, or two bundled **example** lists; validation errors shown in plain text; **Creators' taste**: look up a creator, see where their picks come from (signed NIP-51 list on your relays → taste list linked in their description → public PeerTube playlists without their own uploads), follow, turn each on/off, refresh (daily and on demand), remove; Match/Circle marked "coming next" |
 | Recipe import & export | export (copy/download) and import through `parseRecipeJson`, with the error path shown (e.g. `recipe.weights.follow: must be between 0 and 10`). Editing moved to the feed settings sheet |
-| Sharing & privacy | ledger of who gets what (instances, video hosts, relays and each match, Circle "coming next", discovery stats); switches for private watching, P2P streaming (off by default), anonymous discovery stats (on by default, with an off switch per signal), and the popular section; the instance list; storage status (encrypted, passphrase, or memory-only); history retention (30/60/90 days, default 60); an optional passphrase; wipe local history with an in-page confirm, which also destroys the encryption key |
+| Sharing & privacy | ledger of who gets what (instances, video hosts, relays and each match, Circle "coming next", discovery stats, and the app developers when telemetry is configured); opt-in crash reports / bug-report diagnostics / usage analytics with "What gets sent" and the bug report form (configured builds only); switches for private watching, P2P streaming (off by default), anonymous discovery stats (on by default, with an off switch per signal), and the popular section; the instance list; storage status (encrypted, passphrase, or memory-only); history retention (30/60/90 days, default 60); an optional passphrase; wipe local history with an in-page confirm, which also destroys the encryption key |
 | Watch overlay | PeerTube embed from the origin instance with `p2p=0` unless enabled; Endorse, Follow, open on PeerTube; records a watch locally unless private watching is on |
 | Creator studio | for any channel: Follow taste…; Tier 0 links to the channel and PeerTube's per-video stats pages; Tier 1 public counts (followers, views and likes over recent videos, picks in your loaded taste lists); Tier 2 "coming next" with the decided defaults |
 
@@ -53,11 +58,15 @@ src/lib/               pure logic (tested): catalog, candidates, tastelist, crea
                        migration), handles, videos, snapshotFetch, reels, sheet, bech32
 src/lib/match/         pkg (packages/match import), service (MatchClient + persistence), identity, wsRelay,
                        psi / psiFrame (PSI loading), buffer (Buffer shim), demo (simulated peer)
+src/lib/telemetry/     opt-in telemetry: consent, scrub, usage (Umami client), feedback (bug reports), diagnostics,
+                       config, controller (loads crash.js only after opt-in)
+src/telemetry/         crash-entry: the separately built crash reporter (dist/crash.js, @sentry/browser)
 src/ui/                screens: home (grid), reels, player, sheet, matches, follow, recipe, settings, studio,
-                       watch, taste (Follow taste sheet and management); icons, dom helper
+                       watch, taste (Follow taste sheet and management), telemetry (consent card, panel, form); icons, dom helper
 shims/                 browser stand-ins for match's Node-only PSI loading (bundled by scripts/build.mjs)
 public/                index.html, manifest, icons, sw.js, examples/*.json, psi-frame.html/.js
-scripts/build.mjs      esbuild builds (app, artifact, dev server)
+scripts/build.mjs      esbuild builds (app, crash.js when configured, artifact, dev server)
+scripts/telemetry-check.mjs  headless check: no telemetry requests before opt-in, the expected ones after
 scripts/dev-relay.mjs  local in-memory Nostr relay (64 KiB, NIP-40, optional NIP-42)
 scripts/fetch-snapshot.mjs
 ```
@@ -79,4 +88,5 @@ scripts/fetch-snapshot.mjs
 - **PeerTube sometimes returns 404 for remote thumbnails.** The card falls back to a gradient, but the browser still logs the 404 to the console.
 - **Instances that are down or don't send CORS headers** show as "unreachable" in the sources panel. The app doesn't retry them with backoff.
 - **Follow taste mostly finds playlists.** Few creators publish a NIP-51 set or link a list yet, and most channels' public playlists hold only their own uploads, so the button often says "No public picks yet". Playlists are unsigned (the instance vouches for them), have no sponsored/affiliated flags, and their picks tend to be older and longer, so they score low under the 14-day half-life and show up in Reels only as "Longer video" fill. Looking at a reel for 1.2 s fetches that creator's profile and up to 8 playlists from their instance.
+- **Telemetry free text can still identify.** The scrubber can't recognize an unquoted title or a person's name in a bug report or error message; the form shows what will be sent. `check:telemetry` and the infra smoke tests aren't in CI yet (Playwright, Docker).
 - **Old taste-list picks fade** under the default 14-day half-life, as `rank()` specifies. The Discovery recipe uses 30 days, and up to 3 items per list.
