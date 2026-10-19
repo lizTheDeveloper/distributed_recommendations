@@ -1,0 +1,7 @@
+# sim/ needs only numpy (tested with Python 3.13, numpy 2.5). Installed in CI with
+#   pip install --require-hashes --only-binary=:all: -r .github/ci/requirements-sim.txt
+# Hashes: PyPI, numpy 2.5.3 (2026-09-06): the CPython 3.13 manylinux x86_64 wheel
+# used on ubuntu-24.04 runners, and the sdist. Dependabot (pip) keeps this current.
+numpy==2.5.3 \
+    --hash=sha256:a5fa86b80fd24bcd1aff83ad23be44ea323de3f787be8f8b15d4a65621e25321 \
+    --hash=sha256:df2d5874ff183595a4ba404edd04f6bd9b5505c1d7708573f6a6c17489a67563

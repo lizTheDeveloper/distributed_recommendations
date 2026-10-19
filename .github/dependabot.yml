@@ -1,0 +1,72 @@
+# Dependency updates (docs/THREAT_MODEL.md T13: pinned and reviewed dependencies).
+#
+# - Everything stays pinned exactly: npm `save-exact`, actions by commit SHA,
+#   container images by digest, Python by hash. Dependabot rewrites the pins.
+# - cooldown: a release must be 14 days old before Dependabot proposes it, so a
+#   compromised publish has time to be noticed and yanked (security updates skip it).
+# - Every update is a PR that CI and a human review; nothing auto-merges.
+# - Add apps/desktop here once it has a package.json.
+
+version: 2
+
+updates:
+  - package-ecosystem: npm
+    directories:
+      - /packages/match
+      - /packages/bridge
+      - /apps/web
+      - /apps/mobile
+      - /infra/web/deploy-tools/ipfs
+      - /infra/web/deploy-tools/cloudflare
+    schedule:
+      interval: weekly
+      day: monday
+    cooldown:
+      default-days: 14
+    open-pull-requests-limit: 10
+    versioning-strategy: increase
+    labels: [dependencies, javascript]
+    commit-message:
+      prefix: "deps(npm)"
+    groups:
+      typescript-tooling:
+        patterns: ["typescript", "@types/*", "esbuild"]
+      capacitor:
+        patterns: ["@capacitor/*"]
+      deploy-tools:
+        patterns: ["wrangler", "ipfs-car", "@storacha/*"]
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+    cooldown:
+      default-days: 14
+    labels: [dependencies, github-actions]
+    commit-message:
+      prefix: "deps(actions)"
+    groups:
+      actions:
+        patterns: ["*"]
+
+  - package-ecosystem: docker-compose
+    directory: /infra/relay
+    schedule:
+      interval: weekly
+      day: monday
+    cooldown:
+      default-days: 14
+    labels: [dependencies, docker]
+    commit-message:
+      prefix: "deps(relay)"
+
+  - package-ecosystem: pip
+    directory: /.github/ci
+    schedule:
+      interval: monthly
+    cooldown:
+      default-days: 14
+    labels: [dependencies, python]
+    commit-message:
+      prefix: "deps(sim)"

@@ -77,16 +77,18 @@ export class FakeCircle {
     };
   }
 
+  /** Breadth-first delivery, so every member sees a message before any reply to it. */
   async broadcast(sender: string, msgs: RoundMessage[], now: Date): Promise<void> {
-    if (this.silent.has(sender)) return;
-    for (const m of msgs) {
-      const rec: ReceivedRoundMessage = { ...m, sender, createdAt: Math.floor(now.getTime() / 1000) };
+    const queue: { sender: string; msg: RoundMessage }[] = msgs.map((msg) => ({ sender, msg }));
+    while (queue.length > 0) {
+      const { sender: from, msg } = queue.shift()!;
+      if (this.silent.has(from)) continue;
+      const rec: ReceivedRoundMessage = { ...msg, sender: from, createdAt: Math.floor(now.getTime() / 1000) };
       for (const e of this.engines) {
-        if (e.identity === sender) continue;
-        if (this.blocked.get(e.identity)?.has(sender)) continue;
+        if (e.identity === from) continue;
+        if (this.blocked.get(e.identity)?.has(from)) continue;
         this.seen.get(e.identity)!.push(rec);
-        const replies = await e.receive(this.view(), rec, now);
-        await this.broadcast(e.identity, replies, now);
+        for (const reply of await e.receive(this.view(), rec, now)) queue.push({ sender: e.identity, msg: reply });
       }
     }
   }

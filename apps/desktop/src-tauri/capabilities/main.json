@@ -1,0 +1,7 @@
+{
+  "$schema": "../gen/schemas/desktop-schema.json",
+  "identifier": "main",
+  "description": "The main window may use the keychain commands and nothing else. No core:default, no plugins, no remote origins.",
+  "windows": ["main"],
+  "permissions": ["allow-secret-get", "allow-secret-set", "allow-secret-remove"]
+}

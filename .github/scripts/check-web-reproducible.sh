@@ -51,9 +51,8 @@ for out in dist dist-artifact; do
   fi
 done
 
-# Leave the manifest where CI can upload it and print it to the job summary.
-out_manifest="${REPRO_MANIFEST:-$root/web-dist.sha256}"
-cp "$work/dist.a.sha256" "$out_manifest"
+# Keep the manifest if asked (CI uploads it), and print it to the job summary.
+if [[ -n "${REPRO_MANIFEST:-}" ]]; then cp "$work/dist.a.sha256" "$REPRO_MANIFEST"; fi
 if [[ -n "${GITHUB_STEP_SUMMARY:-}" ]]; then
   {
     echo "### Web build reproducibility"

@@ -1,0 +1,300 @@
+# Build, attest and (optionally) publish the web client.
+#
+# Off until the repository owner opts in: every job is skipped unless the repository
+# variable WEB_DEPLOY_ENABLED is "true". Each target is a separate opt-in:
+#   DEPLOY_GITHUB_PAGES=true      GitHub Pages
+#   DEPLOY_CLOUDFLARE_PAGES=true  Cloudflare Pages (wrangler; secrets in the cloudflare-pages environment)
+#   DEPLOY_IPFS=true              CAR file + CID; IPFS_STORACHA=true uploads to Storacha,
+#                                 IPFS_PSA_ENDPOINT pins through a Pinning Service API
+# Exact setup (settings, environments, secrets, variables): docs/DEPLOY.md.
+#
+# Every release gets: apps/web/dist as a workflow artifact, a deterministic tarball,
+# a CAR file whose root CID anyone can recompute from the same commit, SHA256SUMS,
+# and a SLSA build-provenance attestation (actions/attest-build-provenance) for the
+# tarball and CAR. Verify with:  gh attestation verify web-dist.tar.gz -R <owner>/<repo>
+
+name: Deploy web
+
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - "web-v*"
+
+# Nothing by default; each job asks for what it needs.
+permissions: {}
+
+concurrency:
+  group: deploy-web
+  cancel-in-progress: false
+
+env:
+  # The app's working name, in one place. Override with the APP_NAME repository variable.
+  APP_NAME: ${{ vars.APP_NAME || 'Meme Video' }}
+  NODE_VERSION: "22.22.0"
+  npm_config_audit: "false"
+  npm_config_fund: "false"
+  npm_config_update_notifier: "false"
+
+jobs:
+  build:
+    name: build + attest
+    if: vars.WEB_DEPLOY_ENABLED == 'true'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    permissions:
+      contents: read
+      id-token: write # Sigstore signing for the attestation
+      attestations: write
+    outputs:
+      cid: ${{ steps.car.outputs.cid }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          # No dependency cache in the release job: a poisoned cache entry from a
+          # PR run must not reach a release build (T13). Installs come from lockfiles.
+          cache: ""
+
+      - name: npm ci (packages/match, apps/web, deploy tools)
+        run: |
+          (cd packages/match && npm ci --ignore-scripts)
+          (cd apps/web && npm ci --ignore-scripts)
+          (cd infra/web/deploy-tools/ipfs && npm ci --ignore-scripts)
+
+      - name: Test and typecheck
+        working-directory: apps/web
+        run: |
+          npm test
+          npm run typecheck
+
+      - name: Check the build is reproducible
+        run: .github/scripts/check-web-reproducible.sh
+
+      - name: Build
+        working-directory: apps/web
+        run: npm run build
+
+      - name: Package (deterministic tarball, CAR, checksums)
+        id: car
+        run: |
+          mkdir -p "$RUNNER_TEMP/release"
+          out="$RUNNER_TEMP/release"
+          # Same bytes for the same dist/: sorted names, fixed mtime/owner/mode, no gzip timestamp.
+          tar --sort=name --mtime='@0' --owner=0 --group=0 --numeric-owner \
+              --mode='u+rw,go+r,go-w,a+X' --format=posix \
+              --pax-option='exthdr.name=%d/PaxHeaders/%f,delete=atime,delete=ctime' \
+              -C apps/web/dist -cf - . | gzip -9n > "$out/web-dist.tar.gz"
+          # UnixFS CAR: the root CID depends only on file names and bytes.
+          (cd infra/web/deploy-tools/ipfs && npx --no-install ipfs-car pack "$GITHUB_WORKSPACE/apps/web/dist" --hidden --output "$out/web-dist.car")
+          cid="$(cd infra/web/deploy-tools/ipfs && npx --no-install ipfs-car roots "$out/web-dist.car" | head -n1)"
+          echo "$cid" > "$out/web-dist.cid"
+          (cd "$out" && sha256sum web-dist.tar.gz web-dist.car web-dist.cid > SHA256SUMS)
+          echo "cid=$cid" >> "$GITHUB_OUTPUT"
+          {
+            echo "### ${APP_NAME} web build"
+            echo "- Commit: \`${GITHUB_SHA}\`"
+            echo "- IPFS root CID: \`${cid}\`"
+            echo '```'
+            cat "$out/SHA256SUMS"
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Attest build provenance (SLSA, Sigstore)
+        uses: actions/attest-build-provenance@4d101475d8b20a2381f78447822ac1eab6504dd8 # v4.2.2
+        with:
+          subject-path: |
+            ${{ runner.temp }}/release/web-dist.tar.gz
+            ${{ runner.temp }}/release/web-dist.car
+
+      - name: Upload dist/ (workflow artifact)
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: web-dist
+          path: apps/web/dist
+          # Keep .well-known/ (security.txt) once apps/web/public has it.
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 90
+
+      - name: Upload release files (tarball, CAR, CID, SHA256SUMS)
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: web-release
+          path: ${{ runner.temp }}/release
+          if-no-files-found: error
+          retention-days: 90
+
+      - name: Upload GitHub Pages artifact
+        if: vars.DEPLOY_GITHUB_PAGES == 'true'
+        uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
+        with:
+          path: apps/web/dist
+          include-hidden-files: true
+
+  github-pages:
+    name: deploy (GitHub Pages)
+    needs: build
+    if: vars.WEB_DEPLOY_ENABLED == 'true' && vars.DEPLOY_GITHUB_PAGES == 'true'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - name: Deploy
+        id: deploy
+        uses: actions/deploy-pages@368f82528645a54fb793d4d04e342629a3f51346 # v5.0.1
+
+  cloudflare-pages:
+    name: deploy (Cloudflare Pages)
+    needs: build
+    if: vars.WEB_DEPLOY_ENABLED == 'true' && vars.DEPLOY_CLOUDFLARE_PAGES == 'true'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    permissions:
+      contents: read
+    environment:
+      name: cloudflare-pages
+      url: ${{ vars.CLOUDFLARE_PAGES_URL }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+          sparse-checkout: infra/web/deploy-tools/cloudflare
+
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: ""
+
+      - name: npm ci (wrangler)
+        working-directory: infra/web/deploy-tools/cloudflare
+        run: npm ci --ignore-scripts
+
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          name: web-dist
+          path: ${{ runner.temp }}/dist
+
+      - name: wrangler pages deploy
+        working-directory: infra/web/deploy-tools/cloudflare
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          CF_PAGES_PROJECT: ${{ vars.CLOUDFLARE_PAGES_PROJECT }}
+          CF_PAGES_BRANCH: ${{ vars.CLOUDFLARE_PAGES_BRANCH || 'main' }}
+          WRANGLER_SEND_METRICS: "false"
+          DIST: ${{ runner.temp }}/dist
+        run: |
+          if [ -z "$CLOUDFLARE_API_TOKEN" ] || [ -z "$CLOUDFLARE_ACCOUNT_ID" ] || [ -z "$CF_PAGES_PROJECT" ]; then
+            echo "::error::Set CLOUDFLARE_API_TOKEN and CLOUDFLARE_ACCOUNT_ID (environment secrets) and CLOUDFLARE_PAGES_PROJECT (variable). See docs/DEPLOY.md."
+            exit 1
+          fi
+          npx --no-install wrangler pages deploy "$DIST" \
+            --project-name "$CF_PAGES_PROJECT" \
+            --branch "$CF_PAGES_BRANCH" \
+            --commit-hash "$GITHUB_SHA" \
+            --commit-dirty=false
+
+  ipfs:
+    name: publish (IPFS)
+    needs: build
+    if: vars.WEB_DEPLOY_ENABLED == 'true' && vars.DEPLOY_IPFS == 'true'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    permissions:
+      contents: read
+    environment:
+      name: ipfs
+    env:
+      CID: ${{ needs.build.outputs.cid }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+          sparse-checkout: infra/web/deploy-tools/ipfs
+
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: ""
+
+      - name: npm ci (ipfs-car, Storacha CLI)
+        working-directory: infra/web/deploy-tools/ipfs
+        run: npm ci --ignore-scripts
+
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          name: web-release
+          path: ${{ runner.temp }}/release
+
+      - name: Check the CAR is the attested one
+        working-directory: ${{ runner.temp }}/release
+        run: |
+          sha256sum -c SHA256SUMS
+          test "$(cat web-dist.cid)" = "$CID"
+
+      - name: Upload CAR to Storacha
+        if: vars.IPFS_STORACHA == 'true'
+        working-directory: infra/web/deploy-tools/ipfs
+        env:
+          # Ed25519 agent key (`storacha key create`) and a base64 UCAN delegation
+          # for one space to that key (`storacha delegation create --base64`).
+          STORACHA_PRINCIPAL: ${{ secrets.STORACHA_PRINCIPAL }}
+          STORACHA_PROOF: ${{ secrets.STORACHA_PROOF }}
+          STORACHA_SPACE_DID: ${{ vars.STORACHA_SPACE_DID }}
+          STORACHA_STORE_NAME: ci-${{ github.run_id }}
+          CAR: ${{ runner.temp }}/release/web-dist.car
+        run: |
+          if [ -z "$STORACHA_PRINCIPAL" ] || [ -z "$STORACHA_PROOF" ]; then
+            echo "::error::Set STORACHA_PRINCIPAL and STORACHA_PROOF in the ipfs environment. See docs/DEPLOY.md."
+            exit 1
+          fi
+          npx --no-install storacha space add "$STORACHA_PROOF" > /dev/null
+          if [ -n "$STORACHA_SPACE_DID" ]; then npx --no-install storacha space use "$STORACHA_SPACE_DID"; fi
+          out="$(npx --no-install storacha up --car "$CAR")"
+          echo "$out"
+          if ! grep -q "$CID" <<<"$out"; then
+            echo "::error::Storacha reported a different root CID than the build ($CID)"
+            exit 1
+          fi
+
+      - name: Pin through an IPFS Pinning Service API
+        if: vars.IPFS_PSA_ENDPOINT != ''
+        env:
+          IPFS_PSA_ENDPOINT: ${{ vars.IPFS_PSA_ENDPOINT }}
+          IPFS_PSA_TOKEN: ${{ secrets.IPFS_PSA_TOKEN }}
+        run: |
+          if [ -z "$IPFS_PSA_TOKEN" ]; then
+            echo "::error::Set IPFS_PSA_TOKEN in the ipfs environment. See docs/DEPLOY.md."
+            exit 1
+          fi
+          body="$(jq -n --arg cid "$CID" --arg name "$APP_NAME web ${GITHUB_REF_NAME} ${GITHUB_SHA::12}" '{cid: $cid, name: $name}')"
+          curl -fsS --retry 3 -X POST "${IPFS_PSA_ENDPOINT%/}/pins" \
+            -H "Authorization: Bearer $IPFS_PSA_TOKEN" \
+            -H "Content-Type: application/json" \
+            --data "$body" | jq '{requestid, status, cid: .pin.cid}'
+
+      - name: Summary and DNSLink instructions
+        env:
+          DNSLINK_DOMAIN: ${{ vars.DNSLINK_DOMAIN }}
+        run: |
+          {
+            echo "### ${APP_NAME} web on IPFS"
+            echo "- Root CID: \`${CID}\`"
+            echo "- Open: \`ipfs://${CID}/\` or https://${CID}.ipfs.dweb.link/"
+            echo "- Check it yourself: build this commit, then \`ipfs-car pack apps/web/dist --hidden\` prints the same CID."
+            echo
+            echo "**DNSLink (manual).** To serve this release at a domain through IPFS gateways, set this DNS TXT record:"
+            echo '```'
+            echo "_dnslink.${DNSLINK_DOMAIN:-<your-domain>}.  300  IN  TXT  \"dnslink=/ipfs/${CID}\""
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"

@@ -58,8 +58,11 @@ export class InMemoryNostrNetwork {
   private readonly clock: () => Date;
   /** Every accepted event, in arrival order. */
   readonly log: NostrEventLike[] = [];
-  /** Relay URLs this network pretends to be. Only `memory://` URLs: never a real relay. */
-  readonly relays = ['memory://circles-test'];
+  /**
+   * Relay URLs this network pretends to be. marmot-ts insists on ws(s) URLs, so we
+   * use the reserved `.invalid` TLD (RFC 2606), which can never resolve.
+   */
+  readonly relays = ['wss://circles-test.invalid'];
 
   constructor(opts: { now?: () => Date } = {}) {
     this.clock = opts.now ?? (() => new Date());
@@ -84,7 +87,7 @@ export class InMemoryNostrNetwork {
   }
 
   async publish(relays: string[], event: NostrEventLike): Promise<Record<string, PublishResponse>> {
-    for (const r of relays) if (!r.startsWith('memory://')) throw new Error(`refusing to publish to a non-memory relay: ${r}`);
+    for (const r of relays) if (!this.relays.includes(r)) throw new Error(`refusing to publish outside the in-memory network: ${r}`);
     const res = this.accept(event);
     return Object.fromEntries(relays.map((r) => [r, { from: r, ok: res.ok, message: res.message }]));
   }

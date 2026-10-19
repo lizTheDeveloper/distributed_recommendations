@@ -1,0 +1,251 @@
+# CI: tests and typechecks for every package, the simulation's unit tests, a
+# reproducible-build check for the web client, and the self-hosted relay config.
+#
+# Supply chain (docs/THREAT_MODEL.md T13): every action is pinned to a full commit SHA
+# (the comment names the release), npm installs come from lockfiles with `npm ci`,
+# install scripts are off where a package's .npmrc says so, Python deps are
+# hash-pinned, and no job gets secrets or write permissions.
+
+name: CI
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+env:
+  NODE_VERSION: "22.22.0"
+  PYTHON_VERSION: "3.13"
+  # npm: no audit/fund network calls, no update notifier.
+  npm_config_audit: "false"
+  npm_config_fund: "false"
+  npm_config_update_notifier: "false"
+
+jobs:
+  node:
+    name: node (${{ matrix.package }})
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - package: packages/core
+            # No dependencies and no lockfile: nothing to install or cache.
+            install: ""
+            lockfiles: ""
+          - package: packages/match
+            install: packages/match
+            lockfiles: packages/match/package-lock.json
+          - package: packages/bridge
+            install: packages/bridge
+            lockfiles: packages/bridge/package-lock.json
+          - package: apps/web
+            # apps/web imports packages/match from source, and its build and tests
+            # resolve nostr-tools and @noble/* from packages/match/node_modules.
+            install: packages/match apps/web
+            lockfiles: |
+              packages/match/package-lock.json
+              apps/web/package-lock.json
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: ${{ matrix.lockfiles != '' && 'npm' || '' }}
+          cache-dependency-path: ${{ matrix.lockfiles }}
+
+      - name: npm ci
+        if: matrix.install != ''
+        env:
+          INSTALL_DIRS: ${{ matrix.install }}
+        run: |
+          for dir in $INSTALL_DIRS; do
+            flags=""
+            # Mirror the package's own policy: psi.js pulls build tools with
+            # download postinstalls, so those packages set ignore-scripts.
+            if grep -qsx 'ignore-scripts=true' "$dir/.npmrc"; then flags="--ignore-scripts"; fi
+            echo "::group::npm ci $flags in $dir"
+            (cd "$dir" && npm ci $flags)
+            echo "::endgroup::"
+          done
+
+      - name: npm test
+        working-directory: ${{ matrix.package }}
+        run: npm test
+
+      - name: npm run typecheck (if present)
+        working-directory: ${{ matrix.package }}
+        run: npm run --if-present typecheck
+
+  sim:
+    name: sim (Python ${{ matrix.python }})
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    strategy:
+      matrix:
+        python: ["3.13"]
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: ${{ matrix.python }}
+          cache: pip
+          cache-dependency-path: .github/ci/requirements-sim.txt
+
+      - name: Install numpy (hash-pinned wheels only)
+        run: |
+          python -m pip install --require-hashes --only-binary=:all: -r .github/ci/requirements-sim.txt
+
+      - name: Unit tests
+        run: python -m unittest discover -s sim/tests -t . -v
+
+  web-reproducible:
+    name: web build is reproducible
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+          cache-dependency-path: |
+            packages/match/package-lock.json
+            apps/web/package-lock.json
+
+      - name: npm ci (packages/match, apps/web)
+        run: |
+          (cd packages/match && npm ci --ignore-scripts)
+          (cd apps/web && npm ci --ignore-scripts)
+
+      - name: Build twice in different directories and compare
+        env:
+          REPRO_MANIFEST: ${{ runner.temp }}/web-dist.sha256
+        run: .github/scripts/check-web-reproducible.sh
+
+      - name: Upload the dist/ SHA-256 manifest
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: web-dist-sha256
+          path: ${{ runner.temp }}/web-dist.sha256
+          retention-days: 30
+          if-no-files-found: error
+
+  relay:
+    name: relay config (strfry + Caddy)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    defaults:
+      run:
+        working-directory: infra/relay
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+          cache-dependency-path: |
+            packages/match/package-lock.json
+            apps/web/package-lock.json
+
+      # The smoke test signs events with the repo's pinned nostr-tools and talks
+      # WebSocket with apps/web's pinned ws, so it adds no dependency of its own.
+      - name: npm ci (packages/match, apps/web)
+        working-directory: .
+        run: |
+          (cd packages/match && npm ci --ignore-scripts)
+          (cd apps/web && npm ci --ignore-scripts)
+
+      - name: docker compose config
+        run: docker compose --env-file .env.example config --quiet
+
+      - name: Read pinned images from compose.yaml
+        id: images
+        run: |
+          images="$(docker compose --env-file .env.example config --images)"
+          echo "$images"
+          echo "strfry=$(grep -m1 '/strfry' <<<"$images")" >> "$GITHUB_OUTPUT"
+          echo "caddy=$(grep -m1 '^caddy' <<<"$images")" >> "$GITHUB_OUTPUT"
+
+      - name: caddy validate
+        env:
+          CADDY_IMAGE: ${{ steps.images.outputs.caddy }}
+        run: |
+          docker run --rm -e RELAY_DOMAIN=relay.example.org -e ACME_EMAIL=ops@example.org \
+            -v "$PWD/Caddyfile:/etc/caddy/Caddyfile:ro" "$CADDY_IMAGE" \
+            caddy validate --config /etc/caddy/Caddyfile --adapter caddyfile
+          docker run --rm -v "$PWD/Caddyfile:/etc/caddy/Caddyfile:ro" "$CADDY_IMAGE" \
+            caddy fmt /etc/caddy/Caddyfile | diff -u Caddyfile -
+
+      - name: Start strfry with the relay config
+        env:
+          STRFRY_IMAGE: ${{ steps.images.outputs.strfry }}
+        run: |
+          docker run -d --name relay-ci --read-only --tmpfs /tmp \
+            --cap-drop ALL --security-opt no-new-privileges:true \
+            -p 127.0.0.1:7777:7777 -e POLICY_BURST=5 -e POLICY_RATE=1 \
+            -v "$PWD/strfry.conf:/etc/strfry.conf:ro" -v "$PWD/policy:/app/policy:ro" \
+            --mount type=tmpfs,destination=/app/strfry-db,tmpfs-mode=1777 \
+            "$STRFRY_IMAGE" --config=/etc/strfry.conf --verbosity=WARNING \
+            "--set=relay.info.name=CI relay" relay
+          for _ in $(seq 1 30); do
+            curl -fsS -H 'Accept: application/nostr+json' http://127.0.0.1:7777/ >/dev/null && exit 0
+            sleep 1
+          done
+          docker logs relay-ci
+          exit 1
+
+      - name: Smoke test (limits, NIP-40, write policy, rate limit)
+        working-directory: .
+        run: node infra/relay/test/smoke.mjs ws://127.0.0.1:7777 packages/match/node_modules,apps/web/node_modules
+
+      - name: Retention job command runs
+        run: docker exec relay-ci /app/strfry --config=/etc/strfry.conf --verbosity=WARNING delete --age=2851200 '--filter={"kinds":[1059]}'
+
+      - name: Logs contain no client IP
+        run: |
+          docker logs relay-ci > relay.log 2>&1
+          cat relay.log
+          if grep -E '203\.0\.113\.|172\.17\.|127\.0\.0\.1' relay.log; then
+            echo "::error::relay logs contain an IP address"
+            exit 1
+          fi
+
+  workflows:
+    name: lint workflows (actionlint)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      # `go install` verifies the module against sum.golang.org. Go and shellcheck
+      # are preinstalled on ubuntu-24.04 runners; actionlint uses shellcheck on run: blocks.
+      - name: actionlint
+        env:
+          ACTIONLINT_VERSION: v1.7.12
+        run: |
+          go install "github.com/rhysd/actionlint/cmd/actionlint@${ACTIONLINT_VERSION}"
+          "$(go env GOPATH)/bin/actionlint" -color
+      - name: shellcheck scripts
+        run: shellcheck .github/scripts/*.sh infra/relay/policy/*.sh

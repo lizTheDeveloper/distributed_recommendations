@@ -1,0 +1,14 @@
+# security.txt (RFC 9116) for the web client. TEMPLATE: not yet served.
+# Before publishing:
+#   1. Replace security@example.org with The Multiverse School's security inbox
+#      (the same address as in SECURITY.md).
+#   2. Replace app.example.org with the web client's real origin.
+#   3. Set Expires to at most one year ahead, and renew it before then.
+#   4. Copy this file to apps/web/public/.well-known/security.txt so the build
+#      ships it at /.well-known/security.txt (see infra/web/README.md).
+Contact: mailto:security@example.org
+Contact: https://github.com/lizthedotdev/distributed_recommendations/security/advisories/new
+Expires: 2027-10-18T23:59:59.000Z
+Preferred-Languages: en
+Canonical: https://app.example.org/.well-known/security.txt
+Policy: https://github.com/lizthedotdev/distributed_recommendations/blob/main/SECURITY.md

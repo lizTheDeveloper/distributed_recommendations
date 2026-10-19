@@ -33,7 +33,7 @@ windows-native-keyring-store = "=1.1.0"
 
 [target.'cfg(target_os = "linux")'.dependencies]
 # Secret Service (GNOME Keyring, KWallet) over a pure-Rust D-Bus client: no libdbus at build time.
-zbus-secret-service-keyring-store = { version = "=1.0.1", default-features = false, features = ["rt-tokio-crypto-rust"] }
+zbus-secret-service-keyring-store = { version = "=1.0.1", default-features = false, features = ["rt-async-io-crypto-rust"] }
 
 [profile.release]
 codegen-units = 1

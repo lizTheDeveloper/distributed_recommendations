@@ -59,7 +59,8 @@ test('BlockMatcher: whole-word keywords, subdomain instance blocks, tag folding'
   s = addBlock(s, 'instance', 'spam.example');
   s = addBlock(s, 'tag', 'NSFW');
   const m = new BlockMatcher(s);
-  assert.equal(m.keyword(['A class on ass-embly?']), undefined === m ? 1 : m.keyword(['A class on ass-embly?']));
+  assert.deepEqual(m.keyword(['what an ass']), { list: 'keyword', value: 'ass' });
+  assert.equal(m.keyword(['A class on bass and brass']), undefined);
   assert.equal(m.keyword(['first class']), undefined);
   assert.deepEqual(m.keyword(['Get FREE   money now']), { list: 'keyword', value: 'free money' });
   assert.deepEqual(m.instance('video.spam.example'), { list: 'instance', value: 'spam.example' });

@@ -224,9 +224,12 @@ export class CircleMember {
     const g = this.group;
     const h = getNostrGroupIdHex(g.state);
     const events = (await this.opts.network.request(this.relays, { kinds: [445], '#h': [h] })).filter((e) => !this.seenEvents.has(e.id));
-    for (const e of events) this.seenEvents.add(e.id);
     const incoming: { sender: string; kind: number; content: string; createdAt: number }[] = [];
-    for await (const r of g.ingest(events as never)) {
+    // Events from epochs we have not reached yet come back "unreadable"; they are
+    // not marked seen, so the next sync retries them (bounded by relay retention).
+    for await (const r of g.ingest(events as never, { maxRetries: 64 })) {
+      if (r.kind === 'unreadable') continue;
+      this.seenEvents.add(r.event.id);
       if (r.kind !== 'processed' || r.result.kind !== 'applicationMessage') continue;
       const parsed = this.parseRoundRumor(r.result.message);
       if (parsed) incoming.push(parsed);
@@ -236,6 +239,8 @@ export class CircleMember {
       return;
     }
     const now = this.opts.now();
+    // Causal order within a batch: opens, then keys, then masked vectors (kinds ascend).
+    incoming.sort((a, b) => a.kind - b.kind || a.createdAt - b.createdAt);
     for (const m of incoming) {
       if (!getGroupMembers(g.state).includes(m.sender)) continue;
       this.seen.push({ sender: m.sender, kind: m.kind, content: m.content });
