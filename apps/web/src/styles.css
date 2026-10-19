@@ -310,3 +310,18 @@ legend{font-weight:700;font-size:.85rem;padding:0 4px}
 .cardmenu>summary::-webkit-details-marker{display:none}
 .cardmenu>summary:focus-visible{outline:2px solid var(--match);outline-offset:1px}
 .cardmenu .menu{position:absolute;right:0;top:calc(100% + 4px);z-index:6;min-width:190px}
+
+/* Opt-in telemetry: the one-time question (non-blocking card), the settings panel, the bug report form */
+.consent-card{position:fixed;z-index:25;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));width:min(420px,calc(100vw - 32px));max-height:calc(100dvh - 120px);overflow:auto;background:var(--surface);color:var(--fg);border:1px solid var(--line);border-top:4px solid var(--match);border-radius:12px;padding:14px 16px;display:flex;flex-direction:column;gap:10px;box-shadow:0 10px 30px rgba(0,0,0,.22)}
+.consent-card h2{font-size:1.05rem}
+.consent-card p{margin:0}
+.consent-card .hint{margin-top:-4px}
+.tc-item{display:flex;flex-direction:column;gap:6px}
+.tp-item{border-top:1px solid var(--line);padding-top:10px}
+.tp-what ul{margin:6px 0 0;padding-left:18px;display:flex;flex-direction:column;gap:4px;color:var(--muted)}
+.fb-form fieldset{border:0;padding:0;margin:0}
+.fb-form legend{padding:0;margin-bottom:4px;color:var(--muted)}
+.fb-cat{display:inline-flex;gap:6px;align-items:center;margin-right:10px}
+.fb-form textarea{font:inherit;font-size:.9rem}
+.fb-preview pre{max-height:260px;overflow:auto}
+@media (max-width:860px){.consent-card{left:16px;right:16px;width:auto;bottom:calc(var(--tabbar-h) + 12px + env(safe-area-inset-bottom,0px))}}

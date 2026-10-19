@@ -43,4 +43,7 @@ void boot({
   examples: EXAMPLES,
   snapshotTasteChannels: snapshotTasteChannels(snap),
   devTools: typeof __MF_DEV__ !== "undefined" && __MF_DEV__,
+  // Telemetry stays off in the offline artifact: no endpoints, no consent card,
+  // no crash reporter (scripts/build.mjs compiles it with an empty configuration).
+  telemetry: null,
 });
