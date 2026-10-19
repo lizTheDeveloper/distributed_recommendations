@@ -1,7 +1,7 @@
 # Contributing
 
-Thanks for helping. This project (working name Meme Video; code name Match Feed) is
-published by The Multiverse School. Start with [`README.md`](README.md) for the layout
+Thanks for helping. This project (name Multiverse Video; code name Match Feed) is
+published by Multiverse Games. Start with [`README.md`](README.md) for the layout
 and how to run each part, and [`docs/DESIGN.md`](docs/DESIGN.md) and
 [`docs/THREAT_MODEL.md`](docs/THREAT_MODEL.md) for why things are the way they are.
 

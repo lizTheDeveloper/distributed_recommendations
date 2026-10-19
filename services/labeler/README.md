@@ -1,6 +1,6 @@
 # @match-feed/labeler
 
-A moderation labeler for Match Feed (working name "Meme Video") that The Multiverse School can run. Viewers
+A moderation labeler for Match Feed (shipped as "Multiverse Video") that Multiverse Games can run. Viewers
 subscribe to it by npub in Settings → Moderation, and `packages/moderation` applies its labels on their devices.
 It covers the "No labeler service exists" item in `packages/moderation/README.md` and THREAT_MODEL T18.
 

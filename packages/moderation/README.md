@@ -1,6 +1,6 @@
 # @match-feed/moderation
 
-On-device moderation for Match Feed (working name "Meme Video"): reports, labelers, block lists and a
+On-device moderation for Match Feed (shipped as "Multiverse Video"): reports, labelers, block lists and a
 pre-filter for core `rank()`. It addresses THREAT_MODEL T18 (abuse and illegal content), and also T7 (spam)
 and T8 (payola) through labels on curators and lists.
 

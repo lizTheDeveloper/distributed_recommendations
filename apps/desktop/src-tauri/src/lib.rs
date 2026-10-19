@@ -1,4 +1,4 @@
-//! Desktop shell for the Match Feed web client (shipped as Meme Video).
+//! Desktop shell for the Match Feed web client (shipped as Multiverse Video).
 //!
 //! The Rust side does three things and nothing else:
 //! - serves the synced web build (`www/`, see scripts/sync-web.mjs) under Tauri's app protocol;
@@ -41,7 +41,7 @@ pub fn run() {
             if let Err(e) = secrets::init_store() {
                 eprintln!("OS keychain unavailable: {e}");
             }
-            let title = app.config().product_name.clone().unwrap_or_else(|| "Meme Video".into());
+            let title = app.config().product_name.clone().unwrap_or_else(|| "Multiverse Video".into());
             WebviewWindowBuilder::new(app, "main", WebviewUrl::App("index.html".into()))
                 .title(title)
                 .inner_size(1200.0, 820.0)

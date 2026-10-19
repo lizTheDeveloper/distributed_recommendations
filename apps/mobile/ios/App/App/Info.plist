@@ -7,7 +7,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
-        <string>Meme Video</string>
+        <string>Multiverse Video</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -66,7 +66,7 @@
 			<string>app-share-handoff</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>memevideo</string>
+				<string>multiversevideo</string>
 			</array>
 		</dict>
 	</array>

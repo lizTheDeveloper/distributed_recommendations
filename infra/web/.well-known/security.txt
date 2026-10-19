@@ -1,6 +1,6 @@
 # security.txt (RFC 9116) for the web client. TEMPLATE: not yet served.
 # Before publishing:
-#   1. Replace security@example.org with The Multiverse School's security inbox
+#   1. Replace security@example.org with Multiverse Games' security inbox
 #      (the same address as in SECURITY.md).
 #   2. Replace app.example.org with the web client's real origin.
 #   3. Set Expires to at most one year ahead, and renew it before then.

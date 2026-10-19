@@ -4,7 +4,7 @@
 <plist version="1.0">
 <dict>
 	<key>CFBundleDisplayName</key>
-	<string>Meme Video</string>
+	<string>Multiverse Video</string>
 	<key>NSExtension</key>
 	<dict>
 		<key>NSExtensionAttributes</key>

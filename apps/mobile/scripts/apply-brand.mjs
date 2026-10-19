@@ -1,7 +1,7 @@
 // Writes brand.json (display name, app id, URL scheme) into the native projects, so renaming the
 // product is: edit brand.json, run `npm run apply-brand`, rebuild. The app id is also the Android
 // applicationId/namespace and the iOS bundle id; changing it after a store release creates a
-// new, separate app listing. The Java package directory (school/multiverse/...) is not moved.
+// new, separate app listing. The Java package directory (android/app/src/main/java/<appId as path>/) has to be moved by hand.
 import { existsSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";

@@ -1,8 +1,8 @@
-# Meme Video for desktop (Tauri v2)
+# Multiverse Video for desktop (Tauri v2)
 
 The Match Feed web client (`apps/web`) in a [Tauri](https://v2.tauri.app) 2 window for Linux,
 macOS and Windows. Name and id come from [`../mobile/brand.json`](../mobile/brand.json)
-(Meme Video, `school.multiverse.memevideo`); `npm run apply-brand` in apps/mobile rewrites
+(Multiverse Video, `ai.multiversegames.video`); `npm run apply-brand` in apps/mobile rewrites
 `src-tauri/tauri.conf.json`.
 
 Status (2026-10-19), built on Ubuntu 24.04 x86_64:
@@ -11,7 +11,7 @@ Status (2026-10-19), built on Ubuntu 24.04 x86_64:
 |---|---|
 | `cargo check --locked` | passes, no warnings |
 | `cargo test --locked` | 1 test (navigation policy) passes |
-| `tauri build` (Linux, release) | **builds**: `src-tauri/target/release/bundle/deb/Meme Video_0.1.0_amd64.deb` (2.9 MB) and, as an experiment, `bundle/appimage/Meme Video_0.1.0_amd64.AppImage` (157 MiB with GStreamer bundled; **do not distribute**, see below) |
+| `tauri build` (Linux, release) | **builds**: `src-tauri/target/release/bundle/deb/Multiverse Video_0.1.0_amd64.deb` (2.9 MB) and, as an experiment, `bundle/appimage/Multiverse Video_0.1.0_amd64.AppImage` (157 MiB with GStreamer bundled; **do not distribute**, see below) |
 | Smoke run | release binary under Xvfb: the app renders, loads live PeerTube data under the strict CSP, and plays Reels (muted autoplay in the PeerTube embed) once GStreamer codecs are installed. The AppImage starts and renders too; its first video was still buffering when the screenshot was taken, so AppImage playback is unconfirmed |
 | Keychain | code compiles for all three OSes; on Linux the container had no Secret Service, so the app logged "OS keychain unavailable" and kept running. The `invoke` round trip to the keychain was not exercised |
 | macOS / Windows bundles | not built (need those OSes; see docs/SHIPPING.md, Phase 4) |

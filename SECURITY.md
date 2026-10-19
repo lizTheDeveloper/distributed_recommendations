@@ -1,7 +1,7 @@
 # Security policy
 
-This project (working name **Meme Video**; code name Match Feed) is published by
-**The Multiverse School**. It is a privacy tool, so we treat privacy flaws as security
+This project (name **Multiverse Video**; code name Match Feed) is published by
+**Multiverse Games**. It is a privacy tool, so we treat privacy flaws as security
 flaws: if something lets a server, relay, peer or observer learn what a user watched,
 endorsed or matched with, beyond what [`docs/THREAT_MODEL.md`](docs/THREAT_MODEL.md)
 says they can, please report it here.
@@ -29,7 +29,7 @@ Use either private channel:
    https://github.com/lizthedotdev/distributed_recommendations/security/advisories/new
    (the repository owner must turn it on: Settings, Code security, "Private vulnerability
    reporting"; see [`docs/DEPLOY.md`](docs/DEPLOY.md)).
-2. **Email**: `security@example.org` <!-- PLACEHOLDER: The Multiverse School's security inbox. Keep in sync with infra/web/.well-known/security.txt -->
+2. **Email**: `security@example.org` <!-- PLACEHOLDER: Multiverse Games' security inbox. Keep in sync with infra/web/.well-known/security.txt -->
 
 Please include:
 

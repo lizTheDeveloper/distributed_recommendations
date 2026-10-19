@@ -2,10 +2,10 @@
 <!-- app_name, title_activity_main, package_name and custom_url_scheme are written by
      apps/mobile/scripts/apply-brand.mjs from apps/mobile/brand.json. Edit brand.json instead. -->
 <resources>
-    <string name="app_name">Meme Video</string>
-    <string name="title_activity_main">Meme Video</string>
-    <string name="package_name">school.multiverse.memevideo</string>
-    <string name="custom_url_scheme">memevideo</string>
-    <string name="share_label">Share to Meme Video</string>
+    <string name="app_name">Multiverse Video</string>
+    <string name="title_activity_main">Multiverse Video</string>
+    <string name="package_name">ai.multiversegames.video</string>
+    <string name="custom_url_scheme">multiversevideo</string>
+    <string name="share_label">Share to Multiverse Video</string>
     <string name="webview_too_old">This app needs a newer Android System WebView. Update \"Android System WebView\" (or Chrome) from your app store, then open the app again.</string>
 </resources>

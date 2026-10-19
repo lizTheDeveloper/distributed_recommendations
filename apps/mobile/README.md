@@ -1,9 +1,9 @@
-# Meme Video for Android and iOS (Capacitor)
+# Multiverse Video for Android and iOS (Capacitor)
 
 The Match Feed web client (`apps/web`) wrapped as native Android and iOS apps with
 [Capacitor](https://capacitorjs.com) 8. The product name, app id and URL scheme live in one file,
-[`brand.json`](brand.json) (display name **Meme Video**, id `school.multiverse.memevideo`,
-publisher The Multiverse School). The name-conflict check is still pending (docs/SHIPPING.md, Decisions).
+[`brand.json`](brand.json) (display name **Multiverse Video**, id `ai.multiversegames.video`,
+publisher Multiverse Games).
 
 The web app is not forked: `npm run sync` copies `apps/web/dist` into `www/`, adds a small bridge
 script that defines `window.MatchFeedNative`, and syncs it into the native projects. This
@@ -79,8 +79,8 @@ changing Android dependencies, regenerate it with
 
 1. `npm ci && npm run sync && npx cap open ios` (Xcode 26 or later; Capacitor 8 uses Swift Package Manager, no CocoaPods).
 2. Let Xcode resolve packages, then commit `ios/App/App.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved`. The generated `Package.swift` uses `from:` ranges for plugin dependencies (KeychainSwift, transistor-background-fetch), so the resolved file is what pins them.
-3. Signing & Capabilities for target **App**: your team; add **App Groups** with `group.school.multiverse.memevideo`; **Background Modes** is already in Info.plist (fetch, processing).
-4. Share extension: File > New > Target > Share Extension, name `ShareExtension`, bundle id `school.multiverse.memevideo.ShareExtension`. Replace its `ShareViewController.swift` and `Info.plist` with the files in `ios-share-extension/`, delete the generated storyboard, add the same App Group, set its deployment target to 16.0.
+3. Signing & Capabilities for target **App**: your team; add **App Groups** with `group.ai.multiversegames.video`; **Background Modes** is already in Info.plist (fetch, processing).
+4. Share extension: File > New > Target > Share Extension, name `ShareExtension`, bundle id `ai.multiversegames.video.ShareExtension`. Replace its `ShareViewController.swift` and `Info.plist` with the files in `ios-share-extension/`, delete the generated storyboard, add the same App Group, set its deployment target to 16.0.
 5. Product > Run on a device. Check the items in "Test on a device" below.
 6. Archive > Distribute > TestFlight (docs/SHIPPING.md, Phase 3).
 
@@ -140,7 +140,7 @@ None of this is done; apps/web is being edited by someone else. In order of valu
 4. **Incoming links and shares.** After the vault is open (after any passphrase prompt), call `native.incoming?.onIncoming(item => …)` once:
    - `kind: "nostr"`: decode `item.value` with `src/lib/bech32.ts` (it is only shape-checked natively; `nprofile` needs TLV decoding to get the pubkey), then open Matches > Request a match with it filled in. Never act without the user confirming.
    - `kind: "peertube-watch"`: `item.host` + `item.videoId`. Ask before contacting a host that isn't already a catalog instance (the request reveals the user's IP to it), then resolve with core's `getVideo` and open the watch overlay, or offer "Follow channel".
-5. **Notifications (opt-in, off by default).** A switch in Matches or Sharing & privacy. On turning it on, call `requestPermission()` from that tap. After a relay check that finds a new request or accept, `notify({ id, title: "New match request", body: "Open Meme Video to review it.", route: "matches" })`, with no petname, npub or video in the text (lock screen). `id`: a stable 31-bit number per event so repeats replace each other. `onOpen(route)` navigates.
+5. **Notifications (opt-in, off by default).** A switch in Matches or Sharing & privacy. On turning it on, call `requestPermission()` from that tap. After a relay check that finds a new request or accept, `notify({ id, title: "New match request", body: "Open Multiverse Video to review it.", route: "matches" })`, with no petname, npub or video in the text (lock screen). `id`: a stable 31-bit number per event so repeats replace each other. `onOpen(route)` navigates.
 6. **Background checks (opt-in, off by default).** A switch "Check for match messages in the background". `background.enable(async () => { await service.check(); })`, where the check runs without UI: open the vault (device mode only; disable the switch in passphrase mode, since there's nobody to type it), fetch from relays, `sendDueSketches`, persist the MatchBook, maybe `notify`. Must finish in about 25 s. Tell the user plainly that relays then see check-ins at times the OS picks, not only while the app is open (T5).
 7. **Labels.** Use `native.platform` in the storage panel ("Key stored in Android Keystore" / "iOS Keychain" / "OS keychain").
 8. **Product name in the UI.** The header and other copy say "Match Feed". The shell sets `<title>` and the manifest name from `brand.json`, but text inside `app.js` comes from apps/web. Read the name from one constant there (or from `document.title` at boot) so a rename is one edit.
@@ -179,7 +179,7 @@ the vault works as in a browser.
 | Input | Android | iOS |
 |---|---|---|
 | `nostr:npub1…`, `nostr:nprofile1…` (NIP-21) | intent filter `nostr:` (other Nostr apps register it too; Android shows a chooser) | `CFBundleURLSchemes` `nostr` (iOS picks one app if several claim it) |
-| PeerTube watch URL (`/w/<id>`, `/videos/watch/<id>`) | share sheet ("Share to Meme Video", `text/plain`) | share extension (URL or text) |
+| PeerTube watch URL (`/w/<id>`, `/videos/watch/<id>`) | share sheet ("Share to Multiverse Video", `text/plain`) | share extension (URL or text) |
 | PeerTube URL opened directly | not possible on arbitrary hosts: verified App Links / Universal Links need a file on each host. A future `https://<our domain>/open?…` link can be verified (commented template in the manifest) | same, with `apple-app-site-association` |
 
 `bridge/links.ts` only pattern-matches: `nsec` and other entities are refused, URLs must be https
@@ -194,6 +194,6 @@ with no user info, and nothing is fetched by the shell.
 - [ ] Share a PeerTube link from Firefox/Chrome (Android) and Safari (iOS) with the app closed (cold start) and open.
 - [ ] `nostr:npub…` link from another app.
 - [ ] Notification permission prompt only after the opt-in tap; tapping a notification routes to Matches.
-- [ ] Background fetch fires (Android: `adb shell cmd jobscheduler run -f school.multiverse.memevideo 999`; iOS: Xcode's simulate background fetch).
+- [ ] Background fetch fires (Android: `adb shell cmd jobscheduler run -f ai.multiversegames.video 999`; iOS: Xcode's simulate background fetch).
 - [ ] The native bridge ignores everything except the app's main frame (test steps in the private security notes).
 - [ ] TalkBack / VoiceOver pass over the main screens.

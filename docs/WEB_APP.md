@@ -1,6 +1,6 @@
 # Web client (v1)
 
-Status: working client with Reels, a feed settings sheet and Match (prototype); production pass (name, PWA, moderation, native hooks, pick-dated taste, Publish my picks, onboarding, accessibility, Tier 2 discovery stats, private relay) on 2026-10-19. Code: `apps/web/` (see its README for how to run it). Display name **Meme Video** (one constant: `apps/web/src/brand.json`; name check pending, SHIPPING.md).
+Status: working client with Reels, a feed settings sheet and Match (prototype); production pass (name, PWA, moderation, native hooks, pick-dated taste, Publish my picks, onboarding, accessibility, Tier 2 discovery stats, private relay) on 2026-10-19. Code: `apps/web/` (see its README for how to run it). Display name **Multiverse Video** (one constant: `apps/web/src/brand.json`; name check pending, SHIPPING.md).
 Companion to `DESIGN.md`, `PROTOCOL.md` and `ANALYTICS.md`. Where this document and the code disagree, that is a bug.
 
 ## Scope
@@ -306,7 +306,7 @@ Every hook in apps/mobile README "Hooks apps/web needs to implement" (contract `
 2. Vault key in the OS keystore (above, Encryption at rest).
 3. Match identity secret in the keystore (`nostr-secret-key`); the vault keeps the pubkey; removing the identity removes the secret; older vault copies move on start.
 4. Incoming deep links and shares: `nostr:npub/nprofile` (decoded and checksummed here) opens a confirmation, then the match consent sheet; a PeerTube watch URL opens a confirmation that names the host (and says it isn't a catalog instance, which would see the IP) before resolving it. The PWA share target uses the same dialog.
-5. Notifications, opt-in (Settings → App): the permission prompt only from that switch; generic lock-screen text ("New match request" / "Open Meme Video to review it."), stable 31-bit ids per event, only while the app isn't visible; tapping routes to Matches.
+5. Notifications, opt-in (Settings → App): the permission prompt only from that switch; generic lock-screen text ("New match request" / "Open Multiverse Video to review it."), stable 31-bit ids per event, only while the app isn't visible; tapping routes to Matches.
 6. Background checks, opt-in: `background.enable` runs a relay check and due sketches within ~20 s; unavailable in passphrase mode; the switch says relays then see check-ins at OS-chosen times.
 7. Labels: the storage panel names the keystore.
 8. Product name from one constant (above).

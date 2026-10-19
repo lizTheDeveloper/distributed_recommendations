@@ -1,4 +1,4 @@
-package school.multiverse.memevideo;
+package ai.multiversegames.video;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -11,7 +11,7 @@ import com.getcapacitor.BridgeActivity;
 /**
  * The Capacitor activity, with two additions (see apps/mobile/README.md):
  *
- * 1. Share sheet. "Share to Meme Video" sends ACTION_SEND text/plain. It is rewritten here into
+ * 1. Share sheet. "Share to Multiverse Video" sends ACTION_SEND text/plain. It is rewritten here into
  *    an ACTION_VIEW intent for {custom_url_scheme}://share?text=..., which @capacitor/app delivers
  *    to the page as appUrlOpen (warm start) or getLaunchUrl (cold start). The web side
  *    (bridge/links.ts) only pattern-matches the text; nothing is fetched here.

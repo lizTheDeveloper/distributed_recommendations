@@ -1,6 +1,6 @@
 # Deploying
 
-How the app (working name **Meme Video**, set once as the `APP_NAME` repository
+How the app (name **Multiverse Video**, set once as the `APP_NAME` repository
 variable for the workflows and once in `infra/relay/.env` for the relay) is built,
 checked, attested and published, and the exact settings the repository owner has to
 create. Nothing deploys until the owner opts in.
@@ -65,7 +65,7 @@ Create the repository variable (*Settings, Secrets and variables, Actions, Varia
 | Variable | Value |
 |---|---|
 | `WEB_DEPLOY_ENABLED` | `true`. While unset, every job in `deploy-web.yml` is skipped |
-| `APP_NAME` | optional, defaults to `Meme Video`. Used in job summaries and pin names |
+| `APP_NAME` | optional, defaults to `Multiverse Video`. Used in job summaries and pin names |
 
 With only this set, a run builds, tests, checks reproducibility, and uploads the
 `web-dist` artifact (the `dist/` folder) and `web-release` (deterministic
@@ -245,9 +245,10 @@ SHA-256 manifest). A test that injected `Date.now()` into `sw.js` made the check
 6. **Ship `.well-known/security.txt`:** copy `infra/web/.well-known/security.txt` into
    `public/.well-known/` after filling in the placeholders. Both deploy paths keep
    dot-directories.
-7. **One name.** `public/manifest.webmanifest` and the artifact `<title>` still say "Match
-   Feed", while `apps/mobile/brand.json` says "Meme Video". Read it from one place at
-   build time (as `apps/mobile` does), so a rename is a one-line change.
+7. **One name.** The web app (`public/index.html`, `public/manifest.webmanifest`, the header
+   in `src/app.ts`) and `apps/mobile/brand.json` both say "Multiverse Video", but in separate
+   files. Read it from brand.json at build time (as `apps/mobile` does), so a rename is a
+   one-line change.
 
 ## 6. Relay
 
@@ -273,7 +274,7 @@ team defeats them.
 | `infra/ohttp/relay` (OHTTP relay) | **a different party**: a managed OHTTP relay (e.g. Fastly, or Cloudflare's relay service when the gateway isn't on Cloudflare) or a partner | the gateway's operator (no shared host, provider account, admins or logs) | same |
 | `infra/janus/leader` (DAP leader) | the creator's home instance | the helper | `infra/janus/README.md`, `docs/ANALYTICS_IMPLEMENTATION.md` §5 |
 | `infra/janus/helper` (DAP helper) | **an independent operator** (Divvi Up, a partner nonprofit, an unrelated instance) who signs the operator agreement | the leader (different legal entity, admins, hosting account, database) | same |
-| `infra/labeler` (moderation labeler) | whoever staffs moderation (e.g. The Multiverse School) | — | `infra/labeler/README.md`, `services/labeler/README.md` |
+| `infra/labeler` (moderation labeler) | whoever staffs moderation (e.g. Multiverse Games) | — | `infra/labeler/README.md`, `services/labeler/README.md` |
 | `infra/glitchtip` (crash and bug reports) | the app's operator | — | `infra/glitchtip/README.md`, `docs/TELEMETRY.md` |
 | `infra/umami` (usage analytics) | the app's operator | — | `infra/umami/README.md`, `docs/TELEMETRY.md` |
 

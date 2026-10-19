@@ -1,7 +1,7 @@
 {
   "name": "@match-feed/desktop",
   "version": "0.1.0",
-  "description": "Desktop shell (Tauri v2) around the Match Feed web client, shipped as Meme Video.",
+  "description": "Desktop shell (Tauri v2) around the Match Feed web client, shipped as Multiverse Video.",
   "license": "Apache-2.0",
   "type": "module",
   "private": true,

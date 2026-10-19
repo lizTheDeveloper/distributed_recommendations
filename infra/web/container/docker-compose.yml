@@ -1,0 +1,32 @@
+# Multiverse Video on the Multiverse Games server (Traefik on the external `coolify` network,
+# Let's Encrypt over HTTP-01). From the repository root:
+#   docker compose -f infra/web/container/docker-compose.yml up -d --build
+services:
+  multiverse-video:
+    build:
+      context: ../../..
+      dockerfile: infra/web/container/Dockerfile
+    container_name: multiverse-video
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "wget -q --spider http://127.0.0.1/health || exit 1"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+    networks:
+      - coolify
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.multiverse-video.rule=Host(`video.multiversegames.ai`)
+      - traefik.http.routers.multiverse-video.entrypoints=https
+      - traefik.http.routers.multiverse-video.tls.certresolver=letsencrypt
+      - traefik.http.routers.multiverse-video-http.rule=Host(`video.multiversegames.ai`)
+      - traefik.http.routers.multiverse-video-http.entrypoints=http
+      - traefik.http.routers.multiverse-video-http.middlewares=multiverse-video-https
+      - traefik.http.middlewares.multiverse-video-https.redirectscheme.scheme=https
+      - traefik.http.middlewares.multiverse-video-https.redirectscheme.permanent=true
+      - traefik.http.services.multiverse-video.loadbalancer.server.port=80
+
+networks:
+  coolify:
+    external: true

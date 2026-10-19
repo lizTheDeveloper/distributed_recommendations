@@ -1,10 +1,10 @@
 apply plugin: 'com.android.application'
 
 android {
-    namespace = "school.multiverse.memevideo"
+    namespace = "ai.multiversegames.video"
     compileSdk = rootProject.ext.compileSdkVersion
     defaultConfig {
-        applicationId "school.multiverse.memevideo"
+        applicationId "ai.multiversegames.video"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

@@ -1,8 +1,8 @@
 {
   "$schema": "../node_modules/@tauri-apps/cli/config.schema.json",
-  "productName": "Meme Video",
+  "productName": "Multiverse Video",
   "version": "0.1.0",
-  "identifier": "school.multiverse.memevideo",
+  "identifier": "ai.multiversegames.video",
   "build": {
     "frontendDist": "../www"
   },
@@ -39,7 +39,7 @@
       "nsis"
     ],
     "createUpdaterArtifacts": false,
-    "publisher": "The Multiverse School",
+    "publisher": "Multiverse Games",
     "license": "Apache-2.0",
     "category": "Video",
     "shortDescription": "Federated video, ranked on your device",

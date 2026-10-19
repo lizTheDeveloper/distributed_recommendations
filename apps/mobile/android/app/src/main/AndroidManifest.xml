@@ -36,7 +36,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
 
-            <!-- Share to Meme Video: text only (PeerTube links, npubs). No files are accepted. -->
+            <!-- Share to Multiverse Video: text only (PeerTube links, npubs). No files are accepted. -->
             <intent-filter android:label="@string/share_label">
                 <action android:name="android.intent.action.SEND" />
                 <category android:name="android.intent.category.DEFAULT" />
@@ -51,7 +51,7 @@
                 <data android:scheme="nostr" />
             </intent-filter>
 
-            <!-- The app's own scheme: share handoff (memevideo://share). Set from brand.json. -->
+            <!-- The app's own scheme: share handoff (multiversevideo://share). Set from brand.json. -->
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
