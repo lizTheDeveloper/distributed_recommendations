@@ -84,6 +84,7 @@ compares mechanisms against each other and does not predict absolute quality.
 - Signed, portable, subscribable. Each entry gets a machine-readable *sponsored* / *affiliated* flag, shown on the card, per the FTC Endorsement Guides [C8].
 - **Low weight and a per-list cap.** A list-heavy mix lost 16% precision and concentrated exposure more (Gini 0.73 vs. 0.66) (Exp 1). Capping each list at 2 items per feed and weighting lists by track record cut the reach of a Sybil-inflated list from 54% of its subscribers to 2%, and raised precision under a list-heavy mix (Exp 5).
 - Lists help newcomers more than established viewers: for cold-start viewers with no matches, lists raised precision from 0.147 (follow-only) to 0.169 (Exp 1).
+- **Sources of a creator's taste ("Follow taste" in the web client), in order:** a NIP-51 video curation set (kind 30005) signed by the npub the creator publishes, read only from the viewer's own relays; a taste list linked in their channel description; then their public PeerTube playlists minus their own uploads, which exist today on any instance. Playlists are unsigned and carry no sponsored flag, so they get the same cap and track-record weighting as any list. Details: WEB_APP.md, Follow taste.
 
 ### Known cost: newcomers without matches
 

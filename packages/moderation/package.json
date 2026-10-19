@@ -1,0 +1,25 @@
+{
+  "name": "@match-feed/moderation",
+  "version": "0.1.0",
+  "description": "On-device moderation for Match Feed: NIP-56 reports, PeerTube abuse reports, NIP-32 labelers, block and mute lists, and a pre-filter for core rank()",
+  "license": "Apache-2.0",
+  "type": "module",
+  "private": true,
+  "engines": {
+    "node": ">=22.6"
+  },
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "test": "node --experimental-strip-types --disable-warning=ExperimentalWarning --test --test-reporter=spec test/*.test.ts",
+    "typecheck": "tsc -p ."
+  },
+  "dependencies": {
+    "nostr-tools": "2.25.2"
+  },
+  "devDependencies": {
+    "@types/node": "22.20.5",
+    "typescript": "5.9.3"
+  }
+}

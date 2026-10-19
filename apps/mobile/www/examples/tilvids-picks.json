@@ -1,0 +1,45 @@
+{
+  "v": 1,
+  "name": "Example: TILvids recent standouts",
+  "author": "Match Feed example data (not a real curator)",
+  "description": "Example data, generated automatically: the most-viewed of tilvids.com's 100 newest local videos, one per channel. Not curated by a person.",
+  "updatedAt": 1792437378,
+  "items": [
+    {
+      "id": "https://tilvids.com/videos/watch/976a535d-6f0e-4ae6-9d9f-e1010b35dc6b"
+    },
+    {
+      "id": "https://tilvids.com/videos/watch/2167fc7b-5eb2-4e99-bc34-ee3d4fe94457"
+    },
+    {
+      "id": "https://tilvids.com/videos/watch/41e39266-385a-4f23-b16c-58dc2bb25760"
+    },
+    {
+      "id": "https://tilvids.com/videos/watch/b4df0a1d-3701-4edb-b614-e5e39daaf31d"
+    },
+    {
+      "id": "https://tilvids.com/videos/watch/3660be6b-d1f9-4780-abab-249827e61a9d"
+    },
+    {
+      "id": "https://tilvids.com/videos/watch/b57f2472-b720-4681-bbb9-de97cfb86930"
+    },
+    {
+      "id": "https://tilvids.com/videos/watch/b6aa7416-db0c-4950-9a63-10d353d1cad1"
+    },
+    {
+      "id": "https://tilvids.com/videos/watch/2ab40036-a1bd-4f11-82a3-187e1884b591"
+    },
+    {
+      "id": "https://tilvids.com/videos/watch/23593af2-11ca-4569-bc71-bb737885c6f8"
+    },
+    {
+      "id": "https://tilvids.com/videos/watch/e60776dc-f55f-4e61-b7ad-75939303e835"
+    },
+    {
+      "id": "https://tilvids.com/videos/watch/c8c20958-7bb4-4a2f-849c-3eb45df31b9e"
+    },
+    {
+      "id": "https://tilvids.com/videos/watch/8cf2066b-68b9-4cd3-bf64-d45858f1c238"
+    }
+  ]
+}

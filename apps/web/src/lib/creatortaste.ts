@@ -541,8 +541,10 @@ export function rewriteWhy(items: RankedItem[], lists: readonly ResolvedTasteLis
 
 /** Newest picks for the sheet: titles where known. */
 export function newestPicks(t: CreatorTaste, videos: (id: string) => Video | undefined, n = 3): { id: string; title: string; creator?: string }[] {
+  const carried = new Map(t.videos.map((sv) => [sv.id, sv]));
   return t.items.slice(0, n).map((i) => {
-    const v = videos(i.id);
+    const sv = carried.get(i.id);
+    const v = sv ? { title: sv.title, creator: sv.creator, creatorName: sv.creatorName } : videos(i.id);
     return v ? { id: i.id, title: v.title, creator: v.creatorName ?? v.creator } : { id: i.id, title: i.id };
   });
 }

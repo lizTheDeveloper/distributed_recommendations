@@ -19,7 +19,10 @@ import { WsRelay } from "./match/wsRelay.ts";
 /** Event id + signature check, via match's in-memory relay (which verifies on publish). */
 export async function verifyNostrEvent(e: NostrEvent): Promise<boolean> {
   try {
-    const r = await new InMemoryRelay().publish({ ...e, tags: e.tags.map((t) => [...t]) } as SignedEvent);
+    // A fresh object with only the NIP-01 fields: nostr-tools caches its verdict in a
+    // symbol property, which a spread would copy along with a forged signature.
+    const fresh = { id: e.id, pubkey: e.pubkey, created_at: e.created_at, kind: e.kind, tags: e.tags.map((t) => [...t]), content: e.content, sig: e.sig };
+    const r = await new InMemoryRelay().publish(fresh as SignedEvent);
     return r.ok;
   } catch {
     return false;

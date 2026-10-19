@@ -1,0 +1,57 @@
+# TLS-terminating reverse proxy for strfry. Caddy gets and renews certificates
+# automatically (ACME, HTTP-01/TLS-ALPN-01), so ports 80 and 443 must reach this host.
+#
+# Log policy: no access log (there is no `log` directive in the site block), and
+# the process log below runs at WARN with every client-identifying field removed,
+# so no client IP or User-Agent is written even when an error is logged.
+
+{
+	email {$ACME_EMAIL}
+	# The admin API is not needed in a container; reload by restarting.
+	admin off
+
+	log default {
+		output stderr
+		level WARN
+		format filter {
+			wrap json
+			fields {
+				request>remote_ip delete
+				request>remote_port delete
+				request>client_ip delete
+				request>headers delete
+				request>uri delete
+				request>tls delete
+				remote_ip delete
+				remote_addr delete
+				client_ip delete
+			}
+		}
+	}
+
+	servers {
+		# Caddy is the edge: trust nobody else's X-Forwarded-For.
+		client_ip_headers X-Real-IP
+	}
+}
+
+{$RELAY_DOMAIN} {
+	header {
+		Strict-Transport-Security "max-age=31536000"
+		X-Content-Type-Options "nosniff"
+		Referrer-Policy "no-referrer"
+		-Server
+	}
+
+	# WebSocket (wss://) and NIP-11 (HTTP GET with Accept: application/nostr+json)
+	# both go to strfry. NIP-11 also needs CORS, which strfry adds itself.
+	reverse_proxy strfry:7777 {
+		# Overwrite, never append, so a client cannot spoof its address to strfry's
+		# per-IP rate limit.
+		header_up X-Real-IP {remote_host}
+		header_up -X-Forwarded-For
+		# Long-lived WebSockets: strfry pings every 55 s.
+		stream_timeout 24h
+		stream_close_delay 5s
+	}
+}

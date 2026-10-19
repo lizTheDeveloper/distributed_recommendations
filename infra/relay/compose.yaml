@@ -1,0 +1,137 @@
+# Self-hostable Nostr relay for the app: strfry behind Caddy (automatic TLS).
+#
+#   cp .env.example .env    # then edit RELAY_DOMAIN, ACME_EMAIL, APP_NAME, contact
+#   docker compose up -d
+#
+# Images are pinned by digest. Dependabot (.github/dependabot.yml) proposes updates.
+# Upstream strfry publishes only :latest on ghcr.io, so the tag below is informational;
+# the digest is what is pulled. See README.md "Updating".
+
+name: app-relay
+
+x-logging: &logging
+  # Small, rotated, local logs. Nothing here logs client IPs (see README.md "Logs").
+  # Set LOG_DRIVER=none in .env to keep no container logs at all.
+  driver: ${LOG_DRIVER:-local}
+  options:
+    max-size: "10m"
+    max-file: "3"
+
+x-hardening: &hardening
+  read_only: true
+  security_opt:
+    - no-new-privileges:true
+  cap_drop:
+    - ALL
+
+services:
+  strfry:
+    image: ghcr.io/hoytech/strfry:latest@sha256:36f1886d185a88ca57c66ebe52e6e9e8428dac2486eea0a5d50ff934f18b60c3
+    <<: *hardening
+    restart: unless-stopped
+    logging: *logging
+    command:
+      - --config=/etc/strfry.conf
+      # INFO would log every connect/disconnect with the client IP. WARNING does not.
+      - --verbosity=WARNING
+      - --set=relay.info.name=${APP_NAME:?set APP_NAME in .env} relay
+      - --set=relay.info.description=${RELAY_DESCRIPTION:-}
+      - --set=relay.info.contact=${RELAY_CONTACT:-}
+      - --set=relay.info.pubkey=${RELAY_ADMIN_PUBKEY:-}
+      - --set=relay.info.privacy=${RELAY_PRIVACY_URL:-}
+      - --set=relay.info.terms=${RELAY_TERMS_URL:-}
+      - --set=relay.auth.enabled=${RELAY_AUTH:-false}
+      - --set=relay.auth.serviceUrl=wss://${RELAY_DOMAIN:?set RELAY_DOMAIN in .env}
+      - --set=relay.auth.restrictedReadKinds=${RELAY_AUTH_RESTRICTED_READ_KINDS:-}
+      - relay
+    environment:
+      POLICY_RATE: ${POLICY_RATE:-2}
+      POLICY_BURST: ${POLICY_BURST:-30}
+      POLICY_IDLE_FORGET: ${POLICY_IDLE_FORGET:-300}
+      POLICY_GIFTWRAP_MAX_TTL: ${POLICY_GIFTWRAP_MAX_TTL:-2678400}
+      POLICY_ALLOWED_KINDS: ${POLICY_ALLOWED_KINDS:-}
+    volumes:
+      - ./strfry.conf:/etc/strfry.conf:ro
+      - ./policy:/app/policy:ro
+      - strfry-db:/app/strfry-db
+    tmpfs:
+      - /tmp
+    ulimits:
+      nofile:
+        soft: 65536
+        hard: 65536
+    expose:
+      - "7777"
+    networks:
+      - relay
+    healthcheck:
+      test: ["CMD-SHELL", "wget -q -O /dev/null --header 'Accept: application/nostr+json' http://127.0.0.1:7777/ || exit 1"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+
+  # Hard retention backstop: deletes gift wraps whose created_at is older than
+  # GIFTWRAP_RETENTION_SECONDS (default 33 days = 30-day max sketch lifetime + 2 days
+  # of NIP-59 backdating + 1 day of slack), even if a client set no or a wrong
+  # expiration before the write policy existed. strfry already deletes events at
+  # their NIP-40 expiration on its own.
+  retention:
+    image: ghcr.io/hoytech/strfry:latest@sha256:36f1886d185a88ca57c66ebe52e6e9e8428dac2486eea0a5d50ff934f18b60c3
+    <<: *hardening
+    restart: unless-stopped
+    logging: *logging
+    depends_on:
+      - strfry
+    # Share strfry's PID namespace so LMDB's reader-table bookkeeping sees one host.
+    pid: "service:strfry"
+    entrypoint: ["/bin/sh", "-c"]
+    command:
+      - >-
+        while :; do
+        /app/strfry --config=/etc/strfry.conf --verbosity=WARNING
+        delete --age=$${GIFTWRAP_RETENTION_SECONDS}
+        --filter='{"kinds":[1059]}';
+        sleep $${RETENTION_INTERVAL_SECONDS};
+        done
+    environment:
+      GIFTWRAP_RETENTION_SECONDS: ${GIFTWRAP_RETENTION_SECONDS:-2851200}
+      RETENTION_INTERVAL_SECONDS: ${RETENTION_INTERVAL_SECONDS:-3600}
+    volumes:
+      - ./strfry.conf:/etc/strfry.conf:ro
+      - strfry-db:/app/strfry-db
+    tmpfs:
+      - /tmp
+    network_mode: none
+
+  caddy:
+    image: caddy:2.11.7-alpine@sha256:d8542f48d34a9cf4e4c11a478865229840e87e4c96ea3f439101f31a5d35f75f
+    <<: *hardening
+    cap_add:
+      - NET_BIND_SERVICE
+    restart: unless-stopped
+    logging: *logging
+    depends_on:
+      - strfry
+    ports:
+      - "80:80"
+      - "443:443"
+      - "443:443/udp"
+    environment:
+      RELAY_DOMAIN: ${RELAY_DOMAIN:?set RELAY_DOMAIN in .env}
+      ACME_EMAIL: ${ACME_EMAIL:-}
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy-data:/data
+      - caddy-config:/config
+    tmpfs:
+      - /tmp
+    networks:
+      - relay
+
+networks:
+  relay: {}
+
+volumes:
+  strfry-db: {}
+  caddy-data: {}
+  caddy-config: {}

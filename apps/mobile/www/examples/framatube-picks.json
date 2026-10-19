@@ -1,0 +1,42 @@
+{
+  "v": 1,
+  "name": "Example: Framatube recent standouts",
+  "author": "Match Feed example data (not a real curator)",
+  "description": "Example data, generated automatically: the most-viewed of framatube.org's 100 newest local videos, one per channel. Not curated by a person.",
+  "updatedAt": 1792437380,
+  "items": [
+    {
+      "id": "https://framatube.org/videos/watch/73556243-7a9b-496c-a740-f80e42ee0ad9"
+    },
+    {
+      "id": "https://framatube.org/videos/watch/1546f864-26e0-4a7e-a7e0-b85e97b0e545"
+    },
+    {
+      "id": "https://framatube.org/videos/watch/c176a67a-3b50-4e06-87da-cd31f386cc28"
+    },
+    {
+      "id": "https://framatube.org/videos/watch/dacd068d-3c10-49ed-a4b2-147ace22af94"
+    },
+    {
+      "id": "https://framatube.org/videos/watch/1dc211eb-7093-4751-a18d-d31253f8a1aa"
+    },
+    {
+      "id": "https://framatube.org/videos/watch/b9f9f6c5-cd4a-4057-98c1-a87f24ff85cf"
+    },
+    {
+      "id": "https://framatube.org/videos/watch/1a3424c4-6177-41ef-bded-651d00ccc2ca"
+    },
+    {
+      "id": "https://framatube.org/videos/watch/55b18470-b7ba-4d89-930e-881821cd8f2b"
+    },
+    {
+      "id": "https://framatube.org/videos/watch/c6090ec4-e800-449c-b63e-f46ec93727ef"
+    },
+    {
+      "id": "https://framatube.org/videos/watch/4690f326-de96-442a-9769-18f6ece46993"
+    },
+    {
+      "id": "https://framatube.org/videos/watch/6d60b0a8-5b6e-4f19-97e1-6fe0ae58b610"
+    }
+  ]
+}

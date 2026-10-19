@@ -125,7 +125,7 @@ export function renderTasteSheet(app: App, host: HTMLElement): void {
       h(
         "p",
         { class: "note small" },
-        "Public data: picks the creator published themselves. Following adds them to the ranking on this device, and nothing about you is shared with the creator or anyone else. Who you follow is stored encrypted on this device. To refresh, the app reads the list from ",
+        "Public data: picks the creator published themselves. Following adds them to the ranking on this device. Nothing about you is shared: no account, history or follow list leaves this device, and who you follow is stored encrypted here. To refresh, the app reads the list from ",
         taste?.source === "nostr" ? "your relays" : taste?.source === "url" ? "the list's host" : "the creator's instance",
         ", which sees a request from your IP address, like opening the channel page.",
       ),

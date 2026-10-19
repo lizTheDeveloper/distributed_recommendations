@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Meme Video</title>
+<meta name="description" content="Federated video, ranked on your device by a recipe you control.">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'wasm-unsafe-eval'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' https: data:; connect-src 'self' https: wss: ws://localhost:* ws://127.0.0.1:*; frame-src 'self' https:; media-src https:; object-src 'none'; base-uri 'self'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
+<meta name="theme-color" content="#7046c9">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icon-192.png">
+<link rel="preload" href="fonts/AtkinsonHyperlegible-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="fonts.css">
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+<div id="app"><p style="padding:16px">Loading Match Feed…</p></div>
+<noscript><p style="padding:16px">Match Feed ranks videos on your device, so it needs JavaScript.</p></noscript>
+<script src="native-bridge.js"></script>
+<script src="app.js" defer></script>
+</body>
+</html>
