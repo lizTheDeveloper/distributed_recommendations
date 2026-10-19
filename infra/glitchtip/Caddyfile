@@ -1,0 +1,59 @@
+# TLS front for GlitchTip. Caddy gets and renews certificates automatically
+# (ports 80 and 443 must reach this host).
+#
+# IP policy: client addresses never leave Caddy. Every forwarding header is
+# removed before proxying, so GlitchTip sees only Caddy's private Docker address
+# (non-routable, so it records no IP on events). No access log, and the process
+# log drops every client-identifying field. Same policy as infra/relay.
+{
+	email {$ACME_EMAIL}
+	admin off
+
+	log default {
+		output stderr
+		level WARN
+		format filter {
+			wrap json
+			fields {
+				request>remote_ip delete
+				request>remote_port delete
+				request>client_ip delete
+				request>headers delete
+				request>uri delete
+				request>tls delete
+				remote_ip delete
+				remote_addr delete
+				client_ip delete
+			}
+		}
+	}
+}
+
+{$GLITCHTIP_DOMAIN} {
+	header {
+		Strict-Transport-Security "max-age=31536000"
+		X-Content-Type-Options "nosniff"
+		Referrer-Policy "no-referrer"
+		-Server
+	}
+
+	# Browsers only need the ingest endpoint; the dashboard is for the operator.
+	# Request bodies over 1 MB are refused (a scrubbed crash or bug report is a few KB).
+	request_body {
+		max_size 1MB
+	}
+
+	reverse_proxy glitchtip:8000 {
+		# Don't tell GlitchTip who the client is.
+		header_up -X-Forwarded-For
+		header_up -X-Real-IP
+		header_up -Forwarded
+		header_up -True-Client-IP
+		header_up -CF-Connecting-IP
+		header_up -X-Client-IP
+		header_up -X-Cluster-Client-IP
+		header_up -Fastly-Client-IP
+		header_up -X-Forwarded
+		header_up -Forwarded-For
+	}
+}

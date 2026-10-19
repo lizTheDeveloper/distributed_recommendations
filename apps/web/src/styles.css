@@ -321,7 +321,7 @@ legend{font-weight:700;font-size:.85rem;padding:0 4px}
 .tp-what ul{margin:6px 0 0;padding-left:18px;display:flex;flex-direction:column;gap:4px;color:var(--muted)}
 .fb-form fieldset{border:0;padding:0;margin:0}
 .fb-form legend{padding:0;margin-bottom:4px;color:var(--muted)}
-.fb-cat{display:inline-flex;gap:6px;align-items:center;margin-right:10px}
+.fb-cat{display:inline-flex;gap:6px;align-items:center;margin-right:12px}
 .fb-form textarea{font:inherit;font-size:.9rem}
 .fb-preview pre{max-height:260px;overflow:auto}
 @media (max-width:860px){.consent-card{left:16px;right:16px;width:auto;bottom:calc(var(--tabbar-h) + 12px + env(safe-area-inset-bottom,0px))}}

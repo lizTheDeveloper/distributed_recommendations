@@ -60,6 +60,8 @@ function offered(app: App): ToggleCopy[] {
 
 const DISCOVERY_LINE =
   "Separate from discovery stats for creators: those count only how you found videos, for creators, and are set under Sharing & privacy.";
+const DISCOVERY_LINE_HERE =
+  "Separate from discovery stats for creators (Controls, above): those count only how you found videos, for creators, not for us.";
 
 // ---- the one-time question ----
 
@@ -137,7 +139,7 @@ export function telemetryPanel(app: App): HTMLElement | null {
     { class: "panel", id: "telemetry-panel", "aria-labelledby": "tp-h" },
     h("h2", { id: "tp-h" }, "Crash reports, feedback and usage stats"),
     h("p", { class: "small" }, "Optional, and off unless you turn it on. This goes to the app's developers on their own servers (GlitchTip for errors and reports, Umami for usage), kept for 30 days."),
-    h("p", { class: "hint", style: { "margin-top": "-6px" } }, DISCOVERY_LINE),
+    h("p", { class: "hint", style: { "margin-top": "-6px" } }, DISCOVERY_LINE_HERE),
     items.map((t) =>
       h(
         "div",
@@ -235,16 +237,16 @@ function feedbackSection(app: App): HTMLElement {
     h("h3", { id: "fb-h" }, "Report a bug or send feedback"),
     h(
       "fieldset",
-      { class: "row fb-cats" },
+      { class: "fb-cats" },
       h("legend", { class: "small" }, "What is it?"),
-      FEEDBACK_CATEGORIES.map((c) =>
+      h("div", { class: "row" }, FEEDBACK_CATEGORIES.map((c) =>
         h(
           "label",
           { class: "small fb-cat" },
           h("input", { type: "radio", name: "fb-cat", value: c.id, checked: c.id === category, onchange: () => ((s.ui.fbCategory = c.id), app.rerender()) }),
           c.label,
         ),
-      ),
+      )),
     ),
     h("label", { for: "fb-text" }, "What happened, or what would you like?"),
     text,

@@ -1,0 +1,133 @@
+# Self-hosted GlitchTip (MIT) for the app's opt-in crash reports and bug reports
+# (docs/TELEMETRY.md): GlitchTip + Postgres behind Caddy (automatic TLS).
+#
+#   cp .env.example .env    # then edit GLITCHTIP_DOMAIN, ACME_EMAIL, SECRET_KEY, ...
+#   docker compose up -d
+#
+# Images are pinned by digest; Dependabot proposes updates. Client IPs never reach
+# GlitchTip: Caddy drops every forwarding header, so GlitchTip sees only Caddy's
+# private Docker address, which its IP resolver treats as non-routable and doesn't
+# store. See README.md "IP addresses".
+
+name: app-glitchtip
+
+x-logging: &logging
+  # Small, rotated, local logs. Nothing here logs client IPs (README.md "Logs").
+  driver: ${LOG_DRIVER:-local}
+  options:
+    max-size: "10m"
+    max-file: "3"
+
+x-hardening: &hardening
+  security_opt:
+    - no-new-privileges:true
+  cap_drop:
+    - ALL
+
+services:
+  postgres:
+    image: postgres:17.11-alpine@sha256:b0f9560a2de083e2cc7382e75f808c7381a32852a7ec49117deedb300e552b24
+    <<: *hardening
+    # The entrypoint drops to the postgres user and fixes data-dir ownership.
+    cap_add: [CHOWN, DAC_OVERRIDE, FOWNER, SETGID, SETUID]
+    restart: unless-stopped
+    logging: *logging
+    environment:
+      POSTGRES_DB: glitchtip
+      POSTGRES_USER: glitchtip
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD in .env}
+    command:
+      - postgres
+      # GlitchTip partitions events by time; queries that can't narrow to one
+      # partition lock them all (GlitchTip's install docs recommend this value).
+      - -c
+      - max_locks_per_transaction=512
+      # No connection logging (the default, made explicit).
+      - -c
+      - log_connections=off
+      - -c
+      - log_disconnections=off
+    volumes:
+      - pg-data:/var/lib/postgresql/data
+    networks: [internal]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U glitchtip -d glitchtip"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  glitchtip:
+    image: glitchtip/glitchtip:6.2.6@sha256:a3d8eb1b36c1e1603d55ab32711ea3dd8115874742a781a57391a62a16e0dff6
+    <<: *hardening
+    restart: unless-stopped
+    logging: *logging
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      DATABASE_URL: postgres://glitchtip:${POSTGRES_PASSWORD}@postgres:5432/glitchtip
+      SECRET_KEY: ${SECRET_KEY:?set SECRET_KEY in .env}
+      GLITCHTIP_DOMAIN: https://${GLITCHTIP_DOMAIN:?set GLITCHTIP_DOMAIN in .env}
+      DEFAULT_FROM_EMAIL: ${DEFAULT_FROM_EMAIL:-glitchtip@localhost}
+      EMAIL_URL: ${EMAIL_URL:-consolemail://}
+      # One process: web, task worker and scheduler (retention runs in the scheduler).
+      SERVER_ROLE: all_in_one
+      # No Valkey: cache and task queue live in Postgres (empty string disables it).
+      VALKEY_URL: ""
+      # Retention: every event type, including bug reports (captured messages), 30 days.
+      GLITCHTIP_RETENTION_DAYS: ${RETENTION_DAYS:-30}
+      # Only the operator's accounts. Turn registration off after creating yours.
+      ENABLE_USER_REGISTRATION: ${ENABLE_USER_REGISTRATION:-false}
+      ENABLE_ORGANIZATION_CREATION: "false"
+      # Features the app doesn't use.
+      GLITCHTIP_ENABLE_UPTIME: "false"
+      GLITCHTIP_ENABLE_LOGS: "false"
+      # Browsers send crash and bug reports cross-origin; allow only the app's origin(s).
+      CORS_ORIGIN_ALLOW_ALL: "false"
+      CORS_ORIGIN_WHITELIST: ${APP_ORIGINS:?set APP_ORIGINS in .env}
+      # Process logs at WARNING; granian's access log stays off (it's opt-in).
+      LOG_LEVEL: WARNING
+      GRANIAN_LOG_LEVEL: warning
+      DEBUG: ${GLITCHTIP_DEBUG:-false}
+      GLITCHTIP_BOOTSTRAP_DEV: ${GLITCHTIP_BOOTSTRAP_DEV:-false}
+    volumes:
+      - uploads:/code/uploads
+    tmpfs:
+      - /tmp
+    expose:
+      - "8000"
+    networks: [internal]
+
+  caddy:
+    image: caddy:2.11.7-alpine@sha256:d8542f48d34a9cf4e4c11a478865229840e87e4c96ea3f439101f31a5d35f75f
+    <<: *hardening
+    read_only: true
+    cap_add:
+      - NET_BIND_SERVICE
+    restart: unless-stopped
+    logging: *logging
+    depends_on:
+      - glitchtip
+    ports:
+      - "${HTTP_PORT:-80}:80"
+      - "${HTTPS_PORT:-443}:443"
+      - "${HTTPS_PORT:-443}:443/udp"
+    environment:
+      GLITCHTIP_DOMAIN: ${GLITCHTIP_DOMAIN}
+      ACME_EMAIL: ${ACME_EMAIL:?set ACME_EMAIL in .env}
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy-data:/data
+      - caddy-config:/config
+    tmpfs:
+      - /tmp
+    networks: [internal]
+
+networks:
+  internal: {}
+
+volumes:
+  pg-data: {}
+  uploads: {}
+  caddy-data: {}
+  caddy-config: {}
