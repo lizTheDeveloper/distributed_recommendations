@@ -23,6 +23,8 @@ export interface ResolvedTasteList {
   trackKey?: string;
   /** Why-line replacing core's generic one (followed creator tastes). */
   why?: string;
+  /** The list author's note for each pick, by video id; shown under the why-line. */
+  notes?: Record<string, string>;
 }
 
 export interface CandidateInput {

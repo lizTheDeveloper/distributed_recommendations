@@ -262,6 +262,18 @@ test("rank integration: kind taste, via = creator name, why-line names the sourc
   assert.equal(creatorVias([f], ["Blender"]).get(CH), `Blender (${CH})`);
 });
 
+test("rewriteWhy: a subscribed list's note on a pick follows its why-line", () => {
+  const a = vid("note-a@q.example");
+  const b = vid("note-b@q.example");
+  const list = { list: { v: 1 as const, name: "Start Here", author: "Multiverse Video editors", items: [{ id: a.id, note: "A clear first explainer." }, { id: b.id }] }, videos: [a, b], notes: { [a.id]: "A clear first explainer." } };
+  const cands = buildCandidates({ instances: [], follows: new Set(), followVideos: [], tasteLists: [list] });
+  const ranked = rewriteWhy(rank(cands, DEFAULT_RECIPE, { now, limit: 20, rng: seededRng(1) }), [list]);
+  const whyA = ranked.find((i) => i.video.id === a.id)!.why;
+  const whyB = ranked.find((i) => i.video.id === b.id)!.why;
+  assert.deepEqual(whyA.slice(0, 2), ['In the taste list "Start Here"', "Multiverse Video editors: “A clear first explainer.”"]);
+  assert.ok(!whyB.some((w) => w.includes("“")), "no note, no note line");
+});
+
 test("track record: impressions and endorsements per creator taste set its strength", () => {
   const picks = Array.from({ length: 30 }, (_, i) => vid(`d${i}@q.example`));
   const f = follow(CH, "Blender", picks);

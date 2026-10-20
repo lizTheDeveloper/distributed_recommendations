@@ -543,12 +543,24 @@ export function creatorTasteList(f: TasteFollow, via: string, videos: (id: strin
   return { list, videos: vids, via, trackKey: trackKey(f.handle), why: `In ${t.name}'s picks (${sourceShort(t)})`, ...(strength === undefined ? {} : { strength }) };
 }
 
-/** Replace core's generic taste why-line with the creator-taste wording. */
+/**
+ * Replace core's generic taste why-line with the creator-taste wording, and follow each
+ * list's line with its author's note on that pick, if the list has one.
+ */
 export function rewriteWhy(items: RankedItem[], lists: readonly ResolvedTasteList[]): RankedItem[] {
-  const map = new Map<string, string>();
-  for (const l of lists) if (l.why) map.set(`In the taste list "${l.via ?? l.list.name}"`, l.why);
+  const map = new Map<string, ResolvedTasteList>();
+  for (const l of lists) if (l.why || l.notes) map.set(`In the taste list "${l.via ?? l.list.name}"`, l);
   if (!map.size) return items;
-  return items.map((i) => (i.why.some((w) => map.has(w)) ? { ...i, why: i.why.map((w) => map.get(w) ?? w) } : i));
+  return items.map((i) => {
+    if (!i.why.some((w) => map.has(w))) return i;
+    const why = i.why.flatMap((w) => {
+      const l = map.get(w);
+      if (!l) return [w];
+      const note = l.notes?.[i.video.id];
+      return note ? [l.why ?? w, l.list.author ? `${l.list.author}: “${note}”` : `Note: “${note}”`] : [l.why ?? w];
+    });
+    return { ...i, why };
+  });
 }
 
 /** Newest picks for the sheet: titles where known. */

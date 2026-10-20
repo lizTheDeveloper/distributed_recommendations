@@ -174,7 +174,7 @@ export interface State {
   seed: number;
   instances: Map<string, Load<InstanceFeed>>;
   followVideos: Map<string, Load<Video[]>>;
-  tasteRes: Map<string, Load<{ videos: Video[]; missing: number }>>;
+  tasteRes: Map<string, Load<{ videos: Video[]; missing: number; notes: Record<string, string> }>>;
   videoCache: Map<string, Video>;
   openWhy: Set<string>;
   studio: { handle: string; load: Load<ChannelStats> | null; npub?: string | null };
@@ -750,13 +750,18 @@ export function startApp(opts: AppOptions): App {
         return null;
       }
     });
+    const notes: Record<string, string> = {};
+    vids.forEach((v, i) => {
+      const note = sub.list.items[i].note;
+      if (v && note) notes[v.id] = note;
+    });
     const videos = vids.filter((v): v is Video => {
       if (!v) missing++;
       return !!v;
     });
     // Ignore the result if the list was removed meanwhile.
     if (!s.taste.some((t) => t.key === sub.key)) return;
-    s.tasteRes.set(sub.key, { status: "ok", value: { videos, missing } });
+    s.tasteRes.set(sub.key, { status: "ok", value: { videos, missing, notes } });
     app.persist("videos");
     app.rerender();
   }
@@ -1111,7 +1116,7 @@ export function startApp(opts: AppOptions): App {
       const endorsed = endorsedIds();
       for (const t of s.taste) {
         const r = s.tasteRes.get(t.key);
-        if (r?.status === "ok") out.push({ list: t.list, videos: r.value.videos, strength: listStrength(s.impressions, t.list.name, endorsed) });
+        if (r?.status === "ok") out.push({ list: t.list, videos: r.value.videos, notes: r.value.notes, strength: listStrength(s.impressions, t.list.name, endorsed) });
       }
       // Followed creator tastes: kind taste, via = creator name, own track record.
       const active = s.tasteFollows.filter((f) => f.enabled && f.taste?.items.length);
