@@ -1,7 +1,7 @@
 # Editorial curation
 
 How the strategy in [`CURATION_STRATEGY.md`](CURATION_STRATEGY.md) runs in this repository.
-Status: first pass, 2026-10-19. Nothing is published until a person approves it.
+Status: first collections published, 2026-10-19. Nothing is published until a person approves it.
 
 ## Phase 0: what the deployment is
 
@@ -80,13 +80,15 @@ Instances and channels on which the first pass found no official link are listed
 | Rejected, with reasons | 49 |
 | Proposed (`reviewed`) | 58 |
 | Proposals whose publisher identity is official-link-verified | 14 |
-| Approved | 0 (awaiting a human reviewer) |
+| Approved and published | 57 (Liz delegated approval; recorded in each audit entry) |
 
 The 49 rejections are re-uploads of other publishers' videos, keyword collisions, and one evidence-gate failure.
 
 The 58 proposals split as 25 feature candidates and 32 collection candidates. They cover all six collections, with 10 marked for Start Here.
 
 The rest stay `verified` in the pool, unreviewed.
+
+Liz delegated the first approval ("you can publish what you want"). Every proposal scoring 65 or more was approved under her name, and each audit entry records the delegation and that the picks were judged from metadata only. The 62-point "Phishing" proposal stays in review. Classroom Ready is empty because no pick has captions yet. Playable Futures and Beautifully Unnecessary Machines are under their three-pick threshold.
 
 **CCC:** the only Chaos Computer Club channel on PeerTube calls itself a mirror. The canonical archive, media.ccc.de, isn't PeerTube, so CCC talks are not in any collection yet.
 
