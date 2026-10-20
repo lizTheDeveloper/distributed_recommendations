@@ -17,7 +17,9 @@ const vid = (over: Record<string, unknown> = {}) =>
 
 test("brand: one constant drives index.html, the artifact title and the manifest", () => {
   const brand = JSON.parse(readFileSync(new URL("../src/brand.json", import.meta.url), "utf8"));
-  assert.equal(brand.name, "Meme Video");
+  assert.equal(brand.name, "Multiverse Video");
+  // apps/mobile/brand.json names the native apps; the two must agree.
+  assert.equal(JSON.parse(readFileSync(new URL("../../mobile/brand.json", import.meta.url), "utf8")).displayName, brand.name);
   const html = readFileSync(new URL("../public/index.html", import.meta.url), "utf8");
   assert.ok(html.includes("<title>__APP_NAME__</title>"));
   assert.ok(!/Match Feed/.test(html));
