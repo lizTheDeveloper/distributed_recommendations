@@ -3,9 +3,17 @@
 #
 #   docker compose -f compose.yaml -f compose.traefik.yaml up -d
 #
-# Needs Traefik v3.1+ (router-level observability), an external Docker network that
-# Traefik watches (TRAEFIK_NETWORK, default `coolify`) and a certificate resolver
+# Needs Traefik v3.1+ (router-level observability) and a certificate resolver
 # (TRAEFIK_CERTRESOLVER, default `letsencrypt`).
+#
+# Network: strfry trusts X-Real-Ip for its per-IP rate limit, so only Traefik may reach
+# it. Don't use Traefik's shared network (every app on it could connect to strfry and
+# set its own X-Real-Ip). Use a network that only Traefik and strfry join, once:
+#
+#   docker network create relay-edge && docker network connect relay-edge traefik
+#
+# (TRAEFIK_NETWORK, default `relay-edge`.) The Traefik entrypoints must not set
+# forwardedHeaders.insecure or trustedIPs, or clients could pick their own X-Real-Ip.
 #
 # Logs: the router turns Traefik's access log off, because WebSocket connections are
 # long and would otherwise pass a minDuration filter with the client IP in them.
@@ -23,7 +31,7 @@ services:
       - traefik
     labels:
       - traefik.enable=true
-      - traefik.docker.network=${TRAEFIK_NETWORK:-coolify}
+      - traefik.docker.network=${TRAEFIK_NETWORK:-relay-edge}
       - traefik.http.routers.app-relay.rule=Host(`${RELAY_DOMAIN:?set RELAY_DOMAIN in .env}`)
       - traefik.http.routers.app-relay.entrypoints=https
       - traefik.http.routers.app-relay.tls.certresolver=${TRAEFIK_CERTRESOLVER:-letsencrypt}
@@ -41,5 +49,5 @@ services:
 
 networks:
   traefik:
-    name: ${TRAEFIK_NETWORK:-coolify}
+    name: ${TRAEFIK_NETWORK:-relay-edge}
     external: true
