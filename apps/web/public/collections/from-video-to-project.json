@@ -1,0 +1,29 @@
+{
+  "v": 1,
+  "name": "From Video to Project",
+  "author": "Multiverse Video editors",
+  "description": "Each video comes with something you can build or do next.",
+  "updatedAt": 1792468565,
+  "items": [
+    {
+      "id": "https://makertube.net/videos/watch/7ebdc562-2985-4de0-b262-5f07fc103fad",
+      "note": "Artist bleeptrack's workshop on coding your own generative art with paper.js, from first shape to a piece that surprises you.",
+      "addedAt": 1792468565
+    },
+    {
+      "id": "https://tilvids.com/videos/watch/fccf3369-f9b9-49f4-bd52-0a778d451f49",
+      "note": "Build a chatbot character inside a Godot game that talks to a language model running on your own machine through Ollama.",
+      "addedAt": 1792468565
+    },
+    {
+      "id": "https://makertube.net/videos/watch/aa8863b9-b2e1-4acd-ac9e-e917e1ff5fb1",
+      "note": "Two minutes from unboxing to running code: installing MicroPython on a tiny ESP32-C3 board.",
+      "addedAt": 1792468565
+    },
+    {
+      "id": "https://makertube.net/videos/watch/2b0d88b4-f767-448d-86fd-42edc3e96ab2",
+      "note": "Planning an ESP32 project end to end and connecting it to Wi-Fi with MicroPython, including the parts that don't work the first time.",
+      "addedAt": 1792468565
+    }
+  ]
+}

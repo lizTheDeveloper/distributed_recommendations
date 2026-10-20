@@ -5,6 +5,7 @@
 //   node curation/scripts/approve.mjs --reviewer "Liz" reject <id-prefix> --reason "…"
 //   node curation/scripts/approve.mjs --reviewer "Liz" remove <id-prefix> --reason "…"
 //   node curation/scripts/approve.mjs --reviewer "Liz" approve --min-score 80   (every reviewed record at or above)
+// --note "…" adds context to the audit entry, e.g. that the reviewer delegated the decision.
 import { now, readRecords, transition, writeRecord } from "./lib.mjs";
 
 /** Reviewers are people. Anything that looks like an agent or a script is refused. */
@@ -27,6 +28,7 @@ if (import.meta.url === `file://${process.argv[1]}`) {
   const reviewer = assertHumanReviewer(take("--reviewer"));
   const reason = take("--reason");
   const minScore = take("--min-score");
+  const note = take("--note");
   const [action, ...prefixes] = args;
   if (!ALLOWED[action]) throw new Error("action must be approve, reject or remove");
   if (action !== "approve" && !reason) throw new Error(`${action} needs --reason`);
@@ -48,7 +50,7 @@ if (import.meta.url === `file://${process.argv[1]}`) {
       if (!rec.verification.origin_confirmed) throw new Error(`${rec.id}: origin not confirmed; run verify.mjs first`);
       rec.editorial.reviewer = reviewer;
       rec.editorial.reviewed_at = t;
-      transition(rec, "approved", reviewer);
+      transition(rec, "approved", reviewer, note ?? undefined);
     } else if (action === "reject") {
       rec.editorial.rejection_reason = reason;
       rec.editorial.reviewer = reviewer;

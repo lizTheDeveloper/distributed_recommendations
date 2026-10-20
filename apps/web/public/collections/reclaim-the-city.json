@@ -1,0 +1,74 @@
+{
+  "v": 1,
+  "name": "Reclaim the City",
+  "author": "Multiverse Video editors",
+  "description": "Learn how people redesign the systems that shape daily life.",
+  "updatedAt": 1792468565,
+  "items": [
+    {
+      "id": "https://video.canadiancivil.com/videos/watch/8464439a-e53f-44b6-9eae-7f7ef6c9abb0",
+      "note": "A clear introduction to housing co-ops: how residents own and run their buildings together, and why it keeps rents down.",
+      "addedAt": 1792468565
+    },
+    {
+      "id": "https://peertube.dair-institute.org/videos/watch/8df10458-1cb9-4b25-8d56-4510ad143559",
+      "note": "Three minutes presenting DAIR's report on Amazon delivery drivers: how workplace surveillance tech is used to cut pay and hide responsibility.",
+      "addedAt": 1792468565
+    },
+    {
+      "id": "https://media.apc.org/videos/watch/07ce15de-5f9a-490b-b9f2-e3ac13ea2d26",
+      "note": "The story of B4RN, a community-built fibre network in rural England that has connected over 7,000 homes through joint action, with captions.",
+      "addedAt": 1792468565
+    },
+    {
+      "id": "https://media.exo.cat/videos/watch/67d9dc89-db96-48f5-8317-f7bba4849358",
+      "note": "From Battlemesh v15: how the COWMesh community network brought connectivity to a rural area in India, built and run by locals.",
+      "addedAt": 1792468565
+    },
+    {
+      "id": "https://tube.waag.org/videos/watch/4eac97f8-9604-4acd-a75c-e001297dc7ac",
+      "note": "Waag Futurelab's yearly State of the Internet lecture, 2026 edition, given in English by Fieke Jansen with captions.",
+      "addedAt": 1792468565
+    },
+    {
+      "id": "https://video.canadiancivil.com/videos/watch/3e4074e9-6b68-499d-a76f-537342fd2c79",
+      "note": "A practical guide to tenant rights for first-time renters in Montreal: rent increases, repairs, and what landlords can and can't do.",
+      "addedAt": 1792468565
+    },
+    {
+      "id": "https://tube.tchncs.de/videos/watch/d7d5b093-3491-4bd5-8ab0-92cf783b1775",
+      "note": "The Bonfire project on federated digital spaces built for mutual aid networks, as an alternative to running them on corporate group chats.",
+      "addedAt": 1792468565
+    },
+    {
+      "id": "https://video.osgeo.org/videos/watch/86a4f7b0-fbcd-4a98-b9d7-8ab9a98d4367",
+      "note": "A FOSS4G talk on interactive open-source tools for visualizing climate risk, used in disaster-reduction programmes.",
+      "addedAt": 1792468565
+    },
+    {
+      "id": "https://media.apc.org/videos/watch/4001443d-9758-45f2-98d2-f9fe53167794",
+      "note": "A four-minute APC short on where digital rights and environmental justice meet, with captions.",
+      "addedAt": 1792468565
+    },
+    {
+      "id": "https://tv.undersco.re/videos/watch/cb8fefbb-60a1-4475-aeff-1da8c93760e1",
+      "note": "New Design Congress on the 'para-real': how decentralised networks of care form when official systems fail people.",
+      "addedAt": 1792468565
+    },
+    {
+      "id": "https://makertube.net/videos/watch/eb317ecf-4f68-4a9e-9135-33b0284916b7",
+      "note": "An honest DIY test: can one solar panel on a shed roof run a home server rack, or does it just cost money?",
+      "addedAt": 1792468565
+    },
+    {
+      "id": "https://fair.tube/videos/watch/66affa20-2094-457c-bd85-8d8c50637a2f",
+      "note": "A short documentary on co-creating climate resilience plans between residents and city administration over eight weeks, with captions.",
+      "addedAt": 1792468565
+    },
+    {
+      "id": "https://urbanists.video/videos/watch/a7c63ddd-29f3-4a5c-aa15-d2ef1b2b7039",
+      "note": "An unedited interview with Move Minnesota's MJ Carpio on how transit advocates actually win changes in their city.",
+      "addedAt": 1792468565
+    }
+  ]
+}

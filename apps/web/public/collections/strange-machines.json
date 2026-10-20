@@ -1,0 +1,79 @@
+{
+  "v": 1,
+  "name": "Strange Machines",
+  "author": "Multiverse Video editors",
+  "description": "Make unusual physical things and understand how they work.",
+  "updatedAt": 1792468565,
+  "items": [
+    {
+      "id": "https://makertube.net/videos/watch/012c1f18-5e08-403e-af02-58cf2deedfe0",
+      "note": "A hackerspace workshop on hardware hacking for absolute beginners: how to open a device, find its debug ports, and learn what's inside.",
+      "addedAt": 1792468565
+    },
+    {
+      "id": "https://cuddly.tube/videos/watch/1a077c7c-4f26-404e-8fcf-9ab701b199de",
+      "note": "Lessons from building a networking stack for microcontrollers with 32 kB of RAM, in Go.",
+      "addedAt": 1792468565
+    },
+    {
+      "id": "https://framatube.org/videos/watch/1b7027e5-6e45-4876-9833-4778de60b44f",
+      "note": "Nathan Proctor of the US PIRG on the right-to-repair fight and how copyright law (the DMCA) gets used to stop you fixing your own things.",
+      "addedAt": 1792468565
+    },
+    {
+      "id": "https://makertube.net/videos/watch/536b2ab8-8349-479f-b874-6babd38b3d8f",
+      "note": "Crowd Supply's Teardown Sessions talks with Michael Altfield, maker of BusKill, a laptop kill-cord, about practical OpSec and privacy hardware.",
+      "addedAt": 1792468565
+    },
+    {
+      "id": "https://makertube.net/videos/watch/aa8863b9-b2e1-4acd-ac9e-e917e1ff5fb1",
+      "note": "Two minutes from unboxing to running code: installing MicroPython on a tiny ESP32-C3 board.",
+      "addedAt": 1792468565
+    },
+    {
+      "id": "https://tilvids.com/videos/watch/fdefceaf-3690-4458-8852-b08c363b02ef",
+      "note": "Veronica Explains pushes back on tech's habit of shaming people's hardware and software choices: your tools are probably fine.",
+      "addedAt": 1792468565
+    },
+    {
+      "id": "https://videos.trom.tf/videos/watch/64d4b2b2-c5b3-4491-af8a-80d4f152c1f3",
+      "note": "A Hackerspace Brussels talk on using free software to build your own autonomous robots.",
+      "addedAt": 1792468565
+    },
+    {
+      "id": "https://makertube.net/videos/watch/2b0d88b4-f767-448d-86fd-42edc3e96ab2",
+      "note": "Planning an ESP32 project end to end and connecting it to Wi-Fi with MicroPython, including the parts that don't work the first time.",
+      "addedAt": 1792468565
+    },
+    {
+      "id": "https://makertube.net/videos/watch/d9fdc782-9019-473a-b1eb-0f7924b0d683",
+      "note": "A walk through an EDM power-supply circuit, explaining how each section works and where it could fail.",
+      "addedAt": 1792468565
+    },
+    {
+      "id": "https://makertube.net/videos/watch/eb317ecf-4f68-4a9e-9135-33b0284916b7",
+      "note": "An honest DIY test: can one solar panel on a shed roof run a home server rack, or does it just cost money?",
+      "addedAt": 1792468565
+    },
+    {
+      "id": "https://media.curious.bio/videos/watch/f8c45af2-96ea-4c5c-9198-c08cd226a247",
+      "note": "A talk on 3D printing with mycelium: growing structures from fungus instead of plastic.",
+      "addedAt": 1792468565
+    },
+    {
+      "id": "https://peertube.fenarinarsa.com/videos/watch/5052c72f-9d59-4299-9b3a-b3b29fc65e4f",
+      "note": "A 2024 demo that squeezes astonishing effects out of a stock 8 MHz Atari STE: the demoscene's art of doing impossible things with old hardware.",
+      "addedAt": 1792468565
+    },
+    {
+      "id": "https://video.infosec.exchange/videos/watch/eea8df79-1558-4ab8-bea6-45ae79430aee",
+      "note": "A step-by-step solve of a crackmes.one reverse-engineering challenge, narrated so you can follow the reasoning, not just the answer.",
+      "addedAt": 1792468565
+    },
+    {
+      "id": "https://makertube.net/videos/watch/37026fab-651d-41c3-ba93-bbb7d9d3c494",
+      "note": "A Stargate-inspired 'Dial-Home Device' built from scratch: a beautifully unnecessary machine, documented build step by build step.",
+      "addedAt": 1792468565
+    }
+  ]
+}

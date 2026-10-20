@@ -1,0 +1,59 @@
+{
+  "v": 1,
+  "name": "Start Here",
+  "author": "Multiverse Video editors",
+  "description": "Ten accessible videos, each with one concrete next action.",
+  "updatedAt": 1792468565,
+  "items": [
+    {
+      "id": "https://framatube.org/videos/watch/4294a720-f263-4ea4-9392-cf9cea4d5277",
+      "note": "Framasoft's short, translated explainer of the Fediverse: many independent servers that talk to each other, like email.",
+      "addedAt": 1792468565
+    },
+    {
+      "id": "https://video.canadiancivil.com/videos/watch/8464439a-e53f-44b6-9eae-7f7ef6c9abb0",
+      "note": "A clear introduction to housing co-ops: how residents own and run their buildings together, and why it keeps rents down.",
+      "addedAt": 1792468565
+    },
+    {
+      "id": "https://framatube.org/videos/watch/9c9de5e8-0a1e-484a-b099-e80766180a6d",
+      "note": "Framasoft's two-minute explainer of PeerTube, the federated video platform this app reads from, with subtitles in 30+ languages.",
+      "addedAt": 1792468565
+    },
+    {
+      "id": "https://peertube.dair-institute.org/videos/watch/8df10458-1cb9-4b25-8d56-4510ad143559",
+      "note": "Three minutes presenting DAIR's report on Amazon delivery drivers: how workplace surveillance tech is used to cut pay and hide responsibility.",
+      "addedAt": 1792468565
+    },
+    {
+      "id": "https://techlore.tv/videos/watch/e48c10f6-767f-47b7-92e9-543a61b37268",
+      "note": "A plain-language walkthrough of threat modeling: who might want your data, what they could do with it, and which protections are worth your effort.",
+      "addedAt": 1792468565
+    },
+    {
+      "id": "https://media.apc.org/videos/watch/07ce15de-5f9a-490b-b9f2-e3ac13ea2d26",
+      "note": "The story of B4RN, a community-built fibre network in rural England that has connected over 7,000 homes through joint action, with captions.",
+      "addedAt": 1792468565
+    },
+    {
+      "id": "https://makertube.net/videos/watch/7ebdc562-2985-4de0-b262-5f07fc103fad",
+      "note": "Artist bleeptrack's workshop on coding your own generative art with paper.js, from first shape to a piece that surprises you.",
+      "addedAt": 1792468565
+    },
+    {
+      "id": "https://makertube.net/videos/watch/aa8863b9-b2e1-4acd-ac9e-e917e1ff5fb1",
+      "note": "Two minutes from unboxing to running code: installing MicroPython on a tiny ESP32-C3 board.",
+      "addedAt": 1792468565
+    },
+    {
+      "id": "https://tilvids.com/videos/watch/fdefceaf-3690-4458-8852-b08c363b02ef",
+      "note": "Veronica Explains pushes back on tech's habit of shaming people's hardware and software choices: your tools are probably fine.",
+      "addedAt": 1792468565
+    },
+    {
+      "id": "https://peertube.eqver.se/videos/watch/966f390f-8095-4c39-8c71-a7a8dbfb3e76",
+      "note": "Five concrete email-security rules from a digital-security hotline expert, framed around the phishing campaigns that target journalists and activists.",
+      "addedAt": 1792468565
+    }
+  ]
+}

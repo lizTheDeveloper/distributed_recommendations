@@ -1,4 +1,53 @@
 {
   "v": 1,
-  "collections": []
+  "collections": [
+    {
+      "slug": "start-here",
+      "name": "Start Here",
+      "url": "collections/start-here.json",
+      "items": 10
+    },
+    {
+      "slug": "hack-the-planet",
+      "name": "Hack the Planet",
+      "url": "collections/hack-the-planet.json",
+      "items": 10
+    },
+    {
+      "slug": "the-machine-is-political",
+      "name": "The Machine Is Political",
+      "url": "collections/the-machine-is-political.json",
+      "items": 17
+    },
+    {
+      "slug": "build-your-own-future",
+      "name": "Build Your Own Future",
+      "url": "collections/build-your-own-future.json",
+      "items": 23
+    },
+    {
+      "slug": "reclaim-the-city",
+      "name": "Reclaim the City",
+      "url": "collections/reclaim-the-city.json",
+      "items": 13
+    },
+    {
+      "slug": "strange-machines",
+      "name": "Strange Machines",
+      "url": "collections/strange-machines.json",
+      "items": 14
+    },
+    {
+      "slug": "the-weird-internet",
+      "name": "The Weird Internet",
+      "url": "collections/the-weird-internet.json",
+      "items": 12
+    },
+    {
+      "slug": "from-video-to-project",
+      "name": "From Video to Project",
+      "url": "collections/from-video-to-project.json",
+      "items": 4
+    }
+  ]
 }

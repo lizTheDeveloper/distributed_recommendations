@@ -28,7 +28,7 @@
     "at": "2026-10-20T01:52:51Z"
   },
   "editorial": {
-    "status": "reviewed",
+    "status": "published",
     "primary_collection": "the-weird-internet",
     "secondary_collections": [],
     "difficulty": "intermediate",
@@ -58,8 +58,8 @@
     "score": 80,
     "judgment_basis": "metadata only (title, description, channel, caption list); not watched — substantive judgments unverified",
     "proposed_by": "claude-opus-5-5 (AI proposal)",
-    "reviewer": null,
-    "reviewed_at": null,
+    "reviewer": "Liz",
+    "reviewed_at": "2026-10-20T03:56:05Z",
     "rejection_reason": null,
     "shelves": [],
     "band": "feature-candidate",
@@ -106,6 +106,20 @@
       "to": "reviewed",
       "by": "claude-opus-5-5 (AI proposal)",
       "note": "proposed score 80"
+    },
+    {
+      "at": "2026-10-20T03:56:05Z",
+      "from": "reviewed",
+      "to": "approved",
+      "by": "Liz",
+      "note": "Delegated approval: Liz said 'you can publish what you want its ok' (2026-10-19). Picks and notes chosen by Claude from metadata; not watched."
+    },
+    {
+      "at": "2026-10-20T03:56:05Z",
+      "from": "approved",
+      "to": "published",
+      "by": "publish.mjs",
+      "note": "in the-weird-internet"
     }
   ]
 }

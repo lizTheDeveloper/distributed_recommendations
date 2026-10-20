@@ -1,0 +1,124 @@
+{
+  "v": 1,
+  "name": "Build Your Own Future",
+  "author": "Multiverse Video editors",
+  "description": "Replace dependence on opaque platforms with skills and infrastructure you control.",
+  "updatedAt": 1792468565,
+  "items": [
+    {
+      "id": "https://framatube.org/videos/watch/4294a720-f263-4ea4-9392-cf9cea4d5277",
+      "note": "Framasoft's short, translated explainer of the Fediverse: many independent servers that talk to each other, like email.",
+      "addedAt": 1792468565
+    },
+    {
+      "id": "https://framatube.org/videos/watch/9c9de5e8-0a1e-484a-b099-e80766180a6d",
+      "note": "Framasoft's two-minute explainer of PeerTube, the federated video platform this app reads from, with subtitles in 30+ languages.",
+      "addedAt": 1792468565
+    },
+    {
+      "id": "https://framatube.org/videos/watch/81f8d42e-e7ff-4635-943f-87abfdbc9820",
+      "note": "A LibrePlanet 2024 talk on self-hosting that lasts: how to save, serve and safely back up your own data for years, not weekends.",
+      "addedAt": 1792468565
+    },
+    {
+      "id": "https://media.apc.org/videos/watch/07ce15de-5f9a-490b-b9f2-e3ac13ea2d26",
+      "note": "The story of B4RN, a community-built fibre network in rural England that has connected over 7,000 homes through joint action, with captions.",
+      "addedAt": 1792468565
+    },
+    {
+      "id": "https://media.exo.cat/videos/watch/67d9dc89-db96-48f5-8317-f7bba4849358",
+      "note": "From Battlemesh v15: how the COWMesh community network brought connectivity to a rural area in India, built and run by locals.",
+      "addedAt": 1792468565
+    },
+    {
+      "id": "https://peertube.anduin.net/videos/watch/ec7b69ba-6df8-4798-b651-0019fd4a608c",
+      "note": "curl maintainer Daniel Stenberg at foss-north 2026 on what AI tools are really doing to open-source projects, from someone on the receiving end.",
+      "addedAt": 1792468565
+    },
+    {
+      "id": "https://peertube.opencloud.lu/videos/watch/9347074e-0019-4d39-aed6-76692621a17e",
+      "note": "A talk on the Open Source AI Definition one year on: which 'open' models really are, and how to spot open-washing.",
+      "addedAt": 1792468565
+    },
+    {
+      "id": "https://tv.lumbung.space/videos/watch/206dc46c-a6bd-4d93-aa33-65648a05cc8a",
+      "note": "A CounterSpy conference talk from the Co-op Cloud project on platform surveillance and how cooperatives can run their own infrastructure instead.",
+      "addedAt": 1792468565
+    },
+    {
+      "id": "https://tilvids.com/videos/watch/fccf3369-f9b9-49f4-bd52-0a778d451f49",
+      "note": "Build a chatbot character inside a Godot game that talks to a language model running on your own machine through Ollama.",
+      "addedAt": 1792468565
+    },
+    {
+      "id": "https://cuddly.tube/videos/watch/1a077c7c-4f26-404e-8fcf-9ab701b199de",
+      "note": "Lessons from building a networking stack for microcontrollers with 32 kB of RAM, in Go.",
+      "addedAt": 1792468565
+    },
+    {
+      "id": "https://techlore.tv/videos/watch/cc032cbd-ba6e-4e80-ac43-7efef73937f8",
+      "note": "One short lesson from Techlore's free Go Incognito course: what actually protects your traffic on a network, and what doesn't.",
+      "addedAt": 1792468565
+    },
+    {
+      "id": "https://video.blender.org/videos/watch/5ca2bd96-8de7-4cb2-af6c-b85201b3002b",
+      "note": "From the Blender Conference 2026: procedural workflows with Gaussian splatting, the new way to turn photos into 3D scenes.",
+      "addedAt": 1792468565
+    },
+    {
+      "id": "https://framatube.org/videos/watch/dacd068d-3c10-49ed-a4b2-147ace22af94",
+      "note": "Cory Doctorow's talk The Post-American Internet, posted with captions by Framasoft: an argument for interoperability as the way out of platform lock-in.",
+      "addedAt": 1792468565
+    },
+    {
+      "id": "https://tubefree.org/videos/watch/0d612d2a-4c5b-43b9-ade9-2b7643abd0ce",
+      "note": "A long conversation with Evan Prodromou, an architect of ActivityPub, the protocol behind the Fediverse, on why it was built for people first.",
+      "addedAt": 1792468565
+    },
+    {
+      "id": "https://tube.tchncs.de/videos/watch/d7d5b093-3491-4bd5-8ab0-92cf783b1775",
+      "note": "The Bonfire project on federated digital spaces built for mutual aid networks, as an alternative to running them on corporate group chats.",
+      "addedAt": 1792468565
+    },
+    {
+      "id": "https://video.osgeo.org/videos/watch/86a4f7b0-fbcd-4a98-b9d7-8ab9a98d4367",
+      "note": "A FOSS4G talk on interactive open-source tools for visualizing climate risk, used in disaster-reduction programmes.",
+      "addedAt": 1792468565
+    },
+    {
+      "id": "https://framatube.org/videos/watch/e05ef9e8-b864-4c6b-8679-be8083169f50",
+      "note": "A LibrePlanet 2023 panel on why mainstream platforms are free of charge, what that costs the Global South, and what a libre alternative looks like.",
+      "addedAt": 1792468565
+    },
+    {
+      "id": "https://tube.kockatoo.org/videos/watch/38e4df20-0bb9-43ae-8fe8-edb2f3eb8012",
+      "note": "Grant makers and builders debate who should fund technology that's given away for free, and which tech deserves public money.",
+      "addedAt": 1792468565
+    },
+    {
+      "id": "https://videos.spacebar.ca/videos/watch/6731b7ab-72b2-446b-9c00-957575912326",
+      "note": "A NorthSec talk on fitting threat modeling into fast development cycles, so security questions get asked while the design can still change.",
+      "addedAt": 1792468565
+    },
+    {
+      "id": "https://tilvids.com/videos/watch/78036a7d-ff69-4657-a501-8232cad8491d",
+      "note": "A persuasive case that everyone should run a home server, or have a friend who does, and what that buys you.",
+      "addedAt": 1792468565
+    },
+    {
+      "id": "https://tilvids.com/videos/watch/fdefceaf-3690-4458-8852-b08c363b02ef",
+      "note": "Veronica Explains pushes back on tech's habit of shaming people's hardware and software choices: your tools are probably fine.",
+      "addedAt": 1792468565
+    },
+    {
+      "id": "https://videos.trom.tf/videos/watch/64d4b2b2-c5b3-4491-af8a-80d4f152c1f3",
+      "note": "A Hackerspace Brussels talk on using free software to build your own autonomous robots.",
+      "addedAt": 1792468565
+    },
+    {
+      "id": "https://peertube.kaleidos.net/videos/watch/fcdab2ef-54d1-45da-b2c4-6954d082e849",
+      "note": "A short interview on why teams are self-hosting their design tools, using Penpot as the example.",
+      "addedAt": 1792468565
+    }
+  ]
+}

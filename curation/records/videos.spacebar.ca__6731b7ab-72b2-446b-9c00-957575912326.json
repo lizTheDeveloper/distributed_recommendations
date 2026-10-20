@@ -24,7 +24,7 @@
     "at": "2026-10-20T01:52:22Z"
   },
   "editorial": {
-    "status": "reviewed",
+    "status": "published",
     "primary_collection": "hack-the-planet",
     "secondary_collections": [
       "build-your-own-future"
@@ -60,8 +60,8 @@
     "score": 76,
     "judgment_basis": "metadata only (title, description, channel, caption list); not watched — substantive judgments unverified",
     "proposed_by": "claude-opus-5-5 (AI proposal)",
-    "reviewer": null,
-    "reviewed_at": null,
+    "reviewer": "Liz",
+    "reviewed_at": "2026-10-20T03:56:05Z",
     "rejection_reason": null,
     "shelves": [],
     "band": "collection-candidate",
@@ -105,6 +105,20 @@
       "to": "reviewed",
       "by": "claude-opus-5-5 (AI proposal)",
       "note": "proposed score 76"
+    },
+    {
+      "at": "2026-10-20T03:56:05Z",
+      "from": "reviewed",
+      "to": "approved",
+      "by": "Liz",
+      "note": "Delegated approval: Liz said 'you can publish what you want its ok' (2026-10-19). Picks and notes chosen by Claude from metadata; not watched."
+    },
+    {
+      "at": "2026-10-20T03:56:05Z",
+      "from": "approved",
+      "to": "published",
+      "by": "publish.mjs",
+      "note": "in hack-the-planet, build-your-own-future"
     }
   ]
 }

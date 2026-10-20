@@ -1,0 +1,59 @@
+{
+  "v": 1,
+  "name": "Hack the Planet",
+  "author": "Multiverse Video editors",
+  "description": "Understand systems well enough to defend, repair, and improve them.",
+  "updatedAt": 1792468565,
+  "items": [
+    {
+      "id": "https://techlore.tv/videos/watch/e48c10f6-767f-47b7-92e9-543a61b37268",
+      "note": "A plain-language walkthrough of threat modeling: who might want your data, what they could do with it, and which protections are worth your effort.",
+      "addedAt": 1792468565
+    },
+    {
+      "id": "https://makertube.net/videos/watch/012c1f18-5e08-403e-af02-58cf2deedfe0",
+      "note": "A hackerspace workshop on hardware hacking for absolute beginners: how to open a device, find its debug ports, and learn what's inside.",
+      "addedAt": 1792468565
+    },
+    {
+      "id": "https://video.publicspaces.net/videos/watch/ddce35a2-978d-423e-8474-4f366fabd9fc",
+      "note": "A podcast episode with European Digital Rights on the trade-off between online safety laws and privacy, from the PublicSpaces coalition.",
+      "addedAt": 1792468565
+    },
+    {
+      "id": "https://techlore.tv/videos/watch/cc032cbd-ba6e-4e80-ac43-7efef73937f8",
+      "note": "One short lesson from Techlore's free Go Incognito course: what actually protects your traffic on a network, and what doesn't.",
+      "addedAt": 1792468565
+    },
+    {
+      "id": "https://makertube.net/videos/watch/536b2ab8-8349-479f-b874-6babd38b3d8f",
+      "note": "Crowd Supply's Teardown Sessions talks with Michael Altfield, maker of BusKill, a laptop kill-cord, about practical OpSec and privacy hardware.",
+      "addedAt": 1792468565
+    },
+    {
+      "id": "https://videos.spacebar.ca/videos/watch/6731b7ab-72b2-446b-9c00-957575912326",
+      "note": "A NorthSec talk on fitting threat modeling into fast development cycles, so security questions get asked while the design can still change.",
+      "addedAt": 1792468565
+    },
+    {
+      "id": "https://peertube.eqver.se/videos/watch/966f390f-8095-4c39-8c71-a7a8dbfb3e76",
+      "note": "Five concrete email-security rules from a digital-security hotline expert, framed around the phishing campaigns that target journalists and activists.",
+      "addedAt": 1792468565
+    },
+    {
+      "id": "https://tube.tchncs.de/videos/watch/309d07f9-92fc-4f0f-aafc-3f8620f9f347",
+      "note": "Shows how the Wi-Fi network names your devices broadcast can be mapped back to a home address, then what you can do about it.",
+      "addedAt": 1792468565
+    },
+    {
+      "id": "https://peertube.opencloud.lu/videos/watch/d683ebd8-49c8-4d8e-a410-c8391e26450f",
+      "note": "A talk from CIRCL's MISP training channel on putting the open-source MISP threat-intelligence platform to work inside an incident response plan.",
+      "addedAt": 1792468565
+    },
+    {
+      "id": "https://video.infosec.exchange/videos/watch/eea8df79-1558-4ab8-bea6-45ae79430aee",
+      "note": "A step-by-step solve of a crackmes.one reverse-engineering challenge, narrated so you can follow the reasoning, not just the answer.",
+      "addedAt": 1792468565
+    }
+  ]
+}

@@ -1,0 +1,94 @@
+{
+  "v": 1,
+  "name": "The Machine Is Political",
+  "author": "Multiverse Video editors",
+  "description": "Examine how technological systems allocate power, risk, and opportunity.",
+  "updatedAt": 1792468565,
+  "items": [
+    {
+      "id": "https://peertube.dair-institute.org/videos/watch/8df10458-1cb9-4b25-8d56-4510ad143559",
+      "note": "Three minutes presenting DAIR's report on Amazon delivery drivers: how workplace surveillance tech is used to cut pay and hide responsibility.",
+      "addedAt": 1792468565
+    },
+    {
+      "id": "https://peertube.dair-institute.org/videos/watch/071d3a21-8029-489e-ba7c-050cc6df3f3f",
+      "note": "Mystery AI Hype Theater 3000, from DAIR's own instance, picks apart the claim that automation can strengthen democracy.",
+      "addedAt": 1792468565
+    },
+    {
+      "id": "https://peertube.anduin.net/videos/watch/ec7b69ba-6df8-4798-b651-0019fd4a608c",
+      "note": "curl maintainer Daniel Stenberg at foss-north 2026 on what AI tools are really doing to open-source projects, from someone on the receiving end.",
+      "addedAt": 1792468565
+    },
+    {
+      "id": "https://peertube.opencloud.lu/videos/watch/9347074e-0019-4d39-aed6-76692621a17e",
+      "note": "A talk on the Open Source AI Definition one year on: which 'open' models really are, and how to spot open-washing.",
+      "addedAt": 1792468565
+    },
+    {
+      "id": "https://tv.lumbung.space/videos/watch/206dc46c-a6bd-4d93-aa33-65648a05cc8a",
+      "note": "A CounterSpy conference talk from the Co-op Cloud project on platform surveillance and how cooperatives can run their own infrastructure instead.",
+      "addedAt": 1792468565
+    },
+    {
+      "id": "https://video.publicspaces.net/videos/watch/ddce35a2-978d-423e-8474-4f366fabd9fc",
+      "note": "A podcast episode with European Digital Rights on the trade-off between online safety laws and privacy, from the PublicSpaces coalition.",
+      "addedAt": 1792468565
+    },
+    {
+      "id": "https://tube.waag.org/videos/watch/4eac97f8-9604-4acd-a75c-e001297dc7ac",
+      "note": "Waag Futurelab's yearly State of the Internet lecture, 2026 edition, given in English by Fieke Jansen with captions.",
+      "addedAt": 1792468565
+    },
+    {
+      "id": "https://video.rhizome.org/videos/watch/5abcf089-0898-4d2b-a45d-65d02e39b69d",
+      "note": "Rhizome's panel on the ethics of archiving digital folklore: memes, image macros, and who gets a say when the web's culture is preserved.",
+      "addedAt": 1792468565
+    },
+    {
+      "id": "https://peertube.dair-institute.org/videos/watch/e82a39c5-90d1-4f60-ad20-02a85a95ce00",
+      "note": "Members of the Kenya-based Data Labelers Association describe the human labor behind AI training data, and how they're organizing.",
+      "addedAt": 1792468565
+    },
+    {
+      "id": "https://framatube.org/videos/watch/1b7027e5-6e45-4876-9833-4778de60b44f",
+      "note": "Nathan Proctor of the US PIRG on the right-to-repair fight and how copyright law (the DMCA) gets used to stop you fixing your own things.",
+      "addedAt": 1792468565
+    },
+    {
+      "id": "https://framatube.org/videos/watch/dacd068d-3c10-49ed-a4b2-147ace22af94",
+      "note": "Cory Doctorow's talk The Post-American Internet, posted with captions by Framasoft: an argument for interoperability as the way out of platform lock-in.",
+      "addedAt": 1792468565
+    },
+    {
+      "id": "https://framatube.org/videos/watch/e05ef9e8-b864-4c6b-8679-be8083169f50",
+      "note": "A LibrePlanet 2023 panel on why mainstream platforms are free of charge, what that costs the Global South, and what a libre alternative looks like.",
+      "addedAt": 1792468565
+    },
+    {
+      "id": "https://tube.kockatoo.org/videos/watch/38e4df20-0bb9-43ae-8fe8-edb2f3eb8012",
+      "note": "Grant makers and builders debate who should fund technology that's given away for free, and which tech deserves public money.",
+      "addedAt": 1792468565
+    },
+    {
+      "id": "https://videos.lescommuns.org/videos/watch/2421852f-0337-4488-abdb-b762f7d89399",
+      "note": "A university seminar on digital governance frameworks for AI, from the team behind OpenFisca, the open-source rules-as-code engine.",
+      "addedAt": 1792468565
+    },
+    {
+      "id": "https://media.apc.org/videos/watch/4001443d-9758-45f2-98d2-f9fe53167794",
+      "note": "A four-minute APC short on where digital rights and environmental justice meet, with captions.",
+      "addedAt": 1792468565
+    },
+    {
+      "id": "https://tv.undersco.re/videos/watch/cb8fefbb-60a1-4475-aeff-1da8c93760e1",
+      "note": "New Design Congress on the 'para-real': how decentralised networks of care form when official systems fail people.",
+      "addedAt": 1792468565
+    },
+    {
+      "id": "https://tube.waag.org/videos/watch/76ec6be9-502c-4a0d-98e1-a2c4f6991308",
+      "note": "Artist Špela Petrič presents The Archive of In-Operables, made during a residency at Waag Futurelab: strange, thoughtful art at the edge of biology and tech.",
+      "addedAt": 1792468565
+    }
+  ]
+}

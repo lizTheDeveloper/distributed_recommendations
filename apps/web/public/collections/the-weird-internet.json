@@ -1,0 +1,69 @@
+{
+  "v": 1,
+  "name": "The Weird Internet",
+  "author": "Multiverse Video editors",
+  "description": "Celebrate creative computing, independent culture, and genuinely strange ideas.",
+  "updatedAt": 1792468565,
+  "items": [
+    {
+      "id": "https://makertube.net/videos/watch/7ebdc562-2985-4de0-b262-5f07fc103fad",
+      "note": "Artist bleeptrack's workshop on coding your own generative art with paper.js, from first shape to a piece that surprises you.",
+      "addedAt": 1792468565
+    },
+    {
+      "id": "https://tilvids.com/videos/watch/fccf3369-f9b9-49f4-bd52-0a778d451f49",
+      "note": "Build a chatbot character inside a Godot game that talks to a language model running on your own machine through Ollama.",
+      "addedAt": 1792468565
+    },
+    {
+      "id": "https://video.rhizome.org/videos/watch/5abcf089-0898-4d2b-a45d-65d02e39b69d",
+      "note": "Rhizome's panel on the ethics of archiving digital folklore: memes, image macros, and who gets a say when the web's culture is preserved.",
+      "addedAt": 1792468565
+    },
+    {
+      "id": "https://tubedu.org/videos/watch/79d4361a-1713-4d90-b1c8-7aa5bbbc9c93",
+      "note": "Nine iterations of one creative-coding sketch in OPENRNDR, showing how an idea evolves rather than just the finished piece.",
+      "addedAt": 1792468565
+    },
+    {
+      "id": "https://video.blender.org/videos/watch/5ca2bd96-8de7-4cb2-af6c-b85201b3002b",
+      "note": "From the Blender Conference 2026: procedural workflows with Gaussian splatting, the new way to turn photos into 3D scenes.",
+      "addedAt": 1792468565
+    },
+    {
+      "id": "https://video.rhizome.org/videos/watch/9b89b7ae-7a08-4db1-8c4d-5a9f60556795",
+      "note": "Rhizome's Net Art Anthology on distribution and disappearance after 9/11: how net art changed as the web did. Captioned.",
+      "addedAt": 1792468565
+    },
+    {
+      "id": "https://tube.waag.org/videos/watch/76ec6be9-502c-4a0d-98e1-a2c4f6991308",
+      "note": "Artist Špela Petrič presents The Archive of In-Operables, made during a residency at Waag Futurelab: strange, thoughtful art at the edge of biology and tech.",
+      "addedAt": 1792468565
+    },
+    {
+      "id": "https://video.infiniteloop.tv/videos/watch/77212c40-bdcf-4073-a90a-df83d7b62417",
+      "note": "A short Demoscene Report: what the demoscene released and celebrated this fortnight, from a long-running scener. Captioned.",
+      "addedAt": 1792468565
+    },
+    {
+      "id": "https://media.curious.bio/videos/watch/f8c45af2-96ea-4c5c-9198-c08cd226a247",
+      "note": "A talk on 3D printing with mycelium: growing structures from fungus instead of plastic.",
+      "addedAt": 1792468565
+    },
+    {
+      "id": "https://peertube.fenarinarsa.com/videos/watch/5052c72f-9d59-4299-9b3a-b3b29fc65e4f",
+      "note": "A 2024 demo that squeezes astonishing effects out of a stock 8 MHz Atari STE: the demoscene's art of doing impossible things with old hardware.",
+      "addedAt": 1792468565
+    },
+    {
+      "id": "https://makertube.net/videos/watch/37026fab-651d-41c3-ba93-bbb7d9d3c494",
+      "note": "A Stargate-inspired 'Dial-Home Device' built from scratch: a beautifully unnecessary machine, documented build step by build step.",
+      "addedAt": 1792468565
+    },
+    {
+      "id": "https://makertube.net/videos/watch/9099cd77-e7d4-4e95-806f-badca0027e11",
+      "note": "A review of Writing Interactive Fiction With Twine, a friendly on-ramp into making playable stories.",
+      "addedAt": 1792468565
+    }
+  ]
+}
