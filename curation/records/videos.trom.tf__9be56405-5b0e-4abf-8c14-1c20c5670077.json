@@ -1,0 +1,85 @@
+{
+  "id": "videos.trom.tf__9be56405-5b0e-4abf-8c14-1c20c5670077",
+  "source": {
+    "video_url": "https://videos.trom.tf/videos/watch/9be56405-5b0e-4abf-8c14-1c20c5670077",
+    "video_uuid": "9be56405-5b0e-4abf-8c14-1c20c5670077",
+    "channel_actor_uri": "https://videos.trom.tf/video-channels/videoneat",
+    "instance_host": "videos.trom.tf",
+    "title": "Coded Bias (trailer)",
+    "creator_display_name": "videoneat.com",
+    "channel_handle": "videoneat@videos.trom.tf",
+    "license": null,
+    "language": "en",
+    "duration_s": 147,
+    "original_published_at": "2021-09-22T21:22:58.104Z",
+    "description": "Watch trade-free at: https://www.videoneat.com/documentaries/22389/coded-bias/ It follows researchers and advocates, principally MIT computer scientist and founder of the Algorithmic Justice League Joy Buolamwini, as they explore how algorithms encode and propagate bias.The documentary touches on other ethical issues in Big Tech, including surveillance through facial recognition, and the perils of computer-based judgement in human evaluation. Others featured include Weapons of Math Destruction author Cathy O'Neill and members of Big Brother Watch, including Silkie Carlo, in London.",
+    "tags": [
+      "documentary",
+      "trailer"
+    ],
+    "category": "Education",
+    "views": 14
+  },
+  "discovery": {
+    "query": "algorithmic bias",
+    "collection_hint": "the-machine-is-political",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:32Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:57:27Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": true,
+    "caption_languages": [
+      "en"
+    ],
+    "last_checked_at": "2026-10-20T02:12:44Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:32Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"algorithmic bias\""
+    },
+    {
+      "at": "2026-10-20T01:57:27Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

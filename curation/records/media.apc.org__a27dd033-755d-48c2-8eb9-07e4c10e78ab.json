@@ -1,0 +1,80 @@
+{
+  "id": "media.apc.org__a27dd033-755d-48c2-8eb9-07e4c10e78ab",
+  "source": {
+    "video_url": "https://media.apc.org/videos/watch/a27dd033-755d-48c2-8eb9-07e4c10e78ab",
+    "video_uuid": "a27dd033-755d-48c2-8eb9-07e4c10e78ab",
+    "channel_actor_uri": "https://media.apc.org/video-channels/apc",
+    "instance_host": "media.apc.org",
+    "title": "Tech Together webinar: The Catalytic Effect of Community-Centred Connectivity for Climate Justice",
+    "creator_display_name": "APC",
+    "channel_handle": "apc@media.apc.org",
+    "license": "Attribution - Non Commercial - Share Alike",
+    "language": "en",
+    "duration_s": 6860,
+    "original_published_at": "2026-06-27T11:01:12.430Z",
+    "description": "Community-led initiatives are doing more than just closing the digital divide; they are building the infrastructure for climate resilience, gender equity and local agency. A call for proposal offered in Kenya as part of the seeding goal of the Local Networks initiative (LocNet) - jointly led by APC and Rhizomatica in partnership with grassroots communities and support organisations - recently awarded five micro-grants to community-centred connectivity initiatives (CCCIs). From AI-powered flood prediction in Mavoko to women-led coastal monitoring in Kwale and Kilifi, these projects demonstrate how CCCIs can act as the backbone for environmental justice. In the Tech Together webinar, held in June 2026, representatives from the different projects supported by the microgrant, Digital Rurals, Kijiji Yeetu, Bahari CBO and Athi Community Network, together with the LocNet team explore the Catalytic Effect model, and discuss the pivotal role of technical mentorship from Wireless Planet and the importance of Human-Centered Design (HCD) led by Kungu Labs. Together they examined how these initiatives move beyond technology to ensure that data remains a public good, amplifying indigenous knowledge and influencing national policy through bankable data.",
+    "tags": [],
+    "category": "Environmental justice",
+    "views": 14
+  },
+  "discovery": {
+    "query": "climate resilience",
+    "collection_hint": "reclaim-the-city",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:42Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:54:09Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:08:21Z",
+    "identity_evidence": "apc.org homepage has no link to media.apc.org",
+    "publisher": "APC (claimed)"
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:42Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"climate resilience\""
+    },
+    {
+      "at": "2026-10-20T01:54:09Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

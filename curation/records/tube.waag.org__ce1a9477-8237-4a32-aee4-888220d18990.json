@@ -1,0 +1,84 @@
+{
+  "id": "tube.waag.org__ce1a9477-8237-4a32-aee4-888220d18990",
+  "source": {
+    "video_url": "https://tube.waag.org/videos/watch/ce1a9477-8237-4a32-aee4-888220d18990",
+    "video_uuid": "ce1a9477-8237-4a32-aee4-888220d18990",
+    "channel_actor_uri": "https://tube.waag.org/video-channels/general",
+    "instance_host": "tube.waag.org",
+    "title": "Verkeerd verbonden - Connection lost",
+    "creator_display_name": "Waag Futurelab",
+    "channel_handle": "general@tube.waag.org",
+    "license": "Attribution - Non Commercial - Share Alike",
+    "language": "en",
+    "duration_s": 345,
+    "original_published_at": "2025-10-17T13:39:12.575Z",
+    "description": "We zijn verkeerd verbonden. Het ligt niet aan de verbinding van je telefoon, maar aan de platformen die het grootste gedeelte van het internet domineren: sociale media. Wat ooit een plek voor verbinding leek, is nu een plek waar de connection meer dan lost is. Dat is zonde, want sociale media zouden een plek moeten zijn waar uitwisseling centraal staat, waar je van elkaar leert en elkaar inspireert. Het goede nieuws: het kan al anders! --- We’ve been disconnected. Not because of a bad phone signal, but because of the platforms that now dominate the internet: social media. Once we thought these platforms would bring us closer, but they have actually pushed us further apart. That's a shame, because social media should be a place for exchange, where you learn from each other and get inspired. The good news: there are alternatives!",
+    "tags": [
+      "internet"
+    ],
+    "category": "Science & Technology",
+    "views": 406
+  },
+  "discovery": {
+    "query": "channel general@tube.waag.org",
+    "collection_hint": "the-machine-is-political",
+    "service": "origin channel listing",
+    "at": "2026-10-20T01:58:58Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T02:00:03Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": true,
+    "caption_languages": [
+      "nl"
+    ],
+    "last_checked_at": "2026-10-20T02:11:30Z",
+    "identity_evidence": "waag.org homepage has no link to tube.waag.org; check the site's footer or contact Waag before treating it as official",
+    "publisher": "Waag Futurelab (claimed)"
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:58:58Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "channel general@tube.waag.org"
+    },
+    {
+      "at": "2026-10-20T02:00:03Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

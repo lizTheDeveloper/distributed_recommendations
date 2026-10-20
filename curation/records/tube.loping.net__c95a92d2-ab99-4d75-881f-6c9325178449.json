@@ -1,0 +1,67 @@
+{
+  "id": "tube.loping.net__c95a92d2-ab99-4d75-881f-6c9325178449",
+  "source": {
+    "video_url": "https://tube.loping.net/videos/watch/c95a92d2-ab99-4d75-881f-6c9325178449",
+    "video_uuid": "c95a92d2-ab99-4d75-881f-6c9325178449",
+    "channel_actor_uri": null,
+    "instance_host": "tube.loping.net",
+    "title": "Right to Repair Nightmare - HP 48SX",
+    "creator_display_name": "Ben Heck Hacks",
+    "channel_handle": "ben_heck_hacks@tube.loping.net",
+    "license": null,
+    "language": "en",
+    "duration_s": 3067,
+    "original_published_at": "2021-09-14T00:00:00.000Z"
+  },
+  "discovery": {
+    "query": "right to repair",
+    "collection_hint": "strange-machines",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:49Z"
+  },
+  "editorial": {
+    "status": "discovered",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": false,
+    "identity_status": "unverified",
+    "verified_at": null,
+    "verification_method": null,
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:10:27Z"
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:49Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"right to repair\""
+    }
+  ]
+}

@@ -1,0 +1,82 @@
+{
+  "id": "tube.waag.org__e2bcb81c-2c83-42ea-9b41-8c972b6ad9a5",
+  "source": {
+    "video_url": "https://tube.waag.org/videos/watch/e2bcb81c-2c83-42ea-9b41-8c972b6ad9a5",
+    "video_uuid": "e2bcb81c-2c83-42ea-9b41-8c972b6ad9a5",
+    "channel_actor_uri": "https://tube.waag.org/video-channels/general",
+    "instance_host": "tube.waag.org",
+    "title": "Thermo-staat - Promo TAUW Foundation",
+    "creator_display_name": "Waag Futurelab",
+    "channel_handle": "general@tube.waag.org",
+    "license": "Attribution - Non Commercial - Share Alike",
+    "language": null,
+    "duration_s": 120,
+    "original_published_at": "2023-11-01T09:23:46.000Z",
+    "description": "In talloze Nederlandse huizen warmen de slaapkamers ’s zomers flink op. En dat kan leiden tot fysieke en mentale klachten: hittestress. De gevolgen van hittestress zijn ongelijk verdeeld; de meest betaalbare huizen zijn vaak ook het slechtst geïsoleerd. In Thermo-staat bundelen bewoners door heel Nederland hun krachten met wetenschappers van TU Delft en Hogeschool van Amsterdam, onderzoeksjournalisten van de VPRO en experts van Waag Futurelab. Samen onderzoeken wij de gevolgen van hittestress op het leefklimaat van bewoners. Meer informatie: https://thermo-staat.nl/over-thermo-staat",
+    "tags": [
+      "projectintroductie"
+    ],
+    "category": "Science & Technology",
+    "views": 0
+  },
+  "discovery": {
+    "query": "channel general@tube.waag.org",
+    "collection_hint": "the-machine-is-political",
+    "service": "origin channel listing",
+    "at": "2026-10-20T01:58:58Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T02:00:04Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:11:31Z",
+    "identity_evidence": "waag.org homepage has no link to tube.waag.org; check the site's footer or contact Waag before treating it as official",
+    "publisher": "Waag Futurelab (claimed)"
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:58:58Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "channel general@tube.waag.org"
+    },
+    {
+      "at": "2026-10-20T02:00:04Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

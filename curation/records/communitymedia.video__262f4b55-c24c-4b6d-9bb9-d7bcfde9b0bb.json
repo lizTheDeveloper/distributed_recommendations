@@ -1,0 +1,80 @@
+{
+  "id": "communitymedia.video__262f4b55-c24c-4b6d-9bb9-d7bcfde9b0bb",
+  "source": {
+    "video_url": "https://communitymedia.video/videos/watch/262f4b55-c24c-4b6d-9bb9-d7bcfde9b0bb",
+    "video_uuid": "262f4b55-c24c-4b6d-9bb9-d7bcfde9b0bb",
+    "channel_actor_uri": "https://communitymedia.video/video-channels/communitymediavideos",
+    "instance_host": "communitymedia.video",
+    "title": "Community Media Teaser",
+    "creator_display_name": "Community Broadcasting Network",
+    "channel_handle": "communitymediavideos@communitymedia.video",
+    "license": null,
+    "language": "en",
+    "duration_s": 72,
+    "original_published_at": "2023-10-19T18:44:35.748Z",
+    "description": "This is a trailer for our new peertube server at [CommunityMedia.Video](https://communitymedia.video). [Accounts are available from $1/month](https://communitymedia.network/shop).",
+    "tags": [],
+    "category": "Unknown",
+    "views": 212
+  },
+  "discovery": {
+    "query": "community broadband",
+    "collection_hint": "reclaim-the-city",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:40Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:53:16Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:06:59Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:40Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"community broadband\""
+    },
+    {
+      "at": "2026-10-20T01:53:17Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

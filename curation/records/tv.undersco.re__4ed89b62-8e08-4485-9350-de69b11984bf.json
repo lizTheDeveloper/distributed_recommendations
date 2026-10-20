@@ -1,0 +1,88 @@
+{
+  "id": "tv.undersco.re__4ed89b62-8e08-4485-9350-de69b11984bf",
+  "source": {
+    "video_url": "https://tv.undersco.re/videos/watch/4ed89b62-8e08-4485-9350-de69b11984bf",
+    "video_uuid": "4ed89b62-8e08-4485-9350-de69b11984bf",
+    "channel_actor_uri": "https://tv.undersco.re/video-channels/coopcloud_channel",
+    "instance_host": "tv.undersco.re",
+    "title": "Platform Surveillance and Data Autonomy",
+    "creator_display_name": "Talks",
+    "channel_handle": "coopcloud_channel@tv.undersco.re",
+    "license": null,
+    "language": "en",
+    "duration_s": 5521,
+    "original_published_at": "2025-04-19T09:03:58.139Z",
+    "description": "Marlon from [MIR](https://mirnet.org) gave a great talk at [CounterSpy conf](https://counterspy.zip) featuring Co-op Cloud 🎉 > How can we gain meaningful control over data in an era where instant collaboration and \"cloud-based\" applications are the norm? Why did the early internet dream of radically distributed networks turn into the centralized architecture of 2025? We will look at the infrastructure of the modern web - from humming server racks to law enforcement surveillance portals - and explore what it takes technically and politically to build autonomous data platforms for the needs of today's social movements. More info on [counterspy.zip/archive](https://counterspy.zip/archive) and the [MIR fedi](https://social.coop/@mir@infosec.exchange).",
+    "tags": [],
+    "category": "Science & Technology",
+    "views": 39
+  },
+  "discovery": {
+    "query": "platform cooperatives",
+    "collection_hint": "the-machine-is-political",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:30Z"
+  },
+  "editorial": {
+    "status": "rejected",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": "claude-opus-5-5 (AI proposal)",
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": "duplicate: the same talk is also on tv.lumbung.space with captions",
+    "proposed_at": "2026-10-20T02:03:42Z"
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:56:22Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:11:43Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:30Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"platform cooperatives\""
+    },
+    {
+      "at": "2026-10-20T01:56:23Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    },
+    {
+      "at": "2026-10-20T02:03:42Z",
+      "from": "verified",
+      "to": "rejected",
+      "by": "claude-opus-5-5 (AI proposal)",
+      "note": "duplicate: the same talk is also on tv.lumbung.space with captions"
+    }
+  ]
+}

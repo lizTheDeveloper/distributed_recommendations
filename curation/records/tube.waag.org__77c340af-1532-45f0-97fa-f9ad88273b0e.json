@@ -1,0 +1,82 @@
+{
+  "id": "tube.waag.org__77c340af-1532-45f0-97fa-f9ad88273b0e",
+  "source": {
+    "video_url": "https://tube.waag.org/videos/watch/77c340af-1532-45f0-97fa-f9ad88273b0e",
+    "video_uuid": "77c340af-1532-45f0-97fa-f9ad88273b0e",
+    "channel_actor_uri": "https://tube.waag.org/video-channels/general",
+    "instance_host": "tube.waag.org",
+    "title": "Michael Pinsky - All the Tyres from Iceland (Waag Futurelab, S+T+ARTS4WaterII)",
+    "creator_display_name": "Waag Futurelab",
+    "channel_handle": "general@tube.waag.org",
+    "license": null,
+    "language": null,
+    "duration_s": 133,
+    "original_published_at": "2025-12-09T14:11:46.326Z",
+    "description": "All the Tyres from Iceland is a sculptural and film-based project developed by artist Michael Pinsky during the S+T+ARTS4WaterII residency in Amsterdam. The work explores the international trade in waste materials, focusing on the journey of tyres from Iceland to GRANUBAND, a tyre recycling company based in the Port of Amsterdam. More information: https://www.waag.org/nl/project/starts4waterii/ Construction: Leoke Weldingworks Video production: Leandra Hoffmann r3mediacontent Exhibition cultural partner: Stichting NDSM-werf With material and logistic support by: Granuband Supported by: Port of Amsterdam and Waag Futurelab S+T+ARTS4WaterII is funded by the European Union under grant agreement LC-02629312 under the S+T+ARTS – Science, Technology and Arts initiative of DG CNECT. Views and opinions expressed are those of the author(s) only and do not necessarily reflect those of the European Union or DG CNECT. Neither the European Union nor the granting authority can be held responsible for them.",
+    "tags": [
+      "water"
+    ],
+    "category": "Art",
+    "views": 103
+  },
+  "discovery": {
+    "query": "channel general@tube.waag.org",
+    "collection_hint": "the-machine-is-political",
+    "service": "origin channel listing",
+    "at": "2026-10-20T01:58:58Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:59:59Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:11:26Z",
+    "identity_evidence": "waag.org homepage has no link to tube.waag.org; check the site's footer or contact Waag before treating it as official",
+    "publisher": "Waag Futurelab (claimed)"
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:58:58Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "channel general@tube.waag.org"
+    },
+    {
+      "at": "2026-10-20T01:59:59Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

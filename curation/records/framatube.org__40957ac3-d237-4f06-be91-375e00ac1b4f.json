@@ -1,0 +1,86 @@
+{
+  "id": "framatube.org__40957ac3-d237-4f06-be91-375e00ac1b4f",
+  "source": {
+    "video_url": "https://framatube.org/videos/watch/40957ac3-d237-4f06-be91-375e00ac1b4f",
+    "video_uuid": "40957ac3-d237-4f06-be91-375e00ac1b4f",
+    "channel_actor_uri": "https://framatube.org/video-channels/bf54d359-cfad-4935-9d45-9d6be93f63e8",
+    "instance_host": "framatube.org",
+    "title": "The Internet's Own Boy HD VOSTFR",
+    "creator_display_name": "Les vidéos de Framasoft",
+    "channel_handle": "bf54d359-cfad-4935-9d45-9d6be93f63e8@framatube.org",
+    "license": "Attribution - Share Alike",
+    "language": null,
+    "duration_s": 6300,
+    "original_published_at": "2014-07-18T22:00:00.000Z",
+    "description": "Ce film raconte l'histoire de Aaron Swartz, programmeur de génie et activiste de l'information. Depuis l'aide qu'il a apportée au développement de RSS, l'un des protocoles à la base d'Internet, à la co-fondation de Reddit, son empreinte est partout sur Internet. Mais c'est le travail révolutionnaire de Swartz autour des questions de justice sociale et d'organisation politique, combiné à son approche sans concession de l'accès à l'information pour tous, qui l'a pris au piège dans un cauchemar juridique de deux années. Cette bataille s'est terminée par son suicide à 26 ans. L'histoire d'Aaron touche une corde sensible chez des personnes même éloignées des communautés online parmi lesquelles il était une célébrité. Ce film est une histoire personnelle à propos de ce que nous perdons lorsque nous restons sourds à la technologie et à ses relations à nos libertés civiles. Un film de Brian Knappenberger - Luminant Media http://www.takepart.com/internets-own-boy https://www.kickstarter.com/projects/26788492/aaron-swartz-documentary-the-internets-own-boy-0 Creative Commons Attribution-NonCommercial-ShareAlike 3.0 ------------- Sous-titrage français par @dbourrion, @symac, @btreguier, @loopiloop à partir de la plateforme Amara http://www.amara.org/fr/videos/5Mo4oAj1bxOb/",
+    "tags": [
+      "Aaron Swartz",
+      "Internet",
+      "yt:cc=on"
+    ],
+    "category": "Science & Technology",
+    "views": 749
+  },
+  "discovery": {
+    "query": "channel bf54d359-cfad-4935-9d45-9d6be93f63e8@framatube.org",
+    "collection_hint": "build-your-own-future",
+    "service": "origin channel listing",
+    "at": "2026-10-20T01:58:57Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "official-link-verified",
+    "verified_at": "2026-10-20T01:59:03Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": true,
+    "caption_languages": [
+      "fr"
+    ],
+    "last_checked_at": "2026-10-20T02:07:22Z",
+    "identity_evidence": "https://framasoft.org/en/ links to framatube.org; these channels are Framasoft's own",
+    "publisher": "Framasoft"
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:58:57Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "channel bf54d359-cfad-4935-9d45-9d6be93f63e8@framatube.org"
+    },
+    {
+      "at": "2026-10-20T01:59:03Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

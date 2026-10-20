@@ -1,0 +1,96 @@
+{
+  "id": "blurt.media__ea1869b3-3dcc-4d2a-ac9e-460e57036b61",
+  "source": {
+    "video_url": "https://blurt.media/videos/watch/ea1869b3-3dcc-4d2a-ac9e-460e57036b61",
+    "video_uuid": "ea1869b3-3dcc-4d2a-ac9e-460e57036b61",
+    "channel_actor_uri": "https://blurt.media/video-channels/dollarvigilante",
+    "instance_host": "blurt.media",
+    "title": "Live Report from Puerto Vallarta As City Descends Into Chaos",
+    "creator_display_name": "The Dollar Vigilante",
+    "channel_handle": "dollarvigilante@blurt.media",
+    "license": null,
+    "language": "en",
+    "duration_s": 1910,
+    "original_published_at": "2026-02-22T23:47:59.000Z",
+    "description": "While Anarchapulco Genesis and TCV Summit were in Puerto Vallarta, cartel-government violence erupted. Not a drug war, but a manufactured power play, fear sown for control. Our community mobilized with mesh networks and safe zones and kept going. Anarchapulco | [anarchapulco.com](http://anarchapulco.com) TCV Summit | [tcvsummit.com](http://tcvsummit.com) TDV Summit | [tdvsummit.com](http://tdvsummit.com) TDV Subscribe | [dollarvigilante.com/subscribe](http://dollarvigilante.com/subscribe)",
+    "tags": [
+      "conspiracies",
+      "conspiracy",
+      "finance",
+      "health",
+      "news"
+    ],
+    "category": "News & Politics",
+    "views": 6
+  },
+  "discovery": {
+    "query": "community mesh network",
+    "collection_hint": "build-your-own-future",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:37Z"
+  },
+  "editorial": {
+    "status": "rejected",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": "claude-opus-5-5 (AI proposal)",
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": "fails the evidence gate: sensational reporting from an outlet that promotes conspiracy content",
+    "proposed_at": "2026-10-20T02:03:42Z"
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:53:03Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": true,
+    "caption_languages": [
+      "en"
+    ],
+    "last_checked_at": "2026-10-20T02:06:53Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:37Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"community mesh network\""
+    },
+    {
+      "at": "2026-10-20T01:53:04Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    },
+    {
+      "at": "2026-10-20T02:03:42Z",
+      "from": "verified",
+      "to": "rejected",
+      "by": "claude-opus-5-5 (AI proposal)",
+      "note": "fails the evidence gate: sensational reporting from an outlet that promotes conspiracy content"
+    }
+  ]
+}

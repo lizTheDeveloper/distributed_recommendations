@@ -1,0 +1,86 @@
+{
+  "id": "tube.taz.de__69be038e-bc58-4adc-ad21-37a187083a70",
+  "source": {
+    "video_url": "https://tube.taz.de/videos/watch/69be038e-bc58-4adc-ad21-37a187083a70",
+    "video_uuid": "69be038e-bc58-4adc-ad21-37a187083a70",
+    "channel_actor_uri": "https://tube.taz.de/video-channels/dietageszeitung",
+    "instance_host": "tube.taz.de",
+    "title": "Recherchen der Daniel-Haufler-Stipendiat:innen aus den USA – taz Talk meets Buchmesse Leipzig",
+    "creator_display_name": "taz",
+    "channel_handle": "dietageszeitung@tube.taz.de",
+    "license": null,
+    "language": "de",
+    "duration_s": 1980,
+    "original_published_at": "2026-03-22T00:00:00.000Z",
+    "description": "taz-Redakteurin Manuela Heim gehörte zu den ersten Daniel-Haufler-Fellows und recherchierte in New York City und Washington zu „Housing First“, einem Modell gegen Obdachlosigkeit, das in New York entwickelt wurde und inzwischen in Deutschland und Europa als Schlüssel zur Überwindung von Obdachlosigkeit gilt. Recherchen der Daniel-Haufler-Stipendiat:innen aus den USA – ein taz Talk im taz Studio auf der Leipziger Buchmesse mit: 🐾 Manuela Heim Redakteurin in der Inlandsredaktion, schreibt über Gesundheitsthemen und soziale (Un-) Gerechtigkeit. 🐾 Gemma Terés Arilla moderiert diesen Talk. Sie ist Leiterin der taz Panter Stiftung und zuvor stellvertretende Ressortleiterin im taz-Ausland mit dem Schwerpunkt Europa. Foto: Elke Seegers | Anke Phoebe Peters Anregungen und Fragen nehmen wir mit Freuden entgegen über taztalk@taz.de. Zur Veranstaltungsankündigung: https://taz.de/!vn6144911 Literarischer Frühjahrsimpuls: Weitere taz Buch Talks auf der Buchmesse Leipzig 2026 unter: https://taz.de/buchmesse Weitere Informationen unter: https://taz.de/talk ------------------------------------------------------------------ Die taz ist eine unabhängige, genossenschaftlich getragene, überregionale Tageszeitung. Um eine kritische Öffentlichkeit zu ermöglichen, veröffentlichen wir alle Inhalte der gedruckten taz auch kostenlos auf unserer Website. Unser freiwilliges Modell „taz zahl ich” ersetzt die Bezahlschranke. Damit das möglich bleibt, unterstütze jetzt die taz mit einem selbst gewählten …",
+    "tags": [
+      "taz",
+      "taz die tageszeitung",
+      "taz tageszeitung",
+      "taz talk",
+      "taz video"
+    ],
+    "category": "News & Politics",
+    "views": 0
+  },
+  "discovery": {
+    "query": "housing first",
+    "collection_hint": "reclaim-the-city",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:39Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:56:00Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:10:41Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:39Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"housing first\""
+    },
+    {
+      "at": "2026-10-20T01:56:02Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

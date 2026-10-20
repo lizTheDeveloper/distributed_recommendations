@@ -1,0 +1,88 @@
+{
+  "id": "partners.eqtube.org__16c3d062-0a21-48ae-be61-45e8238a7799",
+  "source": {
+    "video_url": "https://partners.eqtube.org/videos/watch/16c3d062-0a21-48ae-be61-45e8238a7799",
+    "video_uuid": "16c3d062-0a21-48ae-be61-45e8238a7799",
+    "channel_actor_uri": "https://partners.eqtube.org/video-channels/eqtv_ru",
+    "instance_host": "partners.eqtube.org",
+    "title": "Исторический провал. Как Мединский стал советником Путина",
+    "creator_display_name": "eQtv на русском",
+    "channel_handle": "eqtv_ru@partners.eqtube.org",
+    "license": "Attribution - Share Alike",
+    "language": "ru",
+    "duration_s": 1726,
+    "original_published_at": "2026-05-16T18:57:30.574Z",
+    "description": "Владимир Мединский — один из самых заметных идеологов и пропагандистов современной российской власти. Сегодня он промывает мозги школьникам через свои «учебники истории» и служит посланником Путина на переговорах с Украиной. Нелепые высказывания Мединского часто привлекают внимание общественности, а вознаграждение за его лояльность может сравниться с бюджетом целого города. Илья Гантварг рассказывает историю Владимира Мединского — шарлатана и мракобеса, который сейчас находится у Кремля в авангарде.",
+    "tags": [
+      "media_literacy",
+      "кремль",
+      "мединский",
+      "пропаганда",
+      "путин"
+    ],
+    "category": "Science & Technology",
+    "views": 2
+  },
+  "discovery": {
+    "query": "media literacy",
+    "collection_hint": "the-machine-is-political",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:31Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:54:16Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": true,
+    "caption_languages": [
+      "ru"
+    ],
+    "last_checked_at": "2026-10-20T02:08:28Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:31Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"media literacy\""
+    },
+    {
+      "at": "2026-10-20T01:54:17Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

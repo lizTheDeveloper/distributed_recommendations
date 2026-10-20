@@ -1,0 +1,86 @@
+{
+  "id": "peertube.opencloud.lu__ecb0454b-5f13-4769-9515-7c0d29ef6cfa",
+  "source": {
+    "video_url": "https://peertube.opencloud.lu/videos/watch/ecb0454b-5f13-4769-9515-7c0d29ef6cfa",
+    "video_uuid": "ecb0454b-5f13-4769-9515-7c0d29ef6cfa",
+    "channel_actor_uri": "https://peertube.opencloud.lu/video-channels/privacysalon",
+    "instance_host": "peertube.opencloud.lu",
+    "title": "Digital Privacy Apéro 11/11/2020",
+    "creator_display_name": "Privacy Salon",
+    "channel_handle": "privacysalon@peertube.opencloud.lu",
+    "license": "Attribution",
+    "language": "en",
+    "duration_s": 4976,
+    "original_published_at": "2020-11-12T13:18:14.254Z",
+    "description": "Locked Down — or how a pandemic makes us understand what social and digital exclusion means. With Covid-19 forcing populations into lockdown across Europe and the world, many people, young and old, have experienced isolation, lack of access to services, culture & entertainment, and felt trapped within their own homes, which are everyday situations for many people with diverse disabilities. While governments and the tech industry frantically seek ways to address some of these issues to keep economies functioning, will the proposed tech solutions be inclusive or will some populations with disabilities again be left out? This session will also investigate in a larger sense how the Internet replicates offline power structures and how the dominance of surveillance capitalism has paved the way to the erosion of privacy in societies affected by the pandemic.",
+    "tags": [
+      "COVID-19",
+      "Digital",
+      "pandemic",
+      "Privacy",
+      "social implications"
+    ],
+    "category": "Science & Technology",
+    "views": 540
+  },
+  "discovery": {
+    "query": "digital folklore",
+    "collection_hint": "the-weird-internet",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:53Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:55:03Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:09:14Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:53Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"digital folklore\""
+    },
+    {
+      "at": "2026-10-20T01:55:03Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

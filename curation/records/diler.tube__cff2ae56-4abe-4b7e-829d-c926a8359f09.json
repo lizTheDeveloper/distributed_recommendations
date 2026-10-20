@@ -1,0 +1,90 @@
+{
+  "id": "diler.tube__cff2ae56-4abe-4b7e-829d-c926a8359f09",
+  "source": {
+    "video_url": "https://diler.tube/videos/watch/cff2ae56-4abe-4b7e-829d-c926a8359f09",
+    "video_uuid": "cff2ae56-4abe-4b7e-829d-c926a8359f09",
+    "channel_actor_uri": "https://diler.tube/video-channels/jpan_channel",
+    "instance_host": "diler.tube",
+    "title": "The Royal Society - AI Safety： Expect the unexpected ｜ The Royal Society",
+    "creator_display_name": "Main jpan channel",
+    "channel_handle": "jpan_channel@diler.tube",
+    "license": "CC BY 4.0",
+    "language": "en",
+    "duration_s": 6892,
+    "original_published_at": "2026-08-14T13:32:38.103Z",
+    "description": "Alongside the opportunities presented by AI, numerous risks have captured public attention from privacy concerns to research integrity, and the potential of an ‘existential threat’.",
+    "tags": [],
+    "category": "EN - Technology",
+    "views": 1
+  },
+  "discovery": {
+    "query": "AI safety evaluation",
+    "collection_hint": "the-machine-is-political",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:30Z"
+  },
+  "editorial": {
+    "status": "rejected",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": "claude-opus-5-5 (AI proposal)",
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": "re-upload of another publisher's video (TED / Royal Society); prefer the original publisher",
+    "proposed_at": "2026-10-20T02:03:42Z"
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:53:27Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": true,
+    "caption_languages": [
+      "cy"
+    ],
+    "last_checked_at": "2026-10-20T02:07:08Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:30Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"AI safety evaluation\""
+    },
+    {
+      "at": "2026-10-20T01:53:27Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    },
+    {
+      "at": "2026-10-20T02:03:42Z",
+      "from": "verified",
+      "to": "rejected",
+      "by": "claude-opus-5-5 (AI proposal)",
+      "note": "re-upload of another publisher's video (TED / Royal Society); prefer the original publisher"
+    }
+  ]
+}

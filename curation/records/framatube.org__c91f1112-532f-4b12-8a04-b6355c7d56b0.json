@@ -1,0 +1,88 @@
+{
+  "id": "framatube.org__c91f1112-532f-4b12-8a04-b6355c7d56b0",
+  "source": {
+    "video_url": "https://framatube.org/videos/watch/c91f1112-532f-4b12-8a04-b6355c7d56b0",
+    "video_uuid": "c91f1112-532f-4b12-8a04-b6355c7d56b0",
+    "channel_actor_uri": "https://framatube.org/video-channels/bf54d359-cfad-4935-9d45-9d6be93f63e8",
+    "instance_host": "framatube.org",
+    "title": "Framaspace, 10 000 instances Nextcloud pour les associations",
+    "creator_display_name": "Les vidéos de Framasoft",
+    "channel_handle": "bf54d359-cfad-4935-9d45-9d6be93f63e8@framatube.org",
+    "license": "Attribution - Share Alike",
+    "language": "fr",
+    "duration_s": 1343,
+    "original_published_at": "2025-03-12T15:05:22.520Z",
+    "description": "Conf aux JRES 2024 le 12/12/2024 Il s'agit de la version vidéo de l'article publié par Luc Didry : https://conf-ng.jres.org/2024/document_revision_1667.html?download Il y a deux ans, l'association Framasoft annonçait un projet techniquement et politiquement ambitieux : Framaspace. Framaspace, c'est un projet avec de multiples ambitions : * accroître la notoriété du logiciel libre Nextcloud (solution libre de cloud collaboratif : fichiers, agendas, contacts, etc) en France et dans les territoires francophones ; * fournir jusqu'à 10 000 instances Nextcloud, gratuitement, aux petites associations et collectifs militants, afin de leur permettre de \"sortir\" de Google Apps ou Office 365 ; * faciliter les pratiques collaboratives libres, à la fois intra-associations et inter-associations, afin de renforcer la capacité et le pouvoir d'agir de ces structures pour mieux faire face au monde actuel et préparer celui qui vient. L'ambition de cette présentation est triple. D'abord, de présenter l'infrastructure technique de la plateforme, qui nous semble suffisamment singulière pour intéresser la communauté ESR, elle-même grande utilisatrice de Nextcloud. Ensuite, de donner quelques éléments statistiques pour objectiver les usages de la plateforme. Enfin, de faire le point sur les réussites et les échecs du projet ces 24 derniers mois, et évoquer les perspectives pour les années à venir. **Biographie des auteur·ices** Pierre-Yves Gosset a travaillé pour différentes Universités (Grenoble, …",
+    "tags": [
+      "framaconf",
+      "Framaspace",
+      "JRES",
+      "Nextcloud",
+      "tech"
+    ],
+    "category": "Science & Technology",
+    "views": 261
+  },
+  "discovery": {
+    "query": "channel bf54d359-cfad-4935-9d45-9d6be93f63e8@framatube.org",
+    "collection_hint": "build-your-own-future",
+    "service": "origin channel listing",
+    "at": "2026-10-20T01:58:57Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "official-link-verified",
+    "verified_at": "2026-10-20T01:59:14Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": true,
+    "caption_languages": [
+      "fr"
+    ],
+    "last_checked_at": "2026-10-20T02:07:34Z",
+    "identity_evidence": "https://framasoft.org/en/ links to framatube.org; these channels are Framasoft's own",
+    "publisher": "Framasoft"
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:58:57Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "channel bf54d359-cfad-4935-9d45-9d6be93f63e8@framatube.org"
+    },
+    {
+      "at": "2026-10-20T01:59:14Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

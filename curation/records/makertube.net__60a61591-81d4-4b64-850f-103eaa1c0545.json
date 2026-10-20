@@ -1,0 +1,88 @@
+{
+  "id": "makertube.net__60a61591-81d4-4b64-850f-103eaa1c0545",
+  "source": {
+    "video_url": "https://makertube.net/videos/watch/60a61591-81d4-4b64-850f-103eaa1c0545",
+    "video_uuid": "60a61591-81d4-4b64-850f-103eaa1c0545",
+    "channel_actor_uri": "https://makertube.net/video-channels/rcab",
+    "instance_host": "makertube.net",
+    "title": "Repair Café Aschaffenburg - Zusammen bekommen wir das wieder hin",
+    "creator_display_name": "Repair-Café Aschaffenburg",
+    "channel_handle": "rcab@makertube.net",
+    "license": "Attribution - Share Alike",
+    "language": "de",
+    "duration_s": 298,
+    "original_published_at": "2024-07-02T20:03:13.997Z",
+    "description": "Ein Film von Anjana Lahrkamp über das Repair-Café Aschaffenburg, gefilmt im Juni 2024. Unsere Termine & Weitere Infos: https://rcab.de Umsetzung: https://www.gefilmtundfotografiert.com/",
+    "tags": [
+      "Aschaffenburg",
+      "Ehrenamt",
+      "Interview",
+      "Reparatur"
+    ],
+    "category": "Activism",
+    "views": 525
+  },
+  "discovery": {
+    "query": "repair cafe",
+    "collection_hint": "strange-machines",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:46Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:53:58Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": true,
+    "caption_languages": [
+      "de",
+      "en"
+    ],
+    "last_checked_at": "2026-10-20T02:07:59Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:46Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"repair cafe\""
+    },
+    {
+      "at": "2026-10-20T01:53:59Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

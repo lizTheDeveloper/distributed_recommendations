@@ -1,0 +1,86 @@
+{
+  "id": "garr.tv__d2a47299-500a-4d6c-8ba9-d24fd6666853",
+  "source": {
+    "video_url": "https://garr.tv/videos/watch/d2a47299-500a-4d6c-8ba9-d24fd6666853",
+    "video_uuid": "d2a47299-500a-4d6c-8ba9-d24fd6666853",
+    "channel_actor_uri": "https://garr.tv/video-channels/main",
+    "instance_host": "garr.tv",
+    "title": "Health Science Community - Gennaio 2008",
+    "creator_display_name": "GARR Channel",
+    "channel_handle": "main@garr.tv",
+    "license": "CC BY-NC-SA 4.0",
+    "language": null,
+    "duration_s": 104,
+    "original_published_at": "2010-05-04T18:19:11.000Z",
+    "description": "Servizio sulla conferenza IRCCS \"Health Science Community\" - TGR Neapolis 15/01/2008",
+    "tags": [
+      "Community",
+      "Health",
+      "Science",
+      "bicocca2010",
+      "ricerca"
+    ],
+    "category": "Unknown",
+    "views": 13
+  },
+  "discovery": {
+    "query": "community science",
+    "collection_hint": "reclaim-the-city",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:43Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:53:46Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:07:46Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:43Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"community science\""
+    },
+    {
+      "at": "2026-10-20T01:53:47Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

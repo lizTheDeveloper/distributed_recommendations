@@ -1,0 +1,84 @@
+{
+  "id": "tube.sekretaerbaer.net__ad254ee2-9c26-423d-b842-55195ae35f8d",
+  "source": {
+    "video_url": "https://tube.sekretaerbaer.net/videos/watch/ad254ee2-9c26-423d-b842-55195ae35f8d",
+    "video_uuid": "ad254ee2-9c26-423d-b842-55195ae35f8d",
+    "channel_actor_uri": "https://tube.sekretaerbaer.net/video-channels/fediverse",
+    "instance_host": "tube.sekretaerbaer.net",
+    "title": "Introducing the Fediverse_ a New Era of Social Media",
+    "creator_display_name": "Fediverse",
+    "channel_handle": "fediverse@tube.sekretaerbaer.net",
+    "license": "CC BY-NC-SA 4.0",
+    "language": "en",
+    "duration_s": 247,
+    "original_published_at": "2025-06-10T15:44:12.847Z",
+    "description": "Dieses Video ist eine farbenfrohe Einführung in das Fediverse, geführt von der Filmemacherin und Fediverse-Befürworterin Elena Rossini. Sehen Sie es sich jetzt an und entdecken Sie eine ganz neue Welt der sozialen Medien, in der Privatsphäre respektiert wird, Nutzer selbstbestimmt sind und Big Tech kein Mitspracherecht hat. This video is a colorful introduction to the Fediverse, guided by filmmaker & Fediverse advocate Elena Rossini. Watch now to discover a whole new world of social media, one where privacy is respected, users are empowered, and Big Tech has no say. Special thanks to: @sknob@mamot.fr for help with the French translation Tarcísio Surdi @tarcisiosurdi@bolha.one for the Portuguese Brazilian translation Jan Dytrych @jan@social.dytrych.cloud for the Czech translation Claudio Brugnoni for help with the Italian translation Original Video von https://videos.elenarossini.com/w/64VuNCccZNrP4u9MfgbhkN",
+    "tags": [],
+    "category": "Education",
+    "views": 119
+  },
+  "discovery": {
+    "query": "Fediverse",
+    "collection_hint": "build-your-own-future",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:35Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:55:59Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": true,
+    "caption_languages": [
+      "de",
+      "en",
+      "fr"
+    ],
+    "last_checked_at": "2026-10-20T02:10:39Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:35Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"Fediverse\""
+    },
+    {
+      "at": "2026-10-20T01:55:59Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

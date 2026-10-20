@@ -1,0 +1,86 @@
+{
+  "id": "video.hardlimit.com__c1d0bf25-a59c-4363-9e35-da9100485543",
+  "source": {
+    "video_url": "https://video.hardlimit.com/videos/watch/c1d0bf25-a59c-4363-9e35-da9100485543",
+    "video_uuid": "c1d0bf25-a59c-4363-9e35-da9100485543",
+    "channel_actor_uri": "https://video.hardlimit.com/video-channels/cyberdeck",
+    "instance_host": "video.hardlimit.com",
+    "title": "Kretanje Po Sistemu - GNU/Linux Tutorial Na Srpskom",
+    "creator_display_name": "cyberdeck",
+    "channel_handle": "cyberdeck@video.hardlimit.com",
+    "license": "Attribution - Non Commercial - Share Alike",
+    "language": "sr",
+    "duration_s": 990,
+    "original_published_at": "2020-12-07T18:34:58.485Z",
+    "description": "Kretanje po sistemu sa komandne linije. cyberdeck.xyz",
+    "tags": [
+      "balkan",
+      "gnu/linux",
+      "komandna linija",
+      "na srpskom",
+      "tutorijal"
+    ],
+    "category": "Education",
+    "views": 8
+  },
+  "discovery": {
+    "query": "Linux tutorial",
+    "collection_hint": "build-your-own-future",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:36Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:56:45Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:12:06Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:36Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"Linux tutorial\""
+    },
+    {
+      "at": "2026-10-20T01:56:45Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

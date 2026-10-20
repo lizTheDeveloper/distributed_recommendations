@@ -147,6 +147,18 @@ export function openOnboarding(app: App): void {
               );
             }),
           ),
+          app.editorial.length ? h("p", { class: "small" }, `Or subscribe to collections picked by ${APP_NAME}'s editors:`) : null,
+          app.editorial.length
+            ? h(
+                "div",
+                { class: "row" },
+                app.editorial.map((ed) => {
+                  const key = "editorial:" + ed.slug;
+                  const on = s.taste.some((t) => t.key === key);
+                  return h("button", { class: "btn sm taste", id: "onb-ed-" + ed.slug, disabled: on, onclick: () => (app.addTaste({ key, source: "editorial", list: ed.list, addedAt: Date.now() }), d.update()) }, on ? `Subscribed: ${ed.list.name}` : `Subscribe: ${ed.list.name}`);
+                }),
+              )
+            : null,
           h("p", { class: "small" }, "Or start from an example list (generated from popular videos, not picked by a person):"),
           h(
             "div",

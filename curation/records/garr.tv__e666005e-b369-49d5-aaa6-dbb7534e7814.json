@@ -1,0 +1,86 @@
+{
+  "id": "garr.tv__e666005e-b369-49d5-aaa6-dbb7534e7814",
+  "source": {
+    "video_url": "https://garr.tv/videos/watch/e666005e-b369-49d5-aaa6-dbb7534e7814",
+    "video_uuid": "e666005e-b369-49d5-aaa6-dbb7534e7814",
+    "channel_actor_uri": "https://garr.tv/video-channels/main",
+    "instance_host": "garr.tv",
+    "title": "PANEL:Privacy e data protection dal punto di vista legale - DISCUSSIONE - Workshop GARR 2017",
+    "creator_display_name": "GARR Channel",
+    "channel_handle": "main@garr.tv",
+    "license": "CC BY-NC-SA 4.0",
+    "language": null,
+    "duration_s": 1945,
+    "original_published_at": "2017-04-14T15:26:52.000Z",
+    "description": "Titolo: PANEL:Privacy e data protection dal punto di vista legale Evento: Workshop GARR 2017: Netvolution Speaker: VariData: 07 Aprile 2017",
+    "tags": [
+      "2017",
+      "DISCUSSIONE",
+      "data protection",
+      "privacy",
+      "ws17"
+    ],
+    "category": "Unknown",
+    "views": 4
+  },
+  "discovery": {
+    "query": "privacy workshop",
+    "collection_hint": "hack-the-planet",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:22Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:53:47Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:07:47Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:22Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"privacy workshop\""
+    },
+    {
+      "at": "2026-10-20T01:53:47Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

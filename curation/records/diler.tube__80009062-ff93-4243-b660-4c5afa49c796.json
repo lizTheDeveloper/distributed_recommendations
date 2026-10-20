@@ -1,0 +1,95 @@
+{
+  "id": "diler.tube__80009062-ff93-4243-b660-4c5afa49c796",
+  "source": {
+    "video_url": "https://diler.tube/videos/watch/80009062-ff93-4243-b660-4c5afa49c796",
+    "video_uuid": "80009062-ff93-4243-b660-4c5afa49c796",
+    "channel_actor_uri": "https://diler.tube/video-channels/divers",
+    "instance_host": "diler.tube",
+    "title": "Your Right to Repair AI Systems ｜ Rumman Chowdhury ｜ TED",
+    "creator_display_name": "Random Knowledge",
+    "channel_handle": "divers@diler.tube",
+    "license": "CC BY-NC-ND 4.0",
+    "language": "en",
+    "duration_s": 589,
+    "original_published_at": "2024-06-04T16:00:00.000Z",
+    "description": "For AI to achieve its full potential, non-experts need to be let into the development process, says Rumman Chowdhury, CEO and cofounder of Humane Intelligence. She tells the story of farmers fighting for the right to repair their own AI-powered tractors (which some manufacturers actually made illegal), proposing everyone should have the ability to report issues, patch updates or even retrain AI technologies for their specific uses. Author: TED",
+    "tags": [
+      "Rumman Chowdhury",
+      "AI",
+      "TED",
+      "Technology"
+    ],
+    "category": "EN - Matter Nature Technology (MNT)",
+    "views": 1
+  },
+  "discovery": {
+    "query": "right to repair",
+    "collection_hint": "strange-machines",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:49Z"
+  },
+  "editorial": {
+    "status": "rejected",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": "claude-opus-5-5 (AI proposal)",
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": "re-upload of another publisher's video (TED / Royal Society); prefer the original publisher",
+    "proposed_at": "2026-10-20T02:03:42Z"
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:53:25Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": true,
+    "caption_languages": [
+      "en"
+    ],
+    "last_checked_at": "2026-10-20T02:07:06Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:49Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"right to repair\""
+    },
+    {
+      "at": "2026-10-20T01:53:25Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    },
+    {
+      "at": "2026-10-20T02:03:42Z",
+      "from": "verified",
+      "to": "rejected",
+      "by": "claude-opus-5-5 (AI proposal)",
+      "note": "re-upload of another publisher's video (TED / Royal Society); prefer the original publisher"
+    }
+  ]
+}

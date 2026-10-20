@@ -1,0 +1,87 @@
+{
+  "id": "spectra.video__4beeaf8e-cf0f-4251-84a3-8d3df30f3f55",
+  "source": {
+    "video_url": "https://spectra.video/videos/watch/4beeaf8e-cf0f-4251-84a3-8d3df30f3f55",
+    "video_uuid": "4beeaf8e-cf0f-4251-84a3-8d3df30f3f55",
+    "channel_actor_uri": "https://spectra.video/video-channels/kylonekovt",
+    "instance_host": "spectra.video",
+    "title": "Linux Guide to Vtubing Nobara Linux tutorial HD",
+    "creator_display_name": "KyloNekoVT",
+    "channel_handle": "kylonekovt@spectra.video",
+    "license": null,
+    "language": "en",
+    "duration_s": 3140,
+    "original_published_at": "2025-09-14T00:00:00.000Z",
+    "description": "Check out the Vtuber guide here: https://codeberg.org/KyloNeko/Linux-Guide-to-Vtubing my kofi here if you want to support me! : https://ko-fi.com/kyloneko/tip twitch here: https://www.twitch.tv/kyloneko programs used: https://www.vseeface.icu/ https://veado.tube/ vtube studio: https://denchisoft.com/ face tracker: https://flathub.org/apps/de.z_ray.Facetracker Get Nobara here: https://nobaraproject.org/download-nobara/ Join the discord here: https://discord.gg/6y3BdzC Music used as the background music: https://www.youtube.com/watch?v=wvUhR0Efp3c some image sources : Nobara logo - https://www.reddit.com/r/NobaraProject/comments/yavk5n/nobara_linux_logos_just_posting_if_anyone_needs/ took part of brodies thumbnail here , also watch the interview - https://www.youtube.com/watch?v=PZQUAyDIcJg Check out RougeRen here: https://www.youtube.com/@UC2J2hHf7DdBpVUjeuytMZzw Check out Glorious eggroll here: https://www.youtube.com/c/GloriousEggroll",
+    "tags": [
+      "c:disable-download",
+      "linux",
+      "pc gaming",
+      "vtuber"
+    ],
+    "category": "Unknown",
+    "views": 17
+  },
+  "discovery": {
+    "query": "Linux tutorial",
+    "collection_hint": "build-your-own-future",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:36Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:55:20Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": true,
+    "caption_languages": [
+      "en"
+    ],
+    "last_checked_at": "2026-10-20T02:09:44Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:36Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"Linux tutorial\""
+    },
+    {
+      "at": "2026-10-20T01:55:20Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

@@ -1,0 +1,85 @@
+{
+  "id": "peertube.dsmouse.net__acd9b7ee-6c7e-45db-a508-b89916bd80e7",
+  "source": {
+    "video_url": "https://peertube.dsmouse.net/videos/watch/acd9b7ee-6c7e-45db-a508-b89916bd80e7",
+    "video_uuid": "acd9b7ee-6c7e-45db-a508-b89916bd80e7",
+    "channel_actor_uri": "https://peertube.dsmouse.net/video-channels/infosectalks",
+    "instance_host": "peertube.dsmouse.net",
+    "title": "Incident Response and the Attorney Client Privilege - Wendy Knox Everette",
+    "creator_display_name": "InfoSec Talks",
+    "channel_handle": "infosectalks@peertube.dsmouse.net",
+    "license": "Attribution",
+    "language": null,
+    "duration_s": 1628,
+    "original_published_at": "2019-02-16T00:00:00.000Z",
+    "description": "Source: https://archive.org/details/ShmooCon_2019 Oh no, you’ve suffered a computer security incident. The DFIR team you hired wrote up a great report detailing exactly what happened and making suggestions for how to fix some of these issues. But now you’re being sued, and opposing counsel requests that report! Many times, companies will seek to protect investigations under the cover of attorney-client privilege. But what is that, when and how does the privilege attach, and how helpful is it most of the time? What should your goal be, and just what are best practices for working with attorneys? Wendy (@wendyck) is a software developer who burned out and went to law school, where she completed a concentration in National Security Law and interned with the FTC, FCC, and some other three letter agencies (no, not the fun ones). After law school she completed a fellowship in privacy and information security law at ZwillGen. She currently lives in Seattle, where she is a Senior Security Advisor at Leviathan Security Group.",
+    "tags": [
+      "incident response",
+      "legal",
+      "shmoocon",
+      "shmoocon 2019"
+    ],
+    "category": "Science & Technology",
+    "views": 1
+  },
+  "discovery": {
+    "query": "incident response",
+    "collection_hint": "hack-the-planet",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:26Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:54:38Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:08:49Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:26Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"incident response\""
+    },
+    {
+      "at": "2026-10-20T01:54:38Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

@@ -1,0 +1,94 @@
+{
+  "id": "peertube.uno__7cff92cc-256c-461b-9256-83473035ba2e",
+  "source": {
+    "video_url": "https://peertube.uno/videos/watch/7cff92cc-256c-461b-9256-83473035ba2e",
+    "video_uuid": "7cff92cc-256c-461b-9256-83473035ba2e",
+    "channel_actor_uri": "https://peertube.uno/video-channels/cloudbik_",
+    "instance_host": "peertube.uno",
+    "title": "Microsoft 365 Cross Tenant Migration- Office 365 Tenant to Tenant Migration Step-by-Step Guide[2023]",
+    "creator_display_name": "cloudbik",
+    "channel_handle": "cloudbik_@peertube.uno",
+    "license": null,
+    "language": null,
+    "duration_s": 3109,
+    "original_published_at": "2023-01-01T00:00:00.000Z",
+    "description": "Watch this tutorial to learn Tenant to Tenant Migration in Microsoft Office 365 Exchange Online step-by-step. This latest guide will teach you how to perform Microsoft 365 Cross-Tenant Migration. Easily migrate Exchange online Mailboxes (Emails, Contacts, Tasks, Notes and Calendar items etc.) between Office 365 Tenants for absolutely free using Microsoft's native migration tool. For informative content, visit our website and follow us on other social media platforms. Our website: CloudBik Software Solutions Facebook: https://www.facebook.com/cloudbik/ LinkedIn: https://in.linkedin.com/company/cloudbik Twitter: https://twitter.com/cloud_bik Instagram: https://www.instagram.com/cloudbik/ #microsoft #microsoftoffice365 #microsoftoffice365 #office365 #Tenant-to-Tenant-Migration #Office365-Cross-Tenant-Migration #Cross-Tenant-Migration #Office365TenantMigration #TenantMigration #Office365MailboxMigration #Microsoft365TenantMigration #Office365toOffice365",
+    "tags": [
+      "Cross-Tenant Migration",
+      "Migrate Office 365 Mailboxes",
+      "Office365",
+      "Office 365 Tenant Migration",
+      "Tenant to Tenant Migration"
+    ],
+    "category": "Science & Technology",
+    "views": 7
+  },
+  "discovery": {
+    "query": "tenant organizing",
+    "collection_hint": "reclaim-the-city",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:39Z"
+  },
+  "editorial": {
+    "status": "rejected",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": "claude-opus-5-5 (AI proposal)",
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": "off-topic: 'tenant' matched multi-tenant software",
+    "proposed_at": "2026-10-20T02:03:42Z"
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:55:11Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:09:21Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:39Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"tenant organizing\""
+    },
+    {
+      "at": "2026-10-20T01:55:12Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    },
+    {
+      "at": "2026-10-20T02:03:42Z",
+      "from": "verified",
+      "to": "rejected",
+      "by": "claude-opus-5-5 (AI proposal)",
+      "note": "off-topic: 'tenant' matched multi-tenant software"
+    }
+  ]
+}

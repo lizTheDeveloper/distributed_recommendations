@@ -1,0 +1,112 @@
+{
+  "id": "video.rhizome.org__5abcf089-0898-4d2b-a45d-65d02e39b69d",
+  "source": {
+    "video_url": "https://video.rhizome.org/videos/watch/5abcf089-0898-4d2b-a45d-65d02e39b69d",
+    "video_uuid": "5abcf089-0898-4d2b-a45d-65d02e39b69d",
+    "channel_actor_uri": "https://video.rhizome.org/video-channels/ethics_and_archiving_the_web",
+    "instance_host": "video.rhizome.org",
+    "title": "Ethics and Archiving the Web: The Ethics of Digital Folklore",
+    "creator_display_name": "Ethics and Archiving the Web",
+    "channel_handle": "ethics_and_archiving_the_web@video.rhizome.org",
+    "license": null,
+    "language": "en",
+    "duration_s": 3186,
+    "original_published_at": "2018-06-25T00:00:00.000Z",
+    "description": "The Ethics of Digital Folklore March 23, 2018 at the New Museum, New York eaw.rhizome.org Image macros, photos of kittens, and other vernacular forms–created by users, for users–are the most important, beautiful, and misunderstood aspects of internet culture. Digital folklore raises particular ethical issues for archivists and researchers in that users’ labor is treated as data fodder, attribution and permission are difficult to establish, and what gets celebrated and remembered tends to replicate existing cultural biases. Frances Corry Doctoral Student, Annenberg School for Communication and Journalism, USC Dragan Espenschied (moderator) Preservation Director, Rhizome Ruth Gebreyesus Writer & Producer Ian Milligan Associate Professor, Department of History, University of Waterloo Ari Spool Community Operations Manager, GIPHY",
+    "tags": [
+      "Archive",
+      "Culture"
+    ],
+    "category": "Unknown",
+    "views": 14
+  },
+  "discovery": {
+    "query": "digital folklore",
+    "collection_hint": "the-weird-internet",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:53Z"
+  },
+  "editorial": {
+    "status": "reviewed",
+    "primary_collection": "the-weird-internet",
+    "secondary_collections": [
+      "the-machine-is-political"
+    ],
+    "difficulty": "intermediate",
+    "format": "debate",
+    "learning_intents": [
+      "critique",
+      "understand"
+    ],
+    "evidence_class": "research-backed",
+    "tags": [
+      "digital-folklore",
+      "archiving",
+      "ethics"
+    ],
+    "why_selected": "Rhizome's panel on the ethics of archiving digital folklore: memes, image macros, and who gets a say when the web's culture is preserved.",
+    "learning_outcomes": [
+      "Ethical questions in web archiving",
+      "Why folk culture online is hard to preserve fairly"
+    ],
+    "try_next": "Save one piece of online culture you care about with the Wayback Machine, and note who made it.",
+    "context_note": null,
+    "ratings": {
+      "usefulness": 4,
+      "rigor": 4,
+      "mission": 5,
+      "distinctiveness": 5,
+      "accessibility": 3,
+      "currency": 3
+    },
+    "score": 82,
+    "judgment_basis": "metadata only (title, description, channel, caption list); not watched — substantive judgments unverified",
+    "proposed_by": "claude-opus-5-5 (AI proposal)",
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null,
+    "shelves": [],
+    "band": "feature-candidate",
+    "proposed_at": "2026-10-20T02:03:42Z"
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:57:12Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:12:31Z",
+    "identity_evidence": "rhizome.org homepage has no link to video.rhizome.org",
+    "publisher": "Rhizome (claimed)"
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:53Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"digital folklore\""
+    },
+    {
+      "at": "2026-10-20T01:57:12Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    },
+    {
+      "at": "2026-10-20T02:03:42Z",
+      "from": "verified",
+      "to": "reviewed",
+      "by": "claude-opus-5-5 (AI proposal)",
+      "note": "proposed score 82"
+    }
+  ]
+}

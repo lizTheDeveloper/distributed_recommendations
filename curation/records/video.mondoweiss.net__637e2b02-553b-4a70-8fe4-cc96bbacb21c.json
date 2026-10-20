@@ -1,0 +1,80 @@
+{
+  "id": "video.mondoweiss.net__637e2b02-553b-4a70-8fe4-cc96bbacb21c",
+  "source": {
+    "video_url": "https://video.mondoweiss.net/videos/watch/637e2b02-553b-4a70-8fe4-cc96bbacb21c",
+    "video_uuid": "637e2b02-553b-4a70-8fe4-cc96bbacb21c",
+    "channel_actor_uri": "https://video.mondoweiss.net/video-channels/shorts",
+    "instance_host": "video.mondoweiss.net",
+    "title": "WATCH: Israel’s “urban planning” is actually just strategic displacem...",
+    "creator_display_name": "Mondoweiss Shorts",
+    "channel_handle": "shorts@video.mondoweiss.net",
+    "license": null,
+    "language": null,
+    "duration_s": 64,
+    "original_published_at": "2025-07-17T00:00:00.000Z",
+    "description": "WATCH: Israel’s “urban planning” is actually just strategic displacement. Roads, walls, and permits replace bulldozers, making more and more of the occupied Palestine inaccessible to Palestinians. #fyp",
+    "tags": [],
+    "category": "Unknown",
+    "views": 10
+  },
+  "discovery": {
+    "query": "urban planning",
+    "collection_hint": "reclaim-the-city",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:41Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:57:02Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:12:22Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:41Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"urban planning\""
+    },
+    {
+      "at": "2026-10-20T01:57:03Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

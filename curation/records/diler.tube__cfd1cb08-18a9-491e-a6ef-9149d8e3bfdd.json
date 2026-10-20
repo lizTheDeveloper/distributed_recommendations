@@ -1,0 +1,95 @@
+{
+  "id": "diler.tube__cfd1cb08-18a9-491e-a6ef-9149d8e3bfdd",
+  "source": {
+    "video_url": "https://diler.tube/videos/watch/cfd1cb08-18a9-491e-a6ef-9149d8e3bfdd",
+    "video_uuid": "cfd1cb08-18a9-491e-a6ef-9149d8e3bfdd",
+    "channel_actor_uri": "https://diler.tube/video-channels/divers",
+    "instance_host": "diler.tube",
+    "title": "How to keep human bias out of AI ｜ Kriti Sharma｜TED",
+    "creator_display_name": "Random Knowledge",
+    "channel_handle": "divers@diler.tube",
+    "license": "CC BY-NC-ND 4.0",
+    "language": "en",
+    "duration_s": 731,
+    "original_published_at": "2019-04-12T16:00:00.000Z",
+    "description": "AI algorithms make important decisions about you all the time -- like how much you should pay for car insurance or whether or not you get that job interview. But what happens when these machines are built with human bias coded into their systems? Technologist Kriti Sharma explores how the lack of diversity in tech is creeping into our AI, offering three ways we can start making more ethical algorithms. Author: TED",
+    "tags": [
+      "Kriti Sharma",
+      "AI",
+      "Machine",
+      "TED"
+    ],
+    "category": "EN - Technology",
+    "views": 1
+  },
+  "discovery": {
+    "query": "algorithmic bias",
+    "collection_hint": "the-machine-is-political",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:32Z"
+  },
+  "editorial": {
+    "status": "rejected",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": "claude-opus-5-5 (AI proposal)",
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": "re-upload of another publisher's video (TED / Royal Society); prefer the original publisher",
+    "proposed_at": "2026-10-20T02:03:42Z"
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:53:26Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": true,
+    "caption_languages": [
+      "en"
+    ],
+    "last_checked_at": "2026-10-20T02:07:07Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:32Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"algorithmic bias\""
+    },
+    {
+      "at": "2026-10-20T01:53:26Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    },
+    {
+      "at": "2026-10-20T02:03:42Z",
+      "from": "verified",
+      "to": "rejected",
+      "by": "claude-opus-5-5 (AI proposal)",
+      "note": "re-upload of another publisher's video (TED / Royal Society); prefer the original publisher"
+    }
+  ]
+}

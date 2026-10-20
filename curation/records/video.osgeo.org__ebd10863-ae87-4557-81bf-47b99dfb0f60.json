@@ -1,0 +1,82 @@
+{
+  "id": "video.osgeo.org__ebd10863-ae87-4557-81bf-47b99dfb0f60",
+  "source": {
+    "video_url": "https://video.osgeo.org/videos/watch/ebd10863-ae87-4557-81bf-47b99dfb0f60",
+    "video_uuid": "ebd10863-ae87-4557-81bf-47b99dfb0f60",
+    "channel_actor_uri": "https://video.osgeo.org/video-channels/foss4geurope",
+    "instance_host": "video.osgeo.org",
+    "title": "FOSS4GE 2024 | Does open data open new horizons in urban planning?",
+    "creator_display_name": "FOSS4G Europe",
+    "channel_handle": "foss4geurope@video.osgeo.org",
+    "license": "Attribution",
+    "language": "en",
+    "duration_s": 258,
+    "original_published_at": "2024-08-08T00:00:00.000Z",
+    "description": "The aim of this study is to provide a comprehensive view of the issue of open data in Czech cities and thus give the world community an insight into the state of open data in the Czech Republic. It serves as a basis for further research and implementation of open data in urban planning. Its results can be used not only for the benefit of the professional community but can also serve as a basis for decision-making by city authorities in the planning and development of urban space. The open data are therefore integral part of developing smart cities (Ojo, Curry, Zeleti, 2015). This extensive study deals with the issue of the availability of open data in Czech cities and to what extent are they used use in the framework of urban planning and development of urban space. In the context of rapid digitization and technological progress, open data is becoming increasingly important for the effective management and design of urban infrastructure. This study systematically analyses the current state of open data in Czech cities, identifies key aspects of their availability and examines their potential applications in urban planning. The study focuses in more detail on Brno, which is the second largest city in the Czech Republic and provides freely available data on its website data.brno.cz. The first part of the study focuses on the theoretical framework of open data and its significance for modern urban planning. The basic principles of open data are introduced, including the standar…",
+    "tags": [],
+    "category": "Education",
+    "views": 1
+  },
+  "discovery": {
+    "query": "urban planning",
+    "collection_hint": "reclaim-the-city",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:41Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:57:05Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": true,
+    "caption_languages": [
+      "en"
+    ],
+    "last_checked_at": "2026-10-20T02:12:25Z",
+    "identity_evidence": "osgeo.org homepage has no link to video.osgeo.org",
+    "publisher": "OSGeo / FOSS4G (claimed)"
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:41Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"urban planning\""
+    },
+    {
+      "at": "2026-10-20T01:57:05Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

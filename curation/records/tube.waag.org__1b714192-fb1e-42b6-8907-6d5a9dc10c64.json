@@ -1,0 +1,83 @@
+{
+  "id": "tube.waag.org__1b714192-fb1e-42b6-8907-6d5a9dc10c64",
+  "source": {
+    "video_url": "https://tube.waag.org/videos/watch/1b714192-fb1e-42b6-8907-6d5a9dc10c64",
+    "video_uuid": "1b714192-fb1e-42b6-8907-6d5a9dc10c64",
+    "channel_actor_uri": "https://tube.waag.org/video-channels/general",
+    "instance_host": "tube.waag.org",
+    "title": "De Staat van het Internet 2025 met Marleen Stikker",
+    "creator_display_name": "Waag Futurelab",
+    "channel_handle": "general@tube.waag.org",
+    "license": "Attribution - Non Commercial - Share Alike",
+    "language": "nl",
+    "duration_s": 7580,
+    "original_published_at": "2025-06-16T13:38:08.840Z",
+    "description": "Op 15 mei vond de zevende editie van de Staat van het Internet plaats in de Brakke Grond. Waags oprichter en directeur Marleen Stikker nam ons mee naar haar idee van the Next Generation Internet en hoe we terug kunnen naar een internet waar we zelf controle hebben over de technologie en onze data. Want, de alternatieven voor big tech zijn er, let’s start using them! Met dank aan de Gemeente Amsterdam en Eetcafe de Brakke Grond. Dymphie Braun voor de scherpe moderatie & Bert Hubert, Savriël Dillingh en Tessel Renzenbrink voor hun bijdrage aan een boeiend panel.",
+    "tags": [
+      "internet",
+      "lecture"
+    ],
+    "category": "Science & Technology",
+    "views": 923
+  },
+  "discovery": {
+    "query": "channel general@tube.waag.org",
+    "collection_hint": "the-machine-is-political",
+    "service": "origin channel listing",
+    "at": "2026-10-20T01:58:58Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:59:53Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:11:20Z",
+    "identity_evidence": "waag.org homepage has no link to tube.waag.org; check the site's footer or contact Waag before treating it as official",
+    "publisher": "Waag Futurelab (claimed)"
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:58:58Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "channel general@tube.waag.org"
+    },
+    {
+      "at": "2026-10-20T01:59:54Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

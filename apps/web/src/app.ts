@@ -104,7 +104,7 @@ export interface FollowEntry {
 
 export interface TasteSub {
   key: string;
-  source: "url" | "paste" | "example";
+  source: "url" | "paste" | "example" | "editorial";
   url?: string;
   list: TasteList;
   addedAt: number;
@@ -219,6 +219,8 @@ export interface AppOptions {
   snapshotNote?: string;
   /** Bundled example taste lists. */
   examples: { file: string; list: unknown }[];
+  /** Bundled editor-curated collections (curation/, published by curation/scripts/publish.mjs). */
+  editorial?: { slug: string; list: unknown }[];
   /** Encrypted store for sensitive state (a memory vault when unavailable). */
   vault: Vault;
   /** Decrypted sensitive state, loaded before the app starts. */
@@ -253,6 +255,7 @@ export interface App {
   /** Plaintext from an older version remains in localStorage (memory vault only). */
   legacyLeft: boolean;
   examples: { file: string; list: TasteList }[];
+  editorial: { slug: string; list: TasteList }[];
   now(): Date;
   recipe(): Recipe;
   feed(): { items: ModeratedItem[]; candidates: number; popular: ModeratedItem[]; personalizedExplore: boolean; hidden: HiddenVideo[] };
@@ -400,6 +403,7 @@ export function startApp(opts: AppOptions): App {
     }
   }
   const examples = opts.examples.map((e) => ({ file: e.file, list: parseTasteList(e.list) }));
+  const editorial = (opts.editorial ?? []).map((e) => ({ slug: e.slug, list: parseTasteList(e.list) }));
 
   const storedRecipe = readJson<{ id?: unknown; custom?: unknown }>(kv, "recipe", {});
   let custom: Recipe | null = null;
@@ -431,7 +435,10 @@ export function startApp(opts: AppOptions): App {
       const out: TasteSub[] = [];
       for (const t of x) {
         try {
-          out.push({ key: String(t.key), source: t.source, url: t.url, list: parseTasteList(t.list), addedAt: Number(t.addedAt) || 0 });
+          const sub: TasteSub = { key: String(t.key), source: t.source, url: t.url, list: parseTasteList(t.list), addedAt: Number(t.addedAt) || 0 };
+          // Editors revise their collections on each deploy; a subscription follows the bundled copy.
+          if (sub.source === "editorial") sub.list = editorial.find((e) => "editorial:" + e.slug === sub.key)?.list ?? sub.list;
+          out.push(sub);
         } catch {
           /* drop invalid */
         }
@@ -1093,6 +1100,7 @@ export function startApp(opts: AppOptions): App {
     devTools: !!opts.devTools,
     legacyLeft: !!opts.legacyLeft,
     examples,
+    editorial,
     now: opts.now,
     recipe() {
       if (s.recipe.id === "custom" && s.recipe.custom) return s.recipe.custom;

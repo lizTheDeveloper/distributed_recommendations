@@ -1,0 +1,118 @@
+{
+  "id": "makertube.net__37026fab-651d-41c3-ba93-bbb7d9d3c494",
+  "source": {
+    "video_url": "https://makertube.net/videos/watch/37026fab-651d-41c3-ba93-bbb7d9d3c494",
+    "video_uuid": "37026fab-651d-41c3-ba93-bbb7d9d3c494",
+    "channel_actor_uri": "https://makertube.net/video-channels/keritech",
+    "instance_host": "makertube.net",
+    "title": "ADHD-01 Advanced Dial-Home Device Project",
+    "creator_display_name": "Keritech Electronics",
+    "channel_handle": "keritech@makertube.net",
+    "license": "Attribution",
+    "language": "en",
+    "duration_s": 2496,
+    "original_published_at": "2023-04-11T00:00:00.000Z",
+    "description": "Doing something creative while channeling my inner Samantha Carter! The ADHD-01 (Mark 1 Advanced Dial-Home Device) project is an unusual home automation controller using a rotary dial as an input device, and Nixie tubes for displaying the parameters and values. The project is moved from NodeMCU / ESP8266 to Raspberry Pi Pico W with a lot of code still to be done. The hardware as of now is working pretty nice - watch these lovely Nixies glow... Contrary to what they say, resistance is NOT futile! 0:00 Intro 1:15 Unboxing 2:18 The Story Behind ADHD 4:07 Purpose and Pitfalls 7:26 Latched BCD Nixie Control 9:03 About These Nixies 10:45 RF Shielding Shenanigans 13:00 Further Discombobulation 17:20 Mechanical Modding 22:46 Pilot Lamp Fix 23:45 Interlude 24:40 Post-Rewire 26:40 Assembly 34:55 Launch! Hackaday project page: https://hackaday.io/project/188537-advanced-dial-home-device Support me on my Patreon page at https://www.patreon.com/KeritechElectronics Instagram - https://www.instagram.com/KeriSzafir Hackaday - https://hackaday.io/keritech",
+    "tags": [
+      "Electronics",
+      "ElectronicsCreators",
+      "Keritech",
+      "KeritechElectronics",
+      "Vintage"
+    ],
+    "category": "Science & Technology",
+    "views": 7
+  },
+  "discovery": {
+    "query": "creative electronics",
+    "collection_hint": "strange-machines",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:49Z"
+  },
+  "editorial": {
+    "status": "reviewed",
+    "primary_collection": "strange-machines",
+    "secondary_collections": [
+      "the-weird-internet"
+    ],
+    "difficulty": "intermediate",
+    "format": "demonstration",
+    "learning_intents": [
+      "create",
+      "build"
+    ],
+    "evidence_class": "practitioner-experience",
+    "tags": [
+      "props",
+      "electronics",
+      "fun"
+    ],
+    "why_selected": "A Stargate-inspired 'Dial-Home Device' built from scratch: a beautifully unnecessary machine, documented build step by build step.",
+    "learning_outcomes": [
+      "How a complex prop combines electronics, fabrication and code"
+    ],
+    "try_next": "Sketch the one unnecessary machine you'd build if time didn't matter.",
+    "context_note": null,
+    "ratings": {
+      "usefulness": 3,
+      "rigor": 3,
+      "mission": 3,
+      "distinctiveness": 5,
+      "accessibility": 4,
+      "currency": 4
+    },
+    "score": 68,
+    "judgment_basis": "metadata only (title, description, channel, caption list); not watched — substantive judgments unverified",
+    "proposed_by": "claude-opus-5-5 (AI proposal)",
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null,
+    "shelves": [
+      "beautifully-unnecessary-machines"
+    ],
+    "band": "collection-candidate",
+    "proposed_at": "2026-10-20T02:03:42Z"
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:53:55Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": true,
+    "caption_languages": [
+      "en"
+    ],
+    "last_checked_at": "2026-10-20T02:07:56Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:49Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"creative electronics\""
+    },
+    {
+      "at": "2026-10-20T01:53:55Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    },
+    {
+      "at": "2026-10-20T02:03:42Z",
+      "from": "verified",
+      "to": "reviewed",
+      "by": "claude-opus-5-5 (AI proposal)",
+      "note": "proposed score 68"
+    }
+  ]
+}

@@ -1,0 +1,82 @@
+{
+  "id": "peertube.wtf__31df1350-5730-4714-a929-a03fab3ff046",
+  "source": {
+    "video_url": "https://peertube.wtf/videos/watch/31df1350-5730-4714-a929-a03fab3ff046",
+    "video_uuid": "31df1350-5730-4714-a929-a03fab3ff046",
+    "channel_actor_uri": "https://peertube.wtf/video-channels/future123",
+    "instance_host": "peertube.wtf",
+    "title": "urban planning",
+    "creator_display_name": "Future",
+    "channel_handle": "future123@peertube.wtf",
+    "license": null,
+    "language": "en",
+    "duration_s": 64,
+    "original_published_at": "2025-07-18T15:56:23.293Z",
+    "description": null,
+    "tags": [],
+    "category": "Unknown",
+    "views": 0
+  },
+  "discovery": {
+    "query": "urban planning",
+    "collection_hint": "reclaim-the-city",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:41Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:55:13Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": true,
+    "caption_languages": [
+      "en"
+    ],
+    "last_checked_at": "2026-10-20T02:09:23Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:41Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"urban planning\""
+    },
+    {
+      "at": "2026-10-20T01:55:14Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

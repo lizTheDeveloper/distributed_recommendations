@@ -1,0 +1,82 @@
+{
+  "id": "tv.undersco.re__8346676c-8a35-446f-beb0-eb28e4f7d833",
+  "source": {
+    "video_url": "https://tv.undersco.re/videos/watch/8346676c-8a35-446f-beb0-eb28e4f7d833",
+    "video_uuid": "8346676c-8a35-446f-beb0-eb28e4f7d833",
+    "channel_actor_uri": "https://tv.undersco.re/video-channels/reclaimfutures",
+    "instance_host": "tv.undersco.re",
+    "title": "Through the Algorithmic Lens — Irini Papadimitriou | ReclaimFutures2020",
+    "creator_display_name": "ReclaimFutures",
+    "channel_handle": "reclaimfutures@tv.undersco.re",
+    "license": null,
+    "language": "en",
+    "duration_s": 1019,
+    "original_published_at": "2023-03-21T12:23:54.359Z",
+    "description": "To quote Lizzie O’Shea in Future Histories, “The purpose of a usable past is not simply to be a record of history. Rather, by building a shared appreciation of moments and traditions in collective history, a usable past is a method for creating the world we want to see.” Very often past events and history can give us important signs to understand contemporary systems and technologies, and sometimes, also where decisions - good or bad - might be rooted. This talk will explore how algorithmic systems are becoming essential bricks for building and reorganising big parts of our society, but also how, while these systems are being adopted across different areas, we start to perceive the world through a less human and more machine-like lens. Touching on historical and literature references the talk will look at the politics and consequences of an algorithmically driven world and how artistic and activist groups can inspire critical conversations around the deployment of these systems, while enabling us to rethink and redesign these, for the shift to a more equitable AI. https://reclaimfutures.org/rf2020/events/through-the-algorithmic Intro music: sumthing tethered - GOD69 (https://god69.bandcamp.com/track/sumthing-tethered) More about ReclaimFutures 2020: https://reclaimfutures.org/rf2020",
+    "tags": [
+      "RF2020"
+    ],
+    "category": "Activism",
+    "views": 2
+  },
+  "discovery": {
+    "query": "algorithmic accountability",
+    "collection_hint": "the-machine-is-political",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:27Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:56:23Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:11:44Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:27Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"algorithmic accountability\""
+    },
+    {
+      "at": "2026-10-20T01:56:24Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

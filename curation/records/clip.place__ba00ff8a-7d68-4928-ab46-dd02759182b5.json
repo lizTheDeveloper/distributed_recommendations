@@ -1,0 +1,88 @@
+{
+  "id": "clip.place__ba00ff8a-7d68-4928-ab46-dd02759182b5",
+  "source": {
+    "video_url": "https://clip.place/videos/watch/ba00ff8a-7d68-4928-ab46-dd02759182b5",
+    "video_uuid": "ba00ff8a-7d68-4928-ab46-dd02759182b5",
+    "channel_actor_uri": "https://clip.place/video-channels/future.vintage.gaming",
+    "instance_host": "clip.place",
+    "title": "152 One More Night (unity) Free Pixel Art Interactive Fiction Game Gameboy Style 4 color summer holiday",
+    "creator_display_name": "FutureVintageGaming",
+    "channel_handle": "future.vintage.gaming@clip.place",
+    "license": "Attribution - Non Commercial - Share Alike",
+    "language": "en",
+    "duration_s": 348,
+    "original_published_at": "2025-04-21T09:40:54.756Z",
+    "description": "This is a short interactive fiction story, and no puzzly adventure, about 3 girls spending the end of their summer holidays camping in the woods. There are no puzzles but a fun chiptune soundtrack and a lot of beautiful 4 color gameboy style pixelart graphics to gaze at. No wonder, the whole game was made for a gameboy jam. It takes around 5 minutes and is fun to get through... _________________________________________________ Join the Future Vintage Gaming Discord server | https://discord.gg/m5eaZh8 SUPPORT play the games, have fun, leave a tip! | https://triptilt.itch.io/ buy me a koffee | https://ko-fi.com/futurevintagegaming __________________________________________________ Synopsis: onemore night is a Visual Novel created for the #gbjam 4. A magical summer-themed game about friendship, love and getting drunk in nature. Three friends embark on a two-day camping trip before their last year of school begins. A trip they never want to end. They want to stay one more night. Credits: Game & Art - @leafthief (Stefan Srb) Music & SFX - @cbstegeman (Craig Barnes, http://www.cb-sound.com) Coding Support - @iossif and @SrbMichael Download: https://leafthief.itch.io/onemore-night Mirror: ... Intro Visuals by Future Vintage Gaming [152]",
+    "tags": [
+      "drink",
+      "girls gone wild",
+      "holiday",
+      "summer",
+      "wine"
+    ],
+    "category": "Gaming",
+    "views": 6
+  },
+  "discovery": {
+    "query": "interactive fiction",
+    "collection_hint": "the-weird-internet",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:50Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:53:15Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": true,
+    "caption_languages": [
+      "en"
+    ],
+    "last_checked_at": "2026-10-20T02:06:58Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:50Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"interactive fiction\""
+    },
+    {
+      "at": "2026-10-20T01:53:15Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

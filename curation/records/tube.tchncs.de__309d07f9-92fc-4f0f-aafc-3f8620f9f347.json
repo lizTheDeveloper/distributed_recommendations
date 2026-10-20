@@ -1,0 +1,113 @@
+{
+  "id": "tube.tchncs.de__309d07f9-92fc-4f0f-aafc-3f8620f9f347",
+  "source": {
+    "video_url": "https://tube.tchncs.de/videos/watch/309d07f9-92fc-4f0f-aafc-3f8620f9f347",
+    "video_uuid": "309d07f9-92fc-4f0f-aafc-3f8620f9f347",
+    "channel_actor_uri": "https://tube.tchncs.de/video-channels/privacy__tech_tips",
+    "instance_host": "tube.tchncs.de",
+    "title": "OSINT: WiFi Broadcast Packets Expose Your Home Address! + My Solutions + MAC Address Maps",
+    "creator_display_name": "(RTP) Privacy & Tech Tips",
+    "channel_handle": "privacy__tech_tips@tube.tchncs.de",
+    "license": "Attribution - Share Alike",
+    "language": null,
+    "duration_s": 880,
+    "original_published_at": "2021-01-12T23:00:00.000Z",
+    "description": "Showing how your phone/computer's WiFi broadcast packets translate to your full home/house address (of the device) using passive sniffing (SIGINT) and public available data (OSINT). I talk about a quick misdirection solution I came up with for subscribers and talk about mac/network mapping. I run through Wipri and talk about coming feature. TIMESTAMPS: 1st: Intro 0:27 I begin to layout the problem for user privacy/explain/show packets 1:00 how this can lead to direct tracking 1:18 user app Wigle uploads mac addresses/networks to public map 2:10 How our device packets are collected legally/passively by anyone at all interested 2:56 Best general technique to enhance privacy and my idea/solution to this problem 4:10 problem/solution summary 4:55 How Wigle works (user app wardriving) 5:20 On ways to support the cause/channel/info on privacy routers 5:52 Importance of liking, sharing, subscribing w/notifications (hint: helps algorithm) 6:27 Misdirection and the 'whole picture' for its use in privacy 8:10 WiPri overview and explaining how each setting works to promote privacy 13:11 Main points to take home and overall summary/conclusion WiPri repository/code: https://gitlab.com/Aresesi/wipri To Download/Install WiPri using git command: git clone https://gitlab.com/Aresesi/wipri cd wipri Then simply run install.sh with root privileges (root needed to automatically install wipri directory to /etc/wipri for OUI/configuration and as a new command (install.sh gives you option to instal…",
+    "tags": [
+      "Linux",
+      "mac address",
+      "OSINT",
+      "private",
+      "rtp"
+    ],
+    "category": "Science & Technology",
+    "views": 192
+  },
+  "discovery": {
+    "query": "OSINT",
+    "collection_hint": "hack-the-planet",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:23Z"
+  },
+  "editorial": {
+    "status": "reviewed",
+    "primary_collection": "hack-the-planet",
+    "secondary_collections": [],
+    "difficulty": "intermediate",
+    "format": "demonstration",
+    "learning_intents": [
+      "understand",
+      "defend"
+    ],
+    "evidence_class": "practitioner-experience",
+    "tags": [
+      "osint",
+      "wifi",
+      "privacy"
+    ],
+    "why_selected": "Shows how the Wi-Fi network names your devices broadcast can be mapped back to a home address, then what you can do about it.",
+    "learning_outcomes": [
+      "How Wi-Fi probe requests and public Wi-Fi maps leak location",
+      "Practical settings that reduce the leak"
+    ],
+    "try_next": "Look up your own router's network name on a public Wi-Fi map to see whether it's listed.",
+    "context_note": "Dual-use: the same technique can locate other people. Shown here for self-defense.",
+    "ratings": {
+      "usefulness": 4,
+      "rigor": 3,
+      "mission": 4,
+      "distinctiveness": 4,
+      "accessibility": 3,
+      "currency": 3
+    },
+    "score": 71,
+    "judgment_basis": "metadata only (title, description, channel, caption list); not watched — substantive judgments unverified",
+    "proposed_by": "claude-opus-5-5 (AI proposal)",
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null,
+    "shelves": [],
+    "band": "collection-candidate",
+    "proposed_at": "2026-10-20T02:03:42Z"
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:56:04Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:10:46Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:23Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"OSINT\""
+    },
+    {
+      "at": "2026-10-20T01:56:04Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    },
+    {
+      "at": "2026-10-20T02:03:42Z",
+      "from": "verified",
+      "to": "reviewed",
+      "by": "claude-opus-5-5 (AI proposal)",
+      "note": "proposed score 71"
+    }
+  ]
+}

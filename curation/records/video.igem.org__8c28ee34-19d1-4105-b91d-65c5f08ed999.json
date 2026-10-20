@@ -1,0 +1,80 @@
+{
+  "id": "video.igem.org__8c28ee34-19d1-4105-b91d-65c5f08ed999",
+  "source": {
+    "video_url": "https://video.igem.org/videos/watch/8c28ee34-19d1-4105-b91d-65c5f08ed999",
+    "video_uuid": "8c28ee34-19d1-4105-b91d-65c5f08ed999",
+    "channel_actor_uri": "https://video.igem.org/video-channels/igem.community",
+    "instance_host": "video.igem.org",
+    "title": "Discovering Open Hardware with Marina Freitas - Open Talks #2",
+    "creator_display_name": "iGEM Community",
+    "channel_handle": "igem.community@video.igem.org",
+    "license": "Attribution",
+    "language": null,
+    "duration_s": 4079,
+    "original_published_at": "2021-08-20T22:31:18.492Z",
+    "description": "Hardware involves all the physical parts of a computer - like the skeleton of the machine you are currently using to read this text. Having a good understanding of how you can make your project's hardware as open and accessible as possible is extremely important so that technologies can be widely accessed and improved by global communities. Let's understand the Open Hardware movement and its important relation to Science in this incredible talk! Join Marina Freitas, an expert in emancipatory education in science & tech, and learn more about Open Hardware. Find more info: https://igem.org/After_iGEM/Networks/Accessibility/OpenTalks",
+    "tags": [],
+    "category": "Science & Technology",
+    "views": 19
+  },
+  "discovery": {
+    "query": "open hardware",
+    "collection_hint": "build-your-own-future",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:38Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:56:49Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:12:11Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:38Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"open hardware\""
+    },
+    {
+      "at": "2026-10-20T01:56:50Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

@@ -1,0 +1,80 @@
+{
+  "id": "live.zawiya.one__30bbba2c-344b-408d-b409-0c88806bb821",
+  "source": {
+    "video_url": "https://live.zawiya.one/videos/watch/30bbba2c-344b-408d-b409-0c88806bb821",
+    "video_uuid": "30bbba2c-344b-408d-b409-0c88806bb821",
+    "channel_actor_uri": "https://live.zawiya.one/video-channels/zawiya_public",
+    "instance_host": "live.zawiya.one",
+    "title": "2026-02-27 - Artificial Intelligence (AI) Safety",
+    "creator_display_name": "Public Zawiya Lessons",
+    "channel_handle": "zawiya_public@live.zawiya.one",
+    "license": null,
+    "language": null,
+    "duration_s": 1012,
+    "original_published_at": "2026-02-27T15:48:05.689Z",
+    "description": "Read in What Works 2026-02-27 ------ Nuh Ha Mim Keller ℗ All rights of the producer and owner of the recorded work reserved. No part of this recording shall be reproduced, stored in a retrieval system, or transmitted by any means. Unauthorized copying strictly prohibited.",
+    "tags": [],
+    "category": "Unknown",
+    "views": 126
+  },
+  "discovery": {
+    "query": "AI safety evaluation",
+    "collection_hint": "the-machine-is-political",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:30Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:53:49Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:07:49Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:30Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"AI safety evaluation\""
+    },
+    {
+      "at": "2026-10-20T01:53:50Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

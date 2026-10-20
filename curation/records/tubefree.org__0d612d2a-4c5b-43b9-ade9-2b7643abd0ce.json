@@ -1,0 +1,114 @@
+{
+  "id": "tubefree.org__0d612d2a-4c5b-43b9-ade9-2b7643abd0ce",
+  "source": {
+    "video_url": "https://tubefree.org/videos/watch/0d612d2a-4c5b-43b9-ade9-2b7643abd0ce",
+    "video_uuid": "0d612d2a-4c5b-43b9-ade9-2b7643abd0ce",
+    "channel_actor_uri": "https://tubefree.org/video-channels/firesidefedi",
+    "instance_host": "tubefree.org",
+    "title": "People First Protocol: The ActivityPub Architect - Evan Prodromou - E90",
+    "creator_display_name": "Fireside Fedi",
+    "channel_handle": "firesidefedi@tubefree.org",
+    "license": "Attribution - Share Alike",
+    "language": "en",
+    "duration_s": 4541,
+    "original_published_at": "2026-05-28T13:21:27.697Z",
+    "description": "@evan@cosocial.ca https://www.w3.org/community/socialcg/ https://en.wikipedia.org/wiki/Evan_Prodromou https://wikitravel.org/en/Main_Page https://elgg.org/profile/bwerdmuller https://gnusocial.rocks/ https://mediagoblin.org/",
+    "tags": [
+      "activityPub",
+      "Fedi",
+      "Fediverse",
+      "peertube",
+      "protocol"
+    ],
+    "category": "People",
+    "views": 99
+  },
+  "discovery": {
+    "query": "ActivityPub",
+    "collection_hint": "build-your-own-future",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:35Z"
+  },
+  "editorial": {
+    "status": "reviewed",
+    "primary_collection": "build-your-own-future",
+    "secondary_collections": [],
+    "difficulty": "intermediate",
+    "format": "interview",
+    "learning_intents": [
+      "understand"
+    ],
+    "evidence_class": "primary-source",
+    "tags": [
+      "activitypub",
+      "fediverse",
+      "protocols"
+    ],
+    "why_selected": "A long conversation with Evan Prodromou, an architect of ActivityPub, the protocol behind the Fediverse, on why it was built for people first.",
+    "learning_outcomes": [
+      "Design decisions behind ActivityPub",
+      "Where the protocol is headed"
+    ],
+    "try_next": "Read the ActivityPub spec's overview section; it's shorter than you'd expect.",
+    "context_note": null,
+    "ratings": {
+      "usefulness": 3,
+      "rigor": 4,
+      "mission": 5,
+      "distinctiveness": 3,
+      "accessibility": 4,
+      "currency": 5
+    },
+    "score": 79,
+    "judgment_basis": "metadata only (title, description, channel, caption list); not watched — substantive judgments unverified",
+    "proposed_by": "claude-opus-5-5 (AI proposal)",
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null,
+    "shelves": [],
+    "band": "collection-candidate",
+    "proposed_at": "2026-10-20T02:03:42Z"
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:56:18Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": true,
+    "caption_languages": [
+      "en"
+    ],
+    "last_checked_at": "2026-10-20T02:11:39Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:35Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"ActivityPub\""
+    },
+    {
+      "at": "2026-10-20T01:56:19Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    },
+    {
+      "at": "2026-10-20T02:03:42Z",
+      "from": "verified",
+      "to": "reviewed",
+      "by": "claude-opus-5-5 (AI proposal)",
+      "note": "proposed score 79"
+    }
+  ]
+}

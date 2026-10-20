@@ -1,0 +1,94 @@
+{
+  "id": "video.fraxoweb.com__dd9f95fa-dc91-425d-9c3e-8d4f5ce03ef2",
+  "source": {
+    "video_url": "https://video.fraxoweb.com/videos/watch/dd9f95fa-dc91-425d-9c3e-8d4f5ce03ef2",
+    "video_uuid": "dd9f95fa-dc91-425d-9c3e-8d4f5ce03ef2",
+    "channel_actor_uri": "https://video.fraxoweb.com/video-channels/frankring",
+    "instance_host": "video.fraxoweb.com",
+    "title": "How I Do Journaling for Self-Improvement With an Evernote Journal Online",
+    "creator_display_name": "Frank",
+    "channel_handle": "frankring@video.fraxoweb.com",
+    "license": "Public Domain Dedication",
+    "language": "en",
+    "duration_s": 1803,
+    "original_published_at": "2026-05-05T01:01:24.340Z",
+    "description": "▬ THANK YOU FOR WATCHING ▬ 👍 LIKE the video if it was valuable to you. 💬 COMMENT to share your thoughts and questions. ✅ SUBSCRIBE to the channel for more valuable content. 🖥️ JOIN THE STREAM to see exactly what I'm doing. 🔔 ENABLE THE BELL for new content notifications. ▬ ABOUT ME ▬ Hey, what's up? I'm Frank, a content creator focused on print-on-demand, gaming, using Canadian technologies that prioritize privacy, community, and digital sovereignty. 🌐 WEBSITE: https://fraxoweb.com 💬 SOCIALS: https://fraxoweb.com/socials ⭐ DONATE: https://fraxoweb.com/donate Original upload: Dec 14, 2022",
+    "tags": [
+      "Digital Journaling",
+      "Evernote Journaling",
+      "Evernote Workflow",
+      "Personal Growth",
+      "Self Improvement Tips"
+    ],
+    "category": "Education",
+    "views": 0
+  },
+  "discovery": {
+    "query": "digital self defense",
+    "collection_hint": "hack-the-planet",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:21Z"
+  },
+  "editorial": {
+    "status": "rejected",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": "claude-opus-5-5 (AI proposal)",
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": "off-topic: journaling software tutorial",
+    "proposed_at": "2026-10-20T02:03:42Z"
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:56:42Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:12:04Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:21Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"digital self defense\""
+    },
+    {
+      "at": "2026-10-20T01:56:42Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    },
+    {
+      "at": "2026-10-20T02:03:42Z",
+      "from": "verified",
+      "to": "rejected",
+      "by": "claude-opus-5-5 (AI proposal)",
+      "note": "off-topic: journaling software tutorial"
+    }
+  ]
+}

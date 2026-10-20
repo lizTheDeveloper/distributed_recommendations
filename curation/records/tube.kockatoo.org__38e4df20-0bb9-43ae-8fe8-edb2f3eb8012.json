@@ -1,0 +1,109 @@
+{
+  "id": "tube.kockatoo.org__38e4df20-0bb9-43ae-8fe8-edb2f3eb8012",
+  "source": {
+    "video_url": "https://tube.kockatoo.org/videos/watch/38e4df20-0bb9-43ae-8fe8-edb2f3eb8012",
+    "video_uuid": "38e4df20-0bb9-43ae-8fe8-edb2f3eb8012",
+    "channel_actor_uri": "https://tube.kockatoo.org/video-channels/flintandsilicon",
+    "instance_host": "tube.kockatoo.org",
+    "title": "What Even Is Public Interest Technology?",
+    "creator_display_name": "Flint & Silicon",
+    "channel_handle": "flintandsilicon@tube.kockatoo.org",
+    "license": null,
+    "language": "en",
+    "duration_s": 2135,
+    "original_published_at": "2024-10-20T22:00:00.000Z",
+    "description": "It's difficult to fund technology we give away for free. But is all tech worth funding? Who should fund it, and why? 🌐 https://ergaster.org/podcast",
+    "tags": [],
+    "category": "Unknown",
+    "views": 6
+  },
+  "discovery": {
+    "query": "public interest technology",
+    "collection_hint": "the-machine-is-political",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:32Z"
+  },
+  "editorial": {
+    "status": "reviewed",
+    "primary_collection": "the-machine-is-political",
+    "secondary_collections": [
+      "build-your-own-future"
+    ],
+    "difficulty": "intermediate",
+    "format": "interview",
+    "learning_intents": [
+      "understand",
+      "critique"
+    ],
+    "evidence_class": "practitioner-experience",
+    "tags": [
+      "public-interest-technology",
+      "funding",
+      "open-source"
+    ],
+    "why_selected": "Grant makers and builders debate who should fund technology that's given away for free, and which tech deserves public money.",
+    "learning_outcomes": [
+      "How public-interest technology is funded today",
+      "The tensions between grants, volunteers and sustainability"
+    ],
+    "try_next": "Find out who funds one open-source project you depend on.",
+    "context_note": null,
+    "ratings": {
+      "usefulness": 4,
+      "rigor": 3,
+      "mission": 5,
+      "distinctiveness": 4,
+      "accessibility": 3,
+      "currency": 4
+    },
+    "score": 77,
+    "judgment_basis": "metadata only (title, description, channel, caption list); not watched — substantive judgments unverified",
+    "proposed_by": "claude-opus-5-5 (AI proposal)",
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null,
+    "shelves": [],
+    "band": "collection-candidate",
+    "proposed_at": "2026-10-20T02:03:42Z"
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:55:42Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:10:03Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:32Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"public interest technology\""
+    },
+    {
+      "at": "2026-10-20T01:55:43Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    },
+    {
+      "at": "2026-10-20T02:03:42Z",
+      "from": "verified",
+      "to": "reviewed",
+      "by": "claude-opus-5-5 (AI proposal)",
+      "note": "proposed score 77"
+    }
+  ]
+}

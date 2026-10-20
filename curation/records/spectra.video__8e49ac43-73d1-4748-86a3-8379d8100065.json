@@ -1,0 +1,96 @@
+{
+  "id": "spectra.video__8e49ac43-73d1-4748-86a3-8379d8100065",
+  "source": {
+    "video_url": "https://spectra.video/videos/watch/8e49ac43-73d1-4748-86a3-8379d8100065",
+    "video_uuid": "8e49ac43-73d1-4748-86a3-8379d8100065",
+    "channel_actor_uri": "https://spectra.video/video-channels/lizardguystreamarchive",
+    "instance_host": "spectra.video",
+    "title": "Lizardguy's Transistor Stream 2",
+    "creator_display_name": "Lizardguy's Stream Archive",
+    "channel_handle": "lizardguystreamarchive@spectra.video",
+    "license": "CC BY-SA 4.0",
+    "language": "en",
+    "duration_s": 6703,
+    "original_published_at": "2026-01-14T16:51:46.919Z",
+    "description": "Huh, short game. Fun though, gonna have to get through some NG+ stuff off stream though. Anywho, we beat the game, I'm still unsure of what the process is, but it seems like it was used to alter the city right down to the weather, and what happened in this game was merely it going out of control. Thankfully we got the exact tool in this game that can stop it. I won't spoil the ending, you have to watch this or play. BTW, if you wanna see these live, go here https://www.twitch.tv/lizardguy3 I go live 8:00pm EST on Moday, Tuesday, Thursday, Friday, and Sunday. As a reminder, I take ko-fi donations if you want to support my attempts to entertain. https://ko-fi.com/lizardguy And follow my Bluesky https://bsky.app/profile/lizardguy64.bsky.social or my Pillowfort https://www.pillowfort.social/Lizardguy64",
+    "tags": [
+      "Archive",
+      "Gaming",
+      "Stream",
+      "TRansistor",
+      "Vtuber"
+    ],
+    "category": "Gaming",
+    "views": 5
+  },
+  "discovery": {
+    "query": "right to the city",
+    "collection_hint": "reclaim-the-city",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:43Z"
+  },
+  "editorial": {
+    "status": "rejected",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": "claude-opus-5-5 (AI proposal)",
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": "off-topic for its collection (keyword match only)",
+    "proposed_at": "2026-10-20T02:03:42Z"
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:55:21Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": true,
+    "caption_languages": [
+      "en"
+    ],
+    "last_checked_at": "2026-10-20T02:09:44Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:43Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"right to the city\""
+    },
+    {
+      "at": "2026-10-20T01:55:21Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    },
+    {
+      "at": "2026-10-20T02:03:42Z",
+      "from": "verified",
+      "to": "rejected",
+      "by": "claude-opus-5-5 (AI proposal)",
+      "note": "off-topic for its collection (keyword match only)"
+    }
+  ]
+}

@@ -1,0 +1,110 @@
+{
+  "id": "peertube.opencloud.lu__d683ebd8-49c8-4d8e-a410-c8391e26450f",
+  "source": {
+    "video_url": "https://peertube.opencloud.lu/videos/watch/d683ebd8-49c8-4d8e-a410-c8391e26450f",
+    "video_uuid": "d683ebd8-49c8-4d8e-a410-c8391e26450f",
+    "channel_actor_uri": "https://peertube.opencloud.lu/video-channels/misptraining",
+    "instance_host": "peertube.opencloud.lu",
+    "title": "Utilising MISP Into Your Incident Response Plan - Dennis Rand",
+    "creator_display_name": "MISP training and workshops",
+    "channel_handle": "misptraining@peertube.opencloud.lu",
+    "license": "Attribution",
+    "language": "en",
+    "duration_s": 698,
+    "original_published_at": "2019-10-20T22:00:00.000Z",
+    "description": "Video production by the excellent @Ministraitor (https://twitter.com/Ministraitor)",
+    "tags": [
+      "Hack.lu 2019",
+      "MISP"
+    ],
+    "category": "Science & Technology",
+    "views": 4
+  },
+  "discovery": {
+    "query": "incident response",
+    "collection_hint": "hack-the-planet",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:26Z"
+  },
+  "editorial": {
+    "status": "reviewed",
+    "primary_collection": "hack-the-planet",
+    "secondary_collections": [],
+    "difficulty": "intermediate",
+    "format": "lecture",
+    "learning_intents": [
+      "defend",
+      "organize"
+    ],
+    "evidence_class": "practitioner-experience",
+    "tags": [
+      "incident-response",
+      "threat-intelligence",
+      "misp"
+    ],
+    "why_selected": "A talk from CIRCL's MISP training channel on putting the open-source MISP threat-intelligence platform to work inside an incident response plan.",
+    "learning_outcomes": [
+      "What a threat-intelligence platform contributes during an incident",
+      "How shared indicators fit an IR playbook"
+    ],
+    "try_next": "Read your organization's incident response plan (or draft one) and mark where outside threat intel would help.",
+    "context_note": null,
+    "ratings": {
+      "usefulness": 4,
+      "rigor": 4,
+      "mission": 3,
+      "distinctiveness": 4,
+      "accessibility": 2,
+      "currency": 3
+    },
+    "score": 70,
+    "judgment_basis": "metadata only (title, description, channel, caption list); not watched — substantive judgments unverified",
+    "proposed_by": "claude-opus-5-5 (AI proposal)",
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null,
+    "shelves": [],
+    "band": "collection-candidate",
+    "proposed_at": "2026-10-20T02:03:42Z"
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "official-link-verified",
+    "verified_at": "2026-10-20T01:55:02Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:09:13Z",
+    "identity_evidence": "https://www.circl.lu/services/misp-training-materials/ links to peertube.opencloud.lu",
+    "publisher": "CIRCL (MISP Project)"
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:26Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"incident response\""
+    },
+    {
+      "at": "2026-10-20T01:55:03Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    },
+    {
+      "at": "2026-10-20T02:03:42Z",
+      "from": "verified",
+      "to": "reviewed",
+      "by": "claude-opus-5-5 (AI proposal)",
+      "note": "proposed score 70"
+    }
+  ]
+}

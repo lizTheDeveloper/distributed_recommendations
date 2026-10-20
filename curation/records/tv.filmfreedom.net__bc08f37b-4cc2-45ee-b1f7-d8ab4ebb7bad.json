@@ -1,0 +1,86 @@
+{
+  "id": "tv.filmfreedom.net__bc08f37b-4cc2-45ee-b1f7-d8ab4ebb7bad",
+  "source": {
+    "video_url": "https://tv.filmfreedom.net/videos/watch/bc08f37b-4cc2-45ee-b1f7-d8ab4ebb7bad",
+    "video_uuid": "bc08f37b-4cc2-45ee-b1f7-d8ab4ebb7bad",
+    "channel_actor_uri": "https://tv.filmfreedom.net/video-channels/lunatics_reports",
+    "instance_host": "tv.filmfreedom.net",
+    "title": "Video Log 2024-10-24: Experimental Projects, Bendy Bones, and Sequence Review",
+    "creator_display_name": "Lunatics Project Reports",
+    "channel_handle": "lunatics_reports@tv.filmfreedom.net",
+    "license": "CC BY-SA 4.0",
+    "language": "en",
+    "duration_s": 1889,
+    "original_published_at": "2024-10-25T13:50:10.829Z",
+    "description": "It's been over a month since the last report, so there's a lot in this one. 00:00 Intro 00:23 Static Website Migration Review 01:13 Content Security Policy issues (fixed already?) 03:24 Rationale for Monthly Experimental Projects 05:08 [The Impossible Voyage](https://tv.filmfreedom.net/w/26URzTwcZgU8wyVMjeruqa) \"Techno+FX Edition\" Soundtrack 07:31 [Raven Rap](https://tv.filmfreedom.net/w/bMCjxAzLR6mgsivjYfhhWS) 13:58 Possibilities for November / 2D Animation Packages ([Synfig](https://www.synfig.org/), [OpenToonz](https://opentoonz.github.io/e/)). 17:12 [Foley](https://en.wikipedia.org/wiki/Foley_(filmmaking)), [Digital Foley](https://en.wikipedia.org/wiki/Lon_Bender#Digital_Foley_System_%28DFS%29), and [Hydrogen](http://hydrogen-music.org/) 19:51 Lunatics Project Progress 20:00 PLSS Control Panel Animation & Camera Movement 21:00 Context in Suiting Up sequence 21:39 Velcro Strap and Bendy Bone Rig 22:49 Dissatisfaction with Suiting Up sequence (Problems to solve) 24:50 Train Sequence problems to solve 26:08 Press Conference lipsync animation missing 26:47 LA & SF Interior Soyuz animation 27:46 Episode run-length 29:04 Conclusions 31:20 Red berries on the vine in Fall See also my [Production Log Post on Experimental Projects](https://lunaticsproject.org/2024/10/24/two-experimental-productions-for-october/).",
+    "tags": [
+      "Animation",
+      "FilmFreedom",
+      "LunaticsProject",
+      "OpenFilm",
+      "VideoLog"
+    ],
+    "category": "Unknown",
+    "views": 31
+  },
+  "discovery": {
+    "query": "experimental animation",
+    "collection_hint": "the-weird-internet",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:54Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:56:20Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:11:42Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:54Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"experimental animation\""
+    },
+    {
+      "at": "2026-10-20T01:56:20Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

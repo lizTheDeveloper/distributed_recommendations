@@ -1,0 +1,86 @@
+{
+  "id": "digitalcourage.video__178f58f7-4f35-47dd-be2e-32984d7d694a",
+  "source": {
+    "video_url": "https://digitalcourage.video/videos/watch/178f58f7-4f35-47dd-be2e-32984d7d694a",
+    "video_uuid": "178f58f7-4f35-47dd-be2e-32984d7d694a",
+    "channel_actor_uri": "https://digitalcourage.video/video-channels/fake_intelligence",
+    "instance_host": "digitalcourage.video",
+    "title": "The AI series: AI and Surveillance Capitalism | Studio B: Unscripted",
+    "creator_display_name": "Fake Intelligence",
+    "channel_handle": "fake_intelligence@digitalcourage.video",
+    "license": null,
+    "language": "en",
+    "duration_s": 2929,
+    "original_published_at": "2024-02-21T23:00:00.000Z",
+    "description": "In the final episode of the AI series with Maria Ressa, we meet two women on the front lines of the battle to make artificial intelligence accountable. Camille Francois is a researcher specialising in combatting disinformation and digital harms. Nowadays she is helping lead French President Emmanuel Macron’s initiative on AI and democracy. Nominated as one of Time’s 100 most influential people in AI, Meredith Whittaker has campaigned against surveillance and data bias. She is the president of Signal, a secure messaging app. Camille and Meredith discuss the very real dangers unchecked AI poses to democracy and how to make technology fairer and more responsible. Subscribe to our channel http://bit.ly/AJSubscribe Follow us on Twitter https://twitter.com/AJEnglish Find us on Facebook https://www.facebook.com/aljazeera Check our website: https://www.aljazeera.com/ Check out our Instagram page: https://www.instagram.com/aljazeeraenglish/ Download AJE Mobile App: https://aje.io/AJEMobile @AljazeeraEnglish #Aljazeeraenglish #News source: https://youtu.be/iLzQXWq_Sp0",
+    "tags": [
+      "Al Jazeera",
+      "Al Jazeera English",
+      "Artificial Intelligence",
+      "Maria Ressa",
+      "Politics"
+    ],
+    "category": "Science & Technology",
+    "views": 245
+  },
+  "discovery": {
+    "query": "surveillance capitalism",
+    "collection_hint": "the-machine-is-political",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:28Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:53:19Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:07:02Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:28Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"surveillance capitalism\""
+    },
+    {
+      "at": "2026-10-20T01:53:20Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

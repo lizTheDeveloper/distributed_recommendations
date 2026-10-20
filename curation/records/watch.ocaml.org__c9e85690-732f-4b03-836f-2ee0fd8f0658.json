@@ -1,0 +1,83 @@
+{
+  "id": "watch.ocaml.org__c9e85690-732f-4b03-836f-2ee0fd8f0658",
+  "source": {
+    "video_url": "https://watch.ocaml.org/videos/watch/c9e85690-732f-4b03-836f-2ee0fd8f0658",
+    "video_uuid": "c9e85690-732f-4b03-836f-2ee0fd8f0658",
+    "channel_actor_uri": "https://watch.ocaml.org/video-channels/ocaml2020",
+    "instance_host": "watch.ocaml.org",
+    "title": "AD-OCaml: Algorithmic Differentiation for OCaml",
+    "creator_display_name": "OCaml Workshop 2020",
+    "channel_handle": "ocaml2020@watch.ocaml.org",
+    "license": null,
+    "language": null,
+    "duration_s": 1093,
+    "original_published_at": "2020-08-28T00:00:00.000Z",
+    "description": "AD-OCaml is a library framework for calculating mathematically exact derivatives and deep power series approximations of almost arbitrary OCaml programs via algorithmic differentiation. Unlike similar frameworks, this includes programs with side effects, aliasing, and programs with nested derivative operators. The framework also offers implicit parallelization of both user programs and their transformations. The presentation will provide a short introduction to the mathematical problem, the difficulties of implementing a solution, the design of the library, and a demonstration of its capabilities.",
+    "tags": [],
+    "category": "Unknown",
+    "views": 57
+  },
+  "discovery": {
+    "query": "algorithmic accountability",
+    "collection_hint": "the-machine-is-political",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:27Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:57:36Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": true,
+    "caption_languages": [
+      "en",
+      "fr"
+    ],
+    "last_checked_at": "2026-10-20T02:12:51Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:27Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"algorithmic accountability\""
+    },
+    {
+      "at": "2026-10-20T01:57:39Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

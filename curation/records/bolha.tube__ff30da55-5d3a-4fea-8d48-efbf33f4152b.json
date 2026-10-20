@@ -1,0 +1,86 @@
+{
+  "id": "bolha.tube__ff30da55-5d3a-4fea-8d48-efbf33f4152b",
+  "source": {
+    "video_url": "https://bolha.tube/videos/watch/ff30da55-5d3a-4fea-8d48-efbf33f4152b",
+    "video_uuid": "ff30da55-5d3a-4fea-8d48-efbf33f4152b",
+    "channel_actor_uri": "https://bolha.tube/video-channels/bolhaverso",
+    "instance_host": "bolha.tube",
+    "title": "Grupo de estudos do ActivityPub, primeira sessão",
+    "creator_display_name": "Bolhaverso",
+    "channel_handle": "bolhaverso@bolha.tube",
+    "license": "Attribution - Non Commercial - Share Alike",
+    "language": "pt",
+    "duration_s": 2050,
+    "original_published_at": "2026-02-05T23:40:40.777Z",
+    "description": "Esse é o vídeo do primeiro encontro de estudo de ActivityPub organizado pelo Bolhaverso. A partir daqui teremos novos encontros sobre esse tema.",
+    "tags": [
+      "activitypub",
+      "bolhaverso",
+      "fediverso",
+      "isacloud",
+      "mastodon"
+    ],
+    "category": "Science & Technology",
+    "views": 65
+  },
+  "discovery": {
+    "query": "ActivityPub",
+    "collection_hint": "build-your-own-future",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:35Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:53:05Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:06:54Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:35Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"ActivityPub\""
+    },
+    {
+      "at": "2026-10-20T01:53:12Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

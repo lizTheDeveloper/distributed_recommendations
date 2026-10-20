@@ -1,0 +1,86 @@
+{
+  "id": "peertube.eqver.se__9b12bbd4-04e8-44f3-b2ba-5c9f219e8d07",
+  "source": {
+    "video_url": "https://peertube.eqver.se/videos/watch/9b12bbd4-04e8-44f3-b2ba-5c9f219e8d07",
+    "video_uuid": "9b12bbd4-04e8-44f3-b2ba-5c9f219e8d07",
+    "channel_actor_uri": "https://peertube.eqver.se/video-channels/eqtv_english",
+    "instance_host": "peertube.eqver.se",
+    "title": "Boris Kozlovsky, “The New Media & the Old Lies”",
+    "creator_display_name": "eQtv in English",
+    "channel_handle": "eqtv_english@peertube.eqver.se",
+    "license": null,
+    "language": "en",
+    "duration_s": 5264,
+    "original_published_at": "2026-05-20T23:59:27.112Z",
+    "description": "Public lecture by Borislav Kozlovsky, science journalist, programmer, translator, and author of the book published in August 2018 “Maximum Repost: How Social Media Makes Us Believe Fake News.” Kozlovsky discusses the nature of fakes and why people believe them. He explains that the problem is not only in the fakes themselves but also in how the human brain works: people tend to remember information that confirms their views and forget refutations, while social networks create “bubbles” isolating people from opposing opinions. The lecture shows that susceptibility to fakes is linked to innate psychological traits and political beliefs, and fighting misinformation requires understanding these mechanisms, not just providing facts. Lecture date: October 25, 2018",
+    "tags": [
+      "fake news",
+      "media_literacy",
+      "misinformation",
+      "rights&media",
+      "social networks"
+    ],
+    "category": "Science & Technology",
+    "views": 0
+  },
+  "discovery": {
+    "query": "media literacy",
+    "collection_hint": "the-machine-is-political",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:31Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:54:47Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:08:58Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:31Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"media literacy\""
+    },
+    {
+      "at": "2026-10-20T01:54:48Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

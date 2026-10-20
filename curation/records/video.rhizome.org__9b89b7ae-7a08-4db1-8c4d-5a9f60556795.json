@@ -1,0 +1,107 @@
+{
+  "id": "video.rhizome.org__9b89b7ae-7a08-4db1-8c4d-5a9f60556795",
+  "source": {
+    "video_url": "https://video.rhizome.org/videos/watch/9b89b7ae-7a08-4db1-8c4d-5a9f60556795",
+    "video_uuid": "9b89b7ae-7a08-4db1-8c4d-5a9f60556795",
+    "channel_actor_uri": "https://video.rhizome.org/video-channels/net_art_anthology_events",
+    "instance_host": "video.rhizome.org",
+    "title": "Net Art Anthology: Distribution and Disappearance After 9/11",
+    "creator_display_name": "Net Art Anthology events",
+    "channel_handle": "net_art_anthology_events@video.rhizome.org",
+    "license": null,
+    "language": "en",
+    "duration_s": 5054,
+    "original_published_at": "2017-11-15T00:00:00.000Z",
+    "description": "Marking the conclusion of Chapter Two of Net Art Anthology, this presentation and discussion convenes artists and scholars to revisit the network culture that emerged in the post-9/11 moment and its relevance for artists. The 9/11 attacks were a pivotal moment in the internet’s role in public life in the US, one of the first times that a national tragedy would be consumed and processed online at such a massive scale. In this context, a number of contemporary artists began to grapple with the ways in which content had begun to acquire meaning and power through its circulation in this emerging network, even as it was subject to endless duplication, deterioration, and manipulation. They sought ways to intervene in this complex ensemble, harnessing its capacity to produce and propagate meaning and exploring its blind spots and limitations. Together, these works reflect a moment in which artists were beginning to reckon with the internet as a pervasive social and cultural force, setting up lines of inquiry that remain equally urgent in the present. Following a screening of Seth Price’s Rejected or Unused Clips, Arranged in Order of Importance (2003), David Joselit explores Price’s approach to image circulation as articulated in his seminal work Dispersion (2002-ongoing.) Rhizome’s Assistant Curator of Net Art Aria Dean presents William Pope.L’s work Distributing Martin (2000-2005) followed by Mariam Ghani presents How to See the Disappeared: A warm database (a 2004 collaboration …",
+    "tags": [],
+    "category": "Unknown",
+    "views": 15
+  },
+  "discovery": {
+    "query": "net art",
+    "collection_hint": "the-weird-internet",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:55Z"
+  },
+  "editorial": {
+    "status": "reviewed",
+    "primary_collection": "the-weird-internet",
+    "secondary_collections": [],
+    "difficulty": "intermediate",
+    "format": "debate",
+    "learning_intents": [
+      "understand",
+      "critique"
+    ],
+    "evidence_class": "research-backed",
+    "tags": [
+      "net-art",
+      "history"
+    ],
+    "why_selected": "Rhizome's Net Art Anthology on distribution and disappearance after 9/11: how net art changed as the web did. Captioned.",
+    "learning_outcomes": [
+      "How early-2000s net art responded to a changing internet"
+    ],
+    "try_next": "Browse Rhizome's Net Art Anthology and pick one work that still runs.",
+    "context_note": null,
+    "ratings": {
+      "usefulness": 3,
+      "rigor": 4,
+      "mission": 4,
+      "distinctiveness": 5,
+      "accessibility": 4,
+      "currency": 3
+    },
+    "score": 75,
+    "judgment_basis": "metadata only (title, description, channel, caption list); not watched — substantive judgments unverified",
+    "proposed_by": "claude-opus-5-5 (AI proposal)",
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null,
+    "shelves": [],
+    "band": "collection-candidate",
+    "proposed_at": "2026-10-20T02:03:42Z"
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:57:13Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": true,
+    "caption_languages": [
+      "en"
+    ],
+    "last_checked_at": "2026-10-20T02:12:32Z",
+    "identity_evidence": "rhizome.org homepage has no link to video.rhizome.org",
+    "publisher": "Rhizome (claimed)"
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:55Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"net art\""
+    },
+    {
+      "at": "2026-10-20T01:57:13Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    },
+    {
+      "at": "2026-10-20T02:03:42Z",
+      "from": "verified",
+      "to": "reviewed",
+      "by": "claude-opus-5-5 (AI proposal)",
+      "note": "proposed score 75"
+    }
+  ]
+}

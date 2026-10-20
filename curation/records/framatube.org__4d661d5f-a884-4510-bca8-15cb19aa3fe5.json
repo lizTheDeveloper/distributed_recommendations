@@ -1,0 +1,87 @@
+{
+  "id": "framatube.org__4d661d5f-a884-4510-bca8-15cb19aa3fe5",
+  "source": {
+    "video_url": "https://framatube.org/videos/watch/4d661d5f-a884-4510-bca8-15cb19aa3fe5",
+    "video_uuid": "4d661d5f-a884-4510-bca8-15cb19aa3fe5",
+    "channel_actor_uri": "https://framatube.org/video-channels/bf54d359-cfad-4935-9d45-9d6be93f63e8",
+    "instance_host": "framatube.org",
+    "title": "Alternatives aux GAFAM Samuel CHENAL Itopie EspacedickensTV",
+    "creator_display_name": "Les vidéos de Framasoft",
+    "channel_handle": "bf54d359-cfad-4935-9d45-9d6be93f63e8@framatube.org",
+    "license": "Attribution",
+    "language": "fr",
+    "duration_s": 1315,
+    "original_published_at": "2019-02-08T19:17:24.221Z",
+    "description": "11.10.2018 18h30 – 22h00 QUELLES ALTERNATIVES AUX MULTINATIONALES DU NUMÉRIQUE ? DES SERVICES WEB LIBRES, ÉCOLOGIQUES, SOUVERAINS ET JUSTES SONT-ILS POSSIBLES ? Conférence-débat Les individus, la société civile, mais également les acteurs économiques et les collectivités publiques sont de plus souvent amenés à utiliser des services informatiques externes pour sauvegarder, partager ou encore co-construire de l'information. Cette information est stockée dans le \"nuage\", des serveurs aux mains de multinationales qui ne respectent ni les lois (fiscalité, transparence), ni les principes techniques de sobriété énergétique, de décentralisation, d'interopérabilité qui permettraient d'envisager une transition écologique juste. À l'instar du concept de souveraineté alimentaire, une \"souveraineté technologique\" doit-elle s'imposer et à quelle échelle ? Comment sortir de la dépendance individuelle, mais également géopolitique ? L'association Framasoft propose gratuitement, sur la page https://degooglisons-internet.org, toute une série d'alternatives libres et fonctionnelles permettant de gérer un agenda, créer un sondage, rédiger un document à plusieurs, partager des multimédias, communiquer sur des réseaux sociaux, etc. Nous échangerons sur les raisons qui poussent collectifs et institutions à développer une telle offre, sur sa durabilité et les perspectives de développement du modèle en Suisse romande. Swisslinux.org et Itopie nous éclaireront sur les initiatives en cours et leurs enj…",
+    "tags": [
+      "chatons",
+      "gafam",
+      "itopie",
+      "suisse"
+    ],
+    "category": "Entertainment",
+    "views": 348
+  },
+  "discovery": {
+    "query": "channel bf54d359-cfad-4935-9d45-9d6be93f63e8@framatube.org",
+    "collection_hint": "build-your-own-future",
+    "service": "origin channel listing",
+    "at": "2026-10-20T01:58:57Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "official-link-verified",
+    "verified_at": "2026-10-20T01:59:04Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": true,
+    "caption_languages": [
+      "fr"
+    ],
+    "last_checked_at": "2026-10-20T02:07:23Z",
+    "identity_evidence": "https://framasoft.org/en/ links to framatube.org; these channels are Framasoft's own",
+    "publisher": "Framasoft"
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:58:57Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "channel bf54d359-cfad-4935-9d45-9d6be93f63e8@framatube.org"
+    },
+    {
+      "at": "2026-10-20T01:59:05Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

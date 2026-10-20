@@ -1,0 +1,94 @@
+{
+  "id": "peertube.dsmouse.net__b84cea90-905e-46d5-9cfd-fdb83c290b6d",
+  "source": {
+    "video_url": "https://peertube.dsmouse.net/videos/watch/b84cea90-905e-46d5-9cfd-fdb83c290b6d",
+    "video_uuid": "b84cea90-905e-46d5-9cfd-fdb83c290b6d",
+    "channel_actor_uri": "https://peertube.dsmouse.net/video-channels/infosectalks",
+    "instance_host": "peertube.dsmouse.net",
+    "title": "DEF CON 27 Conference - Stephan Huber - Im on Your Phone Listening Attacking VoIP Config Interfaces",
+    "creator_display_name": "InfoSec Talks",
+    "channel_handle": "infosectalks@peertube.dsmouse.net",
+    "license": "Attribution",
+    "language": null,
+    "duration_s": 2583,
+    "original_published_at": "2019-11-15T00:00:00.000Z",
+    "description": "If toasters talking to fridges is no joke to you, then you are aware of the big Internet of Things hype these days. While all kind of devices get connected and hacked, one of the oldest class of IoT devices seems to be forgotten even though it is literally everywhere - VoIP phones. For configuration and management purposes, VoIP phones run a web application locally on the device. We found several critical bugs (reported CVEs) in the web application as well as in the webserver which enabled us to hijack the phones. Starting with simple XSS and CSRF issues, via command injections and memory corruptions right through to remote code executions, all popular vulnerability classes can be found on those devices. We will present our findings together with the tools and strategies we used, and will enable you to do the same with your own phones and other IoT devices. Further, we will provide helpful ARM shell code patterns, scripts and tricks which hackers can use to find bugs. We will conclude our talk by showing that automatic tools fail to discover such vulnerabilities. Therefore, manual IoT pentesting is still required. If you think these management interfaces are not exposed to the internet, you are wrong. In a scan, we found thousands of reachable phones vulnerable to our exploits. Stephan Huber Stephan is a security researcher at the Testlab mobile security group at the Fraunhofer Institute for Secure Information Technology (SIT). His main focus is Android application security …",
+    "tags": [
+      "cyber security",
+      "DC27",
+      "DEF",
+      "hacker community",
+      "security conference 2019"
+    ],
+    "category": "Science & Technology",
+    "views": 7
+  },
+  "discovery": {
+    "query": "security conference",
+    "collection_hint": "hack-the-planet",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:25Z"
+  },
+  "editorial": {
+    "status": "rejected",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": "claude-opus-5-5 (AI proposal)",
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": "re-upload of a conference recording (DEF CON / KringleCon); not the original publisher",
+    "proposed_at": "2026-10-20T02:03:42Z"
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:54:39Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:08:50Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:25Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"security conference\""
+    },
+    {
+      "at": "2026-10-20T01:54:39Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    },
+    {
+      "at": "2026-10-20T02:03:42Z",
+      "from": "verified",
+      "to": "rejected",
+      "by": "claude-opus-5-5 (AI proposal)",
+      "note": "re-upload of a conference recording (DEF CON / KringleCon); not the original publisher"
+    }
+  ]
+}

@@ -1,0 +1,85 @@
+{
+  "id": "videos.domainepublic.net__8a5caf85-9788-47cc-bc65-74df6731cf7c",
+  "source": {
+    "video_url": "https://videos.domainepublic.net/videos/watch/8a5caf85-9788-47cc-bc65-74df6731cf7c",
+    "video_uuid": "8a5caf85-9788-47cc-bc65-74df6731cf7c",
+    "channel_actor_uri": "https://videos.domainepublic.net/video-channels/titipi_channel",
+    "instance_host": "videos.domainepublic.net",
+    "title": "How Big Tech companies captured our public health system",
+    "creator_display_name": "TITiPI",
+    "channel_handle": "titipi_channel@videos.domainepublic.net",
+    "license": null,
+    "language": null,
+    "duration_s": 2857,
+    "original_published_at": "2022-05-17T22:00:00.000Z",
+    "description": "This video is part of a monthly series on the securitisation of health. Watch all videos here: https://www.youtube.com/playlist?list=PL6JRfkdlcGYWFO9hdjtk9ISAMbrHCHfqY Social security privatization is a long-standing global trend. But in the wake of the pandemic and through the introduction of contact tracing apps, Big Tech has gone one step further: Disguised as healthcare innovation, large corporations like Amazon, Microsoft, and Google are now set to control the very infrastructure that underlies our public health system. In this eye-opening discussion, Arun Kundnani interviews Dr Seda Gürses about the dangers of a system in which we depend on profit-oriented companies for receiving basic health services. How did we get to this point, and how can we imagine a different future? Dr Seda Gürses is an Associate Professor at TU Delft and an affiliate at KU Leuven. Her work focuses on privacy enhancing and protective optimization technologies, privacy engineering, as well as questions around software infrastructures, social justice and political economy as they intersect with computer science. Arun Kundnani is a TNI associate and author of The Muslims are Coming! Islamophobia, extremism, and the domestic War on Terror. 00:00 - Power grabbing disguised as healthcare innovation 09:24 - Big Tech's Power increasing 12:25 - How are large companies taking over the infrastructure of our healthcare systems? 18:23 - The social consequences of cloud computing 22:15 - Governments and big …",
+    "tags": [
+      "yt:cc=on"
+    ],
+    "category": "News & Politics",
+    "views": 2
+  },
+  "discovery": {
+    "query": "public interest technology",
+    "collection_hint": "the-machine-is-political",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:32Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:57:18Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": true,
+    "caption_languages": [
+      "en",
+      "es"
+    ],
+    "last_checked_at": "2026-10-20T02:12:36Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:32Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"public interest technology\""
+    },
+    {
+      "at": "2026-10-20T01:57:18Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

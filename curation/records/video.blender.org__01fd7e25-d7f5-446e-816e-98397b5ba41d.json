@@ -1,0 +1,84 @@
+{
+  "id": "video.blender.org__01fd7e25-d7f5-446e-816e-98397b5ba41d",
+  "source": {
+    "video_url": "https://video.blender.org/videos/watch/01fd7e25-d7f5-446e-816e-98397b5ba41d",
+    "video_uuid": "01fd7e25-d7f5-446e-816e-98397b5ba41d",
+    "channel_actor_uri": "https://video.blender.org/video-channels/blender_channel",
+    "instance_host": "video.blender.org",
+    "title": "Procedural fantasy city creation using Geometry Nodes",
+    "creator_display_name": "Blender",
+    "channel_handle": "blender_channel@video.blender.org",
+    "license": null,
+    "language": null,
+    "duration_s": 1386,
+    "original_published_at": "2022-10-29T14:25:32.745Z",
+    "description": "\"Procedural fantasy city creation using Geometry Nodes\" by Emilis Baltrusaitis Blender Conference 2022 2022-10-29 10:00 at the theater.",
+    "tags": [
+      "b3d",
+      "bcon22",
+      "blender"
+    ],
+    "category": "Unknown",
+    "views": 58
+  },
+  "discovery": {
+    "query": "procedural narrative",
+    "collection_hint": "the-weird-internet",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:54Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "official-link-verified",
+    "verified_at": "2026-10-20T01:56:32Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:11:54Z",
+    "identity_evidence": "https://www.blender.org/ links to video.blender.org",
+    "publisher": "Blender"
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:54Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"procedural narrative\""
+    },
+    {
+      "at": "2026-10-20T01:56:33Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

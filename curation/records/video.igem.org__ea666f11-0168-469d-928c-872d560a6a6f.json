@@ -1,0 +1,80 @@
+{
+  "id": "video.igem.org__ea666f11-0168-469d-928c-872d560a6a6f",
+  "source": {
+    "video_url": "https://video.igem.org/videos/watch/ea666f11-0168-469d-928c-872d560a6a6f",
+    "video_uuid": "ea666f11-0168-469d-928c-872d560a6a6f",
+    "channel_actor_uri": "https://video.igem.org/video-channels/2024_teams",
+    "instance_host": "video.igem.org",
+    "title": "Austin-utexas: Street Science: Community Science Dialogues (2024) [English]",
+    "creator_display_name": "2024 Teams",
+    "channel_handle": "2024_teams@video.igem.org",
+    "license": "Attribution",
+    "language": "en",
+    "duration_s": 393,
+    "original_published_at": "2024-10-01T09:05:45.407Z",
+    "description": "UT Austin iGEM members engaged in a two-way dialogue about synthetic biology, celiac disease, and GMOs. Video editing: Rosie Du, Ariana Hernandez Wiki: https://2024.igem.wiki/austin-utexas/",
+    "tags": [],
+    "category": "Education",
+    "views": 19
+  },
+  "discovery": {
+    "query": "community science",
+    "collection_hint": "reclaim-the-city",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:43Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:56:51Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:12:12Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:43Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"community science\""
+    },
+    {
+      "at": "2026-10-20T01:56:52Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

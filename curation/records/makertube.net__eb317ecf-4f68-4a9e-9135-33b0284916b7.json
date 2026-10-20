@@ -1,0 +1,111 @@
+{
+  "id": "makertube.net__eb317ecf-4f68-4a9e-9135-33b0284916b7",
+  "source": {
+    "video_url": "https://makertube.net/videos/watch/eb317ecf-4f68-4a9e-9135-33b0284916b7",
+    "video_uuid": "eb317ecf-4f68-4a9e-9135-33b0284916b7",
+    "channel_actor_uri": "https://makertube.net/video-channels/ncot_technology",
+    "instance_host": "makertube.net",
+    "title": "DIY Solar PV Installation - Can it save me money?",
+    "creator_display_name": "NCoT Technology",
+    "channel_handle": "ncot_technology@makertube.net",
+    "license": null,
+    "language": "en",
+    "duration_s": 766,
+    "original_published_at": "2023-05-16T00:00:00.000Z",
+    "description": "Can I put a solar panel on the roof of my shed and use it to power my server farm, or will I just waste all my money? Our energy prices are ridiculous and even taking into account recent \"world events\" I find it hard to understand why electricity is so expensive. So I figured I'd try to do something about it by installing my own battery and solar system on my shed. The idea being to power my servers from the sun. After doing a bit of research I decided a 300W panel, 2Ah of lead acid AGM batteries and a hybrid inverter. This is based off the idea that * My server setup uses 100W of power constantly * I have an energy tariff that gives me 7.5p/kWh for four hours at night and 38p during the remaining 20 hours of the day So if I can avoid using expensive peak rate electricity, I can charge the system up at night, then use solar to maintain the batteries during the day, hopefully giving me enough power to last the evening. This should save me about £22 a month if the system works.",
+    "tags": [],
+    "category": "Science & Technology",
+    "views": 19
+  },
+  "discovery": {
+    "query": "solar DIY",
+    "collection_hint": "strange-machines",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:48Z"
+  },
+  "editorial": {
+    "status": "reviewed",
+    "primary_collection": "strange-machines",
+    "secondary_collections": [
+      "reclaim-the-city"
+    ],
+    "difficulty": "beginner",
+    "format": "demonstration",
+    "learning_intents": [
+      "build",
+      "understand"
+    ],
+    "evidence_class": "practitioner-experience",
+    "tags": [
+      "solar",
+      "diy",
+      "energy"
+    ],
+    "why_selected": "An honest DIY test: can one solar panel on a shed roof run a home server rack, or does it just cost money?",
+    "learning_outcomes": [
+      "How to size a small solar setup against a real load",
+      "Where DIY solar does and doesn't pay off"
+    ],
+    "try_next": "Measure what one device you leave on all the time actually draws.",
+    "context_note": null,
+    "ratings": {
+      "usefulness": 4,
+      "rigor": 3,
+      "mission": 4,
+      "distinctiveness": 3,
+      "accessibility": 4,
+      "currency": 4
+    },
+    "score": 73,
+    "judgment_basis": "metadata only (title, description, channel, caption list); not watched — substantive judgments unverified",
+    "proposed_by": "claude-opus-5-5 (AI proposal)",
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null,
+    "shelves": [],
+    "band": "collection-candidate",
+    "proposed_at": "2026-10-20T02:03:42Z"
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:54:06Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": true,
+    "caption_languages": [
+      "en"
+    ],
+    "last_checked_at": "2026-10-20T02:08:09Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:48Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"solar DIY\""
+    },
+    {
+      "at": "2026-10-20T01:54:07Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    },
+    {
+      "at": "2026-10-20T02:03:42Z",
+      "from": "verified",
+      "to": "reviewed",
+      "by": "claude-opus-5-5 (AI proposal)",
+      "note": "proposed score 73"
+    }
+  ]
+}

@@ -1,0 +1,86 @@
+{
+  "id": "peertube.eqver.se__5022a39b-0905-4fa1-bca2-172b34d8d6fc",
+  "source": {
+    "video_url": "https://peertube.eqver.se/videos/watch/5022a39b-0905-4fa1-bca2-172b34d8d6fc",
+    "video_uuid": "5022a39b-0905-4fa1-bca2-172b34d8d6fc",
+    "channel_actor_uri": "https://peertube.eqver.se/video-channels/eqtv_english",
+    "instance_host": "peertube.eqver.se",
+    "title": "Harmful advice: watch this video and do the opposite",
+    "creator_display_name": "eQtv in English",
+    "channel_handle": "eqtv_english@peertube.eqver.se",
+    "license": null,
+    "language": "en",
+    "duration_s": 1398,
+    "original_published_at": "2025-12-13T08:47:39.622Z",
+    "description": "Today and only today you have a unique opportunity to refuse to protect your data once and for all. In this video, we have collected all the most harmful, most terrible cybersecurity tips, following which you are guaranteed to become a victim of hackers, scammers or security forces. Use at your own risk - or do the opposite to stay safe.",
+    "tags": [
+      "defence",
+      "secure communication",
+      "cybersecurity",
+      "password management",
+      "phishing"
+    ],
+    "category": "Science & Technology",
+    "views": 0
+  },
+  "discovery": {
+    "query": "phishing defense",
+    "collection_hint": "hack-the-planet",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:25Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:54:42Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:08:53Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:25Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"phishing defense\""
+    },
+    {
+      "at": "2026-10-20T01:54:43Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

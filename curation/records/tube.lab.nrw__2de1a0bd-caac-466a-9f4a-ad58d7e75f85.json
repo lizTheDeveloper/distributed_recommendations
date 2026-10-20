@@ -1,0 +1,88 @@
+{
+  "id": "tube.lab.nrw__2de1a0bd-caac-466a-9f4a-ad58d7e75f85",
+  "source": {
+    "video_url": "https://tube.lab.nrw/videos/watch/2de1a0bd-caac-466a-9f4a-ad58d7e75f85",
+    "video_uuid": "2de1a0bd-caac-466a-9f4a-ad58d7e75f85",
+    "channel_actor_uri": "https://tube.lab.nrw/video-channels/cel_channel",
+    "instance_host": "tube.lab.nrw",
+    "title": "Woodbine - Mutual Aid in Ridgewood, Queens",
+    "creator_display_name": "Main cel channel",
+    "channel_handle": "cel_channel@tube.lab.nrw",
+    "license": null,
+    "language": "en",
+    "duration_s": 329,
+    "original_published_at": "2022-12-22T21:10:50.358Z",
+    "description": "Mirror of https://www.youtube.com/watch?v=aXT7td0AZ5U",
+    "tags": [],
+    "category": "Unknown",
+    "views": 9
+  },
+  "discovery": {
+    "query": "mutual aid",
+    "collection_hint": "reclaim-the-city",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:42Z"
+  },
+  "editorial": {
+    "status": "rejected",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": "claude-opus-5-5 (AI proposal)",
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": "labelled as a mirror of a YouTube video",
+    "proposed_at": "2026-10-20T02:03:42Z"
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:55:44Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:10:06Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:42Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"mutual aid\""
+    },
+    {
+      "at": "2026-10-20T01:55:45Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    },
+    {
+      "at": "2026-10-20T02:03:42Z",
+      "from": "verified",
+      "to": "rejected",
+      "by": "claude-opus-5-5 (AI proposal)",
+      "note": "labelled as a mirror of a YouTube video"
+    }
+  ]
+}

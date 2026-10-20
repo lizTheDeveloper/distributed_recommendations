@@ -1,0 +1,117 @@
+{
+  "id": "makertube.net__536b2ab8-8349-479f-b874-6babd38b3d8f",
+  "source": {
+    "video_url": "https://makertube.net/videos/watch/536b2ab8-8349-479f-b874-6babd38b3d8f",
+    "video_uuid": "536b2ab8-8349-479f-b874-6babd38b3d8f",
+    "channel_actor_uri": "https://makertube.net/video-channels/buskill",
+    "instance_host": "makertube.net",
+    "title": "Teardown Session 17: OpSec and Privacy with Michael Altfield",
+    "creator_display_name": "BusKill",
+    "channel_handle": "buskill@makertube.net",
+    "license": "Attribution - Share Alike",
+    "language": "en",
+    "duration_s": 3925,
+    "original_published_at": "2022-01-15T00:00:00.000Z",
+    "description": "In this week's episode of the Teardown Sessions, Crowd Supply's Helen Leigh talks with Michael Altfield, the creator of BusKill, a USB kill cord for your laptop. They discuss wide-ranging topics such as OpSec, privacy, FOSS, Linux, and security. You'll also learn about the importance of open hardware to security and privacy and get a look at what it's like to be a first-time manufacturer. **Playlist** 00:38 Crowd Supply news 05:04 Introducing Michael Altfield 06:45 An overview of Buskill and a look at its origins 08:55 Video demonstration of Buskill 11:02 Michael's blog and the impetus for creating Buskill 13:11 The journey from idea to prototype to hacker project to mass prod 14:50 Who's using Buskill? 15:55 The importance of accessibility, so the hardware can protect the less tech-savvy. 18:56 Audience Question: What's the longest cord available for Buskill? 20:20 Why open hardware is especially important to security 22:56 Open hardware and the need for a paradigm shift away from artificial scarcity 23:40 Building hardware that's verifiable is not just important for security, it also aligns with Michael's personal values 27:05 Designing a 3D printed cable 29:01 A tour of the Buskill repos 30:02 Buskill live demo! 31:40 The importance of simple, multi-OS compatibility, especially Qubes and TAILS. 33:30 Tour of Buskill's config and software 34:46 A look at the LUKS header-shredder 36:28 Forensics of the self-destruct feature and a look at the code behind it 42:43 Audience Qu…",
+    "tags": [
+      "hardware",
+      "infosec",
+      "opensource",
+      "opensourcehardare",
+      "privacy"
+    ],
+    "category": "Entertainment",
+    "views": 116
+  },
+  "discovery": {
+    "query": "hardware teardown",
+    "collection_hint": "strange-machines",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:46Z"
+  },
+  "editorial": {
+    "status": "reviewed",
+    "primary_collection": "strange-machines",
+    "secondary_collections": [
+      "hack-the-planet"
+    ],
+    "difficulty": "intermediate",
+    "format": "interview",
+    "learning_intents": [
+      "defend",
+      "build"
+    ],
+    "evidence_class": "practitioner-experience",
+    "tags": [
+      "opsec",
+      "hardware",
+      "privacy"
+    ],
+    "why_selected": "Crowd Supply's Teardown Sessions talks with Michael Altfield, maker of BusKill, a laptop kill-cord, about practical OpSec and privacy hardware.",
+    "learning_outcomes": [
+      "How a hardware dead-man switch protects a laptop",
+      "OpSec habits for people at risk of device seizure"
+    ],
+    "try_next": "Decide what you'd want your laptop to do if it were snatched while unlocked.",
+    "context_note": null,
+    "ratings": {
+      "usefulness": 4,
+      "rigor": 4,
+      "mission": 4,
+      "distinctiveness": 4,
+      "accessibility": 4,
+      "currency": 3
+    },
+    "score": 78,
+    "judgment_basis": "metadata only (title, description, channel, caption list); not watched — substantive judgments unverified",
+    "proposed_by": "claude-opus-5-5 (AI proposal)",
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null,
+    "shelves": [],
+    "band": "collection-candidate",
+    "proposed_at": "2026-10-20T02:03:42Z"
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:53:57Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": true,
+    "caption_languages": [
+      "en"
+    ],
+    "last_checked_at": "2026-10-20T02:07:58Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:46Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"hardware teardown\""
+    },
+    {
+      "at": "2026-10-20T01:53:58Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    },
+    {
+      "at": "2026-10-20T02:03:42Z",
+      "from": "verified",
+      "to": "reviewed",
+      "by": "claude-opus-5-5 (AI proposal)",
+      "note": "proposed score 78"
+    }
+  ]
+}

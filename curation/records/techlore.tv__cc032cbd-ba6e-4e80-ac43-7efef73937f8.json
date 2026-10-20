@@ -1,0 +1,116 @@
+{
+  "id": "techlore.tv__cc032cbd-ba6e-4e80-ac43-7efef73937f8",
+  "source": {
+    "video_url": "https://techlore.tv/videos/watch/cc032cbd-ba6e-4e80-ac43-7efef73937f8",
+    "video_uuid": "cc032cbd-ba6e-4e80-ac43-7efef73937f8",
+    "channel_actor_uri": "https://techlore.tv/video-channels/techlore",
+    "instance_host": "techlore.tv",
+    "title": "Secure Networking Explained | Go Incognito 5.4",
+    "creator_display_name": "Techlore",
+    "channel_handle": "techlore@techlore.tv",
+    "license": null,
+    "language": null,
+    "duration_s": 299,
+    "original_published_at": "2020-12-20T00:00:00.000Z",
+    "description": "Welcome to Go Incognito, a full guide to security, privacy and anonymity. This is lesson 4 of Section 5: Networking. This lesson dives into routers and home networks to protect your internet/WiFi for all connected devices. This includes using WPA2/WPA3 encryption, strong passwords, MAC Address filtering, SSIDs, VPNs, and other things to disable like WPS. Help us spread privacy to the masses! 💜 Patreon: https://patreon.com/techlore YouTube Supporters: https://www.youtube.com/channel/UCs6KfncB4OV6Vug4o_bzijg/join Ko-fi: https://ko-fi.com/techlore PayPal: https://www.paypal.com/donate?hosted_button_id=B3GU7WNGBGQ4J All Support Methods: https://techlore.tech/support.html Thanks for watching the free version of the course - Go Incognito Premium has no ads, includes quizzes & guides, hundreds of improvements, a certificate, and much more! Support our mission & join the premium experience: https://techlore.teachable.com/p/go-incognito To access the sources, changelog, GitHub repo, and more, visit Go Incognito's Homepage: https://techlore.tech/goincognito.html 🔐 Our Website: https://techlore.tech 🏫 Techlore Coaching - to get direct support: https://techlore.tech/coaching 🕵 Go Incognito Course - to learn about privacy: https://techlore.tech/goincognito Connect with our privacy community: ✉️ Blog: https://dispatch.techlore.tech 💻 Forum: https://discuss.techlore.tech Ⓜ️ Mastodon: https://social.lol/@techlore We provide all content & resources for free, please consider supporting o…",
+    "tags": [
+      "go incognito",
+      "network",
+      "secure internet",
+      "secure networking",
+      "secure wifi"
+    ],
+    "category": "Science & Technology",
+    "views": 89
+  },
+  "discovery": {
+    "query": "home network security",
+    "collection_hint": "hack-the-planet",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:23Z"
+  },
+  "editorial": {
+    "status": "reviewed",
+    "primary_collection": "hack-the-planet",
+    "secondary_collections": [
+      "build-your-own-future"
+    ],
+    "difficulty": "beginner",
+    "format": "tutorial",
+    "learning_intents": [
+      "understand",
+      "defend"
+    ],
+    "evidence_class": "practitioner-experience",
+    "tags": [
+      "networking",
+      "privacy"
+    ],
+    "why_selected": "One short lesson from Techlore's free Go Incognito course: what actually protects your traffic on a network, and what doesn't.",
+    "learning_outcomes": [
+      "What encryption in transit does and doesn't hide",
+      "Where a VPN fits in a threat model"
+    ],
+    "try_next": "Check which sites you use daily still load over plain http, and switch on your browser's HTTPS-only mode.",
+    "context_note": "Recorded in 2020; check tool recommendations against current versions.",
+    "ratings": {
+      "usefulness": 4,
+      "rigor": 4,
+      "mission": 5,
+      "distinctiveness": 3,
+      "accessibility": 5,
+      "currency": 3
+    },
+    "score": 82,
+    "judgment_basis": "metadata only (title, description, channel, caption list); not watched — substantive judgments unverified",
+    "proposed_by": "claude-opus-5-5 (AI proposal)",
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null,
+    "shelves": [],
+    "band": "feature-candidate",
+    "proposed_at": "2026-10-20T02:03:42Z"
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "official-link-verified",
+    "verified_at": "2026-10-20T01:55:22Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": true,
+    "caption_languages": [
+      "en"
+    ],
+    "last_checked_at": "2026-10-20T02:09:46Z",
+    "identity_evidence": "https://techlore.tech/ links to techlore.tv",
+    "publisher": "Techlore"
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:23Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"home network security\""
+    },
+    {
+      "at": "2026-10-20T01:55:23Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    },
+    {
+      "at": "2026-10-20T02:03:42Z",
+      "from": "verified",
+      "to": "reviewed",
+      "by": "claude-opus-5-5 (AI proposal)",
+      "note": "proposed score 82"
+    }
+  ]
+}

@@ -1,0 +1,86 @@
+{
+  "id": "tube.mucs.club__b836486d-1949-459e-a126-ddd7dcfea993",
+  "source": {
+    "video_url": "https://tube.mucs.club/videos/watch/b836486d-1949-459e-a126-ddd7dcfea993",
+    "video_uuid": "b836486d-1949-459e-a126-ddd7dcfea993",
+    "channel_actor_uri": "https://tube.mucs.club/video-channels/cppdug",
+    "instance_host": "tube.mucs.club",
+    "title": "Programming microcontrollers, an introduction",
+    "creator_display_name": "cppdug",
+    "channel_handle": "cppdug@tube.mucs.club",
+    "license": null,
+    "language": "en",
+    "duration_s": 4450,
+    "original_published_at": "2018-08-20T00:00:00.000Z",
+    "description": "Talk from the August C/C++ Pub Meetup by Sergey Lyubka (13.08.2018) At 52:55, the question was \"Do the loop iterators really need to be volatile?\" Event details: https://www.meetup.com/cppdug/events/253608315/",
+    "tags": [
+      "c++",
+      "cpp",
+      "embedded",
+      "microcontrollers",
+      "programming"
+    ],
+    "category": "Science & Technology",
+    "views": 0
+  },
+  "discovery": {
+    "query": "microcontrollers",
+    "collection_hint": "strange-machines",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:48Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:55:56Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:10:37Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:48Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"microcontrollers\""
+    },
+    {
+      "at": "2026-10-20T01:55:57Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

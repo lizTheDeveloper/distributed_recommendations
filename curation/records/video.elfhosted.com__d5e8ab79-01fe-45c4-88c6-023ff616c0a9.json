@@ -1,0 +1,88 @@
+{
+  "id": "video.elfhosted.com__d5e8ab79-01fe-45c4-88c6-023ff616c0a9",
+  "source": {
+    "video_url": "https://video.elfhosted.com/videos/watch/d5e8ab79-01fe-45c4-88c6-023ff616c0a9",
+    "video_uuid": "d5e8ab79-01fe-45c4-88c6-023ff616c0a9",
+    "channel_actor_uri": "https://video.elfhosted.com/video-channels/elfhostme",
+    "instance_host": "video.elfhosted.com",
+    "title": "Home server on holiday: who looks after it when you're away?",
+    "creator_display_name": "ElfHosted",
+    "channel_handle": "elfhostme@video.elfhosted.com",
+    "license": "Attribution - Share Alike",
+    "language": "en",
+    "duration_s": 76,
+    "original_published_at": "2026-10-03T08:05:23.444Z",
+    "description": "Your home server doesn't take holidays. Robin goes away for a week, the apps fall over, and nobody else knows how to fix them. Part four of the Household Tech Saga. Robin heads to Barry's for a week with no laptop. By day three the photo library has stopped, the password vault won't open and Milo's castle has vanished: home server downtime, with nobody at home who knows how it works. That's the real cost of running your own home server for a family. It isn't the computer; it's the time, and being the family tech support who's on call for your own house, even on holiday. Maya delivers the verdict. Self-hosting time adds up, and it usually lands on one person. The Household Tech Saga is a short animated series from ElfHosted about one family's tech: subscription soup, a server at home, the upkeep, and finding the elves. Each episode stands on its own; watch them in order in the playlist on our channel. When the elves do arrive, and Sam, ElfHosted's AI helper, can't help, our team is on Discord around the clock, in a family-friendly, carefully moderated server. ElfHosted: https://elfhosted.com/?utm_source=peertube&utm_medium=video&utm_campaign=saga-4-on-call ElfHosted docs: https://docs.elfhosted.com/?utm_source=peertube&utm_medium=video&utm_campaign=saga-4-on-call Chapters 0:00 Intro 0:11 When the home server goes down 0:27 Nobody else can fix it 0:38 On call, even on holiday About ElfHosted: we run open-source apps for you, kept updated and looked after by elves, so you get t…",
+    "tags": [
+      "family tech support",
+      "home server",
+      "home server downtime",
+      "on call for your own house",
+      "self-hosting time"
+    ],
+    "category": "Science & Technology",
+    "views": 0
+  },
+  "discovery": {
+    "query": "home server",
+    "collection_hint": "build-your-own-future",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:36Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:56:40Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": true,
+    "caption_languages": [
+      "en"
+    ],
+    "last_checked_at": "2026-10-20T02:12:02Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:36Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"home server\""
+    },
+    {
+      "at": "2026-10-20T01:56:41Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

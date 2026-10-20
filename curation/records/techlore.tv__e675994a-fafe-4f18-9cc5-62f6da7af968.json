@@ -1,0 +1,88 @@
+{
+  "id": "techlore.tv__e675994a-fafe-4f18-9cc5-62f6da7af968",
+  "source": {
+    "video_url": "https://techlore.tv/videos/watch/e675994a-fafe-4f18-9cc5-62f6da7af968",
+    "video_uuid": "e675994a-fafe-4f18-9cc5-62f6da7af968",
+    "channel_actor_uri": "https://techlore.tv/video-channels/techlore",
+    "instance_host": "techlore.tv",
+    "title": "Digital Rights Awards 2023!",
+    "creator_display_name": "Techlore",
+    "channel_handle": "techlore@techlore.tv",
+    "license": null,
+    "language": "en",
+    "duration_s": 782,
+    "original_published_at": "2024-01-02T00:00:00.000Z",
+    "description": "Digital rights awards of 2023, what Techlore did in 2023, and what to expect in 2024! Get Subscribed!! Surveillance Clips: @surveillanceclips Techlore Clips: @techloreclips Personal Channel: @henry-fisher Surveillance Report: @surveillancereport 🔐 Our Website: https://techlore.tech 🕵 Go Incognito Course - to learn about privacy: https://techlore.tech/goincognito 🏫 Techlore Coaching - to get direct support: https://techlore.tech/coaching 💻 Techlore Forum - to connect with other advocates: https://discuss.techlore.tech 🦣 Mastodon - to stay updated: https://social.lol/@techlore We cannot provide our content without our Patrons, huge thanks to: Afonso, Boori, BRIGHTSIDE, Casper, Clark, Cyclops, Eldarix, JohnnyO, Jon, kevin, Larry, love your content, NotSure, Poaclu, x 🧡 Join them on Patreon: https://www.patreon.com/techlore 💚 To see our production gear, privacy tools we use, and other affiliates: https://techlore.tech/affiliates 💖 All Techlore Support Methods: https://techlore.tech/support 00:00 2023 Recap 01:02 Most Embarrassing Cyber Incident! 01:52 Coolest Service I Tried! 02:32 Most Concerning Updates within Digital Rights 03:50 Most Concerning Updates Broadly 04:22 Most Exciting Updates within Digital Rights 05:40 What Most Surprised Me 06:32 2023 for Techlore 10:40 2024 & Beyond & Final Thoughts #newyear #privacy #techlore",
+    "tags": [
+      "2023 digital rights",
+      "2023 privacy",
+      "2023 security",
+      "2024 privacy",
+      "2024 security"
+    ],
+    "category": "Science & Technology",
+    "views": 4
+  },
+  "discovery": {
+    "query": "digital rights",
+    "collection_hint": "the-machine-is-political",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:29Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "official-link-verified",
+    "verified_at": "2026-10-20T01:55:24Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": true,
+    "caption_languages": [
+      "en"
+    ],
+    "last_checked_at": "2026-10-20T02:09:48Z",
+    "identity_evidence": "https://techlore.tech/ links to techlore.tv",
+    "publisher": "Techlore"
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:29Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"digital rights\""
+    },
+    {
+      "at": "2026-10-20T01:55:25Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

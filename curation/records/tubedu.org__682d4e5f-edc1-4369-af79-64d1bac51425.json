@@ -1,0 +1,83 @@
+{
+  "id": "tubedu.org__682d4e5f-edc1-4369-af79-64d1bac51425",
+  "source": {
+    "video_url": "https://tubedu.org/videos/watch/682d4e5f-edc1-4369-af79-64d1bac51425",
+    "video_uuid": "682d4e5f-edc1-4369-af79-64d1bac51425",
+    "channel_actor_uri": "https://tubedu.org/video-channels/fabpires",
+    "instance_host": "tubedu.org",
+    "title": "Osint",
+    "creator_display_name": "Fábio Pires",
+    "channel_handle": "fabpires@tubedu.org",
+    "license": null,
+    "language": "pt",
+    "duration_s": 4878,
+    "original_published_at": "2026-07-01T19:55:19.742Z",
+    "description": "Aprenda OSINT",
+    "tags": [],
+    "category": "Unknown",
+    "views": 4
+  },
+  "discovery": {
+    "query": "OSINT",
+    "collection_hint": "hack-the-planet",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:23Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:56:14Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": true,
+    "caption_languages": [
+      "en",
+      "pt"
+    ],
+    "last_checked_at": "2026-10-20T02:11:35Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:23Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"OSINT\""
+    },
+    {
+      "at": "2026-10-20T01:56:15Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

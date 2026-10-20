@@ -1,0 +1,85 @@
+{
+  "id": "makertube.net__83b4e012-9f43-4079-a4eb-d1b8664bf6f0",
+  "source": {
+    "video_url": "https://makertube.net/videos/watch/83b4e012-9f43-4079-a4eb-d1b8664bf6f0",
+    "video_uuid": "83b4e012-9f43-4079-a4eb-d1b8664bf6f0",
+    "channel_actor_uri": "https://makertube.net/video-channels/ssiteatalks",
+    "instance_host": "makertube.net",
+    "title": "AI agents needs a data-driven pseudo anonymous identity layer.",
+    "creator_display_name": "ssi-ai-graph-talks",
+    "channel_handle": "ssiteatalks@makertube.net",
+    "license": null,
+    "language": "en",
+    "duration_s": 708,
+    "original_published_at": "2023-08-22T00:00:00.000Z",
+    "description": "Follow and vote for the article https://yakihonne.com/article/naddr1qq25cmm9g5c4qvjkxedrwertvsek7wz0ffg8xq3qu6qhg5ucu3xza4nlz94q90y720tr6l09avnq8y3yfp5qrv9v8susxpqqqp65wehdayu",
+    "tags": [
+      "AIagents",
+      "ssi",
+      "web3",
+      "web5"
+    ],
+    "category": "Education",
+    "views": 1
+  },
+  "discovery": {
+    "query": "AI agents",
+    "collection_hint": "build-your-own-future",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:38Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:54:01Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:08:04Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:38Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"AI agents\""
+    },
+    {
+      "at": "2026-10-20T01:54:01Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

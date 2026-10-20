@@ -17,7 +17,7 @@ export const USAGE_EVENTS = {
   "follow-creator": {},
   "unfollow-creator": {},
   "follow-taste": {},
-  "subscribe-taste-list": { source: ["url", "paste", "example"] },
+  "subscribe-taste-list": { source: ["url", "paste", "example", "editorial"] },
   "match-requested": {},
   "match-accepted": {},
   "preview-requested": {},

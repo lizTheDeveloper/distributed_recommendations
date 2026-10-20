@@ -1,0 +1,88 @@
+{
+  "id": "framatube.org__0900bd2e-7306-4c39-b48b-2d0cd611742e",
+  "source": {
+    "video_url": "https://framatube.org/videos/watch/0900bd2e-7306-4c39-b48b-2d0cd611742e",
+    "video_uuid": "0900bd2e-7306-4c39-b48b-2d0cd611742e",
+    "channel_actor_uri": "https://framatube.org/video-channels/joinpeertube",
+    "instance_host": "framatube.org",
+    "title": "PeerTube : préparer l'alternative à Youtube - HS - Monsieur Bidouille",
+    "creator_display_name": "A propos de PeerTube",
+    "channel_handle": "joinpeertube@framatube.org",
+    "license": null,
+    "language": "fr",
+    "duration_s": 492,
+    "original_published_at": "2018-03-20T16:57:38.709Z",
+    "description": "Ce HS nouvelle formule s'attaque à PeerTube, un projet de plateforme décentralisée libre soutenu par Framasoft. Comment ça marche, que faut-il en attendre, et en quoi c'est intéressant ? Ma chaîne : https://www.youtube.com/user/monsieurbidouille Facebook : https://www.facebook.com/monsieurbidouille Twitter : @MrBidouille Mastodon : @MonsieurBidouille@framapiaf.org Site web : http://monsieurbidouille.fr PEERTUBE : Présentation du projet : https://framatube.org/ Git du projet : https://framagit.org/chocobozzz/PeerTube Démo (version alpha) : https://peertube.cpy.re/videos/trending FRAMASOFT : Framasoft :https://framasoft.org/ Découvrir le projet contributopia de Framasoft : https://framablog.org/2017/10/09/contributopia-degoogliser-ne-suffit-pas/ Problèmes de Youtube : Dany caligula - Youtubers, quels sont vos droits : https://www.youtube.com/watch?v=FkrNOVXOyZ0 Mickael J - FERMEZ LA ! Youtube et le copyright : https://www.youtube.com/watch?v=JWQLhBVuuB4 MisterJDay - Culture Tube - Content ID : https://www.youtube.com/watch?v=fOUxZqsvb64",
+    "tags": [
+      "alternative",
+      "droit d'auteur",
+      "peertube",
+      "PeerTube",
+      "Youtube"
+    ],
+    "category": "Science & Technology",
+    "views": 22481
+  },
+  "discovery": {
+    "query": "channel joinpeertube@framatube.org",
+    "collection_hint": "build-your-own-future",
+    "service": "origin channel listing",
+    "at": "2026-10-20T01:58:56Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "official-link-verified",
+    "verified_at": "2026-10-20T01:59:00Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": true,
+    "caption_languages": [
+      "fr"
+    ],
+    "last_checked_at": "2026-10-20T02:07:18Z",
+    "identity_evidence": "https://framasoft.org/en/ links to framatube.org; these channels are Framasoft's own",
+    "publisher": "Framasoft"
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:58:56Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "channel joinpeertube@framatube.org"
+    },
+    {
+      "at": "2026-10-20T01:59:01Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

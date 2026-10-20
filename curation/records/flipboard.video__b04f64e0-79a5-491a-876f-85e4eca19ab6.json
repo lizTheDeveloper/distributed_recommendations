@@ -1,0 +1,80 @@
+{
+  "id": "flipboard.video__b04f64e0-79a5-491a-876f-85e4eca19ab6",
+  "source": {
+    "video_url": "https://flipboard.video/videos/watch/b04f64e0-79a5-491a-876f-85e4eca19ab6",
+    "video_uuid": "b04f64e0-79a5-491a-876f-85e4eca19ab6",
+    "channel_actor_uri": "https://flipboard.video/video-channels/dot_social",
+    "instance_host": "flipboard.video",
+    "title": "ActivityPub and the End of Walled Gardens, with Evan Prodromou",
+    "creator_display_name": "Flipboard Dot Social",
+    "channel_handle": "dot_social@flipboard.video",
+    "license": "Attribution",
+    "language": "en",
+    "duration_s": 3155,
+    "original_published_at": "2023-11-28T15:33:00.000Z",
+    "description": "There was a time where people couldn’t email each other unless they were using the same email client. That changed when developers came up with a protocol that made it so it didn’t matter if you were using AOL, CompuServe or Prodigy — it just worked. The same analogy explains how things work in the Fediverse, an open-source system of interconnected, interoperable social networks. The Fediverse is powered by a protocol called ActivityPub, which provides an API for creating, updating and deleting content across several platforms. What does ActivityPub unlock for product builders and tech entrepreneurs? How will social networks without walled gardens change our relationship to content and to each other? Why does any of this matter? All that’s covered in this episode of Dot Social, a podcast about the world of decentralized social media, aka the Fediverse. Each episode, host (and Flipboard co-founder and CEO) Mike McCue talks to a leader in this movement; someone who sees the Fediverse’s tremendous potential and understands that this could be the internet’s next wave. Mike is a true believer in the open social web and what it will unlock for how we connect, communicate and innovate online. In this episode, Mike talks to Evan Prodromou, one of the co-authors of ActivityPub. Evan is a long-time entrepreneur, technologist and advocate of open source software. He’s also the Director of Open Technology at the Open Earth Foundation.",
+    "tags": [],
+    "category": "Science & Technology",
+    "views": 1112
+  },
+  "discovery": {
+    "query": "ActivityPub",
+    "collection_hint": "build-your-own-future",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:35Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:53:35Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:07:16Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:35Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"ActivityPub\""
+    },
+    {
+      "at": "2026-10-20T01:53:36Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

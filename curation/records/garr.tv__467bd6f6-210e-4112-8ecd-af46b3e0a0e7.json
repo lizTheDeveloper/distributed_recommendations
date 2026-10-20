@@ -1,0 +1,94 @@
+{
+  "id": "garr.tv__467bd6f6-210e-4112-8ecd-af46b3e0a0e7",
+  "source": {
+    "video_url": "https://garr.tv/videos/watch/467bd6f6-210e-4112-8ecd-af46b3e0a0e7",
+    "video_uuid": "467bd6f6-210e-4112-8ecd-af46b3e0a0e7",
+    "channel_actor_uri": "https://garr.tv/video-channels/learninggarr",
+    "instance_host": "garr.tv",
+    "title": "Avviare e gestire la DPIA introduzione alle basi normative e procedurali - 31 gennaio 2023",
+    "creator_display_name": "LearningGARR",
+    "channel_handle": "learninggarr@garr.tv",
+    "license": "CC BY-NC-SA 4.0",
+    "language": null,
+    "duration_s": 6842,
+    "original_published_at": "2023-02-13T09:09:00.287Z",
+    "description": "Programma: - Quando e perché effettuare la DPIA - Struttura e fasi della DPIA per documentare la conformità del trattamento ai principi del GDPR - Gestire la DPIA attraverso il tool del CNIL",
+    "tags": [
+      "DPO",
+      "GDPR",
+      "data protection",
+      "gdpr",
+      "learningGARR"
+    ],
+    "category": "Unknown",
+    "views": 29
+  },
+  "discovery": {
+    "query": "procedural narrative",
+    "collection_hint": "the-weird-internet",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:54Z"
+  },
+  "editorial": {
+    "status": "rejected",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": "claude-opus-5-5 (AI proposal)",
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": "off-topic for its collection (keyword match only)",
+    "proposed_at": "2026-10-20T02:03:42Z"
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:53:42Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:07:42Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:54Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"procedural narrative\""
+    },
+    {
+      "at": "2026-10-20T01:53:42Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    },
+    {
+      "at": "2026-10-20T02:03:42Z",
+      "from": "verified",
+      "to": "rejected",
+      "by": "claude-opus-5-5 (AI proposal)",
+      "note": "off-topic for its collection (keyword match only)"
+    }
+  ]
+}

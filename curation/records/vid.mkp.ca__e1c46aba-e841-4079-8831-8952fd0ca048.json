@@ -1,0 +1,86 @@
+{
+  "id": "vid.mkp.ca__e1c46aba-e841-4079-8831-8952fd0ca048",
+  "source": {
+    "video_url": "https://vid.mkp.ca/videos/watch/e1c46aba-e841-4079-8831-8952fd0ca048",
+    "video_uuid": "e1c46aba-e841-4079-8831-8952fd0ca048",
+    "channel_actor_uri": "https://vid.mkp.ca/video-channels/sketches",
+    "instance_host": "vid.mkp.ca",
+    "title": "\"rocket\" development demo",
+    "creator_display_name": "Sketches",
+    "channel_handle": "sketches@vid.mkp.ca",
+    "license": "Attribution - Non Commercial - No Derivatives",
+    "language": "en",
+    "duration_s": 201,
+    "original_published_at": "2022-08-29T13:53:36.530Z",
+    "description": "Monday morning demo showing some of the recent development with narration.",
+    "tags": [
+      "demo",
+      "gamedev",
+      "godot",
+      "procedural generation",
+      "rocket"
+    ],
+    "category": "Art",
+    "views": 6
+  },
+  "discovery": {
+    "query": "procedural narrative",
+    "collection_hint": "the-weird-internet",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:54Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:56:30Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:11:50Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:54Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"procedural narrative\""
+    },
+    {
+      "at": "2026-10-20T01:56:30Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

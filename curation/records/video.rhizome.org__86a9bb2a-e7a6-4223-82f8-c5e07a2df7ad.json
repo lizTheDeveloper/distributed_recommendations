@@ -1,0 +1,86 @@
+{
+  "id": "video.rhizome.org__86a9bb2a-e7a6-4223-82f8-c5e07a2df7ad",
+  "source": {
+    "video_url": "https://video.rhizome.org/videos/watch/86a9bb2a-e7a6-4223-82f8-c5e07a2df7ad",
+    "video_uuid": "86a9bb2a-e7a6-4223-82f8-c5e07a2df7ad",
+    "channel_actor_uri": "https://video.rhizome.org/video-channels/net_art_anthology_events",
+    "instance_host": "video.rhizome.org",
+    "title": "Lets Talk Net Art",
+    "creator_display_name": "Net Art Anthology events",
+    "channel_handle": "net_art_anthology_events@video.rhizome.org",
+    "license": null,
+    "language": "en",
+    "duration_s": 4946,
+    "original_published_at": "2022-11-04T09:45:57.883Z",
+    "description": "March 21, 2019 Organized alongside the Art Happens Here exhibition, Lets Talk Net Art dives into Rhizome’s Net Art Anthology which retells the history of art created with computer technology. Presenters including Josephine Bosma, author of Nettitudes: Let's Talk Net Art, share their thoughts on digital media and art.",
+    "tags": [
+      "Digital",
+      "History",
+      "Net Art Anthology",
+      "NetArt",
+      "Technology"
+    ],
+    "category": "Art",
+    "views": 8
+  },
+  "discovery": {
+    "query": "net art",
+    "collection_hint": "the-weird-internet",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:55Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:57:12Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:12:31Z",
+    "identity_evidence": "rhizome.org homepage has no link to video.rhizome.org",
+    "publisher": "Rhizome (claimed)"
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:55Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"net art\""
+    },
+    {
+      "at": "2026-10-20T01:57:13Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

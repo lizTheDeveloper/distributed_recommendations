@@ -1,0 +1,88 @@
+{
+  "id": "framatube.org__b0082b14-c6fc-4024-9a54-055d369c458c",
+  "source": {
+    "video_url": "https://framatube.org/videos/watch/b0082b14-c6fc-4024-9a54-055d369c458c",
+    "video_uuid": "b0082b14-c6fc-4024-9a54-055d369c458c",
+    "channel_actor_uri": "https://framatube.org/video-channels/fsf_channel",
+    "instance_host": "framatube.org",
+    "title": "Informal chatter to formal decisions",
+    "creator_display_name": "Free Software Foundation channel",
+    "channel_handle": "fsf_channel@framatube.org",
+    "license": "Attribution",
+    "language": "-en",
+    "duration_s": 2695,
+    "original_published_at": "2021-05-06T03:03:23.894Z",
+    "description": "LibrePlanet 2021 videos : How-toKatheryn Sutter, PhD is a Debian user and advocate, a democratic-communications analyst, and a retired trainer of boards of directors of nonprofits, cooperatives, co-housing, activist groups, performers, and other community development projects. In this talk, Katheryn addresses a situation you have no doubt encountered in free software groups and other organizations, in which a gathering of people with no clear hierarchy but roughly the same goals spin their wheels for a long time and can’t decide on concrete next steps.",
+    "tags": [
+      "conference",
+      "free software",
+      "fsf",
+      "libreplanet",
+      "libreplanet2021"
+    ],
+    "category": "Science & Technology",
+    "views": 6
+  },
+  "discovery": {
+    "query": "cooperative housing",
+    "collection_hint": "reclaim-the-city",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:40Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:53:38Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": true,
+    "caption_languages": [
+      "en"
+    ],
+    "last_checked_at": "2026-10-20T02:07:31Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:40Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"cooperative housing\""
+    },
+    {
+      "at": "2026-10-20T01:53:38Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

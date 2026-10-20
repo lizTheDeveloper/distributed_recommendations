@@ -1,0 +1,86 @@
+{
+  "id": "tube.tchncs.de__34ba6699-94ee-4968-b84f-6d3207cf6b06",
+  "source": {
+    "video_url": "https://tube.tchncs.de/videos/watch/34ba6699-94ee-4968-b84f-6d3207cf6b06",
+    "video_uuid": "34ba6699-94ee-4968-b84f-6d3207cf6b06",
+    "channel_actor_uri": "https://tube.tchncs.de/video-channels/kieler_open_source_und_linux_tage",
+    "instance_host": "tube.tchncs.de",
+    "title": "Reverse Engineering für Forward Engineers [21. Kielux 2023]",
+    "creator_display_name": "Kieler Open Source und Linux Tage",
+    "channel_handle": "kieler_open_source_und_linux_tage@tube.tchncs.de",
+    "license": "Attribution",
+    "language": "de",
+    "duration_s": 3492,
+    "original_published_at": "2023-09-16T00:00:00.000Z",
+    "description": "Ein Vortrag von Lars Wallenborn. In diesem Vortrag werde ich eine ganz grundlegende Einstieg in das Thema Reverse Engineering von Binärdateien geben. Dabei werde ich hauptsächlich das von der NSA entwickelte Open Source Software Reverse Engineering Framework Ghidra konzentrieren. Ein Hauptziel dieses Vortrags wird sein, den Respekt vor kompilierten Dateien zu verlieren um klar zu stellen, wie viel Programmlogik rekonstruiert werden kann, selbst wenn der Quellcode nicht (mehr) zur Verfügung steht. Der Vortrag wurde auf dem LPD der Kieler Open Source und Linux Tagen im Jahr 2023 gehalten. Webseite: https://kielux.de/programm/KOLT23",
+    "tags": [
+      "Community",
+      "Kieler Linux Tage",
+      "Kielux",
+      "Kilux",
+      "Linux"
+    ],
+    "category": "Science & Technology",
+    "views": 33
+  },
+  "discovery": {
+    "query": "reverse engineering",
+    "collection_hint": "hack-the-planet",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:24Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:56:04Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:10:48Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:24Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"reverse engineering\""
+    },
+    {
+      "at": "2026-10-20T01:56:05Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

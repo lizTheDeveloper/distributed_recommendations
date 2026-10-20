@@ -1,0 +1,86 @@
+{
+  "id": "video.infosec.exchange__f90d0c2e-1711-4c29-a690-a52574cbd9ab",
+  "source": {
+    "video_url": "https://video.infosec.exchange/videos/watch/f90d0c2e-1711-4c29-a690-a52574cbd9ab",
+    "video_uuid": "f90d0c2e-1711-4c29-a690-a52574cbd9ab",
+    "channel_actor_uri": "https://video.infosec.exchange/video-channels/jay_bailey216",
+    "instance_host": "video.infosec.exchange",
+    "title": "Reverse Engineering Challenge - Flotte",
+    "creator_display_name": "Jay Bailey",
+    "channel_handle": "jay_bailey216@video.infosec.exchange",
+    "license": "Attribution - Non Commercial - Share Alike",
+    "language": "en",
+    "duration_s": 867,
+    "original_published_at": "2025-04-02T00:00:14.307Z",
+    "description": "Unlock the secrets of SIMD instructions and crack a binary in this reverse engineering challenge! We'll dive into static analysis with Ghidra to uncover the 'magic number' needed for the correct password. Watch as we tackle this crackme, featuring a special guest, and learn how to reverse engineer binaries step-by-step. Perfect for beginners and seasoned reverse engineers alike! Discover how to decipher complex algorithms and understand SIMD instructions in this engaging tutorial. 00:00 Introduction 01:00 Initial Triage 02:05 Static Analysis in Ghidra 12:32 Bruteforcing lol 13:38 Conclusion Resources: * **Download my VM here:** [https://drive.google.com/drive/folders/1SvyC1C2AkuaC-FNWvY0_Bhh-OhzZ5pJb?usp=sharing](https://drive.google.com/drive/folders/1SvyC1C2AkuaC-FNWvY0_Bhh-OhzZ5pJb?usp=sharing) * **Download the binary here:** [https://www.crackmes.one/crackme/5aef385633c5d41ac64b492f](https://www.crackmes.one/crackme/5aef385633c5d41ac64b492f) (The binary is password protected: crackmes.one) **Connect with Me:** * **Instagram:** [https://instagram.com/jaybailey_216?igshid=12tatfhhvp5n5](https://instagram.com/jaybailey_216?igshid=12tatfhhvp5n5) * **Twitter:** [https://twitter.com/jaybailey216](https://twitter.com/jaybailey216) * **Mastodon:** [https://mastodon.social/@jaybailey216](https://mastodon.social/@jaybailey216) * **Buy Me A Coke:** [https://buymeacoffee.com/jaybailey216](https://buymeacoffee.com/jaybailey216) * **Patreon:** [https://www.patreon.com/jaybailey216](ht…",
+    "tags": [
+      "crackme",
+      "ghidra",
+      "idapro",
+      "infosec",
+      "reverseengineering"
+    ],
+    "category": "Education",
+    "views": 22
+  },
+  "discovery": {
+    "query": "reverse engineering",
+    "collection_hint": "hack-the-planet",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:24Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:56:57Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:12:18Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:24Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"reverse engineering\""
+    },
+    {
+      "at": "2026-10-20T01:56:57Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

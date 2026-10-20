@@ -1,0 +1,86 @@
+{
+  "id": "video.osgeo.org__5a049346-ffca-4bad-9469-3b167e0482df",
+  "source": {
+    "video_url": "https://video.osgeo.org/videos/watch/5a049346-ffca-4bad-9469-3b167e0482df",
+    "video_uuid": "5a049346-ffca-4bad-9469-3b167e0482df",
+    "channel_actor_uri": "https://video.osgeo.org/video-channels/foss4gna",
+    "instance_host": "video.osgeo.org",
+    "title": "FOSS4GNA 2023 | Utilizing Open Source Technology to Enable Science at ORNL - Jessica Moehl",
+    "creator_display_name": "FOSS4G NA",
+    "channel_handle": "foss4gna@video.osgeo.org",
+    "license": null,
+    "language": "en",
+    "duration_s": 1395,
+    "original_published_at": "2023-11-13T00:00:00.000Z",
+    "description": "Summary Utilizing open source technology to enable science at Oak Ridge National Laboratory is the focus of Jessica Moehl's presentation. The talk explores the evolution of geospatial science at the laboratory, highlighting advancements, challenges, and the transformative role of open source tools. Highlights 🌐 Oak Ridge National Laboratory (ORNL) engages in diverse scientific areas, with a focus on geospatial science within a team of around 100 researchers. 🛰️ Geospatial science at ORNL involves applications such as situational awareness, critical decision support, and crisis management, utilizing open source tools for data availability and model outputs. 🌍 Over the years, the availability of geospatial data has dramatically increased, influencing the types of questions scientists can ask and the tools they use. 💻 The transition from desktops to laptops, on-premises computing to cloud, and reliance on proprietary software to open source tools has reshaped the way geospatial analysis is conducted at ORNL. 🌐 Open source tools, especially in the realm of geospatial analysis, offer flexibility and the ability to address specific scientific questions effectively. 🏠 The presentation delves into examples such as LandScan population modeling and machine learning workflows, showcasing the role of open source technologies in enhancing analysis capabilities. 🔄 The collaborative approach at ORNL involves sharing code, rethinking assumptions, and making tools more accessible for …",
+    "tags": [
+      "geography",
+      "geospatial",
+      "geospatial technology",
+      "gis",
+      "IMINT"
+    ],
+    "category": "Science & Technology",
+    "views": 1
+  },
+  "discovery": {
+    "query": "technology labor",
+    "collection_hint": "the-machine-is-political",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:29Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:57:04Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:12:24Z",
+    "identity_evidence": "osgeo.org homepage has no link to video.osgeo.org",
+    "publisher": "OSGeo / FOSS4G (claimed)"
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:29Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"technology labor\""
+    },
+    {
+      "at": "2026-10-20T01:57:04Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

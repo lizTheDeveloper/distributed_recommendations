@@ -1,0 +1,83 @@
+{
+  "id": "peertube.dngr.us__067b1543-dc03-4b41-954e-4410adbbcd60",
+  "source": {
+    "video_url": "https://peertube.dngr.us/videos/watch/067b1543-dc03-4b41-954e-4410adbbcd60",
+    "video_uuid": "067b1543-dc03-4b41-954e-4410adbbcd60",
+    "channel_actor_uri": "https://peertube.dngr.us/video-channels/dangerous_channel",
+    "instance_host": "peertube.dngr.us",
+    "title": "RFID Hand Implant with SparkFun!",
+    "creator_display_name": "Dangerous Channel",
+    "channel_handle": "dangerous_channel@peertube.dngr.us",
+    "license": "All Rights Reserved",
+    "language": null,
+    "duration_s": 572,
+    "original_published_at": "2015-12-23T20:00:00.000Z",
+    "description": "RFID Hand Implant with SparkFun! - YouTube: https://www.youtube.com/watch?v=Gj5g454AD4E - Published: December 23, 2015 - Channel: SparkFun Electronics - Runtime: 9:32 - Resolution: 1080p - Host: Nick Poole (SparkFun Creative Technologist) - Content: Nick implants a 125kHz RFID tag in his right hand and an NFC Type 2 tag in his left, with demonstrations Sources: - https://www.youtube.com/watch?v=Gj5g454AD4E - https://news.sparkfun.com/1998",
+    "tags": [
+      "Installation",
+      "Procedure"
+    ],
+    "category": "Unknown",
+    "views": 1
+  },
+  "discovery": {
+    "query": "creative electronics",
+    "collection_hint": "strange-machines",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:49Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:54:31Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:08:41Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:49Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"creative electronics\""
+    },
+    {
+      "at": "2026-10-20T01:54:31Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

@@ -1,0 +1,86 @@
+{
+  "id": "peertube.eqver.se__5a34f908-f65d-44c9-a96b-cb5d06b1e3ed",
+  "source": {
+    "video_url": "https://peertube.eqver.se/videos/watch/5a34f908-f65d-44c9-a96b-cb5d06b1e3ed",
+    "video_uuid": "5a34f908-f65d-44c9-a96b-cb5d06b1e3ed",
+    "channel_actor_uri": "https://peertube.eqver.se/video-channels/eqtv_english",
+    "instance_host": "peertube.eqver.se",
+    "title": "Ollama: Running AI Models Locally Without an Internet Connection",
+    "creator_display_name": "eQtv in English",
+    "channel_handle": "eqtv_english@peertube.eqver.se",
+    "license": null,
+    "language": "en",
+    "duration_s": 359,
+    "original_published_at": "2026-07-01T02:08:52.016Z",
+    "description": "An overview of Ollama's capabilities as a tool for running large language models (LLMs) locally without relying on cloud services. The description covers the installation process, model selection, and specifics of operating across different operating systems. It also highlights the differences between local and cloud AI solutions, data privacy concerns, and new features for integrating the tool into workflows",
+    "tags": [
+      "AI",
+      "Ollama",
+      "data privacy",
+      "local LLM",
+      "offline AI"
+    ],
+    "category": "Science & Technology",
+    "views": 5
+  },
+  "discovery": {
+    "query": "local LLM",
+    "collection_hint": "build-your-own-future",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:33Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:54:43Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:08:54Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:33Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"local LLM\""
+    },
+    {
+      "at": "2026-10-20T01:54:44Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

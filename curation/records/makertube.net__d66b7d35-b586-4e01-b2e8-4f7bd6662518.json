@@ -1,0 +1,88 @@
+{
+  "id": "makertube.net__d66b7d35-b586-4e01-b2e8-4f7bd6662518",
+  "source": {
+    "video_url": "https://makertube.net/videos/watch/d66b7d35-b586-4e01-b2e8-4f7bd6662518",
+    "video_uuid": "d66b7d35-b586-4e01-b2e8-4f7bd6662518",
+    "channel_actor_uri": "https://makertube.net/video-channels/mees_elektronica",
+    "instance_host": "makertube.net",
+    "title": "Reparatie van een LED buis",
+    "creator_display_name": "Mees Elektronica",
+    "channel_handle": "mees_elektronica@makertube.net",
+    "license": "Attribution",
+    "language": "nl",
+    "duration_s": 421,
+    "original_published_at": "2021-08-20T00:00:00.000Z",
+    "description": "LED verlichting zou vele tienduizenden uren mee moeten gaan. Maar wat is dat niet het geval is? **Meer informatie en alle bouwdocumenten vind je op:** [https://www.meezenest.nl/mees](https://www.meezenest.nl/mees) [Creative Commons Nederland](https://creativecommons.nl/) [Creative Commons Internationaal](https://creativecommons.org/) [Open Source Hardware Association](https://www.oshwa.org/) [Open Source Initiative](https://opensource.org/) [Informatie Recht op reparatie](https://www.meezenest.nl/mees-elektronica/opensource.html) Mijn Engelstalige kanaal: @MeesElectronics **Donaties:** [https://ko-fi.com/meeselectronics](https://ko-fi.com/meeselectronics) Stock footage: Decoupeerzaag video by Pavel Danilyuk from Pexels Geluidseffecten: [https://bigsoundbank.com](https://bigsoundbank.com) [https://freesound.org](https://freesound.org)",
+    "tags": [
+      "education",
+      "electronic",
+      "electronics",
+      "led light",
+      "repair"
+    ],
+    "category": "Unknown",
+    "views": 4
+  },
+  "discovery": {
+    "query": "creative electronics",
+    "collection_hint": "strange-machines",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:49Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:54:04Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": true,
+    "caption_languages": [
+      "nl"
+    ],
+    "last_checked_at": "2026-10-20T02:08:07Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:49Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"creative electronics\""
+    },
+    {
+      "at": "2026-10-20T01:54:05Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

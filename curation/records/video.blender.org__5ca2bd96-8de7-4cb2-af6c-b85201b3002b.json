@@ -1,0 +1,112 @@
+{
+  "id": "video.blender.org__5ca2bd96-8de7-4cb2-af6c-b85201b3002b",
+  "source": {
+    "video_url": "https://video.blender.org/videos/watch/5ca2bd96-8de7-4cb2-af6c-b85201b3002b",
+    "video_uuid": "5ca2bd96-8de7-4cb2-af6c-b85201b3002b",
+    "channel_actor_uri": "https://video.blender.org/video-channels/blender_channel",
+    "instance_host": "video.blender.org",
+    "title": "Procedural Workflows with Gaussian Splatting — BCON26",
+    "creator_display_name": "Blender",
+    "channel_handle": "blender_channel@video.blender.org",
+    "license": "Attribution - Share Alike",
+    "language": "en",
+    "duration_s": 2596,
+    "original_published_at": "2026-09-23T00:00:00.000Z",
+    "description": "\"Procedural Workflows with Gaussian Splatting\" by Sören Schmidt-Clausen at Blender Conference 2026 Gaussian Splatting is a powerful new realtime 3D representation, but working with splats in Blender is still difficult. This talk shows how Geometry Nodes and Eevee can be used to import, edit, render, and export splats in a procedural workflow. Using my toolkit BlendSplat, I will demonstrate practical workflows already possible in Blender, including cleaning up captures, creating relightable clouds from VDBs, and training splats from multilayer EXR renders. I will also discuss current limitations and what to expect in the future. – Learn more about Blender Conference 2026 at https://conference.blender.org/2026/",
+    "tags": [
+      "BCON26",
+      "b3d"
+    ],
+    "category": "Science & Technology",
+    "views": 54
+  },
+  "discovery": {
+    "query": "procedural narrative",
+    "collection_hint": "the-weird-internet",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:54Z"
+  },
+  "editorial": {
+    "status": "reviewed",
+    "primary_collection": "the-weird-internet",
+    "secondary_collections": [
+      "build-your-own-future"
+    ],
+    "difficulty": "intermediate",
+    "format": "lecture",
+    "learning_intents": [
+      "create",
+      "build"
+    ],
+    "evidence_class": "practitioner-experience",
+    "tags": [
+      "blender",
+      "gaussian-splatting",
+      "3d"
+    ],
+    "why_selected": "From the Blender Conference 2026: procedural workflows with Gaussian splatting, the new way to turn photos into 3D scenes.",
+    "learning_outcomes": [
+      "What Gaussian splatting is",
+      "How to bring splats into procedural Blender workflows"
+    ],
+    "try_next": "Capture a small object with your phone and try turning it into a splat.",
+    "context_note": null,
+    "ratings": {
+      "usefulness": 4,
+      "rigor": 4,
+      "mission": 4,
+      "distinctiveness": 4,
+      "accessibility": 3,
+      "currency": 5
+    },
+    "score": 80,
+    "judgment_basis": "metadata only (title, description, channel, caption list); not watched — substantive judgments unverified",
+    "proposed_by": "claude-opus-5-5 (AI proposal)",
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null,
+    "shelves": [],
+    "band": "feature-candidate",
+    "proposed_at": "2026-10-20T02:03:42Z"
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "official-link-verified",
+    "verified_at": "2026-10-20T01:56:34Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:11:56Z",
+    "identity_evidence": "https://www.blender.org/ links to video.blender.org",
+    "publisher": "Blender"
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:54Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"procedural narrative\""
+    },
+    {
+      "at": "2026-10-20T01:56:34Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    },
+    {
+      "at": "2026-10-20T02:03:42Z",
+      "from": "verified",
+      "to": "reviewed",
+      "by": "claude-opus-5-5 (AI proposal)",
+      "note": "proposed score 80"
+    }
+  ]
+}

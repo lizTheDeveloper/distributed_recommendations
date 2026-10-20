@@ -1,0 +1,116 @@
+{
+  "id": "techlore.tv__e48c10f6-767f-47b7-92e9-543a61b37268",
+  "source": {
+    "video_url": "https://techlore.tv/videos/watch/e48c10f6-767f-47b7-92e9-543a61b37268",
+    "video_uuid": "e48c10f6-767f-47b7-92e9-543a61b37268",
+    "channel_actor_uri": "https://techlore.tv/video-channels/techlore",
+    "instance_host": "techlore.tv",
+    "title": "How to PROPERLY threat model",
+    "creator_display_name": "Techlore",
+    "channel_handle": "techlore@techlore.tv",
+    "license": null,
+    "language": "en",
+    "duration_s": 710,
+    "original_published_at": "2021-12-15T00:00:00.000Z",
+    "description": "How to threat model - one of the most misunderstood concepts in the entire privacy & security community. Welcome to our complete guide to it! This video is sponsored by Cake Wallet: an open source, non-custodial cryptocurrency wallet for Monero, Bitcoin, & Litecoin! Give it a shot today! https://cakewallet.com/ 00:00 Introduction 00:55 Our Sponsor! 01:21 Why Threat Model? 03:05 Developing a Threat Model 07:22 Using Your New Threat Model 09:10 Our Sponsor! 09:45 Threat Model Bias & Where People Go Wrong Go Incognito: https://techlore.tech/goincognito.html The New Oil Security/Privacy/Anonymity: https://youtu.be/pFGkdNEfFa0 EFF Threat Modeling: https://ssd.eff.org/en/module/your-security-plan PrivacyGuides Threat Modeling: https://www.privacyguides.org/threat-modeling/ ArsTechnica Threat Modeling: https://arstechnica.com/information-technology/2017/07/how-i-learned-to-stop-worrying-mostly-and-love-my-threat-model/ 🔐 Our Website: https://techlore.tech 🏫 Techlore Coaching - to get direct support: https://techlore.tech/coaching 🕵 Go Incognito Course - to learn about privacy: https://techlore.tech/goincognito Connect with our privacy community: ✉️ Blog: https://dispatch.techlore.tech 💻 Forum: https://discuss.techlore.tech Ⓜ️ Mastodon: https://social.lol/@techlore We provide all content & resources for free, please consider supporting our work to help us expand our content: 🧡 Patreon: https://www.patreon.com/techlore 💖 All Other Support Methods: https://techlore.tech/support …",
+    "tags": [
+      "how to threat model",
+      "privacy threat model",
+      "security threat model",
+      "threat modeling",
+      "threat modeling tutorial"
+    ],
+    "category": "Science & Technology",
+    "views": 167
+  },
+  "discovery": {
+    "query": "threat modeling",
+    "collection_hint": "hack-the-planet",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:22Z"
+  },
+  "editorial": {
+    "status": "reviewed",
+    "primary_collection": "hack-the-planet",
+    "secondary_collections": [],
+    "difficulty": "beginner",
+    "format": "tutorial",
+    "learning_intents": [
+      "understand",
+      "defend"
+    ],
+    "evidence_class": "practitioner-experience",
+    "tags": [
+      "privacy",
+      "threat-modeling"
+    ],
+    "why_selected": "A plain-language walkthrough of threat modeling: who might want your data, what they could do with it, and which protections are worth your effort.",
+    "learning_outcomes": [
+      "What a threat model is and why it comes before any tool choice",
+      "How to weigh likely threats against the cost of defending"
+    ],
+    "try_next": "Write a one-page threat model: three things you'd hate to lose, and who could take them.",
+    "context_note": null,
+    "ratings": {
+      "usefulness": 5,
+      "rigor": 4,
+      "mission": 5,
+      "distinctiveness": 3,
+      "accessibility": 5,
+      "currency": 4
+    },
+    "score": 89,
+    "judgment_basis": "metadata only (title, description, channel, caption list); not watched — substantive judgments unverified",
+    "proposed_by": "claude-opus-5-5 (AI proposal)",
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null,
+    "shelves": [
+      "start-here"
+    ],
+    "band": "feature-candidate",
+    "proposed_at": "2026-10-20T02:03:42Z"
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "official-link-verified",
+    "verified_at": "2026-10-20T01:55:24Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": true,
+    "caption_languages": [
+      "en"
+    ],
+    "last_checked_at": "2026-10-20T02:09:47Z",
+    "identity_evidence": "https://techlore.tech/ links to techlore.tv",
+    "publisher": "Techlore"
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:22Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"threat modeling\""
+    },
+    {
+      "at": "2026-10-20T01:55:24Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    },
+    {
+      "at": "2026-10-20T02:03:42Z",
+      "from": "verified",
+      "to": "reviewed",
+      "by": "claude-opus-5-5 (AI proposal)",
+      "note": "proposed score 89"
+    }
+  ]
+}

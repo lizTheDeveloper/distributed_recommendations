@@ -1,0 +1,90 @@
+{
+  "id": "clip.place__3d2e9c84-c4e5-43b6-a4e6-1c6a1df3d296",
+  "source": {
+    "video_url": "https://clip.place/videos/watch/3d2e9c84-c4e5-43b6-a4e6-1c6a1df3d296",
+    "video_uuid": "3d2e9c84-c4e5-43b6-a4e6-1c6a1df3d296",
+    "channel_actor_uri": "https://clip.place/video-channels/cism",
+    "instance_host": "clip.place",
+    "title": "C04A02_Incident management and incident response overview Basics",
+    "creator_display_name": "Certified Information Security Manager",
+    "channel_handle": "cism@clip.place",
+    "license": null,
+    "language": "en",
+    "duration_s": 273,
+    "original_published_at": "2025-11-04T00:00:00.000Z",
+    "description": null,
+    "tags": [],
+    "category": "Education",
+    "views": 1
+  },
+  "discovery": {
+    "query": "incident response",
+    "collection_hint": "hack-the-planet",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:26Z"
+  },
+  "editorial": {
+    "status": "rejected",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": "claude-opus-5-5 (AI proposal)",
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": "unattributed course clip with no description; provenance unclear",
+    "proposed_at": "2026-10-20T02:03:42Z"
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:53:14Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": true,
+    "caption_languages": [
+      "en"
+    ],
+    "last_checked_at": "2026-10-20T02:06:56Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:26Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"incident response\""
+    },
+    {
+      "at": "2026-10-20T01:53:14Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    },
+    {
+      "at": "2026-10-20T02:03:42Z",
+      "from": "verified",
+      "to": "rejected",
+      "by": "claude-opus-5-5 (AI proposal)",
+      "note": "unattributed course clip with no description; provenance unclear"
+    }
+  ]
+}

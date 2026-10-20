@@ -1,0 +1,82 @@
+{
+  "id": "urbanists.video__56f8cafb-ccb2-4da4-ab94-02721ce7868e",
+  "source": {
+    "video_url": "https://urbanists.video/videos/watch/56f8cafb-ccb2-4da4-ab94-02721ce7868e",
+    "video_uuid": "56f8cafb-ccb2-4da4-ab94-02721ce7868e",
+    "channel_actor_uri": "https://urbanists.video/video-channels/openstreetmap_us_mirror",
+    "instance_host": "urbanists.video",
+    "title": "Dhanyasri's take on megacities climate resilience ~ Dhanyasri Bolla",
+    "creator_display_name": "OpenStreetMap US mirror",
+    "channel_handle": "openstreetmap_us_mirror@urbanists.video",
+    "license": "Attribution",
+    "language": "en",
+    "duration_s": 259,
+    "original_published_at": "2026-07-16T19:33:00.000Z",
+    "description": "As cities face increasing climate risks, researchers are racing to model resilience in megacities. While analyzing adaptation strategies across 43 megacities, this talk found that standard data often lacks the critical details on resilience modeling. This lightning talk presents a \"Gap Analysis\" from the perspective of a climate researcher - a prioritized wish list of features that, if mapped, would transform OpenStreetMap from a navigational tool into a critical engine for global climate adaptation. Originally published by OSM US under a CC license: https://youtube.com/watch?v=ooyzka8X1F8",
+    "tags": [],
+    "category": "Unknown",
+    "views": 2
+  },
+  "discovery": {
+    "query": "climate resilience",
+    "collection_hint": "reclaim-the-city",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:42Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:56:24Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": true,
+    "caption_languages": [
+      "en"
+    ],
+    "last_checked_at": "2026-10-20T02:11:46Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:42Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"climate resilience\""
+    },
+    {
+      "at": "2026-10-20T01:56:25Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

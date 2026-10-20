@@ -1,0 +1,84 @@
+{
+  "id": "peertube.1312.media__b42aec59-e4e7-45ce-830e-0236e1edef9c",
+  "source": {
+    "video_url": "https://peertube.1312.media/videos/watch/b42aec59-e4e7-45ce-830e-0236e1edef9c",
+    "video_uuid": "b42aec59-e4e7-45ce-830e-0236e1edef9c",
+    "channel_actor_uri": "https://peertube.1312.media/video-channels/c6ae5354-bc83-4e80-9646-f039343d156b",
+    "instance_host": "peertube.1312.media",
+    "title": "What is Mutual Aid?",
+    "creator_display_name": "宇宙の海賊 ミルサル",
+    "channel_handle": "c6ae5354-bc83-4e80-9646-f039343d156b@peertube.1312.media",
+    "license": null,
+    "language": null,
+    "duration_s": 326,
+    "original_published_at": "2016-09-12T00:00:00.000Z",
+    "description": "In a world ruled by ceaseless capitalist competition, where people are pitted to work against each other, anarchists offer a different vision: Mutual Aid. If you like videos like these consider supporting us - http://sub.media/donate To download this video visit https://submedia.tv/mutualaid",
+    "tags": [
+      "Anarcho-capitalism",
+      "anarchism",
+      "mutual aid"
+    ],
+    "category": "Unknown",
+    "views": 50
+  },
+  "discovery": {
+    "query": "mutual aid",
+    "collection_hint": "reclaim-the-city",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:42Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:54:22Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:08:33Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:42Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"mutual aid\""
+    },
+    {
+      "at": "2026-10-20T01:54:25Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

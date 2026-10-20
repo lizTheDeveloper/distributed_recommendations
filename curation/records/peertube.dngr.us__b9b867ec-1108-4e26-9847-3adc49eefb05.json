@@ -1,0 +1,84 @@
+{
+  "id": "peertube.dngr.us__b9b867ec-1108-4e26-9847-3adc49eefb05",
+  "source": {
+    "video_url": "https://peertube.dngr.us/videos/watch/b9b867ec-1108-4e26-9847-3adc49eefb05",
+    "video_uuid": "b9b867ec-1108-4e26-9847-3adc49eefb05",
+    "channel_actor_uri": "https://peertube.dngr.us/video-channels/how_to",
+    "instance_host": "peertube.dngr.us",
+    "title": "DIY Solar Tracking System Inspired by NASA (Parker Solar Probe)",
+    "creator_display_name": "How To",
+    "channel_handle": "how_to@peertube.dngr.us",
+    "license": "All Rights Reserved",
+    "language": "en",
+    "duration_s": 396,
+    "original_published_at": "2018-11-16T00:00:00.000Z",
+    "description": "In this video I demonstrate a simple autonomous solar tracking system that can be used with solar panels or parabolic mirrors to improve their performance in producing renewable energy. For this system I use two 10rpm, 6v geared electric motors, and four 5v, 0.6w solar panels connected in a configuration that allows the motors to constantly move the panels into shade (purchasing links for these items below). The cost of the electronics was about $10, and could easily be scaled up or down as necessary for a variety of solar applications. Check out Destin's video about the Parker Solar Probe to see what inspired me to build this project: https://youtu.be/aQaCY7wlQEc A big thanks to my Patreon supporters who continue to support my videos through thick and thin! You all are awesome. A special thanks to my top Patrons: Syniurge, Matthew Leitzke, TheBackyardScientist, Enzo Breda Lee, John Johnson, & Thibaud Peverelli! Check out my Patreon page at: https://www.patreon.com/NightHawkProjects The geared motors I used in this video can be found here (this is an affiliate link): https://ebay.to/2SOTKhR 0.6w 5v solar panels (this is an affiliate link): https://ebay.to/2QGKsQS Let me know if you try this project for yourself. Thanks for watching!",
+    "tags": [
+      "DIY",
+      "Preparedness",
+      "yt:wL9PcGu_xrA"
+    ],
+    "category": "Education",
+    "views": 0
+  },
+  "discovery": {
+    "query": "solar DIY",
+    "collection_hint": "strange-machines",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:48Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:54:34Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:08:44Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:48Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"solar DIY\""
+    },
+    {
+      "at": "2026-10-20T01:54:34Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

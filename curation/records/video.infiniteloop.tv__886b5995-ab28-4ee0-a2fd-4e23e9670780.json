@@ -1,0 +1,84 @@
+{
+  "id": "video.infiniteloop.tv__886b5995-ab28-4ee0-a2fd-4e23e9670780",
+  "source": {
+    "video_url": "https://video.infiniteloop.tv/videos/watch/886b5995-ab28-4ee0-a2fd-4e23e9670780",
+    "video_uuid": "886b5995-ab28-4ee0-a2fd-4e23e9670780",
+    "channel_actor_uri": "https://video.infiniteloop.tv/video-channels/demoscene",
+    "instance_host": "video.infiniteloop.tv",
+    "title": "Demoscene Report 11 December 2024",
+    "creator_display_name": "Demoscene",
+    "channel_handle": "demoscene@video.infiniteloop.tv",
+    "license": null,
+    "language": "en",
+    "duration_s": 889,
+    "original_published_at": "2024-12-11T21:20:38.788Z",
+    "description": "Thanks for the greetz psenough! Website tpolm.org/~ps Twitter twitter.com/psenough Patreon patreon.com/psenough Twitch twitch.tv/psenough Instagram instagram.com/psenough Discord discord.gg/WtD9gzqgz4",
+    "tags": [
+      "demoscene"
+    ],
+    "category": "Art",
+    "views": 34
+  },
+  "discovery": {
+    "query": "demoscene",
+    "collection_hint": "the-weird-internet",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:51Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:56:54Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": true,
+    "caption_languages": [
+      "en"
+    ],
+    "last_checked_at": "2026-10-20T02:12:15Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:51Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"demoscene\""
+    },
+    {
+      "at": "2026-10-20T01:56:54Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

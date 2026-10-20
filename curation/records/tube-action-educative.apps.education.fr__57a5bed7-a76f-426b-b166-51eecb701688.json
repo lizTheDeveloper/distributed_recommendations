@@ -1,0 +1,88 @@
+{
+  "id": "tube-action-educative.apps.education.fr__57a5bed7-a76f-426b-b166-51eecb701688",
+  "source": {
+    "video_url": "https://tube-action-educative.apps.education.fr/videos/watch/57a5bed7-a76f-426b-b166-51eecb701688",
+    "video_uuid": "57a5bed7-a76f-426b-b166-51eecb701688",
+    "channel_actor_uri": "https://tube-action-educative.apps.education.fr/video-channels/delartpasducochon",
+    "instance_host": "tube-action-educative.apps.education.fr",
+    "title": "Enfant tenant une poire - Anonyme",
+    "creator_display_name": "De l'art pas du cochon",
+    "channel_handle": "delartpasducochon@tube-action-educative.apps.education.fr",
+    "license": "Attribution - Non Commercial - No Derivatives",
+    "language": "fr",
+    "duration_s": 200,
+    "original_published_at": "2025-04-01T17:07:28.993Z",
+    "description": null,
+    "tags": [],
+    "category": "Parcours d'éducation artistique et cult…",
+    "views": 15
+  },
+  "discovery": {
+    "query": "tenant organizing",
+    "collection_hint": "reclaim-the-city",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:39Z"
+  },
+  "editorial": {
+    "status": "rejected",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": "claude-opus-5-5 (AI proposal)",
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": "off-topic: keyword collision ('BLE' matched French 'blé', or 'tenant')",
+    "proposed_at": "2026-10-20T02:03:42Z"
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:55:33Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:09:55Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:39Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"tenant organizing\""
+    },
+    {
+      "at": "2026-10-20T01:55:34Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    },
+    {
+      "at": "2026-10-20T02:03:42Z",
+      "from": "verified",
+      "to": "rejected",
+      "by": "claude-opus-5-5 (AI proposal)",
+      "note": "off-topic: keyword collision ('BLE' matched French 'blé', or 'tenant')"
+    }
+  ]
+}

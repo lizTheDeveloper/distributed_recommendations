@@ -1,0 +1,86 @@
+{
+  "id": "peertube.eqver.se__65dce09c-e124-4a50-99d6-4dc29d66feeb",
+  "source": {
+    "video_url": "https://peertube.eqver.se/videos/watch/65dce09c-e124-4a50-99d6-4dc29d66feeb",
+    "video_uuid": "65dce09c-e124-4a50-99d6-4dc29d66feeb",
+    "channel_actor_uri": "https://peertube.eqver.se/video-channels/eqtv_english",
+    "instance_host": "peertube.eqver.se",
+    "title": "Meshtastic in Taiwan: The Intersection of Technology and Community",
+    "creator_display_name": "eQtv in English",
+    "channel_handle": "eqtv_english@peertube.eqver.se",
+    "license": null,
+    "language": "en",
+    "duration_s": 1349,
+    "original_published_at": "2025-05-01T15:52:37.353Z",
+    "description": "Speaker: Sean, Research Fellow, [TWC Mesh](https://github.com/IISNRL/TWC_Mesh) Presentation recorded at [the SplinterCon conference](https://splintercon.net/), 24.02.2025",
+    "tags": [
+      "Mesh network",
+      "SplinterCon",
+      "Splinternet",
+      "Taiwan",
+      "p2p backbone"
+    ],
+    "category": "Science & Technology",
+    "views": 48
+  },
+  "discovery": {
+    "query": "community mesh network",
+    "collection_hint": "build-your-own-future",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:37Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:54:44Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:08:55Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:37Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"community mesh network\""
+    },
+    {
+      "at": "2026-10-20T01:54:44Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

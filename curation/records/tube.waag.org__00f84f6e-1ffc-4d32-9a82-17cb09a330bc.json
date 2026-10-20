@@ -1,0 +1,80 @@
+{
+  "id": "tube.waag.org__00f84f6e-1ffc-4d32-9a82-17cb09a330bc",
+  "source": {
+    "video_url": "https://tube.waag.org/videos/watch/00f84f6e-1ffc-4d32-9a82-17cb09a330bc",
+    "video_uuid": "00f84f6e-1ffc-4d32-9a82-17cb09a330bc",
+    "channel_actor_uri": "https://tube.waag.org/video-channels/general",
+    "instance_host": "tube.waag.org",
+    "title": "HAMLET info session recording 31-07-2026",
+    "creator_display_name": "Waag Futurelab",
+    "channel_handle": "general@tube.waag.org",
+    "license": null,
+    "language": null,
+    "duration_s": 5888,
+    "original_published_at": "2026-08-12T16:03:56.289Z",
+    "description": null,
+    "tags": [],
+    "category": "Unknown",
+    "views": 527
+  },
+  "discovery": {
+    "query": "channel general@tube.waag.org",
+    "collection_hint": "the-machine-is-political",
+    "service": "origin channel listing",
+    "at": "2026-10-20T01:58:58Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:59:50Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:11:17Z",
+    "identity_evidence": "waag.org homepage has no link to tube.waag.org; check the site's footer or contact Waag before treating it as official",
+    "publisher": "Waag Futurelab (claimed)"
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:58:58Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "channel general@tube.waag.org"
+    },
+    {
+      "at": "2026-10-20T01:59:51Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

@@ -1,0 +1,113 @@
+{
+  "id": "media.exo.cat__67d9dc89-db96-48f5-8317-f7bba4849358",
+  "source": {
+    "video_url": "https://media.exo.cat/videos/watch/67d9dc89-db96-48f5-8317-f7bba4849358",
+    "video_uuid": "67d9dc89-db96-48f5-8317-f7bba4849358",
+    "channel_actor_uri": "https://media.exo.cat/video-channels/battlemesh_channel",
+    "instance_host": "media.exo.cat",
+    "title": "Battlemesh v15 - COWMesh community network in India - 5/10/2023, 7:12:21 PM",
+    "creator_display_name": "Main battlemesh channel",
+    "channel_handle": "battlemesh_channel@media.exo.cat",
+    "license": "Public Domain Dedication",
+    "language": "en",
+    "duration_s": 2783,
+    "original_published_at": "2023-05-10T17:42:07.614Z",
+    "description": "Max and Tania (and Phanti) introduce us to [COWMesh](https://open.janastu.org/projects/cowmesh), the Community Owned Wireless mesh network in India. Checkout [Anthillhacks](https://anthillhacks.in), the hacker/crafter event in India! [Part 2/2 of the presentation](https://media.exo.cat/w/nx4e88JHJaraeiYCyTBrug)",
+    "tags": [
+      "BattlemeshV15",
+      "COWMesh"
+    ],
+    "category": "Science & Technology",
+    "views": 43
+  },
+  "discovery": {
+    "query": "community mesh network",
+    "collection_hint": "build-your-own-future",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:37Z"
+  },
+  "editorial": {
+    "status": "reviewed",
+    "primary_collection": "reclaim-the-city",
+    "secondary_collections": [
+      "build-your-own-future"
+    ],
+    "difficulty": "intermediate",
+    "format": "lecture",
+    "learning_intents": [
+      "understand",
+      "build",
+      "organize"
+    ],
+    "evidence_class": "practitioner-experience",
+    "tags": [
+      "community-networks",
+      "mesh",
+      "connectivity"
+    ],
+    "why_selected": "From Battlemesh v15: how the COWMesh community network brought connectivity to a rural area in India, built and run by locals.",
+    "learning_outcomes": [
+      "How a community mesh network is planned and maintained",
+      "Why local ownership matters for connectivity"
+    ],
+    "try_next": "Look up whether there's a community network or mesh group near you.",
+    "context_note": null,
+    "ratings": {
+      "usefulness": 4,
+      "rigor": 4,
+      "mission": 5,
+      "distinctiveness": 5,
+      "accessibility": 3,
+      "currency": 4
+    },
+    "score": 84,
+    "judgment_basis": "metadata only (title, description, channel, caption list); not watched — substantive judgments unverified",
+    "proposed_by": "claude-opus-5-5 (AI proposal)",
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null,
+    "shelves": [],
+    "band": "feature-candidate",
+    "proposed_at": "2026-10-20T02:03:42Z"
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:54:12Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:08:24Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:37Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"community mesh network\""
+    },
+    {
+      "at": "2026-10-20T01:54:13Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    },
+    {
+      "at": "2026-10-20T02:03:42Z",
+      "from": "verified",
+      "to": "reviewed",
+      "by": "claude-opus-5-5 (AI proposal)",
+      "note": "proposed score 84"
+    }
+  ]
+}

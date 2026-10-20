@@ -1,0 +1,80 @@
+{
+  "id": "video.osgeo.org__d502e8ee-83c8-4dfa-8c82-98320a16e81c",
+  "source": {
+    "video_url": "https://video.osgeo.org/videos/watch/d502e8ee-83c8-4dfa-8c82-98320a16e81c",
+    "video_uuid": "d502e8ee-83c8-4dfa-8c82-98320a16e81c",
+    "channel_actor_uri": "https://video.osgeo.org/video-channels/foss4g",
+    "instance_host": "video.osgeo.org",
+    "title": "FOSS4G 2022 | Deployment of AI-enhanced services in climate resilience information systems",
+    "creator_display_name": "FOSS4G",
+    "channel_handle": "foss4g@video.osgeo.org",
+    "license": "Attribution",
+    "language": "en",
+    "duration_s": 999,
+    "original_published_at": "2024-09-17T00:00:00.000Z",
+    "description": "Producing and providing useful information for climate services requires vast volumes of data to come together that further requires technical standards. Beside ordinary base processes for climate data processing like polygon subsetting, there is the special case of extreme climate events and their impacts, where scientific methods for appropriate assessments, detection or even attribution are facing high complexity for the data processing workflows. Therefore the production of climate information services requires optimal science based technical systems, named in this paper climate resilience information systems (CRIS). CRIS like the Climate Data Store (CDS) of the Copernicus Climate Change Service (C3S) are connected to distribute data archives, storing huge amounts of raw data themselves and containing processing services to transform the raw data into usable enhanced information about climate related topics. Ideally this climate information can be requested on demand and is then produced by the CRIS on request by the user. This kind of CRIS can be enhanced when scientific workflows for general climate assessment or even extreme events detection are optimized as information production service, accordingly deployed to be usable by extreme events experts to facilitate their work through a frontend. Deployment into federated data processing systems like CDS requires that scientific methods and their algorithms be wrapped up as technical services following standards of applic…",
+    "tags": [],
+    "category": "Education",
+    "views": 0
+  },
+  "discovery": {
+    "query": "climate resilience",
+    "collection_hint": "reclaim-the-city",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:42Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:57:05Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:12:25Z",
+    "identity_evidence": "osgeo.org homepage has no link to video.osgeo.org",
+    "publisher": "OSGeo / FOSS4G (claimed)"
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:42Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"climate resilience\""
+    },
+    {
+      "at": "2026-10-20T01:57:05Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

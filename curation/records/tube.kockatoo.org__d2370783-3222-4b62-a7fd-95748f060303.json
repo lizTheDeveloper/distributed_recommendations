@@ -1,0 +1,89 @@
+{
+  "id": "tube.kockatoo.org__d2370783-3222-4b62-a7fd-95748f060303",
+  "source": {
+    "video_url": "https://tube.kockatoo.org/videos/watch/d2370783-3222-4b62-a7fd-95748f060303",
+    "video_uuid": "d2370783-3222-4b62-a7fd-95748f060303",
+    "channel_actor_uri": "https://tube.kockatoo.org/video-channels/kritaorgpainting",
+    "instance_host": "tube.kockatoo.org",
+    "title": "NEW Mesh Transform finally in Krita, 2020! 😍😍",
+    "creator_display_name": "Krita",
+    "channel_handle": "kritaorgpainting@tube.kockatoo.org",
+    "license": null,
+    "language": "en",
+    "duration_s": 923,
+    "original_published_at": "2020-12-23T23:00:00.000Z",
+    "description": "2020 is ending but Krita is not stopped ;). Mesh transform is really powerful now in Krita. Enjoy this feature knowing how to use it and why is important. Also enjoy the showcase with the charcoal artworks created by the community 🎁MeshTransform Shortcuts: https://cutt.ly/Wh2cRp2 ✨UV grid: https://alexescape.files.wordpress.com/2015/01/uv_mapper.jpg To receive help for Krita ⚠ Technical support ⚠ : Krita Artists Community: https://krita-artists.org/ Krita Official forum: https://forum.kde.org/viewforum.php?f=136 Krita Reddit page: https://www.reddit.com/r/krita/ Twitter: @Krita_Painting Mastodon: https://mastodon.art/@krita *That helps a lot to keep focused all our resources ;) 🔸🔶🔹🔷 Contents in the video 🔷🔹🔶🔸 Chapters 0:00 - Start Artists: Kynlo: https://krita-artists.org/u/kynlo/activity/portfolio Sergio tellez: https://krita-artists.org/u/sergiotellez/activity/portfolio Jonathan Lascano: https://twitter.com/Jonathan_L96 Christine Gardner: https://twitter.com/thimblefolio/status/1324833333080186885 Pjv: https://krita-artists.org/u/pjv/activity/portfolio Samuel Clemens: https://krita-artists.org/u/van/activity/portfolio 🔸🔶🔹🔷 ❤SUPPORT KRITA 🔷🔹🔶🔸 -------------------------------------------------- If you like these kind of contents let us to know it and we will bring you more :D. And if you want to support us, you can buy our products and donate https://krita.org/en/support-us/donations/ ❤ Krita Shop ❤ https://krita.org/en/shop/ https://krita.org/en/support-us/…",
+    "tags": [
+      "how to distort",
+      "how to split",
+      "mesh transform",
+      "new feature in Krita",
+      "warp"
+    ],
+    "category": "Science & Technology",
+    "views": 5
+  },
+  "discovery": {
+    "query": "community mesh network",
+    "collection_hint": "build-your-own-future",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:37Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:55:44Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": true,
+    "caption_languages": [
+      "en",
+      "es"
+    ],
+    "last_checked_at": "2026-10-20T02:10:05Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:37Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"community mesh network\""
+    },
+    {
+      "at": "2026-10-20T01:55:44Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

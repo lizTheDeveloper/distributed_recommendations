@@ -1,0 +1,80 @@
+{
+  "id": "tube.tchncs.de__405263e6-c746-4ffe-88b0-9a4b2e922ead",
+  "source": {
+    "video_url": "https://tube.tchncs.de/videos/watch/405263e6-c746-4ffe-88b0-9a4b2e922ead",
+    "video_uuid": "405263e6-c746-4ffe-88b0-9a4b2e922ead",
+    "channel_actor_uri": "https://tube.tchncs.de/video-channels/privacy__tech_tips",
+    "instance_host": "tube.tchncs.de",
+    "title": "Introduction: Singleboard Computers vs Microcontrollers (Explained)",
+    "creator_display_name": "(RTP) Privacy & Tech Tips",
+    "channel_handle": "privacy__tech_tips@tube.tchncs.de",
+    "license": "Attribution - Share Alike",
+    "language": "en",
+    "duration_s": 595,
+    "original_published_at": "2021-07-10T22:00:00.000Z",
+    "description": "Singleboard computers vs Microcontrollers explained. Singleboard computers like Pine64 A64 LTS or Raspberry Pi run entire operating systems such as Linux, FreeBSD, whereas microcontrollers such as the ESP32 focus on specialized tasks yet use much less power. There are many ways to get into this and I will be doing series coming up to help people get into Singleboard computers and Microcontrollers using security/privacy benefits I think you will find useful. Raspberry Pi: https://www.raspberrypi.org Pinephone/A64 LTS: https://www.pine64.org ... https://www.youtube.com/watch?v=Gaxk3wo5Dw4",
+    "tags": [],
+    "category": "Science & Technology",
+    "views": 44
+  },
+  "discovery": {
+    "query": "microcontrollers",
+    "collection_hint": "strange-machines",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:48Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:56:05Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:10:49Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:48Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"microcontrollers\""
+    },
+    {
+      "at": "2026-10-20T01:56:05Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

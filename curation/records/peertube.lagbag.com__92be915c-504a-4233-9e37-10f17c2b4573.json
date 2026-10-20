@@ -1,0 +1,94 @@
+{
+  "id": "peertube.lagbag.com__92be915c-504a-4233-9e37-10f17c2b4573",
+  "source": {
+    "video_url": "https://peertube.lagbag.com/videos/watch/92be915c-504a-4233-9e37-10f17c2b4573",
+    "video_uuid": "92be915c-504a-4233-9e37-10f17c2b4573",
+    "channel_actor_uri": "https://peertube.lagbag.com/video-channels/basicallysteve",
+    "instance_host": "peertube.lagbag.com",
+    "title": "Self Defense",
+    "creator_display_name": "steve-yt",
+    "channel_handle": "basicallysteve@peertube.lagbag.com",
+    "license": null,
+    "language": "en",
+    "duration_s": 160,
+    "original_published_at": "2006-11-12T05:00:00.000Z",
+    "description": "DERRICK COMEDY's feature film MYSTERY TEAM available NOW on DVD, digital and On Demand: http://www.mysteryteam-movie.com Click here to become a fan of MYSTERY TEAM on Facebook: http://bit.ly/80UkHm",
+    "tags": [
+      "Brett",
+      "defense",
+      "instructor",
+      "Kaywood",
+      "self"
+    ],
+    "category": "Comedy",
+    "views": 1
+  },
+  "discovery": {
+    "query": "digital self defense",
+    "collection_hint": "hack-the-planet",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:21Z"
+  },
+  "editorial": {
+    "status": "rejected",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": "claude-opus-5-5 (AI proposal)",
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": "off-topic: a comedy sketch matched 'self defense'",
+    "proposed_at": "2026-10-20T02:03:42Z"
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:54:59Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:09:10Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:21Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"digital self defense\""
+    },
+    {
+      "at": "2026-10-20T01:55:00Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    },
+    {
+      "at": "2026-10-20T02:03:42Z",
+      "from": "verified",
+      "to": "rejected",
+      "by": "claude-opus-5-5 (AI proposal)",
+      "note": "off-topic: a comedy sketch matched 'self defense'"
+    }
+  ]
+}

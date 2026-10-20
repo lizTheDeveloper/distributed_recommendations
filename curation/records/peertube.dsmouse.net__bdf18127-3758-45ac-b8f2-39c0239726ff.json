@@ -1,0 +1,85 @@
+{
+  "id": "peertube.dsmouse.net__bdf18127-3758-45ac-b8f2-39c0239726ff",
+  "source": {
+    "video_url": "https://peertube.dsmouse.net/videos/watch/bdf18127-3758-45ac-b8f2-39c0239726ff",
+    "video_uuid": "bdf18127-3758-45ac-b8f2-39c0239726ff",
+    "channel_actor_uri": "https://peertube.dsmouse.net/video-channels/infosectalks",
+    "instance_host": "peertube.dsmouse.net",
+    "title": "Badge Hacking ceremony",
+    "creator_display_name": "InfoSec Talks",
+    "channel_handle": "infosectalks@peertube.dsmouse.net",
+    "license": null,
+    "language": null,
+    "duration_s": 3758,
+    "original_published_at": "2019-11-17T00:00:00.000Z",
+    "description": "Multistreaming with https://restream.io/",
+    "tags": [
+      "badges",
+      "cybersecurity",
+      "hardware hacking",
+      "security talk"
+    ],
+    "category": "Science & Technology",
+    "views": 9
+  },
+  "discovery": {
+    "query": "hardware hacking",
+    "collection_hint": "hack-the-planet",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:26Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:54:41Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:08:51Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:26Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"hardware hacking\""
+    },
+    {
+      "at": "2026-10-20T01:54:41Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

@@ -1,0 +1,94 @@
+{
+  "id": "peertube.dngr.us__8d8d0748-64d3-4fa5-9f74-53e98b679b87",
+  "source": {
+    "video_url": "https://peertube.dngr.us/videos/watch/8d8d0748-64d3-4fa5-9f74-53e98b679b87",
+    "video_uuid": "8d8d0748-64d3-4fa5-9f74-53e98b679b87",
+    "channel_actor_uri": "https://peertube.dngr.us/video-channels/historical",
+    "instance_host": "peertube.dngr.us",
+    "title": "1944 U.S. ARMY AF PILOT TRAINING FILM “ TAKE OFFS AND LANDINGS PART 1: THE TAKE OFF ” 29154",
+    "creator_display_name": "Historical Archive",
+    "channel_handle": "historical@peertube.dngr.us",
+    "license": "Public Domain Dedication",
+    "language": "en",
+    "duration_s": 1493,
+    "original_published_at": "2020-08-17T00:00:00.000Z",
+    "description": "https://www.patreon.com/PeriscopeFilm This WWII training film takes a look at the procedure for a proper take off in accordance with the US Army Air Force. It follows a narrative of a bushy eyed pilot in training as he takes his first flight with his instructor as well as his first solo take off. It is an Official Training Film of the War Department (:11) and was produced by the 1st Motion Picture Unit (:22). It opens with the fresh pilot, Mr. Blake as he distractedly bumps into peers while watching another plane take off and fly over the air field (1:11). His peers jokingly mention Mr. Blake was eager to learn everything in a day and head out to Berlin tomorrow as this was filmed during the second world war. He then nearly backs into his instructor who informs him he will be flying a Vultee BT-13 Valiant; which was the basic trainer aircraft used during WW2 (1:54). The BT-13 had a 450-horsepower engine and it’s rudders, trim tabs, and variable pitch propeller are pointed to (2:22). As Mr. Blake is about to jump into the cockpit, the instructor stops him to check the baggage compartment (2:27) and the gas tank as the gas gauge may be incorrect (2:41). The pair then climb into the plane (3:25) and the instructor will walk Mr. Blake through the entire process. Some of this includes the plugging in of the headset, fastening seat belt (3:35), unlocking controls and adjusting his seat and rider pedals (3:43) as well as setting the altimeter (4:04) and raising the flaps (4:07). It…",
+    "tags": [
+      "2K",
+      "4K",
+      "HD",
+      "Periscope Film",
+      "Stock Footage"
+    ],
+    "category": "Films",
+    "views": 0
+  },
+  "discovery": {
+    "query": "procedural narrative",
+    "collection_hint": "the-weird-internet",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:54Z"
+  },
+  "editorial": {
+    "status": "rejected",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": "claude-opus-5-5 (AI proposal)",
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": "off-topic for its collection (keyword match only)",
+    "proposed_at": "2026-10-20T02:03:42Z"
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:54:33Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:08:43Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:54Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"procedural narrative\""
+    },
+    {
+      "at": "2026-10-20T01:54:33Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    },
+    {
+      "at": "2026-10-20T02:03:42Z",
+      "from": "verified",
+      "to": "rejected",
+      "by": "claude-opus-5-5 (AI proposal)",
+      "note": "off-topic for its collection (keyword match only)"
+    }
+  ]
+}

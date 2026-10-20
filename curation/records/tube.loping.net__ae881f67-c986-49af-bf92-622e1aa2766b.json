@@ -1,0 +1,67 @@
+{
+  "id": "tube.loping.net__ae881f67-c986-49af-bf92-622e1aa2766b",
+  "source": {
+    "video_url": "https://tube.loping.net/videos/watch/ae881f67-c986-49af-bf92-622e1aa2766b",
+    "video_uuid": "ae881f67-c986-49af-bf92-622e1aa2766b",
+    "channel_actor_uri": null,
+    "instance_host": "tube.loping.net",
+    "title": "ChatGPT Jailbreaking & Is AI Safety Nerfing AI?",
+    "creator_display_name": "Asianometry",
+    "channel_handle": "asianometry@tube.loping.net",
+    "license": null,
+    "language": null,
+    "duration_s": 810,
+    "original_published_at": "2023-06-18T00:00:00.000Z"
+  },
+  "discovery": {
+    "query": "AI safety evaluation",
+    "collection_hint": "the-machine-is-political",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:30Z"
+  },
+  "editorial": {
+    "status": "discovered",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": false,
+    "identity_status": "unverified",
+    "verified_at": null,
+    "verification_method": null,
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:10:07Z"
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:30Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"AI safety evaluation\""
+    }
+  ]
+}

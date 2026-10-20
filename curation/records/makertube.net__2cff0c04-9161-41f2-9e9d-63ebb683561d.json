@@ -1,0 +1,87 @@
+{
+  "id": "makertube.net__2cff0c04-9161-41f2-9e9d-63ebb683561d",
+  "source": {
+    "video_url": "https://makertube.net/videos/watch/2cff0c04-9161-41f2-9e9d-63ebb683561d",
+    "video_uuid": "2cff0c04-9161-41f2-9e9d-63ebb683561d",
+    "channel_actor_uri": "https://makertube.net/video-channels/creative_coding",
+    "instance_host": "makertube.net",
+    "title": "Collaborative Creative Coding with Joukkue",
+    "creator_display_name": "Creative Coding",
+    "channel_handle": "creative_coding@makertube.net",
+    "license": "Attribution - Share Alike",
+    "language": "en",
+    "duration_s": 76,
+    "original_published_at": "2025-07-15T14:06:58.989Z",
+    "description": "At the Creative Code Jam in Berlin, January 2015.",
+    "tags": [
+      "CCB",
+      "CreativeCoding",
+      "LiveCoding",
+      "p5.js"
+    ],
+    "category": "Art",
+    "views": 9
+  },
+  "discovery": {
+    "query": "creative coding",
+    "collection_hint": "the-weird-internet",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:51Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:53:54Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": true,
+    "caption_languages": [
+      "en"
+    ],
+    "last_checked_at": "2026-10-20T02:07:55Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:51Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"creative coding\""
+    },
+    {
+      "at": "2026-10-20T01:53:55Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

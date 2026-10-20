@@ -1,0 +1,116 @@
+{
+  "id": "video.canadiancivil.com__8464439a-e53f-44b6-9eae-7f7ef6c9abb0",
+  "source": {
+    "video_url": "https://video.canadiancivil.com/videos/watch/8464439a-e53f-44b6-9eae-7f7ef6c9abb0",
+    "video_uuid": "8464439a-e53f-44b6-9eae-7f7ef6c9abb0",
+    "channel_actor_uri": "https://video.canadiancivil.com/video-channels/main_channel",
+    "instance_host": "video.canadiancivil.com",
+    "title": "Introduction To Housing Co-ops",
+    "creator_display_name": "Videos",
+    "channel_handle": "main_channel@video.canadiancivil.com",
+    "license": "Attribution",
+    "language": "en",
+    "duration_s": 1331,
+    "original_published_at": "2020-04-10T00:00:00.000Z",
+    "description": "With the housing affordability crisis lapping onto the shores of every desirable city in the world, it was only a matter of time before it arrived in Montreal. But unlike other places we may have a weapon, a large movement centered in Montreal has been seeing a huge resurgence: Housing Cooperatives. Learn how cities could be saved from the anxiety of our times, from its background in the squatters movement and unions, to a one stop shop for public housing and community building. Do we have a solution to both the housing crisis and a better city in one, or are we doomed to become the next Toronto? Help Out by sharing on Facebook/Reddit. It helps immensely! Extra Content: https://www.patreon.com/PaigeSaunders Merch: https://www.redbubble.com/people/joymonger https://twitter.com/PaigeMTL https://www.facebook.com/paigemtl https://rumble.com/user/joymonger Translation/Subtitles: https://docs.google.com/document/d/1Hv-kjJVajPmpJZvPBSIPqboEslryMeiiUR-e6gm5H1E/edit?usp=sharing ________________ References & Resources [1/2] http://legisquebec.gouv.qc.ca/en/ShowDoc/cs/C-67.2 [3] https://www.canada.ca/en/revenue-agency/services/forms-publications/publications/19-3-3/rebate-cooperative-housing.html [4] https://fechimm.coop/en/cooperatives [5] https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=3610058001 http://www.demographia.com/dhi.pdf (pg42) https://www150.statcan.gc.ca/n1/pub/71-607-x/71-607-x2018014-eng.htm https://en.wikipedia.org/wiki/Blue_Bonnets_(raceway) https://www.youtube.…",
+    "tags": [
+      "Housing Affordability",
+      "Housing Co-ops",
+      "Housing Cooperative",
+      "Montreal",
+      "Quebec"
+    ],
+    "category": "Unknown",
+    "views": 27
+  },
+  "discovery": {
+    "query": "cooperative housing",
+    "collection_hint": "reclaim-the-city",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:40Z"
+  },
+  "editorial": {
+    "status": "reviewed",
+    "primary_collection": "reclaim-the-city",
+    "secondary_collections": [],
+    "difficulty": "beginner",
+    "format": "documentary",
+    "learning_intents": [
+      "understand",
+      "organize"
+    ],
+    "evidence_class": "practitioner-experience",
+    "tags": [
+      "housing",
+      "cooperatives"
+    ],
+    "why_selected": "A clear introduction to housing co-ops: how residents own and run their buildings together, and why it keeps rents down.",
+    "learning_outcomes": [
+      "How a housing co-op is structured and governed",
+      "Why co-ops resist speculation"
+    ],
+    "try_next": "Find out whether there's a co-op housing federation in your region and what its waitlist looks like.",
+    "context_note": null,
+    "ratings": {
+      "usefulness": 5,
+      "rigor": 4,
+      "mission": 5,
+      "distinctiveness": 4,
+      "accessibility": 5,
+      "currency": 4
+    },
+    "score": 91,
+    "judgment_basis": "metadata only (title, description, channel, caption list); not watched — substantive judgments unverified",
+    "proposed_by": "claude-opus-5-5 (AI proposal)",
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null,
+    "shelves": [
+      "start-here"
+    ],
+    "band": "feature-candidate",
+    "proposed_at": "2026-10-20T02:03:42Z"
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "official-link-verified",
+    "verified_at": "2026-10-20T01:56:35Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": true,
+    "caption_languages": [
+      "en"
+    ],
+    "last_checked_at": "2026-10-20T02:11:57Z",
+    "identity_evidence": "https://canadiancivil.com/ links to video.canadiancivil.com",
+    "publisher": "Canadian Civil"
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:40Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"cooperative housing\""
+    },
+    {
+      "at": "2026-10-20T01:56:35Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    },
+    {
+      "at": "2026-10-20T02:03:42Z",
+      "from": "verified",
+      "to": "reviewed",
+      "by": "claude-opus-5-5 (AI proposal)",
+      "note": "proposed score 91"
+    }
+  ]
+}

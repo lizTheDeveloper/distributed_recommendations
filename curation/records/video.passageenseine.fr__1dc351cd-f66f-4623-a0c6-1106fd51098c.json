@@ -1,0 +1,85 @@
+{
+  "id": "video.passageenseine.fr__1dc351cd-f66f-4623-a0c6-1106fd51098c",
+  "source": {
+    "video_url": "https://video.passageenseine.fr/videos/watch/1dc351cd-f66f-4623-a0c6-1106fd51098c",
+    "video_uuid": "1dc351cd-f66f-4623-a0c6-1106fd51098c",
+    "channel_actor_uri": "https://video.passageenseine.fr/video-channels/4bc3ac4e-1bc7-4fbc-96fc-a7f56613b595",
+    "instance_host": "video.passageenseine.fr",
+    "title": "ActivityPub, l’épine dorsale du fédivers, ça marche comment ?",
+    "creator_display_name": "PSES",
+    "channel_handle": "4bc3ac4e-1bc7-4fbc-96fc-a7f56613b595@video.passageenseine.fr",
+    "license": "Attribution - Share Alike",
+    "language": "fr",
+    "duration_s": 4455,
+    "original_published_at": "2019-09-11T09:30:06.288Z",
+    "description": "Le fédivers, ensemble de serveurs qui échangent des informations de manière décentralisée, est un grand succès et, chaque jour, on annonce un nouveau logiciel qui « parle ActivityPub ». Quel est ce protocole ? Comment marche-t-il ? Quel rôle joue-t-il ? C’est vraiment lui qui fait tout ? Quels sont ses avantages, ses limites et ses problèmes ? Cette conférence vise un public plutôt informaticien. Du code-source défilera sur l’écran.",
+    "tags": [
+      "2019",
+      "Conférences"
+    ],
+    "category": "Science & Technology",
+    "views": 425
+  },
+  "discovery": {
+    "query": "ActivityPub",
+    "collection_hint": "build-your-own-future",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:35Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:57:05Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": true,
+    "caption_languages": [
+      "fr"
+    ],
+    "last_checked_at": "2026-10-20T02:12:26Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:35Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"ActivityPub\""
+    },
+    {
+      "at": "2026-10-20T01:57:07Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

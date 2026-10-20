@@ -1,0 +1,84 @@
+{
+  "id": "tube.tchncs.de__6f278fe7-4d21-43c9-9381-7f8ceb8b33cd",
+  "source": {
+    "video_url": "https://tube.tchncs.de/videos/watch/6f278fe7-4d21-43c9-9381-7f8ceb8b33cd",
+    "video_uuid": "6f278fe7-4d21-43c9-9381-7f8ceb8b33cd",
+    "channel_actor_uri": "https://tube.tchncs.de/video-channels/privacy__tech_tips",
+    "instance_host": "tube.tchncs.de",
+    "title": "OSINT Maltego - Find Out Who Is Calling",
+    "creator_display_name": "(RTP) Privacy & Tech Tips",
+    "channel_handle": "privacy__tech_tips@tube.tchncs.de",
+    "license": "Attribution - Share Alike",
+    "language": "en",
+    "duration_s": 763,
+    "original_published_at": "2023-12-15T00:00:00.000Z",
+    "description": "\"Who Is Calling Me?\" Investigate Strange Numbers With Maltego IPQualityScore. Everyone Experiences Random Calls. There is danger in not knowing who is calling you. Among the most common malware targeting, comes to us via phone number targeting. One of the most persistent identifiers, as well as a long-term target, for accessing YOU. The message will likely seem important / urgent. #OSINT #Maltego #PhoneNumber EXAMPLE: it's the holidays and nearly everyone is waiting on a package. This brings scam artists and attackers new opportunities. You may receive a SMS txt message from a malicious party, appearing to come from a shipping company having trouble delivering your package. They may state a requirement to receive your package -- leaving a link to a supposed website for filling in said forms. Website turns out to be malicious deanonymization (direct connect), or worse; malware targeting. Those using spyware such as Pegasus take advantage of personal phone numbers to target Human Rights activists and Journalists. In some cases, not even requiring targets to click on a link - using something known as a \"zeroclick\" 0day exploitation - where an unpatched vulnerability will take advantage of features such as iMessage previews, and more, in order to exploit a target phone. Bringing you 100% independent content, aiming to introduce to you, the most honest, unfiltered security & privacy content on the net. Hopefully youtube / google will recognize it, and help this channel grow! *Tha…",
+    "tags": [
+      "maltego",
+      "OSINT",
+      "phone"
+    ],
+    "category": "Science & Technology",
+    "views": 155
+  },
+  "discovery": {
+    "query": "OSINT",
+    "collection_hint": "hack-the-planet",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:23Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:56:05Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:10:51Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:23Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"OSINT\""
+    },
+    {
+      "at": "2026-10-20T01:56:06Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

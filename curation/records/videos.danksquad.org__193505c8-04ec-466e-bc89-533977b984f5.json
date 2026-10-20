@@ -1,0 +1,94 @@
+{
+  "id": "videos.danksquad.org__193505c8-04ec-466e-bc89-533977b984f5",
+  "source": {
+    "video_url": "https://videos.danksquad.org/videos/watch/193505c8-04ec-466e-bc89-533977b984f5",
+    "video_uuid": "193505c8-04ec-466e-bc89-533977b984f5",
+    "channel_actor_uri": "https://videos.danksquad.org/video-channels/faustzero1legacy",
+    "instance_host": "videos.danksquad.org",
+    "title": "Monero： Sound Money, Safe Mode [REPOST]",
+    "creator_display_name": "FaustZero1",
+    "channel_handle": "faustzero1legacy@videos.danksquad.org",
+    "license": "Attribution - Non Commercial - Share Alike",
+    "language": "en",
+    "duration_s": 3805,
+    "original_published_at": "2022-10-08T23:57:24.128Z",
+    "description": "Credit to: Monero Community Workgroup (https://www.youtube.com/watch?v=aC9Uu5BUxII) In this post-pandemic update of the Monero Means Money lecture/documentary, Dr. Daniel Kim provides a comprehensive overview of Monero and Bitcoin within the larger context of gold and fiat currency in the 2020 financial crisis. The source footage for this presentation was livestreamed August 7-8, 2020 as the keynote talks for Monero Village at DEF CON 28. 0:00 Introduction 5:00 The Pandemic Economy 12:04 Independent Scarcity - Decentralization, Bitcoin 26:03 Independent Scarcity - Monero 41:48 Fungibility vs. Mass Surveillance 59:12 Valuation - Getting Involved Sweetwater Digital Asset Consulting, LLC sweetwater.consulting/ Monero Means Money: Cryptocurrency 101, Live from Leipzig https://yewtu.be/watch?v=8quGD9W7B2I&t=0",
+    "tags": [
+      "Cryptocurrency",
+      "DigitalSelfDefense",
+      "Monero",
+      "Money",
+      "Privacy"
+    ],
+    "category": "Education",
+    "views": 6
+  },
+  "discovery": {
+    "query": "digital self defense",
+    "collection_hint": "hack-the-planet",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:21Z"
+  },
+  "editorial": {
+    "status": "rejected",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": "claude-opus-5-5 (AI proposal)",
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": "labelled [REPOST] of another publisher's video",
+    "proposed_at": "2026-10-20T02:03:42Z"
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:57:16Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:12:34Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:21Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"digital self defense\""
+    },
+    {
+      "at": "2026-10-20T01:57:17Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    },
+    {
+      "at": "2026-10-20T02:03:42Z",
+      "from": "verified",
+      "to": "rejected",
+      "by": "claude-opus-5-5 (AI proposal)",
+      "note": "labelled [REPOST] of another publisher's video"
+    }
+  ]
+}

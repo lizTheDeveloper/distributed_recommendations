@@ -1,0 +1,85 @@
+{
+  "id": "peertube.eqver.se__de200810-5882-4004-bf2b-59ee0cda500a",
+  "source": {
+    "video_url": "https://peertube.eqver.se/videos/watch/de200810-5882-4004-bf2b-59ee0cda500a",
+    "video_uuid": "de200810-5882-4004-bf2b-59ee0cda500a",
+    "channel_actor_uri": "https://peertube.eqver.se/video-channels/eqtv_english",
+    "instance_host": "peertube.eqver.se",
+    "title": "E-mail is the middle ground between a safe and a dumpster. How to fix it?",
+    "creator_display_name": "eQtv in English",
+    "channel_handle": "eqtv_english@peertube.eqver.se",
+    "license": null,
+    "language": "en",
+    "duration_s": 1795,
+    "original_published_at": "2025-12-13T12:26:00.502Z",
+    "description": "\"Email is one of the oldest and most boring web technologies that most users prefer not to remember. There are instant messengers for correspondence, social networks for public swearing, and you can send files via the cloud. It would seem, who needs email in 2024? There is only spam, automatic notifications, and nothing else - so why think about it again? Nevertheless, it is email that is an attractive target for attacks by intelligence agencies, bank fraudsters, hackers, and many other cybercriminals. Why is everyone so interested in your mailbox, what are the risks of compromising it, and how can you protect yourself (or is it possible?).\"",
+    "tags": [
+      "cybersecurity",
+      "defence",
+      "email",
+      "phishing"
+    ],
+    "category": "Science & Technology",
+    "views": 2
+  },
+  "discovery": {
+    "query": "phishing defense",
+    "collection_hint": "hack-the-planet",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:25Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:54:49Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:09:00Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:25Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"phishing defense\""
+    },
+    {
+      "at": "2026-10-20T01:54:50Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

@@ -1,0 +1,88 @@
+{
+  "id": "makertube.net__9692fac8-53ea-4ce7-889f-15cd7263c63f",
+  "source": {
+    "video_url": "https://makertube.net/videos/watch/9692fac8-53ea-4ce7-889f-15cd7263c63f",
+    "video_uuid": "9692fac8-53ea-4ce7-889f-15cd7263c63f",
+    "channel_actor_uri": "https://makertube.net/video-channels/the_industrious_rabbit",
+    "instance_host": "makertube.net",
+    "title": "There was another extra terrestrial affected by the 80s video game crash!",
+    "creator_display_name": "The Industrious Rabbit",
+    "channel_handle": "the_industrious_rabbit@makertube.net",
+    "license": "Attribution - Non Commercial - Share Alike",
+    "language": "en",
+    "duration_s": 380,
+    "original_published_at": "2022-09-03T01:11:00.000Z",
+    "description": "The 80s video game movie The Last Starfighter has a second plotline hidden in plain sight -- the indie game development business Centauri was running to make and distribute Starfighter. Topaz Rabbit explores how the video game crash of 1983 might have affected the fate of the Frontier. Thanks to Meredith, Tyrel, Tieg, Michala! Read more at https://theindustriousrabbit.com and subscribe to the channel and RSS feed for future updates! --- Credits * The Author Never Dies by Nihilore https://www.nihilore.com/latest-tracks/2018/12/14/the-author-never-dies CC-BY 4.0 * Last Starfighter (Gunstar) Doors Closed by Oop_Ack https://www.thingiverse.com/thing:3658817 CC-PD",
+    "tags": [
+      "arcades",
+      "history",
+      "movies",
+      "retrogaming",
+      "thelaststarfighter"
+    ],
+    "category": "Entertainment",
+    "views": 33
+  },
+  "discovery": {
+    "query": "indie game development",
+    "collection_hint": "the-weird-internet",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:52Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:54:03Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": true,
+    "caption_languages": [
+      "en"
+    ],
+    "last_checked_at": "2026-10-20T02:08:06Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:52Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"indie game development\""
+    },
+    {
+      "at": "2026-10-20T01:54:03Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

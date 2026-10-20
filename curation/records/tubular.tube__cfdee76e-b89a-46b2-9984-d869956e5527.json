@@ -1,0 +1,88 @@
+{
+  "id": "tubular.tube__cfdee76e-b89a-46b2-9984-d869956e5527",
+  "source": {
+    "video_url": "https://tubular.tube/videos/watch/cfdee76e-b89a-46b2-9984-d869956e5527",
+    "video_uuid": "cfdee76e-b89a-46b2-9984-d869956e5527",
+    "channel_actor_uri": "https://tubular.tube/video-channels/elatronion",
+    "instance_host": "tubular.tube",
+    "title": "My Friends are BETTER THAN ME at GAME DEV",
+    "creator_display_name": "Elatronion",
+    "channel_handle": "elatronion@tubular.tube",
+    "license": null,
+    "language": "fr",
+    "duration_s": 1130,
+    "original_published_at": "2024-02-02T00:00:00.000Z",
+    "description": "Welcome to the 4th Friends Jam, a special edition where we welcomed a new member, Normal Canard, an artist-turned-coder! This jam was all about exploring new horizons as we switched from my custom engine to the Godot Game Engine. And let me tell you, the results were astonishing. With the theme \"One Enemy,\" each of us brought our A-game, but Normal Canard's entry was a game-changer, setting a new standard in design and graphics. Follow along as I showcase the creations from Katsuro, Mr. Monocle, and myself. Each game reflects our unique styles and learning curves, from big monster feet to glitchy challenges, and my own attempt at a graphically impressive game with a quirky active-ragdoll mechanic. Witness how we each tackled the theme, the surprises along the way, and the amazing fact that someone from outside our circle played my game! Normal Canard may have raised the bar, but the journey of learning and creating is what truly shines in this jam. Let's dive into this creative rollercoaster! 🔗 LINKS 🔗 Lotsov Bullets Itch: https://normal-canard.itch.io/lotsov-bullets Source Code: ... FJ4 Itch: https://elatronion.itch.io/fj4 Source Code: https://gitlab.com/elatronion/fj4",
+    "tags": [
+      "Game Development",
+      "Godot",
+      "Godot 4",
+      "Godot Engine",
+      "Indie Game Dev"
+    ],
+    "category": "Gaming",
+    "views": 0
+  },
+  "discovery": {
+    "query": "indie game development",
+    "collection_hint": "the-weird-internet",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:52Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:56:19Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": true,
+    "caption_languages": [
+      "en"
+    ],
+    "last_checked_at": "2026-10-20T02:11:41Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:52Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"indie game development\""
+    },
+    {
+      "at": "2026-10-20T01:56:20Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

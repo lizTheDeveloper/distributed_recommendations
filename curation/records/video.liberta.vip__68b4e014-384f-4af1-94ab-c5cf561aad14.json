@@ -1,0 +1,93 @@
+{
+  "id": "video.liberta.vip__68b4e014-384f-4af1-94ab-c5cf561aad14",
+  "source": {
+    "video_url": "https://video.liberta.vip/videos/watch/68b4e014-384f-4af1-94ab-c5cf561aad14",
+    "video_uuid": "68b4e014-384f-4af1-94ab-c5cf561aad14",
+    "channel_actor_uri": "https://video.liberta.vip/video-channels/mmr_playlist",
+    "instance_host": "video.liberta.vip",
+    "title": "Tim Dog - Fuck Compton",
+    "creator_display_name": "MMR playlist",
+    "channel_handle": "mmr_playlist@video.liberta.vip",
+    "license": "Attribution - Non Commercial - Share Alike",
+    "language": "en",
+    "duration_s": 250,
+    "original_published_at": "2023-08-15T14:49:47.941Z",
+    "description": "From his 1991 premier LP on Columbia rec. Aw shit, motherfuckers, step to the rear and cheer 'Cause Tim Dog is here Let's get right down to the nitty-gritty And talk about a bullshit city Talkin' about niggas from Compton They're no comp and they truly ain't stomping Tim Dog, a Black man's task I'm so bad I'll whip Superman's ass All you suckers that riff on the West Coast I'll diss and spray your ass like a roach You think you're cool with your curls and your shades I'll roll thick and you'll be yellin' out, \"Raid\" A hard brother that lives in New York Where suckers are hard and we don't have to talk Shut your mouth 'fore we come out stompin' Hey, yo Eazy!, fuck Compton [Chorus] Fuck Compton Fuck Compton (Yeah) Fuck Compton (Oh, yeah) Fuck 'em [Verse 2] Why you dissing Eazy? 'Cause the boy ain't shit Chew him with tobacco, and spit him in shit I'll crush Ice Cube, I'm cool with Ice-T But N.W.A ain't shit to me Dre, beatin' on Dee from \"Pump it Up!\"? Step to the Dog and get fucked up I'm simplistic, imperialistic, idealistic And I'm kicking the ballistics Having that gang war We wanna know what you're fighting for Fighting over colors? All that gang shit's for dumb motherfuckers But you go on thinking you're hard Come to New York and we'll see who gets robbed Take your jheri curl, take your black hats Take your wack lyrics and your bullshit tracks Now you're mad and you're thinking about stomping Well, I'm from the South Bronx, fuck Compton [Chorus] Fuck Compton (Yeah) Fuck …",
+    "tags": [
+      "Early hiphop",
+      "East coast shit",
+      "Hardcore rap",
+      "NWA dissing"
+    ],
+    "category": "Music",
+    "views": 66
+  },
+  "discovery": {
+    "query": "right to the city",
+    "collection_hint": "reclaim-the-city",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:43Z"
+  },
+  "editorial": {
+    "status": "rejected",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": "claude-opus-5-5 (AI proposal)",
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": "off-topic for its collection (keyword match only)",
+    "proposed_at": "2026-10-20T02:03:42Z"
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:56:58Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:12:19Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:43Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"right to the city\""
+    },
+    {
+      "at": "2026-10-20T01:56:59Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    },
+    {
+      "at": "2026-10-20T02:03:42Z",
+      "from": "verified",
+      "to": "rejected",
+      "by": "claude-opus-5-5 (AI proposal)",
+      "note": "off-topic for its collection (keyword match only)"
+    }
+  ]
+}

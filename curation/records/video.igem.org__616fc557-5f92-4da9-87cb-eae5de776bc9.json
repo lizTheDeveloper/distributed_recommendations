@@ -1,0 +1,82 @@
+{
+  "id": "video.igem.org__616fc557-5f92-4da9-87cb-eae5de776bc9",
+  "source": {
+    "video_url": "https://video.igem.org/videos/watch/616fc557-5f92-4da9-87cb-eae5de776bc9",
+    "video_uuid": "616fc557-5f92-4da9-87cb-eae5de776bc9",
+    "channel_actor_uri": "https://video.igem.org/video-channels/2022_teams",
+    "instance_host": "video.igem.org",
+    "title": "BNUZH-China: Demonstration video of Hardware function (2022)",
+    "creator_display_name": "iGEM 2022 Teams",
+    "channel_handle": "2022_teams@video.igem.org",
+    "license": "Attribution",
+    "language": "zxx",
+    "duration_s": 70,
+    "original_published_at": "2022-10-11T08:54:40.179Z",
+    "description": "BNUZH-China丨Demonstration video of Hardware function",
+    "tags": [
+      "Hardware"
+    ],
+    "category": "Science & Technology",
+    "views": 28
+  },
+  "discovery": {
+    "query": "hardware teardown",
+    "collection_hint": "strange-machines",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:46Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:56:48Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:12:09Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:46Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"hardware teardown\""
+    },
+    {
+      "at": "2026-10-20T01:56:49Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

@@ -1,0 +1,80 @@
+{
+  "id": "tv.animalcracker.art__6aa5eb95-4393-403f-826f-2deca8c16b03",
+  "source": {
+    "video_url": "https://tv.animalcracker.art/videos/watch/6aa5eb95-4393-403f-826f-2deca8c16b03",
+    "video_uuid": "6aa5eb95-4393-403f-826f-2deca8c16b03",
+    "channel_actor_uri": "https://tv.animalcracker.art/video-channels/theselfdiscoverychannel",
+    "instance_host": "tv.animalcracker.art",
+    "title": "I Want To Make An Interactive Fiction Game",
+    "creator_display_name": "The Self Discovery Channel",
+    "channel_handle": "theselfdiscoverychannel@tv.animalcracker.art",
+    "license": null,
+    "language": "en",
+    "duration_s": 830,
+    "original_published_at": "2023-02-03T00:00:00.000Z",
+    "description": "Keeping It Real: I decided to not put in a few edited minutes of playing a game in Ink because I was screen recording the left monitor initially and you could see my approaching-forty-baldness too clearly for my fragile self esteem to include. The only goal for making videos is to catch up on the creative projects I had intended to tackle over the last few years that got diverted because my day job and personal life were exceedingly stressful. One of the things I've wanted to explore for a while has been Interactive Fiction and the wider genre of text/storybook style games. I have started an attempt to create a small IF game and will be documenting the learning process. Games and Dev Tools mentioned: Lensmoor https://lensmoor.org/ Urban Dead https://www.urbandead.com/ Tau Station https://taustation.space Ink https://www.inklestudios.com/ink/ ADRIFT https://adrift.co --- My name is Cameron. I make comics, put together a scifi/horror anthology book, and now am trying some new stuff in the hopes of escaping the mid-level retail manager capitalist black hole. Send help: https://animalcracker.support/ Cyberdog Investigations, LLC - Sniffing the truth out of the paranormal. https://youtube.com/@cyberdogllc Free/Pay What You Want 150+ Collection Posters for Home Theater Software: https://animalcrackerart.gumroad.com/l/xvqgN",
+    "tags": [],
+    "category": "Gaming",
+    "views": 5
+  },
+  "discovery": {
+    "query": "interactive fiction",
+    "collection_hint": "the-weird-internet",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:50Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:56:20Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:11:41Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:50Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"interactive fiction\""
+    },
+    {
+      "at": "2026-10-20T01:56:20Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

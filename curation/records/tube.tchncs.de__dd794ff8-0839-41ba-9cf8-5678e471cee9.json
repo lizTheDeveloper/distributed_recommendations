@@ -1,0 +1,84 @@
+{
+  "id": "tube.tchncs.de__dd794ff8-0839-41ba-9cf8-5678e471cee9",
+  "source": {
+    "video_url": "https://tube.tchncs.de/videos/watch/dd794ff8-0839-41ba-9cf8-5678e471cee9",
+    "video_uuid": "dd794ff8-0839-41ba-9cf8-5678e471cee9",
+    "channel_actor_uri": "https://tube.tchncs.de/video-channels/privacy__tech_tips",
+    "instance_host": "tube.tchncs.de",
+    "title": "OSINT: Gathering Emails With theHarvester",
+    "creator_display_name": "(RTP) Privacy & Tech Tips",
+    "channel_handle": "privacy__tech_tips@tube.tchncs.de",
+    "license": "Attribution - Share Alike",
+    "language": "en",
+    "duration_s": 1041,
+    "original_published_at": "2023-10-29T00:00:00.000Z",
+    "description": "theHarvester Can Gathers Contact / Email Addresses & Server Information On A Given Domain (.com / .org / .net). By Scraping Many Publicly Available Sources (OSINT), Including Search Engines & PGP Key Databases. (Not Only Emails, Subdomains, IP Addresses..) In September We Covered How To Approach Receiving Malicious Emails / Files Safely. To Open (potentially) Malicious Emails Safely, We Used Whonix Disposable Virtual Machines; Today, How An Adversary / Redteam Might Hypothetically Gather Our Email Addresses For Spearphishing Attacks Gathering Emails Can Also Serve Useful / Positive Purposes Such As Reaching Out To A Company Where Contact Information Is Not Easy To Find, etc. TOPIC: OSINT OSINT: to use publicly available information / metadata / media to gleam valuable information for research, or collection of other purpose SHARE IN THE COMMENTS Join me today in this. Leave a comment, share a thought. EMAIL: righttoprivacy[at]tutanota.com / righttoprivacy[at]i2pmail.org (VIDEO SHARED EARLY ON PUBLIC BLOG: https://bmc.link/politictech) *Watch, And Share With Others!* I create independent content to keep you informed, share unique tips (many, completely original ideas, not found elsewhere), and cover stories to keep you informed on the most pressing personal security / privacy / open source topics. If you learn something, please consider supporting below (sharing a video on social media is another great way to support this, motivating more time to new content) 💎 **CONSIDER SU…",
+    "tags": [
+      "cyber",
+      "email",
+      "OSINT"
+    ],
+    "category": "Science & Technology",
+    "views": 83
+  },
+  "discovery": {
+    "query": "OSINT",
+    "collection_hint": "hack-the-planet",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:23Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:56:07Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:11:08Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:23Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"OSINT\""
+    },
+    {
+      "at": "2026-10-20T01:56:08Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

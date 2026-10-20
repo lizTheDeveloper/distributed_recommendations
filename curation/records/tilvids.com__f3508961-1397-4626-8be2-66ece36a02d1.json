@@ -1,0 +1,88 @@
+{
+  "id": "tilvids.com__f3508961-1397-4626-8be2-66ece36a02d1",
+  "source": {
+    "video_url": "https://tilvids.com/videos/watch/f3508961-1397-4626-8be2-66ece36a02d1",
+    "video_uuid": "f3508961-1397-4626-8be2-66ece36a02d1",
+    "channel_actor_uri": "https://tilvids.com/video-channels/opentechvids_channel",
+    "instance_host": "tilvids.com",
+    "title": "The Transistor: a 1953 documentary, anticipating its coming impact on technology",
+    "creator_display_name": "Main opentechvids channel",
+    "channel_handle": "opentechvids_channel@tilvids.com",
+    "license": null,
+    "language": "en",
+    "duration_s": 576,
+    "original_published_at": "2015-04-07T00:00:00.000Z",
+    "description": "Made between the 1947 invention of the transistor at Bell Labs and the 1956 awarding of the Nobel Prize for Physics to its creators, this documentary is less about the discovery itself than its anticipated impact on technology and society. The intent of the film was clearly to give the public of that era their first understanding of what a transistor was and why it mattered so much. Made for a general audience, the film provides a clear and concise presentation on technological developments that began with the vacuum tube, showing different types of transistors and explaining the significance in their ultimate replacement of tubes. Included are visions of “things to come,” concepts and creations of how the small transistor might free up an encumbered world: the wrist radio, similar to Dick Tracy’s, but with a cool lapel sound speaker worn like a boutonniere; a portable TV set, which must have seemed astonishing at the time given the huge, heavy cabinetry required to accommodate the plethora of tubes inside 1950s TVs; and the “calculating machine,” or computer, whose size, we’re told, will one day be so reduced because of transistors that it will only require “a good-sized room” rather than a space the size of the Empire State Building. The concept of how small computers could be still remained decades away. While The Transistor’s vision of the future seems somewhat quaint in retrospect, it captures a moment in time before the transistor became ubiquitous; a time when Bell La…",
+    "tags": [
+      "AT&T Archives",
+      "Bell Laboratories",
+      "History",
+      "Transistor",
+      "Transistor (Invention)"
+    ],
+    "category": "Science & Technology",
+    "views": 183
+  },
+  "discovery": {
+    "query": "technology labor",
+    "collection_hint": "the-machine-is-political",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:29Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:55:30Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": true,
+    "caption_languages": [
+      "en"
+    ],
+    "last_checked_at": "2026-10-20T02:09:52Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:29Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"technology labor\""
+    },
+    {
+      "at": "2026-10-20T01:55:30Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

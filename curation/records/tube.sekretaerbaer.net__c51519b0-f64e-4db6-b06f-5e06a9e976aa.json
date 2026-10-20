@@ -1,0 +1,86 @@
+{
+  "id": "tube.sekretaerbaer.net__c51519b0-f64e-4db6-b06f-5e06a9e976aa",
+  "source": {
+    "video_url": "https://tube.sekretaerbaer.net/videos/watch/c51519b0-f64e-4db6-b06f-5e06a9e976aa",
+    "video_uuid": "c51519b0-f64e-4db6-b06f-5e06a9e976aa",
+    "channel_actor_uri": "https://tube.sekretaerbaer.net/video-channels/fediverse",
+    "instance_host": "tube.sekretaerbaer.net",
+    "title": "Fediverse - die Technologie hinter Mastodon, Friendica & Co.",
+    "creator_display_name": "Fediverse",
+    "channel_handle": "fediverse@tube.sekretaerbaer.net",
+    "license": null,
+    "language": "de",
+    "duration_s": 184,
+    "original_published_at": "2023-06-02T00:00:00.000Z",
+    "description": "Das Video stammt von [youknow](https://you-know.de) Social Media ohne Werbung, Daten-Tracking und Inhalts-Algorithmen – stattdessen Selbstbestimmung, Kontrolle und Datenschutz. Klingt unmöglich? Das Fediverse verspricht genau das. Im Fediverse haben die Nutzer die Kontrolle – das klingt natürlich verlockend und hat auch viele Vorteile, birgt aber auch einige Risiken. Erfahren Sie mehr zur neuen Social-Media-Alternative in diesem Video. youknow ist einer der führenden Anbieter von Erklärvideos und E-Learning-Lösungen im deutschsprachigen Raum. Weitere Infos auf https://you-know.de, https://you-know.ch und https://you-know.at. Einen Blick hinter die Kulissen von youknow bekommst du hier: https://www.facebook.com/youknow.gmbh Du darfst dieses Erklärvideo gerne in unveränderter Form für eigene Zwecke verwenden und z.B. in Präsentationen, Websites oder Blogs einbinden. Voraussetzung ist, dass du uns namentlich nennst (youknow) und auf unsere Website verlinkst (https://you-know.de). Text: Ein Like hier, ein Herz da, ein Tweet dort - Sie kennen das: In den sozialen Medien ist jede Plattform eine Welt für sich, betrieben von großen Tech-Unternehmen. Sie bestimmen dort über die Regeln - und das bedeutet meist für die Nutzer: Werbung, Daten-Tracking und Inhalts-Algorithmen. Doch es gibt eine Social-Media-Alternative, die mehr Selbstbestimmung für die Nutzer verspricht. Sie nennt sich: Fediverse. Der Name Fediverse setzt sich zusammen aus den englischen Begriffen für „Föderation“ und „…",
+    "tags": [
+      "erklärfilm",
+      "explain it",
+      "explainity",
+      "explanatory video",
+      "simpleshow"
+    ],
+    "category": "Education",
+    "views": 104
+  },
+  "discovery": {
+    "query": "Fediverse",
+    "collection_hint": "build-your-own-future",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:35Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:55:59Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:10:40Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:35Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"Fediverse\""
+    },
+    {
+      "at": "2026-10-20T01:56:00Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

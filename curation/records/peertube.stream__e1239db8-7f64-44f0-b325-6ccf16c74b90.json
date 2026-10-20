@@ -1,0 +1,86 @@
+{
+  "id": "peertube.stream__e1239db8-7f64-44f0-b325-6ccf16c74b90",
+  "source": {
+    "video_url": "https://peertube.stream/videos/watch/e1239db8-7f64-44f0-b325-6ccf16c74b90",
+    "video_uuid": "e1239db8-7f64-44f0-b325-6ccf16c74b90",
+    "channel_actor_uri": "https://peertube.stream/video-channels/anubis2814",
+    "instance_host": "peertube.stream",
+    "title": "Solarpunk Right-to Repair",
+    "creator_display_name": "Anubis2814",
+    "channel_handle": "anubis2814@peertube.stream",
+    "license": "Attribution - Non Commercial - Share Alike",
+    "language": "en",
+    "duration_s": 848,
+    "original_published_at": "2025-04-21T15:44:41.975Z",
+    "description": "Welcome to #Solarpunk USA, a guide to creating a solarpunk future. Solarpunk is much more than #art , its a lifestyle we can have now or very soon if we learn how to organize our #communities with direct involvement from everyone. Solarpunk art used in these video: Free Association ~ By Sean Bodley Communal Garden ~ By Sean Bodley City of Edmonton Perkins Wills Artists Drawing The Fifth Sacred Thing by Jessica Perlstein Solarpunk train, possibly an ai from german article https://www.tagesschau.de/wissen/klima/solarpunk-klimaoptimismus-100.html?utm_source=pocket-newtab-de-de Solarpunk community by Robin Guinin Solarpunk Wallpaper -bettyschlackman Cozy PC setup - @matcha.mage Email: solarpunkUSA@ proton.me Also please support me on patreon https://www.patreon.com/Anubis2814 Mastodon (fediverse): solarpunkusa@friendica.myportal.social SolarpunkUSA on bluesky",
+    "tags": [
+      "degrowth",
+      "repair",
+      "right to repair",
+      "solarpunk",
+      "tech"
+    ],
+    "category": "Activism",
+    "views": 50
+  },
+  "discovery": {
+    "query": "right to repair",
+    "collection_hint": "strange-machines",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:49Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:55:09Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:09:19Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:49Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"right to repair\""
+    },
+    {
+      "at": "2026-10-20T01:55:10Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

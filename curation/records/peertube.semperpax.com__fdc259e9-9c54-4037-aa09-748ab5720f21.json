@@ -1,0 +1,94 @@
+{
+  "id": "peertube.semperpax.com__fdc259e9-9c54-4037-aa09-748ab5720f21",
+  "source": {
+    "video_url": "https://peertube.semperpax.com/videos/watch/fdc259e9-9c54-4037-aa09-748ab5720f21",
+    "video_uuid": "fdc259e9-9c54-4037-aa09-748ab5720f21",
+    "channel_actor_uri": "https://peertube.semperpax.com/video-channels/cbro_channel",
+    "instance_host": "peertube.semperpax.com",
+    "title": "Philips Hue Bridge 2.0 - Getting Root (Rooting)",
+    "creator_display_name": "Main cbro channel",
+    "channel_handle": "cbro_channel@peertube.semperpax.com",
+    "license": null,
+    "language": null,
+    "duration_s": 1439,
+    "original_published_at": "2016-07-25T00:00:00.000Z",
+    "description": "This wonderful little device runs Linux! See http://oflynn.com/?p=706 for details, and I have more stuff in my BH USA 2016 talk & white-paper (to be published soon, will link from here). Attack here is same idea as wink attack (see http://en.wooy...",
+    "tags": [
+      "ZLL",
+      "hardware hacking",
+      "hue",
+      "philips",
+      "root"
+    ],
+    "category": "Science & Technology",
+    "views": 15
+  },
+  "discovery": {
+    "query": "hardware hacking",
+    "collection_hint": "hack-the-planet",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:26Z"
+  },
+  "editorial": {
+    "status": "rejected",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": "claude-opus-5-5 (AI proposal)",
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": "re-upload of another creator's video",
+    "proposed_at": "2026-10-20T02:03:42Z"
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:55:07Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:09:18Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:26Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"hardware hacking\""
+    },
+    {
+      "at": "2026-10-20T01:55:09Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    },
+    {
+      "at": "2026-10-20T02:03:42Z",
+      "from": "verified",
+      "to": "rejected",
+      "by": "claude-opus-5-5 (AI proposal)",
+      "note": "re-upload of another creator's video"
+    }
+  ]
+}

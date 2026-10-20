@@ -1,0 +1,86 @@
+{
+  "id": "exode.me__4c85f98d-2471-47ce-8a12-50c51dcaac2c",
+  "source": {
+    "video_url": "https://exode.me/videos/watch/4c85f98d-2471-47ce-8a12-50c51dcaac2c",
+    "video_uuid": "4c85f98d-2471-47ce-8a12-50c51dcaac2c",
+    "channel_actor_uri": "https://exode.me/video-channels/lecolibrinecrophile_channel",
+    "instance_host": "exode.me",
+    "title": "\"No Human No Crime\" cinemix by Claire Obscure / Dark Lightning OAV Part 2/6",
+    "creator_display_name": "All Le Colibri Nécrophile Netlabel Music Channel",
+    "channel_handle": "lecolibrinecrophile_channel@exode.me",
+    "license": "Attribution",
+    "language": null,
+    "duration_s": 220,
+    "original_published_at": "2019-03-05T15:33:17.198Z",
+    "description": "A mashup of \"Alaska\" by Dore O (1968) & \"Chute Libre\" by Willy Braque (1969) Music by Claire Obscure in free download here https://archive.org/details/Claire_Obscure_Eclair_Obscur",
+    "tags": [
+      "dore o",
+      "experimental animation",
+      "experimental cinema",
+      "video art",
+      "willy braque"
+    ],
+    "category": "Entertainment",
+    "views": 4
+  },
+  "discovery": {
+    "query": "experimental animation",
+    "collection_hint": "the-weird-internet",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:54Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:53:28Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:07:09Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:54Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"experimental animation\""
+    },
+    {
+      "at": "2026-10-20T01:53:29Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

@@ -1,0 +1,88 @@
+{
+  "id": "tube-arts-lettres-sciences-humaines.apps.education.fr__3daf49f3-57bf-461b-b250-5456e4d6aa73",
+  "source": {
+    "video_url": "https://tube-arts-lettres-sciences-humaines.apps.education.fr/videos/watch/3daf49f3-57bf-461b-b250-5456e4d6aa73",
+    "video_uuid": "3daf49f3-57bf-461b-b250-5456e4d6aa73",
+    "channel_actor_uri": "https://tube-arts-lettres-sciences-humaines.apps.education.fr/video-channels/lca_latin_grec_ancien.monsieur_colin",
+    "instance_host": "tube-arts-lettres-sciences-humaines.apps.education.fr",
+    "title": "Blé et agriculture dans la Grèce antique",
+    "creator_display_name": "LCA Latin et Grec ancien - M. Colin",
+    "channel_handle": "lca_latin_grec_ancien.monsieur_colin@tube-arts-lettres-sciences-humaines.apps.education.fr",
+    "license": "Attribution - Non Commercial",
+    "language": "fr",
+    "duration_s": 379,
+    "original_published_at": "2023-10-18T20:24:22.446Z",
+    "description": "Extrait de gameplay d'Assassin's Creed Odyssey - Discovery Tour. Parcours sur le blé et l'agriculture dans la Grèce antique.",
+    "tags": [],
+    "category": "Langues et culture de l'Antiquité",
+    "views": 3
+  },
+  "discovery": {
+    "query": "BLE reverse engineering",
+    "collection_hint": "strange-machines",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:47Z"
+  },
+  "editorial": {
+    "status": "rejected",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": "claude-opus-5-5 (AI proposal)",
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": "off-topic: keyword collision ('BLE' matched French 'blé', or 'tenant')",
+    "proposed_at": "2026-10-20T02:03:42Z"
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:55:34Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:09:56Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:47Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"BLE reverse engineering\""
+    },
+    {
+      "at": "2026-10-20T01:55:35Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    },
+    {
+      "at": "2026-10-20T02:03:42Z",
+      "from": "verified",
+      "to": "rejected",
+      "by": "claude-opus-5-5 (AI proposal)",
+      "note": "off-topic: keyword collision ('BLE' matched French 'blé', or 'tenant')"
+    }
+  ]
+}

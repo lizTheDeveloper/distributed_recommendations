@@ -1,0 +1,94 @@
+{
+  "id": "aperi.tube__19c0d1dd-1557-4ee9-8f49-90976dff96ff",
+  "source": {
+    "video_url": "https://aperi.tube/videos/watch/19c0d1dd-1557-4ee9-8f49-90976dff96ff",
+    "video_uuid": "19c0d1dd-1557-4ee9-8f49-90976dff96ff",
+    "channel_actor_uri": "https://aperi.tube/video-channels/pyg_channel",
+    "instance_host": "aperi.tube",
+    "title": "Viewpoint: ‘We’re living in an age of surveillance capitalism’ | BBC Ideas",
+    "creator_display_name": "Main pyg channel",
+    "channel_handle": "pyg_channel@aperi.tube",
+    "license": null,
+    "language": "en",
+    "duration_s": 174,
+    "original_published_at": "2019-02-19T23:00:00.000Z",
+    "description": "In this opinion piece, activist Aral Balkan argues that we're living in a world where data companies have become factory farms for human beings. Subscribe to BBC Ideas https://bbc.in/2F6ipav ----------------------------- Do you have a curious mind? You’re in the right place. Our aim on BBC Ideas is to feed your curiosity, to open your mind to new perspectives, and to leave you that little bit smarter. So dive in. Let us know what you think. And make sure to subscribe! https://bit.ly/2PrmLhW Visit our website to see all of our videos: https://www.bbc.com/ideas And follow BBC Ideas on Twitter: https://twitter.com/bbcideas #future #technology #socialmedia",
+    "tags": [
+      "Data",
+      "Facebook",
+      "Google",
+      "personal information",
+      "Social media"
+    ],
+    "category": "Science & Technology",
+    "views": 58
+  },
+  "discovery": {
+    "query": "surveillance capitalism",
+    "collection_hint": "the-machine-is-political",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:28Z"
+  },
+  "editorial": {
+    "status": "rejected",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": "claude-opus-5-5 (AI proposal)",
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": "re-upload of a BBC Ideas video",
+    "proposed_at": "2026-10-20T02:03:42Z"
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:52:58Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:06:49Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:28Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"surveillance capitalism\""
+    },
+    {
+      "at": "2026-10-20T01:52:59Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    },
+    {
+      "at": "2026-10-20T02:03:42Z",
+      "from": "verified",
+      "to": "rejected",
+      "by": "claude-opus-5-5 (AI proposal)",
+      "note": "re-upload of a BBC Ideas video"
+    }
+  ]
+}

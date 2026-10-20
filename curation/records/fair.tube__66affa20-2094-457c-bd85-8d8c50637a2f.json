@@ -1,0 +1,107 @@
+{
+  "id": "fair.tube__66affa20-2094-457c-bd85-8d8c50637a2f",
+  "source": {
+    "video_url": "https://fair.tube/videos/watch/66affa20-2094-457c-bd85-8d8c50637a2f",
+    "video_uuid": "66affa20-2094-457c-bd85-8d8c50637a2f",
+    "channel_actor_uri": "https://fair.tube/video-channels/crnedu_channel",
+    "instance_host": "fair.tube",
+    "title": "Klimatandemklimatyczny",
+    "creator_display_name": "Main crnedu channel",
+    "channel_handle": "crnedu_channel@fair.tube",
+    "license": "CC BY-NC-SA 4.0",
+    "language": "en",
+    "duration_s": 731,
+    "original_published_at": "2026-01-05T15:09:27.386Z",
+    "description": "How to co-create climate resilience between citizens and administration? In this project we co-created in 8 weeks prototypes in Berlin and Wroclaw. In this video you can learn about the prototypes and the process we made.",
+    "tags": [],
+    "category": "Education",
+    "views": 13
+  },
+  "discovery": {
+    "query": "climate resilience",
+    "collection_hint": "reclaim-the-city",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:42Z"
+  },
+  "editorial": {
+    "status": "reviewed",
+    "primary_collection": "reclaim-the-city",
+    "secondary_collections": [],
+    "difficulty": "beginner",
+    "format": "documentary",
+    "learning_intents": [
+      "understand",
+      "organize"
+    ],
+    "evidence_class": "practitioner-experience",
+    "tags": [
+      "climate-resilience",
+      "participation"
+    ],
+    "why_selected": "A short documentary on co-creating climate resilience plans between residents and city administration over eight weeks, with captions.",
+    "learning_outcomes": [
+      "A workshop format for citizen–government climate planning"
+    ],
+    "try_next": "Check whether your municipality has a climate adaptation plan and whether residents were consulted.",
+    "context_note": null,
+    "ratings": {
+      "usefulness": 3,
+      "rigor": 3,
+      "mission": 4,
+      "distinctiveness": 4,
+      "accessibility": 4,
+      "currency": 5
+    },
+    "score": 72,
+    "judgment_basis": "metadata only (title, description, channel, caption list); not watched — substantive judgments unverified",
+    "proposed_by": "claude-opus-5-5 (AI proposal)",
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null,
+    "shelves": [],
+    "band": "collection-candidate",
+    "proposed_at": "2026-10-20T02:03:42Z"
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:53:31Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": true,
+    "caption_languages": [
+      "de"
+    ],
+    "last_checked_at": "2026-10-20T02:07:12Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:42Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"climate resilience\""
+    },
+    {
+      "at": "2026-10-20T01:53:31Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    },
+    {
+      "at": "2026-10-20T02:03:42Z",
+      "from": "verified",
+      "to": "reviewed",
+      "by": "claude-opus-5-5 (AI proposal)",
+      "note": "proposed score 72"
+    }
+  ]
+}

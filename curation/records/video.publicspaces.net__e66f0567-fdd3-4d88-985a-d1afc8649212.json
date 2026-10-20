@@ -1,0 +1,80 @@
+{
+  "id": "video.publicspaces.net__e66f0567-fdd3-4d88-985a-d1afc8649212",
+  "source": {
+    "video_url": "https://video.publicspaces.net/videos/watch/e66f0567-fdd3-4d88-985a-d1afc8649212",
+    "video_uuid": "e66f0567-fdd3-4d88-985a-d1afc8649212",
+    "channel_actor_uri": "https://video.publicspaces.net/video-channels/pubconf",
+    "instance_host": "video.publicspaces.net",
+    "title": "Digital Autonomy @ PublicSpaces Conference 2024",
+    "creator_display_name": "PublicSpaces Conference",
+    "channel_handle": "pubconf@video.publicspaces.net",
+    "license": "CC BY-SA 4.0",
+    "language": "nl",
+    "duration_s": 2049,
+    "original_published_at": "2024-06-11T21:58:20.765Z",
+    "description": "Talk - What is it and why do we need to work on it now? With Bert Hubert Digital autonomy refers to confidentiality, to agility and to resilience. It is a term that often comes up in the search for a better, digital ecosystem. Confidentiality, for example, involves the question of whether it is a problem for other countries or Big Tech to be able to follow our communications. What impact does it have if those parties can read along when we create policies that directly relate to them? If we don't have digital autonomy, we can't be agile either. If we always have to ask permission outside Europe to deploy private tools, platforms, or \"software as a service,\" implementing new or innovative ideas is made unnecessarily difficult. Finally, digital autonomy is necessary to be resilient. For example, if things go wrong with the cable to the U.S., or if our telephone exchanges are hacked, will we still be able to protect ourselves and get back on the air? Many activists and public organsations have been working for years to convince government and corporations of the need for digital autonomy, largely in vain. More and more, organisations are shedding their own IT departments. And even parliament and possibly soon the central government in the Netherlands have surrendered their email to servers under American management. How do we regain control of our own systems? Speakers: - [Bert Hubert](https://conference.publicspaces.net/en/people/bert-hubert) https://conference.publicspaces.ne…",
+    "tags": [],
+    "category": "Science & Technology",
+    "views": 723
+  },
+  "discovery": {
+    "query": "digital folklore",
+    "collection_hint": "the-weird-internet",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:53Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "official-link-verified",
+    "verified_at": "2026-10-20T01:57:10Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:12:29Z",
+    "identity_evidence": "https://publicspaces.net/ links to video.publicspaces.net",
+    "publisher": "PublicSpaces"
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:53Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"digital folklore\""
+    },
+    {
+      "at": "2026-10-20T01:57:11Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

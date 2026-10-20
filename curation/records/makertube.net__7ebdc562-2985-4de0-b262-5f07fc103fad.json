@@ -1,0 +1,117 @@
+{
+  "id": "makertube.net__7ebdc562-2985-4de0-b262-5f07fc103fad",
+  "source": {
+    "video_url": "https://makertube.net/videos/watch/7ebdc562-2985-4de0-b262-5f07fc103fad",
+    "video_uuid": "7ebdc562-2985-4de0-b262-5f07fc103fad",
+    "channel_actor_uri": "https://makertube.net/video-channels/tkkrlab",
+    "instance_host": "makertube.net",
+    "title": "Coding generative art by Bleeptrack",
+    "creator_display_name": "TkkrLab",
+    "channel_handle": "tkkrlab@makertube.net",
+    "license": "Public Domain Dedication",
+    "language": "en",
+    "duration_s": 3617,
+    "original_published_at": "2023-11-04T22:50:25.851Z",
+    "description": "In this workshop, bleeptrack will give a quick introduction on how to create your own generative art using paper.js. She’ll also share insights to common techniques for digital and physical genart and explain possible pitfalls. No preparation needed - just bring your laptop and let’s code art together! About Bleeptrack Bleeptrack is a freelancing creative technologist and love generative stuff of all sorts! Her main interests lie in the areas of generative or AI art, digital fabrication and DIY electronics. She teaches at different universities/colleges and love to give talks and workshops!",
+    "tags": [
+      "ai art",
+      "genart",
+      "generative art",
+      "paper.js"
+    ],
+    "category": "Education",
+    "views": 5
+  },
+  "discovery": {
+    "query": "generative art",
+    "collection_hint": "the-weird-internet",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:52Z"
+  },
+  "editorial": {
+    "status": "reviewed",
+    "primary_collection": "the-weird-internet",
+    "secondary_collections": [],
+    "difficulty": "beginner",
+    "format": "tutorial",
+    "learning_intents": [
+      "create",
+      "build"
+    ],
+    "evidence_class": "practitioner-experience",
+    "tags": [
+      "generative-art",
+      "creative-coding",
+      "workshop"
+    ],
+    "why_selected": "Artist bleeptrack's workshop on coding your own generative art with paper.js, from first shape to a piece that surprises you.",
+    "learning_outcomes": [
+      "How randomness and rules produce generative art",
+      "Paper.js basics"
+    ],
+    "try_next": "Make one generative piece and share it; change one rule and compare.",
+    "context_note": null,
+    "ratings": {
+      "usefulness": 5,
+      "rigor": 4,
+      "mission": 4,
+      "distinctiveness": 4,
+      "accessibility": 4,
+      "currency": 4
+    },
+    "score": 85,
+    "judgment_basis": "metadata only (title, description, channel, caption list); not watched — substantive judgments unverified",
+    "proposed_by": "claude-opus-5-5 (AI proposal)",
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null,
+    "shelves": [
+      "from-video-to-project",
+      "start-here"
+    ],
+    "band": "feature-candidate",
+    "proposed_at": "2026-10-20T02:03:42Z"
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:54:00Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": true,
+    "caption_languages": [
+      "en"
+    ],
+    "last_checked_at": "2026-10-20T02:08:02Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:52Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"generative art\""
+    },
+    {
+      "at": "2026-10-20T01:54:00Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    },
+    {
+      "at": "2026-10-20T02:03:42Z",
+      "from": "verified",
+      "to": "reviewed",
+      "by": "claude-opus-5-5 (AI proposal)",
+      "note": "proposed score 85"
+    }
+  ]
+}

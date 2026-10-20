@@ -1,0 +1,86 @@
+{
+  "id": "peertube.dsmouse.net__bcbea1fe-63c5-48c3-a194-91fe182357fe",
+  "source": {
+    "video_url": "https://peertube.dsmouse.net/videos/watch/bcbea1fe-63c5-48c3-a194-91fe182357fe",
+    "video_uuid": "bcbea1fe-63c5-48c3-a194-91fe182357fe",
+    "channel_actor_uri": "https://peertube.dsmouse.net/video-channels/mouse_channel",
+    "instance_host": "peertube.dsmouse.net",
+    "title": "Backdoors & Breaches Live | Incident Response Card Game | ITProTV",
+    "creator_display_name": "Main mouse channel",
+    "channel_handle": "mouse_channel@peertube.dsmouse.net",
+    "license": null,
+    "language": null,
+    "duration_s": 2981,
+    "original_published_at": "2020-03-09T00:00:00.000Z",
+    "description": "Don Pezet got his hands on the tabletop card game from Black Hills Information Security, Backdoors and Breaches, and put together a team to play. In this video, you can watch Don and his team take a security breach as the incident response team. Will they be able to stop it? Watch and see for yourself. Interested in getting a copy of the game yourself? It's available on Amazon at https://www.amazon.com/dp/B07Y3Y1XLP. Get access to more online IT skills and certification training from ITProTV. Home of binge-worthy learning, ITProTV offers teams and individuals 4000+ hours of engaging & effective on-demand video training for the latest technology skills. Watch live or on-demand daily. Start learning free at ITProTV: https://go.itpro.tv/start-learning-now #backdoorsandbreaches #informationsecurity #blackhillsinformationsecurity",
+    "tags": [
+      "backdoors and breaches",
+      "incident response",
+      "incident response card game",
+      "incident response process",
+      "incident response training"
+    ],
+    "category": "Education",
+    "views": 3
+  },
+  "discovery": {
+    "query": "incident response",
+    "collection_hint": "hack-the-planet",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:26Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:54:40Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:08:51Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:26Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"incident response\""
+    },
+    {
+      "at": "2026-10-20T01:54:40Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

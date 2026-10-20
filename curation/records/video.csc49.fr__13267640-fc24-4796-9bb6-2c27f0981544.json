@@ -1,0 +1,84 @@
+{
+  "id": "video.csc49.fr__13267640-fc24-4796-9bb6-2c27f0981544",
+  "source": {
+    "video_url": "https://video.csc49.fr/videos/watch/13267640-fc24-4796-9bb6-2c27f0981544",
+    "video_uuid": "13267640-fc24-4796-9bb6-2c27f0981544",
+    "channel_actor_uri": "https://video.csc49.fr/video-channels/le_bocal",
+    "instance_host": "video.csc49.fr",
+    "title": "Repair café présentation janvier 2016",
+    "creator_display_name": "le_bocal",
+    "channel_handle": "le_bocal@video.csc49.fr",
+    "license": null,
+    "language": null,
+    "duration_s": 70,
+    "original_published_at": "2017-06-12T22:00:00.000Z",
+    "description": "Vidéo de présentation du repair café de chemillé en Anjou pour diffusion au cinéma",
+    "tags": [
+      "Chemillé en anjou",
+      "obsolescence",
+      "repair café"
+    ],
+    "category": "Unknown",
+    "views": 3
+  },
+  "discovery": {
+    "query": "repair cafe",
+    "collection_hint": "strange-machines",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:46Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:56:37Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:11:58Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:46Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"repair cafe\""
+    },
+    {
+      "at": "2026-10-20T01:56:38Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

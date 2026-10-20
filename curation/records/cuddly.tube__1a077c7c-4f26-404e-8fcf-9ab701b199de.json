@@ -1,0 +1,111 @@
+{
+  "id": "cuddly.tube__1a077c7c-4f26-404e-8fcf-9ab701b199de",
+  "source": {
+    "video_url": "https://cuddly.tube/videos/watch/1a077c7c-4f26-404e-8fcf-9ab701b199de",
+    "video_uuid": "1a077c7c-4f26-404e-8fcf-9ab701b199de",
+    "channel_actor_uri": "https://cuddly.tube/video-channels/go_devroom",
+    "instance_host": "cuddly.tube",
+    "title": "Systems Programming: Lessons from Building a Networking Stack for Microcontrollers",
+    "creator_display_name": "Go Devroom @ FOSDEM",
+    "channel_handle": "go_devroom@cuddly.tube",
+    "license": "Attribution - Share Alike",
+    "language": "en",
+    "duration_s": 1472,
+    "original_published_at": "2026-02-03T15:02:48.455Z",
+    "description": "Developing Go for micocontrollers with 32kB of RAM requires a big shift in thinking, moreso if you are trying to get a complete networking stack with Ethernet, TCP/IP, HTTP to run on said device. Over the past years we've learned how to minimize memory usage and make programs run performantly on these small devices by adopting patterns common in the embedded industry, some of which make working with Go a even better experience than the norm. This talk explores the tried and tested \"Embedded Go\" programming patterns we've found to work and make developing in Go a pleasure, no matter the hardware context: - Avoiding pointers to structs within structs: rethinking the Configure() method - Zero-value programming - Eliminating heap allocations during runtime - Reusing slice capacity - Bounded memory growth on your program - Safe pointer-to-slice with generational index handles Speakers Patricio WHITTINGSLOW",
+    "tags": [],
+    "category": "Science & Technology",
+    "views": 77
+  },
+  "discovery": {
+    "query": "microcontrollers",
+    "collection_hint": "strange-machines",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:48Z"
+  },
+  "editorial": {
+    "status": "reviewed",
+    "primary_collection": "strange-machines",
+    "secondary_collections": [
+      "build-your-own-future"
+    ],
+    "difficulty": "advanced",
+    "format": "lecture",
+    "learning_intents": [
+      "build",
+      "understand"
+    ],
+    "evidence_class": "practitioner-experience",
+    "tags": [
+      "microcontrollers",
+      "networking",
+      "go"
+    ],
+    "why_selected": "Lessons from building a networking stack for microcontrollers with 32 kB of RAM, in Go.",
+    "learning_outcomes": [
+      "How memory limits change software design",
+      "How a minimal TCP/IP stack is built"
+    ],
+    "try_next": "Read the slides and pick one technique to apply to your own embedded code.",
+    "context_note": null,
+    "ratings": {
+      "usefulness": 4,
+      "rigor": 4,
+      "mission": 4,
+      "distinctiveness": 4,
+      "accessibility": 4,
+      "currency": 5
+    },
+    "score": 82,
+    "judgment_basis": "metadata only (title, description, channel, caption list); not watched — substantive judgments unverified",
+    "proposed_by": "claude-opus-5-5 (AI proposal)",
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null,
+    "shelves": [],
+    "band": "feature-candidate",
+    "proposed_at": "2026-10-20T02:03:42Z"
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:53:17Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": true,
+    "caption_languages": [
+      "en"
+    ],
+    "last_checked_at": "2026-10-20T02:07:00Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:48Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"microcontrollers\""
+    },
+    {
+      "at": "2026-10-20T01:53:18Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    },
+    {
+      "at": "2026-10-20T02:03:42Z",
+      "from": "verified",
+      "to": "reviewed",
+      "by": "claude-opus-5-5 (AI proposal)",
+      "note": "proposed score 82"
+    }
+  ]
+}

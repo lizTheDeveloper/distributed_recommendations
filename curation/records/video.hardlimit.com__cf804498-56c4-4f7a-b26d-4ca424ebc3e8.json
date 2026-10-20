@@ -1,0 +1,86 @@
+{
+  "id": "video.hardlimit.com__cf804498-56c4-4f7a-b26d-4ca424ebc3e8",
+  "source": {
+    "video_url": "https://video.hardlimit.com/videos/watch/cf804498-56c4-4f7a-b26d-4ca424ebc3e8",
+    "video_uuid": "cf804498-56c4-4f7a-b26d-4ca424ebc3e8",
+    "channel_actor_uri": "https://video.hardlimit.com/video-channels/liblast",
+    "instance_host": "video.hardlimit.com",
+    "title": "Liblast Godot 4 game development update 2022-09-28",
+    "creator_display_name": "Liblast",
+    "channel_handle": "liblast@video.hardlimit.com",
+    "license": null,
+    "language": null,
+    "duration_s": 1310,
+    "original_published_at": "2022-09-26T22:00:00.000Z",
+    "description": "Liblast is an open-source multiplayer FPS game created with Godot 4 game engine and a completely open-source toolset. Get the game here: https://code.libla.st Want to help? Get in touch: https://chat.unfa.xyz/channel/liblast We're always looking for contributors!",
+    "tags": [
+      "GameDev",
+      "Godot 4",
+      "Godot Engine",
+      "Indie Games",
+      "OpenSource"
+    ],
+    "category": "Entertainment",
+    "views": 4
+  },
+  "discovery": {
+    "query": "indie game development",
+    "collection_hint": "the-weird-internet",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:52Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:56:45Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:12:07Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:52Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"indie game development\""
+    },
+    {
+      "at": "2026-10-20T01:56:46Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

@@ -1,0 +1,82 @@
+{
+  "id": "video.igem.org__6007c76b-28c7-4b09-be22-ca59ebf8b4a6",
+  "source": {
+    "video_url": "https://video.igem.org/videos/watch/6007c76b-28c7-4b09-be22-ca59ebf8b4a6",
+    "video_uuid": "6007c76b-28c7-4b09-be22-ca59ebf8b4a6",
+    "channel_actor_uri": "https://video.igem.org/video-channels/2025_live_stage_talks",
+    "instance_host": "video.igem.org",
+    "title": "What We Did in HP & EDU?",
+    "creator_display_name": "2025 Live Stage Talks",
+    "channel_handle": "2025_live_stage_talks@video.igem.org",
+    "license": "Attribution",
+    "language": "en",
+    "duration_s": 416,
+    "original_published_at": "2025-11-10T00:00:00.000Z",
+    "description": "We will showcase projects conducted in the HP and EDU sections, including expert interviews, offline street interviews, community science outreach, and online social media science communication.",
+    "tags": [],
+    "category": "Science & Technology",
+    "views": 6
+  },
+  "discovery": {
+    "query": "community science",
+    "collection_hint": "reclaim-the-city",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:43Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:56:47Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": true,
+    "caption_languages": [
+      "en"
+    ],
+    "last_checked_at": "2026-10-20T02:12:08Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:43Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"community science\""
+    },
+    {
+      "at": "2026-10-20T01:56:47Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

@@ -1,0 +1,85 @@
+{
+  "id": "peertube.eqver.se__c61955b1-9dcb-44fd-8d23-7d538da85fed",
+  "source": {
+    "video_url": "https://peertube.eqver.se/videos/watch/c61955b1-9dcb-44fd-8d23-7d538da85fed",
+    "video_uuid": "c61955b1-9dcb-44fd-8d23-7d538da85fed",
+    "channel_actor_uri": "https://peertube.eqver.se/video-channels/eqtv_english",
+    "instance_host": "peertube.eqver.se",
+    "title": "Tips from Nadiyno.org: which Wi-Fi router to choose for home use",
+    "creator_display_name": "eQtv in English",
+    "channel_handle": "eqtv_english@peertube.eqver.se",
+    "license": null,
+    "language": "en",
+    "duration_s": 1089,
+    "original_published_at": "2026-01-13T15:51:19.061Z",
+    "description": "Useful tips from the Nadiyno.org digital assistance hotline. Pavlo Bilousov, the hotline's technical expert, answers topical questions about online dangers for ordinary users.",
+    "tags": [
+      "Wi‑Fi router",
+      "best router",
+      "home network",
+      "network security"
+    ],
+    "category": "Science & Technology",
+    "views": 1
+  },
+  "discovery": {
+    "query": "home network security",
+    "collection_hint": "hack-the-planet",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:23Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:54:48Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:08:59Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:23Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"home network security\""
+    },
+    {
+      "at": "2026-10-20T01:54:49Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

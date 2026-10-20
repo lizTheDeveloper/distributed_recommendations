@@ -1,0 +1,86 @@
+{
+  "id": "video.fraxoweb.com__3cb10131-bb58-4bed-b6f3-5fff59e5e4ff",
+  "source": {
+    "video_url": "https://video.fraxoweb.com/videos/watch/3cb10131-bb58-4bed-b6f3-5fff59e5e4ff",
+    "video_uuid": "3cb10131-bb58-4bed-b6f3-5fff59e5e4ff",
+    "channel_actor_uri": "https://video.fraxoweb.com/video-channels/frankring",
+    "instance_host": "video.fraxoweb.com",
+    "title": "How to Use Free & Open Source AI with GPT4ALL & Automatic 1111",
+    "creator_display_name": "Frank",
+    "channel_handle": "frankring@video.fraxoweb.com",
+    "license": "Public Domain Dedication",
+    "language": "en",
+    "duration_s": 1147,
+    "original_published_at": "2026-05-07T00:44:11.647Z",
+    "description": "▬ THANK YOU FOR WATCHING ▬ 👍 LIKE the video if it was valuable to you. 💬 COMMENT to share your thoughts and questions. ✅ SUBSCRIBE to the channel for more valuable content. 🖥️ JOIN THE STREAM to see exactly what I'm doing. 🔔 ENABLE THE BELL for new content notifications. ▬ ABOUT ME ▬ Hey, what's up? I'm Frank, a content creator focused on print-on-demand, gaming, using Canadian technologies that prioritize privacy, community, and digital sovereignty. 🌐 WEBSITE: https://fraxoweb.com 💬 SOCIALS: https://fraxoweb.com/socials ⭐ DONATE: https://fraxoweb.com/donate Original upload: Apr 4, 2024",
+    "tags": [
+      "Automatic1111 Guide",
+      "GPT4All Tutorial",
+      "Local LLM Setup",
+      "Open Source AI",
+      "Stable Diffusion WebUI"
+    ],
+    "category": "Education",
+    "views": 1
+  },
+  "discovery": {
+    "query": "local LLM",
+    "collection_hint": "build-your-own-future",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:33Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:56:42Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:12:03Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:33Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"local LLM\""
+    },
+    {
+      "at": "2026-10-20T01:56:42Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

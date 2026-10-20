@@ -1,0 +1,86 @@
+{
+  "id": "digitalcourage.video__5a8b18c8-c7e6-4804-b8dc-13eb33d29a07",
+  "source": {
+    "video_url": "https://digitalcourage.video/videos/watch/5a8b18c8-c7e6-4804-b8dc-13eb33d29a07",
+    "video_uuid": "5a8b18c8-c7e6-4804-b8dc-13eb33d29a07",
+    "channel_actor_uri": "https://digitalcourage.video/video-channels/vortraege",
+    "instance_host": "digitalcourage.video",
+    "title": "Digital Rights in Europa",
+    "creator_display_name": "Vorträge | lectures",
+    "channel_handle": "vortraege@digitalcourage.video",
+    "license": "CC BY 4.0",
+    "language": "de",
+    "duration_s": 2549,
+    "original_published_at": "2023-08-17T22:00:00.000Z",
+    "description": "Der Politikbetrieb der Europäischen Union läuft allzu oft unter dem Radar politischer Bewegungen, obwohl dort fundamentale Entscheidungen getroffen werden. Wir wollen uns einige aktuelle netzpolitische Themen anschauen und diskutieren, welche Rolle die Digitale Zivilgesellschaft als Teil einer emanzipatorischen Praxis einnehmen kann. Vorratsdatenspeicherung, Uploadfilter und Chatkontrolle - alle paar Jahre wird uns bewusst, dass die Grundlagen einer digitalen Gesellschaft in den komplexen europäischen Institutionen verhandelt werden. Dort werden - allzu oft ohne breitere gesellschaftliche Diskussion - Entscheidungen getroffen, die uns alle betreffen. Während die drohende biometrische Massenüberwachung vielleicht noch einige Aktivist*innen auf die Straße treibt, werden mit e-evidence rechtsstaatliche Grundsätze ausgehöhlt, dem European Health Data Space der Datenschutz gerade bei sensibelsten Daten untergraben und Polizeibehörden europaweit die Möglichkeit gegeben, personenbezogene Daten automatisiert abzurufen. Auch die Migrationsabwehr wird digitalisiert und ein umfassendes Kontrollregime für Menschen auf der Flucht innerhalb und außerhalb der technisch hochgerüsteten Grenzen geschaffen. Während Sicherheitspolitiker*innen, aber auch die Lobby großer Konzerne bestens vernetzt in Brüssel ihre Agenda durchsetzen, halten nur wenige sehr spezialisierte NGOs die Fahne der Emanzipation hoch. Im Talk wollen wir einige aktuelle europäische Themen vorstellen und das Selbstverständnis…",
+    "tags": [
+      "CCCamp23",
+      "Chaos Communication Congress",
+      "Digitalcourage",
+      "Digitale Gesellschaft",
+      "SUPERRR Lab"
+    ],
+    "category": "Activism",
+    "views": 13
+  },
+  "discovery": {
+    "query": "digital rights",
+    "collection_hint": "the-machine-is-political",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:29Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:53:20Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:07:03Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:29Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"digital rights\""
+    },
+    {
+      "at": "2026-10-20T01:53:21Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

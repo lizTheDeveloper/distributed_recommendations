@@ -1,0 +1,82 @@
+{
+  "id": "vhsky.cz__35bfe38c-0c47-4599-803d-2ad6ea603230",
+  "source": {
+    "video_url": "https://vhsky.cz/videos/watch/35bfe38c-0c47-4599-803d-2ad6ea603230",
+    "video_uuid": "35bfe38c-0c47-4599-803d-2ad6ea603230",
+    "channel_actor_uri": "https://vhsky.cz/video-channels/openalt_konference",
+    "instance_host": "vhsky.cz",
+    "title": "Self-hosting LLM aneb AI doma, bezpečne a v súkromí (Michal Kohútek)",
+    "creator_display_name": "Konference OpenAlt",
+    "channel_handle": "openalt_konference@vhsky.cz",
+    "license": "Attribution - Share Alike",
+    "language": "cs",
+    "duration_s": 6423,
+    "original_published_at": "2025-11-04T01:38:00.704Z",
+    "description": "S nástupom malých LLM modelov a open source nástrojmi umožnujúcim ich jednoducho používať a self-hostovať nastala dobe demokratizácie AI. Ak nepotrebujeme absolutne state-of-the-art a obrovske kontexty a výkon platených AI služieb, často si vieme vystačiť so self-hostovaným riešením, ktoré nám navyše zaručuje súkromie, stabilitu a obchádzanie cenzúry. V prvej časti tohto workshopu si predstavíme self-hostovanie LLM modelov a ich sprístupnenie cez webové rozhranie, ukážeme aké su možnosti a obmedzenia súčasnych kompaktných modelov v porovnaní s ChatGPT. V druhej časti si ukážeme niekoľko utilít a služieb, ktoré využívajú LLM a VLM modely aj inak, ako len na chatbota. V tretej časti sa spoločne povenujeme Vašim vlastným návrhom a skúsime vytvoriť aspoň minimálny nástrel funkčnej utility. Účastníci workshopu by si mali priniesť laptop s funkčným Python prostredím, Dockerom a ideálne aj nejaký vlastný originálny nápad na využitie AI . ISBN 9788088097105 https://talks.openalt.cz/openalt-2025/talk/K8X3AA/ https://www.openalt.cz/2025/",
+    "tags": [],
+    "category": "Unknown",
+    "views": 105
+  },
+  "discovery": {
+    "query": "self hosting",
+    "collection_hint": "build-your-own-future",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:33Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:56:26Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": true,
+    "caption_languages": [
+      "cs"
+    ],
+    "last_checked_at": "2026-10-20T02:11:47Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:33Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"self hosting\""
+    },
+    {
+      "at": "2026-10-20T01:56:27Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

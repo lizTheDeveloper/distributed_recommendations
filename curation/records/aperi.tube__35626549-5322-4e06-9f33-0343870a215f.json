@@ -1,0 +1,88 @@
+{
+  "id": "aperi.tube__35626549-5322-4e06-9f33-0343870a215f",
+  "source": {
+    "video_url": "https://aperi.tube/videos/watch/35626549-5322-4e06-9f33-0343870a215f",
+    "video_uuid": "35626549-5322-4e06-9f33-0343870a215f",
+    "channel_actor_uri": "https://aperi.tube/video-channels/angie_channel",
+    "instance_host": "aperi.tube",
+    "title": "The Age of Surveillance Capitalism - Triangulation 380",
+    "creator_display_name": "Les sélections d'Angie",
+    "channel_handle": "angie_channel@aperi.tube",
+    "license": null,
+    "language": "en",
+    "duration_s": 4302,
+    "original_published_at": "2019-01-10T23:00:00.000Z",
+    "description": "Shoshana Zuboff is the author of 'The Age of Surveillance Capitalism: The Fight for a Human Future at the New Frontier of Power.' She talks with Leo Laporte about how social media is being used to influence people. Host: Leo Laporte Guest: Shoshana Zuboff Download or subscribe to this show at https://twit.tv/shows/triangulation.",
+    "tags": [
+      "Interview",
+      "leo laporte",
+      "Shoshana Zuboff",
+      "Triangulation",
+      "TWiT"
+    ],
+    "category": "Science & Technology",
+    "views": 366
+  },
+  "discovery": {
+    "query": "surveillance capitalism",
+    "collection_hint": "the-machine-is-political",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:28Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:53:00Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": true,
+    "caption_languages": [
+      "fr"
+    ],
+    "last_checked_at": "2026-10-20T02:06:50Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:28Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"surveillance capitalism\""
+    },
+    {
+      "at": "2026-10-20T01:53:00Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

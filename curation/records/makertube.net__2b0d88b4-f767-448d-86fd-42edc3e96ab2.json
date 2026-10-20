@@ -1,0 +1,115 @@
+{
+  "id": "makertube.net__2b0d88b4-f767-448d-86fd-42edc3e96ab2",
+  "source": {
+    "video_url": "https://makertube.net/videos/watch/2b0d88b4-f767-448d-86fd-42edc3e96ab2",
+    "video_uuid": "2b0d88b4-f767-448d-86fd-42edc3e96ab2",
+    "channel_actor_uri": "https://makertube.net/video-channels/iguanatech",
+    "instance_host": "makertube.net",
+    "title": "Connecting an ESP32-C3 to the Wifi using Micropython",
+    "creator_display_name": "Iguanatech",
+    "channel_handle": "iguanatech@makertube.net",
+    "license": "Attribution",
+    "language": "en",
+    "duration_s": 624,
+    "original_published_at": "2025-01-25T21:16:32.507Z",
+    "description": "In this Video, I am trying ( and partially fail ) to show a full workflow of planning a Project for the ESP32 Super Mini and Micropython. The idea is that I will be using a diagram software to describe what I want to do before I write the code for it, in order to make sure there are no logic errors. That said, I am reusing some older code and some things don't make sense yet ( like trying to check for connectivity while literally just Enabled the WiFi peripheral ) but they will start making the more I go into the full Project. In any case I left it there as it shows that there is no such thing as \"perfect in one take\". Hardware links : [ESP32-C3 Product Page](https://www.espressif.com/en/products/socs/esp32-c3) [ESP32-C3 Datasheet](https://www.espressif.com/sites/default/files/documentation/esp32-c3_datasheet_en.pdf) [ESP32 Micropython WLAN Power Management](https://docs.micropython.org/en/latest/library/network.WLAN.html#constants) [ESP32-C3 Super Mini - Aliexpress](https://www.aliexpress.com/w/wholesale-esp32%2525252dc3-super-mini.html) Software links : [Thonny](https://thonny.org/) [Graphviz Playground](https://magjac.com/graphviz-visual-editor/) [Graphviz Playground Codebase](https://github.com/magjac/graphviz-visual-editor) Others : [Previous Video](https://makertube.net/w/n4nuF6wJtVYaTwZEZXqghD) [Project Code](https://codeberg.org/xsk/ESP32-C3-BMP280)",
+    "tags": [
+      "ESP32-C3",
+      "Graphviz",
+      "Linux",
+      "Micropython"
+    ],
+    "category": "How To",
+    "views": 25
+  },
+  "discovery": {
+    "query": "ESP32",
+    "collection_hint": "strange-machines",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:44Z"
+  },
+  "editorial": {
+    "status": "reviewed",
+    "primary_collection": "strange-machines",
+    "secondary_collections": [],
+    "difficulty": "beginner",
+    "format": "tutorial",
+    "learning_intents": [
+      "build"
+    ],
+    "evidence_class": "practitioner-experience",
+    "tags": [
+      "esp32",
+      "micropython",
+      "wifi"
+    ],
+    "why_selected": "Planning an ESP32 project end to end and connecting it to Wi-Fi with MicroPython, including the parts that don't work the first time.",
+    "learning_outcomes": [
+      "How to connect an ESP32 to Wi-Fi in MicroPython",
+      "How to debug when it doesn't connect"
+    ],
+    "try_next": "Get your board on your Wi-Fi and have it print its IP address.",
+    "context_note": "The creator says the demo partly fails; that's part of the lesson.",
+    "ratings": {
+      "usefulness": 4,
+      "rigor": 3,
+      "mission": 4,
+      "distinctiveness": 3,
+      "accessibility": 4,
+      "currency": 4
+    },
+    "score": 73,
+    "judgment_basis": "metadata only (title, description, channel, caption list); not watched — substantive judgments unverified",
+    "proposed_by": "claude-opus-5-5 (AI proposal)",
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null,
+    "shelves": [
+      "from-video-to-project"
+    ],
+    "band": "collection-candidate",
+    "proposed_at": "2026-10-20T02:03:42Z"
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:53:54Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": true,
+    "caption_languages": [
+      "en"
+    ],
+    "last_checked_at": "2026-10-20T02:07:55Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:44Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"ESP32\""
+    },
+    {
+      "at": "2026-10-20T01:53:54Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    },
+    {
+      "at": "2026-10-20T02:03:42Z",
+      "from": "verified",
+      "to": "reviewed",
+      "by": "claude-opus-5-5 (AI proposal)",
+      "note": "proposed score 73"
+    }
+  ]
+}

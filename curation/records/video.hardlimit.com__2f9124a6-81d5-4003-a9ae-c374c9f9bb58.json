@@ -1,0 +1,88 @@
+{
+  "id": "video.hardlimit.com__2f9124a6-81d5-4003-a9ae-c374c9f9bb58",
+  "source": {
+    "video_url": "https://video.hardlimit.com/videos/watch/2f9124a6-81d5-4003-a9ae-c374c9f9bb58",
+    "video_uuid": "2f9124a6-81d5-4003-a9ae-c374c9f9bb58",
+    "channel_actor_uri": "https://video.hardlimit.com/video-channels/ports_yt",
+    "instance_host": "video.hardlimit.com",
+    "title": "let's hack your home network _ FREE CCNA _ EP 9-80vIin4xGp8",
+    "creator_display_name": "Ports YT",
+    "channel_handle": "ports_yt@video.hardlimit.com",
+    "license": null,
+    "language": "en",
+    "duration_s": 1815,
+    "original_published_at": "2021-02-14T13:47:19.556Z",
+    "description": null,
+    "tags": [],
+    "category": "Unknown",
+    "views": 18
+  },
+  "discovery": {
+    "query": "home network security",
+    "collection_hint": "hack-the-planet",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:23Z"
+  },
+  "editorial": {
+    "status": "rejected",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": "claude-opus-5-5 (AI proposal)",
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": "re-upload of a YouTube course video",
+    "proposed_at": "2026-10-20T02:03:42Z"
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:56:43Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:12:04Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:23Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"home network security\""
+    },
+    {
+      "at": "2026-10-20T01:56:44Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    },
+    {
+      "at": "2026-10-20T02:03:42Z",
+      "from": "verified",
+      "to": "rejected",
+      "by": "claude-opus-5-5 (AI proposal)",
+      "note": "re-upload of a YouTube course video"
+    }
+  ]
+}

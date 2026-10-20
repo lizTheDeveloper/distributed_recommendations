@@ -1,0 +1,114 @@
+{
+  "id": "media.curious.bio__f8c45af2-96ea-4c5c-9198-c08cd226a247",
+  "source": {
+    "video_url": "https://media.curious.bio/videos/watch/f8c45af2-96ea-4c5c-9198-c08cd226a247",
+    "video_uuid": "f8c45af2-96ea-4c5c-9198-c08cd226a247",
+    "channel_actor_uri": "https://media.curious.bio/video-channels/curious_bio",
+    "instance_host": "media.curious.bio",
+    "title": "3D printing with mycelium",
+    "creator_display_name": "Curious Community Labs e. V.",
+    "channel_handle": "curious_bio@media.curious.bio",
+    "license": "Attribution - Share Alike",
+    "language": "en",
+    "duration_s": 764,
+    "original_published_at": "2023-12-25T13:32:58.749Z",
+    "description": "Anton B. Maidhof's presentation focuses on the Willow Print project, which integrates additive manufacturing with landscape architecture using wood-based mycelium composites. His research, part of his master's thesis, explores the development of temporary, biodegradable architecture through experiments with different woods, designs, and additives in a forest laboratory setting.",
+    "tags": [
+      "3Dprinting",
+      "architecture",
+      "biodegradable",
+      "manufacturing",
+      "mycelium"
+    ],
+    "category": "Science & Technology",
+    "views": 42
+  },
+  "discovery": {
+    "query": "3D printing",
+    "collection_hint": "strange-machines",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:45Z"
+  },
+  "editorial": {
+    "status": "reviewed",
+    "primary_collection": "strange-machines",
+    "secondary_collections": [
+      "the-weird-internet"
+    ],
+    "difficulty": "intermediate",
+    "format": "lecture",
+    "learning_intents": [
+      "create",
+      "understand"
+    ],
+    "evidence_class": "practitioner-experience",
+    "tags": [
+      "3d-printing",
+      "biomaterials",
+      "mycelium"
+    ],
+    "why_selected": "A talk on 3D printing with mycelium: growing structures from fungus instead of plastic.",
+    "learning_outcomes": [
+      "How living materials can be shaped with additive manufacturing"
+    ],
+    "try_next": "Look up a local biohacking or community lab that works with mycelium.",
+    "context_note": null,
+    "ratings": {
+      "usefulness": 3,
+      "rigor": 3,
+      "mission": 4,
+      "distinctiveness": 5,
+      "accessibility": 3,
+      "currency": 4
+    },
+    "score": 70,
+    "judgment_basis": "metadata only (title, description, channel, caption list); not watched — substantive judgments unverified",
+    "proposed_by": "claude-opus-5-5 (AI proposal)",
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null,
+    "shelves": [],
+    "band": "collection-candidate",
+    "proposed_at": "2026-10-20T02:03:42Z"
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:54:11Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:08:23Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:45Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"3D printing\""
+    },
+    {
+      "at": "2026-10-20T01:54:12Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    },
+    {
+      "at": "2026-10-20T02:03:42Z",
+      "from": "verified",
+      "to": "reviewed",
+      "by": "claude-opus-5-5 (AI proposal)",
+      "note": "proposed score 70"
+    }
+  ]
+}

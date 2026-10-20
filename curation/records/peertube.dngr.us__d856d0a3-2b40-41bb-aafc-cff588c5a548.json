@@ -1,0 +1,84 @@
+{
+  "id": "peertube.dngr.us__d856d0a3-2b40-41bb-aafc-cff588c5a548",
+  "source": {
+    "video_url": "https://peertube.dngr.us/videos/watch/d856d0a3-2b40-41bb-aafc-cff588c5a548",
+    "video_uuid": "d856d0a3-2b40-41bb-aafc-cff588c5a548",
+    "channel_actor_uri": "https://peertube.dngr.us/video-channels/how_to",
+    "instance_host": "peertube.dngr.us",
+    "title": "Easy Heat from DIY Solar Thermal Panels",
+    "creator_display_name": "How To",
+    "channel_handle": "how_to@peertube.dngr.us",
+    "license": "All Rights Reserved",
+    "language": "en",
+    "duration_s": 798,
+    "original_published_at": "2023-08-09T00:00:00.000Z",
+    "description": "Check out my sponsor Brilliant, free for 30 days (and get 20% off an annual premium subscription!) by using this link: https://brilliant.org/nighthawk In this video I decided to make a solar heating panel with design features that will be compatible with sky cooling later on. Solar heating is a very efficient method of using solar energy, with the ability to absorb 900-1000w/m2 of heat from sunlight, compared to only 200-300w/m2 of electricity that could be generated from a similarly sized standard solar panel. Here are a few links to solar fan kits that can be used to complete this project (these are affiliate links): Amazon: https://amzn.to/452ivZR Ebay: https://ebay.us/T1iV3j Here are a few links to the videos referenced in this project: Cooling paint part 1: https://youtu.be/N3bJnKmeNJY Cooling paint part 2: https://youtu.be/KDRnEm-B3AI Thank you so much to those of you who support this channel on Patreon! Your support really helps give me confidence to spend my time researching projects that are of value for more than just video views. Shoutout to my top patrons: Eugene Pakhomov, Peter Gordon, Evan Hughes, Teague Lasser, Matthias S., Michel Pastor, PabloXIII, Parker Jones, Simone Chiesi, Steve C, Yanko Yankulov https://www.patreon.com/NightHawkProjects Thanks everyone for watching!",
+    "tags": [
+      "DIY",
+      "Preparedness",
+      "yt:Tg44ndqPTGQ"
+    ],
+    "category": "Education",
+    "views": 1
+  },
+  "discovery": {
+    "query": "solar DIY",
+    "collection_hint": "strange-machines",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:48Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:54:34Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:08:44Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:48Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"solar DIY\""
+    },
+    {
+      "at": "2026-10-20T01:54:34Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

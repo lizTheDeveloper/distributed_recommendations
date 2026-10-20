@@ -1,0 +1,82 @@
+{
+  "id": "makertube.net__4d51e71d-ef55-46ae-ae6e-8c1dc7fdd9fa",
+  "source": {
+    "video_url": "https://makertube.net/videos/watch/4d51e71d-ef55-46ae-ae6e-8c1dc7fdd9fa",
+    "video_uuid": "4d51e71d-ef55-46ae-ae6e-8c1dc7fdd9fa",
+    "channel_actor_uri": "https://makertube.net/video-channels/noelsretrolab",
+    "instance_host": "makertube.net",
+    "title": "3D Printing and Retro Computers",
+    "creator_display_name": "Noel's Retro Lab",
+    "channel_handle": "noelsretrolab@makertube.net",
+    "license": null,
+    "language": "en",
+    "duration_s": 1915,
+    "original_published_at": "2023-04-07T00:00:00.000Z",
+    "description": "To try everything Brilliant has to offer—free—for a full 30 days, visit http://brilliant.org/NoelsRetroLab/ . The first 200 of you will get 20% off Brilliant’s annual premium subscription. 3D printing is an excellent complement to retro computing. Here I share my experiences with filament and resin printers, in addition to 3D-printing services. 🛠 Printers Creality Ender 3 S1 Pro https://amzn.to/3nOUjd0 Elegoo Mars 2 Pro https://amzn.to/418LWHg PCBWay 3D printing https://www.pcbway.com/rapid-prototyping/3d-printing/ 3D Models: - Atari/SVI cartridge https://www.thingiverse.com/thing:1790785 - C64 stand https://www.thingiverse.com/thing:3921140 - 1084 monitor door https://www.thingiverse.com/thing:4289506 - 1084 monitor hinge https://www.thingiverse.com/thing:5259735 - ZX80 case https://www.thingiverse.com/thing:1880449 Chapters: 00:00 Intro 03:00 Cartridge shell 08:02 Computer stand 09:51 Monitor door 14:59 Key (filament) 18:09 Key (resin) 23:33 Materials 24:21 Computer case 25:58 Online printing 28:38 Modeling 30:46 Conclusions This video was sponsored by Brilliant. Support Noel's Retro Lab on Patreon: https://www.patreon.com/NoelsRetroLab You can also support Noel's Retro Lab on YouTube by joining this channel: https://www.youtube.com/channel/UC2-SP1bYi3ueKlVU7I75wFw/join Music tracks: Funky Stars by McKlain https://mcklain.bandcamp.com/track/funky-stars-amstrad-cpc-true-8bit-version Battro OST by McKlain https://mcklain.bandcamp.com/track/battro-ost More awesome music by M…",
+    "tags": [],
+    "category": "Science & Technology",
+    "views": 79
+  },
+  "discovery": {
+    "query": "3D printing",
+    "collection_hint": "strange-machines",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:45Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:53:56Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": true,
+    "caption_languages": [
+      "en"
+    ],
+    "last_checked_at": "2026-10-20T02:07:57Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:45Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"3D printing\""
+    },
+    {
+      "at": "2026-10-20T01:53:57Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

@@ -1,0 +1,88 @@
+{
+  "id": "framatube.org__ca5e3bcf-a4b4-4708-b218-c8034e22f9c0",
+  "source": {
+    "video_url": "https://framatube.org/videos/watch/ca5e3bcf-a4b4-4708-b218-c8034e22f9c0",
+    "video_uuid": "ca5e3bcf-a4b4-4708-b218-c8034e22f9c0",
+    "channel_actor_uri": "https://framatube.org/video-channels/bf54d359-cfad-4935-9d45-9d6be93f63e8",
+    "instance_host": "framatube.org",
+    "title": "COMMENT SE LIBÉRER DES GAFAM ! AVEC FRAMASOFT",
+    "creator_display_name": "Les vidéos de Framasoft",
+    "channel_handle": "bf54d359-cfad-4935-9d45-9d6be93f63e8@framatube.org",
+    "license": null,
+    "language": "fr",
+    "duration_s": 3838,
+    "original_published_at": "2023-01-13T23:00:00.000Z",
+    "description": "Soutenez Blast, nouveau média indépendant : https://www.blast-info.fr/soutenir Avec Pouhiou et Pyg, deux des co-directeurs de Framasoft, Au Poste a fait faire le tour de la nouvelle feuille de route sur 3 ans de l’association, la bien nommée \"Collectivisons Internet / Convivialisons Internet\". Comment on se libère ? Et quand ? En quoi utiliser des logiciels libres est une arme, concrète, contre le rétrécissement de nos libertés. Le site : https://www.blast-info.fr/ Facebook : https://www.facebook.com/blastofficiel Twitter : https://twitter.com/blast_france Instagram : https://www.instagram.com/blastofficiel/ Mastodon : https://mamot.fr/web/@blast_info Peertube : https://video.blast-info.fr/ #Framasoft #Liberté #Internet",
+    "tags": [
+      "blast",
+      "démocratie",
+      "framasoft",
+      "internet",
+      "liberté"
+    ],
+    "category": "Entertainment",
+    "views": 856
+  },
+  "discovery": {
+    "query": "channel bf54d359-cfad-4935-9d45-9d6be93f63e8@framatube.org",
+    "collection_hint": "build-your-own-future",
+    "service": "origin channel listing",
+    "at": "2026-10-20T01:58:57Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "official-link-verified",
+    "verified_at": "2026-10-20T01:59:14Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": true,
+    "caption_languages": [
+      "fr"
+    ],
+    "last_checked_at": "2026-10-20T02:07:35Z",
+    "identity_evidence": "https://framasoft.org/en/ links to framatube.org; these channels are Framasoft's own",
+    "publisher": "Framasoft"
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:58:57Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "channel bf54d359-cfad-4935-9d45-9d6be93f63e8@framatube.org"
+    },
+    {
+      "at": "2026-10-20T01:59:15Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

@@ -1,0 +1,88 @@
+{
+  "id": "peertube.zveronline.ru__808a78c5-5c25-4852-8c0b-5c3f9a7b21fe",
+  "source": {
+    "video_url": "https://peertube.zveronline.ru/videos/watch/808a78c5-5c25-4852-8c0b-5c3f9a7b21fe",
+    "video_uuid": "808a78c5-5c25-4852-8c0b-5c3f9a7b21fe",
+    "channel_actor_uri": "https://peertube.zveronline.ru/video-channels/smart_home",
+    "instance_host": "peertube.zveronline.ru",
+    "title": "Добавление BLE iTag брелока в ESPHome,Home Assistant. Управление освещением с помощью кнопки брелока",
+    "creator_display_name": "Умный дом",
+    "channel_handle": "smart_home@peertube.zveronline.ru",
+    "license": null,
+    "language": "ru",
+    "duration_s": 485,
+    "original_published_at": "2021-08-15T21:00:00.000Z",
+    "description": "itag утройство: http://alii.pub/5xob0q esp32: http://alii.pub/5xob6k ================================================ Кэшбэк возврат до 15% от покупки на Alixpress : http://ali.pub/51dh2x ================================================ Помощь каналу: http://www.donationalerts.ru/r/ypavla Подробности на сайте: http://psenyukov.ru/%d0%b4%d0%be%d0%b1%d0%b0%d0%b2%d0%bb%d0%b5%d0%bd%d0%b8%d0%b5-ble-itag-%d0%b1%d1%80%d0%b5%d0%bb%d0%ba%d0%b0-%d0%b2-esphome-%d0%b8-home-assistant/ #esphome #Home Assistant #ESP32",
+    "tags": [
+      "ble",
+      "esp32",
+      "Павла!",
+      "блютуз",
+      "поисковик ключей"
+    ],
+    "category": "Science & Technology",
+    "views": 0
+  },
+  "discovery": {
+    "query": "BLE reverse engineering",
+    "collection_hint": "strange-machines",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:47Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:55:15Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": true,
+    "caption_languages": [
+      "ru"
+    ],
+    "last_checked_at": "2026-10-20T02:09:24Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:47Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"BLE reverse engineering\""
+    },
+    {
+      "at": "2026-10-20T01:55:16Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

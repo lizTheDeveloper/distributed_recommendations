@@ -1,0 +1,80 @@
+{
+  "id": "videos.domainepublic.net__74d3e5a1-3346-4f2d-af59-350bceca3bed",
+  "source": {
+    "video_url": "https://videos.domainepublic.net/videos/watch/74d3e5a1-3346-4f2d-af59-350bceca3bed",
+    "video_uuid": "74d3e5a1-3346-4f2d-af59-350bceca3bed",
+    "channel_actor_uri": "https://videos.domainepublic.net/video-channels/digitalfortresses",
+    "instance_host": "videos.domainepublic.net",
+    "title": "Digital Fortresses: Session 1 - Space, Land, and Climate [Original EN, ES]",
+    "creator_display_name": "Digital Fortresses",
+    "channel_handle": "digitalfortresses@videos.domainepublic.net",
+    "license": null,
+    "language": "en",
+    "duration_s": 6151,
+    "original_published_at": "2026-09-08T11:29:13.323Z",
+    "description": "EN: The first session of the series, held on Wednesday 2nd September 2026 with speakers: Helen V. Pritchard, Enol Nieto Jiménez, Nikita Sonavane, and Max (le nuage était sous nos pieds). Event details and resources: https://titipi.org/wiki/index.php/Digitalfortresses-webinars ES: La primera sesión de la serie, celebrada el miércoles 2 de septiembre de 2026, contó con la participación de Helen V. Pritchard, Enol Nieto Jiménez, Nikita Sonavane y Max (le nuage était sous nos pieds). Detalles del evento y recursos: https://titipi.org/wiki/index.php/Digitalfortresses-webinars",
+    "tags": [],
+    "category": "Education",
+    "views": 61
+  },
+  "discovery": {
+    "query": "public interest technology",
+    "collection_hint": "the-machine-is-political",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:32Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:57:17Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:12:35Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:32Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"public interest technology\""
+    },
+    {
+      "at": "2026-10-20T01:57:18Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

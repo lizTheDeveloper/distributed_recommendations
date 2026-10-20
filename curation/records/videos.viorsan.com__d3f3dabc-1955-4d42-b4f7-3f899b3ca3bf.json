@@ -1,0 +1,84 @@
+{
+  "id": "videos.viorsan.com__d3f3dabc-1955-4d42-b4f7-3f899b3ca3bf",
+  "source": {
+    "video_url": "https://videos.viorsan.com/videos/watch/d3f3dabc-1955-4d42-b4f7-3f899b3ca3bf",
+    "video_uuid": "d3f3dabc-1955-4d42-b4f7-3f899b3ca3bf",
+    "channel_actor_uri": "https://videos.viorsan.com/video-channels/vikartis_channel",
+    "instance_host": "videos.viorsan.com",
+    "title": "Terramaster NAS as low-cost Proxmox node? TEARDOWN and SW Install!",
+    "creator_display_name": "Vikarti's channel",
+    "channel_handle": "vikartis_channel@videos.viorsan.com",
+    "license": null,
+    "language": "en",
+    "duration_s": 1058,
+    "original_published_at": "2023-01-04T18:00:00.000Z",
+    "description": "original uri https://www.youtube.com/watch?v=4_5uvWjOaR8 link from https://www.apalrd.net/posts/2023/ultimate_terra/ I get asked a lot about what hardware I recommend for homelabs and home servers. It's a very difficult question since it depends on what exactly you want to get out of your setup. But, whatever you choose, I'm starting a new series where I'll setup all of the commonly requested home server software in a single box. Since I want to try this on both used and new hardware, here's a low cost NAS you can buy brand-new and run your own software on it! A few basics of this guy: - Terramaster F2-223 - F2 means 2-slot cube form factor, -2 is dual core, 23 is the 'new' series (at least when this video was produced) - Intel Celeron N4505 dual core - Dual DDR4 sodimm slots, comes with 1x 4G stick and one easily accessible empty slot. I added an 8G stick to bring it up to 12G so I can do virtualization - Dual Intel I225-v3 2.5G NICs For more information such as cpu info, pci, ... see the blog post: https://www.apalrd.net/posts/2023/ultimate_terra/ A few upsides: - They are pretty cheap for the HW you get new - Mix of SATA and NVMe storage options, for bulk storage and high speed storage - x86 processor so it can run Linux based OSes well - Intel I225 2.5Gbe NIC is considered 'good' compared to Realtek chipsets, and widely compatible across OSes such as Linux and BSD A few downsides: - The included software seems to want to install itself on your drive as the boot disk, but…",
+    "tags": [
+      "proxmox"
+    ],
+    "category": "Science & Technology",
+    "views": 6
+  },
+  "discovery": {
+    "query": "hardware teardown",
+    "collection_hint": "strange-machines",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:46Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:57:30Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": true,
+    "caption_languages": [
+      "en"
+    ],
+    "last_checked_at": "2026-10-20T02:12:47Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:46Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"hardware teardown\""
+    },
+    {
+      "at": "2026-10-20T01:57:31Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

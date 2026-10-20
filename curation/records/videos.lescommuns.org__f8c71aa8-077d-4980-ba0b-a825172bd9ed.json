@@ -1,0 +1,80 @@
+{
+  "id": "videos.lescommuns.org__f8c71aa8-077d-4980-ba0b-a825172bd9ed",
+  "source": {
+    "video_url": "https://videos.lescommuns.org/videos/watch/f8c71aa8-077d-4980-ba0b-a825172bd9ed",
+    "video_uuid": "f8c71aa8-077d-4980-ba0b-a825172bd9ed",
+    "channel_actor_uri": "https://videos.lescommuns.org/video-channels/openfisca_training",
+    "instance_host": "videos.lescommuns.org",
+    "title": "Algorithmic transparency",
+    "creator_display_name": "OpenFisca Training Sessions",
+    "channel_handle": "openfisca_training@videos.lescommuns.org",
+    "license": "Attribution - Non Commercial",
+    "language": "en",
+    "duration_s": 5394,
+    "original_published_at": "2024-05-12T14:26:35.000Z",
+    "description": "After a code review, this session touches on algorithmic transparency and how the rule of law transcribes into Rules as Code. This video is part of the training sessions recorded as part of the 2024 Cohort of the EU GovTech4All program, co-funded by the French Interministerial Direction for Digital Affairs (DINUM) and the European Commission.",
+    "tags": [],
+    "category": "Education",
+    "views": 3
+  },
+  "discovery": {
+    "query": "algorithmic accountability",
+    "collection_hint": "the-machine-is-political",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:27Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:57:22Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:12:39Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:27Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"algorithmic accountability\""
+    },
+    {
+      "at": "2026-10-20T01:57:22Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

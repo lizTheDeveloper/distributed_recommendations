@@ -1,0 +1,83 @@
+{
+  "id": "peertube.dsmouse.net__0db435e5-8d77-464d-855d-104ae0f8c575",
+  "source": {
+    "video_url": "https://peertube.dsmouse.net/videos/watch/0db435e5-8d77-464d-855d-104ae0f8c575",
+    "video_uuid": "0db435e5-8d77-464d-855d-104ae0f8c575",
+    "channel_actor_uri": "https://peertube.dsmouse.net/video-channels/mouse_channel",
+    "instance_host": "peertube.dsmouse.net",
+    "title": "Washington Right to Repair hearing - SB 5799",
+    "creator_display_name": "Main mouse channel",
+    "channel_handle": "mouse_channel@peertube.dsmouse.net",
+    "license": null,
+    "language": null,
+    "duration_s": 2489,
+    "original_published_at": "2020-01-21T00:00:00.000Z",
+    "description": "👉 https://app.leg.wa.gov/committeeschedules/Home/Documents/26271?//ENET/////year THANK YOU TO ALL PATRONS WHO HELPED COVER TRAVEL EXPENSES TO APPEAR AT THESE HEARINGS! 🔵 Patreon https://www.patreon.com/rossmanngroup 🔵 We fix Macbooks & offer free estimates. https://rossmanngroup.com 🔵 Send us your Macbook for repair! http://bit.ly/sendmacbook 🔵 We'll send you a box with a pre-paid shipping label for your repair! http://bit.ly/sendyourmacbook 🔵 We offer iPhone data recovery: http://bit.ly/2BDBX4G 🔵 We offer lab hard drive data recovery: http://bit.ly/labdatarecovery 👉 LEARN HOW TO DO THIS: › Beginner's guide: http://bit.ly/2k6uz84 › Support forum: $29/mo http://bit.ly/2nX8rMC 👉 Donate & post a message: http://bit.ly/tiplouis 👉 Below we list tools & recording gear we use, repair guides to help you learn, online chip sources, & donation links: 👉 BlackBerry, Oreo, & Clinton the cat's wish list: https://www.amazon.com/hz/wishlist/ls/2YC1L66N7T5BC?&sort=default 👉 CHIPS & COMPONENTS: › http://bit.ly/2jaAOXM 👉 Discord: https://discord.gg/CHhAdYm 👉 TOOLS USED: ✓ Soldering Irons: › Louis' Hakko station(no tweezers): http://amzn.to/2cKkMyO › Paul's Hakko station(works with tweezers): http://amzn.to/2yMvWNy › Micro Soldering Pencil: http://amzn.to/2d5MWUP › Hot tweezers: http://amzn.to/2yMvZsZ › Quick 861DW hot air station: http://bit.ly/quick861dw ✓ CHEAP HAKKO ALTERNATIVES: › TS100 soldering iron: https://amzn.to/2Gy1Fqz › Recommended tips: TS-C4: https://amzn.to/2GSDoz3…",
+    "tags": [
+      "logic board repair",
+      "macbook"
+    ],
+    "category": "Education",
+    "views": 5
+  },
+  "discovery": {
+    "query": "right to repair",
+    "collection_hint": "strange-machines",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:49Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:54:36Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:08:47Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:49Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"right to repair\""
+    },
+    {
+      "at": "2026-10-20T01:54:37Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

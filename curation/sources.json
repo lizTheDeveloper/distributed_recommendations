@@ -1,0 +1,110 @@
+{
+  "$comment": "Instance and channel registry (§5). identity_status: official-link-verified = the publisher's official website links to this instance (§5.3 step 3); unverified = claimed, not yet confirmed; rejected = don't use. A listed instance is not followed or featured automatically (§5.1, §9.1): 'follow' records the editorial decision. verify.mjs copies identity onto records whose host (and channel, when listed) match.",
+  "sources": [
+    {
+      "host": "framatube.org",
+      "channels": [
+        "bf54d359-cfad-4935-9d45-9d6be93f63e8",
+        "joinpeertube",
+        "framaconf"
+      ],
+      "publisher": "Framasoft",
+      "identity_status": "official-link-verified",
+      "evidence": "https://framasoft.org/en/ links to framatube.org; these channels are Framasoft's own",
+      "follow": "approved-source"
+    },
+    {
+      "host": "peertube.dair-institute.org",
+      "publisher": "DAIR Institute",
+      "identity_status": "official-link-verified",
+      "evidence": "https://www.dair-institute.org/ links to peertube.dair-institute.org",
+      "follow": "approved-source"
+    },
+    {
+      "host": "video.blender.org",
+      "publisher": "Blender",
+      "identity_status": "official-link-verified",
+      "evidence": "https://www.blender.org/ links to video.blender.org",
+      "follow": "approved-source"
+    },
+    {
+      "host": "techlore.tv",
+      "publisher": "Techlore",
+      "identity_status": "official-link-verified",
+      "evidence": "https://techlore.tech/ links to techlore.tv",
+      "follow": "approved-source"
+    },
+    {
+      "host": "peertube.opencloud.lu",
+      "channels": [
+        "misptraining"
+      ],
+      "publisher": "CIRCL (MISP Project)",
+      "identity_status": "official-link-verified",
+      "evidence": "https://www.circl.lu/services/misp-training-materials/ links to peertube.opencloud.lu",
+      "follow": "approved-source"
+    },
+    {
+      "host": "video.publicspaces.net",
+      "publisher": "PublicSpaces",
+      "identity_status": "official-link-verified",
+      "evidence": "https://publicspaces.net/ links to video.publicspaces.net",
+      "follow": "approved-source"
+    },
+    {
+      "host": "videos.spacebar.ca",
+      "channels": [
+        "nsec"
+      ],
+      "publisher": "NorthSec",
+      "identity_status": "official-link-verified",
+      "evidence": "https://nsec.io/ links to videos.spacebar.ca",
+      "follow": "approved-source"
+    },
+    {
+      "host": "video.canadiancivil.com",
+      "publisher": "Canadian Civil",
+      "identity_status": "official-link-verified",
+      "evidence": "https://canadiancivil.com/ links to video.canadiancivil.com",
+      "follow": "approved-source"
+    },
+    {
+      "host": "tube.waag.org",
+      "publisher": "Waag Futurelab (claimed)",
+      "identity_status": "unverified",
+      "evidence": "waag.org homepage has no link to tube.waag.org; check the site's footer or contact Waag before treating it as official",
+      "follow": "review"
+    },
+    {
+      "host": "media.apc.org",
+      "publisher": "APC (claimed)",
+      "identity_status": "unverified",
+      "evidence": "apc.org homepage has no link to media.apc.org",
+      "follow": "review"
+    },
+    {
+      "host": "video.rhizome.org",
+      "publisher": "Rhizome (claimed)",
+      "identity_status": "unverified",
+      "evidence": "rhizome.org homepage has no link to video.rhizome.org",
+      "follow": "review"
+    },
+    {
+      "host": "video.osgeo.org",
+      "publisher": "OSGeo / FOSS4G (claimed)",
+      "identity_status": "unverified",
+      "evidence": "osgeo.org homepage has no link to video.osgeo.org",
+      "follow": "review"
+    },
+    {
+      "host": "tube.p3x.de",
+      "channels": [
+        "ccc_mirror"
+      ],
+      "publisher": "Chaos Computer Club (mirror)",
+      "identity_status": "rejected",
+      "evidence": "the channel calls itself a mirror; CCC's canonical archive is https://media.ccc.de/, which is not a PeerTube instance",
+      "follow": "rejected"
+    }
+  ]
+}

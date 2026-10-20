@@ -1,0 +1,86 @@
+{
+  "id": "framatube.org__9f8b8104-cb0e-4688-93cd-d66ec9177960",
+  "source": {
+    "video_url": "https://framatube.org/videos/watch/9f8b8104-cb0e-4688-93cd-d66ec9177960",
+    "video_uuid": "9f8b8104-cb0e-4688-93cd-d66ec9177960",
+    "channel_actor_uri": "https://framatube.org/video-channels/bf54d359-cfad-4935-9d45-9d6be93f63e8",
+    "instance_host": "framatube.org",
+    "title": "Designers et Logiciels libres : et si on collaborait ? - Maïtané Lenoir - MiXiT 2018",
+    "creator_display_name": "Les vidéos de Framasoft",
+    "channel_handle": "bf54d359-cfad-4935-9d45-9d6be93f63e8@framatube.org",
+    "license": "Attribution - Non Commercial - No Derivatives",
+    "language": "fr",
+    "duration_s": 893,
+    "original_published_at": "2018-07-10T16:08:40.793Z",
+    "description": "Le monde du libre est rempli de communautés de développeurs passionnés. Mais où sont les designers ? Incompréhensions entre les différents corps de métier, méconnaissance de ce qu'est un logiciel libre, légende du designer-artiste qui n'en fait qu'à sa tête, possibilités de contribuer mal adaptées pour des designers, les origines de ce désamour sont nombreuses. Et si on passait à l'étape suivante, celle où devs et designers du libre se rejoignent pour créer des logiciels ensemble, histoire d'en améliorer l'expérience utilisateur ? mixitconf.org/2018/designers-et-logiciels-libres-et-si-on-collaborait-",
+    "tags": [
+      "designers",
+      "MiXiT",
+      "MiXit 2018"
+    ],
+    "category": "Science & Technology",
+    "views": 848
+  },
+  "discovery": {
+    "query": "channel bf54d359-cfad-4935-9d45-9d6be93f63e8@framatube.org",
+    "collection_hint": "build-your-own-future",
+    "service": "origin channel listing",
+    "at": "2026-10-20T01:58:57Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "official-link-verified",
+    "verified_at": "2026-10-20T01:59:10Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": true,
+    "caption_languages": [
+      "fr"
+    ],
+    "last_checked_at": "2026-10-20T02:07:30Z",
+    "identity_evidence": "https://framasoft.org/en/ links to framatube.org; these channels are Framasoft's own",
+    "publisher": "Framasoft"
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:58:57Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "channel bf54d359-cfad-4935-9d45-9d6be93f63e8@framatube.org"
+    },
+    {
+      "at": "2026-10-20T01:59:11Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

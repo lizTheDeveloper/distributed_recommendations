@@ -1,0 +1,108 @@
+{
+  "id": "makertube.net__d9fdc782-9019-473a-b1eb-0f7924b0d683",
+  "source": {
+    "video_url": "https://makertube.net/videos/watch/d9fdc782-9019-473a-b1eb-0f7924b0d683",
+    "video_uuid": "d9fdc782-9019-473a-b1eb-0f7924b0d683",
+    "channel_actor_uri": "https://makertube.net/video-channels/phos_systems",
+    "instance_host": "makertube.net",
+    "title": "RackRobotic's PowerCore EDM power supply circuit analysis",
+    "creator_display_name": "Phos's workshop",
+    "channel_handle": "phos_systems@makertube.net",
+    "license": "Public Domain Dedication",
+    "language": "en",
+    "duration_s": 543,
+    "original_published_at": "2026-01-28T03:15:09.677Z",
+    "description": "Today we take a look at the PowerCore V3 circuit by rack robotics, and get an overview of how it works, as well as what components are used. #rackrobotics #powercore3 #edm #electronics",
+    "tags": [],
+    "category": "Science & Technology",
+    "views": 5
+  },
+  "discovery": {
+    "query": "robotics workshop",
+    "collection_hint": "strange-machines",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:45Z"
+  },
+  "editorial": {
+    "status": "reviewed",
+    "primary_collection": "strange-machines",
+    "secondary_collections": [],
+    "difficulty": "advanced",
+    "format": "demonstration",
+    "learning_intents": [
+      "understand",
+      "repair"
+    ],
+    "evidence_class": "practitioner-experience",
+    "tags": [
+      "electronics",
+      "circuit-analysis",
+      "power"
+    ],
+    "why_selected": "A walk through an EDM power-supply circuit, explaining how each section works and where it could fail.",
+    "learning_outcomes": [
+      "How to read a power-supply schematic section by section"
+    ],
+    "try_next": "Take a schematic of a device you own and label its power stages.",
+    "context_note": "Mains-adjacent power electronics: hazardous voltages.",
+    "ratings": {
+      "usefulness": 3,
+      "rigor": 4,
+      "mission": 3,
+      "distinctiveness": 4,
+      "accessibility": 4,
+      "currency": 5
+    },
+    "score": 73,
+    "judgment_basis": "metadata only (title, description, channel, caption list); not watched — substantive judgments unverified",
+    "proposed_by": "claude-opus-5-5 (AI proposal)",
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null,
+    "shelves": [],
+    "band": "collection-candidate",
+    "proposed_at": "2026-10-20T02:03:42Z"
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:54:05Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": true,
+    "caption_languages": [
+      "en"
+    ],
+    "last_checked_at": "2026-10-20T02:08:08Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:45Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"robotics workshop\""
+    },
+    {
+      "at": "2026-10-20T01:54:05Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    },
+    {
+      "at": "2026-10-20T02:03:42Z",
+      "from": "verified",
+      "to": "reviewed",
+      "by": "claude-opus-5-5 (AI proposal)",
+      "note": "proposed score 73"
+    }
+  ]
+}

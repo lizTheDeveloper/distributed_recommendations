@@ -1,0 +1,82 @@
+{
+  "id": "videos.trom.tf__598f8a22-5c00-46f2-892f-413f85e0f96f",
+  "source": {
+    "video_url": "https://videos.trom.tf/videos/watch/598f8a22-5c00-46f2-892f-413f85e0f96f",
+    "video_uuid": "598f8a22-5c00-46f2-892f-413f85e0f96f",
+    "channel_actor_uri": "https://videos.trom.tf/video-channels/videoneat",
+    "instance_host": "videos.trom.tf",
+    "title": "Robotics (trailer)",
+    "creator_display_name": "videoneat.com",
+    "channel_handle": "videoneat@videos.trom.tf",
+    "license": null,
+    "language": "en",
+    "duration_s": 91,
+    "original_published_at": "2020-09-12T22:00:00.000Z",
+    "description": "Watch it trade-free at https://www.videoneat.com/courses/20354/robotics/ Robots. The mere word conjures up a bevy of mind-bending images pulled straight from popular science fiction tales. But robots aren’t just the stuff of entertainment. They’re real. They’re everywhere around you. And they’re transforming your life in ways you can’t imagine.",
+    "tags": [],
+    "category": "Education",
+    "views": 13
+  },
+  "discovery": {
+    "query": "robotics workshop",
+    "collection_hint": "strange-machines",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:45Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:57:25Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": true,
+    "caption_languages": [
+      "en"
+    ],
+    "last_checked_at": "2026-10-20T02:12:42Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:45Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"robotics workshop\""
+    },
+    {
+      "at": "2026-10-20T01:57:26Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

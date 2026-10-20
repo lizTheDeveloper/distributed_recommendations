@@ -1,0 +1,109 @@
+{
+  "id": "peertube.kaleidos.net__fcdab2ef-54d1-45da-b2c4-6954d082e849",
+  "source": {
+    "video_url": "https://peertube.kaleidos.net/videos/watch/fcdab2ef-54d1-45da-b2c4-6954d082e849",
+    "video_uuid": "fcdab2ef-54d1-45da-b2c4-6954d082e849",
+    "channel_actor_uri": "https://peertube.kaleidos.net/video-channels/penpot_tutorials",
+    "instance_host": "peertube.kaleidos.net",
+    "title": "Self-hosting Penpot: why data sovereignty matters now | Interview",
+    "creator_display_name": "Penpot Tutorials",
+    "channel_handle": "penpot_tutorials@peertube.kaleidos.net",
+    "license": "CC BY-ND 4.0",
+    "language": "en",
+    "duration_s": 487,
+    "original_published_at": "2026-10-03T12:25:38.041Z",
+    "description": "SaaS has long been the default for new software, but more teams now ask where their tools run and where their data lives. Self-hosting Penpot keeps your designs, files, and comments on your own infrastructure or the cloud provider you choose. Security policies, privacy regulations, team scale, and digital sovereignty are all pushing that question forward. Having both options means you can start with what works today and adapt as your needs change. We sat down with Yamila Moreno, COO at Kaleidos and member of Penpot's infrastructure team, to talk about what self-hosting looks like in practice, who benefits most, when SaaS is the better fit, and why Penpot was built to run anywhere from day one. We also cover GDPR, digital sovereignty in Europe, open source as a matter of trust, and where self-hosting is heading for design and product teams. 👉 Self-host: https://penpot.app/self-host 👉 How to self-host Penpot: https://penpot.app/blog/how-to-self-host-penpot/ 👉 Why enterprises self-host Penpot: https://penpot.app/blog/6-reasons-enterprise-companies-choose-to-self-host-penpot/ Chapters 00:00 Intro 00:13 Building Penpot's self-hosted experience 01:04 Why data sovereignty matters now 02:00 What is self-hosting, and why is it growing? 03:24 When self-hosting makes sense 04:53 The freedom to choose how Penpot runs 06:14 What’s next for data ownership and self-hosting? Penpot Community: https://community.penpot.app App: https://design.penpot.app Help: https://help.penpot.app Contri…",
+    "tags": [],
+    "category": "Science & Technology",
+    "views": 7
+  },
+  "discovery": {
+    "query": "self hosting",
+    "collection_hint": "build-your-own-future",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:33Z"
+  },
+  "editorial": {
+    "status": "reviewed",
+    "primary_collection": "build-your-own-future",
+    "secondary_collections": [],
+    "difficulty": "beginner",
+    "format": "interview",
+    "learning_intents": [
+      "understand",
+      "build"
+    ],
+    "evidence_class": "practitioner-experience",
+    "tags": [
+      "self-hosting",
+      "design-tools",
+      "data-sovereignty"
+    ],
+    "why_selected": "A short interview on why teams are self-hosting their design tools, using Penpot as the example.",
+    "learning_outcomes": [
+      "Why data sovereignty is pushing teams off SaaS",
+      "What self-hosting a design tool involves"
+    ],
+    "try_next": "Try Penpot's self-hosting docs and note what you'd need to run it.",
+    "context_note": "Published by Kaleidos, the company that makes Penpot.",
+    "ratings": {
+      "usefulness": 3,
+      "rigor": 3,
+      "mission": 4,
+      "distinctiveness": 3,
+      "accessibility": 4,
+      "currency": 5
+    },
+    "score": 70,
+    "judgment_basis": "metadata only (title, description, channel, caption list); not watched — substantive judgments unverified",
+    "proposed_by": "claude-opus-5-5 (AI proposal)",
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null,
+    "shelves": [],
+    "band": "collection-candidate",
+    "proposed_at": "2026-10-20T02:03:42Z"
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:54:56Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": true,
+    "caption_languages": [
+      "en"
+    ],
+    "last_checked_at": "2026-10-20T02:09:07Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:33Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"self hosting\""
+    },
+    {
+      "at": "2026-10-20T01:54:56Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    },
+    {
+      "at": "2026-10-20T02:03:42Z",
+      "from": "verified",
+      "to": "reviewed",
+      "by": "claude-opus-5-5 (AI proposal)",
+      "note": "proposed score 70"
+    }
+  ]
+}

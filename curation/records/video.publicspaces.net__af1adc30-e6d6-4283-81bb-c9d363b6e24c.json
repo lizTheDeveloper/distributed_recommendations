@@ -1,0 +1,82 @@
+{
+  "id": "video.publicspaces.net__af1adc30-e6d6-4283-81bb-c9d363b6e24c",
+  "source": {
+    "video_url": "https://video.publicspaces.net/videos/watch/af1adc30-e6d6-4283-81bb-c9d363b6e24c",
+    "video_uuid": "af1adc30-e6d6-4283-81bb-c9d363b6e24c",
+    "channel_actor_uri": "https://video.publicspaces.net/video-channels/pubconf",
+    "instance_host": "video.publicspaces.net",
+    "title": "Defending our Digital Rights @ PublicSpaces Conference 2026",
+    "creator_display_name": "PublicSpaces Conference",
+    "channel_handle": "pubconf@video.publicspaces.net",
+    "license": "CC BY-SA 4.0",
+    "language": "nl",
+    "duration_s": 3295,
+    "original_published_at": "2026-06-09T19:12:39.351Z",
+    "description": "Panel - How do we uphold public interests in a digital society? In an era of increasing geopolitical tensions, rapid technological change, and growing ecological pressure, one thing is becoming ever clearer: democratic control over technology is more necessary than ever. Yet governments continue to hesitate. Decisive policy on digital rights is lacking, while the societal consequences are significant. Our privacy is under pressure, our shared sense of reality is eroding, and our digital sovereignty — the ability to maintain control over our own data, tools, and digital lives — is slipping further out of sight. In the absence of strong political leadership, others are taking matters into their own hands. Citizens, journalists, and non-governmental organisations are sounding the alarm and developing new strategies to counter the unchecked power of Big Tech. In this session, we draw inspiration from two examples of this resistance in practice: the Firewall project by investigative journalism platform Follow the Money, and the groundbreaking lawsuit against Meta by digital rights organisation Bits of Freedom. Together, these initiatives represent different but complementary approaches to reclaiming digital autonomy. Which tools, tactics, and strategies offer the greatest chance of success? How can politics and society work together more effectively? And how do we build a broader movement that puts people — and not platforms — back in control? Speakers: - [Eric Smit](https://conf…",
+    "tags": [],
+    "category": "Science & Technology",
+    "views": 15
+  },
+  "discovery": {
+    "query": "digital rights",
+    "collection_hint": "the-machine-is-political",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:29Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "official-link-verified",
+    "verified_at": "2026-10-20T01:57:08Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": true,
+    "caption_languages": [
+      "nl"
+    ],
+    "last_checked_at": "2026-10-20T02:12:27Z",
+    "identity_evidence": "https://publicspaces.net/ links to video.publicspaces.net",
+    "publisher": "PublicSpaces"
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:29Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"digital rights\""
+    },
+    {
+      "at": "2026-10-20T01:57:10Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

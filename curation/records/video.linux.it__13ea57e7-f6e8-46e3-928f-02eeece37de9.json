@@ -1,0 +1,80 @@
+{
+  "id": "video.linux.it__13ea57e7-f6e8-46e3-928f-02eeece37de9",
+  "source": {
+    "video_url": "https://video.linux.it/videos/watch/13ea57e7-f6e8-46e3-928f-02eeece37de9",
+    "video_uuid": "13ea57e7-f6e8-46e3-928f-02eeece37de9",
+    "channel_actor_uri": "https://video.linux.it/video-channels/madbob_channel",
+    "instance_host": "video.linux.it",
+    "title": "Open Hardware GNU/Linux PowerPC Notebook",
+    "creator_display_name": "Main madbob channel",
+    "channel_handle": "madbob_channel@video.linux.it",
+    "license": "Attribution",
+    "language": "it",
+    "duration_s": 3424,
+    "original_published_at": "2020-10-30T18:04:17.115Z",
+    "description": "Linux Day 2020 - Roberto Innocenti Alla fine del 2014 un gruppo di appassionati di Software Libero, PowerPC e Open Hardware hanno iniziato come volontari il progetto di progettazione Open Hardware di un Notebook PowerPC disegnato intorno a GNU/Linux. Hanno iniziato senza soldi e all'inizio non avevano abbastanza compentenza sull'hardware per progettare da soli la scheda madre. Non c'era nessuna azienda interessata a produrre un Notebook PowerPC, quanto meno Open Hardware e disegnato per fare girare sopra GNU/Linux. Nel 2020 si arrivati a realizzare il PCB, grazie al supporto di molti collaboratori e donatori, che sfide rimangono aperte e dove si vuole arrivare? Racconteremo anche alcuni dei passi compiuti come: - come coinvolgiamo attivamente la comuntià di appassionati del progetto - come collaboriamo con l'azienda che progetta l'hardware - come finanziamo il progetto - commentiamo la licenza hardware open source del CERN ed il processo di certificazione OSHWA - come abbiamo abbiamo risolto la questione del corpo del portatile visto che ne varrà fatta una piccola produzione",
+    "tags": [],
+    "category": "Unknown",
+    "views": 73
+  },
+  "discovery": {
+    "query": "open hardware",
+    "collection_hint": "build-your-own-future",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:38Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:57:00Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:12:21Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:38Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"open hardware\""
+    },
+    {
+      "at": "2026-10-20T01:57:02Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

@@ -1,0 +1,94 @@
+{
+  "id": "tubedu.org__868ba8ab-a5fd-4644-b035-7ee9e62bf9b2",
+  "source": {
+    "video_url": "https://tubedu.org/videos/watch/868ba8ab-a5fd-4644-b035-7ee9e62bf9b2",
+    "video_uuid": "868ba8ab-a5fd-4644-b035-7ee9e62bf9b2",
+    "channel_actor_uri": "https://tubedu.org/video-channels/je_fabrique_mon_materiel_pedagogique",
+    "instance_host": "tubedu.org",
+    "title": "Restitution _ Blé-Blé, un outil de gestion de classe | MakeAfrica2022",
+    "creator_display_name": "Je fabrique mon materiel pedagogique",
+    "channel_handle": "je_fabrique_mon_materiel_pedagogique@tubedu.org",
+    "license": "Attribution - Non Commercial - Share Alike",
+    "language": "fr",
+    "duration_s": 116,
+    "original_published_at": "2022-12-03T18:56:32.356Z",
+    "description": "Développé à MakeAfrica 2022 par des enseignants ivoiriens, Blé-Blé, qui signifie \"doucement-doucement\", répond à la réalité des classes ivoiriennes de 90 à 100 élèves et des difficultés de maintien au calme que cela entraîne pour permettre les apprentissages. Grâce à un micro:bit qui capte le niveau de bruit environnant et l'affiche sur sa matrice de LED, l'enseignant peut matérialiser le niveau sonore en 5 niveaux correspondants sur un petit drapeau en bois découpé à la laser. A la fin du cours, le niveau entraîne récompense ou sanction, le but étant surtout de faire prendre conscience à la classe de son niveau de concentration pour l'améliorer. Cette vidéo présente la restitution des pédago-makers participants à la fin des 3 jours de \"je fabrique mon matériel pédagogique\" pendant MakeAfrica 2022 à Abidjan. L'élaboration et la fabrication de Blé-Blé est documenté ici: https://fabriqueedu.tierslieuxedu.org/test-gabarit-tle-reply-n9btkbtf9",
+    "tags": [
+      "Enseignants",
+      "FabLab",
+      "MakeAfrica2022",
+      "MatérielPédagogique",
+      "micro:bit"
+    ],
+    "category": "Education",
+    "views": 3
+  },
+  "discovery": {
+    "query": "BLE reverse engineering",
+    "collection_hint": "strange-machines",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:47Z"
+  },
+  "editorial": {
+    "status": "rejected",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": "claude-opus-5-5 (AI proposal)",
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": "off-topic: keyword collision ('BLE' matched French 'blé', or 'tenant')",
+    "proposed_at": "2026-10-20T02:03:42Z"
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:56:15Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:11:37Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:47Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"BLE reverse engineering\""
+    },
+    {
+      "at": "2026-10-20T01:56:16Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    },
+    {
+      "at": "2026-10-20T02:03:42Z",
+      "from": "verified",
+      "to": "rejected",
+      "by": "claude-opus-5-5 (AI proposal)",
+      "note": "off-topic: keyword collision ('BLE' matched French 'blé', or 'tenant')"
+    }
+  ]
+}

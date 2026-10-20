@@ -1,0 +1,82 @@
+{
+  "id": "tube.fediverse.games__1fe81717-1b37-4a8b-a793-40f52ac9e2dd",
+  "source": {
+    "video_url": "https://tube.fediverse.games/videos/watch/1fe81717-1b37-4a8b-a793-40f52ac9e2dd",
+    "video_uuid": "1fe81717-1b37-4a8b-a793-40f52ac9e2dd",
+    "channel_actor_uri": "https://tube.fediverse.games/video-channels/dream_search_repeat",
+    "instance_host": "tube.fediverse.games",
+    "title": "Generative Artificial Intelligence Non playable characters. (GenAINPC) prototype.",
+    "creator_display_name": "DREAM_SEARCH_REPEAT",
+    "channel_handle": "dream_search_repeat@tube.fediverse.games",
+    "license": null,
+    "language": "en",
+    "duration_s": 125,
+    "original_published_at": "2026-01-05T12:49:02.940Z",
+    "description": "Yeah, i need to come with a better name. Link: https://dream-search-repeat.itch.io/tom-the-gatekeeper-knigh This is a prototype. Is still usable if you have an Local LLM server app and jq. The idea is to use a local AI to control a NPC in videogames. Making them capable to talk and 'think' than usual NPC's. This way a game can feel more 'alive'. This can be used in both 3D and 2D games. Either sci fi, medieval fantasy or something realistic like idk: GTA, Watchdogs, etc. If you have any question, please tell me in the commends. Música: Obra: Realidades Fragmentadas Música de https://www.fiftysounds.com/es/",
+    "tags": [],
+    "category": "Unknown",
+    "views": 1
+  },
+  "discovery": {
+    "query": "generative art",
+    "collection_hint": "the-weird-internet",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:52Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:55:38Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": true,
+    "caption_languages": [
+      "en"
+    ],
+    "last_checked_at": "2026-10-20T02:09:59Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:52Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"generative art\""
+    },
+    {
+      "at": "2026-10-20T01:55:39Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

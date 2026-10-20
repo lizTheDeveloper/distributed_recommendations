@@ -1,0 +1,86 @@
+{
+  "id": "peertube.ichigo.everydayimshuflin.com__e71b35f1-5f99-40fd-9023-1be259d374ff",
+  "source": {
+    "video_url": "https://peertube.ichigo.everydayimshuflin.com/videos/watch/e71b35f1-5f99-40fd-9023-1be259d374ff",
+    "video_uuid": "e71b35f1-5f99-40fd-9023-1be259d374ff",
+    "channel_actor_uri": "https://peertube.ichigo.everydayimshuflin.com/video-channels/greg_channel",
+    "instance_host": "peertube.ichigo.everydayimshuflin.com",
+    "title": "Home Networking: 100TB 10Gbit Server - Installing Proxmox and basic ZFS tutorial",
+    "creator_display_name": "Main Greg Channel!",
+    "channel_handle": "greg_channel@peertube.ichigo.everydayimshuflin.com",
+    "license": null,
+    "language": "en",
+    "duration_s": 950,
+    "original_published_at": "2019-08-30T07:00:00.000Z",
+    "description": "Now that the server is starting, let's install Proxmox, do some basic Proxmox setup stuff and create a ZFS pool and do an install of a Linux VM! Jump links: 0:00 Introduction to this video 01:35 Downloading Proxmox and writing to USB stick 02:20 BIOS settings 04:00 Proxmox installer & setting up ZFS Mirror bootdrives 06:45 Opening the Proxmox webinterface and enabling updates 09:00 Configure simple RAIDz1 pool from 5 disks 12:00 Adding ZFS pool as Proxmox storage 12:25 Create ZFS dataset and ISO location 13:20 Uploading ISO file and setting up a VM 15:00 Future videos about the server If you'd like to discuss more in depth, join our discord server: https://discordapp.com/invite/abk5kuD ░▒▓[Associated blog post]▓▒░ The blog/article index for this server can be found here: https://blog.quindorian.org/2019/08/building-a-100tb-10gbit-home-server.html/ Text parts for this video: https://blog.quindorian.org/2019/08/how-to-install-proxmox-and-setup-a-zfs-pool.html/ Video about the server chassis: https://youtu.be/swWgav-p2Nw Video about preparing to build in the chassis: https://youtu.be/fU4sEzTqAwk Video about the hardware used for this server build: https://youtu.be/O2QV0ZTFaxk Video about installing Proxmox and setting up ZFS: https://youtu.be/ZL2JUL9oeDg ░▒▓[Shopping links]▓▒░ Most links will ask if you are looking on Amazon or Aliexpress. I prefer Aliexpress myself. These are affiliate links and help me out greatly! Sadly the Inter-Tech 4U 4420 is currently only available on A…",
+    "tags": [
+      "1000MB/sec",
+      "10Gbit",
+      "DIY NAS",
+      "home NAS",
+      "home server"
+    ],
+    "category": "Unknown",
+    "views": 10
+  },
+  "discovery": {
+    "query": "home server",
+    "collection_hint": "build-your-own-future",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:36Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:54:54Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:09:05Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:36Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"home server\""
+    },
+    {
+      "at": "2026-10-20T01:54:55Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

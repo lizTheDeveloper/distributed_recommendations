@@ -1,0 +1,85 @@
+{
+  "id": "video.olos311.org__4fd18ab0-c563-4c30-ac0c-e5d8e1096095",
+  "source": {
+    "video_url": "https://video.olos311.org/videos/watch/4fd18ab0-c563-4c30-ac0c-e5d8e1096095",
+    "video_uuid": "4fd18ab0-c563-4c30-ac0c-e5d8e1096095",
+    "channel_actor_uri": "https://video.olos311.org/video-channels/fabschool",
+    "instance_host": "video.olos311.org",
+    "title": "Information and media literacy",
+    "creator_display_name": "Fabschool",
+    "channel_handle": "fabschool@video.olos311.org",
+    "license": "CC BY-NC-ND 4.0",
+    "language": "it",
+    "duration_s": 3102,
+    "original_published_at": "2022-01-21T07:55:24.991Z",
+    "description": null,
+    "tags": [
+      "didattica",
+      "information literacy",
+      "media literacy",
+      "scuola"
+    ],
+    "category": "Science & Technology",
+    "views": 11
+  },
+  "discovery": {
+    "query": "media literacy",
+    "collection_hint": "the-machine-is-political",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:31Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:57:03Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:12:23Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:31Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"media literacy\""
+    },
+    {
+      "at": "2026-10-20T01:57:04Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

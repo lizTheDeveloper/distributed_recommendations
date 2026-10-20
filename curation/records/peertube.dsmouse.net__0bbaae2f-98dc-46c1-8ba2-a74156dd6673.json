@@ -1,0 +1,94 @@
+{
+  "id": "peertube.dsmouse.net__0bbaae2f-98dc-46c1-8ba2-a74156dd6673",
+  "source": {
+    "video_url": "https://peertube.dsmouse.net/videos/watch/0bbaae2f-98dc-46c1-8ba2-a74156dd6673",
+    "video_uuid": "0bbaae2f-98dc-46c1-8ba2-a74156dd6673",
+    "channel_actor_uri": "https://peertube.dsmouse.net/video-channels/infosectalks",
+    "instance_host": "peertube.dsmouse.net",
+    "title": "Dave Kennedy, Telling Stories from the North Pole | KringleCon 2019",
+    "creator_display_name": "InfoSec Talks",
+    "channel_handle": "infosectalks@peertube.dsmouse.net",
+    "license": null,
+    "language": null,
+    "duration_s": 1258,
+    "original_published_at": "2019-12-11T00:00:00.000Z",
+    "description": "Experience the SANS Holiday Hack Challenge ►► https://www.holidayhackchallenge.com/ Phishing organizations is nothing new and companies have continued to focus on perimeter defenses, endpoint visibility, and education of users. This talk applies a new spin on social-engineering knowing that we will be generating alarms to security analysts and building that into the attack. This talk has a walkthrough of a live demonstration circumventing anti-virus products protection methods as well as a story template used for when we get detected, a way to look more legitimate for remote code execution. This talk focuses on offensive capabilities, our next view into the evolution of hacking, and most importantly, what we can do as defenders to get better at what we do. Presented by Dave Kennedy: https://www.trustedsec.com/team/dave-kennedy/ Follow Dave: https://twitter.com/HackingDave Follow KringleCon: https://twitter.com/kringlecon",
+    "tags": [
+      "CTFs",
+      "Cybersecurity",
+      "Ethical Hacking",
+      "Hacking",
+      "Information Security"
+    ],
+    "category": "Education",
+    "views": 3
+  },
+  "discovery": {
+    "query": "phishing defense",
+    "collection_hint": "hack-the-planet",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:25Z"
+  },
+  "editorial": {
+    "status": "rejected",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": "claude-opus-5-5 (AI proposal)",
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": "re-upload of a conference recording (DEF CON / KringleCon); not the original publisher",
+    "proposed_at": "2026-10-20T02:03:42Z"
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:54:36Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:08:46Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:25Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"phishing defense\""
+    },
+    {
+      "at": "2026-10-20T01:54:36Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    },
+    {
+      "at": "2026-10-20T02:03:42Z",
+      "from": "verified",
+      "to": "rejected",
+      "by": "claude-opus-5-5 (AI proposal)",
+      "note": "re-upload of a conference recording (DEF CON / KringleCon); not the original publisher"
+    }
+  ]
+}

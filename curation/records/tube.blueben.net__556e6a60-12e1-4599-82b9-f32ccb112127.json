@@ -1,0 +1,96 @@
+{
+  "id": "tube.blueben.net__556e6a60-12e1-4599-82b9-f32ccb112127",
+  "source": {
+    "video_url": "https://tube.blueben.net/videos/watch/556e6a60-12e1-4599-82b9-f32ccb112127",
+    "video_uuid": "556e6a60-12e1-4599-82b9-f32ccb112127",
+    "channel_actor_uri": "https://tube.blueben.net/video-channels/technotim",
+    "instance_host": "tube.blueben.net",
+    "title": "Docker Model Runner Explained - Run AI Models Anywhere",
+    "creator_display_name": "Techno Tim",
+    "channel_handle": "technotim@tube.blueben.net",
+    "license": null,
+    "language": null,
+    "duration_s": 1019,
+    "original_published_at": "2025-10-18T00:00:00.000Z",
+    "description": "What is Docker Model Runner and why should you care? Docker’s new Model Runner makes it easy to run and develop with AI models, no messy dependencies or complicated setup. In this video, I’ll walk you through everything from getting started in the CLI, using it with Docker Compose, and developing locally with my open-source Next.js app techno-boto-chat. Big thanks to Docker for sponsoring this video Try Docker Model Runner for free: https://dockr.ly/4nOGjdm Download Docker Desktop: https://dockr.ly/4nQHOYq Video Notes: https://technotim.live/posts/docker-model-runner/ Merch Shop 🛍️: https://l.technotim.live/shop Support me on Patreon: https://www.patreon.com/technotim Sponsor me on GitHub: https://github.com/sponsors/timothystewart6 Subscribe on Twitch: https://www.twitch.tv/technotim Become a YouTube member: https://www.youtube.com/channel/UCOk-gHyjcWZNj3Br4oxwh0A/join Gear Recommendations: https://l.technotim.live/gear Get Help in Our Discord Community: https://l.technotim.live/discord 2nd channel: https://www.youtube.com/@TechnoTimTinkers (Affiliate links may be included in this description. I may receive a small commission at no cost to you.) 00:00 - Intro: Why Docker Model Runner? 01:15 - What Is Docker Model Runner? 02:05 - Getting Started (CLI Basics) 03:47 - Using Docker Model Runner with Compose 04:30 - OpenWebUI with Docker Model Runner 05:54 - Developing locally with my techno-boto-chat 08:15 - Starting and configuring the application 10:07 - Running the applicat…",
+    "tags": [
+      "docker ai tutorial",
+      "docker model runner",
+      "local llm",
+      "run ai models locally",
+      "self hosted ai"
+    ],
+    "category": "Science & Technology",
+    "views": 12
+  },
+  "discovery": {
+    "query": "local LLM",
+    "collection_hint": "build-your-own-future",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:33Z"
+  },
+  "editorial": {
+    "status": "rejected",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": "claude-opus-5-5 (AI proposal)",
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": "re-upload of a YouTube creator's video; not the original publisher",
+    "proposed_at": "2026-10-20T02:03:42Z"
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:55:37Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": true,
+    "caption_languages": [
+      "en"
+    ],
+    "last_checked_at": "2026-10-20T02:09:58Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:33Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"local LLM\""
+    },
+    {
+      "at": "2026-10-20T01:55:37Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    },
+    {
+      "at": "2026-10-20T02:03:42Z",
+      "from": "verified",
+      "to": "rejected",
+      "by": "claude-opus-5-5 (AI proposal)",
+      "note": "re-upload of a YouTube creator's video; not the original publisher"
+    }
+  ]
+}

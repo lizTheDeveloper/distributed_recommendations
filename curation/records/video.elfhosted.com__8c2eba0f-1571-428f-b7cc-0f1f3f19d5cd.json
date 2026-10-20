@@ -1,0 +1,88 @@
+{
+  "id": "video.elfhosted.com__8c2eba0f-1571-428f-b7cc-0f1f3f19d5cd",
+  "source": {
+    "video_url": "https://video.elfhosted.com/videos/watch/8c2eba0f-1571-428f-b7cc-0f1f3f19d5cd",
+    "video_uuid": "8c2eba0f-1571-428f-b7cc-0f1f3f19d5cd",
+    "channel_actor_uri": "https://video.elfhosted.com/video-channels/elfhostme",
+    "instance_host": "video.elfhosted.com",
+    "title": "Home server maintenance: the upkeep nobody mentions",
+    "creator_display_name": "ElfHosted",
+    "channel_handle": "elfhostme@video.elfhosted.com",
+    "license": "Attribution - Share Alike",
+    "language": "en",
+    "duration_s": 86,
+    "original_published_at": "2026-10-04T04:49:45.180Z",
+    "description": "Home server maintenance, the cartoon: updates that break things, a backup nobody tested, a power cut and Nana's phone. Part three of the Household Tech Saga. Robin's server at home works, and he loves it. Then the home server updates start breaking things, a certificate runs out, and the disk fills up, all at midnight. The home server backup ran every night, and nobody ever tried a restore. Then there's the power cut, remote access to a home server from outside the house, and Nana's phone, which says the connection isn't private. Lord Malware drops by to admire the open port. None of this is a reason not to run things yourself; it's the part of self-hosting maintenance nobody mentions, measured in evenings and weekends. The Household Tech Saga is a short animated series from ElfHosted about one family's tech: subscription soup, a server at home, the upkeep, and finding the elves. Each episode stands on its own; watch them in order in the playlist on our channel. Whatever breaks, you can talk to a person: the ElfHosted team is on Discord around the clock, in a family-friendly, carefully moderated server. ElfHosted: https://elfhosted.com/?utm_source=peertube&utm_medium=video&utm_campaign=saga-3-upkeep ElfHosted docs: https://docs.elfhosted.com/?utm_source=peertube&utm_medium=video&utm_campaign=saga-3-upkeep Chapters 0:00 Intro 0:14 Home server maintenance 0:33 Reaching your home server from outside About ElfHosted: we run open-source apps for you, kept updated and looked after…",
+    "tags": [
+      "home server backup",
+      "home server maintenance",
+      "home server updates",
+      "remote access to a home server",
+      "self-hosting maintenance"
+    ],
+    "category": "Science & Technology",
+    "views": 0
+  },
+  "discovery": {
+    "query": "home server",
+    "collection_hint": "build-your-own-future",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:36Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:56:40Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": true,
+    "caption_languages": [
+      "en"
+    ],
+    "last_checked_at": "2026-10-20T02:12:01Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:36Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"home server\""
+    },
+    {
+      "at": "2026-10-20T01:56:40Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

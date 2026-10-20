@@ -1,0 +1,94 @@
+{
+  "id": "peertube.dsmouse.net__197e1328-8c51-430e-8915-9afd3e1ba9ea",
+  "source": {
+    "video_url": "https://peertube.dsmouse.net/videos/watch/197e1328-8c51-430e-8915-9afd3e1ba9ea",
+    "video_uuid": "197e1328-8c51-430e-8915-9afd3e1ba9ea",
+    "channel_actor_uri": "https://peertube.dsmouse.net/video-channels/infosectalks",
+    "instance_host": "peertube.dsmouse.net",
+    "title": "DEF CON 27 Conference - Douglas McKee - HVACking Understand the Delta Between Security and Reality",
+    "creator_display_name": "InfoSec Talks",
+    "channel_handle": "infosectalks@peertube.dsmouse.net",
+    "license": "Attribution",
+    "language": null,
+    "duration_s": 2405,
+    "original_published_at": "2019-11-15T00:00:00.000Z",
+    "description": "Like most modern devices, building controllers have increasingly become network connected, exposing them to a wider range of threats. If malicious actors could manipulate access control systems, boiler rooms, or temperature control for critical industrial systems, the potential for catastrophic damage is extreme. McAfee's ATR team has discovered a 0-day vulnerability in a major building controller. This controller is a fully programmable native BACnet™ device designed to manage a wide range of building systems. By modifying BACnet broadcast traffic, a buffer overflow can be leveraged into a write-what-where (WWW) condition. This WWW leads to execution control, providing the attacker with a root shell and complete control over the device remotely. Because this attack vector is through BACnet broadcast traffic, there is no authentication mechanism for the target device, allowing anyone on the same network to communicate with it directly and exploit the vulnerability without authentication. Currently, there are over 500 of these devices connected to the internet running in BACnet/IP Broadcast Management Device (BBMD) mode. Utilizing this mode, broadcast traffic can travel over the internet, increasing the potentially devastating impact of this vulnerability. This presentation will include a deep technical analysis of the vulnerability discovery process and demos illustrating an attack in a critical scenario. Finally, we will discuss the steps taken by the vendor to patch this v…",
+    "tags": [
+      "computer security",
+      "DEF",
+      "hacker community",
+      "security conference",
+      "security conference 2019"
+    ],
+    "category": "Science & Technology",
+    "views": 3
+  },
+  "discovery": {
+    "query": "security conference",
+    "collection_hint": "hack-the-planet",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:25Z"
+  },
+  "editorial": {
+    "status": "rejected",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": "claude-opus-5-5 (AI proposal)",
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": "re-upload of a conference recording (DEF CON / KringleCon); not the original publisher",
+    "proposed_at": "2026-10-20T02:03:42Z"
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:54:37Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:08:47Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:25Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"security conference\""
+    },
+    {
+      "at": "2026-10-20T01:54:37Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    },
+    {
+      "at": "2026-10-20T02:03:42Z",
+      "from": "verified",
+      "to": "rejected",
+      "by": "claude-opus-5-5 (AI proposal)",
+      "note": "re-upload of a conference recording (DEF CON / KringleCon); not the original publisher"
+    }
+  ]
+}

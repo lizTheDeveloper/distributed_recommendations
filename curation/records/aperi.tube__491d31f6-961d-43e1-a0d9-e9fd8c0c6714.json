@@ -1,0 +1,85 @@
+{
+  "id": "aperi.tube__491d31f6-961d-43e1-a0d9-e9fd8c0c6714",
+  "source": {
+    "video_url": "https://aperi.tube/videos/watch/491d31f6-961d-43e1-a0d9-e9fd8c0c6714",
+    "video_uuid": "491d31f6-961d-43e1-a0d9-e9fd8c0c6714",
+    "channel_actor_uri": "https://aperi.tube/video-channels/we01",
+    "instance_host": "aperi.tube",
+    "title": "OSINT et vie privée : dangers et contre-mesures",
+    "creator_display_name": "WE01",
+    "channel_handle": "we01@aperi.tube",
+    "license": "Attribution - Share Alike",
+    "language": "fr",
+    "duration_s": 2383,
+    "original_published_at": "2023-01-03T17:12:11.470Z",
+    "description": "Émission réalisée dans le cadre du cours de l'UTC WE01 (librecours.net) diffusée en direct depuis le studio de la radio Graf'Hit (grafhit.net) le 14 décembre 2022. by Wenbo Li, Haiyang Ma, Lhassa Macke, Dorian Terlat. 1. Le rôle de l'OSINT 1. L'OSINT, un outil controversé 1. Comment se protéger des dérives de l'OSINT 1. L'OSINT et le flou sur la vie privée Extraits audios : - \"Les réseaux sociaux, outil de la police comme des émeutiers\", J. Jammot, L. Neal et R. Leslie pour l'Agence France Presse, 14 août 2011, 1:27 jusque 2:19, [ https://youtu.be/e8B2ai0vwcA?t=87]( https://youtu.be/e8B2ai0vwcA?t=87) - \"Explainer: How China’s Covid-19 health code system works\", Thomas Yau pour le South China Morning Post, 25 juillet 2022, 3:31 jusque 4:47, [https://youtu.be/WoyBLJqDOc0?t=211](https://youtu.be/WoyBLJqDOc0?t=211) - \"Intégrer l’OSINT et les données personnelles dans les stratégies de défense.\", RISKINTEL MEDIA, 16 mai 2022, 43:12 jusque 44:25, [https://youtu.be/hB5YF-T_1VE?t=2592](https://youtu.be/hB5YF-T_1VE?t=2592) - \"OSINT: You can't hide // Your privacy is dead // Best resources to get started\", David Bombal, 24 avril 2022, 33:33 jusque 34:48, [https://www.youtube.com/watch?v=ImWJgDQ-_ek&t=2013s](https://www.youtube.com/watch?v=ImWJgDQ-_ek&t=2013s) Illustration : by \"geralt\" (Pixabay), licence Pixabay [https://pixabay.com/fr/illustrations/m%c3%a9dias-sociaux-loupe-enqu%c3%aate-6217838/](https://pixabay.com/fr/illustrations/m%c3%a9dias-sociaux-loupe-enqu%c3%aate-6217838/)",
+    "tags": [
+      "OSINT",
+      "UTC",
+      "Vie privée",
+      "WE01"
+    ],
+    "category": "Education",
+    "views": 106
+  },
+  "discovery": {
+    "query": "OSINT",
+    "collection_hint": "hack-the-planet",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:23Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:53:00Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:06:51Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:23Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"OSINT\""
+    },
+    {
+      "at": "2026-10-20T01:53:01Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

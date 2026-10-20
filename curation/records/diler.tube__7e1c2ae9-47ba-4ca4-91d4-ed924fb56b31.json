@@ -1,0 +1,96 @@
+{
+  "id": "diler.tube__7e1c2ae9-47ba-4ca4-91d4-ed924fb56b31",
+  "source": {
+    "video_url": "https://diler.tube/videos/watch/7e1c2ae9-47ba-4ca4-91d4-ed924fb56b31",
+    "video_uuid": "7e1c2ae9-47ba-4ca4-91d4-ed924fb56b31",
+    "channel_actor_uri": "https://diler.tube/video-channels/divers",
+    "instance_host": "diler.tube",
+    "title": "How I'm fighting bias in algorithms ｜ Joy Buolamwini｜TED",
+    "creator_display_name": "Random Knowledge",
+    "channel_handle": "divers@diler.tube",
+    "license": "CC BY-NC-ND 4.0",
+    "language": "en",
+    "duration_s": 524,
+    "original_published_at": "2017-03-29T16:00:00.000Z",
+    "description": "MIT grad student Joy Buolamwini was working with facial analysis software when she noticed a problem: the software didn't detect her face -- because the people who coded the algorithm hadn't taught it to identify a broad range of skin tones and facial structures. Now she's on a mission to fight bias in machine learning, a phenomenon she calls the \"coded gaze.\" It's an eye-opening talk about the need for accountability in coding ... as algorithms take over more and more aspects of our lives. Author: TED",
+    "tags": [
+      "Joy Buolamwini",
+      "Algorithms",
+      "Machine Learning",
+      "Robot",
+      "TED"
+    ],
+    "category": "EN - Matter Nature Technology (MNT)",
+    "views": 2
+  },
+  "discovery": {
+    "query": "algorithmic bias",
+    "collection_hint": "the-machine-is-political",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:32Z"
+  },
+  "editorial": {
+    "status": "rejected",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": "claude-opus-5-5 (AI proposal)",
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": "re-upload of another publisher's video (TED / Royal Society); prefer the original publisher",
+    "proposed_at": "2026-10-20T02:03:42Z"
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:53:24Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": true,
+    "caption_languages": [
+      "en"
+    ],
+    "last_checked_at": "2026-10-20T02:07:05Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:32Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"algorithmic bias\""
+    },
+    {
+      "at": "2026-10-20T01:53:25Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    },
+    {
+      "at": "2026-10-20T02:03:42Z",
+      "from": "verified",
+      "to": "rejected",
+      "by": "claude-opus-5-5 (AI proposal)",
+      "note": "re-upload of another publisher's video (TED / Royal Society); prefer the original publisher"
+    }
+  ]
+}

@@ -1,0 +1,82 @@
+{
+  "id": "tube.waag.org__5d062f67-c830-4176-b3ba-c9bc2e4b3cc9",
+  "source": {
+    "video_url": "https://tube.waag.org/videos/watch/5d062f67-c830-4176-b3ba-c9bc2e4b3cc9",
+    "video_uuid": "5d062f67-c830-4176-b3ba-c9bc2e4b3cc9",
+    "channel_actor_uri": "https://tube.waag.org/video-channels/general",
+    "instance_host": "tube.waag.org",
+    "title": "Waag Futurelab Expeditie BFN",
+    "creator_display_name": "Waag Futurelab",
+    "channel_handle": "general@tube.waag.org",
+    "license": "Attribution - Non Commercial - Share Alike",
+    "language": null,
+    "duration_s": 159,
+    "original_published_at": "2024-04-03T14:00:01.000Z",
+    "description": "Om een andere wereld mogelijk te maken, werkt Waag aan praktische verandering in het heden. Dat doen we onder meer vanuit het denken over planet B: stel je voor dat we een planeet helemaal opnieuw mochten inrichten, hoe zouden we dat dan doen? Welke sociale, ecologische, technologische structuren zouden we bouwen om tot een open, eerlijke en inclusieve wereld te komen? Meer informatie: https://waag.org/nl/project/expeditie-naar-planet-b/",
+    "tags": [
+      "aftermovie"
+    ],
+    "category": "Science & Technology",
+    "views": 3
+  },
+  "discovery": {
+    "query": "channel general@tube.waag.org",
+    "collection_hint": "the-machine-is-political",
+    "service": "origin channel listing",
+    "at": "2026-10-20T01:58:58Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:59:57Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:11:24Z",
+    "identity_evidence": "waag.org homepage has no link to tube.waag.org; check the site's footer or contact Waag before treating it as official",
+    "publisher": "Waag Futurelab (claimed)"
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:58:58Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "channel general@tube.waag.org"
+    },
+    {
+      "at": "2026-10-20T01:59:57Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

@@ -1,0 +1,86 @@
+{
+  "id": "peertube.eqver.se__6ab8409c-1db2-40e8-9a6a-ef938228a5c0",
+  "source": {
+    "video_url": "https://peertube.eqver.se/videos/watch/6ab8409c-1db2-40e8-9a6a-ef938228a5c0",
+    "video_uuid": "6ab8409c-1db2-40e8-9a6a-ef938228a5c0",
+    "channel_actor_uri": "https://peertube.eqver.se/video-channels/eqtv_english",
+    "instance_host": "peertube.eqver.se",
+    "title": "Tina Kandelaki: The Queen of Gazprom-Media Propaganda",
+    "creator_display_name": "eQtv in English",
+    "channel_handle": "eqtv_english@peertube.eqver.se",
+    "license": null,
+    "language": "en",
+    "duration_s": 2118,
+    "original_published_at": "2026-05-21T22:00:29.306Z",
+    "description": "Tina Kandelaki is one of the key figures in the Russian media industry. Today, she controls one of the largest holdings, Gazprom-Media, and helps promote Kremlin narratives through her media empire. To many, Kandelaki is associated with fast speech, confidence, and a successful career. However, behind this image lies the story of a cynical and vengeful woman, connected to crime and receiving privileges through her contacts. Alexander Makashenets talks about Tina Kandelaki's career path and the role she plays in propaganda",
+    "tags": [
+      "gazprom-media",
+      "kremlin propaganda",
+      "media_literacy",
+      "russian media",
+      "tina kandelaki"
+    ],
+    "category": "Science & Technology",
+    "views": 0
+  },
+  "discovery": {
+    "query": "media literacy",
+    "collection_hint": "the-machine-is-political",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:31Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:54:44Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:08:55Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:31Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"media literacy\""
+    },
+    {
+      "at": "2026-10-20T01:54:45Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

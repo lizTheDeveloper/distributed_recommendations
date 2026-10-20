@@ -1,0 +1,86 @@
+{
+  "id": "tilvids.com__8e6b9fa6-a898-494a-b652-10aa27f38822",
+  "source": {
+    "video_url": "https://tilvids.com/videos/watch/8e6b9fa6-a898-494a-b652-10aa27f38822",
+    "video_uuid": "8e6b9fa6-a898-494a-b652-10aa27f38822",
+    "channel_actor_uri": "https://tilvids.com/video-channels/thelinuxexperiment_channel",
+    "instance_host": "tilvids.com",
+    "title": "The SMART Home is a DUMB idea, and a privacy and security NIGHTMARE",
+    "creator_display_name": "The Linux Experiment",
+    "channel_handle": "thelinuxexperiment_channel@tilvids.com",
+    "license": null,
+    "language": null,
+    "duration_s": 908,
+    "original_published_at": "2023-01-09T23:00:00.000Z",
+    "description": "Download Safing's Portmaster and take control of your network traffic: https://safing.io Grab a brand new laptop or desktop running Linux:https://www.tuxedocomputers.com/en# 👏 SUPPORT THE CHANNEL: Get access to a weekly podcast, vote on the next topics I cover, and get your name in the credits: YouTube: https://www.youtube.com/channel/UC5UAwBUum7CPN5buc-_N1Fw/join Patreon: https://www.patreon.com/thelinuxexperiment Or, you can donate whatever you want: https://paypal.me/thelinuxexp?locale.x=fr_FR 🏆 FOLLOW ME ELSEWHERE: Twitter : http://twitter.com/thelinuxEXP Instagram: https://www.instagram.com/nick_thelinuxexp/ Mastodon: https://mastodon.social/web/@thelinuxEXP Pixelfed: https://pixelfed.social/TLENick I'm also on ODYSEE: https://odysee.com/$/invite/@TheLinuxExperiment:e And on PEERTUBE: https://tilvids.com/c/thelinuxexperiment_channel/videos This video is distributed under the Creative Commons Share Alike license. #smarthome #privacy 00:00 Intro 00:42 Sponsor: Secure and monitor your internet connection with Safing 01:46 The Smart Home: comfort, at which price? 03:29 Security problems 06:29 Privacy is non existent 09:16 The Cloudless Smart Home 12:14 Convenience or privacy: you decide! 12:58 Sponsor: Get a device that runs Linux perfectly with Tuxedo 13:48 Support the channel \"Privacy is Dead\" Video: https://www.youtube.com/watch?v=TdbIk__Yafs The more obvious threat is to your home security, and to who inhabits that home. Most devices use a cloud service to store data.…",
+    "tags": [
+      "linux",
+      "linux 2022",
+      "linux help",
+      "linux tips",
+      "linux tutorial"
+    ],
+    "category": "Science & Technology",
+    "views": 355
+  },
+  "discovery": {
+    "query": "home network security",
+    "collection_hint": "hack-the-planet",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:23Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:55:28Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:09:51Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:23Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"home network security\""
+    },
+    {
+      "at": "2026-10-20T01:55:29Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

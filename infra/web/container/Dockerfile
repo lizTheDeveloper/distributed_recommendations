@@ -9,6 +9,8 @@ WORKDIR /src
 COPY packages packages
 COPY apps/web apps/web
 COPY apps/mobile/brand.json apps/mobile/brand.json
+COPY curation curation
+RUN node --test curation/test/*.test.mjs
 RUN cd packages/match && npm ci --ignore-scripts
 RUN cd apps/web && npm ci --ignore-scripts && npm test && npm run build
 

@@ -1,0 +1,82 @@
+{
+  "id": "digitalcourage.video__c684fe14-16af-46ad-b963-0203537141cd",
+  "source": {
+    "video_url": "https://digitalcourage.video/videos/watch/c684fe14-16af-46ad-b963-0203537141cd",
+    "video_uuid": "c684fe14-16af-46ad-b963-0203537141cd",
+    "channel_actor_uri": "https://digitalcourage.video/video-channels/netzfundstuecke",
+    "instance_host": "digitalcourage.video",
+    "title": "Open Commission Meeting - February 2015",
+    "creator_display_name": "Netzfundstücke | net findings",
+    "channel_handle": "netzfundstuecke@digitalcourage.video",
+    "license": null,
+    "language": "en",
+    "duration_s": 15218,
+    "original_published_at": "2015-02-25T23:00:00.000Z",
+    "description": "The Commission considered items on Community Broadband and Protecting and Promoting the Open Internet. For more information, see http://www.fcc.gov/events/open-commission-meeting-february-2015",
+    "tags": [
+      "FCC"
+    ],
+    "category": "News & Politics",
+    "views": 3
+  },
+  "discovery": {
+    "query": "community broadband",
+    "collection_hint": "reclaim-the-city",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:40Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:53:21Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:07:04Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:40Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"community broadband\""
+    },
+    {
+      "at": "2026-10-20T01:53:21Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

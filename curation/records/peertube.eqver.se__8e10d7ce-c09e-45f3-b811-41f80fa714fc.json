@@ -1,0 +1,85 @@
+{
+  "id": "peertube.eqver.se__8e10d7ce-c09e-45f3-b811-41f80fa714fc",
+  "source": {
+    "video_url": "https://peertube.eqver.se/videos/watch/8e10d7ce-c09e-45f3-b811-41f80fa714fc",
+    "video_uuid": "8e10d7ce-c09e-45f3-b811-41f80fa714fc",
+    "channel_actor_uri": "https://peertube.eqver.se/video-channels/eqtv_english",
+    "instance_host": "peertube.eqver.se",
+    "title": "AI in the service of dictatorships. When to expect a machine uprising?",
+    "creator_display_name": "eQtv in English",
+    "channel_handle": "eqtv_english@peertube.eqver.se",
+    "license": null,
+    "language": "en",
+    "duration_s": 940,
+    "original_published_at": "2025-12-13T23:14:35.115Z",
+    "description": "The European Union recently passed a law on the regulation of artificial intelligence — the first in the world. But should AI be regulated? What danger does it really pose? And should we be afraid of the all-powerful machine intelligence of the future, or should we take a closer look at the invisible household devices that are already in our lives? All about this — in our new video. Glory to the robots!",
+    "tags": [
+      "AI",
+      "AI ethics",
+      "AI governance/regulation",
+      "cybersecurity"
+    ],
+    "category": "Science & Technology",
+    "views": 0
+  },
+  "discovery": {
+    "query": "AI governance",
+    "collection_hint": "the-machine-is-political",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:27Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:54:46Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:08:57Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:27Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"AI governance\""
+    },
+    {
+      "at": "2026-10-20T01:54:46Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

@@ -1,0 +1,83 @@
+{
+  "id": "video.igem.org__7121e208-1ce1-4135-b32a-586043fb11d2",
+  "source": {
+    "video_url": "https://video.igem.org/videos/watch/7121e208-1ce1-4135-b32a-586043fb11d2",
+    "video_uuid": "7121e208-1ce1-4135-b32a-586043fb11d2",
+    "channel_actor_uri": "https://video.igem.org/video-channels/2023_teams",
+    "instance_host": "video.igem.org",
+    "title": "ShanghaiTech-China: Community Science Outreach Lecture (2023) [Chinese]",
+    "creator_display_name": "iGEM 2023 Teams",
+    "channel_handle": "2023_teams@video.igem.org",
+    "license": "Attribution",
+    "language": "zh-Hans",
+    "duration_s": 80,
+    "original_published_at": "2023-10-11T07:19:58.919Z",
+    "description": "A crucial mission of Education is to bring the wonders of synthetic biology to the community and generate people’s interest in the field of synthetic biology, the iGEM competition, and our project. We sincerely aim to expand our educational outreach and have chosen the community as our venue, hoping to receive valuable feedback to make adjustments and optimizations to our project in the future.",
+    "tags": [
+      "interesting",
+      "lecture"
+    ],
+    "category": "Science & Technology",
+    "views": 9
+  },
+  "discovery": {
+    "query": "community science",
+    "collection_hint": "reclaim-the-city",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:43Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:56:49Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:12:10Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:43Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"community science\""
+    },
+    {
+      "at": "2026-10-20T01:56:49Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

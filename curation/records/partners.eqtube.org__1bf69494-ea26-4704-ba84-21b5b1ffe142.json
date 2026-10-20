@@ -1,0 +1,88 @@
+{
+  "id": "partners.eqtube.org__1bf69494-ea26-4704-ba84-21b5b1ffe142",
+  "source": {
+    "video_url": "https://partners.eqtube.org/videos/watch/1bf69494-ea26-4704-ba84-21b5b1ffe142",
+    "video_uuid": "1bf69494-ea26-4704-ba84-21b5b1ffe142",
+    "channel_actor_uri": "https://partners.eqtube.org/video-channels/eqtv_ru",
+    "instance_host": "partners.eqtube.org",
+    "title": "Кино для Путина. Эпоха z-фильмов и цензуры в российском кинематографе",
+    "creator_display_name": "eQtv на русском",
+    "channel_handle": "eqtv_ru@partners.eqtube.org",
+    "license": "Attribution - Share Alike",
+    "language": "ru",
+    "duration_s": 2060,
+    "original_published_at": "2026-05-16T16:53:12.441Z",
+    "description": "Дмитрий Нагиев в открытую пожаловался на то, что на четвертый год войны российский кинопрокат измучен цензурой и запретом иностранных фильмов. В это же время ура-патриотические издания жалуются на «заговор» против z-фильмов и книг. Но почему же пустоты в кинотеатрах и на сценах не занимают те, кто получает огромную поддержку от российского государства? Сколько сейчас исполнителей в «черных списках»? Как выглядит современный z-спектакль и о чем рассказывает нынешнее z-кино?",
+    "tags": [
+      "media_literacy",
+      "z-фильмы",
+      "пропаганда",
+      "российское кино",
+      "цензура"
+    ],
+    "category": "Science & Technology",
+    "views": 2
+  },
+  "discovery": {
+    "query": "media literacy",
+    "collection_hint": "the-machine-is-political",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:31Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:54:17Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": true,
+    "caption_languages": [
+      "ru"
+    ],
+    "last_checked_at": "2026-10-20T02:08:29Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:31Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"media literacy\""
+    },
+    {
+      "at": "2026-10-20T01:54:17Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

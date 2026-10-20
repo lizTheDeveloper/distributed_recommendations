@@ -1,0 +1,95 @@
+{
+  "id": "video.antopie.org__8cb9a347-adc6-448b-a225-f90bd35aa3ac",
+  "source": {
+    "video_url": "https://video.antopie.org/videos/watch/8cb9a347-adc6-448b-a225-f90bd35aa3ac",
+    "video_uuid": "8cb9a347-adc6-448b-a225-f90bd35aa3ac",
+    "channel_actor_uri": "https://video.antopie.org/video-channels/roulangerie",
+    "instance_host": "video.antopie.org",
+    "title": "Triage du blé 2023",
+    "creator_display_name": "La Roulangerie",
+    "channel_handle": "roulangerie@video.antopie.org",
+    "license": "Attribution - Non Commercial - Share Alike",
+    "language": "fr",
+    "duration_s": 188,
+    "original_published_at": "2023-08-14T12:25:16.383Z",
+    "description": "Triage à façon à Grangegain, le 10 août 2023.",
+    "tags": [
+      "blé",
+      "boulanger",
+      "Paysan",
+      "triage"
+    ],
+    "category": "Unknown",
+    "views": 22
+  },
+  "discovery": {
+    "query": "BLE reverse engineering",
+    "collection_hint": "strange-machines",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:47Z"
+  },
+  "editorial": {
+    "status": "rejected",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": "claude-opus-5-5 (AI proposal)",
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": "off-topic: keyword collision ('BLE' matched French 'blé', or 'tenant')",
+    "proposed_at": "2026-10-20T02:03:42Z"
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:56:31Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": true,
+    "caption_languages": [
+      "fr"
+    ],
+    "last_checked_at": "2026-10-20T02:11:51Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:47Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"BLE reverse engineering\""
+    },
+    {
+      "at": "2026-10-20T01:56:32Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    },
+    {
+      "at": "2026-10-20T02:03:42Z",
+      "from": "verified",
+      "to": "rejected",
+      "by": "claude-opus-5-5 (AI proposal)",
+      "note": "off-topic: keyword collision ('BLE' matched French 'blé', or 'tenant')"
+    }
+  ]
+}

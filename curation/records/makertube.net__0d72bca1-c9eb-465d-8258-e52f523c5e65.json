@@ -1,0 +1,82 @@
+{
+  "id": "makertube.net__0d72bca1-c9eb-465d-8258-e52f523c5e65",
+  "source": {
+    "video_url": "https://makertube.net/videos/watch/0d72bca1-c9eb-465d-8258-e52f523c5e65",
+    "video_uuid": "0d72bca1-c9eb-465d-8258-e52f523c5e65",
+    "channel_actor_uri": "https://makertube.net/video-channels/ssiteatalks",
+    "instance_host": "makertube.net",
+    "title": "AI agents : how promise types and algebra drive ai future .",
+    "creator_display_name": "ssi-ai-graph-talks",
+    "channel_handle": "ssiteatalks@makertube.net",
+    "license": null,
+    "language": "en",
+    "duration_s": 337,
+    "original_published_at": "2025-06-28T00:00:00.000Z",
+    "description": null,
+    "tags": [],
+    "category": "Education",
+    "views": 2
+  },
+  "discovery": {
+    "query": "AI agents",
+    "collection_hint": "build-your-own-future",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:38Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:53:53Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": true,
+    "caption_languages": [
+      "en"
+    ],
+    "last_checked_at": "2026-10-20T02:07:53Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:38Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"AI agents\""
+    },
+    {
+      "at": "2026-10-20T01:53:53Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

@@ -1,0 +1,82 @@
+{
+  "id": "video.igem.org__e866fa0c-9284-4335-9ef8-076bc74bc346",
+  "source": {
+    "video_url": "https://video.igem.org/videos/watch/e866fa0c-9284-4335-9ef8-076bc74bc346",
+    "video_uuid": "e866fa0c-9284-4335-9ef8-076bc74bc346",
+    "channel_actor_uri": "https://video.igem.org/video-channels/2024_presentations",
+    "instance_host": "video.igem.org",
+    "title": "LCG-China: Modular Bacterial Cellulose Modification Machine in Use and AI Safety... (2024) - Team Presentation [English]",
+    "creator_display_name": "2024 Presentations",
+    "channel_handle": "2024_presentations@video.igem.org",
+    "license": "Attribution",
+    "language": "en",
+    "duration_s": 871,
+    "original_published_at": "2024-10-08T00:00:00.000Z",
+    "description": "**Title:** Modular Bacterial Cellulose Modification Machine in Use and AI Safety Framework in Synthetic Biology **Description:** LCG-China 2024 enhanced the 2014 Imperial College bacterial cellulose modification system by resolving legacy issues and developing a modular decoupling platform to improve protein-cellulose interactions. Our system incorporates a bacterial cellulose scaffold (curlisfiber-spytag) with fusion proteins (spycatcher-fusion protein of interest), allowing for efficient binding of proteins that typically do not bind with cellulose. This modular design supports future upgrades of individual components, increasing the system's versatility for various applications. Utilizing this platform, we developed a biodegradable adhesive bandage functionalized with antimicrobial peptides, addressing limitations of traditional wound care products. Additionally, to ensure safe AI use in synthetic biology, we established an AI safety policy guideline and a proposal specifically for the iGEM community, providing a robust framework to mitigate risks in AI-driven bioengineering projects. [Wiki](https://2024.igem.wiki/lcg-china) | [Official Page](https://teams.igem.org/5461)",
+    "tags": [],
+    "category": "Science & Technology",
+    "views": 16
+  },
+  "discovery": {
+    "query": "AI safety evaluation",
+    "collection_hint": "the-machine-is-political",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:30Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:56:50Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": true,
+    "caption_languages": [
+      "en"
+    ],
+    "last_checked_at": "2026-10-20T02:12:12Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:30Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"AI safety evaluation\""
+    },
+    {
+      "at": "2026-10-20T01:56:51Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

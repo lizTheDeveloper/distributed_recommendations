@@ -1,0 +1,109 @@
+{
+  "id": "framatube.org__81f8d42e-e7ff-4635-943f-87abfdbc9820",
+  "source": {
+    "video_url": "https://framatube.org/videos/watch/81f8d42e-e7ff-4635-943f-87abfdbc9820",
+    "video_uuid": "81f8d42e-e7ff-4635-943f-87abfdbc9820",
+    "channel_actor_uri": "https://framatube.org/video-channels/fsf_channel",
+    "instance_host": "framatube.org",
+    "title": "Steadfast self-hosting",
+    "creator_display_name": "Free Software Foundation channel",
+    "channel_handle": "fsf_channel@framatube.org",
+    "license": "Attribution - Share Alike",
+    "language": "en",
+    "duration_s": 3225,
+    "original_published_at": "2024-06-25T16:14:32.765Z",
+    "description": "Your data are essential to your life, your agency, and your future. Come learn how to save, serve, and safely share your data at home with a smorgasbord of free software. I'll cover rapid setup and basic use of tools such as Traefik, Nextcloud, Wallabag, Jellyfin, and more. With these powerful and private services at your disposal, you can collaboratively edit documents in realtime online, stream music and video, and future-proof your digital assets. This talk pairs well with a soon-to-be released book of the same topic and title. Both the book and talk are about self-hosting free software, were created with free software, and are free software themselves. Presented by: Adam Monsen Adam is a father, tech entrepreneur, and free software enthusiast. He loves to parent, care, laugh, sing, listen, code, build, produce, debug, architect, debug, lead, manage, debug some more, lecture, and write. He's good at administering and securing systems and processes while ensuring privacy, compliance, and reliability. Adam is most proud of his family, growing Mifos, founding SeaGL, selling C-SATS, and writing his book.",
+    "tags": [],
+    "category": "Activism",
+    "views": 237
+  },
+  "discovery": {
+    "query": "self hosting",
+    "collection_hint": "build-your-own-future",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:33Z"
+  },
+  "editorial": {
+    "status": "reviewed",
+    "primary_collection": "build-your-own-future",
+    "secondary_collections": [],
+    "difficulty": "intermediate",
+    "format": "lecture",
+    "learning_intents": [
+      "build",
+      "defend"
+    ],
+    "evidence_class": "practitioner-experience",
+    "tags": [
+      "self-hosting",
+      "backups",
+      "free-software"
+    ],
+    "why_selected": "A LibrePlanet 2024 talk on self-hosting that lasts: how to save, serve and safely back up your own data for years, not weekends.",
+    "learning_outcomes": [
+      "What makes a self-hosted setup durable",
+      "Backup and update habits that prevent data loss"
+    ],
+    "try_next": "Make a list of every place your photos currently live, then test restoring one from a backup.",
+    "context_note": "Posted on a channel that carries LibrePlanet recordings; official status unverified.",
+    "ratings": {
+      "usefulness": 5,
+      "rigor": 4,
+      "mission": 5,
+      "distinctiveness": 3,
+      "accessibility": 4,
+      "currency": 4
+    },
+    "score": 87,
+    "judgment_basis": "metadata only (title, description, channel, caption list); not watched — substantive judgments unverified",
+    "proposed_by": "claude-opus-5-5 (AI proposal)",
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null,
+    "shelves": [],
+    "band": "feature-candidate",
+    "proposed_at": "2026-10-20T02:03:42Z"
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:53:37Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": true,
+    "caption_languages": [
+      "en"
+    ],
+    "last_checked_at": "2026-10-20T02:07:26Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:33Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"self hosting\""
+    },
+    {
+      "at": "2026-10-20T01:53:38Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    },
+    {
+      "at": "2026-10-20T02:03:42Z",
+      "from": "verified",
+      "to": "reviewed",
+      "by": "claude-opus-5-5 (AI proposal)",
+      "note": "proposed score 87"
+    }
+  ]
+}

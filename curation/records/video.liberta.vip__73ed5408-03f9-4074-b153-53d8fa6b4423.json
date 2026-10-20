@@ -1,0 +1,85 @@
+{
+  "id": "video.liberta.vip__73ed5408-03f9-4074-b153-53d8fa6b4423",
+  "source": {
+    "video_url": "https://video.liberta.vip/videos/watch/73ed5408-03f9-4074-b153-53d8fa6b4423",
+    "video_uuid": "73ed5408-03f9-4074-b153-53d8fa6b4423",
+    "channel_actor_uri": "https://video.liberta.vip/video-channels/space_is_a_means_of_production",
+    "instance_host": "video.liberta.vip",
+    "title": "Mutual Aid is not fixing this.",
+    "creator_display_name": "Space is a means of production",
+    "channel_handle": "space_is_a_means_of_production@video.liberta.vip",
+    "license": "Attribution - Share Alike",
+    "language": "en",
+    "duration_s": 181,
+    "original_published_at": "2025-03-17T00:58:46.475Z",
+    "description": null,
+    "tags": [
+      "accelerationism",
+      "mutual aid",
+      "Trump",
+      "united states"
+    ],
+    "category": "Unknown",
+    "views": 3
+  },
+  "discovery": {
+    "query": "mutual aid",
+    "collection_hint": "reclaim-the-city",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:42Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:56:59Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:12:20Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:42Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"mutual aid\""
+    },
+    {
+      "at": "2026-10-20T01:57:00Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

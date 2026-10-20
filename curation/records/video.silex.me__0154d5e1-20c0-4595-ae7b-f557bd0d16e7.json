@@ -1,0 +1,84 @@
+{
+  "id": "video.silex.me__0154d5e1-20c0-4595-ae7b-f557bd0d16e7",
+  "source": {
+    "video_url": "https://video.silex.me/videos/watch/0154d5e1-20c0-4595-ae7b-f557bd0d16e7",
+    "video_uuid": "0154d5e1-20c0-4595-ae7b-f557bd0d16e7",
+    "channel_actor_uri": "https://video.silex.me/video-channels/lexoyo_silex",
+    "instance_host": "video.silex.me",
+    "title": "Local LLMs in LM Studio",
+    "creator_display_name": "lexoyo_silex",
+    "channel_handle": "lexoyo_silex@video.silex.me",
+    "license": "Attribution",
+    "language": null,
+    "duration_s": 208,
+    "original_published_at": "2026-04-10T19:05:35.038Z",
+    "description": "Testing different local language models in LM Studio with the same question (\"What's the Eiffel Tower height?\") to compare response speed, accuracy, and detail. A fourth model is tested with a geography question about driving from Paris to Marseille. Results vary significantly across models — some are fast but inaccurate, others are slower but more detailed Config : Intel i7-12700H, 16 GB RAM, NVIDIA RTX 3050 Ti (4 GB VRAM) 00:00 GPT-OSS 20B 00:44 Qwen3-v1 8B 01:30 Lucie 7B Instruct v1.1 02:24 Qwen2.5-Coder 3B Instruct",
+    "tags": [
+      "ai",
+      "ethical",
+      "llm"
+    ],
+    "category": "Unknown",
+    "views": 27
+  },
+  "discovery": {
+    "query": "local LLM",
+    "collection_hint": "build-your-own-future",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:33Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:57:13Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:12:32Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:33Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"local LLM\""
+    },
+    {
+      "at": "2026-10-20T01:57:14Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

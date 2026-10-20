@@ -1,0 +1,114 @@
+{
+  "id": "makertube.net__aa8863b9-b2e1-4acd-ac9e-e917e1ff5fb1",
+  "source": {
+    "video_url": "https://makertube.net/videos/watch/aa8863b9-b2e1-4acd-ac9e-e917e1ff5fb1",
+    "video_uuid": "aa8863b9-b2e1-4acd-ac9e-e917e1ff5fb1",
+    "channel_actor_uri": "https://makertube.net/video-channels/iguanatech",
+    "instance_host": "makertube.net",
+    "title": "How to install Micropython on an ESP32-C3 Super Mini",
+    "creator_display_name": "Iguanatech",
+    "channel_handle": "iguanatech@makertube.net",
+    "license": "Attribution",
+    "language": "en",
+    "duration_s": 147,
+    "original_published_at": "2025-01-20T22:47:51.723Z",
+    "description": "I wanted to make a first video in order to try out using Kdenlive and Uploading on Makertube. Nothing special really, I need to find out how to add some text on the video on post-processing, and remind myself to not move apps on top of overlay text... [ESP32-C3 Product Page](https://www.espressif.com/en/products/socs/esp32-c3) [ESP32-C3 Super Mini - Aliexpress](https://www.aliexpress.com/w/wholesale-esp32%2525252dc3-super-mini.html) [Thonny](https://thonny.org/) After following the instructions for installing Thonny, you have to make sure that your user is added on the dialout system group, otherwise you will get a permission issue. Other than that, things should work as in the video.",
+    "tags": [
+      "ESP32-C3",
+      "Linux",
+      "Micropython"
+    ],
+    "category": "How To",
+    "views": 39
+  },
+  "discovery": {
+    "query": "ESP32",
+    "collection_hint": "strange-machines",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:44Z"
+  },
+  "editorial": {
+    "status": "reviewed",
+    "primary_collection": "strange-machines",
+    "secondary_collections": [],
+    "difficulty": "beginner",
+    "format": "tutorial",
+    "learning_intents": [
+      "build"
+    ],
+    "evidence_class": "practitioner-experience",
+    "tags": [
+      "esp32",
+      "micropython",
+      "microcontrollers"
+    ],
+    "why_selected": "Two minutes from unboxing to running code: installing MicroPython on a tiny ESP32-C3 board.",
+    "learning_outcomes": [
+      "How to flash MicroPython onto an ESP32-C3"
+    ],
+    "try_next": "Buy an ESP32-C3 Super Mini (a few dollars) and make its LED blink.",
+    "context_note": null,
+    "ratings": {
+      "usefulness": 4,
+      "rigor": 3,
+      "mission": 4,
+      "distinctiveness": 3,
+      "accessibility": 4,
+      "currency": 5
+    },
+    "score": 75,
+    "judgment_basis": "metadata only (title, description, channel, caption list); not watched — substantive judgments unverified",
+    "proposed_by": "claude-opus-5-5 (AI proposal)",
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null,
+    "shelves": [
+      "start-here",
+      "from-video-to-project"
+    ],
+    "band": "collection-candidate",
+    "proposed_at": "2026-10-20T02:03:42Z"
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:54:03Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": true,
+    "caption_languages": [
+      "en"
+    ],
+    "last_checked_at": "2026-10-20T02:08:06Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:44Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"ESP32\""
+    },
+    {
+      "at": "2026-10-20T01:54:04Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    },
+    {
+      "at": "2026-10-20T02:03:42Z",
+      "from": "verified",
+      "to": "reviewed",
+      "by": "claude-opus-5-5 (AI proposal)",
+      "note": "proposed score 75"
+    }
+  ]
+}

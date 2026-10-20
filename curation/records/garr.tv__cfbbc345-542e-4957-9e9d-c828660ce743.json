@@ -1,0 +1,86 @@
+{
+  "id": "garr.tv__cfbbc345-542e-4957-9e9d-c828660ce743",
+  "source": {
+    "video_url": "https://garr.tv/videos/watch/cfbbc345-542e-4957-9e9d-c828660ce743",
+    "video_uuid": "cfbbc345-542e-4957-9e9d-c828660ce743",
+    "channel_actor_uri": "https://garr.tv/video-channels/main",
+    "instance_host": "garr.tv",
+    "title": "net: art | near in the distance 3 - long version",
+    "creator_display_name": "GARR Channel",
+    "channel_handle": "main@garr.tv",
+    "license": "CC BY-NC-SA 4.0",
+    "language": null,
+    "duration_s": 4926,
+    "original_published_at": "2017-06-01T11:25:00.000Z",
+    "description": "Quanto possono essere vicini i performer mentre si esibiscono in posti diversi in tutto il mondo? Ad esempio, a Linz, Barcellona, ​​Praga, Roma, Hailuoto e Mumbai? Una performance multi-sito è un evento in cui arti performative e tecnologia lavorano a braccetto. \"net: art | vicino in lontananza 3\" è una produzione di ACOnet ed è stata eseguita in occasione della TNC17 presso la famosa Brucknerhaus di Linz. \"net: art | near in the distance 3\" è il nuovo sequel di una serie di produzioni iniziata nel 2013. È un esperimento in corso sull'utilizzo dell'alta tecnologia nelle arti performative. La serie net: art | near in the distance ha una squadra centrale di esperti che è ampliata, se necessario. leggi di più su GARR",
+    "tags": [
+      "Aconet",
+      "GARR",
+      "LOLA",
+      "TNC",
+      "net art"
+    ],
+    "category": "Unknown",
+    "views": 11
+  },
+  "discovery": {
+    "query": "net art",
+    "collection_hint": "the-weird-internet",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:55Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:53:46Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:07:46Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:55Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"net art\""
+    },
+    {
+      "at": "2026-10-20T01:53:46Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

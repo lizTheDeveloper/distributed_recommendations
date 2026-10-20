@@ -1,0 +1,80 @@
+{
+  "id": "video.colibris-outilslibres.org__345d951e-9767-4fea-a850-5f7b571baea4",
+  "source": {
+    "video_url": "https://video.colibris-outilslibres.org/videos/watch/345d951e-9767-4fea-a850-5f7b571baea4",
+    "video_uuid": "345d951e-9767-4fea-a850-5f7b571baea4",
+    "channel_actor_uri": "https://video.colibris-outilslibres.org/video-channels/oasis",
+    "instance_host": "video.colibris-outilslibres.org",
+    "title": "Webinaire Société Coopérative d'Habitants de Forme Civile - Loi ALUR",
+    "creator_display_name": "Coopérative Oasis",
+    "channel_handle": "oasis@video.colibris-outilslibres.org",
+    "license": null,
+    "language": "fr",
+    "duration_s": 3786,
+    "original_published_at": "2024-11-12T12:44:19.045Z",
+    "description": null,
+    "tags": [],
+    "category": "Unknown",
+    "views": 274
+  },
+  "discovery": {
+    "query": "cooperative housing",
+    "collection_hint": "reclaim-the-city",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:40Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:56:36Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:11:57Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:40Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"cooperative housing\""
+    },
+    {
+      "at": "2026-10-20T01:56:37Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

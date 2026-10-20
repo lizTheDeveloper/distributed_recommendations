@@ -1,0 +1,88 @@
+{
+  "id": "battlepenguin.video__03ac58f5-dfbe-49e4-82b1-95ac377b5fa2",
+  "source": {
+    "video_url": "https://battlepenguin.video/videos/watch/03ac58f5-dfbe-49e4-82b1-95ac377b5fa2",
+    "video_uuid": "03ac58f5-dfbe-49e4-82b1-95ac377b5fa2",
+    "channel_actor_uri": "https://battlepenguin.video/video-channels/djsumdog_channel",
+    "instance_host": "battlepenguin.video",
+    "title": "Upgrading the SSD on an MSI GS60 Laptop",
+    "creator_display_name": "Main djsumdog channel",
+    "channel_handle": "djsumdog_channel@battlepenguin.video",
+    "license": "Attribution - Non Commercial - Share Alike",
+    "language": "en",
+    "duration_s": 406,
+    "original_published_at": "2018-05-19T05:00:13.000Z",
+    "description": "This video is about my teardown of an MSI GS60 laptop, replacing the two internal solid state drives (SSDs) and the trouble I had with backing up and restoring Windows on it. Blog Post: https://battlepenguin.com/tech/video/upgrading-the-ssd-on-an-msi-gs60-laptop/ YouTube Mirror: https://www.youtube.com/watch?v=PiTW7DsfuNQ Support me on Patreon: https://www.patreon.com/battlepenguin Installing Linux on this Laptop: https://battlepenguin.com/tech/msi-ws60-running-linux/ Living out of Two Bags for Eleven Months: https://battlepenguin.com/philosophy/perspective/minimalism/",
+    "tags": [
+      "hardware",
+      "laptop",
+      "MSI",
+      "tutorial",
+      "upgrade"
+    ],
+    "category": "Science & Technology",
+    "views": 404
+  },
+  "discovery": {
+    "query": "hardware teardown",
+    "collection_hint": "strange-machines",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:46Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:53:02Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": true,
+    "caption_languages": [
+      "en"
+    ],
+    "last_checked_at": "2026-10-20T02:06:52Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:46Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"hardware teardown\""
+    },
+    {
+      "at": "2026-10-20T01:53:03Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

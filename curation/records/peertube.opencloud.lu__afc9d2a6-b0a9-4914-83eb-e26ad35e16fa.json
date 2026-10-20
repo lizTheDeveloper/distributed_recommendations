@@ -1,0 +1,111 @@
+{
+  "id": "peertube.opencloud.lu__afc9d2a6-b0a9-4914-83eb-e26ad35e16fa",
+  "source": {
+    "video_url": "https://peertube.opencloud.lu/videos/watch/afc9d2a6-b0a9-4914-83eb-e26ad35e16fa",
+    "video_uuid": "afc9d2a6-b0a9-4914-83eb-e26ad35e16fa",
+    "channel_actor_uri": "https://peertube.opencloud.lu/video-channels/cases",
+    "instance_host": "peertube.opencloud.lu",
+    "title": "Phishing",
+    "creator_display_name": "CASES Luxembourg",
+    "channel_handle": "cases@peertube.opencloud.lu",
+    "license": "Attribution - Non Commercial - Share Alike",
+    "language": "en",
+    "duration_s": 260,
+    "original_published_at": "2019-12-10T23:00:00.000Z",
+    "description": null,
+    "tags": [
+      "Awareness",
+      "Best Practice",
+      "Bonne pratique",
+      "Luxembourg",
+      "Sensibilisation"
+    ],
+    "category": "Science & Technology",
+    "views": 12
+  },
+  "discovery": {
+    "query": "phishing defense",
+    "collection_hint": "hack-the-planet",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:25Z"
+  },
+  "editorial": {
+    "status": "reviewed",
+    "primary_collection": "hack-the-planet",
+    "secondary_collections": [],
+    "difficulty": "beginner",
+    "format": "short",
+    "learning_intents": [
+      "defend"
+    ],
+    "evidence_class": "practitioner-experience",
+    "tags": [
+      "phishing",
+      "awareness"
+    ],
+    "why_selected": "A four-minute phishing explainer from the CASES awareness programme in Luxembourg, short enough to share with family.",
+    "learning_outcomes": [
+      "Common signs of a phishing message",
+      "What to do after clicking a suspicious link"
+    ],
+    "try_next": "Forward this to one person who asks you for tech help, and agree on how you'll check odd messages with each other.",
+    "context_note": "No description on the source; content judged from title and publisher only.",
+    "ratings": {
+      "usefulness": 3,
+      "rigor": 3,
+      "mission": 4,
+      "distinctiveness": 3,
+      "accessibility": 3,
+      "currency": 2
+    },
+    "score": 62,
+    "judgment_basis": "metadata only (title, description, channel, caption list); not watched — substantive judgments unverified",
+    "proposed_by": "claude-opus-5-5 (AI proposal)",
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null,
+    "shelves": [],
+    "band": "editorial-review",
+    "proposed_at": "2026-10-20T02:03:42Z"
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:55:02Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:09:13Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:25Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"phishing defense\""
+    },
+    {
+      "at": "2026-10-20T01:55:02Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    },
+    {
+      "at": "2026-10-20T02:03:42Z",
+      "from": "verified",
+      "to": "reviewed",
+      "by": "claude-opus-5-5 (AI proposal)",
+      "note": "proposed score 62"
+    }
+  ]
+}

@@ -1,0 +1,80 @@
+{
+  "id": "tube.waag.org__84cc3330-e5eb-414f-b144-0f37f3d2d95d",
+  "source": {
+    "video_url": "https://tube.waag.org/videos/watch/84cc3330-e5eb-414f-b144-0f37f3d2d95d",
+    "video_uuid": "84cc3330-e5eb-414f-b144-0f37f3d2d95d",
+    "channel_actor_uri": "https://tube.waag.org/video-channels/general",
+    "instance_host": "tube.waag.org",
+    "title": "Den Uyl-lezing Marleen Stikker 19 januari 2026",
+    "creator_display_name": "Waag Futurelab",
+    "channel_handle": "general@tube.waag.org",
+    "license": "Attribution - Non Commercial - No Derivatives",
+    "language": "nl",
+    "duration_s": 6779,
+    "original_published_at": "2026-02-05T18:10:50.185Z",
+    "description": "Dat we onze grip op technologie en sociale media zijn kwijtgeraakt, is een groot veiligheidsrisico. De democratie en rechtsstaat worden ondermijnd. Welke antwoorden zijn er op geopolitieke machtsontwikkeling door big tech? Daarover gaat de 31ste Den Uyl-lezing die dit jaar wordt gehouden door Marleen Stikker, oprichter en directeur van Waag Futurelab, het onderzoeksinstituut voor technologie en maatschappij. Waarborgen voor strategische autonomie en publieke waarden horen daarbij centraal te staan. Marleen Stikker zal ingaan op de noodzaak voor een digitale publieke infrastructuur en een expliciete progressieve agenda voor innovatie en technologie. Arnout Brouwers, diplomatiek redacteur bij De Volkskrant, zal reageren op de lezing. Na de bijdrages is er ruimte voor vragen en discussie, onder leiding van Marjolein Moorman, Tweede Kamerlid en voorzitter van het curatorium van de Wiardi Beckman Stichting. De Den Uyl-lezing is een traditie die al sinds 1988 bestaat en wordt georganiseerd ter ere van de voormalige PvdA-premier met als doel progressieve politiek steeds weer te voorzien van nieuwe en vernieuwende inzichten, vaak ook uit de wereld van wetenschap en cultuur. De Den Uyl-lezing biedt een unieke gelegenheid om na te denken over de erfenis van Joop den Uyl en de impact van zijn idealen op de hedendaagse politiek en samenleving. De lezing wordt sinds 2024 georganiseerd door de Wiardi Beckman Stichting, het wetenschappelijk bureau voor de sociaal-democratie.",
+    "tags": [],
+    "category": "Science & Technology",
+    "views": 834
+  },
+  "discovery": {
+    "query": "channel general@tube.waag.org",
+    "collection_hint": "the-machine-is-political",
+    "service": "origin channel listing",
+    "at": "2026-10-20T01:58:58Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T02:00:00Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:11:27Z",
+    "identity_evidence": "waag.org homepage has no link to tube.waag.org; check the site's footer or contact Waag before treating it as official",
+    "publisher": "Waag Futurelab (claimed)"
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:58:58Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "channel general@tube.waag.org"
+    },
+    {
+      "at": "2026-10-20T02:00:00Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

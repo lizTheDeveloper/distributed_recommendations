@@ -1,0 +1,80 @@
+{
+  "id": "peertube.f-si.org__5263db6b-a18c-4135-b57e-36d8b3abfedb",
+  "source": {
+    "video_url": "https://peertube.f-si.org/videos/watch/5263db6b-a18c-4135-b57e-36d8b3abfedb",
+    "video_uuid": "5263db6b-a18c-4135-b57e-36d8b3abfedb",
+    "channel_actor_uri": "https://peertube.f-si.org/video-channels/fsic2023",
+    "instance_host": "peertube.f-si.org",
+    "title": "Exploring open hardware solutions for ensuring the security of RISC-V processors, Pablo Navarro, IMSE",
+    "creator_display_name": "FSiC2023",
+    "channel_handle": "fsic2023@peertube.f-si.org",
+    "license": "Attribution - Non Commercial - No Derivatives",
+    "language": "en",
+    "duration_s": 1197,
+    "original_published_at": "2023-07-28T12:49:42.786Z",
+    "description": "Conference program: https://wiki.f-si.org/index.php/FSiC2023",
+    "tags": [],
+    "category": "Education",
+    "views": 13
+  },
+  "discovery": {
+    "query": "open hardware",
+    "collection_hint": "build-your-own-future",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:38Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:54:50Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:09:01Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:38Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"open hardware\""
+    },
+    {
+      "at": "2026-10-20T01:54:52Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

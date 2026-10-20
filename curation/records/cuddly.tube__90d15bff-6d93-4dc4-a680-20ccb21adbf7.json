@@ -1,0 +1,82 @@
+{
+  "id": "cuddly.tube__90d15bff-6d93-4dc4-a680-20ccb21adbf7",
+  "source": {
+    "video_url": "https://cuddly.tube/videos/watch/90d15bff-6d93-4dc4-a680-20ccb21adbf7",
+    "video_uuid": "90d15bff-6d93-4dc4-a680-20ccb21adbf7",
+    "channel_actor_uri": "https://cuddly.tube/video-channels/sustainable_sailing",
+    "instance_host": "cuddly.tube",
+    "title": "Solar panel supports progress #LaunchCallenge #BoatRefit #DIY #Solar",
+    "creator_display_name": "Sustainable Sailing",
+    "channel_handle": "sustainable_sailing@cuddly.tube",
+    "license": null,
+    "language": "en",
+    "duration_s": 80,
+    "original_published_at": "2026-06-10T00:00:00.000Z",
+    "description": null,
+    "tags": [],
+    "category": "Unknown",
+    "views": 1
+  },
+  "discovery": {
+    "query": "solar DIY",
+    "collection_hint": "strange-machines",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:48Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:53:18Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": true,
+    "caption_languages": [
+      "en"
+    ],
+    "last_checked_at": "2026-10-20T02:07:01Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:48Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"solar DIY\""
+    },
+    {
+      "at": "2026-10-20T01:53:19Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

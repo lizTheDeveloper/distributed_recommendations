@@ -9,6 +9,7 @@ import { snapshotFetch, snapshotTasteChannels } from "./lib/snapshotFetch.ts";
 import { browserKV } from "./lib/storage.ts";
 import { DEFAULT_INSTANCES } from "./lib/settings.ts";
 import { EXAMPLES } from "./examples.ts";
+import { EDITORIAL } from "./editorial.ts";
 import data from "./snapshot/snapshot.json";
 
 const snap = data as unknown as Snapshot;
@@ -41,6 +42,7 @@ void boot({
   now: () => fetchedAt,
   snapshotNote: `${count} real videos from ${hosts.join(" and ")}, captured ${fetchedAt.toISOString().slice(0, 10)}. This build can't use the network: no live refresh, playback or URL import, and thumbnails are color placeholders. Ranking, follows, taste lists, Follow taste (public playlists of a few channels), recipes and settings all work, and are saved in this browser.`,
   examples: EXAMPLES,
+  editorial: EDITORIAL,
   snapshotTasteChannels: snapshotTasteChannels(snap),
   devTools: typeof __MF_DEV__ !== "undefined" && __MF_DEV__,
   // Telemetry stays off in the offline artifact: no endpoints, no consent card,

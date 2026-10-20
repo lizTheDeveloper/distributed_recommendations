@@ -1,0 +1,86 @@
+{
+  "id": "fedi.video__715e7247-3d57-4021-9436-bce0c1fb2808",
+  "source": {
+    "video_url": "https://fedi.video/videos/watch/715e7247-3d57-4021-9436-bce0c1fb2808",
+    "video_uuid": "715e7247-3d57-4021-9436-bce0c1fb2808",
+    "channel_actor_uri": "https://fedi.video/video-channels/documentaries",
+    "instance_host": "fedi.video",
+    "title": "Infocom: The Documentary (2010) (about the famous interactive fiction / text adventure developers)",
+    "creator_display_name": "Documentaries",
+    "channel_handle": "documentaries@fedi.video",
+    "license": "Attribution - Share Alike",
+    "language": "en",
+    "duration_s": 2826,
+    "original_published_at": "2010-07-01T11:00:00.000Z",
+    "description": "Documentary about the legendary text adventure developer Infocom, who created many of the most popular and enduring works of interactive fiction, perhaps most famously the \"Zork\" series. Documentary made by Jason Scott Published under Creative Commons By-SA 3.0",
+    "tags": [
+      "Documentaries",
+      "Infocom",
+      "Interactive Fiction",
+      "Retro Gaming",
+      "Text Adventures"
+    ],
+    "category": "Gaming",
+    "views": 82
+  },
+  "discovery": {
+    "query": "interactive fiction",
+    "collection_hint": "the-weird-internet",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:50Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:53:33Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:07:14Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:50Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"interactive fiction\""
+    },
+    {
+      "at": "2026-10-20T01:53:34Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

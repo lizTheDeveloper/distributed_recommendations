@@ -4,6 +4,7 @@ import { boot } from "./boot.ts";
 import { createCatalog } from "./lib/catalog.ts";
 import { browserKV } from "./lib/storage.ts";
 import { EXAMPLES } from "./examples.ts";
+import { EDITORIAL } from "./editorial.ts";
 import { buildConfig } from "./lib/telemetry/config.ts";
 import { scriptLoader } from "./lib/telemetry/controller.ts";
 
@@ -16,6 +17,7 @@ void boot({
   mode: "live",
   now: () => new Date(),
   examples: EXAMPLES,
+  editorial: EDITORIAL,
   devTools: typeof __MF_DEV__ !== "undefined" && __MF_DEV__,
   // Opt-in telemetry: endpoints from the build (empty = hidden). crash.js is
   // fetched only after the viewer turns crash reports on.

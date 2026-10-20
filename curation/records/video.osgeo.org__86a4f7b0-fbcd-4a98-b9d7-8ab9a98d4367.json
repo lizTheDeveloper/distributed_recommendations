@@ -1,0 +1,108 @@
+{
+  "id": "video.osgeo.org__86a4f7b0-fbcd-4a98-b9d7-8ab9a98d4367",
+  "source": {
+    "video_url": "https://video.osgeo.org/videos/watch/86a4f7b0-fbcd-4a98-b9d7-8ab9a98d4367",
+    "video_uuid": "86a4f7b0-fbcd-4a98-b9d7-8ab9a98d4367",
+    "channel_actor_uri": "https://video.osgeo.org/video-channels/foss4g",
+    "instance_host": "video.osgeo.org",
+    "title": "FOSS4G 2022 | Visualizing climate risks for disaster reduction and climate resilience programs –…",
+    "creator_display_name": "FOSS4G",
+    "channel_handle": "foss4g@video.osgeo.org",
+    "license": "Attribution",
+    "language": "en",
+    "duration_s": 1201,
+    "original_published_at": "2024-09-17T00:00:00.000Z",
+    "description": "Visualizing climate risks for disaster reduction and climate resilience programs – Interactive open-source tools for analysts and decision makers to utilize Earth observation data Climate and vegetation indicators created from Earth observation data provide timely information to analysts and decision makers implementing disaster risk reduction and climate risk mitigation programs. The United Nations World Food Programme’s (WFP) Climate and Earth Observation unit (ClEO) works with a number of Earth observation datasets to measure and monitor climate risks across all of the regions where we work, including 90+ countries globally. The end users of this information include government institutions such as the meteorological and disaster management agencies, implementers of humanitarian assistance programs, as well as WFP field staff working on programs which build climate resilience through the development of community assets and livelihood support. To enable the creation and dissemination of monitoring indicators, WFP is in the process of deploying an instance of Open Data Cube with nearly global coverage. Leveraging the power of data cubes to measure key climate and vegetation indicators over space and time, WFP’s Open Data Cube instance will provide free and open access to a wide range of analysis-ready data products. Utilization of this data requires user-facing applications with easy to use and intuitive interfaces. One of the tools developed by WFP to provide more direct ac…",
+    "tags": [],
+    "category": "Education",
+    "views": 1
+  },
+  "discovery": {
+    "query": "climate resilience",
+    "collection_hint": "reclaim-the-city",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:42Z"
+  },
+  "editorial": {
+    "status": "reviewed",
+    "primary_collection": "reclaim-the-city",
+    "secondary_collections": [
+      "build-your-own-future"
+    ],
+    "difficulty": "intermediate",
+    "format": "lecture",
+    "learning_intents": [
+      "build",
+      "understand"
+    ],
+    "evidence_class": "practitioner-experience",
+    "tags": [
+      "climate",
+      "gis",
+      "open-data"
+    ],
+    "why_selected": "A FOSS4G talk on interactive open-source tools for visualizing climate risk, used in disaster-reduction programmes.",
+    "learning_outcomes": [
+      "How open GIS tools present climate risk to decision makers"
+    ],
+    "try_next": "Load your area into an open flood-risk map and see what it shows.",
+    "context_note": null,
+    "ratings": {
+      "usefulness": 4,
+      "rigor": 4,
+      "mission": 4,
+      "distinctiveness": 4,
+      "accessibility": 3,
+      "currency": 4
+    },
+    "score": 78,
+    "judgment_basis": "metadata only (title, description, channel, caption list); not watched — substantive judgments unverified",
+    "proposed_by": "claude-opus-5-5 (AI proposal)",
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null,
+    "shelves": [],
+    "band": "collection-candidate",
+    "proposed_at": "2026-10-20T02:03:42Z"
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:57:05Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:12:25Z",
+    "identity_evidence": "osgeo.org homepage has no link to video.osgeo.org",
+    "publisher": "OSGeo / FOSS4G (claimed)"
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:42Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"climate resilience\""
+    },
+    {
+      "at": "2026-10-20T01:57:05Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    },
+    {
+      "at": "2026-10-20T02:03:42Z",
+      "from": "verified",
+      "to": "reviewed",
+      "by": "claude-opus-5-5 (AI proposal)",
+      "note": "proposed score 78"
+    }
+  ]
+}

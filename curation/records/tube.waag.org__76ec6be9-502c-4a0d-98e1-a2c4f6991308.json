@@ -1,0 +1,107 @@
+{
+  "id": "tube.waag.org__76ec6be9-502c-4a0d-98e1-a2c4f6991308",
+  "source": {
+    "video_url": "https://tube.waag.org/videos/watch/76ec6be9-502c-4a0d-98e1-a2c4f6991308",
+    "video_uuid": "76ec6be9-502c-4a0d-98e1-a2c4f6991308",
+    "channel_actor_uri": "https://tube.waag.org/video-channels/general",
+    "instance_host": "tube.waag.org",
+    "title": "Špela Petrič - The Archive of In-Operables",
+    "creator_display_name": "Waag Futurelab",
+    "channel_handle": "general@tube.waag.org",
+    "license": "Attribution - Non Commercial - Share Alike",
+    "language": "en",
+    "duration_s": 1301,
+    "original_published_at": "2025-12-15T16:42:31.000Z",
+    "description": "Artist-in-residence at Waag Futurelab, Špela Petrič, presents The Archive of In-Operables, that has been developed and presented within the context of the European Digital Deal project. European Digital Deal is co-funded by the Creative Europe Programme of the European Union.",
+    "tags": [],
+    "category": "Science & Technology",
+    "views": 83
+  },
+  "discovery": {
+    "query": "channel general@tube.waag.org",
+    "collection_hint": "the-machine-is-political",
+    "service": "origin channel listing",
+    "at": "2026-10-20T01:58:58Z"
+  },
+  "editorial": {
+    "status": "reviewed",
+    "primary_collection": "the-weird-internet",
+    "secondary_collections": [
+      "the-machine-is-political"
+    ],
+    "difficulty": "intermediate",
+    "format": "lecture",
+    "learning_intents": [
+      "create",
+      "critique"
+    ],
+    "evidence_class": "speculative",
+    "tags": [
+      "bio-art",
+      "art-residency"
+    ],
+    "why_selected": "Artist Špela Petrič presents The Archive of In-Operables, made during a residency at Waag Futurelab: strange, thoughtful art at the edge of biology and tech.",
+    "learning_outcomes": [
+      "How artists use labs to question technology"
+    ],
+    "try_next": "Visit a local art-science lab's next open evening.",
+    "context_note": null,
+    "ratings": {
+      "usefulness": 3,
+      "rigor": 3,
+      "mission": 4,
+      "distinctiveness": 5,
+      "accessibility": 3,
+      "currency": 5
+    },
+    "score": 72,
+    "judgment_basis": "metadata only (title, description, channel, caption list); not watched — substantive judgments unverified",
+    "proposed_by": "claude-opus-5-5 (AI proposal)",
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null,
+    "shelves": [],
+    "band": "collection-candidate",
+    "proposed_at": "2026-10-20T02:03:42Z"
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:59:58Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:11:25Z",
+    "identity_evidence": "waag.org homepage has no link to tube.waag.org; check the site's footer or contact Waag before treating it as official",
+    "publisher": "Waag Futurelab (claimed)"
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:58:58Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "channel general@tube.waag.org"
+    },
+    {
+      "at": "2026-10-20T01:59:59Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    },
+    {
+      "at": "2026-10-20T02:03:42Z",
+      "from": "verified",
+      "to": "reviewed",
+      "by": "claude-opus-5-5 (AI proposal)",
+      "note": "proposed score 72"
+    }
+  ]
+}

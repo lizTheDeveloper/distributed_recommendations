@@ -1,0 +1,82 @@
+{
+  "id": "video.infiniteloop.tv__147aea63-6ece-40ed-8e4a-dc66e0403800",
+  "source": {
+    "video_url": "https://video.infiniteloop.tv/videos/watch/147aea63-6ece-40ed-8e4a-dc66e0403800",
+    "video_uuid": "147aea63-6ece-40ed-8e4a-dc66e0403800",
+    "channel_actor_uri": "https://video.infiniteloop.tv/video-channels/hope_xv",
+    "instance_host": "video.infiniteloop.tv",
+    "title": "A14: Teaching with Microcontrollers",
+    "creator_display_name": "HOPE XV (2024)",
+    "channel_handle": "hope_xv@video.infiniteloop.tv",
+    "license": "CC BY 4.0",
+    "language": "en",
+    "duration_s": 2906,
+    "original_published_at": "2025-02-05T01:38:57.034Z",
+    "description": null,
+    "tags": [
+      "hope"
+    ],
+    "category": "Science & Technology",
+    "views": 2
+  },
+  "discovery": {
+    "query": "microcontrollers",
+    "collection_hint": "strange-machines",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:48Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:56:52Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:12:13Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:48Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"microcontrollers\""
+    },
+    {
+      "at": "2026-10-20T01:56:52Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

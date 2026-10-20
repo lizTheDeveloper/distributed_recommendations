@@ -1,0 +1,85 @@
+{
+  "id": "peertube.eqver.se__88f25369-60fb-473d-ab96-48cdb40de4f1",
+  "source": {
+    "video_url": "https://peertube.eqver.se/videos/watch/88f25369-60fb-473d-ab96-48cdb40de4f1",
+    "video_uuid": "88f25369-60fb-473d-ab96-48cdb40de4f1",
+    "channel_actor_uri": "https://peertube.eqver.se/video-channels/eqtv_english",
+    "instance_host": "peertube.eqver.se",
+    "title": "Scira AI: Free and Open Source AI Search Engine",
+    "creator_display_name": "eQtv in English",
+    "channel_handle": "eqtv_english@peertube.eqver.se",
+    "license": null,
+    "language": "en",
+    "duration_s": 350,
+    "original_published_at": "2025-12-18T05:42:30.622Z",
+    "description": "Scira AI is a free, open-source, and no-registration AI search engine. It supports GPT-4o, Claude, Grok, Llama, Gemini, and other models. It has 7 search modes, including Reddit, YouTube, research papers, code, and image analysis, and a Buddy feature to keep context between sessions.",
+    "tags": [
+      "open source",
+      "AI",
+      "Scira AI",
+      "search"
+    ],
+    "category": "Science & Technology",
+    "views": 2
+  },
+  "discovery": {
+    "query": "open source AI",
+    "collection_hint": "build-your-own-future",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:34Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:54:45Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:08:56Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:34Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"open source AI\""
+    },
+    {
+      "at": "2026-10-20T01:54:46Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

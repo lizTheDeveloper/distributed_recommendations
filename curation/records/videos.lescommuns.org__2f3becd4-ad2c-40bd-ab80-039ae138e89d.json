@@ -1,0 +1,80 @@
+{
+  "id": "videos.lescommuns.org__2f3becd4-ad2c-40bd-ab80-039ae138e89d",
+  "source": {
+    "video_url": "https://videos.lescommuns.org/videos/watch/2f3becd4-ad2c-40bd-ab80-039ae138e89d",
+    "video_uuid": "2f3becd4-ad2c-40bd-ab80-039ae138e89d",
+    "channel_actor_uri": "https://videos.lescommuns.org/video-channels/adaptationradicale_channel",
+    "instance_host": "videos.lescommuns.org",
+    "title": "Rough weather & mutual aid networks",
+    "creator_display_name": "Main adaptationradicale channel",
+    "channel_handle": "adaptationradicale_channel@videos.lescommuns.org",
+    "license": "Attribution",
+    "language": "en",
+    "duration_s": 5995,
+    "original_published_at": "2025-11-21T21:26:07.492Z",
+    "description": null,
+    "tags": [],
+    "category": "News & Politics",
+    "views": 1
+  },
+  "discovery": {
+    "query": "mutual aid",
+    "collection_hint": "reclaim-the-city",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:42Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:57:21Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:12:38Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:42Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"mutual aid\""
+    },
+    {
+      "at": "2026-10-20T01:57:22Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

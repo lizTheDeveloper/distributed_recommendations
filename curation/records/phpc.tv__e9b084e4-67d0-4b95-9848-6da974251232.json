@@ -1,0 +1,86 @@
+{
+  "id": "phpc.tv__e9b084e4-67d0-4b95-9848-6da974251232",
+  "source": {
+    "video_url": "https://phpc.tv/videos/watch/e9b084e4-67d0-4b95-9848-6da974251232",
+    "video_uuid": "e9b084e4-67d0-4b95-9848-6da974251232",
+    "channel_actor_uri": "https://phpc.tv/video-channels/afup",
+    "instance_host": "phpc.tv",
+    "title": "Platform.sh le PAAS qui résout le casse tête dev/staging/prod - Ori A Pekelman #forumphp",
+    "creator_display_name": "AFUP",
+    "channel_handle": "afup@phpc.tv",
+    "license": null,
+    "language": "fr",
+    "duration_s": 2660,
+    "original_published_at": "2014-11-14T00:00:00.000Z",
+    "description": "l y a eu un temps où des développeurs mettait à jour directement sur un serveur de production les fichiers PHP par FTP. Cela même faisait une partie du charme de PHP, la simplicité de la mise à jour. Evidemment ce temps (mal)heureux est terminé. On est devenu adultes. On écrit des tests. On a des systèmes de qualification, de test. On suit des méthodologies. On a gagné en qualité c'est évident, on peut faire des projets plus ambitieux.. mais on a perdu énormement en agilité, en velocité. Des choses qui était au coeur de la promesse de PHP. Chez Commerce Guys, nous avons travaillé à une solution permettant de résoudre l’ensemble de ces problématiques, c’est à dire ne rien perdre en qualité tout en gagnant en productivité : http://platform.sh. Platform est une solution cloud de développement et d’hébergement. La révolution est d’éliminer les concepts de “Dev” et “Staging”, est de ne garder que la prod (comme aux premiers jours de bricolage heureux et sans soucis).... que l’on peut via une simple commande ou un clic de souris, dupliquer intégralement (on clone ainsi les serveurs différents pour le serveur d’application, la base de données, moteur de recherche, cache, etc...), pour créer une copie parfaite à l’octet près, et ceci en quelques secondes. En gros Git, le SCM utilisé ne contrôle plus uniquement le code à déployer, mais la topologie complète du cluster. Chaque branche Git représente un environnement web complet, identique à la prod. On peut le visiter via un navigateu…",
+    "tags": [
+      "Php Programming Language",
+      "Software (Industry)",
+      "afup",
+      "forumphp",
+      "php"
+    ],
+    "category": "Science & Technology",
+    "views": 0
+  },
+  "discovery": {
+    "query": "platform cooperatives",
+    "collection_hint": "the-machine-is-political",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:30Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:55:16Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:09:25Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:30Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"platform cooperatives\""
+    },
+    {
+      "at": "2026-10-20T01:55:17Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

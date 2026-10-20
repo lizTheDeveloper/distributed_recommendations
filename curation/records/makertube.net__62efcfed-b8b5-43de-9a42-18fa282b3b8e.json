@@ -1,0 +1,88 @@
+{
+  "id": "makertube.net__62efcfed-b8b5-43de-9a42-18fa282b3b8e",
+  "source": {
+    "video_url": "https://makertube.net/videos/watch/62efcfed-b8b5-43de-9a42-18fa282b3b8e",
+    "video_uuid": "62efcfed-b8b5-43de-9a42-18fa282b3b8e",
+    "channel_actor_uri": "https://makertube.net/video-channels/tobozo",
+    "instance_host": "makertube.net",
+    "title": "ESP32 SID Player UI Demo",
+    "creator_display_name": "tobozo",
+    "channel_handle": "tobozo@makertube.net",
+    "license": "Attribution",
+    "language": "en",
+    "duration_s": 112,
+    "original_published_at": "2020-12-19T00:00:00.000Z",
+    "description": "SID Track browser/player demonstrated here, no support for subsongs and/or playlists (yet). Code will eventually be released on this repo: - https://github.com/tobozo/ESP32-SIDView Credits: - https://github.com/hpwit/SID6581 - https://github.com/lovyan03/LovyanGFX - https://github.com/hugovangalen/C64_Font8x8",
+    "tags": [
+      "arduino",
+      "c64",
+      "chiptunes",
+      "esp32",
+      "sid6581"
+    ],
+    "category": "Science & Technology",
+    "views": 154
+  },
+  "discovery": {
+    "query": "ESP32",
+    "collection_hint": "strange-machines",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:44Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:53:59Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": true,
+    "caption_languages": [
+      "en"
+    ],
+    "last_checked_at": "2026-10-20T02:08:02Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:44Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"ESP32\""
+    },
+    {
+      "at": "2026-10-20T01:53:59Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

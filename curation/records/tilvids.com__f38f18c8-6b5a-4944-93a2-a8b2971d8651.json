@@ -1,0 +1,94 @@
+{
+  "id": "tilvids.com__f38f18c8-6b5a-4944-93a2-a8b2971d8651",
+  "source": {
+    "video_url": "https://tilvids.com/videos/watch/f38f18c8-6b5a-4944-93a2-a8b2971d8651",
+    "video_uuid": "f38f18c8-6b5a-4944-93a2-a8b2971d8651",
+    "channel_actor_uri": "https://tilvids.com/video-channels/arthurpizza",
+    "instance_host": "tilvids.com",
+    "title": "Think About 3D Printing Differently",
+    "creator_display_name": "arthurpizza",
+    "channel_handle": "arthurpizza@tilvids.com",
+    "license": "Attribution - Share Alike",
+    "language": "en",
+    "duration_s": 103,
+    "original_published_at": "2024-08-26T04:05:10.989Z",
+    "description": "Plus Hobbies'. It's when an activity or skill helps you with other things you're into too. For example, 3D printing can be useful for making stuff for your gaming setup or creating custom gadgets. TOOLS THAT I USE 🔥 https://kdenlive.org/ 🔥 https://www.gimp.org/ 🔥 https://www.blender.org/ 🔥 https://obsproject.com/ 🔥 https://www.audacityteam.org/ HARDWARE I USE 👾 ThinkPad X1 Carbon: https://amzn.to/3a0ZSvr 👾 Canon m50: https://amzn.to/3lFxy48 👾 Sigma 16mm f1.4 EOSM: https://amzn.to/3mKd0sM 👾 FiFine K669B USB Mic: https://amzn.to/3jnDhgd 👾 Keyboard | DIERYA DK63: https://amzn.to/3loFeeQ 👾 Mouse | Logitech M355: https://amzn.to/3A6GPds 👾 Acer SB270 27\" 1920x1080 IPS Screen: https://amzn.to/3rSpQbZ 👾 Osmo Pocket: https://amzn.to/2JCAIZJ 👾 Mavic Mini: https://amzn.to/3lFxod2 👾 Samsung Galaxy Tab S6: https://amzn.to/3fsbVnR 👾 Samsung Galaxy S21 Ultra: https://amzn.to/3jmwAuy 👾 Movo TMP100 USBC Mic: https://amzn.to/2WSlV3p FOLLOW ME: 🤘 https://arthur.pizza 🐘 https://mastodon.sdf.org/@art 📱 https://www.tiktok.com/@arthurrpizza SUPPORT ME: 🤑 https://www.patreon.com/arthurpizza 💸 https://liberapay.com/arthurreeder/ AFFILIATE DISCLOSURES: I get commissions for purchases made through links in this video.",
+    "tags": [
+      "3D printing",
+      "creativity",
+      "maker culture"
+    ],
+    "category": "Science & Technology",
+    "views": 136
+  },
+  "discovery": {
+    "query": "3D printing",
+    "collection_hint": "strange-machines",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:45Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:55:31Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": true,
+    "caption_languages": [
+      "de",
+      "en",
+      "es-419",
+      "fr",
+      "hi",
+      "it",
+      "ja",
+      "ru",
+      "zh"
+    ],
+    "last_checked_at": "2026-10-20T02:09:52Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:45Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"3D printing\""
+    },
+    {
+      "at": "2026-10-20T01:55:31Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

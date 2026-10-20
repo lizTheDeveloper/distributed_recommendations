@@ -1,0 +1,86 @@
+{
+  "id": "peertube.uno__c1880915-6246-439f-b926-0119bc257dba",
+  "source": {
+    "video_url": "https://peertube.uno/videos/watch/c1880915-6246-439f-b926-0119bc257dba",
+    "video_uuid": "c1880915-6246-439f-b926-0119bc257dba",
+    "channel_actor_uri": "https://peertube.uno/video-channels/glcomo",
+    "instance_host": "peertube.uno",
+    "title": "Una chiacchierata su: self-hosting git",
+    "creator_display_name": "GL-Como",
+    "channel_handle": "glcomo@peertube.uno",
+    "license": "Attribution",
+    "language": "it",
+    "duration_s": 2067,
+    "original_published_at": "2022-11-18T10:12:38.674Z",
+    "description": "Self-hosting git, ovvero come non dipendere da github, gitlab e altri big per pubblicare il proprio codice. - [gitolite](http://github.com/sitaramc/gitolite) - [cgit](https://git.zx2c4.com/cgit/) - [linkopedia](https://linkopedia.gl-como.it/) (che a sua volta è tenuta in un repo git, [visibile via cgit](https://git.trueelena.org/bookmarks/gl-como/about/))",
+    "tags": [
+      "cgit",
+      "git",
+      "gitolite",
+      "self-host",
+      "ssh"
+    ],
+    "category": "Science & Technology",
+    "views": 44
+  },
+  "discovery": {
+    "query": "self hosting",
+    "collection_hint": "build-your-own-future",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:33Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:55:12Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:09:22Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:33Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"self hosting\""
+    },
+    {
+      "at": "2026-10-20T01:55:13Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

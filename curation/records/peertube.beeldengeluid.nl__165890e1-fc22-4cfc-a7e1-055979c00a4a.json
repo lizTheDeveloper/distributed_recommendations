@@ -1,0 +1,86 @@
+{
+  "id": "peertube.beeldengeluid.nl__165890e1-fc22-4cfc-a7e1-055979c00a4a",
+  "source": {
+    "video_url": "https://peertube.beeldengeluid.nl/videos/watch/165890e1-fc22-4cfc-a7e1-055979c00a4a",
+    "video_uuid": "165890e1-fc22-4cfc-a7e1-055979c00a4a",
+    "channel_actor_uri": "https://peertube.beeldengeluid.nl/video-channels/themindoftheuniverse",
+    "instance_host": "peertube.beeldengeluid.nl",
+    "title": "Charles Spence: extra footage 1",
+    "creator_display_name": "The Mind of the Universe",
+    "channel_handle": "themindoftheuniverse@peertube.beeldengeluid.nl",
+    "license": "Attribution - Share Alike",
+    "language": "en",
+    "duration_s": 903,
+    "original_published_at": "2016-06-26T00:00:00.000Z",
+    "description": "Charles Spence on his way to his laboratory, and discussing work with his student Alejandro Salgado Montejo VPRO",
+    "tags": [
+      "experiments",
+      "Food technology",
+      "psychology",
+      "Sensory systems",
+      "University laboratories"
+    ],
+    "category": "Science & Technology",
+    "views": 0
+  },
+  "discovery": {
+    "query": "technology labor",
+    "collection_hint": "the-machine-is-political",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:29Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:54:26Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:08:36Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:29Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"technology labor\""
+    },
+    {
+      "at": "2026-10-20T01:54:28Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

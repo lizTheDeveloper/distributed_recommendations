@@ -1,0 +1,96 @@
+{
+  "id": "diler.tube__288812b6-f0a4-4411-8684-525e4a6df2b5",
+  "source": {
+    "video_url": "https://diler.tube/videos/watch/288812b6-f0a4-4411-8684-525e4a6df2b5",
+    "video_uuid": "288812b6-f0a4-4411-8684-525e4a6df2b5",
+    "channel_actor_uri": "https://diler.tube/video-channels/divers",
+    "instance_host": "diler.tube",
+    "title": "The Housing First approach to homelessness ｜ Lloyd Pendleton｜TED",
+    "creator_display_name": "Random Knowledge",
+    "channel_handle": "divers@diler.tube",
+    "license": "CC BY-NC-ND 4.0",
+    "language": "en",
+    "duration_s": 826,
+    "original_published_at": "2017-12-05T16:00:00.000Z",
+    "description": "What do you think would happen if you invited an individual with mental health issues who had been homeless for many years to move directly from the street into housing? Loyd Pendleton shares how he went from skeptic to believer in the Housing First approach to homelessness -- providing the displaced with short-term assistance to find permanent housing quickly and without conditions -- and how it led to a 91 percent reduction in chronic homelessness over a ten-year period in Utah. Author: TED",
+    "tags": [
+      "Homelessness",
+      "Lloyd Pendleton",
+      "Mental Health",
+      "TED",
+      "Utah"
+    ],
+    "category": "EN - Economics",
+    "views": 0
+  },
+  "discovery": {
+    "query": "housing first",
+    "collection_hint": "reclaim-the-city",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:39Z"
+  },
+  "editorial": {
+    "status": "rejected",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": "claude-opus-5-5 (AI proposal)",
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": "re-upload of another publisher's video (TED / Royal Society); prefer the original publisher",
+    "proposed_at": "2026-10-20T02:03:42Z"
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:53:22Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": true,
+    "caption_languages": [
+      "en"
+    ],
+    "last_checked_at": "2026-10-20T02:07:04Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:39Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"housing first\""
+    },
+    {
+      "at": "2026-10-20T01:53:24Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    },
+    {
+      "at": "2026-10-20T02:03:42Z",
+      "from": "verified",
+      "to": "rejected",
+      "by": "claude-opus-5-5 (AI proposal)",
+      "note": "re-upload of another publisher's video (TED / Royal Society); prefer the original publisher"
+    }
+  ]
+}

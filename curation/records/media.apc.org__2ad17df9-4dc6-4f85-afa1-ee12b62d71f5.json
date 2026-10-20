@@ -1,0 +1,83 @@
+{
+  "id": "media.apc.org__2ad17df9-4dc6-4f85-afa1-ee12b62d71f5",
+  "source": {
+    "video_url": "https://media.apc.org/videos/watch/2ad17df9-4dc6-4f85-afa1-ee12b62d71f5",
+    "video_uuid": "2ad17df9-4dc6-4f85-afa1-ee12b62d71f5",
+    "channel_actor_uri": "https://media.apc.org/video-channels/apc",
+    "instance_host": "media.apc.org",
+    "title": "UN's Global Dialogue on AI Governance 2026: Remarks from APC's Global Programme Director, Raman Jit Singh Chima",
+    "creator_display_name": "APC",
+    "channel_handle": "apc@media.apc.org",
+    "license": "Attribution - Share Alike",
+    "language": null,
+    "duration_s": 401,
+    "original_published_at": "2026-07-07T17:13:57.703Z",
+    "description": "On 7 July 2026, as part of the Global Dialogue on AI Governance, APC's Global Programme Director Raman Jit Singh Chima spoke at the multi-stakeholder plenary meeting with a high-level governmental segment: Dialogue of Dialogues - Reflections, Complementarities and the Way Forward.",
+    "tags": [
+      "internet governance",
+      "wsis"
+    ],
+    "category": "Internet governance",
+    "views": 48
+  },
+  "discovery": {
+    "query": "AI governance",
+    "collection_hint": "the-machine-is-political",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:27Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:54:08Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:08:20Z",
+    "identity_evidence": "apc.org homepage has no link to media.apc.org",
+    "publisher": "APC (claimed)"
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:27Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"AI governance\""
+    },
+    {
+      "at": "2026-10-20T01:54:08Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

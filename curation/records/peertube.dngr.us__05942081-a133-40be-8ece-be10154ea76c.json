@@ -1,0 +1,84 @@
+{
+  "id": "peertube.dngr.us__05942081-a133-40be-8ece-be10154ea76c",
+  "source": {
+    "video_url": "https://peertube.dngr.us/videos/watch/05942081-a133-40be-8ece-be10154ea76c",
+    "video_uuid": "05942081-a133-40be-8ece-be10154ea76c",
+    "channel_actor_uri": "https://peertube.dngr.us/video-channels/how_to",
+    "instance_host": "peertube.dngr.us",
+    "title": "DIY Solar Powered Balloons",
+    "creator_display_name": "How To",
+    "channel_handle": "how_to@peertube.dngr.us",
+    "license": "All Rights Reserved",
+    "language": "en",
+    "duration_s": 1106,
+    "original_published_at": "2024-02-15T00:00:00.000Z",
+    "description": "Thanks to Anker for sponsoring this video!🔋 Click HERE to secure your power solution and take the first step towards uninterrupted power supply: https://ankerfast.club/ALOvFP In this video I learn how to make a giant version of my favorite science toy, and also learn a little bit about solar weather balloons. Thanks to WKPS 1 and Danny Bowman of Bovine Aerospace for allowing the use of their footage. WKPS 1: https://www.youtube.com/@WKPS Danny Bowman: https://www.youtube.com/@DannyBowmanBovineAerospace https://bovineaerospace.wordpress.com/ Below are links to the various items used in this project. These are affiliate links (I may be compensated if you make a purchase): Ebay affiliate links: 0.31 mil painter's plastic: https://ebay.us/imelbV Glue Tape: https://ebay.us/d7ZcZv Pine Fatwood: https://ebay.us/NHYXu2 2 Gallon Bucket: https://ebay.us/dmVJe1 Flying Solar Balloon Pre-Made Toy: https://ebay.us/hi9IrS Amazon affiliate page with all items: https://www.amazon.com/shop/nighthawkinlight/list/315G94VQMJ7JX?ref_=aipsflist_aipsfnighthawkinlight Thank you so much to those of you who support this channel on Patreon! Your support helps give me confidence to spend my time researching projects that are of value for more than just video views. A special thank you to my top patrons: Aik193, Chris, Damián Arrillaga, Daniel Moore, Eugene Pakhomov, Evan Hughes, Evan Relf, Gusbear, Jedediah Kivi, Jonathan Wilt, Josh Hoppes, Mark Roth, Matthew, Matthias S., Michel Pastor, Nick Gerner, P…",
+    "tags": [
+      "DIY",
+      "Preparedness",
+      "yt:0QL_Ijxs9fk"
+    ],
+    "category": "Education",
+    "views": 1
+  },
+  "discovery": {
+    "query": "solar DIY",
+    "collection_hint": "strange-machines",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:48Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:54:31Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:08:41Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:48Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"solar DIY\""
+    },
+    {
+      "at": "2026-10-20T01:54:31Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

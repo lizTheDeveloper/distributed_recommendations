@@ -1,0 +1,67 @@
+{
+  "id": "tube.loping.net__b18aa65d-5dc7-405d-b5f1-709b6df38ad2",
+  "source": {
+    "video_url": "https://tube.loping.net/videos/watch/b18aa65d-5dc7-405d-b5f1-709b6df38ad2",
+    "video_uuid": "b18aa65d-5dc7-405d-b5f1-709b6df38ad2",
+    "channel_actor_uri": null,
+    "instance_host": "tube.loping.net",
+    "title": "First test run of 1000W Osram Xenon short arc lamp XBO",
+    "creator_display_name": "Applied Science",
+    "channel_handle": "applied_science@tube.loping.net",
+    "license": null,
+    "language": "en",
+    "duration_s": 253,
+    "original_published_at": "2010-04-02T00:00:00.000Z"
+  },
+  "discovery": {
+    "query": "housing first",
+    "collection_hint": "reclaim-the-city",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:39Z"
+  },
+  "editorial": {
+    "status": "discovered",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": false,
+    "identity_status": "unverified",
+    "verified_at": null,
+    "verification_method": null,
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:10:17Z"
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:39Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"housing first\""
+    }
+  ]
+}

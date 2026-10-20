@@ -1,0 +1,117 @@
+{
+  "id": "framatube.org__1b7027e5-6e45-4876-9833-4778de60b44f",
+  "source": {
+    "video_url": "https://framatube.org/videos/watch/1b7027e5-6e45-4876-9833-4778de60b44f",
+    "video_uuid": "1b7027e5-6e45-4876-9833-4778de60b44f",
+    "channel_actor_uri": "https://framatube.org/video-channels/fsf_channel",
+    "instance_host": "framatube.org",
+    "title": "Right to Repair",
+    "creator_display_name": "Free Software Foundation channel",
+    "channel_handle": "fsf_channel@framatube.org",
+    "license": "Attribution - Share Alike",
+    "language": "-en",
+    "duration_s": 2750,
+    "original_published_at": "2021-05-06T03:06:19.722Z",
+    "description": "LibrePlanet 2021 videos and the DMCANathan Proctor [slides](https://media.libreplanet.org/u/libreplanet/m/right-to-repair-and-the-dmca-slides/)",
+    "tags": [
+      "conference",
+      "free software",
+      "fsf",
+      "libreplanet",
+      "libreplanet2021"
+    ],
+    "category": "Science & Technology",
+    "views": 78
+  },
+  "discovery": {
+    "query": "right to repair",
+    "collection_hint": "strange-machines",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:49Z"
+  },
+  "editorial": {
+    "status": "reviewed",
+    "primary_collection": "strange-machines",
+    "secondary_collections": [
+      "the-machine-is-political"
+    ],
+    "difficulty": "beginner",
+    "format": "lecture",
+    "learning_intents": [
+      "understand",
+      "repair",
+      "organize"
+    ],
+    "evidence_class": "practitioner-experience",
+    "tags": [
+      "right-to-repair",
+      "dmca"
+    ],
+    "why_selected": "Nathan Proctor of the US PIRG on the right-to-repair fight and how copyright law (the DMCA) gets used to stop you fixing your own things.",
+    "learning_outcomes": [
+      "How the DMCA restricts repair",
+      "Where right-to-repair laws stand"
+    ],
+    "try_next": "Find out whether your state or country has passed a right-to-repair law.",
+    "context_note": "LibrePlanet 2021; legal status has changed since. Check current laws.",
+    "ratings": {
+      "usefulness": 4,
+      "rigor": 4,
+      "mission": 5,
+      "distinctiveness": 3,
+      "accessibility": 4,
+      "currency": 3
+    },
+    "score": 80,
+    "judgment_basis": "metadata only (title, description, channel, caption list); not watched — substantive judgments unverified",
+    "proposed_by": "claude-opus-5-5 (AI proposal)",
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null,
+    "shelves": [],
+    "band": "feature-candidate",
+    "proposed_at": "2026-10-20T02:03:42Z"
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:53:36Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": true,
+    "caption_languages": [
+      "en"
+    ],
+    "last_checked_at": "2026-10-20T02:07:20Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:49Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"right to repair\""
+    },
+    {
+      "at": "2026-10-20T01:53:37Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    },
+    {
+      "at": "2026-10-20T02:03:42Z",
+      "from": "verified",
+      "to": "reviewed",
+      "by": "claude-opus-5-5 (AI proposal)",
+      "note": "proposed score 80"
+    }
+  ]
+}

@@ -1,0 +1,86 @@
+{
+  "id": "diler.tube__90b82b79-baa3-4647-9e51-6a6e623a596b",
+  "source": {
+    "video_url": "https://diler.tube/videos/watch/90b82b79-baa3-4647-9e51-6a6e623a596b",
+    "video_uuid": "90b82b79-baa3-4647-9e51-6a6e623a596b",
+    "channel_actor_uri": "https://diler.tube/video-channels/jessa_channel",
+    "instance_host": "diler.tube",
+    "title": "Robotics： Online Programming - Teach Pendant & Lead-through",
+    "creator_display_name": "Jessa",
+    "channel_handle": "jessa_channel@diler.tube",
+    "license": "CC BY-SA 4.0",
+    "language": "en",
+    "duration_s": 183,
+    "original_published_at": "2025-05-18T12:24:34.109Z",
+    "description": "Online programming occurs when the robot is on-line, or in an operational mode. The two types of programming we will discuss here are teach pendant programming and lead through programming. Author: Engineering Technology Simulation Learning Videos",
+    "tags": [
+      "Online programming",
+      "Robotics",
+      "Technology"
+    ],
+    "category": "EN - Technology",
+    "views": 1
+  },
+  "discovery": {
+    "query": "robotics workshop",
+    "collection_hint": "strange-machines",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:45Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:53:25Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": true,
+    "caption_languages": [
+      "en"
+    ],
+    "last_checked_at": "2026-10-20T02:07:07Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:45Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"robotics workshop\""
+    },
+    {
+      "at": "2026-10-20T01:53:26Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

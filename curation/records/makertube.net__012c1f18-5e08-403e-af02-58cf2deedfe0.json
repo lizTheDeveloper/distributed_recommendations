@@ -1,0 +1,119 @@
+{
+  "id": "makertube.net__012c1f18-5e08-403e-af02-58cf2deedfe0",
+  "source": {
+    "video_url": "https://makertube.net/videos/watch/012c1f18-5e08-403e-af02-58cf2deedfe0",
+    "video_uuid": "012c1f18-5e08-403e-af02-58cf2deedfe0",
+    "channel_actor_uri": "https://makertube.net/video-channels/tkkrlab",
+    "instance_host": "makertube.net",
+    "title": "Hardware Hacking for the absolute beginner - Jilles Groenendijk",
+    "creator_display_name": "TkkrLab",
+    "channel_handle": "tkkrlab@makertube.net",
+    "license": "Public Domain Dedication",
+    "language": "en",
+    "duration_s": 7318,
+    "original_published_at": "2023-11-02T22:26:09.020Z",
+    "description": "In this Hardware Hacking Workshop for the absolute beginner, Jilles will tell you about the challenges of hardware security and teach you how to identify the different components of a device. The different ways you can attack hardware and he will even show you protocols at '0' and '1' level. All in his humorous style and no-nonsense attitude. According to Jilles, € 20 will get you very far and most participants will run to the thrift store to get their hands dirty! At the end of the lecture is a small CTF where you can experience what you have just learned. Buyers guide to get started in hardware hacking : https://github.com/yadox666/The-Hackers-Hardware-Toolkit",
+    "tags": [
+      "electronics",
+      "hacking",
+      "hardware",
+      "jtag",
+      "serial"
+    ],
+    "category": "Education",
+    "views": 35
+  },
+  "discovery": {
+    "query": "hardware hacking",
+    "collection_hint": "hack-the-planet",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:26Z"
+  },
+  "editorial": {
+    "status": "reviewed",
+    "primary_collection": "hack-the-planet",
+    "secondary_collections": [
+      "strange-machines"
+    ],
+    "difficulty": "beginner",
+    "format": "tutorial",
+    "learning_intents": [
+      "understand",
+      "build",
+      "repair"
+    ],
+    "evidence_class": "practitioner-experience",
+    "tags": [
+      "hardware",
+      "hardware-hacking",
+      "workshop"
+    ],
+    "why_selected": "A hackerspace workshop on hardware hacking for absolute beginners: how to open a device, find its debug ports, and learn what's inside.",
+    "learning_outcomes": [
+      "The basic tools and safety steps for opening electronics",
+      "How to find and identify debug interfaces like UART"
+    ],
+    "try_next": "Open an old router or gadget you no longer need and photograph its board; label the chips you can identify.",
+    "context_note": "Long (about two hours); a recorded workshop at TkkrLab.",
+    "ratings": {
+      "usefulness": 5,
+      "rigor": 4,
+      "mission": 4,
+      "distinctiveness": 4,
+      "accessibility": 4,
+      "currency": 4
+    },
+    "score": 85,
+    "judgment_basis": "metadata only (title, description, channel, caption list); not watched — substantive judgments unverified",
+    "proposed_by": "claude-opus-5-5 (AI proposal)",
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null,
+    "shelves": [],
+    "band": "feature-candidate",
+    "proposed_at": "2026-10-20T02:03:42Z"
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:53:51Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": true,
+    "caption_languages": [
+      "en",
+      "nl"
+    ],
+    "last_checked_at": "2026-10-20T02:07:52Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:26Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"hardware hacking\""
+    },
+    {
+      "at": "2026-10-20T01:53:52Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    },
+    {
+      "at": "2026-10-20T02:03:42Z",
+      "from": "verified",
+      "to": "reviewed",
+      "by": "claude-opus-5-5 (AI proposal)",
+      "note": "proposed score 85"
+    }
+  ]
+}

@@ -1,0 +1,110 @@
+{
+  "id": "videos.spacebar.ca__6731b7ab-72b2-446b-9c00-957575912326",
+  "source": {
+    "video_url": "https://videos.spacebar.ca/videos/watch/6731b7ab-72b2-446b-9c00-957575912326",
+    "video_uuid": "6731b7ab-72b2-446b-9c00-957575912326",
+    "channel_actor_uri": "https://videos.spacebar.ca/video-channels/nsec",
+    "instance_host": "videos.spacebar.ca",
+    "title": "NorthSec 2020 – Alyssa Miller – Look! There's a Threat Model in My DevSecOps",
+    "creator_display_name": "NorthSec",
+    "channel_handle": "nsec@videos.spacebar.ca",
+    "license": "Attribution",
+    "language": "en",
+    "duration_s": 2500,
+    "original_published_at": "2021-01-26T05:00:00.000Z",
+    "description": "Threat Modeling is a crucial activity that often gets left out of DevSecOps. This session will present a fast-paced backlog-based approach that doesn’t require tools or slow down development. What if I told you that you can bring threat modeling into a DevSecOps, CI/CD environment and that you can do it without buying another automated tool? When developers and security professionals alike think about threat modeling, all too often they become obsessed with frameworks like STRIDE, DREAD, PASTA, etc. Threat modeling is predominantly viewed as a heavy-weight, time-consuming exercise that is simply not compatible with high-paced development paradigms. As a result, as organizations shift into DevSecOps paradigms, they commonly scratch threat modeling off their Secure SDLC checklist as simply impossible to implement without breaking their DevSecOps model. They lose sight of the core purpose of threat modeling and as a result are unable to tailor an approach that fits their development lifecycle. However, the importance of Threat Modeling cannot be understated. Recent surveys show us how effective Threat Modeling is in developing the culture of shared responsibility for security that is at the very foundation of DevSecOps. In this session, we’ll turn the misconceptions about Threat Modeling upside down. We’ll go back to the core purpose of threat modeling. We’ll discuss what components of threat modeling are most crucial, what questions we should be asking and who should be answer…",
+    "tags": [],
+    "category": "Science & Technology",
+    "views": 1
+  },
+  "discovery": {
+    "query": "threat modeling",
+    "collection_hint": "hack-the-planet",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:22Z"
+  },
+  "editorial": {
+    "status": "reviewed",
+    "primary_collection": "hack-the-planet",
+    "secondary_collections": [
+      "build-your-own-future"
+    ],
+    "difficulty": "intermediate",
+    "format": "lecture",
+    "learning_intents": [
+      "understand",
+      "defend",
+      "build"
+    ],
+    "evidence_class": "practitioner-experience",
+    "tags": [
+      "threat-modeling",
+      "devsecops",
+      "security-conference"
+    ],
+    "why_selected": "A NorthSec talk on fitting threat modeling into fast development cycles, so security questions get asked while the design can still change.",
+    "learning_outcomes": [
+      "A lightweight threat-modeling routine for software teams",
+      "Where threat modeling sits in a DevSecOps pipeline"
+    ],
+    "try_next": "Pick a feature you're building and list its trust boundaries on a single diagram.",
+    "context_note": null,
+    "ratings": {
+      "usefulness": 4,
+      "rigor": 4,
+      "mission": 4,
+      "distinctiveness": 4,
+      "accessibility": 3,
+      "currency": 3
+    },
+    "score": 76,
+    "judgment_basis": "metadata only (title, description, channel, caption list); not watched — substantive judgments unverified",
+    "proposed_by": "claude-opus-5-5 (AI proposal)",
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null,
+    "shelves": [],
+    "band": "collection-candidate",
+    "proposed_at": "2026-10-20T02:03:42Z"
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "official-link-verified",
+    "verified_at": "2026-10-20T01:57:24Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:12:41Z",
+    "identity_evidence": "https://nsec.io/ links to videos.spacebar.ca",
+    "publisher": "NorthSec"
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:22Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"threat modeling\""
+    },
+    {
+      "at": "2026-10-20T01:57:25Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    },
+    {
+      "at": "2026-10-20T02:03:42Z",
+      "from": "verified",
+      "to": "reviewed",
+      "by": "claude-opus-5-5 (AI proposal)",
+      "note": "proposed score 76"
+    }
+  ]
+}

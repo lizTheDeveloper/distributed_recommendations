@@ -1,0 +1,115 @@
+{
+  "id": "video.canadiancivil.com__3e4074e9-6b68-499d-a76f-537342fd2c79",
+  "source": {
+    "video_url": "https://video.canadiancivil.com/videos/watch/3e4074e9-6b68-499d-a76f-537342fd2c79",
+    "video_uuid": "3e4074e9-6b68-499d-a76f-537342fd2c79",
+    "channel_actor_uri": "https://video.canadiancivil.com/video-channels/main_channel",
+    "instance_host": "video.canadiancivil.com",
+    "title": "Your First Montreal Apartment",
+    "creator_display_name": "Videos",
+    "channel_handle": "main_channel@video.canadiancivil.com",
+    "license": "Attribution",
+    "language": "en",
+    "duration_s": 924,
+    "original_published_at": "2019-10-12T00:00:00.000Z",
+    "description": "Renting in Quebec, what can landlords do and what can you do about that rent hike or broken pipe? Can a landlord ask for a deposit at the start, and kick you out at the end? A three part series that deals with the most common situations that arise at the start, middle and end of the renting process: Starting: This Video Maintaining: https://youtu.be/A_YxgBK3oxM Ending: https://youtu.be/EzaJnEFL3tU Lease Transfer Cession de bail et sous-location Montréal (pas de chambre ou de colocation): https://www.facebook.com/groups/1499524676963883/ Logement a louer, Transfer de Bail ou Colocation: https://www.facebook.com/groups/302219440277577 Montreal Lease Transfer - Transfert de bail: https://www.facebook.com/groups/628134657378466 Help Out by sharing on Facebook/Reddit. It helps immensely! Extra Content: https://www.patreon.com/PaigeSaunders Merch: https://www.redbubble.com/people/joymonger https://twitter.com/PaigeMTL https://www.facebook.com/paigemtl https://rumble.com/user/joymonger Translation/Subtitles: https://docs.google.com/document/d/1Hv-kjJVajPmpJZvPBSIPqboEslryMeiiUR-e6gm5H1E/edit?usp=sharing",
+    "tags": [
+      "Housing",
+      "Landlord",
+      "Montreal",
+      "Quebec",
+      "Renting"
+    ],
+    "category": "Education",
+    "views": 7
+  },
+  "discovery": {
+    "query": "housing first",
+    "collection_hint": "reclaim-the-city",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:39Z"
+  },
+  "editorial": {
+    "status": "reviewed",
+    "primary_collection": "reclaim-the-city",
+    "secondary_collections": [],
+    "difficulty": "beginner",
+    "format": "tutorial",
+    "learning_intents": [
+      "understand",
+      "defend",
+      "organize"
+    ],
+    "evidence_class": "practitioner-experience",
+    "tags": [
+      "tenant-rights",
+      "housing"
+    ],
+    "why_selected": "A practical guide to tenant rights for first-time renters in Montreal: rent increases, repairs, and what landlords can and can't do.",
+    "learning_outcomes": [
+      "Tenant rights under Quebec's rental rules",
+      "How to respond to a rent increase or neglected repair"
+    ],
+    "try_next": "Look up your own province's or state's tenant board and save its contact page.",
+    "context_note": "Specific to Quebec law as of 2019; rules elsewhere differ.",
+    "ratings": {
+      "usefulness": 4,
+      "rigor": 4,
+      "mission": 4,
+      "distinctiveness": 4,
+      "accessibility": 5,
+      "currency": 3
+    },
+    "score": 80,
+    "judgment_basis": "metadata only (title, description, channel, caption list); not watched — substantive judgments unverified",
+    "proposed_by": "claude-opus-5-5 (AI proposal)",
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null,
+    "shelves": [],
+    "band": "feature-candidate",
+    "proposed_at": "2026-10-20T02:03:42Z"
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "official-link-verified",
+    "verified_at": "2026-10-20T01:56:34Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": true,
+    "caption_languages": [
+      "en"
+    ],
+    "last_checked_at": "2026-10-20T02:11:56Z",
+    "identity_evidence": "https://canadiancivil.com/ links to video.canadiancivil.com",
+    "publisher": "Canadian Civil"
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:39Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"housing first\""
+    },
+    {
+      "at": "2026-10-20T01:56:35Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    },
+    {
+      "at": "2026-10-20T02:03:42Z",
+      "from": "verified",
+      "to": "reviewed",
+      "by": "claude-opus-5-5 (AI proposal)",
+      "note": "proposed score 80"
+    }
+  ]
+}

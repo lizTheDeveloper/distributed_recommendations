@@ -1,0 +1,88 @@
+{
+  "id": "friprogramvarusyndikatet.tv__53a1d998-6e1d-4f79-ad70-44a9e79bfa8a",
+  "source": {
+    "video_url": "https://friprogramvarusyndikatet.tv/videos/watch/53a1d998-6e1d-4f79-ad70-44a9e79bfa8a",
+    "video_uuid": "53a1d998-6e1d-4f79-ad70-44a9e79bfa8a",
+    "channel_actor_uri": "https://friprogramvarusyndikatet.tv/video-channels/collabora_online_tech_talks",
+    "instance_host": "friprogramvarusyndikatet.tv",
+    "title": "Optimising Autotext for Multi Tenant, by Caolán McNamara",
+    "creator_display_name": "CollaboraOnline Tech Talks",
+    "channel_handle": "collabora_online_tech_talks@friprogramvarusyndikatet.tv",
+    "license": null,
+    "language": "en",
+    "duration_s": 505,
+    "original_published_at": "2025-07-20T22:00:00.000Z",
+    "description": null,
+    "tags": [],
+    "category": "Unknown",
+    "views": 4
+  },
+  "discovery": {
+    "query": "tenant organizing",
+    "collection_hint": "reclaim-the-city",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:39Z"
+  },
+  "editorial": {
+    "status": "rejected",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": "claude-opus-5-5 (AI proposal)",
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": "off-topic: 'tenant' matched multi-tenant software",
+    "proposed_at": "2026-10-20T02:03:42Z"
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:53:39Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:07:39Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:39Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"tenant organizing\""
+    },
+    {
+      "at": "2026-10-20T01:53:40Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    },
+    {
+      "at": "2026-10-20T02:03:42Z",
+      "from": "verified",
+      "to": "rejected",
+      "by": "claude-opus-5-5 (AI proposal)",
+      "note": "off-topic: 'tenant' matched multi-tenant software"
+    }
+  ]
+}

@@ -1,0 +1,83 @@
+{
+  "id": "peertube.debian.social__7a5caee4-5a00-4a63-b244-c36a164baf17",
+  "source": {
+    "video_url": "https://peertube.debian.social/videos/watch/7a5caee4-5a00-4a63-b244-c36a164baf17",
+    "video_uuid": "7a5caee4-5a00-4a63-b244-c36a164baf17",
+    "channel_actor_uri": "https://peertube.debian.social/video-channels/debconf18",
+    "instance_host": "peertube.debian.social",
+    "title": "Open Hardware",
+    "creator_display_name": "DebConf 18",
+    "channel_handle": "debconf18@peertube.debian.social",
+    "license": "Attribution",
+    "language": null,
+    "duration_s": 2574,
+    "original_published_at": "2018-08-01T22:00:00.000Z",
+    "description": "by Rafael Lee At: DebConf18 https://debconf18.debconf.org/talks/169-open-hardware/ The philosophy of free software is well known, but speak to hardware, it is a bit different. We want to talk about open hardware and make people involved. Who is...",
+    "tags": [
+      "debconf",
+      "debian"
+    ],
+    "category": "Science & Technology",
+    "views": 1083
+  },
+  "discovery": {
+    "query": "open hardware",
+    "collection_hint": "build-your-own-future",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:38Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:54:30Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:08:40Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:38Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"open hardware\""
+    },
+    {
+      "at": "2026-10-20T01:54:31Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

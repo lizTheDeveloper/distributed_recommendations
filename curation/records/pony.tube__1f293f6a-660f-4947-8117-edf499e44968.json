@@ -1,0 +1,93 @@
+{
+  "id": "pony.tube__1f293f6a-660f-4947-8117-edf499e44968",
+  "source": {
+    "video_url": "https://pony.tube/videos/watch/1f293f6a-660f-4947-8117-edf499e44968",
+    "video_uuid": "1f293f6a-660f-4947-8117-edf499e44968",
+    "channel_actor_uri": "https://pony.tube/video-channels/pkrg",
+    "instance_host": "pony.tube",
+    "title": "Liam Keel security conference: “no bribes, no false statements, none of that” - January 17th, 2025.",
+    "creator_display_name": "Pony Kingdom Royal Government.",
+    "channel_handle": "pkrg@pony.tube",
+    "license": "Attribution - Share Alike",
+    "language": "en",
+    "duration_s": 76,
+    "original_published_at": "2025-01-17T08:00:00.000Z",
+    "description": "Liam Keel (The King of My Little Pony) comments on the United States supreme court upholding the U.S. TikTok ban talking about the government being “dysfunctional” as well as asking for help to fight corruption in the My Little Pony fandom and stopping “bribes & false statements”. Video recorded on January 17th, 2025. Credit to Liam Keel’s camera person as well (all rights reserved) #liamkeel #kingofmlp #kingofmylittlepony #internetcelebrity #lmoney #politics #conmentary #conference",
+    "tags": [
+      "King of My Little Pony",
+      "Liam Keel",
+      "On Camera",
+      "US Politics"
+    ],
+    "category": "News & Politics",
+    "views": 8
+  },
+  "discovery": {
+    "query": "security conference",
+    "collection_hint": "hack-the-planet",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:25Z"
+  },
+  "editorial": {
+    "status": "rejected",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": "claude-opus-5-5 (AI proposal)",
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": "off-topic: matched 'security conference' by keyword only",
+    "proposed_at": "2026-10-20T02:03:42Z"
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:55:17Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:09:27Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:25Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"security conference\""
+    },
+    {
+      "at": "2026-10-20T01:55:18Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    },
+    {
+      "at": "2026-10-20T02:03:42Z",
+      "from": "verified",
+      "to": "rejected",
+      "by": "claude-opus-5-5 (AI proposal)",
+      "note": "off-topic: matched 'security conference' by keyword only"
+    }
+  ]
+}

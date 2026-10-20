@@ -1,0 +1,75 @@
+{
+  "$comment": "Editorial query packs (docs/CURATION_STRATEGY.md \u00a73). Run against Sepia Search only (search.joinpeertube.org) by scripts/discover.mjs.",
+  "packs": {
+    "hack-the-planet": [
+      "digital self defense",
+      "threat modeling",
+      "privacy workshop",
+      "home network security",
+      "OSINT",
+      "reverse engineering",
+      "security conference",
+      "phishing defense",
+      "hardware hacking",
+      "incident response"
+    ],
+    "the-machine-is-political": [
+      "algorithmic accountability",
+      "AI governance",
+      "surveillance capitalism",
+      "digital rights",
+      "technology labor",
+      "AI safety evaluation",
+      "platform cooperatives",
+      "media literacy",
+      "algorithmic bias",
+      "public interest technology"
+    ],
+    "build-your-own-future": [
+      "self hosting",
+      "local LLM",
+      "open source AI",
+      "ActivityPub",
+      "Fediverse",
+      "Linux tutorial",
+      "home server",
+      "community mesh network",
+      "open hardware",
+      "AI agents"
+    ],
+    "reclaim-the-city": [
+      "housing first",
+      "tenant organizing",
+      "community broadband",
+      "cooperative housing",
+      "urban planning",
+      "climate resilience",
+      "mutual aid",
+      "community science",
+      "right to the city"
+    ],
+    "strange-machines": [
+      "ESP32",
+      "robotics workshop",
+      "3D printing",
+      "repair cafe",
+      "hardware teardown",
+      "BLE reverse engineering",
+      "solar DIY",
+      "microcontrollers",
+      "creative electronics",
+      "right to repair"
+    ],
+    "the-weird-internet": [
+      "interactive fiction",
+      "creative coding",
+      "demoscene",
+      "indie game development",
+      "generative art",
+      "digital folklore",
+      "procedural narrative",
+      "experimental animation",
+      "net art"
+    ]
+  }
+}

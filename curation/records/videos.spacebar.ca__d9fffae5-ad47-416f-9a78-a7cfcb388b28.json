@@ -1,0 +1,84 @@
+{
+  "id": "videos.spacebar.ca__d9fffae5-ad47-416f-9a78-a7cfcb388b28",
+  "source": {
+    "video_url": "https://videos.spacebar.ca/videos/watch/d9fffae5-ad47-416f-9a78-a7cfcb388b28",
+    "video_uuid": "d9fffae5-ad47-416f-9a78-a7cfcb388b28",
+    "channel_actor_uri": "https://videos.spacebar.ca/video-channels/nsec",
+    "instance_host": "videos.spacebar.ca",
+    "title": "NorthSec 2015 - Robert Wood - Threat Modeling for the Gaming Industry",
+    "creator_display_name": "NorthSec",
+    "channel_handle": "nsec@videos.spacebar.ca",
+    "license": "Attribution",
+    "language": "en",
+    "duration_s": 2493,
+    "original_published_at": "2015-06-09T04:00:00.000Z",
+    "description": "This talk will help you understand how issues around client-side logic, proprietary network protocols, user account management, and playing on an untrusted platform can impact the overall security and user’s experience.",
+    "tags": [
+      "gaming",
+      "networking",
+      "threat modeling"
+    ],
+    "category": "Science & Technology",
+    "views": 1
+  },
+  "discovery": {
+    "query": "threat modeling",
+    "collection_hint": "hack-the-planet",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:22Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "official-link-verified",
+    "verified_at": "2026-10-20T01:57:25Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:12:42Z",
+    "identity_evidence": "https://nsec.io/ links to videos.spacebar.ca",
+    "publisher": "NorthSec"
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:22Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"threat modeling\""
+    },
+    {
+      "at": "2026-10-20T01:57:25Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

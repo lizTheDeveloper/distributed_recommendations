@@ -1,0 +1,82 @@
+{
+  "id": "video.rhizome.org__1f3a7ef3-abdf-4b30-8592-bb83cf1f9e3c",
+  "source": {
+    "video_url": "https://video.rhizome.org/videos/watch/1f3a7ef3-abdf-4b30-8592-bb83cf1f9e3c",
+    "video_uuid": "1f3a7ef3-abdf-4b30-8592-bb83cf1f9e3c",
+    "channel_actor_uri": "https://video.rhizome.org/video-channels/events",
+    "instance_host": "video.rhizome.org",
+    "title": "Constant Dullaart, 2015 Prix Net Art Winner, Explains 3 Key Works",
+    "creator_display_name": "Events",
+    "channel_handle": "events@video.rhizome.org",
+    "license": null,
+    "language": "en",
+    "duration_s": 327,
+    "original_published_at": "2015-11-16T00:00:00.000Z",
+    "description": "2015 Prix Net Art Awardee Constant Dullaart discusses \"DullTech,\" \"Jennifer in Paridise,\" and his DVD performances. Video by New Rules (newrules.tv).",
+    "tags": [
+      "Net Art"
+    ],
+    "category": "Art",
+    "views": 1
+  },
+  "discovery": {
+    "query": "net art",
+    "collection_hint": "the-weird-internet",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:55Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:57:11Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:12:30Z",
+    "identity_evidence": "rhizome.org homepage has no link to video.rhizome.org",
+    "publisher": "Rhizome (claimed)"
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:55Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"net art\""
+    },
+    {
+      "at": "2026-10-20T01:57:11Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

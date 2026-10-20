@@ -1,0 +1,88 @@
+{
+  "id": "makertube.net__566bde2e-e1a6-4e7e-9265-88bdf4c893f5",
+  "source": {
+    "video_url": "https://makertube.net/videos/watch/566bde2e-e1a6-4e7e-9265-88bdf4c893f5",
+    "video_uuid": "566bde2e-e1a6-4e7e-9265-88bdf4c893f5",
+    "channel_actor_uri": "https://makertube.net/video-channels/lsw",
+    "instance_host": "makertube.net",
+    "title": "I compared 3 modern ZX spectrum boards with PI Zero, PI PIco and ESP32 chips.",
+    "creator_display_name": "lee smiths workshop",
+    "channel_handle": "lsw@makertube.net",
+    "license": null,
+    "language": "en",
+    "duration_s": 1796,
+    "original_published_at": "2024-02-17T00:00:00.000Z",
+    "description": "In this video I am looking at three new modern boards that emulate the ZX Spectrum computers and can be installed into the OG cases for that proper retro experience. I compare the functions of each one especially file system access, menu and joystick use. Mechtrums are on sale again https://leesmithsworkshop.co.uk/products/the-mechtrum-mechanical-keyboard-zx-spectrum-case ZXZERO https://zxrenew.co.uk/Hermit-Retro-c72555098 https://www.hermitretro.com/ Espectrum https://antoniovillena.com/product/espectrum/ https://zxespectrum.speccy.org/ Pico based Spectrums https://github.com/fruit-bat/pico-zxspectrum https://www.ebay.co.uk/usr/carpresto101 Ringo https://retrosouls.itch.io/ringo 00:00 Intro 01:32 ZXZERO board with PI Zero 08:51 ESPECTRUM board with ESP32 18:27 PICOZXPI with a PI PICO 27:49 win nothing at all for staying to the end.",
+    "tags": [
+      "esp32",
+      "raspberry pi",
+      "retro computing",
+      "retro gaming",
+      "zx spectrum"
+    ],
+    "category": "Science & Technology",
+    "views": 78
+  },
+  "discovery": {
+    "query": "ESP32",
+    "collection_hint": "strange-machines",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:44Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:53:58Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": true,
+    "caption_languages": [
+      "en"
+    ],
+    "last_checked_at": "2026-10-20T02:07:59Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:44Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"ESP32\""
+    },
+    {
+      "at": "2026-10-20T01:53:58Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

@@ -1,0 +1,80 @@
+{
+  "id": "pt.opensourceisawesome.com__68fa0818-5ebc-4f38-a548-25b25ff34027",
+  "source": {
+    "video_url": "https://pt.opensourceisawesome.com/videos/watch/68fa0818-5ebc-4f38-a548-25b25ff34027",
+    "video_uuid": "68fa0818-5ebc-4f38-a548-25b25ff34027",
+    "channel_actor_uri": "https://pt.opensourceisawesome.com/video-channels/root_channel",
+    "instance_host": "pt.opensourceisawesome.com",
+    "title": "Open Source - AI - and You",
+    "creator_display_name": "Awesome Open Source",
+    "channel_handle": "root_channel@pt.opensourceisawesome.com",
+    "license": "Free of known copyright restrictions",
+    "language": "en",
+    "duration_s": 998,
+    "original_published_at": "2026-08-20T00:27:17.384Z",
+    "description": "=== Links === Forgejo site https://forge.routemehome.org/bmcgonag OpenCode https://opencode.ai/ Paul Hibbert - Home Assistant with OpenCode https://youtu.be/e-FZ4ZjGI5E?si=LjNy6ziRPE31T5L- Get the AwesomeOpenSource Merchandise https://osia.printify.me Support my Channel and ongoing efforts through Patreon: https://patreon.com/awesomeopensource Buy Me a Coffee or Beer https://paypal.me/BrianMcGonagill?country.x=US&locale.x=en_US === Get My Novel === Entanglement - by Brian McGonagill Dave is just a normal guy with a normal job that he doesn't like that much. That is, until he meets Leo, and gets the job he never imagined. Action, adventure, betrayal, love, loss, and some serious weirdness happen throughout this science fiction thrill-ride. --- eBook on Amazon by Country --- US - United States - https://www.amazon.com/dp/B0DZJ5PMHG UK - United Kingdom - https://www.amazon.co.uk/dp/B0DZJ5PMHG DE - Germany - https://www.amazon.de/dp/B0DZJ5PMHG FR - France - https://www.amazon.fr/dp/B0DZJ5PMHG ES - Spain - https://www.amazon.es/dp/B0DZJ5PMHG IT - Italy - https://www.amazon.it/dp/B0DZJ5PMHG NL - Netherlands - https://www.amazon.nl/dp/B0DZJ5PMHG JP - Japan - https://www.amazon.co.jp/dp/B0DZJ5PMHG BR - Brazil - https://www.amazon.com.br/dp/B0DZJ5PMHG CA - Canada - https://www.amazon.ca/dp/B0DZJ5PMHG MX - Mexico - https://www.amazon.com.mx/dp/B0DZJ5PMHG AU - Australia - https://www.amazon.com.au/dp/B0DZJ5PMHG IN - India - https://www.amazon.in/dp/B0DZJ5PMHG --- Paperback by Country -…",
+    "tags": [],
+    "category": "Science & Technology",
+    "views": 9
+  },
+  "discovery": {
+    "query": "open source AI",
+    "collection_hint": "build-your-own-future",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:34Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:55:18Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:09:27Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:34Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"open source AI\""
+    },
+    {
+      "at": "2026-10-20T01:55:19Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

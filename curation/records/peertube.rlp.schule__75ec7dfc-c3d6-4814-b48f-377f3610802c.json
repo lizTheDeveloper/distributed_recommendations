@@ -1,0 +1,86 @@
+{
+  "id": "peertube.rlp.schule__75ec7dfc-c3d6-4814-b48f-377f3610802c",
+  "source": {
+    "video_url": "https://peertube.rlp.schule/videos/watch/75ec7dfc-c3d6-4814-b48f-377f3610802c",
+    "video_uuid": "75ec7dfc-c3d6-4814-b48f-377f3610802c",
+    "channel_actor_uri": "https://peertube.rlp.schule/video-channels/freie_gesellschaft",
+    "instance_host": "peertube.rlp.schule",
+    "title": "Decolonising Digital Rights with EDRi and DFF",
+    "creator_display_name": "Freie Gesellschaft",
+    "channel_handle": "freie_gesellschaft@peertube.rlp.schule",
+    "license": null,
+    "language": "en",
+    "duration_s": 124,
+    "original_published_at": "2021-02-08T23:00:00.000Z",
+    "description": "The Digital Freedom Fund and its partner European Digital Rights (EDRi) are in the initial phases of a new initiative to begin a decolonising process for the digital rights field. This video explains what that means. Read more: https://digitalfreedomfund.org/decolonising/ https://edri.org/our-work/decolonising-digital-rights-field/ Full text: Digital technologies offer us incredible opportunities, but it’s easy to miss the major risks and harms they perpetuate, including their tendency to amplify discrimination and inequality. This is fundamental to our work as European Digital Rights (EDRi). Along with many others in our movement, we believe that big changes need to be made in the field of digital rights to understand these harms and build necessary alternative futures. When looking at the digital rights field in Europe, it is clear that many groups – including people of colour, migrants, disabled people, queer and trans communities, and working class people – are simply not in the room. We think that this undeniably impacts our capacity to defend the digital rights of everybody in our societies. So, last year, in partnership with the Digital Freedom Fund we started a decolonizing process for the European digital rights field. What does this mean? Well, this past year, we spoke to more than 50 different people from digital rights organisations and social justice movements across Europe about what a decolonised field could look like. Should look like. And how we might get th…",
+    "tags": [
+      "decolonisation",
+      "decolonise",
+      "decolonising",
+      "decolonize",
+      "digital rights"
+    ],
+    "category": "Activism",
+    "views": 3
+  },
+  "discovery": {
+    "query": "digital rights",
+    "collection_hint": "the-machine-is-political",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:29Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:55:06Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:09:16Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:29Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"digital rights\""
+    },
+    {
+      "at": "2026-10-20T01:55:07Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

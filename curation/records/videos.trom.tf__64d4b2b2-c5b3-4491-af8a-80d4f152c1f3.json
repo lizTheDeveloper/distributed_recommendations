@@ -1,0 +1,113 @@
+{
+  "id": "videos.trom.tf__64d4b2b2-c5b3-4491-af8a-80d4f152c1f3",
+  "source": {
+    "video_url": "https://videos.trom.tf/videos/watch/64d4b2b2-c5b3-4491-af8a-80d4f152c1f3",
+    "video_uuid": "64d4b2b2-c5b3-4491-af8a-80d4f152c1f3",
+    "channel_actor_uri": "https://videos.trom.tf/video-channels/hsbxl",
+    "instance_host": "videos.trom.tf",
+    "title": "Software freedom day @hsbxl - Free software in robotics: build your own autonomous systems (Arne Baeyens)",
+    "creator_display_name": "Hackerspace Brussels",
+    "channel_handle": "hsbxl@videos.trom.tf",
+    "license": "Attribution - Share Alike",
+    "language": "en",
+    "duration_s": 3307,
+    "original_published_at": "2025-09-24T21:13:41.066Z",
+    "description": "Talk given during [Software Freedom Day 2025 at Hackerspace Brussels](https://hsbxl.be/events/software-freedom-day/2025-09-20/). * Speaker: Arne Baeyens * Format: Presentation * Language: English Robotics software has progressed by leaps and bounds over the past years and now is an excellent time to build your own intelligent physical systems, from autonomous lawnmowers to aerial vehicles. In this talk, Arne introduces relevant robotics concepts and discusses several robotics free software projects, covering topics such as intra- and inter-robot communication, control and behavior, simulation as well as development tooling. By the end of this talk, you will have a good idea what software to use in your FOSS-based robotics projects.",
+    "tags": [
+      "robotics",
+      "sfd2025",
+      "softwarefreedomday"
+    ],
+    "category": "Science & Technology",
+    "views": 13
+  },
+  "discovery": {
+    "query": "robotics workshop",
+    "collection_hint": "strange-machines",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:45Z"
+  },
+  "editorial": {
+    "status": "reviewed",
+    "primary_collection": "strange-machines",
+    "secondary_collections": [
+      "build-your-own-future"
+    ],
+    "difficulty": "intermediate",
+    "format": "lecture",
+    "learning_intents": [
+      "build",
+      "understand"
+    ],
+    "evidence_class": "practitioner-experience",
+    "tags": [
+      "robotics",
+      "free-software",
+      "ros"
+    ],
+    "why_selected": "A Hackerspace Brussels talk on using free software to build your own autonomous robots.",
+    "learning_outcomes": [
+      "Which free-software tools robotics builders use",
+      "How to start an autonomous robot project"
+    ],
+    "try_next": "Install ROS 2 in a container and run the turtlesim demo.",
+    "context_note": null,
+    "ratings": {
+      "usefulness": 4,
+      "rigor": 3,
+      "mission": 4,
+      "distinctiveness": 4,
+      "accessibility": 3,
+      "currency": 5
+    },
+    "score": 75,
+    "judgment_basis": "metadata only (title, description, channel, caption list); not watched — substantive judgments unverified",
+    "proposed_by": "claude-opus-5-5 (AI proposal)",
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null,
+    "shelves": [],
+    "band": "collection-candidate",
+    "proposed_at": "2026-10-20T02:03:42Z"
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:57:26Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:12:43Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:45Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"robotics workshop\""
+    },
+    {
+      "at": "2026-10-20T01:57:27Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    },
+    {
+      "at": "2026-10-20T02:03:42Z",
+      "from": "verified",
+      "to": "reviewed",
+      "by": "claude-opus-5-5 (AI proposal)",
+      "note": "proposed score 75"
+    }
+  ]
+}

@@ -1,0 +1,108 @@
+{
+  "id": "videos.lescommuns.org__2421852f-0337-4488-abdb-b762f7d89399",
+  "source": {
+    "video_url": "https://videos.lescommuns.org/videos/watch/2421852f-0337-4488-abdb-b762f7d89399",
+    "video_uuid": "2421852f-0337-4488-abdb-b762f7d89399",
+    "channel_actor_uri": "https://videos.lescommuns.org/video-channels/openfisca_asso",
+    "instance_host": "videos.lescommuns.org",
+    "title": "A discussion about digital governance frameworks — AI and Society Seminar Series at University of Wellington",
+    "creator_display_name": "OpenFisca Association",
+    "channel_handle": "openfisca_asso@videos.lescommuns.org",
+    "license": "Attribution - Non Commercial - Share Alike",
+    "language": "en",
+    "duration_s": 4643,
+    "original_published_at": "2026-03-20T19:03:49.000Z",
+    "description": "A [seminar](https://ecs.wgtn.ac.nz/Groups/AI_and_Society/AI_and_Society_Seminars) at Te Kura Mātai Pūkaha, Pūrorohiko (School of Engineering and Computer Science) of Wellington, organised by professor Ali Knott. Originally published on the [Wellington University website](https://vstream.au.panopto.com/Panopto/Pages/Viewer.aspx?id=c021fed5-7bd8-456b-aaab-b41300612e06&start=0) alongside notes. In this talk, Matti presents a digital governance initiative he's working on. OpenFisca is a Rules as Code system used around the world to model tax and benefit systems. The OpenFisca Association was established to govern the way OpenFisca as an open source project is maintained, used, funded and developed over time. This project has been recognised internationally, including as digital public infrastructure, digital public good, and digital common. We also discuss how digital governance frameworks could be applied to sovereign AI projects, and other digital infrastructure.",
+    "tags": [],
+    "category": "Science & Technology",
+    "views": 7
+  },
+  "discovery": {
+    "query": "AI governance",
+    "collection_hint": "the-machine-is-political",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:27Z"
+  },
+  "editorial": {
+    "status": "reviewed",
+    "primary_collection": "the-machine-is-political",
+    "secondary_collections": [],
+    "difficulty": "advanced",
+    "format": "lecture",
+    "learning_intents": [
+      "understand",
+      "critique"
+    ],
+    "evidence_class": "research-backed",
+    "tags": [
+      "ai-governance",
+      "rules-as-code"
+    ],
+    "why_selected": "A university seminar on digital governance frameworks for AI, from the team behind OpenFisca, the open-source rules-as-code engine.",
+    "learning_outcomes": [
+      "How laws get translated into code, and what's lost",
+      "Governance frameworks for algorithmic public services"
+    ],
+    "try_next": "Look at OpenFisca's public rules for one benefit and compare them with the law's wording.",
+    "context_note": null,
+    "ratings": {
+      "usefulness": 3,
+      "rigor": 4,
+      "mission": 4,
+      "distinctiveness": 4,
+      "accessibility": 4,
+      "currency": 5
+    },
+    "score": 77,
+    "judgment_basis": "metadata only (title, description, channel, caption list); not watched — substantive judgments unverified",
+    "proposed_by": "claude-opus-5-5 (AI proposal)",
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null,
+    "shelves": [],
+    "band": "collection-candidate",
+    "proposed_at": "2026-10-20T02:03:42Z"
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:57:19Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": true,
+    "caption_languages": [
+      "en"
+    ],
+    "last_checked_at": "2026-10-20T02:12:37Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:27Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"AI governance\""
+    },
+    {
+      "at": "2026-10-20T01:57:21Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    },
+    {
+      "at": "2026-10-20T02:03:42Z",
+      "from": "verified",
+      "to": "reviewed",
+      "by": "claude-opus-5-5 (AI proposal)",
+      "note": "proposed score 77"
+    }
+  ]
+}

@@ -1,0 +1,80 @@
+{
+  "id": "video.infosec.exchange__85013a0e-603b-4ed7-b21f-b267acfec049",
+  "source": {
+    "video_url": "https://video.infosec.exchange/videos/watch/85013a0e-603b-4ed7-b21f-b267acfec049",
+    "video_uuid": "85013a0e-603b-4ed7-b21f-b267acfec049",
+    "channel_actor_uri": "https://video.infosec.exchange/video-channels/bsides_vancouver_island",
+    "instance_host": "video.infosec.exchange",
+    "title": "Interview with John-Luke Peck: Incident Response Autopsies and Today's Threats How You Can Prepare!",
+    "creator_display_name": "BSides Vancouver Island",
+    "channel_handle": "bsides_vancouver_island@video.infosec.exchange",
+    "license": "Attribution - Non Commercial - Share Alike",
+    "language": "en",
+    "duration_s": 263,
+    "original_published_at": "2025-09-15T08:00:42.622Z",
+    "description": "🎤 Cybersecurity, Coffee, and Community—Welcome to B-Sides Vancouver Island 2025! ☕🔐 Get ready for an unforgettable day of learning, laughs, and leveling up your security game at the B-Sides Vancouver Island Security Conference, happening October 3rd at the Victoria Conference Centre in beautiful Victoria, BC. In this video, join Steve Pellerin, volunteer director at large, as he chats with John-Luke Peck, an incident response specialist from Seattle, WA. They dive into the real-world challenges of ransomware, the gaps in incident response planning, and what teams can do today to prepare for tomorrow’s threats. Plus, a few bloopers and laughs along the way—because cybersecurity doesn’t have to be boring. 🎟️ Tickets are on sale now at bsidesvi.com 👥 Whether you're a seasoned pro or just \"security curious\" (yes, we said it), you're welcome here. 📣 Join the conversation using #BSidesVI and follow us across all socials. 🔥 Why You Should Attend: Hear from top-tier speakers like John-Luke Peck Learn how to prepare for ransomware and other emerging threats Connect with a passionate, grassroots cybersecurity community Walk away with actionable insights to protect your organization 💬 “When our security technologies become the point of vulnerability, this becomes everybody’s problem.” – John-Luke Peck 🎧 Watch now, laugh a little, learn a lot—and we’ll see you on October 3rd in Victoria! #Cybersecurity #BSidesVI #IncidentResponse #Ransomware #TechConference #VictoriaBC #Security…",
+    "tags": [],
+    "category": "Science & Technology",
+    "views": 5
+  },
+  "discovery": {
+    "query": "incident response",
+    "collection_hint": "hack-the-planet",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:26Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:56:55Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:12:16Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:26Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"incident response\""
+    },
+    {
+      "at": "2026-10-20T01:56:56Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

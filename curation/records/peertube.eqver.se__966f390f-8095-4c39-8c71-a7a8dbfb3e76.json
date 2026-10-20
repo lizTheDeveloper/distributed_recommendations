@@ -1,0 +1,114 @@
+{
+  "id": "peertube.eqver.se__966f390f-8095-4c39-8c71-a7a8dbfb3e76",
+  "source": {
+    "video_url": "https://peertube.eqver.se/videos/watch/966f390f-8095-4c39-8c71-a7a8dbfb3e76",
+    "video_uuid": "966f390f-8095-4c39-8c71-a7a8dbfb3e76",
+    "channel_actor_uri": "https://peertube.eqver.se/video-channels/eqtv_english",
+    "instance_host": "peertube.eqver.se",
+    "title": "The 5 rules of email security. Save yourself from being hacked",
+    "creator_display_name": "eQtv in English",
+    "channel_handle": "eqtv_english@peertube.eqver.se",
+    "license": null,
+    "language": "en",
+    "duration_s": 1050,
+    "original_published_at": "2025-12-13T11:44:17.232Z",
+    "description": "\"The British have a favorite dish - fish and chips, and the Kremlin hackers - mail and phishing. Email has long been a universal key to all accounts, and phishing helps to bypass the protection of the mail service by attacking the weakest link: the user. Recently, with the help of such attacks, the COLDRIVER and COLDWASTREL groups associated with the Russian special services successfully compromised the email accounts of a number of public figures and organizations - and gained access to sensitive documents. To avoid this in the future, this simple 5-point instruction on how to protect email from phishing was written down.\"",
+    "tags": [
+      "email",
+      "VeraCrypt",
+      "cybersecurity",
+      "defence",
+      "phishing"
+    ],
+    "category": "Science & Technology",
+    "views": 3
+  },
+  "discovery": {
+    "query": "phishing defense",
+    "collection_hint": "hack-the-planet",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:25Z"
+  },
+  "editorial": {
+    "status": "reviewed",
+    "primary_collection": "hack-the-planet",
+    "secondary_collections": [],
+    "difficulty": "beginner",
+    "format": "tutorial",
+    "learning_intents": [
+      "defend"
+    ],
+    "evidence_class": "practitioner-experience",
+    "tags": [
+      "email",
+      "phishing",
+      "account-security"
+    ],
+    "why_selected": "Five concrete email-security rules from a digital-security hotline expert, framed around the phishing campaigns that target journalists and activists.",
+    "learning_outcomes": [
+      "Why email is the most common entry point for attacks",
+      "Five habits that block most email-borne compromise"
+    ],
+    "try_next": "Turn on two-factor authentication for your main email account today.",
+    "context_note": null,
+    "ratings": {
+      "usefulness": 4,
+      "rigor": 3,
+      "mission": 4,
+      "distinctiveness": 3,
+      "accessibility": 3,
+      "currency": 4
+    },
+    "score": 71,
+    "judgment_basis": "metadata only (title, description, channel, caption list); not watched — substantive judgments unverified",
+    "proposed_by": "claude-opus-5-5 (AI proposal)",
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null,
+    "shelves": [
+      "start-here"
+    ],
+    "band": "collection-candidate",
+    "proposed_at": "2026-10-20T02:03:42Z"
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:54:47Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:08:58Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:25Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"phishing defense\""
+    },
+    {
+      "at": "2026-10-20T01:54:47Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    },
+    {
+      "at": "2026-10-20T02:03:42Z",
+      "from": "verified",
+      "to": "reviewed",
+      "by": "claude-opus-5-5 (AI proposal)",
+      "note": "proposed score 71"
+    }
+  ]
+}

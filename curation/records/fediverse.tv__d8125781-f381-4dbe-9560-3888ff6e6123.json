@@ -1,0 +1,84 @@
+{
+  "id": "fediverse.tv__d8125781-f381-4dbe-9560-3888ff6e6123",
+  "source": {
+    "video_url": "https://fediverse.tv/videos/watch/d8125781-f381-4dbe-9560-3888ff6e6123",
+    "video_uuid": "d8125781-f381-4dbe-9560-3888ff6e6123",
+    "channel_actor_uri": "https://fediverse.tv/video-channels/gnuxero_el_canal_de_rikylinux",
+    "instance_host": "fediverse.tv",
+    "title": "En Vivo con José Santos creador de AgarimOS Linux Sábado 13 de Abril 13h UTC -3",
+    "creator_display_name": "Gnuxero el canal de Rikylinux",
+    "channel_handle": "gnuxero_el_canal_de_rikylinux@fediverse.tv",
+    "license": "Attribution - Share Alike",
+    "language": "es",
+    "duration_s": 6881,
+    "original_published_at": "2024-04-13T18:11:24.214Z",
+    "description": "En esta oportunidad voy a charlar con J**osé Santos**, Español y residente en Viena donde trabajo en temas sociales (Housing First). Es entusiasta linuxero, creo la distribución AgarimOS Linux, es una distro basada en Void Linux. Es un proyecto personal con el que lleva casi cuatro años. Lo comenzó porque vio que en las ISOs oficiales de Void Linux faltaban cosas, y en ocasiones no era tan fácil averiguar que era lo que faltaba. Luego poco a poco le fue añadiendo cosas hasta que un buen día se encontró que la distribución fue enviada a Distrowatch. Desde ese momento he empezado a personalizar las ISOS para que el uso sea más amigable. [Su sitio Web](https://sourceforge.net/projects/agarimos/)",
+    "tags": [
+      "#Softwarelibre",
+      "#linux",
+      "#void"
+    ],
+    "category": "Science & Technology",
+    "views": 129
+  },
+  "discovery": {
+    "query": "housing first",
+    "collection_hint": "reclaim-the-city",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:39Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:53:34Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:07:15Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:39Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"housing first\""
+    },
+    {
+      "at": "2026-10-20T01:53:35Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

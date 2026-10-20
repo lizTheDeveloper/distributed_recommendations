@@ -1,0 +1,82 @@
+{
+  "id": "loquendotv.net__51c43dc8-a702-4955-a3fd-fbf7dda8a68a",
+  "source": {
+    "video_url": "https://loquendotv.net/videos/watch/51c43dc8-a702-4955-a3fd-fbf7dda8a68a",
+    "video_uuid": "51c43dc8-a702-4955-a3fd-fbf7dda8a68a",
+    "channel_actor_uri": "https://loquendotv.net/video-channels/anarkofacho__channel",
+    "instance_host": "loquendotv.net",
+    "title": "Cómo moddear Fallout new vegas en LInux - Tutorial 2026",
+    "creator_display_name": "anarkofacho",
+    "channel_handle": "anarkofacho__channel@loquendotv.net",
+    "license": null,
+    "language": "es",
+    "duration_s": 365,
+    "original_published_at": "2026-09-04T22:00:00.000Z",
+    "description": "En el tutorial enseño a instalarle mods de forma correcta al fallout new vegas en linux Torrent del juego (GOG): https://www.mediafire.com/file/m4gy4saqg5sdj7u/ FNV 4gb patcher: https://www.nexusmods.com/newvegas/mods/62552?tab=description FNV script extender: https://www.nexusmods.com/newvegas/mods/67883 Amethyst mod manager: https://www.nexusmods.com/site/mods/1714",
+    "tags": [
+      "linux"
+    ],
+    "category": "Unknown",
+    "views": 24
+  },
+  "discovery": {
+    "query": "Linux tutorial",
+    "collection_hint": "build-your-own-future",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:36Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:53:50Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:07:50Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:36Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"Linux tutorial\""
+    },
+    {
+      "at": "2026-10-20T01:53:51Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

@@ -1,0 +1,86 @@
+{
+  "id": "video.infosec.exchange__89b2b4d7-dcf0-4ca3-861e-3666f20d803f",
+  "source": {
+    "video_url": "https://video.infosec.exchange/videos/watch/89b2b4d7-dcf0-4ca3-861e-3666f20d803f",
+    "video_uuid": "89b2b4d7-dcf0-4ca3-861e-3666f20d803f",
+    "channel_actor_uri": "https://video.infosec.exchange/video-channels/jay_bailey216",
+    "instance_host": "video.infosec.exchange",
+    "title": "Reverse Engineering Challenge - Lucky Numbers",
+    "creator_display_name": "Jay Bailey",
+    "channel_handle": "jay_bailey216@video.infosec.exchange",
+    "license": "Attribution - Non Commercial - Share Alike",
+    "language": "en",
+    "duration_s": 1207,
+    "original_published_at": "2025-04-01T23:58:13.517Z",
+    "description": "🍀 **Find Your Lucky Numbers! Crack this Assembly Challenge!** 🍀 Ready to get lucky? In this reverse engineering challenge, we're on the hunt for the \"lucky numbers\" hidden within an assembly language binary. Join me as we dissect the code, analyze syscalls, and use a bit of algebra to unlock the secrets! This video is your guide to mastering assembly analysis. We'll break down the binary step-by-step, revealing how to manipulate data, understand the DAA instruction, and ultimately, find those elusive lucky numbers to claim victory. 🔥 **What will you uncover?** 🔥 * Assembly language analysis techniques. * Deciphering and using syscalls. * Data manipulation in assembly. * The mystery of the DAA instruction, revealed. * How algebra can help you find your \"lucky numbers\". ⏱️ **Video Breakdown:** ⏱️ * 00:00 Introduction: Are you feeling lucky? * 00:38 Initial Triage: Let's assess our chances. * 01:14 Static Analysis in Ghidra: Reading the tea leaves. * 01:45 Analyzing Syscalls: Following the lucky trail. * 02:58 Modifying Data Fields: Changing our fortune? * 03:35 Analyzing Another Syscall: Double the luck? * 05:10 Analyzing main functionality: The heart of the challenge. * 06:36 Add with Carry (ADC) Explanation: Adding to our luck. * 07:40 Explaining the Mysterious DAA Instruction: Unlocking a secret. * 14:20 Continuing with our Analysis: Pressing our luck. * 16:04 Finding the Lucky Numbers: The moment of truth! * 16:58 Using a bit of Algebra: The lucky formula. * 17:58 Prov…",
+    "tags": [
+      "crackme",
+      "ghidra",
+      "idapro",
+      "infosec",
+      "reverseengineering"
+    ],
+    "category": "Education",
+    "views": 35
+  },
+  "discovery": {
+    "query": "reverse engineering",
+    "collection_hint": "hack-the-planet",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:24Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:56:56Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:12:17Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:24Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"reverse engineering\""
+    },
+    {
+      "at": "2026-10-20T01:56:56Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

@@ -1,0 +1,94 @@
+{
+  "id": "peertube.dsmouse.net__56c24b2a-6bd5-4e84-97c6-1addf23b09ba",
+  "source": {
+    "video_url": "https://peertube.dsmouse.net/videos/watch/56c24b2a-6bd5-4e84-97c6-1addf23b09ba",
+    "video_uuid": "56c24b2a-6bd5-4e84-97c6-1addf23b09ba",
+    "channel_actor_uri": "https://peertube.dsmouse.net/video-channels/infosectalks",
+    "instance_host": "peertube.dsmouse.net",
+    "title": "DEF CON 27 Conference - Bruce Schneier - Information Security in the Public Interest",
+    "creator_display_name": "InfoSec Talks",
+    "channel_handle": "infosectalks@peertube.dsmouse.net",
+    "license": "Attribution",
+    "language": null,
+    "duration_s": 2567,
+    "original_published_at": "2019-11-15T00:00:00.000Z",
+    "description": "Computer security is now a public policy issue. Election security, blockchain, \"going dark,\" the vulnerabilities equities debate, IoT safety , data privacy, algorithmic security and fairness, critical infrastructure: these are all important public policy issues with a strong Internet security component. But while an understanding of the technology involved is fundamental to crafting good policy, there is little involvement of technologists in policy discussions. This is not sustainable. We need public-interest technologists: people from our fields helping craft policy, and working to provide security to agencies and groups working in the broader public interest. We need these people in government, at NGOs, teaching at universities, as part of the press, and inside private companies. This is increasingly critical to both public safety and overall social welfare. This talk both describes the current state of public-interest technology, and offers a way forward for us individually and collectively for our field. The defining policy question of the Internet age is this: How much of our lives should be governed by technology, and under what terms? We need to be involved in that debate. Bruce Schneier Bruce Schneier is an internationally renowned security technologist, called a \"security guru\" by the Economist. He is the author of 14 books—including the New York Times best-seller \"Click Here to Kill Everybody\"—as well as hundreds of articles, essays, and academic papers. His influ…",
+    "tags": [
+      "computer security",
+      "CON",
+      "DEF",
+      "DEFCON",
+      "security conference 2019"
+    ],
+    "category": "Science & Technology",
+    "views": 3
+  },
+  "discovery": {
+    "query": "security conference",
+    "collection_hint": "hack-the-planet",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:25Z"
+  },
+  "editorial": {
+    "status": "rejected",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": "claude-opus-5-5 (AI proposal)",
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": "re-upload of a conference recording (DEF CON / KringleCon); not the original publisher",
+    "proposed_at": "2026-10-20T02:03:42Z"
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:54:38Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:08:48Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:25Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"security conference\""
+    },
+    {
+      "at": "2026-10-20T01:54:38Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    },
+    {
+      "at": "2026-10-20T02:03:42Z",
+      "from": "verified",
+      "to": "rejected",
+      "by": "claude-opus-5-5 (AI proposal)",
+      "note": "re-upload of a conference recording (DEF CON / KringleCon); not the original publisher"
+    }
+  ]
+}

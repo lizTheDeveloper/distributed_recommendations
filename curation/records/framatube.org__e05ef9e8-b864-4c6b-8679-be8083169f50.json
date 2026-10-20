@@ -1,0 +1,111 @@
+{
+  "id": "framatube.org__e05ef9e8-b864-4c6b-8679-be8083169f50",
+  "source": {
+    "video_url": "https://framatube.org/videos/watch/e05ef9e8-b864-4c6b-8679-be8083169f50",
+    "video_uuid": "e05ef9e8-b864-4c6b-8679-be8083169f50",
+    "channel_actor_uri": "https://framatube.org/video-channels/fsf_channel",
+    "instance_host": "framatube.org",
+    "title": "Digital colonialism, surveillance capitalism, and a libre software future",
+    "creator_display_name": "Free Software Foundation channel",
+    "channel_handle": "fsf_channel@framatube.org",
+    "license": "Attribution - Share Alike",
+    "language": "en",
+    "duration_s": 6100,
+    "original_published_at": "2023-07-28T03:24:56.677Z",
+    "description": "LibrePlanet 2023 videos Hosted by Jose Castro. Register now! Summary Why are most mainstream platforms free of charge? Why is the answer to this first question a threat to humanity's future? What can we do about it? With a historic perspective, citing authors like Shoshana Zuboff, Marshall McLuhan, and Yanis Varoufakis, I try to give a perspective of how dystopian digital platforms nowadays are personal data extraction machines, how this machine works, the power of media (after S.Freud and E.Bernays), and why it is so critical for the future of humanity to choose libre software and ethical platforms. Biography Jose Castro has been a GNU/Linux user since 2001. Jose has worked sporadically on computer areas as web developer, monkey and programmer. He also works on permaculture design and land development. Since the pandemic Jose has been solo campaigning for libre software and ethical use of digital platforms with the aim of non-techie people, giving talks and generating material. You can check out [Jose's website](https://geoma.casa/) if you want to know more.",
+    "tags": [],
+    "category": "Activism",
+    "views": 132
+  },
+  "discovery": {
+    "query": "surveillance capitalism",
+    "collection_hint": "the-machine-is-political",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:28Z"
+  },
+  "editorial": {
+    "status": "reviewed",
+    "primary_collection": "the-machine-is-political",
+    "secondary_collections": [
+      "build-your-own-future"
+    ],
+    "difficulty": "intermediate",
+    "format": "lecture",
+    "learning_intents": [
+      "critique",
+      "understand"
+    ],
+    "evidence_class": "opinion",
+    "tags": [
+      "surveillance-capitalism",
+      "free-software",
+      "colonialism"
+    ],
+    "why_selected": "A LibrePlanet 2023 panel on why mainstream platforms are free of charge, what that costs the Global South, and what a libre alternative looks like.",
+    "learning_outcomes": [
+      "The link between ad-funded platforms and data extraction",
+      "Arguments for free software as a political response"
+    ],
+    "try_next": "List the free services you rely on most and how each one makes its money.",
+    "context_note": "The channel posts LibrePlanet recordings; whether it is the FSF's official channel is unverified.",
+    "ratings": {
+      "usefulness": 4,
+      "rigor": 3,
+      "mission": 5,
+      "distinctiveness": 3,
+      "accessibility": 4,
+      "currency": 4
+    },
+    "score": 77,
+    "judgment_basis": "metadata only (title, description, channel, caption list); not watched — substantive judgments unverified",
+    "proposed_by": "claude-opus-5-5 (AI proposal)",
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null,
+    "shelves": [],
+    "band": "collection-candidate",
+    "proposed_at": "2026-10-20T02:03:42Z"
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:53:38Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": true,
+    "caption_languages": [
+      "en"
+    ],
+    "last_checked_at": "2026-10-20T02:07:38Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:28Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"surveillance capitalism\""
+    },
+    {
+      "at": "2026-10-20T01:53:39Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    },
+    {
+      "at": "2026-10-20T02:03:42Z",
+      "from": "verified",
+      "to": "reviewed",
+      "by": "claude-opus-5-5 (AI proposal)",
+      "note": "proposed score 77"
+    }
+  ]
+}

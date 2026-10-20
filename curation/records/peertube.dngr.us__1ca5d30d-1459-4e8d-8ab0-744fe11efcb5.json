@@ -1,0 +1,94 @@
+{
+  "id": "peertube.dngr.us__1ca5d30d-1459-4e8d-8ab0-744fe11efcb5",
+  "source": {
+    "video_url": "https://peertube.dngr.us/videos/watch/1ca5d30d-1459-4e8d-8ab0-744fe11efcb5",
+    "video_uuid": "1ca5d30d-1459-4e8d-8ab0-744fe11efcb5",
+    "channel_actor_uri": "https://peertube.dngr.us/video-channels/historical",
+    "instance_host": "peertube.dngr.us",
+    "title": "\" PLATFORM TO THE STARS \" 1980s SPACE SHUTTLE SYSTEM OVERVIEW ENTERPRISE GLIDE TESTS XD97665",
+    "creator_display_name": "Historical Archive",
+    "channel_handle": "historical@peertube.dngr.us",
+    "license": "Public Domain Dedication",
+    "language": "en",
+    "duration_s": 715,
+    "original_published_at": "2025-01-21T00:00:00.000Z",
+    "description": "Join this channel to get access to perks: https://www.youtube.com/channel/UCddem5RlB3bQe99wyY49g0g/join Help us preserve, scan and post more rare and endangered films! Join us on Patreon. Visit https://www.patreon.com/PeriscopeFilm Visit our website www.PeriscopeFilm.com This educational film titled “Platform to the stars - Space Shuttle” is a 1980s production by NASA. It includes footage primarily of the Space Shuttle Enterprise and the Space Shuttle Columbia (OV-102), and features astronauts including Joseph Engle, Richard Truly, Fred Haise, and C. Gordon Fullerton. Enterprise was the first orbiter of the Space Shuttle system. Rolled out on September 17, 1976, it was built for NASA as part of the Space Shuttle program to perform atmospheric test flights after being launched from a modified Boeing 747. It was constructed without engines or a functional heat shield. Footage from the assembly of the the Space Shuttle (00:08). “Platform to the Stars” title banner (00:34). “Space Shuttle” title banner (00:39). Saturn V rocket launches on the Apollo 11 mission at the John F. Kennedy Space Center in Florida manned by astronauts Neil A. Armstrong, Michael Collins, and Edwin E. \"Buzz\" Aldrin (00:46). A truck driving in the dark (01:04). An officer is directing traffic (01:12). A truck transporting (01:25). Astronauts Joseph Engle (01:31), Richard Truly (01:34), Fred Haise (01:40), and C. Gordon Fullerton (01:44). The Space Shuttle Enterprise orbiter (01:53). Views of the control pa…",
+    "tags": [
+      "2K",
+      "4K",
+      "HD",
+      "Periscope Film",
+      "Stock Footage"
+    ],
+    "category": "Films",
+    "views": 0
+  },
+  "discovery": {
+    "query": "platform cooperatives",
+    "collection_hint": "the-machine-is-political",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:30Z"
+  },
+  "editorial": {
+    "status": "rejected",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": "claude-opus-5-5 (AI proposal)",
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": "off-topic for its collection (keyword match only)",
+    "proposed_at": "2026-10-20T02:03:42Z"
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:54:32Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:08:42Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:30Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"platform cooperatives\""
+    },
+    {
+      "at": "2026-10-20T01:54:32Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    },
+    {
+      "at": "2026-10-20T02:03:42Z",
+      "from": "verified",
+      "to": "rejected",
+      "by": "claude-opus-5-5 (AI proposal)",
+      "note": "off-topic for its collection (keyword match only)"
+    }
+  ]
+}

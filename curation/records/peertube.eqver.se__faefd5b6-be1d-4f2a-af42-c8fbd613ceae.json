@@ -1,0 +1,86 @@
+{
+  "id": "peertube.eqver.se__faefd5b6-be1d-4f2a-af42-c8fbd613ceae",
+  "source": {
+    "video_url": "https://peertube.eqver.se/videos/watch/faefd5b6-be1d-4f2a-af42-c8fbd613ceae",
+    "video_uuid": "faefd5b6-be1d-4f2a-af42-c8fbd613ceae",
+    "channel_actor_uri": "https://peertube.eqver.se/video-channels/eqtv_english",
+    "instance_host": "peertube.eqver.se",
+    "title": "What are AI agents?",
+    "creator_display_name": "eQtv in English",
+    "channel_handle": "eqtv_english@peertube.eqver.se",
+    "license": null,
+    "language": "en",
+    "duration_s": 1216,
+    "original_published_at": "2025-12-21T07:12:37.239Z",
+    "description": "AI agents are smart systems that do not just respond to requests, but independently break tasks into subtasks, plan and execute them using external tools and databases. Unlike classic chatbots, agents can work autonomously, make decisions and adapt in the process of execution, which means they are capable of performing complex tasks.",
+    "tags": [
+      "AI",
+      "AI agent",
+      "adaptive AI",
+      "smart systems",
+      "task automation"
+    ],
+    "category": "Science & Technology",
+    "views": 1
+  },
+  "discovery": {
+    "query": "AI agents",
+    "collection_hint": "build-your-own-future",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:38Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:54:50Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:09:01Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:38Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"AI agents\""
+    },
+    {
+      "at": "2026-10-20T01:54:50Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

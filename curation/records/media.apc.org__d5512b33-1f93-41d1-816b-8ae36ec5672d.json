@@ -1,0 +1,82 @@
+{
+  "id": "media.apc.org__d5512b33-1f93-41d1-816b-8ae36ec5672d",
+  "source": {
+    "video_url": "https://media.apc.org/videos/watch/d5512b33-1f93-41d1-816b-8ae36ec5672d",
+    "video_uuid": "d5512b33-1f93-41d1-816b-8ae36ec5672d",
+    "channel_actor_uri": "https://media.apc.org/video-channels/apc",
+    "instance_host": "media.apc.org",
+    "title": "“The right to repair is an excuse”: Carolina Botero",
+    "creator_display_name": "APC",
+    "channel_handle": "apc@media.apc.org",
+    "license": "Attribution - Non Commercial - Share Alike",
+    "language": null,
+    "duration_s": 3364,
+    "original_published_at": "2026-08-21T13:01:44.017Z",
+    "description": "Carolina Botero is a consultant specialising in issues at the intersection of law and technology. She has been working for 20 years to promote and defend human rights on the internet. She was director of the Karisma Foundation for a decade until 2024, and, among other positions, served on the board of directors of Creative Commons. She currently runs repair workshops in Colombia with school children. She was interviewed by Xavier Coadic. They spoke about Creative Commons, trade agreements and the right to repair. Some interview highlights: *The “right to repair” is a very Northern concept, because really, in our countries, we do what we want in the end. That's why they call us “pirate” countries, right? When you wind up in the US or in Europe, it’s hard to find someone to just repair a dress, even in the big cities, when here everyone repairs dresses. Even if the law does not permit second-hand markets, we have second-hand markets. Sometimes it’s not even a market, it's just a circulation of goods. I've never thrown anything away. If I don't want something anymore, I know someone that will need it. It is just a circular way of living that is different from Europe. So the right to repair is really very much a Northern concept; but this is the way it ended up being called.* *We need to find out how the right to repair works here. It is a good starting point, especially to force big corporations on the issues of obsolescence. It's a good institutional point of view. I am workin…",
+    "tags": [
+      "floss"
+    ],
+    "category": "Unknown",
+    "views": 5
+  },
+  "discovery": {
+    "query": "right to repair",
+    "collection_hint": "strange-machines",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:49Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:54:10Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:08:21Z",
+    "identity_evidence": "apc.org homepage has no link to media.apc.org",
+    "publisher": "APC (claimed)"
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:49Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"right to repair\""
+    },
+    {
+      "at": "2026-10-20T01:54:10Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

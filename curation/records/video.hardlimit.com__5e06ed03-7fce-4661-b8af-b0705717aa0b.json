@@ -1,0 +1,85 @@
+{
+  "id": "video.hardlimit.com__5e06ed03-7fce-4661-b8af-b0705717aa0b",
+  "source": {
+    "video_url": "https://video.hardlimit.com/videos/watch/5e06ed03-7fce-4661-b8af-b0705717aa0b",
+    "video_uuid": "5e06ed03-7fce-4661-b8af-b0705717aa0b",
+    "channel_actor_uri": "https://video.hardlimit.com/video-channels/cocomarck",
+    "instance_host": "video.hardlimit.com",
+    "title": "GNU/Linux Tutorial android shell desinstalación de aplicaciones (sin ser root)",
+    "creator_display_name": "CocoMarck",
+    "channel_handle": "cocomarck@video.hardlimit.com",
+    "license": "Public Domain Dedication",
+    "language": "es",
+    "duration_s": 147,
+    "original_published_at": "2022-03-15T09:15:58.901Z",
+    "description": "En esta vídeo se ensaña a como desinstalar paquetes de android desde su shell y sin permisos root. Enlace Package Manager: https://smartpack.github.io/PackageManager/ Documentación andorid shell Opción resumida y bonita: https://adbshell.com/commands Opción oficial (mucho texto): https://developer.android.com/tools/adb?hl=es-419",
+    "tags": [
+      "android",
+      "gnu",
+      "linux",
+      "shell"
+    ],
+    "category": "How To",
+    "views": 36
+  },
+  "discovery": {
+    "query": "Linux tutorial",
+    "collection_hint": "build-your-own-future",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:36Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:56:44Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:12:05Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:36Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"Linux tutorial\""
+    },
+    {
+      "at": "2026-10-20T01:56:44Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

@@ -1,0 +1,80 @@
+{
+  "id": "peertube-ecogather-u20874.vm.elestio.app__a68ec40c-4143-40c2-9735-31eebf7b82cb",
+  "source": {
+    "video_url": "https://peertube-ecogather-u20874.vm.elestio.app/videos/watch/a68ec40c-4143-40c2-9735-31eebf7b82cb",
+    "video_uuid": "a68ec40c-4143-40c2-9735-31eebf7b82cb",
+    "channel_actor_uri": "https://peertube-ecogather-u20874.vm.elestio.app/video-channels/darkoptimism",
+    "instance_host": "peertube-ecogather-u20874.vm.elestio.app",
+    "title": "Repair Cafés — clip from 'The Sequel: What will Follow Our Troubled Civilisation'",
+    "creator_display_name": "darkoptimism",
+    "channel_handle": "darkoptimism@peertube-ecogather-u20874.vm.elestio.app",
+    "license": "Attribution - Non Commercial - Share Alike",
+    "language": "en",
+    "duration_s": 282,
+    "original_published_at": "2025-02-09T21:39:56.775Z",
+    "description": "Extract featuring Kate Raworth, from feature film 'The Sequel: What Will Follow Our Troubled Civilization?' by BAFTA-winning director Peter Armstrong. The full one hour film is available to view with password \"SQ\" at: https://vimeo.com/268836119",
+    "tags": [],
+    "category": "Unknown",
+    "views": 47
+  },
+  "discovery": {
+    "query": "repair cafe",
+    "collection_hint": "strange-machines",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:46Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:54:17Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:08:29Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:46Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"repair cafe\""
+    },
+    {
+      "at": "2026-10-20T01:54:21Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

@@ -1,0 +1,85 @@
+{
+  "id": "videos.viorsan.com__c691496d-01df-4a1e-ba07-f24793f375b7",
+  "source": {
+    "video_url": "https://videos.viorsan.com/videos/watch/c691496d-01df-4a1e-ba07-f24793f375b7",
+    "video_uuid": "c691496d-01df-4a1e-ba07-f24793f375b7",
+    "channel_actor_uri": "https://videos.viorsan.com/video-channels/vikarti_tech",
+    "instance_host": "videos.viorsan.com",
+    "title": "HomeShield",
+    "creator_display_name": "Vikarti's Tech",
+    "channel_handle": "vikarti_tech@videos.viorsan.com",
+    "license": null,
+    "language": "en",
+    "duration_s": 185,
+    "original_published_at": "2023-10-08T18:00:00.000Z",
+    "description": "original uri https://www.youtube.com/watch?v=it2iw-bYVNE HomeShield is a home networking protection kit built right into your router, which covers all security scenarios with its network security, parental controls, QoS, and comprehensive reports. With its security function, users’ networks are well protected. Also, HomeShield’s parental controls build a safer, cleaner internet to help users explore the online world. With HomeShield, a safer internet experience brings more happiness to your smart living.",
+    "tags": [
+      "homeshield",
+      "tp-link"
+    ],
+    "category": "Science & Technology",
+    "views": 4
+  },
+  "discovery": {
+    "query": "home network security",
+    "collection_hint": "hack-the-planet",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:23Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:57:29Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": true,
+    "caption_languages": [
+      "en"
+    ],
+    "last_checked_at": "2026-10-20T02:12:46Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:23Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"home network security\""
+    },
+    {
+      "at": "2026-10-20T01:57:30Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

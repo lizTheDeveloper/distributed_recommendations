@@ -1,0 +1,88 @@
+{
+  "id": "tube.blueben.net__1dc95ee8-82ac-4516-8b7d-0ded8edaa3ef",
+  "source": {
+    "video_url": "https://tube.blueben.net/videos/watch/1dc95ee8-82ac-4516-8b7d-0ded8edaa3ef",
+    "video_uuid": "1dc95ee8-82ac-4516-8b7d-0ded8edaa3ef",
+    "channel_actor_uri": "https://tube.blueben.net/video-channels/networkchuck",
+    "instance_host": "tube.blueben.net",
+    "title": "ACCESS your home network from ANYWHERE",
+    "creator_display_name": "NetworkChuck",
+    "channel_handle": "networkchuck@tube.blueben.net",
+    "license": null,
+    "language": "en",
+    "duration_s": 85,
+    "original_published_at": "2026-01-08T00:00:00.000Z",
+    "description": "Access your stuff from anywhere for FREE, with Twingate: https://twingate.com",
+    "tags": [],
+    "category": "Science & Technology",
+    "views": 6
+  },
+  "discovery": {
+    "query": "home network security",
+    "collection_hint": "hack-the-planet",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:23Z"
+  },
+  "editorial": {
+    "status": "rejected",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": "claude-opus-5-5 (AI proposal)",
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": "re-upload of a YouTube creator's video; not the original publisher",
+    "proposed_at": "2026-10-20T02:03:42Z"
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:55:35Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:09:57Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:23Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"home network security\""
+    },
+    {
+      "at": "2026-10-20T01:55:36Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    },
+    {
+      "at": "2026-10-20T02:03:42Z",
+      "from": "verified",
+      "to": "rejected",
+      "by": "claude-opus-5-5 (AI proposal)",
+      "note": "re-upload of a YouTube creator's video; not the original publisher"
+    }
+  ]
+}

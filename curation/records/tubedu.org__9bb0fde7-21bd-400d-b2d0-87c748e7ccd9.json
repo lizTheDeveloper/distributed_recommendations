@@ -1,0 +1,86 @@
+{
+  "id": "tubedu.org__9bb0fde7-21bd-400d-b2d0-87c748e7ccd9",
+  "source": {
+    "video_url": "https://tubedu.org/videos/watch/9bb0fde7-21bd-400d-b2d0-87c748e7ccd9",
+    "video_uuid": "9bb0fde7-21bd-400d-b2d0-87c748e7ccd9",
+    "channel_actor_uri": "https://tubedu.org/video-channels/in_conversations_collections",
+    "instance_host": "tubedu.org",
+    "title": "Creative coding with Processing and OPENRNDR - 06",
+    "creator_display_name": "In Conversations - Creative Coding and Art",
+    "channel_handle": "in_conversations_collections@tubedu.org",
+    "license": "Attribution - Share Alike",
+    "language": "en",
+    "duration_s": 1615,
+    "original_published_at": "2023-08-26T15:24:55.000Z",
+    "description": "Alessandro and Abe talking about differences between Processing and OPENRNDR, and the reasons they ended up using the Kotlin based framework.",
+    "tags": [
+      "creative coding",
+      "kotlin",
+      "openrndr",
+      "processing",
+      "programming"
+    ],
+    "category": "Education",
+    "views": 25
+  },
+  "discovery": {
+    "query": "creative coding",
+    "collection_hint": "the-weird-internet",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:51Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:56:16Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:11:38Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:51Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"creative coding\""
+    },
+    {
+      "at": "2026-10-20T01:56:17Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

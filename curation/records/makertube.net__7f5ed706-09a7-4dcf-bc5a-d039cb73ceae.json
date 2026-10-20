@@ -1,0 +1,83 @@
+{
+  "id": "makertube.net__7f5ed706-09a7-4dcf-bc5a-d039cb73ceae",
+  "source": {
+    "video_url": "https://makertube.net/videos/watch/7f5ed706-09a7-4dcf-bc5a-d039cb73ceae",
+    "video_uuid": "7f5ed706-09a7-4dcf-bc5a-d039cb73ceae",
+    "channel_actor_uri": "https://makertube.net/video-channels/tinkertalk",
+    "instance_host": "makertube.net",
+    "title": "Ep. 017: Generative Art",
+    "creator_display_name": "Tinkertalk",
+    "channel_handle": "tinkertalk@makertube.net",
+    "license": "Attribution - Non Commercial - Share Alike",
+    "language": "de",
+    "duration_s": 2780,
+    "original_published_at": "2021-09-06T22:00:00.000Z",
+    "description": "Diesmal wurden Bilder aus Texten erstellt. Mehr muss man eigentlich gar nicht sagen! 😉 In dieser Episode haben sich Julian und Nils mal wieder vor die Tür gewagt. Sie haben an der Veranstaltung „AI for Artists“ (Künstliche Intelligenz für Künstler) teilgenommen. Der Künstler und Programmierer Gene Kogan hat diesen Workshop im Rahmen seiner Ausstellung „Under The Viral Shadow“ am Art Laboratory Berlin veranstaltet. Aktuell beschäftigt er sich intensiv mit der computergestützten Generierung von Bildern aus Texten. Nachdem er einen Überblick über das Thema Generative Art im Allgemeinen gegeben hat, hat Gene ein Python Framework vorgestellt, mit dem wir selbst diese Algorithmen ausprobieren konnten. Dabei sind viele witzige, erstaunliche und völlig merkwürdige Bilder entstanden. Aber hört doch einfach selbst! Der Workshop: https://artlaboratory-berlin.org/events/under-the-viral-shadow-workshop-kogan Gene Kogan: https://genekogan.com Google Colab Notebook: https://colab.research.google.com/drive/1KApkVfF0LdoImjU7u0UnGlptH0XamwgX OpenAi CLIP: https://openai.com/blog/clip Einführung zum Thema GANs (englisch): https://medium.com/analytics-vidhya/what-are-gans-an-introduction-to-generative-adversarial-networks-92efd00623d5 Das von Julian erwähnte Buch zum Thema: https://oreilly.de/produkt/generatives-deep-learning/",
+    "tags": [],
+    "category": "Science & Technology",
+    "views": 2
+  },
+  "discovery": {
+    "query": "generative art",
+    "collection_hint": "the-weird-internet",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:52Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:54:00Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": true,
+    "caption_languages": [
+      "de",
+      "en"
+    ],
+    "last_checked_at": "2026-10-20T02:08:03Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:52Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"generative art\""
+    },
+    {
+      "at": "2026-10-20T01:54:01Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

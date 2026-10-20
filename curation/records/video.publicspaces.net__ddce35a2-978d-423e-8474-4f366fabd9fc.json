@@ -1,0 +1,111 @@
+{
+  "id": "video.publicspaces.net__ddce35a2-978d-423e-8474-4f366fabd9fc",
+  "source": {
+    "video_url": "https://video.publicspaces.net/videos/watch/ddce35a2-978d-423e-8474-4f366fabd9fc",
+    "video_uuid": "ddce35a2-978d-423e-8474-4f366fabd9fc",
+    "channel_actor_uri": "https://video.publicspaces.net/video-channels/datamorganapodcast",
+    "instance_host": "video.publicspaces.net",
+    "title": "Digital safety in the EU: Edri fights for your rights",
+    "creator_display_name": "Data Morgana Podcast",
+    "channel_handle": "datamorganapodcast@video.publicspaces.net",
+    "license": "CC BY-SA 4.0",
+    "language": "en",
+    "duration_s": 2059,
+    "original_published_at": "2025-08-01T09:12:45.871Z",
+    "description": "In this episode, we discuss the safety / privacy trade off with Edri (European Digital Rights): an association of civil and human rights organisations from across Europe defending our digital rights. There is this deeply rooted idea that if we give some of our privacy away, we will become more safe. ‘This is a dangerous narrative. We can’t be safe without privacy if we can’t all be free to organise a protest via messaging, share information about a crush or contact our doctor.’ Julia Janssen speaks with Ella Jakubowska, head of policy at Edri about their Stop Scanning Me campaign, with which they try to prevent a European law proposal that is based on this false narrative and would allow governments to scan messages with AI-tools. Re-watch the [Data Morgana Talkshow episode on privacy and safety](https://video.publicspaces.net/w/5CBnFLDJ2HmQgrrQnquCbv).",
+    "tags": [],
+    "category": "Science & Technology",
+    "views": 36
+  },
+  "discovery": {
+    "query": "digital rights",
+    "collection_hint": "the-machine-is-political",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:29Z"
+  },
+  "editorial": {
+    "status": "reviewed",
+    "primary_collection": "the-machine-is-political",
+    "secondary_collections": [
+      "hack-the-planet"
+    ],
+    "difficulty": "beginner",
+    "format": "interview",
+    "learning_intents": [
+      "understand",
+      "defend"
+    ],
+    "evidence_class": "practitioner-experience",
+    "tags": [
+      "digital-rights",
+      "eu",
+      "privacy"
+    ],
+    "why_selected": "A podcast episode with European Digital Rights on the trade-off between online safety laws and privacy, from the PublicSpaces coalition.",
+    "learning_outcomes": [
+      "How EU safety proposals can undermine encryption",
+      "How digital-rights groups lobby in Brussels"
+    ],
+    "try_next": "Look up whether your country's government has taken a position on EU chat-scanning proposals.",
+    "context_note": null,
+    "ratings": {
+      "usefulness": 4,
+      "rigor": 4,
+      "mission": 5,
+      "distinctiveness": 4,
+      "accessibility": 4,
+      "currency": 4
+    },
+    "score": 84,
+    "judgment_basis": "metadata only (title, description, channel, caption list); not watched — substantive judgments unverified",
+    "proposed_by": "claude-opus-5-5 (AI proposal)",
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null,
+    "shelves": [],
+    "band": "feature-candidate",
+    "proposed_at": "2026-10-20T02:03:42Z"
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "official-link-verified",
+    "verified_at": "2026-10-20T01:57:10Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": true,
+    "caption_languages": [
+      "en"
+    ],
+    "last_checked_at": "2026-10-20T02:12:29Z",
+    "identity_evidence": "https://publicspaces.net/ links to video.publicspaces.net",
+    "publisher": "PublicSpaces"
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:29Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"digital rights\""
+    },
+    {
+      "at": "2026-10-20T01:57:10Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    },
+    {
+      "at": "2026-10-20T02:03:42Z",
+      "from": "verified",
+      "to": "reviewed",
+      "by": "claude-opus-5-5 (AI proposal)",
+      "note": "proposed score 84"
+    }
+  ]
+}

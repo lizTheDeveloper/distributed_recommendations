@@ -1,0 +1,115 @@
+{
+  "id": "peertube.dair-institute.org__e82a39c5-90d1-4f60-ad20-02a85a95ce00",
+  "source": {
+    "video_url": "https://peertube.dair-institute.org/videos/watch/e82a39c5-90d1-4f60-ad20-02a85a95ce00",
+    "video_uuid": "e82a39c5-90d1-4f60-ad20-02a85a95ce00",
+    "channel_actor_uri": "https://peertube.dair-institute.org/video-channels/data.workers.inquiry",
+    "instance_host": "peertube.dair-institute.org",
+    "title": "Presenting: The Data Labelers Association",
+    "creator_display_name": "Data Workers Inquiry",
+    "channel_handle": "data.workers.inquiry@peertube.dair-institute.org",
+    "license": "Attribution - Share Alike",
+    "language": "en",
+    "duration_s": 6758,
+    "original_published_at": "2025-02-13T18:44:16.000Z",
+    "description": "The Kenya-based [Data Labelers Association](https://datalabelers.org/about/) seeks to unite data workers in the fight for better conditions and access to vital support. This launch event included multiple testimonials from affected workers, and a panel featuring the association's leadership. Learn more about the work these laborers perform and [why a unified front is so necessary](https://datalabelers.org/the-unsung-heroes-of-ai-the-vital-role-of-data-labeling/) on the DLA's blog.",
+    "tags": [
+      "click work",
+      "data workers",
+      "labor rights",
+      "technology workers",
+      "workers"
+    ],
+    "category": "Science & Technology",
+    "views": 102
+  },
+  "discovery": {
+    "query": "technology labor",
+    "collection_hint": "the-machine-is-political",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:29Z"
+  },
+  "editorial": {
+    "status": "reviewed",
+    "primary_collection": "the-machine-is-political",
+    "secondary_collections": [],
+    "difficulty": "intermediate",
+    "format": "interview",
+    "learning_intents": [
+      "understand",
+      "organize"
+    ],
+    "evidence_class": "primary-source",
+    "tags": [
+      "labor",
+      "ai",
+      "data-work"
+    ],
+    "why_selected": "Members of the Kenya-based Data Labelers Association describe the human labor behind AI training data, and how they're organizing.",
+    "learning_outcomes": [
+      "Who labels AI training data and under what conditions",
+      "How data workers are organizing collectively"
+    ],
+    "try_next": "Read the Data Labelers Association's about page linked in the description.",
+    "context_note": null,
+    "ratings": {
+      "usefulness": 3,
+      "rigor": 4,
+      "mission": 5,
+      "distinctiveness": 5,
+      "accessibility": 3,
+      "currency": 5
+    },
+    "score": 81,
+    "judgment_basis": "metadata only (title, description, channel, caption list); not watched — substantive judgments unverified",
+    "proposed_by": "claude-opus-5-5 (AI proposal)",
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null,
+    "shelves": [],
+    "band": "feature-candidate",
+    "proposed_at": "2026-10-20T02:03:42Z"
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "official-link-verified",
+    "verified_at": "2026-10-20T01:54:29Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": true,
+    "caption_languages": [
+      "en"
+    ],
+    "last_checked_at": "2026-10-20T02:08:39Z",
+    "identity_evidence": "https://www.dair-institute.org/ links to peertube.dair-institute.org",
+    "publisher": "DAIR Institute"
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:29Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"technology labor\""
+    },
+    {
+      "at": "2026-10-20T01:54:29Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    },
+    {
+      "at": "2026-10-20T02:03:42Z",
+      "from": "verified",
+      "to": "reviewed",
+      "by": "claude-opus-5-5 (AI proposal)",
+      "note": "proposed score 81"
+    }
+  ]
+}

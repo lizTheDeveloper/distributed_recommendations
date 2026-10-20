@@ -1,0 +1,86 @@
+{
+  "id": "peertube.opencloud.lu__5ee8a519-abe3-4981-a7ac-c3a1d51613e9",
+  "source": {
+    "video_url": "https://peertube.opencloud.lu/videos/watch/5ee8a519-abe3-4981-a7ac-c3a1d51613e9",
+    "video_uuid": "5ee8a519-abe3-4981-a7ac-c3a1d51613e9",
+    "channel_actor_uri": "https://peertube.opencloud.lu/video-channels/oscl25",
+    "instance_host": "peertube.opencloud.lu",
+    "title": "Why not ChatGPT? Using F13 – Open Source AI for the public sector",
+    "creator_display_name": "Open Source Conference Luxembourg 2025",
+    "channel_handle": "oscl25@peertube.opencloud.lu",
+    "license": "Attribution",
+    "language": "en",
+    "duration_s": 1044,
+    "original_published_at": "2025-11-30T17:00:00.000Z",
+    "description": "The use of artificial intelligence (AI) is becoming increasingly important in the public sector. F13, an open-source AI platform, offers public authorities new opportunities to leverage the power of LLMs safely. The presentation highlights the potential, challenges and conditions for using F13 in public authority structures. By Michael Hilberer",
+    "tags": [
+      "AI",
+      "Conference",
+      "Luxembourg",
+      "Open Source",
+      "Public Sector"
+    ],
+    "category": "Science & Technology",
+    "views": 10
+  },
+  "discovery": {
+    "query": "open source AI",
+    "collection_hint": "build-your-own-future",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:34Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:55:00Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:09:11Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:34Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"open source AI\""
+    },
+    {
+      "at": "2026-10-20T01:55:01Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

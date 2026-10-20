@@ -1,0 +1,86 @@
+{
+  "id": "tubular.tube__a4a583e0-1b57-484f-bd00-894ac6b0a598",
+  "source": {
+    "video_url": "https://tubular.tube/videos/watch/a4a583e0-1b57-484f-bd00-894ac6b0a598",
+    "video_uuid": "a4a583e0-1b57-484f-bd00-894ac6b0a598",
+    "channel_actor_uri": "https://tubular.tube/video-channels/elatronion",
+    "instance_host": "tubular.tube",
+    "title": "the jam where only one person made a game",
+    "creator_display_name": "Elatronion",
+    "channel_handle": "elatronion@tubular.tube",
+    "license": null,
+    "language": "fr",
+    "duration_s": 957,
+    "original_published_at": "2024-02-09T00:00:00.000Z",
+    "description": "The 5th and final Friends Jam is here, and it's unlike any we've done before. With the unique theme of \"Space\" and an extra twist of \"Bird,\" we set out to create anything, not just games. As we pushed the boundaries of our creativity, you'll see a variety of attempts and achievements. I ventured into multiple areas, from lost 3D models to a bizarre dream-inspired story, and even a quirky \"simulation\" game. Mr. Monocle crafted some stunning voxel art, albeit a bit last-minute. Normal Canard surprised us with a book, showcasing that artistic flair! And then there's Katsuro, who took simplicity to the next level with an incomplete yet incredibly fun multiplayer project in Godot. His creation was a fitting and impressive finale to our series of jams. But wait, there's more! Disappointed with my own output, I embarked on a solo mission to create a celebratory game for my friends and our jams. Welcome to \"The Friends Game.\" A heartwarming conclusion to an unforgettable journey of creativity, friendship, and coding. Join me as I bid farewell to this chapter and unveil my final tribute.",
+    "tags": [
+      "Game Development",
+      "Godot",
+      "Godot 4",
+      "Godot Engine",
+      "Indie Game Dev"
+    ],
+    "category": "Gaming",
+    "views": 0
+  },
+  "discovery": {
+    "query": "indie game development",
+    "collection_hint": "the-weird-internet",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:52Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:56:19Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:11:40Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:52Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"indie game development\""
+    },
+    {
+      "at": "2026-10-20T01:56:19Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

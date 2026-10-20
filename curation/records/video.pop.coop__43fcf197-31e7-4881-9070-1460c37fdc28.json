@@ -1,0 +1,86 @@
+{
+  "id": "video.pop.coop__43fcf197-31e7-4881-9070-1460c37fdc28",
+  "source": {
+    "video_url": "https://video.pop.coop/videos/watch/43fcf197-31e7-4881-9070-1460c37fdc28",
+    "video_uuid": "43fcf197-31e7-4881-9070-1460c37fdc28",
+    "channel_actor_uri": "https://video.pop.coop/video-channels/tecnopolitica",
+    "instance_host": "video.pop.coop",
+    "title": "TECNOPOLÍTICA #254 - Plataformas Autogestionadas e Vida acima do Capital",
+    "creator_display_name": "Podcast Tecnopolítica",
+    "channel_handle": "tecnopolitica@video.pop.coop",
+    "license": null,
+    "language": "pt",
+    "duration_s": 3243,
+    "original_published_at": "2025-08-18T00:00:00.000Z",
+    "description": "PLATAFORMAS INTERSECCIONAIS AUTOGESTIONADAS: A VIDA ACIMA DO CAPITAL Neste episódio do Tecnopolítica, Sérgio Amadeu conversa com lideranças do movimento cooperativista sobre o relatório da pesquisa “Worker-Owned Intersectional Platforms” (WOIP), desenvolvida por coletivos autogestionados do Brasil e da Argentina nos setores de tecnologia e entregas. Participam do episódio: Joaquim Renato, integrante do Señoritas Courier; Cecilia Muñoz Cancela, sócia-fundadora da cooperativa Código Libre; Alexandre Boava, do Núcleo de Tecnologia do MTST. A pesquisa, coordenada pelo Prof. Rafael Grohmann, apresenta uma crítica ao modelo hegemônico das plataformas digitais controladas por grandes corporações, propondo alternativas baseadas na propriedade coletiva dos trabalhadores e em uma perspectiva interseccional, que articula gênero, raça, classe, território e outros marcadores sociais. 🎙️ Uma conversa indispensável sobre tecnologia, trabalho e justiça social. Conheça o livro do Tecnopolítica: autonomialiteraria.com.br/loja/teoria-politica/tecnopolitica-um-guia-para-entender-a-relacao-entre-poder-economia-cultura-novas-tecnologias-e-a-luta-democratica-contra-as-big-techs/ Torne-se colaborador do Tecnopolítica por R$ 9,70 e tenha acesso a cursos exclusivos: https://tecnopolitica.blog.br/ Siga o Tecnopolítica no Instagram: / podtecnopolitica Coordenação do projeto e autoria dos podcasts: Sérgio Amadeu da Silveira Criação de arte: Tutti Marketing Responsáveis pelos conteúdos e divulgações: Tu…",
+    "tags": [
+      "Autogestão",
+      "Interseccionalidade",
+      "Plataformas Digitais",
+      "Tecnopolítica",
+      "WOIP"
+    ],
+    "category": "Unknown",
+    "views": 0
+  },
+  "discovery": {
+    "query": "platform cooperatives",
+    "collection_hint": "the-machine-is-political",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:30Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:57:07Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:12:26Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:30Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"platform cooperatives\""
+    },
+    {
+      "at": "2026-10-20T01:57:08Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

@@ -1,0 +1,86 @@
+{
+  "id": "tube.tchncs.de__ead2a771-1034-49f6-9c6c-d366a0c1a9c0",
+  "source": {
+    "video_url": "https://tube.tchncs.de/videos/watch/ead2a771-1034-49f6-9c6c-d366a0c1a9c0",
+    "video_uuid": "ead2a771-1034-49f6-9c6c-d366a0c1a9c0",
+    "channel_actor_uri": "https://tube.tchncs.de/video-channels/ndwls",
+    "instance_host": "tube.tchncs.de",
+    "title": "ESP32 unter Linux: Wir ranken die Frameworks mit @pixeledi ​",
+    "creator_display_name": "Nicht der Weisheit letzter Schluß",
+    "channel_handle": "ndwls@tube.tchncs.de",
+    "license": "Attribution - Share Alike",
+    "language": "de",
+    "duration_s": 5208,
+    "original_published_at": "2026-07-27T19:21:37.495Z",
+    "description": "Wir ranken die beliebtesten Toolchains von Arduino bis Rust. Schaut mal vorbei bei https://www.youtube.com/@pixeledi",
+    "tags": [
+      "C++",
+      "Go",
+      "Rust"
+    ],
+    "category": "Science & Technology",
+    "views": 39
+  },
+  "discovery": {
+    "query": "ESP32",
+    "collection_hint": "strange-machines",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:44Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:56:08Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": true,
+    "caption_languages": [
+      "de"
+    ],
+    "last_checked_at": "2026-10-20T02:11:09Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:44Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"ESP32\""
+    },
+    {
+      "at": "2026-10-20T01:56:09Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

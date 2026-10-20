@@ -1,0 +1,83 @@
+{
+  "id": "video.hardlimit.com__f94f4fe8-eb27-4e06-95a9-0759c17c11d3",
+  "source": {
+    "video_url": "https://video.hardlimit.com/videos/watch/f94f4fe8-eb27-4e06-95a9-0759c17c11d3",
+    "video_uuid": "f94f4fe8-eb27-4e06-95a9-0759c17c11d3",
+    "channel_actor_uri": "https://video.hardlimit.com/video-channels/cocomarck",
+    "instance_host": "video.hardlimit.com",
+    "title": "GNU/Linux Tutorial instalación de DroidCam",
+    "creator_display_name": "CocoMarck",
+    "channel_handle": "cocomarck@video.hardlimit.com",
+    "license": "Public Domain Dedication",
+    "language": "es",
+    "duration_s": 294,
+    "original_published_at": "2022-03-14T02:15:56.443Z",
+    "description": "Pagina oficial DroidCam: https://www.dev47apps.com/",
+    "tags": [
+      "droidcam",
+      "tutorial"
+    ],
+    "category": "How To",
+    "views": 16
+  },
+  "discovery": {
+    "query": "Linux tutorial",
+    "collection_hint": "build-your-own-future",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:36Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:56:46Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:12:08Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:36Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"Linux tutorial\""
+    },
+    {
+      "at": "2026-10-20T01:56:46Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

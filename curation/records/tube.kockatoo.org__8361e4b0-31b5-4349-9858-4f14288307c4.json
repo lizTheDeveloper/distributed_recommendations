@@ -1,0 +1,80 @@
+{
+  "id": "tube.kockatoo.org__8361e4b0-31b5-4349-9858-4f14288307c4",
+  "source": {
+    "video_url": "https://tube.kockatoo.org/videos/watch/8361e4b0-31b5-4349-9858-4f14288307c4",
+    "video_uuid": "8361e4b0-31b5-4349-9858-4f14288307c4",
+    "channel_actor_uri": "https://tube.kockatoo.org/video-channels/flintandsilicon",
+    "instance_host": "tube.kockatoo.org",
+    "title": "Connecting Public Interest Technology Disciplines",
+    "creator_display_name": "Flint & Silicon",
+    "channel_handle": "flintandsilicon@tube.kockatoo.org",
+    "license": null,
+    "language": "en",
+    "duration_s": 65,
+    "original_published_at": "2024-10-16T22:00:00.000Z",
+    "description": "Tech is Political, and Public Interest Technology is no exception. In this podcast, grant managers, policymakers, technologists and people concerned about the impact of technology on their life will learn how we can all work together to improve society. 🌐 https://ergaster.org/podcast",
+    "tags": [],
+    "category": "Unknown",
+    "views": 5
+  },
+  "discovery": {
+    "query": "public interest technology",
+    "collection_hint": "the-machine-is-political",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:32Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:55:43Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:10:04Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:32Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"public interest technology\""
+    },
+    {
+      "at": "2026-10-20T01:55:43Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

@@ -1,0 +1,80 @@
+{
+  "id": "peertube.dngr.us__1ffc0778-a3a0-4ced-b9da-f3a249a48ae7",
+  "source": {
+    "video_url": "https://peertube.dngr.us/videos/watch/1ffc0778-a3a0-4ced-b9da-f3a249a48ae7",
+    "video_uuid": "1ffc0778-a3a0-4ced-b9da-f3a249a48ae7",
+    "channel_actor_uri": "https://peertube.dngr.us/video-channels/michael_levin",
+    "instance_host": "peertube.dngr.us",
+    "title": "\"The Algorithmic Weltanschauung: an Algorithmic, Platonic Perspective\" by Giulio Ruffini",
+    "creator_display_name": "Dr. Michael Levin",
+    "channel_handle": "michael_levin@peertube.dngr.us",
+    "license": "All Rights Reserved",
+    "language": "en",
+    "duration_s": 4083,
+    "original_published_at": "2025-12-16T00:00:00.000Z",
+    "description": "This is a ~1 hour 8 minute talk by Giulio Ruffini (https://giulioruffini.github.io/#gsc.tab=0) titled \"The Algorithmic Weltanschauung: An Algorithmic, Platonic Perspective\", given for our Symposium on the Platonic Space (https://thoughtforms.life/symposium-on-the-platonic-space/). Mirrored from: https://www.youtube.com/watch?v=b0wxfjpxB60 Original channel: Michael Levin's Academic Content",
+    "tags": [],
+    "category": "Science & Technology",
+    "views": 0
+  },
+  "discovery": {
+    "query": "algorithmic accountability",
+    "collection_hint": "the-machine-is-political",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:27Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:54:32Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:08:42Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:27Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"algorithmic accountability\""
+    },
+    {
+      "at": "2026-10-20T01:54:32Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

@@ -1,0 +1,80 @@
+{
+  "id": "peertube.debian.social__17e1f07a-fae1-4655-897b-421f2ba59d2d",
+  "source": {
+    "video_url": "https://peertube.debian.social/videos/watch/17e1f07a-fae1-4655-897b-421f2ba59d2d",
+    "video_uuid": "17e1f07a-fae1-4655-897b-421f2ba59d2d",
+    "channel_actor_uri": "https://peertube.debian.social/video-channels/dashohoxha",
+    "instance_host": "peertube.debian.social",
+    "title": "Self-hosting Wordpress sites with the help of docker-scripts",
+    "creator_display_name": "Dashamir Hoxha",
+    "channel_handle": "dashohoxha@peertube.debian.social",
+    "license": "Attribution",
+    "language": "sq",
+    "duration_s": 3430,
+    "original_published_at": "2024-07-31T12:58:08.538Z",
+    "description": "If you are a Wordpress developer, you already know how to host your sites somehow. In this workshop I will show yet another way, which might be easier, cheaper and more convenient for you. Some familiarity with Linux commands is required though. Source: https://docker-scripts.gitlab.io/articles/wordpress-with-ds.html",
+    "tags": [],
+    "category": "How To",
+    "views": 4
+  },
+  "discovery": {
+    "query": "self hosting",
+    "collection_hint": "build-your-own-future",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:33Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:54:29Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:08:39Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:33Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"self hosting\""
+    },
+    {
+      "at": "2026-10-20T01:54:30Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

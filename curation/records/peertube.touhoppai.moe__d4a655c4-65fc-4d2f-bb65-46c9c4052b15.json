@@ -1,0 +1,86 @@
+{
+  "id": "peertube.touhoppai.moe__d4a655c4-65fc-4d2f-bb65-46c9c4052b15",
+  "source": {
+    "video_url": "https://peertube.touhoppai.moe/videos/watch/d4a655c4-65fc-4d2f-bb65-46c9c4052b15",
+    "video_uuid": "d4a655c4-65fc-4d2f-bb65-46c9c4052b15",
+    "channel_actor_uri": "https://peertube.touhoppai.moe/video-channels/4742f338-1ded-4798-bd85-93e8de367476",
+    "instance_host": "peertube.touhoppai.moe",
+    "title": "Digital Painting Timelapse: The Blue Crystal",
+    "creator_display_name": "Krita tutorials",
+    "channel_handle": "4742f338-1ded-4798-bd85-93e8de367476@peertube.touhoppai.moe",
+    "license": "Attribution",
+    "language": "en",
+    "duration_s": 131,
+    "original_published_at": "2022-12-01T19:02:25.565Z",
+    "description": "A video timelapse without audio of the illustration \"The Blue Crystal\". Painted using Krita on GNU/Linux and recorded with the built in Recorder feature. Completion time not known exactly, probably around 9h. - Artwork (full size) blog post: https://www.davidrevoy.com/article943/the-blue-crystal - License: CC-By",
+    "tags": [
+      "fantasy",
+      "krita",
+      "painting",
+      "speedpaint",
+      "timelapse"
+    ],
+    "category": "Art",
+    "views": 428
+  },
+  "discovery": {
+    "query": "digital folklore",
+    "collection_hint": "the-weird-internet",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:53Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:55:10Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:09:20Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:53Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"digital folklore\""
+    },
+    {
+      "at": "2026-10-20T01:55:11Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

@@ -1,0 +1,88 @@
+{
+  "id": "makertube.net__443c806c-930c-4373-b4a1-d04432aa2ff2",
+  "source": {
+    "video_url": "https://makertube.net/videos/watch/443c806c-930c-4373-b4a1-d04432aa2ff2",
+    "video_uuid": "443c806c-930c-4373-b4a1-d04432aa2ff2",
+    "channel_actor_uri": "https://makertube.net/video-channels/teahands",
+    "instance_host": "makertube.net",
+    "title": "First 31 days of progress on my indie city builder! Solaria Devlog #1",
+    "creator_display_name": "TeaHands",
+    "channel_handle": "teahands@makertube.net",
+    "license": "Attribution - Share Alike",
+    "language": "en",
+    "duration_s": 628,
+    "original_published_at": "2024-01-27T00:00:00.000Z",
+    "description": "There's no better place to start than back at the start, so let's try and make narrative sense of the absolute shambles that is my indie game development process! ----------- WISHLIST SOLARIA ON STEAM: https://store.steampowered.com/app/2744300/Solaria/ ----------- You can also find me in various other places, come say hi :) https://linksta.cc/@teahands Hex grid tutorial I used to get started: https://www.youtube.com/watch?v=3Lt2TfP8WEw ----------- #gamedev #devlog #godotengine",
+    "tags": [
+      "city builder",
+      "devlog",
+      "gamedev",
+      "godotengine",
+      "solodev"
+    ],
+    "category": "Gaming",
+    "views": 227
+  },
+  "discovery": {
+    "query": "indie game development",
+    "collection_hint": "the-weird-internet",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:52Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:53:56Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": true,
+    "caption_languages": [
+      "en"
+    ],
+    "last_checked_at": "2026-10-20T02:07:57Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:52Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"indie game development\""
+    },
+    {
+      "at": "2026-10-20T01:53:56Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

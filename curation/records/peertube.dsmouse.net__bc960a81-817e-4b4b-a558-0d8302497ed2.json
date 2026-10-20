@@ -1,0 +1,94 @@
+{
+  "id": "peertube.dsmouse.net__bc960a81-817e-4b4b-a558-0d8302497ed2",
+  "source": {
+    "video_url": "https://peertube.dsmouse.net/videos/watch/bc960a81-817e-4b4b-a558-0d8302497ed2",
+    "video_uuid": "bc960a81-817e-4b4b-a558-0d8302497ed2",
+    "channel_actor_uri": "https://peertube.dsmouse.net/video-channels/infosectalks",
+    "instance_host": "peertube.dsmouse.net",
+    "title": "DEF CON 27 Conference - Omer Gull - SELECT code execution FROM USING SQLite",
+    "creator_display_name": "InfoSec Talks",
+    "channel_handle": "infosectalks@peertube.dsmouse.net",
+    "license": "Attribution",
+    "language": null,
+    "duration_s": 2455,
+    "original_published_at": "2019-11-15T00:00:00.000Z",
+    "description": "Everyone knows that databases are the crown jewels from a hacker's point of view, but what if you could use a database as the hacking tool itself? We discovered that simply querying a malicious SQLite database - can lead to Remote Code Execution. We used undocumented SQLite3 behavior and memory corruption vulnerabilities to take advantage of the assumption that querying a database is safe. How? We created a rogue SQLite database that exploits the software used to open it.Exploring only a few of the possibilities this presents we’ll pwn password stealer backends while they parse credentials files and achieve iOS persistency by replacing its Contacts database… The landscape is endless (Hint: Did someone say Windows 10 0-day?). This is extremely terrifying since SQLite3 is now practically built-in to any modern system. In our talk we also discuss the SQLite internals and our novel approach for abusing them. We had to invent our own ROP chain technique using nothing but SQL CREATE statements. We used JOIN statements for Heap Spray and SELECT subqueries for x64 pointer unpacking and arithmetics. It's a new world of using the familiar Structured Query Language for exploitation primitives,laying the foundations for a generic leverage of memory corruption issues in database engines. Omer Gull Omer Gull is a vulnerability researcher in the Malware and Vulnerability Research group at Check Point Software Technologies. Omer has a diverse background in security research, that includes w…",
+    "tags": [
+      "computer security",
+      "cyber security",
+      "DEF",
+      "hacking conference",
+      "security conference"
+    ],
+    "category": "Science & Technology",
+    "views": 7
+  },
+  "discovery": {
+    "query": "security conference",
+    "collection_hint": "hack-the-planet",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:25Z"
+  },
+  "editorial": {
+    "status": "rejected",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": "claude-opus-5-5 (AI proposal)",
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": "re-upload of a conference recording (DEF CON / KringleCon); not the original publisher",
+    "proposed_at": "2026-10-20T02:03:42Z"
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:54:40Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:08:50Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:25Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"security conference\""
+    },
+    {
+      "at": "2026-10-20T01:54:40Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    },
+    {
+      "at": "2026-10-20T02:03:42Z",
+      "from": "verified",
+      "to": "rejected",
+      "by": "claude-opus-5-5 (AI proposal)",
+      "note": "re-upload of a conference recording (DEF CON / KringleCon); not the original publisher"
+    }
+  ]
+}

@@ -1,0 +1,86 @@
+{
+  "id": "garr.tv__7d37523a-73bd-4a9a-b0be-659a2d54b499",
+  "source": {
+    "video_url": "https://garr.tv/videos/watch/7d37523a-73bd-4a9a-b0be-659a2d54b499",
+    "video_uuid": "7d37523a-73bd-4a9a-b0be-659a2d54b499",
+    "channel_actor_uri": "https://garr.tv/video-channels/main",
+    "instance_host": "garr.tv",
+    "title": "Introduzione ai lavori - E.Valente, M.Casciello - Convegno: Health Science Community 2010",
+    "creator_display_name": "GARR Channel",
+    "channel_handle": "main@garr.tv",
+    "license": "CC BY-NC-SA 4.0",
+    "language": "it",
+    "duration_s": 1248,
+    "original_published_at": "2010-02-01T13:28:28.000Z",
+    "description": "Titolo: Introduzione ai lavori Evento: Convegno \"Health Science Community: GARR e Ministero della Salute per la rete della ricerca medica\" Speaker: Enzo Valente Ente: GARR Speaker: Massimo Casciello Ente: Ministero della Salute",
+    "tags": [
+      "Community",
+      "Health",
+      "Science",
+      "bicocca2010",
+      "ricerca"
+    ],
+    "category": "Conferenze e Incontri",
+    "views": 15
+  },
+  "discovery": {
+    "query": "community science",
+    "collection_hint": "reclaim-the-city",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:43Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:53:45Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:07:45Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:43Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"community science\""
+    },
+    {
+      "at": "2026-10-20T01:53:45Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

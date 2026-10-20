@@ -1,0 +1,96 @@
+{
+  "id": "spectra.video__4d0afcf2-5381-4d0e-9646-2b1117a1e7c9",
+  "source": {
+    "video_url": "https://spectra.video/videos/watch/4d0afcf2-5381-4d0e-9646-2b1117a1e7c9",
+    "video_uuid": "4d0afcf2-5381-4d0e-9646-2b1117a1e7c9",
+    "channel_actor_uri": "https://spectra.video/video-channels/lizardguystreamarchive",
+    "instance_host": "spectra.video",
+    "title": "Lizardguy's Earthbound Stream 3",
+    "creator_display_name": "Lizardguy's Stream Archive",
+    "channel_handle": "lizardguystreamarchive@spectra.video",
+    "license": "CC BY-SA 4.0",
+    "language": "en",
+    "duration_s": 11422,
+    "original_published_at": "2025-11-22T18:48:03.437Z",
+    "description": "In this stream, we save Threed from Zombies and move to the confusing mixture of the big city of Fourside and the huge Sunstroke inducing desert. Wait, isn't there a 4th party member I should be getting soon? Ah who knows. We kind of end right as we get to the city, so there we go. BTW, if you wanna see these live, go here https://www.twitch.tv/lizardguy3 I go live 8:00pm EST on Saturdays, Sundays, Tuesdays and Thursdays. As a reminder, I take ko-fi donations if you want to support my attempts to entertain. https://ko-fi.com/lizardguy And follow my Bluesky https://bsky.app/profile/lizardguy64.bsky.social or my Pillowfort https://www.pillowfort.social/Lizardguy64",
+    "tags": [
+      "Earthbound",
+      "Mother 2",
+      "SNES",
+      "Stream",
+      "Vtuber"
+    ],
+    "category": "Gaming",
+    "views": 3
+  },
+  "discovery": {
+    "query": "right to the city",
+    "collection_hint": "reclaim-the-city",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:43Z"
+  },
+  "editorial": {
+    "status": "rejected",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": "claude-opus-5-5 (AI proposal)",
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": "off-topic for its collection (keyword match only)",
+    "proposed_at": "2026-10-20T02:03:42Z"
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:55:20Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": true,
+    "caption_languages": [
+      "en"
+    ],
+    "last_checked_at": "2026-10-20T02:09:44Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:43Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"right to the city\""
+    },
+    {
+      "at": "2026-10-20T01:55:21Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    },
+    {
+      "at": "2026-10-20T02:03:42Z",
+      "from": "verified",
+      "to": "rejected",
+      "by": "claude-opus-5-5 (AI proposal)",
+      "note": "off-topic for its collection (keyword match only)"
+    }
+  ]
+}

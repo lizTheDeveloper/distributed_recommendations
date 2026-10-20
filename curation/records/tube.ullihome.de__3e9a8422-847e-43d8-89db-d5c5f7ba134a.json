@@ -1,0 +1,94 @@
+{
+  "id": "tube.ullihome.de__3e9a8422-847e-43d8-89db-d5c5f7ba134a",
+  "source": {
+    "video_url": "https://tube.ullihome.de/videos/watch/3e9a8422-847e-43d8-89db-d5c5f7ba134a",
+    "video_uuid": "3e9a8422-847e-43d8-89db-d5c5f7ba134a",
+    "channel_actor_uri": "https://tube.ullihome.de/video-channels/parkour",
+    "instance_host": "tube.ullihome.de",
+    "title": "Paris Action - Daniel Ilabaca Parkour Tour",
+    "creator_display_name": "Parkour",
+    "channel_handle": "parkour@tube.ullihome.de",
+    "license": null,
+    "language": null,
+    "duration_s": 153,
+    "original_published_at": "2010-12-02T00:00:00.000Z",
+    "description": "http://www.indiegogo.com/parkourtour Ahhhhhhh...Paris. We left Paris to last as it felt right to end such a long and epic journey in the birth-city of Parkour. This film shows two of the sides of Paris - modern city centre (La Defense) and urban estates (the 13th District). It took 3 weeks, we drove over 4,000 miles and visited 8 countries but we did it! Daniel Ilabaca travelled across Europe to meet Parkour and Freerunning communities in London, Amsterdam, Cologne, Copenhagen, Vienna, Milan, Barcelona and Paris. In each city we met and trained with the locals, did a bit of filming and then ended the day with a massive jam. We filmed every step of the journey and over the next few months we'll be showing you what happened. And all this happened because the nice people behind 'Brink' supported us. Check out Brink at http://www.brinkthegame.com -- Credits -- Produced and directed by Stephen Follows (http://www.stephenfollows.com) Camera by James Barber & Scott Bass Editing by Scott Bass The tour was created and filmed by Catsnake (http://www.catsnake.com) --- Music --- \"People Watching\" http://www.akmmusic.co.uk/",
+    "tags": [
+      "Freerunners",
+      "bethesda",
+      "brink",
+      "freerunning",
+      "parkour"
+    ],
+    "category": "Unknown",
+    "views": 4
+  },
+  "discovery": {
+    "query": "right to the city",
+    "collection_hint": "reclaim-the-city",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:43Z"
+  },
+  "editorial": {
+    "status": "rejected",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": "claude-opus-5-5 (AI proposal)",
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": "off-topic for its collection (keyword match only)",
+    "proposed_at": "2026-10-20T02:03:42Z"
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:56:09Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:11:16Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:43Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"right to the city\""
+    },
+    {
+      "at": "2026-10-20T01:56:11Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    },
+    {
+      "at": "2026-10-20T02:03:42Z",
+      "from": "verified",
+      "to": "rejected",
+      "by": "claude-opus-5-5 (AI proposal)",
+      "note": "off-topic for its collection (keyword match only)"
+    }
+  ]
+}

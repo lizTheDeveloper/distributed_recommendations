@@ -1,0 +1,114 @@
+{
+  "id": "makertube.net__9099cd77-e7d4-4e95-806f-badca0027e11",
+  "source": {
+    "video_url": "https://makertube.net/videos/watch/9099cd77-e7d4-4e95-806f-badca0027e11",
+    "video_uuid": "9099cd77-e7d4-4e95-806f-badca0027e11",
+    "channel_actor_uri": "https://makertube.net/video-channels/phil_shapiro_octave_ukulele_videos",
+    "instance_host": "makertube.net",
+    "title": "Book review - Writing Interactive Fiction With Twine",
+    "creator_display_name": "Phil Shapiro octave ukulele videos",
+    "channel_handle": "phil_shapiro_octave_ukulele_videos@makertube.net",
+    "license": "Attribution",
+    "language": "en",
+    "duration_s": 1212,
+    "original_published_at": "2017-10-19T00:00:00.000Z",
+    "description": "Book review created using Simple Screen Recorder, which I learned about from AJ Reissig. If you're an open source enthusiast, I highly recommend subscribing to his YouTube channel and perusing his many informative videos. https://www.youtube.com/channel/UCvmDAc3nDHJI8a6HrLG2NUw See also fascinating video at https://www.youtube.com/watch?v=2NfZ3tHSZUQ",
+    "tags": [
+      "CoderDojo",
+      "interactive fiction",
+      "Melissa Ford",
+      "open source",
+      "Twine"
+    ],
+    "category": "Unknown",
+    "views": 7
+  },
+  "discovery": {
+    "query": "interactive fiction",
+    "collection_hint": "the-weird-internet",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:50Z"
+  },
+  "editorial": {
+    "status": "reviewed",
+    "primary_collection": "the-weird-internet",
+    "secondary_collections": [],
+    "difficulty": "beginner",
+    "format": "short",
+    "learning_intents": [
+      "create"
+    ],
+    "evidence_class": "opinion",
+    "tags": [
+      "interactive-fiction",
+      "twine"
+    ],
+    "why_selected": "A review of Writing Interactive Fiction With Twine, a friendly on-ramp into making playable stories.",
+    "learning_outcomes": [
+      "What Twine is and who it's for"
+    ],
+    "try_next": "Make a three-passage Twine story with one choice.",
+    "context_note": null,
+    "ratings": {
+      "usefulness": 3,
+      "rigor": 3,
+      "mission": 4,
+      "distinctiveness": 4,
+      "accessibility": 4,
+      "currency": 3
+    },
+    "score": 68,
+    "judgment_basis": "metadata only (title, description, channel, caption list); not watched — substantive judgments unverified",
+    "proposed_by": "claude-opus-5-5 (AI proposal)",
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null,
+    "shelves": [
+      "playable-futures"
+    ],
+    "band": "collection-candidate",
+    "proposed_at": "2026-10-20T02:03:42Z"
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:54:02Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": true,
+    "caption_languages": [
+      "en"
+    ],
+    "last_checked_at": "2026-10-20T02:08:05Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:50Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"interactive fiction\""
+    },
+    {
+      "at": "2026-10-20T01:54:02Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    },
+    {
+      "at": "2026-10-20T02:03:42Z",
+      "from": "verified",
+      "to": "reviewed",
+      "by": "claude-opus-5-5 (AI proposal)",
+      "note": "proposed score 68"
+    }
+  ]
+}

@@ -1,0 +1,119 @@
+{
+  "$comment": "Collections and permanent shelves from docs/CURATION_STRATEGY.md \u00a73 and \u00a77. targetShare is an editorial target for the first 100 picks, not a quota. Order here is homepage order. rotatingShelves (\u00a77) are published once they hold 3 approved picks.",
+  "collections": [
+    {
+      "slug": "start-here",
+      "name": "Start Here",
+      "kind": "shelf",
+      "promise": "Ten accessible videos, each with one concrete next action.",
+      "maxItems": 10
+    },
+    {
+      "slug": "hack-the-planet",
+      "name": "Hack the Planet",
+      "kind": "collection",
+      "targetShare": 25,
+      "promise": "Understand systems well enough to defend, repair, and improve them.",
+      "subcollections": [
+        "Your First Threat Model",
+        "Protect Your Family",
+        "Hacker Conference Essentials",
+        "Understand Your Router",
+        "Defensive OSINT"
+      ]
+    },
+    {
+      "slug": "the-machine-is-political",
+      "name": "The Machine Is Political",
+      "kind": "collection",
+      "targetShare": 20,
+      "promise": "Examine how technological systems allocate power, risk, and opportunity.",
+      "subcollections": [
+        "Who Gets to Decide?",
+        "AI Safety Without Hype",
+        "Data Is Political",
+        "Labor and Automation",
+        "Surveillance and Resistance"
+      ]
+    },
+    {
+      "slug": "build-your-own-future",
+      "name": "Build Your Own Future",
+      "kind": "collection",
+      "targetShare": 20,
+      "promise": "Replace dependence on opaque platforms with skills and infrastructure you control.",
+      "subcollections": [
+        "Leave Big Tech",
+        "Local AI Lab",
+        "Your First Server",
+        "Build an Agent",
+        "The Federated Web"
+      ]
+    },
+    {
+      "slug": "reclaim-the-city",
+      "name": "Reclaim the City",
+      "kind": "collection",
+      "targetShare": 15,
+      "promise": "Learn how people redesign the systems that shape daily life.",
+      "subcollections": [
+        "Housing Is Infrastructure",
+        "Neighborhood Technology",
+        "Mutual Aid That Works",
+        "Climate Adaptation",
+        "Cities for People"
+      ]
+    },
+    {
+      "slug": "strange-machines",
+      "name": "Strange Machines",
+      "kind": "collection",
+      "targetShare": 12,
+      "promise": "Make unusual physical things and understand how they work.",
+      "subcollections": [
+        "Robots in the Wild",
+        "Tiny Computers",
+        "Repair Everything",
+        "Off-Grid Experiments",
+        "Beautifully Unnecessary Machines"
+      ]
+    },
+    {
+      "slug": "the-weird-internet",
+      "name": "The Weird Internet",
+      "kind": "collection",
+      "targetShare": 8,
+      "promise": "Celebrate creative computing, independent culture, and genuinely strange ideas.",
+      "subcollections": [
+        "Playable Stories",
+        "Demoscene Archaeology",
+        "Art Made of Code",
+        "Future Folklore",
+        "Indie Worlds"
+      ]
+    },
+    {
+      "slug": "classroom-ready",
+      "name": "Classroom Ready",
+      "kind": "shelf",
+      "promise": "Captioned, teachable, discussion-friendly selections.",
+      "requires": {
+        "captionsVerified": true
+      }
+    }
+  ],
+  "rotatingShelves": {
+    "from-video-to-project": {
+      "name": "From Video to Project",
+      "promise": "Each video comes with something you can build or do next."
+    },
+    "beautifully-unnecessary-machines": {
+      "name": "Beautifully Unnecessary Machines",
+      "promise": "Joyful, odd hardware projects."
+    },
+    "playable-futures": {
+      "name": "Playable Futures",
+      "promise": "Interactive fiction and experimental games."
+    }
+  }
+}

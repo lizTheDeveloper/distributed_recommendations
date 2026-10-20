@@ -1,0 +1,86 @@
+{
+  "id": "tube.tchncs.de__fef2a6c2-3051-41bd-8ecf-3623f5cf74cc",
+  "source": {
+    "video_url": "https://tube.tchncs.de/videos/watch/fef2a6c2-3051-41bd-8ecf-3623f5cf74cc",
+    "video_uuid": "fef2a6c2-3051-41bd-8ecf-3623f5cf74cc",
+    "channel_actor_uri": "https://tube.tchncs.de/video-channels/software_architektur_im_stream",
+    "instance_host": "tube.tchncs.de",
+    "title": "Carsten Lill: Mit Gamification und Storytelling im Threat Modeling zur sicheren Anwendung",
+    "creator_display_name": "Software Architektur im Stream",
+    "channel_handle": "software_architektur_im_stream@tube.tchncs.de",
+    "license": "Attribution",
+    "language": "de",
+    "duration_s": 1029,
+    "original_published_at": "2025-10-09T16:36:06.249Z",
+    "description": "In vielen Projekten werden Security-Anforderungen immer noch top-down definiert – von Architekt:innen oder Security-Spezialist:innen – ohne das Entwicklungsteam oder die Fachseite wirklich einzubeziehen. Das führt zu unvollständigen Schutzkonzepten und Widerstand bei der Umsetzung. In diesem Vortrag zeigen wir anhand eines vierstufigen Modells, wie Security kollaborativ geplant und integriert werden kann – von der statischen Systemsicht über Schutzbedarfsanalyse und Bedrohungserkennung bis hin zu konkreten Gegenmaßnahmen. Mit OWASP Cornucopia Security Poker und Domain Storytelling erarbeiten wir greifbare Methoden, wie fachliche Assets, Angriffsvektoren und Schwachstellen teamübergreifend identifiziert und diskutiert werden können. So entsteht ein Security-Konzept, das nicht nur sicher, sondern auch akzeptiert und verstanden ist – vom Developer bis zum Datenschutzbeauftragten. Wir haben diese Episode bei BEDcon 2025 aufgezeichnet. Links - [OWASP Cornucopia](https://cornucopia.owasp.org/) - [Domain Story Telling mit Henning Schwentner und Stefan Hofer](https://software-architektur.tv/2020/10/09/folge021.html)",
+    "tags": [
+      "OWASP Cornucopia",
+      "Sicherheit",
+      "Software Architektur"
+    ],
+    "category": "Science & Technology",
+    "views": 35
+  },
+  "discovery": {
+    "query": "threat modeling",
+    "collection_hint": "hack-the-planet",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:22Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:56:09Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": true,
+    "caption_languages": [
+      "de"
+    ],
+    "last_checked_at": "2026-10-20T02:11:12Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:22Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"threat modeling\""
+    },
+    {
+      "at": "2026-10-20T01:56:09Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

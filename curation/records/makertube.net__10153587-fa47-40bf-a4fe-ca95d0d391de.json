@@ -1,0 +1,85 @@
+{
+  "id": "makertube.net__10153587-fa47-40bf-a4fe-ca95d0d391de",
+  "source": {
+    "video_url": "https://makertube.net/videos/watch/10153587-fa47-40bf-a4fe-ca95d0d391de",
+    "video_uuid": "10153587-fa47-40bf-a4fe-ca95d0d391de",
+    "channel_actor_uri": "https://makertube.net/video-channels/generative_art",
+    "instance_host": "makertube.net",
+    "title": "generative Wave",
+    "creator_display_name": "Generative Art - programmierte Kunst",
+    "channel_handle": "generative_art@makertube.net",
+    "license": "Attribution",
+    "language": "zxx",
+    "duration_s": 60,
+    "original_published_at": "2024-02-10T20:31:13.791Z",
+    "description": null,
+    "tags": [
+      "art",
+      "generative",
+      "processing",
+      "prorgamming"
+    ],
+    "category": "Art",
+    "views": 10
+  },
+  "discovery": {
+    "query": "generative art",
+    "collection_hint": "the-weird-internet",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:52Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:53:53Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:07:54Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:52Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"generative art\""
+    },
+    {
+      "at": "2026-10-20T01:53:54Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

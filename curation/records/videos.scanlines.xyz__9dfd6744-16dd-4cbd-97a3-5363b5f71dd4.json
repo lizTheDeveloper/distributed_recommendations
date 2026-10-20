@@ -1,0 +1,84 @@
+{
+  "id": "videos.scanlines.xyz__9dfd6744-16dd-4cbd-97a3-5363b5f71dd4",
+  "source": {
+    "video_url": "https://videos.scanlines.xyz/videos/watch/9dfd6744-16dd-4cbd-97a3-5363b5f71dd4",
+    "video_uuid": "9dfd6744-16dd-4cbd-97a3-5363b5f71dd4",
+    "channel_actor_uri": "https://videos.scanlines.xyz/video-channels/palomakop_channel",
+    "instance_host": "videos.scanlines.xyz",
+    "title": "REFRACTION/PROJECTION (2 channel video)",
+    "creator_display_name": "Paloma Kop",
+    "channel_handle": "palomakop_channel@videos.scanlines.xyz",
+    "license": null,
+    "language": null,
+    "duration_s": 97,
+    "original_published_at": "2024-01-16T02:29:04.792Z",
+    "description": "Channel 1 (left): stop motion animation of pinhole light source refracting through a rotating piece of hot-formed glass. Recorded with DSLR sensor, no lens. Channel 2 (right): top-down view of the same hot-formed glass rotating. Recorded with a lens (normal video). Silent.",
+    "tags": [
+      "animation",
+      "experimental",
+      "light art"
+    ],
+    "category": "Art",
+    "views": 8
+  },
+  "discovery": {
+    "query": "experimental animation",
+    "collection_hint": "the-weird-internet",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:54Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:57:24Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:12:40Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:54Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"experimental animation\""
+    },
+    {
+      "at": "2026-10-20T01:57:24Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

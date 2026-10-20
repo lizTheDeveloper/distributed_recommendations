@@ -1,0 +1,83 @@
+{
+  "id": "videos.scanlines.xyz__0dd4158e-9949-4970-96dd-e289190cc120",
+  "source": {
+    "video_url": "https://videos.scanlines.xyz/videos/watch/0dd4158e-9949-4970-96dd-e289190cc120",
+    "video_uuid": "0dd4158e-9949-4970-96dd-e289190cc120",
+    "channel_actor_uri": "https://videos.scanlines.xyz/video-channels/vincenzo.madaghiele_channel",
+    "instance_host": "videos.scanlines.xyz",
+    "title": "Recursive speculation | w. Kelsey Cotton (teaser)",
+    "creator_display_name": "Main vincenzo.madaghiele channel",
+    "channel_handle": "vincenzo.madaghiele_channel@videos.scanlines.xyz",
+    "license": "Attribution - Non Commercial - Share Alike",
+    "language": "zxx",
+    "duration_s": 121,
+    "original_published_at": "2026-02-15T08:31:10.611Z",
+    "description": "Recursive Speculation is an improvised vocal performance that features a vocalist and the Multi-Agent Autonomous Looper (MAAL), a co-creative sampler/looper based on a multi-agent logic algorithm and machine listening. MAAL is composed of several agents, each controlling a loop track, which can autonomously decide to sample and play back segments of a live vocal performance by listening to each other. The performance evolves as a dialogue between the musician and the ALL, in which the system acts as speculative mirror, a machine able to autonomously select and repeat segments of the performer’s voice, layering them to construct evolving musical structures. The machine appropriates vocal segments, it disembodies them through repetition, reimagining their meaning and their musical function by recombination and association. The musician and the ALL are in a co-creative feedback where the musician generates the material the system selects, and at the same time she must respond to the system’s autonomous choices throughout the performance. https://www.vmad.me https://kelseycotton.com",
+    "tags": [
+      "live electronics",
+      "music improvisation"
+    ],
+    "category": "Art",
+    "views": 46
+  },
+  "discovery": {
+    "query": "creative electronics",
+    "collection_hint": "strange-machines",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:49Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:57:22Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:12:39Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:49Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"creative electronics\""
+    },
+    {
+      "at": "2026-10-20T01:57:23Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

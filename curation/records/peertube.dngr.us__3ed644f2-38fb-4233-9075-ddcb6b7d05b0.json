@@ -1,0 +1,86 @@
+{
+  "id": "peertube.dngr.us__3ed644f2-38fb-4233-9075-ddcb6b7d05b0",
+  "source": {
+    "video_url": "https://peertube.dngr.us/videos/watch/3ed644f2-38fb-4233-9075-ddcb6b7d05b0",
+    "video_uuid": "3ed644f2-38fb-4233-9075-ddcb6b7d05b0",
+    "channel_actor_uri": "https://peertube.dngr.us/video-channels/historical",
+    "instance_host": "peertube.dngr.us",
+    "title": "\"THE CITY\" 1939 DEVELOPMENT OF AMERiCAN CITIES & URBAN PLANNING DOCUMENTARY FILM 90594",
+    "creator_display_name": "Historical Archive",
+    "channel_handle": "historical@peertube.dngr.us",
+    "license": "Public Domain Dedication",
+    "language": "en",
+    "duration_s": 1910,
+    "original_published_at": "2019-04-05T00:00:00.000Z",
+    "description": "Join this channel to get access to perks: https://www.youtube.com/channel/UCddem5RlB3bQe99wyY49g0g/join Support us on Patreon, visit https://www.patreon.com/PeriscopeFilm Visit our website www.PeriscopeFilm.com View our Amazon store here: https://amzn.to/3XQHsVD The short 1939 documentary The City, directed by Willard Van Dyke and Ralph Steiner, is a “plea” for residential planning and presents ways to remold cities to better accommodate the demand for housing and the need for clean, healthy communities. The film follows the chronological development of American communities, beginning with rural New England circa 1800, opening with shots of old rural homes, a water wheel and mill house (02:33), and Sias Farm. Children jump into a pond or a river and splash around. A horse-drawn wagon carries barrels of apples. A blacksmith works on fixing a wagon wheel. People talk at a town meeting (04:38). A woman weaves using a loom (05:11). A man weaves a basket by hand. Men cut grain or hay with scythes. The film then cuts to the industrialization of Pittsburgh, with its steel factories producing thick smog. Footage shows the small city covered in a blanket of smog. People live in shacks that line dirty narrow streets. A woman hangs laundry to dry on lines outside her home (10:40). A train passes a polluting industrial plant (11:58). The film then takes viewers to the chaotic bustle of Manhattan. Footage shows Manhattan’s skyscrapers (12:18) and people swarming the city’s streets and tr…",
+    "tags": [
+      "2K",
+      "4K",
+      "HD",
+      "Periscope Film",
+      "Stock Footage"
+    ],
+    "category": "Films",
+    "views": 0
+  },
+  "discovery": {
+    "query": "urban planning",
+    "collection_hint": "reclaim-the-city",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:41Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:54:32Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:08:42Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:41Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"urban planning\""
+    },
+    {
+      "at": "2026-10-20T01:54:32Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

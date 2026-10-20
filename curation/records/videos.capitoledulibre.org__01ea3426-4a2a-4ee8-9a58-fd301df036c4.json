@@ -1,0 +1,80 @@
+{
+  "id": "videos.capitoledulibre.org__01ea3426-4a2a-4ee8-9a58-fd301df036c4",
+  "source": {
+    "video_url": "https://videos.capitoledulibre.org/videos/watch/01ea3426-4a2a-4ee8-9a58-fd301df036c4",
+    "video_uuid": "01ea3426-4a2a-4ee8-9a58-fd301df036c4",
+    "channel_actor_uri": "https://videos.capitoledulibre.org/video-channels/capitoledulibre",
+    "instance_host": "videos.capitoledulibre.org",
+    "title": "Open Hardware : Un monde méconnu en pleine évolution — Cédric Ravalec",
+    "creator_display_name": "Capitole du Libre",
+    "channel_handle": "capitoledulibre@videos.capitoledulibre.org",
+    "license": "Attribution",
+    "language": "fr",
+    "duration_s": 2525,
+    "original_published_at": "2019-11-18T00:00:00.000Z",
+    "description": "Cela fait des années que nous entendons parler de l'Open Hardware mais pour la plupart des gens en dehors des boards de développement comme Arduino, cela reste une utopie voir un domaine d’expérimentation. Depuis maintenant 3 ans ce domaine de l'Open Source est en pleine croissance avec des initiatives comme : - L'architecture du jeu d'instructions RISC libre et ouvert Risc-V - L'Open Firmware alliance avec coreboot - Les solution pour hébergeur avec Open Compute Project",
+    "tags": [],
+    "category": "Science & Technology",
+    "views": 0
+  },
+  "discovery": {
+    "query": "open hardware",
+    "collection_hint": "build-your-own-future",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:38Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:57:14Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:12:33Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:38Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"open hardware\""
+    },
+    {
+      "at": "2026-10-20T01:57:16Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

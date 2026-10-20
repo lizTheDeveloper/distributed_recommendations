@@ -1,0 +1,106 @@
+{
+  "id": "peertube.fenarinarsa.com__5052c72f-9d59-4299-9b3a-b3b29fc65e4f",
+  "source": {
+    "video_url": "https://peertube.fenarinarsa.com/videos/watch/5052c72f-9d59-4299-9b3a-b3b29fc65e4f",
+    "video_uuid": "5052c72f-9d59-4299-9b3a-b3b29fc65e4f",
+    "channel_actor_uri": "https://peertube.fenarinarsa.com/video-channels/demoscene",
+    "instance_host": "peertube.fenarinarsa.com",
+    "title": "Acid Team | The Coders' Guide To The Demoscene (Atari STE, 2024)",
+    "creator_display_name": "Demoscene",
+    "channel_handle": "demoscene@peertube.fenarinarsa.com",
+    "license": "Attribution",
+    "language": null,
+    "duration_s": 481,
+    "original_published_at": "2024-08-25T23:16:06.152Z",
+    "description": "Download: https://demozoo.org/productions/355416/ Amazing demo running on a stock 8Mhz Atari STE with HDD and 4MB RAM. The fullscreen effects and audio are streamed from the HDD. Running on Mega STE + Retrotink 4K",
+    "tags": [],
+    "category": "Art",
+    "views": 122
+  },
+  "discovery": {
+    "query": "demoscene",
+    "collection_hint": "the-weird-internet",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:51Z"
+  },
+  "editorial": {
+    "status": "reviewed",
+    "primary_collection": "the-weird-internet",
+    "secondary_collections": [
+      "strange-machines"
+    ],
+    "difficulty": "advanced",
+    "format": "artwork",
+    "learning_intents": [
+      "create"
+    ],
+    "evidence_class": "practitioner-experience",
+    "tags": [
+      "demoscene",
+      "atari"
+    ],
+    "why_selected": "A 2024 demo that squeezes astonishing effects out of a stock 8 MHz Atari STE: the demoscene's art of doing impossible things with old hardware.",
+    "learning_outcomes": [
+      "What makes a demo technically impressive"
+    ],
+    "try_next": "Read the demo's demozoo page to see how it was made.",
+    "context_note": null,
+    "ratings": {
+      "usefulness": 3,
+      "rigor": 3,
+      "mission": 4,
+      "distinctiveness": 5,
+      "accessibility": 3,
+      "currency": 4
+    },
+    "score": 70,
+    "judgment_basis": "metadata only (title, description, channel, caption list); not watched — substantive judgments unverified",
+    "proposed_by": "claude-opus-5-5 (AI proposal)",
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null,
+    "shelves": [],
+    "band": "collection-candidate",
+    "proposed_at": "2026-10-20T02:03:42Z"
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:54:53Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:09:03Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:51Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"demoscene\""
+    },
+    {
+      "at": "2026-10-20T01:54:54Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    },
+    {
+      "at": "2026-10-20T02:03:42Z",
+      "from": "verified",
+      "to": "reviewed",
+      "by": "claude-opus-5-5 (AI proposal)",
+      "note": "proposed score 70"
+    }
+  ]
+}

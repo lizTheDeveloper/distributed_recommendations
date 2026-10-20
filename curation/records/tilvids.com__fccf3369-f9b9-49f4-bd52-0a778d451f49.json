@@ -1,0 +1,118 @@
+{
+  "id": "tilvids.com__fccf3369-f9b9-49f4-bd52-0a778d451f49",
+  "source": {
+    "video_url": "https://tilvids.com/videos/watch/fccf3369-f9b9-49f4-bd52-0a778d451f49",
+    "video_uuid": "fccf3369-f9b9-49f4-bd52-0a778d451f49",
+    "channel_actor_uri": "https://tilvids.com/video-channels/nicemicro_channel",
+    "instance_host": "tilvids.com",
+    "title": "AI Chat Bot in a Godot game with Ollama: a tutorial (local LLM)",
+    "creator_display_name": "Nice Micro's channel",
+    "channel_handle": "nicemicro_channel@tilvids.com",
+    "license": "Attribution - Non Commercial - No Derivatives",
+    "language": "en",
+    "duration_s": 1520,
+    "original_published_at": "2025-08-15T14:21:24.478Z",
+    "description": "In this tutorial, we are connecting the HTTP API of a locally running Ollama server to the Godot Engine to write a simple chat bot, and we contemplate how to use \"prompt engineering\" to get interesting results for a game.",
+    "tags": [
+      "AI",
+      "GodotEngine",
+      "LinuxGameDev",
+      "LLM",
+      "Ollama"
+    ],
+    "category": "Education",
+    "views": 63
+  },
+  "discovery": {
+    "query": "local LLM",
+    "collection_hint": "build-your-own-future",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:33Z"
+  },
+  "editorial": {
+    "status": "reviewed",
+    "primary_collection": "build-your-own-future",
+    "secondary_collections": [
+      "the-weird-internet"
+    ],
+    "difficulty": "intermediate",
+    "format": "tutorial",
+    "learning_intents": [
+      "build",
+      "create"
+    ],
+    "evidence_class": "practitioner-experience",
+    "tags": [
+      "local-llm",
+      "ollama",
+      "godot",
+      "game-dev"
+    ],
+    "why_selected": "Build a chatbot character inside a Godot game that talks to a language model running on your own machine through Ollama.",
+    "learning_outcomes": [
+      "How to call a local LLM's HTTP API from a game engine",
+      "How to keep an AI character running offline"
+    ],
+    "try_next": "Follow along and give your chatbot character one rule it must never break.",
+    "context_note": null,
+    "ratings": {
+      "usefulness": 5,
+      "rigor": 4,
+      "mission": 4,
+      "distinctiveness": 4,
+      "accessibility": 3,
+      "currency": 4
+    },
+    "score": 83,
+    "judgment_basis": "metadata only (title, description, channel, caption list); not watched — substantive judgments unverified",
+    "proposed_by": "claude-opus-5-5 (AI proposal)",
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null,
+    "shelves": [
+      "from-video-to-project"
+    ],
+    "band": "feature-candidate",
+    "proposed_at": "2026-10-20T02:03:42Z"
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:55:32Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:09:53Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:33Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"local LLM\""
+    },
+    {
+      "at": "2026-10-20T01:55:32Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    },
+    {
+      "at": "2026-10-20T02:03:42Z",
+      "from": "verified",
+      "to": "reviewed",
+      "by": "claude-opus-5-5 (AI proposal)",
+      "note": "proposed score 83"
+    }
+  ]
+}

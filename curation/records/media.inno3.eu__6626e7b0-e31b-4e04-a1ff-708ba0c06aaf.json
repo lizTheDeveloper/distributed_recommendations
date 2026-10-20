@@ -1,0 +1,85 @@
+{
+  "id": "media.inno3.eu__6626e7b0-e31b-4e04-a1ff-708ba0c06aaf",
+  "source": {
+    "video_url": "https://media.inno3.eu/videos/watch/6626e7b0-e31b-4e04-a1ff-708ba0c06aaf",
+    "video_uuid": "6626e7b0-e31b-4e04-a1ff-708ba0c06aaf",
+    "channel_actor_uri": "https://media.inno3.cricket/video-channels/bjean_channel",
+    "instance_host": "media.inno3.eu",
+    "title": "Probabl.ai governance and revenue model: a critical open-source AI commons — Yann Lechelle",
+    "creator_display_name": "Main bjean channel",
+    "channel_handle": "bjean_channel@media.inno3.eu",
+    "license": "Public Domain Dedication",
+    "language": "en",
+    "duration_s": 1241,
+    "original_published_at": "2026-05-14T19:00:52.984Z",
+    "description": "Session 2 — Commons AI 2025 (FOST, 10 décembre 2025) Yann Lechelle, CEO, Probabl",
+    "tags": [
+      "AI",
+      "commons-ai",
+      "open-source",
+      "probabl"
+    ],
+    "category": "Science & Technology",
+    "views": 0
+  },
+  "discovery": {
+    "query": "AI governance",
+    "collection_hint": "the-machine-is-political",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:27Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:54:13Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:08:25Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:27Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"AI governance\""
+    },
+    {
+      "at": "2026-10-20T01:54:14Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

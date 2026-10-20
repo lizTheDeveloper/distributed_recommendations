@@ -1,0 +1,86 @@
+{
+  "id": "tube.sekretaerbaer.net__da71df38-a7f1-4a12-b869-ba97326c493c",
+  "source": {
+    "video_url": "https://tube.sekretaerbaer.net/videos/watch/da71df38-a7f1-4a12-b869-ba97326c493c",
+    "video_uuid": "da71df38-a7f1-4a12-b869-ba97326c493c",
+    "channel_actor_uri": "https://tube.sekretaerbaer.net/video-channels/fediverse",
+    "instance_host": "tube.sekretaerbaer.net",
+    "title": "Was ist das Fediverse ?",
+    "creator_display_name": "Fediverse",
+    "channel_handle": "fediverse@tube.sekretaerbaer.net",
+    "license": "CC BY-SA 4.0",
+    "language": "de",
+    "duration_s": 103,
+    "original_published_at": "2023-07-01T22:00:00.000Z",
+    "description": "Deutsche Audio Version von \"What is the Fediverse?\" https://framatube.org/w/9dRFC6Ya11NCVeYKn8ZhiD erstellt von @chris@allmendenetz.de chris@videos.im.allmendenetz.de Lizenz: https://creativecommons.org/licenses/by-sa/4.0/",
+    "tags": [
+      "Fediverse",
+      "Framasoft",
+      "Hubzilla",
+      "Mastodon",
+      "Peertube"
+    ],
+    "category": "Science & Technology",
+    "views": 238
+  },
+  "discovery": {
+    "query": "Fediverse",
+    "collection_hint": "build-your-own-future",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:35Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:56:00Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:10:41Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:35Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"Fediverse\""
+    },
+    {
+      "at": "2026-10-20T01:56:00Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

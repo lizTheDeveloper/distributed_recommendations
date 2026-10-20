@@ -1,0 +1,86 @@
+{
+  "id": "makertube.net__dd5ec262-a3ef-4556-93db-8bb9442c4ff9",
+  "source": {
+    "video_url": "https://makertube.net/videos/watch/dd5ec262-a3ef-4556-93db-8bb9442c4ff9",
+    "video_uuid": "dd5ec262-a3ef-4556-93db-8bb9442c4ff9",
+    "channel_actor_uri": "https://makertube.net/video-channels/sdemp",
+    "instance_host": "makertube.net",
+    "title": "ESP32 and PWM Synthesis",
+    "creator_display_name": "Simple DIY Electronic Music Projects",
+    "channel_handle": "sdemp@makertube.net",
+    "license": "Attribution - Share Alike",
+    "language": "zxx",
+    "duration_s": 99,
+    "original_published_at": "2024-04-03T18:53:34.293Z",
+    "description": "This is a short demonstration of two waveforms being controlled using potentiometers and feeding back on each other to create a waveform using direct digital synthesis on an ESP32 WROOM module. Full details here: https://diyelectromusic.wordpress.com/2024/04/03/esp32-and-pwm-part-3/ Kevin",
+    "tags": [
+      "esp32",
+      "pwm",
+      "synthdiy"
+    ],
+    "category": "Science & Technology",
+    "views": 145
+  },
+  "discovery": {
+    "query": "ESP32",
+    "collection_hint": "strange-machines",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:44Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:54:05Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": true,
+    "caption_languages": [
+      "en"
+    ],
+    "last_checked_at": "2026-10-20T02:08:08Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:44Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"ESP32\""
+    },
+    {
+      "at": "2026-10-20T01:54:06Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

@@ -1,0 +1,110 @@
+{
+  "id": "tube.tchncs.de__d7d5b093-3491-4bd5-8ab0-92cf783b1775",
+  "source": {
+    "video_url": "https://tube.tchncs.de/videos/watch/d7d5b093-3491-4bd5-8ab0-92cf783b1775",
+    "video_uuid": "d7d5b093-3491-4bd5-8ab0-92cf783b1775",
+    "channel_actor_uri": "https://tube.tchncs.de/video-channels/bonfire",
+    "instance_host": "tube.tchncs.de",
+    "title": "Federated Digital Spaces for Mutual Aid Networks",
+    "creator_display_name": "Bonfire",
+    "channel_handle": "bonfire@tube.tchncs.de",
+    "license": null,
+    "language": "en",
+    "duration_s": 449,
+    "original_published_at": "2025-11-15T14:39:07.949Z",
+    "description": null,
+    "tags": [],
+    "category": "Activism",
+    "views": 79
+  },
+  "discovery": {
+    "query": "mutual aid",
+    "collection_hint": "reclaim-the-city",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:42Z"
+  },
+  "editorial": {
+    "status": "reviewed",
+    "primary_collection": "reclaim-the-city",
+    "secondary_collections": [
+      "build-your-own-future"
+    ],
+    "difficulty": "intermediate",
+    "format": "lecture",
+    "learning_intents": [
+      "organize",
+      "build"
+    ],
+    "evidence_class": "practitioner-experience",
+    "tags": [
+      "mutual-aid",
+      "fediverse"
+    ],
+    "why_selected": "The Bonfire project on federated digital spaces built for mutual aid networks, as an alternative to running them on corporate group chats.",
+    "learning_outcomes": [
+      "What mutual aid groups need from software",
+      "How federation helps groups keep control"
+    ],
+    "try_next": "Ask a mutual aid group you know what tools they coordinate with, and what frustrates them.",
+    "context_note": null,
+    "ratings": {
+      "usefulness": 3,
+      "rigor": 3,
+      "mission": 5,
+      "distinctiveness": 5,
+      "accessibility": 4,
+      "currency": 5
+    },
+    "score": 78,
+    "judgment_basis": "metadata only (title, description, channel, caption list); not watched — substantive judgments unverified",
+    "proposed_by": "claude-opus-5-5 (AI proposal)",
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null,
+    "shelves": [],
+    "band": "collection-candidate",
+    "proposed_at": "2026-10-20T02:03:42Z"
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:56:07Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": true,
+    "caption_languages": [
+      "en"
+    ],
+    "last_checked_at": "2026-10-20T02:10:57Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:42Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"mutual aid\""
+    },
+    {
+      "at": "2026-10-20T01:56:07Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    },
+    {
+      "at": "2026-10-20T02:03:42Z",
+      "from": "verified",
+      "to": "reviewed",
+      "by": "claude-opus-5-5 (AI proposal)",
+      "note": "proposed score 78"
+    }
+  ]
+}

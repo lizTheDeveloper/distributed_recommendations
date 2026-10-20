@@ -1,0 +1,105 @@
+{
+  "id": "video.infiniteloop.tv__77212c40-bdcf-4073-a90a-df83d7b62417",
+  "source": {
+    "video_url": "https://video.infiniteloop.tv/videos/watch/77212c40-bdcf-4073-a90a-df83d7b62417",
+    "video_uuid": "77212c40-bdcf-4073-a90a-df83d7b62417",
+    "channel_actor_uri": "https://video.infiniteloop.tv/video-channels/demoscene",
+    "instance_host": "video.infiniteloop.tv",
+    "title": "Demoscene Report 2 January 2025",
+    "creator_display_name": "Demoscene",
+    "channel_handle": "demoscene@video.infiniteloop.tv",
+    "license": null,
+    "language": "en",
+    "duration_s": 530,
+    "original_published_at": "2025-01-02T17:17:47.529Z",
+    "description": "Website tpolm.org/~ps Twitter twitter.com/psenough Patreon patreon.com/psenough Twitch twitch.tv/psenough Instagram instagram.com/psenough Discord discord.gg/WtD9gzqgz4",
+    "tags": [],
+    "category": "Art",
+    "views": 3
+  },
+  "discovery": {
+    "query": "demoscene",
+    "collection_hint": "the-weird-internet",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:51Z"
+  },
+  "editorial": {
+    "status": "reviewed",
+    "primary_collection": "the-weird-internet",
+    "secondary_collections": [],
+    "difficulty": "beginner",
+    "format": "short",
+    "learning_intents": [
+      "understand"
+    ],
+    "evidence_class": "practitioner-experience",
+    "tags": [
+      "demoscene"
+    ],
+    "why_selected": "A short Demoscene Report: what the demoscene released and celebrated this fortnight, from a long-running scener. Captioned.",
+    "learning_outcomes": [
+      "What the demoscene is making right now"
+    ],
+    "try_next": "Watch one demo mentioned in the report on demozoo.org.",
+    "context_note": null,
+    "ratings": {
+      "usefulness": 3,
+      "rigor": 3,
+      "mission": 4,
+      "distinctiveness": 5,
+      "accessibility": 4,
+      "currency": 4
+    },
+    "score": 72,
+    "judgment_basis": "metadata only (title, description, channel, caption list); not watched — substantive judgments unverified",
+    "proposed_by": "claude-opus-5-5 (AI proposal)",
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null,
+    "shelves": [],
+    "band": "collection-candidate",
+    "proposed_at": "2026-10-20T02:03:42Z"
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:56:53Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": true,
+    "caption_languages": [
+      "en"
+    ],
+    "last_checked_at": "2026-10-20T02:12:14Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:51Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"demoscene\""
+    },
+    {
+      "at": "2026-10-20T01:56:53Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    },
+    {
+      "at": "2026-10-20T02:03:42Z",
+      "from": "verified",
+      "to": "reviewed",
+      "by": "claude-opus-5-5 (AI proposal)",
+      "note": "proposed score 72"
+    }
+  ]
+}

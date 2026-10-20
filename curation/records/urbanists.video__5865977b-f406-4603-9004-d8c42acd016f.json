@@ -1,0 +1,80 @@
+{
+  "id": "urbanists.video__5865977b-f406-4603-9004-d8c42acd016f",
+  "source": {
+    "video_url": "https://urbanists.video/videos/watch/5865977b-f406-4603-9004-d8c42acd016f",
+    "video_uuid": "5865977b-f406-4603-9004-d8c42acd016f",
+    "channel_actor_uri": "https://urbanists.video/video-channels/silva_ignis",
+    "instance_host": "urbanists.video",
+    "title": "What is urban planning on this tiny island like?",
+    "creator_display_name": "Generic Urbanism Channel",
+    "channel_handle": "silva_ignis@urbanists.video",
+    "license": null,
+    "language": null,
+    "duration_s": 259,
+    "original_published_at": "2023-07-08T15:44:56.184Z",
+    "description": "Islands have a limited amount of space. So let's see what happens with this space. My brand new Discord Server: https://discord.gg/YbS3zEy7vB #virginislands #stcroix",
+    "tags": [],
+    "category": "Entertainment",
+    "views": 18
+  },
+  "discovery": {
+    "query": "urban planning",
+    "collection_hint": "reclaim-the-city",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:41Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:56:25Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:11:46Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:41Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"urban planning\""
+    },
+    {
+      "at": "2026-10-20T01:56:25Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

@@ -1,0 +1,86 @@
+{
+  "id": "tube.xy-space.de__2f71bf46-91d7-411c-86d2-6269a84e28a6",
+  "source": {
+    "video_url": "https://tube.xy-space.de/videos/watch/2f71bf46-91d7-411c-86d2-6269a84e28a6",
+    "video_uuid": "2f71bf46-91d7-411c-86d2-6269a84e28a6",
+    "channel_actor_uri": "https://tube.xy-space.de/video-channels/future_electronics",
+    "instance_host": "tube.xy-space.de",
+    "title": "NXP: FRDM Development Boards for Rapid Prototyping",
+    "creator_display_name": "Future Electronics",
+    "channel_handle": "future_electronics@tube.xy-space.de",
+    "license": null,
+    "language": null,
+    "duration_s": 92,
+    "original_published_at": "2024-02-06T22:00:00.000Z",
+    "description": "FRDM development boards are a low-cost, scalable hardware platform supported by the MCUXpresso Developer Experience. Designed to promote creative freedom while developing for various end applications, these compact boards offer flexible and rapid prototyping, with industry-standard headers providing easy access to the MCU’s I/Os. With the on-board MCU-Link debug probe and USB-C cable included, engineers can develop, debug and program with ease. For more information, click here: https://bit.ly/42Ot3eV About Future Electronics: https://www.futureelectronics.com Follow us on LinkedIn: https://www.linkedin.com/company/future-electronics Follow us on Twitter: https://twitter.com/futureelec",
+    "tags": [
+      "development board",
+      "frdm",
+      "Nxp",
+      "rapid prototyping",
+      "software engineering"
+    ],
+    "category": "Science & Technology",
+    "views": 1
+  },
+  "discovery": {
+    "query": "creative electronics",
+    "collection_hint": "strange-machines",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:49Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:56:12Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:11:34Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:49Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"creative electronics\""
+    },
+    {
+      "at": "2026-10-20T01:56:13Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

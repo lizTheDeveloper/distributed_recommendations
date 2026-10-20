@@ -1,0 +1,94 @@
+{
+  "id": "peertube.dngr.us__75071cda-3909-4c8f-a57d-194283e43644",
+  "source": {
+    "video_url": "https://peertube.dngr.us/videos/watch/75071cda-3909-4c8f-a57d-194283e43644",
+    "video_uuid": "75071cda-3909-4c8f-a57d-194283e43644",
+    "channel_actor_uri": "https://peertube.dngr.us/video-channels/historical",
+    "instance_host": "peertube.dngr.us",
+    "title": "\" TECHNOLOGY FOR THE FUTURE \" 1980 U.S. AIR FORCE WRIGHT AERONAUTICAL LABORATORIES PROMO GG46655",
+    "creator_display_name": "Historical Archive",
+    "channel_handle": "historical@peertube.dngr.us",
+    "license": "Public Domain Dedication",
+    "language": "en",
+    "duration_s": 1446,
+    "original_published_at": "2026-07-06T00:00:00.000Z",
+    "description": "Join this channel to get access to perks: https://www.youtube.com/channel/UCddem5RlB3bQe99wyY49g0g/join Join us on Patreon. Visit https://www.patreon.com/PeriscopeFilm Visit our website www.PeriscopeFilm.com This film \"AFWAL R&D: Technology for the Future\" (1980) provides an overview of the Air Force Wright Aeronautical Laboratories (AFWAL) at Wright Patterson Air Force Base in Ohio, the largest center for military aerospace research and development. AFWAL comprises four laboratories focusing on advanced flight dynamics, propulsion, avionics, and materials, employing nearly 2,800 people with an annual budget exceeding $500 million. Their work spans all phases of R&D, including basic research, exploratory development, and advanced development programs, conducted in collaboration with industry and higher learning institutions. AFWAL supports the Air Force systems command in acquiring new systems and resolving developmental and operational problems, covering nearly every aspect of flight vehicle technology. They utilize advanced mathematical tools and computational capabilities to study aerodynamics, structural design, and materials, complemented by extensive testing and verification processes. AFWAL also develops new manufacturing methods, flight control systems, and unmanned systems, aiming to improve efficiency, reduce costs, and enhance the durability and performance of future aerospace vehicles. Their mission includes advancing technologies across many disciplines to meet …",
+    "tags": [
+      "2K",
+      "4K",
+      "HD",
+      "Periscope Film",
+      "Stock Footage"
+    ],
+    "category": "Films",
+    "views": 0
+  },
+  "discovery": {
+    "query": "technology labor",
+    "collection_hint": "the-machine-is-political",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:29Z"
+  },
+  "editorial": {
+    "status": "rejected",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": "claude-opus-5-5 (AI proposal)",
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": "off-topic for its collection (keyword match only)",
+    "proposed_at": "2026-10-20T02:03:42Z"
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:54:33Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:08:43Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:29Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"technology labor\""
+    },
+    {
+      "at": "2026-10-20T01:54:33Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    },
+    {
+      "at": "2026-10-20T02:03:42Z",
+      "from": "verified",
+      "to": "rejected",
+      "by": "claude-opus-5-5 (AI proposal)",
+      "note": "off-topic for its collection (keyword match only)"
+    }
+  ]
+}

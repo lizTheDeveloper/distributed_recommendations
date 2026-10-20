@@ -1,0 +1,82 @@
+{
+  "id": "video.kamloops.social__a17a6202-f18a-48fc-8dc4-10c3f8a204d5",
+  "source": {
+    "video_url": "https://video.kamloops.social/videos/watch/a17a6202-f18a-48fc-8dc4-10c3f8a204d5",
+    "video_uuid": "a17a6202-f18a-48fc-8dc4-10c3f8a204d5",
+    "channel_actor_uri": "https://video.kamloops.social/video-channels/emily_lowen",
+    "instance_host": "video.kamloops.social",
+    "title": "**Beep Beep** We’re on tour!! 🚗",
+    "creator_display_name": "*UNOFFICIAL* Emily Lowen YouTube mirror",
+    "channel_handle": "emily_lowen@video.kamloops.social",
+    "license": null,
+    "language": "en",
+    "duration_s": 78,
+    "original_published_at": "2025-11-19T00:00:00.000Z",
+    "description": "This month, we’re travelling across the province, meeting with communities building bright solutions to reclaim BC’s economy for working people, not the billionaires. From food security, cooperative housing, community owned energy and innovative technology, come with us and discover how to fight the oligarchs, right here in BC. Fighttheoligarchs.ca ⚡#fighttheoligarchs #bcgreens #britishcolumbia #billionares #wealthtax #greenparty #emilylowan #bcpoli",
+    "tags": [],
+    "category": "Unknown",
+    "views": 0
+  },
+  "discovery": {
+    "query": "cooperative housing",
+    "collection_hint": "reclaim-the-city",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:40Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:56:58Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": true,
+    "caption_languages": [
+      "en"
+    ],
+    "last_checked_at": "2026-10-20T02:12:19Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:40Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"cooperative housing\""
+    },
+    {
+      "at": "2026-10-20T01:56:58Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

@@ -1,0 +1,86 @@
+{
+  "id": "video.hardlimit.com__a50acfc1-02d4-478f-9f34-12f0e0aabe23",
+  "source": {
+    "video_url": "https://video.hardlimit.com/videos/watch/a50acfc1-02d4-478f-9f34-12f0e0aabe23",
+    "video_uuid": "a50acfc1-02d4-478f-9f34-12f0e0aabe23",
+    "channel_actor_uri": "https://video.hardlimit.com/video-channels/azufre_gt",
+    "instance_host": "video.hardlimit.com",
+    "title": "Cómo instalar Battlefield 3 en GNU/Linux - Tutorial",
+    "creator_display_name": "Azufre_GT",
+    "channel_handle": "azufre_gt@video.hardlimit.com",
+    "license": "Attribution - Non Commercial - Share Alike",
+    "language": "es",
+    "duration_s": 540,
+    "original_published_at": "2025-08-17T09:31:54.824Z",
+    "description": "Hoy os traigo un tutorial de instalación de EA Play en GNU/Linux. EA en su infinita sabiduría no publica su launcher fuera de windows/mac, yo no les daría ni 1€ pero si estáis interesados en jugar a todos esos juegos que tenéis en vuestra biblioteca es un buen momento. Me he animado a hacer este tutorial tras todos los problemas que tuve en su momento para hacerlo tirar. Cualquier duda intentaré solventarla. link de protondb bf3: https://www.protondb.com/app/1238820 link de descarga de punkbuster: https://evenbalance.com/pbsetup.php la descarga de bottles fue desde flathub.org pero puedes seguir los mismos pasos si lo instalas desde los paquetes nativos de tu distro. Si te sale un mensaje tipo \"We could not activate Battlefield 3 on this computer using the EA Account you provided ERROR\" You need to set hidden files visible, then go to: C: > ProgramData > Electronic Arts > EA Services > License Move or delete the file 71067.dlf or 71069.dlf or both or all visible .dlf files. Start the EA app and then Battlefield 3. During the start, the EA app generate a new License file. Worked for me. EN ESTE CASO xD",
+    "tags": [
+      "battlefield",
+      "bottles",
+      "linux",
+      "tutorial",
+      "wine"
+    ],
+    "category": "How To",
+    "views": 27
+  },
+  "discovery": {
+    "query": "Linux tutorial",
+    "collection_hint": "build-your-own-future",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:36Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:56:44Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:12:06Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:36Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"Linux tutorial\""
+    },
+    {
+      "at": "2026-10-20T01:56:45Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

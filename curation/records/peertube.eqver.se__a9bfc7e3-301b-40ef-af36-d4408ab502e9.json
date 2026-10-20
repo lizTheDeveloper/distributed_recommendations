@@ -1,0 +1,86 @@
+{
+  "id": "peertube.eqver.se__a9bfc7e3-301b-40ef-af36-d4408ab502e9",
+  "source": {
+    "video_url": "https://peertube.eqver.se/videos/watch/a9bfc7e3-301b-40ef-af36-d4408ab502e9",
+    "video_uuid": "a9bfc7e3-301b-40ef-af36-d4408ab502e9",
+    "channel_actor_uri": "https://peertube.eqver.se/video-channels/eqtv_english",
+    "instance_host": "peertube.eqver.se",
+    "title": "Data Journalism vs. Big Tech",
+    "creator_display_name": "eQtv in English",
+    "channel_handle": "eqtv_english@peertube.eqver.se",
+    "license": null,
+    "language": "en",
+    "duration_s": 1565,
+    "original_published_at": "2025-12-20T01:38:17.123Z",
+    "description": "Nabiha Sayed, CEO of The Markup, discusses how her nonprofit news organization combines data journalism with user advocacy to hold big tech accountable. Sayed highlights innovative tools like Blacklight, which allows people to understand how their personal data is collected online. The panel discusses the ethical issues surrounding artificial intelligence and algorithmic decision-making, particularly how these technologies can centralize power and undermine user rights.",
+    "tags": [
+      "Algorithmic ethics",
+      "Blacklight",
+      "Data journalism",
+      "Digital rights",
+      "Tech accountability"
+    ],
+    "category": "Science & Technology",
+    "views": 2
+  },
+  "discovery": {
+    "query": "algorithmic accountability",
+    "collection_hint": "the-machine-is-political",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:27Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:54:48Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:08:59Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:27Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"algorithmic accountability\""
+    },
+    {
+      "at": "2026-10-20T01:54:48Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

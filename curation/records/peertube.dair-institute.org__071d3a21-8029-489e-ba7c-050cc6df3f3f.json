@@ -1,0 +1,115 @@
+{
+  "id": "peertube.dair-institute.org__071d3a21-8029-489e-ba7c-050cc6df3f3f",
+  "source": {
+    "video_url": "https://peertube.dair-institute.org/videos/watch/071d3a21-8029-489e-ba7c-050cc6df3f3f",
+    "video_uuid": "071d3a21-8029-489e-ba7c-050cc6df3f3f",
+    "channel_actor_uri": "https://peertube.dair-institute.org/video-channels/mystery_ai_hype_theater",
+    "instance_host": "peertube.dair-institute.org",
+    "title": "Mystery AI Hype Theater 3000, Episode 68 - This is What Algo-cracy Looks Like",
+    "creator_display_name": "Mystery AI Hype Theater 3000",
+    "channel_handle": "mystery_ai_hype_theater@peertube.dair-institute.org",
+    "license": "Attribution - Non Commercial - Share Alike",
+    "language": "en",
+    "duration_s": 3846,
+    "original_published_at": "2025-12-01T15:19:00.000Z",
+    "description": "Tech leaders are pushing the idea that automation can strengthen democracy — but as usual, their bold suggestions are based on castles made of sand. Alex and Emily tear down some flimsy arguments for AI governance, exposing their incorrect assumptions about the democratic process. *References:* - [\"This Is No Way to Rule a Country\"](https://archive.is/vPAup) - [\"Four ways AI is being used to strengthen democracies worldwide\"](https://www.theguardian.com/commentisfree/2025/nov/23/ai-use-strengthen-democracy) *Also referenced:* - [Collective Intelligence Project surveys](https://blog.cip.org/p/a-global-snapshot-of-trust-and-ai) - [Interview with CalMatters CEO](https://dicktofel.substack.com/p/bringing-digital-democracy-to-california) *Fresh AI Hell:* - [Amazon introduces AI translation for Kindle authors](https://www.aboutamazon.com/news/books-and-authors/amazon-kindle-translate-books-authors) - [Nature op ed recommends AI versions of Einstein, Bohr, and Feynman](https://bsky.app/profile/carlbergstrom.com/post/3m5f7g7hqec2b) - [\"An AI Podcasting Machine Is Churning Out 3,000 Episodes a Week\"](https://slashdot.org/story/25/11/17/2114208/an-ai-podcasting-machine-is-churning-out-3000-episodes-a-week) - [AI dating café to open in New York](https://www.instagram.com/p/DRP_XK5DDZu/) - [Recipe slop flooding social media](https://bsky.app/profile/rusty.todayintabs.com/post/3m6hr7lztac2g) - [AI slop about Autism published in Nature](https://bsky.app/profile/kyt-thatsme.bsky.social/pos…",
+    "tags": [
+      "ai",
+      "ai hype",
+      "artificial intelligence",
+      "democracy",
+      "government automation"
+    ],
+    "category": "Science & Technology",
+    "views": 187
+  },
+  "discovery": {
+    "query": "AI governance",
+    "collection_hint": "the-machine-is-political",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:27Z"
+  },
+  "editorial": {
+    "status": "reviewed",
+    "primary_collection": "the-machine-is-political",
+    "secondary_collections": [],
+    "difficulty": "intermediate",
+    "format": "debate",
+    "learning_intents": [
+      "critique",
+      "understand"
+    ],
+    "evidence_class": "opinion",
+    "tags": [
+      "ai",
+      "democracy",
+      "ai-hype"
+    ],
+    "why_selected": "Mystery AI Hype Theater 3000, from DAIR's own instance, picks apart the claim that automation can strengthen democracy.",
+    "learning_outcomes": [
+      "Common rhetorical moves in AI-for-democracy pitches",
+      "Questions to ask before trusting an automated public decision"
+    ],
+    "try_next": "Find one public service in your city that uses automated decisions, and look for its published evaluation.",
+    "context_note": "Critical commentary by researchers: argued positions, not neutral reporting.",
+    "ratings": {
+      "usefulness": 4,
+      "rigor": 4,
+      "mission": 5,
+      "distinctiveness": 5,
+      "accessibility": 4,
+      "currency": 5
+    },
+    "score": 88,
+    "judgment_basis": "metadata only (title, description, channel, caption list); not watched — substantive judgments unverified",
+    "proposed_by": "claude-opus-5-5 (AI proposal)",
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null,
+    "shelves": [],
+    "band": "feature-candidate",
+    "proposed_at": "2026-10-20T02:03:42Z"
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "official-link-verified",
+    "verified_at": "2026-10-20T01:54:28Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": true,
+    "caption_languages": [
+      "en"
+    ],
+    "last_checked_at": "2026-10-20T02:08:37Z",
+    "identity_evidence": "https://www.dair-institute.org/ links to peertube.dair-institute.org",
+    "publisher": "DAIR Institute"
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:27Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"AI governance\""
+    },
+    {
+      "at": "2026-10-20T01:54:28Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    },
+    {
+      "at": "2026-10-20T02:03:42Z",
+      "from": "verified",
+      "to": "reviewed",
+      "by": "claude-opus-5-5 (AI proposal)",
+      "note": "proposed score 88"
+    }
+  ]
+}

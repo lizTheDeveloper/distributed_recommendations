@@ -1,0 +1,85 @@
+{
+  "id": "peertube.public.cat__83808722-08da-481b-9136-d7e54f76de0d",
+  "source": {
+    "video_url": "https://peertube.public.cat/videos/watch/83808722-08da-481b-9136-d7e54f76de0d",
+    "video_uuid": "83808722-08da-481b-9136-d7e54f76de0d",
+    "channel_actor_uri": "https://peertube.public.cat/video-channels/activitypub",
+    "instance_host": "peertube.public.cat",
+    "title": "ActivityPub For Administrations 2021-04-19",
+    "creator_display_name": "ActivityPub",
+    "channel_handle": "activitypub@peertube.public.cat",
+    "license": "Attribution - Non Commercial - Share Alike",
+    "language": "en",
+    "duration_s": 6512,
+    "original_published_at": "2021-04-19T11:12:07.000Z",
+    "description": "This is a recording of the first webinar in the ActivityPub for Administrations series. https://socialhub.activitypub.rocks/pub/ec-ngi0-liaison-webinars-and-workshop-april-2021 Another [version including the chat](https://peertube.public.cat/videos/watch/29599344-6540-41fd-9882-87b28b12a754) is available.",
+    "tags": [
+      "activitypub",
+      "europe",
+      "ngi zero",
+      "socialhub"
+    ],
+    "category": "Science & Technology",
+    "views": 26
+  },
+  "discovery": {
+    "query": "ActivityPub",
+    "collection_hint": "build-your-own-future",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:35Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:55:05Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:09:16Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:35Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"ActivityPub\""
+    },
+    {
+      "at": "2026-10-20T01:55:05Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

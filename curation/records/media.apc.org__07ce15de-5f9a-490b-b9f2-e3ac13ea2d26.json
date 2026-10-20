@@ -1,0 +1,116 @@
+{
+  "id": "media.apc.org__07ce15de-5f9a-490b-b9f2-e3ac13ea2d26",
+  "source": {
+    "video_url": "https://media.apc.org/videos/watch/07ce15de-5f9a-490b-b9f2-e3ac13ea2d26",
+    "video_uuid": "07ce15de-5f9a-490b-b9f2-e3ac13ea2d26",
+    "channel_actor_uri": "https://media.apc.org/video-channels/apc",
+    "instance_host": "media.apc.org",
+    "title": "Episode 9: The story of B4RN and the power of joint action",
+    "creator_display_name": "APC",
+    "channel_handle": "apc@media.apc.org",
+    "license": "Attribution - Non Commercial - Share Alike",
+    "language": "en",
+    "duration_s": 1371,
+    "original_published_at": "2023-10-06T00:00:00.000Z",
+    "description": "In our ninth episode, you’ll get to know an initiative that has already connected over 7,000 homes in England’s northwestern rural areas to the internet: the Broadband for the Rural North project, more commonly known as B4RN. To tell us this story, we interviewed Chris Conder, one of B4RN’s founders who was once recognised by Queen Elizabeth II for her work in taking internet connection to rural communities. You will also get to know Steve Song, an expert in the realm of community networks. He is a researcher and consultant on technologies that enable wider access to the internet, especially in African countries and other emerging regions. We talked to him about the challenges faced by community networks in terms of sustainability. “Routing for Communities” is a 12-episode podcast. Here you will listen to the life stories of people who have come up with alternatives to overcome the challenges of digital inclusion in remote, rural and urban areas across the globe. Read the transcript of the episode: https://routingforcommunities.apc.org/",
+    "tags": [
+      "community-centred connectivity",
+      "Europe",
+      "local access"
+    ],
+    "category": "Digital inclusion",
+    "views": 2
+  },
+  "discovery": {
+    "query": "community broadband",
+    "collection_hint": "reclaim-the-city",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:40Z"
+  },
+  "editorial": {
+    "status": "reviewed",
+    "primary_collection": "reclaim-the-city",
+    "secondary_collections": [
+      "build-your-own-future"
+    ],
+    "difficulty": "beginner",
+    "format": "documentary",
+    "learning_intents": [
+      "understand",
+      "organize"
+    ],
+    "evidence_class": "practitioner-experience",
+    "tags": [
+      "community-broadband",
+      "cooperatives"
+    ],
+    "why_selected": "The story of B4RN, a community-built fibre network in rural England that has connected over 7,000 homes through joint action, with captions.",
+    "learning_outcomes": [
+      "How a volunteer-built broadband network got financed and dug",
+      "What made community ownership work"
+    ],
+    "try_next": "Find out who owns the broadband infrastructure on your street.",
+    "context_note": null,
+    "ratings": {
+      "usefulness": 4,
+      "rigor": 4,
+      "mission": 5,
+      "distinctiveness": 4,
+      "accessibility": 5,
+      "currency": 4
+    },
+    "score": 86,
+    "judgment_basis": "metadata only (title, description, channel, caption list); not watched — substantive judgments unverified",
+    "proposed_by": "claude-opus-5-5 (AI proposal)",
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null,
+    "shelves": [
+      "start-here"
+    ],
+    "band": "feature-candidate",
+    "proposed_at": "2026-10-20T02:03:42Z"
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:54:07Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": true,
+    "caption_languages": [
+      "en"
+    ],
+    "last_checked_at": "2026-10-20T02:08:18Z",
+    "identity_evidence": "apc.org homepage has no link to media.apc.org",
+    "publisher": "APC (claimed)"
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:40Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"community broadband\""
+    },
+    {
+      "at": "2026-10-20T01:54:08Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    },
+    {
+      "at": "2026-10-20T02:03:42Z",
+      "from": "verified",
+      "to": "reviewed",
+      "by": "claude-opus-5-5 (AI proposal)",
+      "note": "proposed score 86"
+    }
+  ]
+}

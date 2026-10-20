@@ -1,0 +1,90 @@
+{
+  "id": "vid.freedif.org__5d234646-ab97-4438-acec-c3a5b9d2e67c",
+  "source": {
+    "video_url": "https://vid.freedif.org/videos/watch/5d234646-ab97-4438-acec-c3a5b9d2e67c",
+    "video_uuid": "5d234646-ab97-4438-acec-c3a5b9d2e67c",
+    "channel_actor_uri": "https://vid.freedif.org/video-channels/bfmbusiness",
+    "instance_host": "vid.freedif.org",
+    "title": "Le blé repart à la hausse",
+    "creator_display_name": "BFM Business",
+    "channel_handle": "bfmbusiness@vid.freedif.org",
+    "license": null,
+    "language": "fr",
+    "duration_s": 60,
+    "original_published_at": "2026-08-24T00:00:00.000Z",
+    "description": "À l’heure des récoltes, les prix du blé remontent en Europe et aux États-Unis. La sécheresse réduit l’offre, tandis que la Russie bloque les exportations ukrainiennes : les silos y débordent alors que l’Occident manque de matières premières.",
+    "tags": [
+      "blé"
+    ],
+    "category": "Entertainment",
+    "views": 0
+  },
+  "discovery": {
+    "query": "BLE reverse engineering",
+    "collection_hint": "strange-machines",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:47Z"
+  },
+  "editorial": {
+    "status": "rejected",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": "claude-opus-5-5 (AI proposal)",
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": "re-upload of a commercial broadcaster's video",
+    "proposed_at": "2026-10-20T02:03:42Z"
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:56:29Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:11:50Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:47Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"BLE reverse engineering\""
+    },
+    {
+      "at": "2026-10-20T01:56:30Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    },
+    {
+      "at": "2026-10-20T02:03:42Z",
+      "from": "verified",
+      "to": "rejected",
+      "by": "claude-opus-5-5 (AI proposal)",
+      "note": "re-upload of a commercial broadcaster's video"
+    }
+  ]
+}

@@ -1,0 +1,114 @@
+{
+  "id": "peertube.opencloud.lu__9347074e-0019-4d39-aed6-76692621a17e",
+  "source": {
+    "video_url": "https://peertube.opencloud.lu/videos/watch/9347074e-0019-4d39-aed6-76692621a17e",
+    "video_uuid": "9347074e-0019-4d39-aed6-76692621a17e",
+    "channel_actor_uri": "https://peertube.opencloud.lu/video-channels/oscl25",
+    "instance_host": "peertube.opencloud.lu",
+    "title": "Open Source AI and open washing",
+    "creator_display_name": "Open Source Conference Luxembourg 2025",
+    "channel_handle": "oscl25@peertube.opencloud.lu",
+    "license": "Attribution",
+    "language": "en",
+    "duration_s": 818,
+    "original_published_at": "2025-11-30T17:00:00.000Z",
+    "description": "The Open Source Initiative has, nearly one year ago, introduced the Open Source AI Definition. While still open to modifications, the definition points out that openness in AI is a matter of both licensing rights and offering enough components so that anyone is able to meaningfully \"fork\" an AI system or a model for whichever purposes. Unfortunately, already many widely publicized soi-disant \"Open Source\" AI models and system fall way short on both counts. This is an issue of grave importance, also for the implementation of the EU AI Act -- which grants some lighter touch regulation for Open Source AI. By Carlo Piana",
+    "tags": [
+      "Artificial Intelligence",
+      "Conference",
+      "Luxembourg",
+      "Open Source",
+      "Open washing"
+    ],
+    "category": "Science & Technology",
+    "views": 36
+  },
+  "discovery": {
+    "query": "open source AI",
+    "collection_hint": "build-your-own-future",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:34Z"
+  },
+  "editorial": {
+    "status": "reviewed",
+    "primary_collection": "build-your-own-future",
+    "secondary_collections": [
+      "the-machine-is-political"
+    ],
+    "difficulty": "intermediate",
+    "format": "lecture",
+    "learning_intents": [
+      "critique",
+      "understand"
+    ],
+    "evidence_class": "research-backed",
+    "tags": [
+      "open-source-ai",
+      "open-washing"
+    ],
+    "why_selected": "A talk on the Open Source AI Definition one year on: which 'open' models really are, and how to spot open-washing.",
+    "learning_outcomes": [
+      "What the Open Source AI Definition requires",
+      "How to check a model's openness claims"
+    ],
+    "try_next": "Pick a model you use and check whether its weights, training code and data are actually published.",
+    "context_note": null,
+    "ratings": {
+      "usefulness": 4,
+      "rigor": 4,
+      "mission": 5,
+      "distinctiveness": 4,
+      "accessibility": 3,
+      "currency": 5
+    },
+    "score": 84,
+    "judgment_basis": "metadata only (title, description, channel, caption list); not watched — substantive judgments unverified",
+    "proposed_by": "claude-opus-5-5 (AI proposal)",
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null,
+    "shelves": [],
+    "band": "feature-candidate",
+    "proposed_at": "2026-10-20T02:03:42Z"
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:55:01Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:09:12Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:34Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"open source AI\""
+    },
+    {
+      "at": "2026-10-20T01:55:02Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    },
+    {
+      "at": "2026-10-20T02:03:42Z",
+      "from": "verified",
+      "to": "reviewed",
+      "by": "claude-opus-5-5 (AI proposal)",
+      "note": "proposed score 84"
+    }
+  ]
+}

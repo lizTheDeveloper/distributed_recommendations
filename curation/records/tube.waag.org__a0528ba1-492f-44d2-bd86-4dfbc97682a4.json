@@ -1,0 +1,82 @@
+{
+  "id": "tube.waag.org__a0528ba1-492f-44d2-bd86-4dfbc97682a4",
+  "source": {
+    "video_url": "https://tube.waag.org/videos/watch/a0528ba1-492f-44d2-bd86-4dfbc97682a4",
+    "video_uuid": "a0528ba1-492f-44d2-bd86-4dfbc97682a4",
+    "channel_actor_uri": "https://tube.waag.org/video-channels/general",
+    "instance_host": "tube.waag.org",
+    "title": "Teacher Maker Camp 2015",
+    "creator_display_name": "Waag Futurelab",
+    "channel_handle": "general@tube.waag.org",
+    "license": "Attribution - Non Commercial - Share Alike",
+    "language": null,
+    "duration_s": 142,
+    "original_published_at": "2015-10-30T14:07:40.000Z",
+    "description": "Waag Society’s Creative Learning Lab organised a 4-day professional development course for teachers about maker education. Teachers did get acquainted with the newest maker technologies—like digital fabrication, 3D printing, electronics, and programming. But most of all, they did get to experience being a learner again. They were inspired, and could make what they always wanted to make. waag.org/en/event/teacher-maker-camp-2015",
+    "tags": [
+      "aftermovie"
+    ],
+    "category": "Education",
+    "views": 10
+  },
+  "discovery": {
+    "query": "creative electronics",
+    "collection_hint": "strange-machines",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:49Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:56:11Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:11:28Z",
+    "identity_evidence": "waag.org homepage has no link to tube.waag.org; check the site's footer or contact Waag before treating it as official",
+    "publisher": "Waag Futurelab (claimed)"
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:49Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"creative electronics\""
+    },
+    {
+      "at": "2026-10-20T01:56:12Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

@@ -1,0 +1,88 @@
+{
+  "id": "video.elfhosted.com__4f476760-ec43-4829-ab03-0949435a011b",
+  "source": {
+    "video_url": "https://video.elfhosted.com/videos/watch/4f476760-ec43-4829-ab03-0949435a011b",
+    "video_uuid": "4f476760-ec43-4829-ab03-0949435a011b",
+    "channel_actor_uri": "https://video.elfhosted.com/video-channels/elfhostme",
+    "instance_host": "video.elfhosted.com",
+    "title": "Home server setup: an old computer and one busy weekend",
+    "creator_display_name": "ElfHosted",
+    "channel_handle": "elfhostme@video.elfhosted.com",
+    "license": "Attribution - Share Alike",
+    "language": "en",
+    "duration_s": 79,
+    "original_published_at": "2026-10-04T04:49:03.834Z",
+    "description": "Home server setup, cartoon style: Robin turns an old computer into a family server for photos, passwords, notes and a game server. Part two of the Household Tech Saga. Robin digs an old computer out of the cupboard and, with his friend Darren's very enthusiastic help, spends a weekend on home server setup: each app in its own container, a port opened on the router, and a certificate so the address is secure. By Sunday night the old computer as a home server is running a photo library, a password vault, a notes app and Milo's game server. That's a home server for family life, and it's fun: you learn how the pieces fit, and every app runs the way you set it up. Running your own server at home is a brilliant hobby, and if you're curious about self-hosting for beginners, this is what the first weekend feels like. The Household Tech Saga is a short animated series from ElfHosted about one family's tech: subscription soup, a server at home, the upkeep, and finding the elves. Each episode stands on its own; watch them in order in the playlist on our channel. ElfHosted: https://elfhosted.com/?utm_source=peertube&utm_medium=video&utm_campaign=saga-2-server ElfHosted docs: https://docs.elfhosted.com/?utm_source=peertube&utm_medium=video&utm_campaign=saga-2-server Chapters 0:00 Intro 0:15 Setting up a home server 0:28 Photos, passwords and a game server 0:43 Why running it yourself is fun About ElfHosted: we run open-source apps for you, kept updated and looked after by elves, so you g…",
+    "tags": [
+      "home server",
+      "home server for family",
+      "home server setup",
+      "old computer as a home server",
+      "self-hosting for beginners"
+    ],
+    "category": "Science & Technology",
+    "views": 1
+  },
+  "discovery": {
+    "query": "home server",
+    "collection_hint": "build-your-own-future",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:36Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:56:38Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": true,
+    "caption_languages": [
+      "en"
+    ],
+    "last_checked_at": "2026-10-20T02:12:00Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:36Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"home server\""
+    },
+    {
+      "at": "2026-10-20T01:56:39Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

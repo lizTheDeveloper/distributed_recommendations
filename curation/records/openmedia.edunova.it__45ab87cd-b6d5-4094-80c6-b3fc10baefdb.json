@@ -1,0 +1,88 @@
+{
+  "id": "openmedia.edunova.it__45ab87cd-b6d5-4094-80c6-b3fc10baefdb",
+  "source": {
+    "video_url": "https://openmedia.edunova.it/videos/watch/45ab87cd-b6d5-4094-80c6-b3fc10baefdb",
+    "video_uuid": "45ab87cd-b6d5-4094-80c6-b3fc10baefdb",
+    "channel_actor_uri": "https://openmedia.edunova.it/video-channels/digital_education",
+    "instance_host": "openmedia.edunova.it",
+    "title": "Presentazione del Corso di Laurea in Digital Education",
+    "creator_display_name": "Digital Education Open Channel",
+    "channel_handle": "digital_education@openmedia.edunova.it",
+    "license": "CC BY-NC-ND 4.0",
+    "language": "it",
+    "duration_s": 129,
+    "original_published_at": "2024-01-26T12:41:08.566Z",
+    "description": "Corso di Laurea in Digital Education (L-19) Dipartimento Chirurgico, Medico, Odontoiatrico e di Scienze Morfologiche Università degli Studi di Modena e Reggio Emilia https://digitaleducation.unimore.it/",
+    "tags": [],
+    "category": "Education",
+    "views": 840
+  },
+  "discovery": {
+    "query": "digital folklore",
+    "collection_hint": "the-weird-internet",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:53Z"
+  },
+  "editorial": {
+    "status": "rejected",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": "claude-opus-5-5 (AI proposal)",
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": "off-topic for its collection (keyword match only)",
+    "proposed_at": "2026-10-20T02:03:42Z"
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:54:15Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:08:27Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:53Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"digital folklore\""
+    },
+    {
+      "at": "2026-10-20T01:54:16Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    },
+    {
+      "at": "2026-10-20T02:03:42Z",
+      "from": "verified",
+      "to": "rejected",
+      "by": "claude-opus-5-5 (AI proposal)",
+      "note": "off-topic for its collection (keyword match only)"
+    }
+  ]
+}

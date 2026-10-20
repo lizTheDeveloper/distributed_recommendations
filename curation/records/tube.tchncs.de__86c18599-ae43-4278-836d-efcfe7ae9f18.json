@@ -1,0 +1,86 @@
+{
+  "id": "tube.tchncs.de__86c18599-ae43-4278-836d-efcfe7ae9f18",
+  "source": {
+    "video_url": "https://tube.tchncs.de/videos/watch/86c18599-ae43-4278-836d-efcfe7ae9f18",
+    "video_uuid": "86c18599-ae43-4278-836d-efcfe7ae9f18",
+    "channel_actor_uri": "https://tube.tchncs.de/video-channels/privacy__tech_tips",
+    "instance_host": "tube.tchncs.de",
+    "title": "OSINT- Maltego: Gathering Documents On People (Fun Name Example!)",
+    "creator_display_name": "(RTP) Privacy & Tech Tips",
+    "channel_handle": "privacy__tech_tips@tube.tchncs.de",
+    "license": "Attribution - Share Alike",
+    "language": "en",
+    "duration_s": 609,
+    "original_published_at": "2020-08-30T22:00:00.000Z",
+    "description": "Example of info/doc gathering (from just the name) including emails, and websites using Maltego, a rich feature filled OSINT tool using this made up name example relating to current events (check the name!) (Common enough name- Not a live person). Please Like, Share, & Subscribe to show your support and help get our content to more people. It is appreciated. What do you want to see next? If you appreciate something I do and want to show support you can now Buy Me a Coffee: https://www.buymeacoffee.com/politictech :) (ANONYMOUS) HUMAN RIGHTS CODE/WIKI GIT HOSTING REPOSITORY: http://gg6zxtreajiijztyy5g6bt5o6l3qu32nrg7eulyemlhxwwl6enk6ghad.onion/ SUPPORT/DONATION OPTIONS: CASHAPP: https://cash.app/$HumanRightsTech BMAC: https://www.buymeacoffee.com/politictech/ (Donation Options + Support Services) BTC: 3QDdTcLwLTPXKMBp5dLUhKJG6KbDxWsYWS XMR:481wHzXEsW9E519uu3SiynMuGe1yUT43iiJ8M49fgxfngHr9MUPVNAmPgyjS4XYtvzD1TbK7P5ywUWhGo11ibT2RQhEcRSX Want your very own customized Torified Hidden service Nextcloud (.onion e2ee + proxies) server + WiFi Onion Router you can host yourself privately? I made these things! For more email righttoprivacy[at]tutanota.com or see information on front page at: https://www.buymeacoffee.com/politictech Twitter: https://www.twitter.com/tvprivacy Mastodon: https://www.fosstodon.org/@RTP Blog (Main + Extras): https://www.buymeacoffee.com/politictech/posts Backup Blog: https://politictech.wordpress.com Inquiries: righttoprivacy[at]tutanota.com",
+    "tags": [
+      "Epstein",
+      "intelligence",
+      "investigating",
+      "Maltego",
+      "OSINT"
+    ],
+    "category": "Science & Technology",
+    "views": 113
+  },
+  "discovery": {
+    "query": "OSINT",
+    "collection_hint": "hack-the-planet",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:23Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:56:06Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:10:53Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:23Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"OSINT\""
+    },
+    {
+      "at": "2026-10-20T01:56:07Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

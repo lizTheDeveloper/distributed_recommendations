@@ -1,0 +1,94 @@
+{
+  "id": "peertube.dsmouse.net__4e7a5dd6-a77c-4eef-a429-5817bac57037",
+  "source": {
+    "video_url": "https://peertube.dsmouse.net/videos/watch/4e7a5dd6-a77c-4eef-a429-5817bac57037",
+    "video_uuid": "4e7a5dd6-a77c-4eef-a429-5817bac57037",
+    "channel_actor_uri": "https://peertube.dsmouse.net/video-channels/infosectalks",
+    "instance_host": "peertube.dsmouse.net",
+    "title": "DEF CON 27 Conference - Philippe Laulheret - Intro to Hardware Hacking",
+    "creator_display_name": "InfoSec Talks",
+    "channel_handle": "infosectalks@peertube.dsmouse.net",
+    "license": "Attribution",
+    "language": null,
+    "duration_s": 2766,
+    "original_published_at": "2019-11-15T00:00:00.000Z",
+    "description": "From small business to large enterprise, VOIP phones can be found on nearly every desk. But how secure are they? What if your phone was spying on every conversation you have? This talk is an introduction to hardware hacking and as a case study I’ll use the [REDACTED] Deskphone, a device frequently deployed in corporate environments. I’ll use it to introduce the tools and methodology needed to answer these questions. During this talk, attendees will get a close up look at the operations of a hardware hacker, including ARM disassembly, firmware extraction using binwalk, micro-soldering to patch an EEPROM and get a root shell over UART, and ultimately uncover an already known decade-old bug that somehow remained unnoticed in the device’s firmware. Beyond the case study I will also address alternative tactics; some did not work, others may have but were not the lowest-hanging fruit. When it comes to hardware hacking, the process is as important as the result; knowing that there are multiple ways to reach the end goal helps researchers remain confident when hurdles arise. After the talk, attendees will have an increased distrust towards always-on devices; however, they will have the background knowledge to investigate the products and systems they encounter daily. Philippe Laulheret Philippe Laulheret is a Senior Security Researcher on the McAfee Advanced Threat Research team. With a focus on Reverse Engineering and Vulnerability Research, Philippe uses his background in Embedded…",
+    "tags": [
+      "DC27",
+      "DEF CON 27",
+      "hacker community",
+      "hacker conference",
+      "security conference 2019"
+    ],
+    "category": "Science & Technology",
+    "views": 4
+  },
+  "discovery": {
+    "query": "hardware hacking",
+    "collection_hint": "hack-the-planet",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:26Z"
+  },
+  "editorial": {
+    "status": "rejected",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": "claude-opus-5-5 (AI proposal)",
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": "re-upload of a conference recording (DEF CON / KringleCon); not the original publisher",
+    "proposed_at": "2026-10-20T02:03:42Z"
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:54:37Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:08:48Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:26Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"hardware hacking\""
+    },
+    {
+      "at": "2026-10-20T01:54:38Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    },
+    {
+      "at": "2026-10-20T02:03:42Z",
+      "from": "verified",
+      "to": "rejected",
+      "by": "claude-opus-5-5 (AI proposal)",
+      "note": "re-upload of a conference recording (DEF CON / KringleCon); not the original publisher"
+    }
+  ]
+}

@@ -1,0 +1,86 @@
+{
+  "id": "peertube.eqver.se__59d12d49-43bd-4634-a4fe-61227242931e",
+  "source": {
+    "video_url": "https://peertube.eqver.se/videos/watch/59d12d49-43bd-4634-a4fe-61227242931e",
+    "video_uuid": "59d12d49-43bd-4634-a4fe-61227242931e",
+    "channel_actor_uri": "https://peertube.eqver.se/video-channels/eqtv_english",
+    "instance_host": "peertube.eqver.se",
+    "title": "Why do ordinary people need cybersecurity?",
+    "creator_display_name": "eQtv in English",
+    "channel_handle": "eqtv_english@peertube.eqver.se",
+    "license": null,
+    "language": "en",
+    "duration_s": 1212,
+    "original_published_at": "2025-12-12T12:45:57.233Z",
+    "description": "Want to understand how to protect your data, why and from whom — and whether you need to at all? In this video, we answer six key questions to help you build a personal security plan based on the EFF’s Surveillance Self-Defense recommendations. Then we break down the security tools everyone should know. If you had doubts before, now you’ll know exactly what to do — and why.",
+    "tags": [
+      "cybersecurity",
+      "data protection",
+      "digital privacy",
+      "privacy",
+      "surveillance"
+    ],
+    "category": "Science & Technology",
+    "views": 0
+  },
+  "discovery": {
+    "query": "digital self defense",
+    "collection_hint": "hack-the-planet",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:21Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:54:43Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:08:54Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:21Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"digital self defense\""
+    },
+    {
+      "at": "2026-10-20T01:54:43Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

@@ -1,0 +1,86 @@
+{
+  "id": "fedi.video__3d6a7533-275b-4664-b271-9ef86b9e569f",
+  "source": {
+    "video_url": "https://fedi.video/videos/watch/3d6a7533-275b-4664-b271-9ef86b9e569f",
+    "video_uuid": "3d6a7533-275b-4664-b271-9ef86b9e569f",
+    "channel_actor_uri": "https://fedi.video/video-channels/documentaries",
+    "instance_host": "fedi.video",
+    "title": "Get Lamp (2010) (documentary about interactive fiction and text adventures)",
+    "creator_display_name": "Documentaries",
+    "channel_handle": "documentaries@fedi.video",
+    "license": "Attribution - Non Commercial - Share Alike",
+    "language": "en",
+    "duration_s": 5439,
+    "original_published_at": "2010-07-01T11:00:00.000Z",
+    "description": "Documentary about interactive fiction and text adventures, from \"Adventure\" onwards. It features interviews with many different game designers, players and other people related to the topic. It also looks at the real life cave which inspired the first adventure game. This is the full length non-interactive version of the documentary from the original DVD release. (Note that some other versions have been floating around on the internet which are basically compilations of unused material, but aren't the actual documentary.) You can also watch the same director's Infocom documentary at https://fedi.video/w/eZXzjdMw5qMGEUqzZvSNa7 and Bedquilt short documentary at https://fedi.video/w/n1XHL4anmUU8h6mX8nNhp2, which both appeared as bonus features on the DVD release of \"Get Lamp\". Documentary by Jason Scott Published under Creative Commons CC BY-NC-SA 4.0 licence (more info at creativecommons.org/licenses/by-nc-sa/4.0).",
+    "tags": [
+      "Adventure Games",
+      "Computer Games",
+      "Documentaries",
+      "Interactive Fiction",
+      "Text Adventures"
+    ],
+    "category": "Gaming",
+    "views": 135
+  },
+  "discovery": {
+    "query": "interactive fiction",
+    "collection_hint": "the-weird-internet",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:50Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:53:32Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:07:13Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:50Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"interactive fiction\""
+    },
+    {
+      "at": "2026-10-20T01:53:33Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

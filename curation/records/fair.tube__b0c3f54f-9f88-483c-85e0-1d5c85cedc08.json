@@ -1,0 +1,82 @@
+{
+  "id": "fair.tube__b0c3f54f-9f88-483c-85e0-1d5c85cedc08",
+  "source": {
+    "video_url": "https://fair.tube/videos/watch/b0c3f54f-9f88-483c-85e0-1d5c85cedc08",
+    "video_uuid": "b0c3f54f-9f88-483c-85e0-1d5c85cedc08",
+    "channel_actor_uri": "https://fair.tube/video-channels/fediday",
+    "instance_host": "fair.tube",
+    "title": "Das Fediverse-Erklärvideo von Elena Rossini - in deutscher Sprache",
+    "creator_display_name": "FediDay",
+    "channel_handle": "fediday@fair.tube",
+    "license": "CC BY 4.0",
+    "language": "de",
+    "duration_s": 247,
+    "original_published_at": "2025-10-08T10:57:16.006Z",
+    "description": "Elena Rossini hat ein Video gemacht, um die Funktionsweise des Fediversums für Einsteiger zu erklären. Am FediDay 2025 Präsentiert sie den Clip nun auch mit deutschem Voiceover. Credits Director: Elena Rossini Writing: Elena Rossini & Sam Aaberg Cinematography: Sam Aaberg & Riyen Patel Camera operator: Riyen Patel Editing & motion graphics: Elena Rossini",
+    "tags": [
+      "Fediverse"
+    ],
+    "category": "Unknown",
+    "views": 146
+  },
+  "discovery": {
+    "query": "Fediverse",
+    "collection_hint": "build-your-own-future",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:35Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:53:32Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:07:13Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:35Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"Fediverse\""
+    },
+    {
+      "at": "2026-10-20T01:53:32Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

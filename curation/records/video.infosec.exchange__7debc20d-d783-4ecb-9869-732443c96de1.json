@@ -1,0 +1,86 @@
+{
+  "id": "video.infosec.exchange__7debc20d-d783-4ecb-9869-732443c96de1",
+  "source": {
+    "video_url": "https://video.infosec.exchange/videos/watch/7debc20d-d783-4ecb-9869-732443c96de1",
+    "video_uuid": "7debc20d-d783-4ecb-9869-732443c96de1",
+    "channel_actor_uri": "https://video.infosec.exchange/video-channels/jay_bailey216",
+    "instance_host": "video.infosec.exchange",
+    "title": "Reverse Engineering Challenge - DSYM Walktrhough",
+    "creator_display_name": "Jay Bailey",
+    "channel_handle": "jay_bailey216@video.infosec.exchange",
+    "license": null,
+    "language": null,
+    "duration_s": 1616,
+    "original_published_at": "2025-04-02T00:05:56.565Z",
+    "description": "In this video, we'll walk through solving the \"DSYM\" reverse engineering challenge from HackTheBox. I'll guide you through the process, explaining the techniques and tools used to crack the challenge. Whether you're new to reverse engineering or looking to expand your skills, this video is for you! Got any other challenges you'd like to see me tackle? Let me know in the comments below! **Resources:** * **Challenge Binary (Password: hackthebox):** [https://www.hackthebox.eu/home/challenges/download/80](https://www.hackthebox.eu/home/challenges/download/80) * **Ghidra (Used for Analysis):** [https://ghidra-sre.org/](https://ghidra-sre.org/) (Latest version recommended) * **OpenJDK (Needed for Ghidra):** * **Note:** While this video used OpenJDK 14, Ghidra now requires OpenJDK 21 or later. * **OpenJDK 21+ (Recommended):** [https://adoptium.net/temurin/releases/](https://adoptium.net/temurin/releases/) * **OpenJDK 14 (Used in Video):** [https://download.oracle.com/java/14/archive/jdk-14.0.1_linux-x64_bin.tar.gz](https://download.oracle.com/java/14/archive/jdk-14.0.1_linux-x64_bin.tar.gz) [https://download.oracle.com/java/14/archive/jdk-14.0.1_linux-x64_bin.tar.gz](https://download.oracle.com/java/14/archive/jdk-14.0.1+7/664493ef4a6946b186ff29eb326336a2/jdk-14.0.1_linux-x64_bin.tar.gz) * **Kali Linux VM (Used for Testing):** [https://drive.google.com/drive/folders/1SvyC1C2AkuaC-FNWvY0_Bhh-OhzZ5pJb?usp=sharing](https://drive.google.com/drive/folders/1SvyC1C2AkuaC-FNWvY0_Bhh-OhzZ5p…",
+    "tags": [
+      "ctf",
+      "ghidra",
+      "hackthebox",
+      "infosec",
+      "reverseengineering"
+    ],
+    "category": "Science & Technology",
+    "views": 47
+  },
+  "discovery": {
+    "query": "reverse engineering",
+    "collection_hint": "hack-the-planet",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:24Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:56:54Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:12:15Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:24Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"reverse engineering\""
+    },
+    {
+      "at": "2026-10-20T01:56:55Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

@@ -1,0 +1,86 @@
+{
+  "id": "video.blender.org__2c43cb55-7b31-4d69-b809-8b67cd016703",
+  "source": {
+    "video_url": "https://video.blender.org/videos/watch/2c43cb55-7b31-4d69-b809-8b67cd016703",
+    "video_uuid": "2c43cb55-7b31-4d69-b809-8b67cd016703",
+    "channel_actor_uri": "https://video.blender.org/video-channels/blenderdevelopers",
+    "instance_host": "video.blender.org",
+    "title": "GitLab? Gitea? Call for participation on the future of Blender's development platform",
+    "creator_display_name": "Blender Developers",
+    "channel_handle": "blenderdevelopers@video.blender.org",
+    "license": "Attribution",
+    "language": null,
+    "duration_s": 792,
+    "original_published_at": "2022-03-15T23:00:00.000Z",
+    "description": "The platform currently used for following Blender development (Phabricator) needs to be replaced. What do you think it should be replaced with? Leave your thoughts at https://devtalk.blender.org/t/developer-blender-org-call-for-comments-and-participation/23451 -- Follow Blender Development: * Blog: https://code.blender.org * Twitter: https://twitter.com/BlenderDev -- Follow Blender: * Twitter: https://twitter.com/blender * Instagram: https://instagram.com/blender.official * YouTube: https://youtube.com/BlenderFoundation * Facebook: https://facebook.com/YourOwn3DSoftware #b3d #devfund",
+    "tags": [
+      "blender",
+      "code",
+      "developers",
+      "development",
+      "open source"
+    ],
+    "category": "Science & Technology",
+    "views": 122
+  },
+  "discovery": {
+    "query": "platform cooperatives",
+    "collection_hint": "the-machine-is-political",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:30Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "official-link-verified",
+    "verified_at": "2026-10-20T01:56:33Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:11:55Z",
+    "identity_evidence": "https://www.blender.org/ links to video.blender.org",
+    "publisher": "Blender"
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:30Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"platform cooperatives\""
+    },
+    {
+      "at": "2026-10-20T01:56:33Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

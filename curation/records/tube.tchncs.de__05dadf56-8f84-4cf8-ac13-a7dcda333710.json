@@ -1,0 +1,86 @@
+{
+  "id": "tube.tchncs.de__05dadf56-8f84-4cf8-ac13-a7dcda333710",
+  "source": {
+    "video_url": "https://tube.tchncs.de/videos/watch/05dadf56-8f84-4cf8-ac13-a7dcda333710",
+    "video_uuid": "05dadf56-8f84-4cf8-ac13-a7dcda333710",
+    "channel_actor_uri": "https://tube.tchncs.de/video-channels/nixrust",
+    "instance_host": "tube.tchncs.de",
+    "title": "Procedural Macros for Network Programming (and everything else)",
+    "creator_display_name": "Nix & Rust Rhein-Neckar",
+    "channel_handle": "nixrust@tube.tchncs.de",
+    "license": "Attribution - Non Commercial - Share Alike",
+    "language": "en",
+    "duration_s": 2000,
+    "original_published_at": "2024-05-29T22:00:00.000Z",
+    "description": "Talk by Moritz Gutfleisch at our third \"Nix Your Bugs & Rust Your Engines\" meetup in Heidelberg on April 29, 2024. Procedural macros allow executing functions that produce Rust syntax at compile time. They allow for very sophisticated code generation and can drastically reduce boilerplate and redundancies. We'll look at how these macros can be used to make dissecting and handling network packets significantly more convenient to motivate them. Then, we'll learn how to write them and what tools the Rust ecosystem provides us to do so.",
+    "tags": [
+      "Heidelberg",
+      "Macros",
+      "Network",
+      "Rust",
+      "RustLang"
+    ],
+    "category": "Science & Technology",
+    "views": 47
+  },
+  "discovery": {
+    "query": "procedural narrative",
+    "collection_hint": "the-weird-internet",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:54Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:56:02Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:10:42Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:54Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"procedural narrative\""
+    },
+    {
+      "at": "2026-10-20T01:56:03Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

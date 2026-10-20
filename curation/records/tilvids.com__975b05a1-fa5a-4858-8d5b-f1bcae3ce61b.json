@@ -1,0 +1,88 @@
+{
+  "id": "tilvids.com__975b05a1-fa5a-4858-8d5b-f1bcae3ce61b",
+  "source": {
+    "video_url": "https://tilvids.com/videos/watch/975b05a1-fa5a-4858-8d5b-f1bcae3ce61b",
+    "video_uuid": "975b05a1-fa5a-4858-8d5b-f1bcae3ce61b",
+    "channel_actor_uri": "https://tilvids.com/video-channels/indie_creator_hub_channel",
+    "instance_host": "tilvids.com",
+    "title": "Exploring Self Hosting Owning and Maintaining Your Content",
+    "creator_display_name": "Josh Bailey Creates",
+    "channel_handle": "indie_creator_hub_channel@tilvids.com",
+    "license": null,
+    "language": "en",
+    "duration_s": 676,
+    "original_published_at": "2023-09-29T22:00:00.000Z",
+    "description": "In today's society, social media plays a huge role in how creators are able to share their work and connect with audiences. However, relying solely on centralized platforms comes with some significant drawbacks when it comes to ownership, control, and online harassment. In this video, I discuss the experiences of one creator who struggled with toxicity on platforms and how it impacted them. I explore why so many feel forced to modify their authentic selves and censor important discussions. We'll also look at alternative models that put power back in the hands of content developers. Some of the key topics covered include: Why complete reliance on platforms like Twitter and Facebook can undermine artistic freedom The pros and cons of direct ownership through independent websites and communities Strategic ways to leverage multiple tools for both outreach and insulation from harassment Examples of balanced moderation practices that curate thoughtful exchange Hybrid models emerging to directly monetize work while retaining flexibility My hope is that by sharing this message, more creators will feel empowered to craft the sustainable and authentic virtual experiences they desire. So if you're interested in innovative solutions and artist empowerment, this one's for you. Hit play to get started! (When available, we use affiliate links and may earn a commission!) --- CREATOR TOOLS: ►Notion: https://notion.grsm.io/saizlstfeeri ►Nerd or Die: https://nerdordie.com/shop/ref/indiecreator…",
+    "tags": [
+      "content creation",
+      "online platforms",
+      "social media",
+      "Twitter",
+      "YouTube"
+    ],
+    "category": "Entertainment",
+    "views": 110
+  },
+  "discovery": {
+    "query": "self hosting",
+    "collection_hint": "build-your-own-future",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:33Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:55:29Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": true,
+    "caption_languages": [
+      "en"
+    ],
+    "last_checked_at": "2026-10-20T02:09:51Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:33Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"self hosting\""
+    },
+    {
+      "at": "2026-10-20T01:55:30Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

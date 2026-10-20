@@ -1,0 +1,111 @@
+{
+  "id": "urbanists.video__a7c63ddd-29f3-4a5c-aa15-d2ef1b2b7039",
+  "source": {
+    "video_url": "https://urbanists.video/videos/watch/a7c63ddd-29f3-4a5c-aa15-d2ef1b2b7039",
+    "video_uuid": "a7c63ddd-29f3-4a5c-aa15-d2ef1b2b7039",
+    "channel_actor_uri": "https://urbanists.video/video-channels/heartlandurbanist_channel",
+    "instance_host": "urbanists.video",
+    "title": "Full Interview: MJ Carpio, Move Minnesota",
+    "creator_display_name": "Heartland Urbanist",
+    "channel_handle": "heartlandurbanist_channel@urbanists.video",
+    "license": "Attribution",
+    "language": "en",
+    "duration_s": 1477,
+    "original_published_at": "2023-06-09T16:00:28.666Z",
+    "description": "In this new series, I'll be sharing full (nearly) unedited interviews, so you can see every bit of the great conversations I have when creating videos for this channel. For this first video, I interviewed MJ Carpio, Campaign Manager with Move Minnesota. Move Minnesota was critical to the massive wins that came out of the most recent session of Minnesota state legislature, which I detailed in [this video](https://urbanists.video/w/1PJuZStu3T1Y6f3dkQ49ZT). **[Join MoveMN](https://www.movemn.org/take-action/)** **[Donate to help expand the channel](https://liberapay.com/HeartlandUrbanist/donate)** **[Find me on Mastodon](https://union.place/@mattcaff)**",
+    "tags": [
+      "Advocacy",
+      "Climate Resilience",
+      "Minnesota",
+      "Transit",
+      "Urbanism"
+    ],
+    "category": "Activism",
+    "views": 19
+  },
+  "discovery": {
+    "query": "climate resilience",
+    "collection_hint": "reclaim-the-city",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:42Z"
+  },
+  "editorial": {
+    "status": "reviewed",
+    "primary_collection": "reclaim-the-city",
+    "secondary_collections": [],
+    "difficulty": "beginner",
+    "format": "interview",
+    "learning_intents": [
+      "understand",
+      "organize"
+    ],
+    "evidence_class": "practitioner-experience",
+    "tags": [
+      "transit",
+      "advocacy"
+    ],
+    "why_selected": "An unedited interview with Move Minnesota's MJ Carpio on how transit advocates actually win changes in their city.",
+    "learning_outcomes": [
+      "How local transit advocacy campaigns are organized"
+    ],
+    "try_next": "Find your city's next public meeting on transit and put it in your calendar.",
+    "context_note": null,
+    "ratings": {
+      "usefulness": 3,
+      "rigor": 3,
+      "mission": 4,
+      "distinctiveness": 4,
+      "accessibility": 3,
+      "currency": 4
+    },
+    "score": 68,
+    "judgment_basis": "metadata only (title, description, channel, caption list); not watched — substantive judgments unverified",
+    "proposed_by": "claude-opus-5-5 (AI proposal)",
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null,
+    "shelves": [],
+    "band": "collection-candidate",
+    "proposed_at": "2026-10-20T02:03:42Z"
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:56:25Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:11:47Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:42Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"climate resilience\""
+    },
+    {
+      "at": "2026-10-20T01:56:26Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    },
+    {
+      "at": "2026-10-20T02:03:42Z",
+      "from": "verified",
+      "to": "reviewed",
+      "by": "claude-opus-5-5 (AI proposal)",
+      "note": "proposed score 68"
+    }
+  ]
+}

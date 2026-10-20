@@ -1,0 +1,86 @@
+{
+  "id": "peertube.dngr.us__a3d82def-6248-4d7d-be0c-512e8dd9ea81",
+  "source": {
+    "video_url": "https://peertube.dngr.us/videos/watch/a3d82def-6248-4d7d-be0c-512e8dd9ea81",
+    "video_uuid": "a3d82def-6248-4d7d-be0c-512e8dd9ea81",
+    "channel_actor_uri": "https://peertube.dngr.us/video-channels/historical",
+    "instance_host": "peertube.dngr.us",
+    "title": "\" LANDLORD - TENANT DISPUTES AND THE POLICE \" 1970s POLICE & LAW ENFORCEMENT TRAINING FILM XD39844",
+    "creator_display_name": "Historical Archive",
+    "channel_handle": "historical@peertube.dngr.us",
+    "license": "Public Domain Dedication",
+    "language": "en",
+    "duration_s": 1699,
+    "original_published_at": "2023-03-16T00:00:00.000Z",
+    "description": "Join this channel to get access to perks: https://www.youtube.com/channel/UCddem5RlB3bQe99wyY49g0g/join Want to learn more about Periscope Film and get access to exclusive swag? Join us on Patreon. Visit https://www.patreon.com/PeriscopeFilm Visit our website www.PeriscopeFilm.com “Legal Information for Law Enforcement: Landlord-Tenant Disputes and the Police” (1970s) is a police training film presented by the Attorney General of the State of California as part of a larger series. Funded by a grant from the California Council on Criminal Justice, this film seeks to highlight legal action that can be taken by landlords and tenants in light of landlord-tenant disputes before needing to call the cops. This film follows the scripted story of a group of young tenants who come to find that their disgruntled landlord has taken disciplinary actions into his own hands by removing doors, changing locks, and stopping the electricity. Furthermore, the film underscores the work of the newly created Landlord-Tenant Intervention Unit at the Oakland Police Department. Opening credits and texts on state jurisdiction of legal codes (0:08). Disgruntled landlord and young woman in bikini have confrontation in her apartment living room (1:05). Other young people in swimsuits rush up stares and join the argument (1:33). Freeze-frame of confrontation scene, Efrem Zimbalist Jr. begins narration (2:13). Exterior of Oakland Police Administrative Building (2:56). Police trainees greet two uniformed of…",
+    "tags": [
+      "2K",
+      "4K",
+      "HD",
+      "Periscope Film",
+      "Stock Footage"
+    ],
+    "category": "Films",
+    "views": 0
+  },
+  "discovery": {
+    "query": "tenant organizing",
+    "collection_hint": "reclaim-the-city",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:39Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:54:34Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:08:44Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:39Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"tenant organizing\""
+    },
+    {
+      "at": "2026-10-20T01:54:34Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

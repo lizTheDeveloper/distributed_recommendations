@@ -1,0 +1,86 @@
+{
+  "id": "videos.domainepublic.net__c5e560eb-ab17-4437-846b-b8bb0e91ebc1",
+  "source": {
+    "video_url": "https://videos.domainepublic.net/videos/watch/c5e560eb-ab17-4437-846b-b8bb0e91ebc1",
+    "video_uuid": "c5e560eb-ab17-4437-846b-b8bb0e91ebc1",
+    "channel_actor_uri": "https://videos.domainepublic.net/video-channels/mouvementpac",
+    "instance_host": "videos.domainepublic.net",
+    "title": "Housing First, le logement comme levier de changement - Midi de PAC - Mercredi 19 avril 2017",
+    "creator_display_name": "mouvementpac",
+    "channel_handle": "mouvementpac@videos.domainepublic.net",
+    "license": null,
+    "language": "fr",
+    "duration_s": 5400,
+    "original_published_at": "2018-02-07T00:00:00.000Z",
+    "description": "A Bruxelles, ou ailleurs en Belgique, des centaines de personnes dorment dans la rue. Face à cette réalité qui parait immuable, différents acteurs de terrain ont décidé d'agir autrement, de sortir des sentiers battus de l'aide sociale conditionnée pour quitter cette impasse sociale et permettre à toutes et tous de retrouver une place digne et légitime dans notre société. Parmi ces projets, nous nous intéresserons particulièrement à Housing First, une innovation sociale dans la lutte contre le sans-abrisme. Elle propose un modèle dans lequel les personnes à la rue intègrent directement un logement pour s'y reconstruire progressivement, grâce au soutien intensif d'une équipe pluridisciplinaire. A ce titre, Housing first représente un changement de paradigme par rapport aux modèles traditionnels qui peinent à trouver des solutions pour une frange de sans-abris. Après trois ans d'expérimentation dans différentes villes, nous verrons comment les travailleurs-ses qui la mettent en place tirent un bilan plus que positif de cette expérience sociale et humaine et comment ils comptent la développer dans les futures années. Quels regards les acteurs de terrain portent-ils sur l'évolution de ce type de projets en Belgique ? Comment ce projet est-il vécu par les bénéficiaires ? En quoi la méthodologie du housing first est-elle complémentaire d'autres approches, comme le projet Home For Less ou d'autres méthodes de lutte contre le sans-abrisme ? Comment pourrions-nous réhabiliter les espa…",
+    "tags": [
+      "conférence",
+      "débat",
+      "housing first",
+      "logement",
+      "pac"
+    ],
+    "category": "Unknown",
+    "views": 4
+  },
+  "discovery": {
+    "query": "housing first",
+    "collection_hint": "reclaim-the-city",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:39Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:57:18Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:12:36Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:39Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"housing first\""
+    },
+    {
+      "at": "2026-10-20T01:57:19Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

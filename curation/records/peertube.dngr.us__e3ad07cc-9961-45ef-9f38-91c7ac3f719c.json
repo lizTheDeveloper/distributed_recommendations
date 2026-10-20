@@ -1,0 +1,93 @@
+{
+  "id": "peertube.dngr.us__e3ad07cc-9961-45ef-9f38-91c7ac3f719c",
+  "source": {
+    "video_url": "https://peertube.dngr.us/videos/watch/e3ad07cc-9961-45ef-9f38-91c7ac3f719c",
+    "video_uuid": "e3ad07cc-9961-45ef-9f38-91c7ac3f719c",
+    "channel_actor_uri": "https://peertube.dngr.us/video-channels/how_to",
+    "instance_host": "peertube.dngr.us",
+    "title": "DEF CON 26 HHV - Salvador Mendoza - NFC Payments: The Art of Relay & Replay Attacks",
+    "creator_display_name": "How To",
+    "channel_handle": "how_to@peertube.dngr.us",
+    "license": "All Rights Reserved",
+    "language": null,
+    "duration_s": 1598,
+    "original_published_at": "2018-08-11T00:00:00.000Z",
+    "description": "DEF CON 26 Hardware Hacking Village (2018) presentation by Salvador Mendoza. \"NFC Payments: The Art of Relay & Replay Attacks\" Mendoza demonstrates complex attack vectors combining SDR (Software-Defined Radio), NFC, APDU (Application Protocol Data Unit), hardware emulation, specialized software, tokenization protocols, and social engineering. The talk presents real scenarios where these technologies, combined with RFID emulation, could exploit NFC payment transactions. Salvador Mendoza is a security researcher specializing in tokenization processes, mag-stripe information, and embedded prototypes. He has presented on payment security at Black Hat USA, DEF CON 24/25/26, DerbyCon, Ekoparty, Troopers, and Hack In The Box. Slides and related materials: https://av.tib.eu/media/39894",
+    "tags": [
+      "DEF CON",
+      "Hardware Hacking",
+      "NFC",
+      "Payment Security"
+    ],
+    "category": "Unknown",
+    "views": 0
+  },
+  "discovery": {
+    "query": "hardware hacking",
+    "collection_hint": "hack-the-planet",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:26Z"
+  },
+  "editorial": {
+    "status": "rejected",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": "claude-opus-5-5 (AI proposal)",
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": "re-upload of a conference recording (DEF CON / KringleCon); not the original publisher",
+    "proposed_at": "2026-10-20T02:03:42Z"
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:54:35Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:08:45Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:26Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"hardware hacking\""
+    },
+    {
+      "at": "2026-10-20T01:54:35Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    },
+    {
+      "at": "2026-10-20T02:03:42Z",
+      "from": "verified",
+      "to": "rejected",
+      "by": "claude-opus-5-5 (AI proposal)",
+      "note": "re-upload of a conference recording (DEF CON / KringleCon); not the original publisher"
+    }
+  ]
+}

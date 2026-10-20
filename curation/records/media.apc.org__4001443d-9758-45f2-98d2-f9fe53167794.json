@@ -1,0 +1,111 @@
+{
+  "id": "media.apc.org__4001443d-9758-45f2-98d2-f9fe53167794",
+  "source": {
+    "video_url": "https://media.apc.org/videos/watch/4001443d-9758-45f2-98d2-f9fe53167794",
+    "video_uuid": "4001443d-9758-45f2-98d2-f9fe53167794",
+    "channel_actor_uri": "https://media.apc.org/video-channels/apc",
+    "instance_host": "media.apc.org",
+    "title": "Digital rights and environmental justice for a greener future",
+    "creator_display_name": "APC",
+    "channel_handle": "apc@media.apc.org",
+    "license": "Attribution - Non Commercial - Share Alike",
+    "language": "en",
+    "duration_s": 221,
+    "original_published_at": "2023-09-15T00:00:00.000Z",
+    "description": "Produced by Digital Empowerment Foundation.",
+    "tags": [
+      "asia",
+      "india"
+    ],
+    "category": "Environmental justice",
+    "views": 0
+  },
+  "discovery": {
+    "query": "digital rights",
+    "collection_hint": "the-machine-is-political",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:29Z"
+  },
+  "editorial": {
+    "status": "reviewed",
+    "primary_collection": "the-machine-is-political",
+    "secondary_collections": [
+      "reclaim-the-city"
+    ],
+    "difficulty": "beginner",
+    "format": "short",
+    "learning_intents": [
+      "understand"
+    ],
+    "evidence_class": "practitioner-experience",
+    "tags": [
+      "digital-rights",
+      "environment"
+    ],
+    "why_selected": "A four-minute APC short on where digital rights and environmental justice meet, with captions.",
+    "learning_outcomes": [
+      "How connectivity and environmental justice depend on each other"
+    ],
+    "try_next": "Read one of APC's community-connectivity case studies.",
+    "context_note": null,
+    "ratings": {
+      "usefulness": 3,
+      "rigor": 3,
+      "mission": 5,
+      "distinctiveness": 4,
+      "accessibility": 5,
+      "currency": 4
+    },
+    "score": 76,
+    "judgment_basis": "metadata only (title, description, channel, caption list); not watched — substantive judgments unverified",
+    "proposed_by": "claude-opus-5-5 (AI proposal)",
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null,
+    "shelves": [],
+    "band": "collection-candidate",
+    "proposed_at": "2026-10-20T02:03:42Z"
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:54:09Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": true,
+    "caption_languages": [
+      "en"
+    ],
+    "last_checked_at": "2026-10-20T02:08:20Z",
+    "identity_evidence": "apc.org homepage has no link to media.apc.org",
+    "publisher": "APC (claimed)"
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:29Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"digital rights\""
+    },
+    {
+      "at": "2026-10-20T01:54:09Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    },
+    {
+      "at": "2026-10-20T02:03:42Z",
+      "from": "verified",
+      "to": "reviewed",
+      "by": "claude-opus-5-5 (AI proposal)",
+      "note": "proposed score 76"
+    }
+  ]
+}

@@ -1,0 +1,82 @@
+{
+  "id": "watch.eeg.cl.cam.ac.uk__1d3adf66-92d9-4a2a-9537-7d267ff9a703",
+  "source": {
+    "video_url": "https://watch.eeg.cl.cam.ac.uk/videos/watch/1d3adf66-92d9-4a2a-9537-7d267ff9a703",
+    "video_uuid": "1d3adf66-92d9-4a2a-9537-7d267ff9a703",
+    "channel_actor_uri": "https://watch.eeg.cl.cam.ac.uk/video-channels/fosdem",
+    "instance_host": "watch.eeg.cl.cam.ac.uk",
+    "title": "Eilean: Self-hosted digital islands",
+    "creator_display_name": "FOSDEM",
+    "channel_handle": "fosdem@watch.eeg.cl.cam.ac.uk",
+    "license": "Attribution",
+    "language": "en",
+    "duration_s": 361,
+    "original_published_at": "2026-02-04T17:55:53.258Z",
+    "description": "Our digital lives are increasingly fragmented across numerous centralised online services. This model concentrates power, leaving us with minimal technical control over our personal data and online identities. The long-term permanence of these platforms is uncertain, and their commercial incentives are often misaligned with user interests. We propose inverting this model: instead of centralising our data in proprietary silos, let’s centralise our presence under our own control using open, federated services. We introduce the concept of ‘digital islands’, or Eileans – self-hosted hubs for an individual’s or community’s online presence. By hosting services ourselves, we regain autonomy and control. Eilean is a project designed to simplify the creation and management of these digital islands. The core idea is to parameterise a complete operating system deployment by a domain name and a desired set of services. This allows users to easily deploy their own instances of federated services like Matrix, Mastodon, and E-Mail. We utilise NixOS to enable declarative, reproducible configuration and deployment of these services. This provides strong guarantees about the system’s state.",
+    "tags": [],
+    "category": "Unknown",
+    "views": 21
+  },
+  "discovery": {
+    "query": "digital self defense",
+    "collection_hint": "hack-the-planet",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:21Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:57:31Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": true,
+    "caption_languages": [
+      "en"
+    ],
+    "last_checked_at": "2026-10-20T02:12:48Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:21Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"digital self defense\""
+    },
+    {
+      "at": "2026-10-20T01:57:34Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

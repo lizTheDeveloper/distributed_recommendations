@@ -1,0 +1,80 @@
+{
+  "id": "peertube.laas.fr__527d60d3-c22a-4e0d-9dbf-a0d454d9b089",
+  "source": {
+    "video_url": "https://peertube.laas.fr/videos/watch/527d60d3-c22a-4e0d-9dbf-a0d454d9b089",
+    "video_uuid": "527d60d3-c22a-4e0d-9dbf-a0d454d9b089",
+    "channel_actor_uri": "https://peertube.laas.fr/video-channels/rosconfr2021",
+    "instance_host": "peertube.laas.fr",
+    "title": "ROSConFr 2021 - Jour 2 micro-ROS: bringing ROS 2 to microcontrollers - J. Staschulat, M. Merlan, P. Garrido",
+    "creator_display_name": "ROSConFr 2021",
+    "channel_handle": "rosconfr2021@peertube.laas.fr",
+    "license": "Public Domain Dedication",
+    "language": "en",
+    "duration_s": 3838,
+    "original_published_at": "2021-07-21T16:44:16.929Z",
+    "description": "Robots nowadays are less of a powerful central unit than an interconnected network of robotic parts, some of which are in charge of highly specialized physical or mechanical tasks, and generally operated by microcontrollers. micro-ROS intends to bridge the gap between standard service-oriented frameworks like ROS 2, not entirely fit to address such scenarios efficiently, and these resource-constrained environments. It does so by creating ROS-like nodes very close to the hardware level, able to interact directly with the drivers that control the peripherals at the same time as allowing a fine-grain integration within the ROS 2 network. In this presentation, we describe the micro-ROS architecture and discuss some of its advanced features and most recent developments. Also, we present a hands-on tutorial for moving the first steps in the micro-ROS world.",
+    "tags": [],
+    "category": "Science & Technology",
+    "views": 19
+  },
+  "discovery": {
+    "query": "microcontrollers",
+    "collection_hint": "strange-machines",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:48Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:54:57Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:09:08Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:48Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"microcontrollers\""
+    },
+    {
+      "at": "2026-10-20T01:54:59Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

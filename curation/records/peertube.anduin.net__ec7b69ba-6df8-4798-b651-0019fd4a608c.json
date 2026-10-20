@@ -1,0 +1,109 @@
+{
+  "id": "peertube.anduin.net__ec7b69ba-6df8-4798-b651-0019fd4a608c",
+  "source": {
+    "video_url": "https://peertube.anduin.net/videos/watch/ec7b69ba-6df8-4798-b651-0019fd4a608c",
+    "video_uuid": "ec7b69ba-6df8-4798-b651-0019fd4a608c",
+    "channel_actor_uri": "https://peertube.anduin.net/video-channels/fossnorth",
+    "instance_host": "peertube.anduin.net",
+    "title": "Open Source AI reality - Daniel Stenberg",
+    "creator_display_name": "foss-north",
+    "channel_handle": "fossnorth@peertube.anduin.net",
+    "license": "Attribution - Share Alike",
+    "language": null,
+    "duration_s": 3536,
+    "original_published_at": "2026-05-12T18:30:01.009Z",
+    "description": "Talk details: https://foss-north.se/2026/speakers-and-talks.html#dstenberg Conference details: https://foss-north.se/2026/",
+    "tags": [],
+    "category": "Unknown",
+    "views": 28
+  },
+  "discovery": {
+    "query": "open source AI",
+    "collection_hint": "build-your-own-future",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:34Z"
+  },
+  "editorial": {
+    "status": "reviewed",
+    "primary_collection": "build-your-own-future",
+    "secondary_collections": [
+      "the-machine-is-political"
+    ],
+    "difficulty": "intermediate",
+    "format": "lecture",
+    "learning_intents": [
+      "critique",
+      "understand"
+    ],
+    "evidence_class": "practitioner-experience",
+    "tags": [
+      "open-source",
+      "ai",
+      "maintainers"
+    ],
+    "why_selected": "curl maintainer Daniel Stenberg at foss-north 2026 on what AI tools are really doing to open-source projects, from someone on the receiving end.",
+    "learning_outcomes": [
+      "How AI-generated contributions and reports affect maintainers",
+      "What maintainers are doing about it"
+    ],
+    "try_next": "Read your favourite project's contribution policy and see whether it mentions AI.",
+    "context_note": null,
+    "ratings": {
+      "usefulness": 4,
+      "rigor": 4,
+      "mission": 5,
+      "distinctiveness": 4,
+      "accessibility": 3,
+      "currency": 5
+    },
+    "score": 84,
+    "judgment_basis": "metadata only (title, description, channel, caption list); not watched — substantive judgments unverified",
+    "proposed_by": "claude-opus-5-5 (AI proposal)",
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null,
+    "shelves": [],
+    "band": "feature-candidate",
+    "proposed_at": "2026-10-20T02:03:42Z"
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:54:25Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:08:35Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:34Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"open source AI\""
+    },
+    {
+      "at": "2026-10-20T01:54:26Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    },
+    {
+      "at": "2026-10-20T02:03:42Z",
+      "from": "verified",
+      "to": "reviewed",
+      "by": "claude-opus-5-5 (AI proposal)",
+      "note": "proposed score 84"
+    }
+  ]
+}

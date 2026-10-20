@@ -1,0 +1,114 @@
+{
+  "id": "video.infosec.exchange__eea8df79-1558-4ab8-bea6-45ae79430aee",
+  "source": {
+    "video_url": "https://video.infosec.exchange/videos/watch/eea8df79-1558-4ab8-bea6-45ae79430aee",
+    "video_uuid": "eea8df79-1558-4ab8-bea6-45ae79430aee",
+    "channel_actor_uri": "https://video.infosec.exchange/video-channels/jay_bailey216",
+    "instance_host": "video.infosec.exchange",
+    "title": "Reverse Engineering Challenge - Sh4ll10 Walkthrough",
+    "creator_display_name": "Jay Bailey",
+    "channel_handle": "jay_bailey216@video.infosec.exchange",
+    "license": null,
+    "language": "en",
+    "duration_s": 1438,
+    "original_published_at": "2025-04-02T00:06:24.037Z",
+    "description": "Hey everyone, this is a walkthrough for the reverse engineering challenge \"sh4ll10\" from crackmes.one. In this video, I'll guide you through the process of analyzing the binary using Ghidra, uncovering the logic, and ultimately solving the challenge. Whether you're a beginner or looking to sharpen your skills, I hope you learn something valuable! Have any other reverse engineering challenges you'd like me to tackle? Leave a comment below, and I'll give it a shot! **Resources:** * **Challenge Binary (Password: crackmes.one):** [https://crackmes.one/crackme/5ccf3bf333c5d4419da559bd](https://crackmes.one/crackme/5ccf3bf333c5d4419da559bd) * **Ghidra (Used for Analysis):** [https://ghidra-sre.org](https://ghidra-sre.org/) * **OpenJDK (In the video I used JDK 14, However, you now need JDK 21+) I'll link both below:** [https://download.oracle.com/otn-pub/java/jdk/14.0.1+7/664493ef4a6946b186ff29eb326336a2/jdk-14.0.1_linux-x64_bin.tar.gz](https://download.oracle.com/otn-pub/java/jdk/14.0.1+7/664493ef4a6946b186ff29eb326336a2/jdk-14.0.1_linux-x64_bin.tar.gz) * **JDK 21 can be found here:** [https://adoptium.net/temurin/releases/](https://adoptium.net/temurin/releases/) * **Kali Linux VM (Used for Testing):** [https://drive.google.com/drive/folders/1SvyC1C2AkuaC-FNWvY0_Bhh-OhzZ5pJb?usp=sharing](https://drive.google.com/drive/folders/1SvyC1C2AkuaC-FNWvY0_Bhh-OhzZ5pJb?usp=sharing) **Timestamps:** * 00:00 Intro * 00:42 Initial Exploration * 05:35 Setting up Ghidra Project * 08:06 Analyzing…",
+    "tags": [
+      "crackmes",
+      "ctf",
+      "ghidra",
+      "infosec",
+      "reverseengineering"
+    ],
+    "category": "Science & Technology",
+    "views": 31
+  },
+  "discovery": {
+    "query": "reverse engineering",
+    "collection_hint": "hack-the-planet",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:24Z"
+  },
+  "editorial": {
+    "status": "reviewed",
+    "primary_collection": "hack-the-planet",
+    "secondary_collections": [
+      "strange-machines"
+    ],
+    "difficulty": "advanced",
+    "format": "demonstration",
+    "learning_intents": [
+      "understand",
+      "build"
+    ],
+    "evidence_class": "practitioner-experience",
+    "tags": [
+      "reverse-engineering",
+      "ctf"
+    ],
+    "why_selected": "A step-by-step solve of a crackmes.one reverse-engineering challenge, narrated so you can follow the reasoning, not just the answer.",
+    "learning_outcomes": [
+      "How to approach an unknown binary with a disassembler",
+      "How to turn assembly back into the program's logic"
+    ],
+    "try_next": "Download the same crackme and try it yourself before watching the solution.",
+    "context_note": "Dual-use: reverse-engineering skills; the challenge is a legal practice target.",
+    "ratings": {
+      "usefulness": 4,
+      "rigor": 4,
+      "mission": 3,
+      "distinctiveness": 4,
+      "accessibility": 2,
+      "currency": 3
+    },
+    "score": 70,
+    "judgment_basis": "metadata only (title, description, channel, caption list); not watched — substantive judgments unverified",
+    "proposed_by": "claude-opus-5-5 (AI proposal)",
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null,
+    "shelves": [],
+    "band": "collection-candidate",
+    "proposed_at": "2026-10-20T02:03:42Z"
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:56:56Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:12:17Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:24Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"reverse engineering\""
+    },
+    {
+      "at": "2026-10-20T01:56:57Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    },
+    {
+      "at": "2026-10-20T02:03:42Z",
+      "from": "verified",
+      "to": "reviewed",
+      "by": "claude-opus-5-5 (AI proposal)",
+      "note": "proposed score 70"
+    }
+  ]
+}

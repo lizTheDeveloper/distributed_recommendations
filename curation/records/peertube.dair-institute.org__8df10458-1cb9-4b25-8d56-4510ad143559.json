@@ -1,0 +1,120 @@
+{
+  "id": "peertube.dair-institute.org__8df10458-1cb9-4b25-8d56-4510ad143559",
+  "source": {
+    "video_url": "https://peertube.dair-institute.org/videos/watch/8df10458-1cb9-4b25-8d56-4510ad143559",
+    "video_uuid": "8df10458-1cb9-4b25-8d56-4510ad143559",
+    "channel_actor_uri": "https://peertube.dair-institute.org/video-channels/general",
+    "instance_host": "peertube.dair-institute.org",
+    "title": "Driven Down: How Workplace Technology Enables Amazon to Steal Wages, Hide Labor, and Evade Responsibility",
+    "creator_display_name": "General",
+    "channel_handle": "general@peertube.dair-institute.org",
+    "license": "Attribution - Non Commercial - Share Alike",
+    "language": "en",
+    "duration_s": 192,
+    "original_published_at": "2025-10-22T12:32:56.103Z",
+    "description": "We present the findings of our report on Amazon delivery drivers, workplace surveillance, and wage theft. You can read the full report at dair-institute.org/projects/driven-down/.",
+    "tags": [
+      "ai",
+      "amazon",
+      "artificial intelligence",
+      "surveillance",
+      "wage theft"
+    ],
+    "category": "Unknown",
+    "views": 448
+  },
+  "discovery": {
+    "query": "technology labor",
+    "collection_hint": "the-machine-is-political",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:29Z"
+  },
+  "editorial": {
+    "status": "reviewed",
+    "primary_collection": "the-machine-is-political",
+    "secondary_collections": [
+      "reclaim-the-city"
+    ],
+    "difficulty": "beginner",
+    "format": "short",
+    "learning_intents": [
+      "understand",
+      "critique",
+      "organize"
+    ],
+    "evidence_class": "primary-source",
+    "tags": [
+      "labor",
+      "surveillance",
+      "workplace"
+    ],
+    "why_selected": "Three minutes presenting DAIR's report on Amazon delivery drivers: how workplace surveillance tech is used to cut pay and hide responsibility.",
+    "learning_outcomes": [
+      "How routing and monitoring tools shape drivers' pay",
+      "Why responsibility gets lost between Amazon and its contractors"
+    ],
+    "try_next": "Read the report's summary linked in the video description.",
+    "context_note": "Presents findings of DAIR's own research report.",
+    "ratings": {
+      "usefulness": 4,
+      "rigor": 4,
+      "mission": 5,
+      "distinctiveness": 5,
+      "accessibility": 5,
+      "currency": 5
+    },
+    "score": 90,
+    "judgment_basis": "metadata only (title, description, channel, caption list); not watched — substantive judgments unverified",
+    "proposed_by": "claude-opus-5-5 (AI proposal)",
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null,
+    "shelves": [
+      "start-here"
+    ],
+    "band": "feature-candidate",
+    "proposed_at": "2026-10-20T02:03:42Z"
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "official-link-verified",
+    "verified_at": "2026-10-20T01:54:29Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": true,
+    "caption_languages": [
+      "en"
+    ],
+    "last_checked_at": "2026-10-20T02:08:38Z",
+    "identity_evidence": "https://www.dair-institute.org/ links to peertube.dair-institute.org",
+    "publisher": "DAIR Institute"
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:29Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"technology labor\""
+    },
+    {
+      "at": "2026-10-20T01:54:29Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    },
+    {
+      "at": "2026-10-20T02:03:42Z",
+      "from": "verified",
+      "to": "reviewed",
+      "by": "claude-opus-5-5 (AI proposal)",
+      "note": "proposed score 90"
+    }
+  ]
+}

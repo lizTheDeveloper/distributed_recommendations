@@ -1,0 +1,86 @@
+{
+  "id": "stream.andersonr.net__2d695fe6-bfa2-4b35-8315-d7cfaaf27438",
+  "source": {
+    "video_url": "https://stream.andersonr.net/videos/watch/2d695fe6-bfa2-4b35-8315-d7cfaaf27438",
+    "video_uuid": "2d695fe6-bfa2-4b35-8315-d7cfaaf27438",
+    "channel_actor_uri": "https://stream.andersonr.net/video-channels/ytube",
+    "instance_host": "stream.andersonr.net",
+    "title": "How Epoch8 uses Grist to make AI agents query client databases accurately",
+    "creator_display_name": "YTube",
+    "channel_handle": "ytube@stream.andersonr.net",
+    "license": null,
+    "language": "en",
+    "duration_s": 1878,
+    "original_published_at": "2026-07-28T00:00:00.000Z",
+    "description": "When AI agents guess at the database schema, the SQL is wrong and nobody trusts the output. Epoch8 built a metadata layer in Grist so Claude and other AI agents write accurate queries against real client databases. In this webinar, Olga Tatarinova, co-founder of Epoch8, walks through the production setup her team uses across client projects in legal, e-commerce, manufacturing, and automotive. She shows the anonymized data model on screen, explains the minimal modeling methodology her team uses to describe each client's domain, and demonstrates how Claude reads the structured metadata to write accurate SQL against a client database. If you're building RAG systems that have to query real databases, wiring up AI agents against structured client data, or watching your AI agent get schema questions wrong more often than you'd like, this walkthrough is for you. What Olga covers - Why LLMs fail when you dump documents into them and expect accurate answers - The requirements Epoch8 evaluated tools against: open source, typed data, API-driven, Python-friendly, role-based access - Why databases, spreadsheets, and CMS tools all fell short of what Epoch8 needed - The three concepts of minimal modeling: anchors, attributes, and links - A live walkthrough of a legal domain data model built in Grist - How Epoch8's AI platform feeds the Grist metadata to Claude as context - Why Epoch8 uses Grist for expert editing and Memgraph as the production backend for large datasets - Practical advice …",
+    "tags": [
+      "AI agents",
+      "LLM SQL query",
+      "RAG",
+      "grist",
+      "structured data for AI"
+    ],
+    "category": "Science & Technology",
+    "views": 9
+  },
+  "discovery": {
+    "query": "AI agents",
+    "collection_hint": "build-your-own-future",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:38Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:55:21Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:09:44Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:38Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"AI agents\""
+    },
+    {
+      "at": "2026-10-20T01:55:22Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

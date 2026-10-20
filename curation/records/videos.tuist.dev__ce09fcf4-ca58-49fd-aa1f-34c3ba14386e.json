@@ -1,0 +1,82 @@
+{
+  "id": "videos.tuist.dev__ce09fcf4-ca58-49fd-aa1f-34c3ba14386e",
+  "source": {
+    "video_url": "https://videos.tuist.dev/videos/watch/ce09fcf4-ca58-49fd-aa1f-34c3ba14386e",
+    "video_uuid": "ce09fcf4-ca58-49fd-aa1f-34c3ba14386e",
+    "channel_actor_uri": "https://videos.tuist.io/video-channels/tuist_videos",
+    "instance_host": "videos.tuist.dev",
+    "title": "Community Call 2025C2 - July 14th 2025",
+    "creator_display_name": "Tuist",
+    "channel_handle": "tuist_videos@videos.tuist.dev",
+    "license": "Attribution - Non Commercial - No Derivatives",
+    "language": "en",
+    "duration_s": 2371,
+    "original_published_at": "2025-07-14T17:40:16.549Z",
+    "description": "Community call 2025C2 from July 14th 2025 **Summary** Pedro Piñera Buendía welcomed attendees to the community call, sharing progress on the new \"Build Insights\" feature, cache analytics, and a redesigned website. Christoph Schmatzler announced the migration of live analytics data to ClickHouse for improved dashboard performance and the open-sourcing of the Nora design system. Marek Fort detailed improvements to the preview feature, an overhauled macOS app authentication, and demonstrated the new iOS app. Pedro Piñera Buendía also shared that the server source code is now \"source available\" and outlined upcoming features like \"Test Insights\" and \"Agentic QA,\" addressing Søren Gregersen's inquiry about financial sustainability by noting their focus on enterprise customers and aiming for profitability next year. Marek Fort clarified data storage practices in response to Amit Samant's question, explaining that data is stored across PostgreSQL, ClickHouse, and Cloudflare R2, and no user data is sent without explicit account creation and feature enablement.",
+    "tags": [
+      "community"
+    ],
+    "category": "Science & Technology",
+    "views": 52
+  },
+  "discovery": {
+    "query": "community broadband",
+    "collection_hint": "reclaim-the-city",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:40Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:57:28Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:12:44Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:40Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"community broadband\""
+    },
+    {
+      "at": "2026-10-20T01:57:29Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

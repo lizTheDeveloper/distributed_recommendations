@@ -1,0 +1,88 @@
+{
+  "id": "clip.place__f670878e-0858-4bae-beef-7b5d806c191a",
+  "source": {
+    "video_url": "https://clip.place/videos/watch/f670878e-0858-4bae-beef-7b5d806c191a",
+    "video_uuid": "f670878e-0858-4bae-beef-7b5d806c191a",
+    "channel_actor_uri": "https://clip.place/video-channels/future.vintage.gaming",
+    "instance_host": "clip.place",
+    "title": "402 A Nothingness (Decker) Free Black & White Pixel Art Interactive Fiction Adventure Game Dithered",
+    "creator_display_name": "FutureVintageGaming",
+    "channel_handle": "future.vintage.gaming@clip.place",
+    "license": "Attribution - Non Commercial",
+    "language": "en",
+    "duration_s": 198,
+    "original_published_at": "2026-03-20T12:16:03.602Z",
+    "description": "You find a door. ...is the whole description of the game, that is more like interactive fiction as there are no puzzles or deadends, you can only ever go forwards in the story, well, until you reach the end, but check it out yourself if you like a good mysterious story that plays tricks on your mind and could be straight out of the twilight zone. The black and white dithered photographs work really well in not showing much and make the player make up the missing pixels themselves and I really like that. And it gives it such a surreal feel. There is not really music to the game but there is a constant pulsing beat later on and it is a perfect fit, just like the very well done soundeffect. A really enjoyable interactive short story. And I never played a game made with the decker engine before this one, and even less heard of that engine! _________________________________________________ Join the Future Vintage Gaming Discord server | https://discord.gg/m5eaZh8 SUPPORT play the games, have fun, leave a tip! | https://triptilt.itch.io/ buy me a koffee | https://ko-fi.com/futurevintagegaming __________________________________________________ Synopsis: You find a door. Credits: Gabriel Helfenstein - gamedesign Download: https://gabriel-helfenstein.itch.io/anothingness [402] #mystery #door #dark",
+    "tags": [
+      "interactive fiction",
+      "lynchian",
+      "mindfuck",
+      "mysterious",
+      "surreal"
+    ],
+    "category": "Gaming",
+    "views": 12
+  },
+  "discovery": {
+    "query": "interactive fiction",
+    "collection_hint": "the-weird-internet",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:50Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:53:15Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": true,
+    "caption_languages": [
+      "en"
+    ],
+    "last_checked_at": "2026-10-20T02:06:58Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:50Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"interactive fiction\""
+    },
+    {
+      "at": "2026-10-20T01:53:16Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

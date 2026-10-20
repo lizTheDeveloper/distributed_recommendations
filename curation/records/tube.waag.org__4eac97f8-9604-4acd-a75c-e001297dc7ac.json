@@ -1,0 +1,111 @@
+{
+  "id": "tube.waag.org__4eac97f8-9604-4acd-a75c-e001297dc7ac",
+  "source": {
+    "video_url": "https://tube.waag.org/videos/watch/4eac97f8-9604-4acd-a75c-e001297dc7ac",
+    "video_uuid": "4eac97f8-9604-4acd-a75c-e001297dc7ac",
+    "channel_actor_uri": "https://tube.waag.org/video-channels/general",
+    "instance_host": "tube.waag.org",
+    "title": "De Staat van het Internet 2026 met Fieke Jansen",
+    "creator_display_name": "Waag Futurelab",
+    "channel_handle": "general@tube.waag.org",
+    "license": "Attribution - Non Commercial - Share Alike",
+    "language": "en",
+    "duration_s": 7590,
+    "original_published_at": "2026-05-01T09:59:39.962Z",
+    "description": "Tijdens de Staat van het Internet steekt Waag Futurelab jaarlijks de peilstok in het internet. Deze editie stond in het teken van AI en de grenzen van onze planeet. De lezing werd verzorgd door Fieke Jansen, mede-oprichter van het critical infrastructure lab van de Universiteit van Amsterdam. **Beyond the Hype(rscale)** Generatieve AI en andere AI-toepassingen worden op dit moment overal toegevoegd aan onze tech. Van zoekmachines en sociale media tot kantoorsoftware en stedelijke infrastructuur: AI is overal, of we het willen of niet. Ons digitale landschap verandert flink, maar ons fysieke landschap misschien nog wel ingrijpender. Door de komst van grote datacenters, zogenoemde hyperscalers, neemt de druk op ons stroomnet en watervoorziening flink toe. Omwonenden zien hun energierekening stijgen en watergarantie afnemen. Dit jaar kijken we naar wat er achter onze schermen schuilt: welke impact heeft de groeiende honger naar datacenters en AI rekenkracht op onze leefomgeving? De mogelijkheden van AI lijken onbeperkt, maar de natuurlijke bronnen van onze aarde hebben een limiet. **Paneldiscussie** Aansluitend aan de lezing vonden twee panelgesprekken plaats. In het eerste panel gingen we met Nestor Siré, multimedia kunstenaar en Judith Veenkamp, hoofd programma Waag Futurelab in gesprek over regeneratieve tech. In het tweede panel verkenden we met Roel Dobbe, assistent professor TU Delft en Swaan Dekkers, Innovatie Lead AI bij de Gemeente Amsterdam, de machtsstructuren die sc…",
+    "tags": [],
+    "category": "Science & Technology",
+    "views": 560
+  },
+  "discovery": {
+    "query": "channel general@tube.waag.org",
+    "collection_hint": "the-machine-is-political",
+    "service": "origin channel listing",
+    "at": "2026-10-20T01:58:58Z"
+  },
+  "editorial": {
+    "status": "reviewed",
+    "primary_collection": "the-machine-is-political",
+    "secondary_collections": [
+      "reclaim-the-city"
+    ],
+    "difficulty": "intermediate",
+    "format": "lecture",
+    "learning_intents": [
+      "understand",
+      "critique"
+    ],
+    "evidence_class": "research-backed",
+    "tags": [
+      "internet-governance",
+      "climate",
+      "digital-sovereignty"
+    ],
+    "why_selected": "Waag Futurelab's yearly State of the Internet lecture, 2026 edition, given in English by Fieke Jansen with captions.",
+    "learning_outcomes": [
+      "Where the internet's infrastructure and climate costs meet",
+      "What public alternatives to big-tech infrastructure look like"
+    ],
+    "try_next": "Find out where the data center that hosts your email is, and what powers it.",
+    "context_note": null,
+    "ratings": {
+      "usefulness": 3,
+      "rigor": 4,
+      "mission": 5,
+      "distinctiveness": 5,
+      "accessibility": 4,
+      "currency": 5
+    },
+    "score": 83,
+    "judgment_basis": "metadata only (title, description, channel, caption list); not watched — substantive judgments unverified",
+    "proposed_by": "claude-opus-5-5 (AI proposal)",
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null,
+    "shelves": [],
+    "band": "feature-candidate",
+    "proposed_at": "2026-10-20T02:03:42Z"
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:59:56Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": true,
+    "caption_languages": [
+      "en"
+    ],
+    "last_checked_at": "2026-10-20T02:11:23Z",
+    "identity_evidence": "waag.org homepage has no link to tube.waag.org; check the site's footer or contact Waag before treating it as official",
+    "publisher": "Waag Futurelab (claimed)"
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:58:58Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "channel general@tube.waag.org"
+    },
+    {
+      "at": "2026-10-20T01:59:56Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    },
+    {
+      "at": "2026-10-20T02:03:42Z",
+      "from": "verified",
+      "to": "reviewed",
+      "by": "claude-opus-5-5 (AI proposal)",
+      "note": "proposed score 83"
+    }
+  ]
+}

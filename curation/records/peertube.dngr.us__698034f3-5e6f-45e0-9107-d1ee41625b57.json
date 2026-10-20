@@ -1,0 +1,84 @@
+{
+  "id": "peertube.dngr.us__698034f3-5e6f-45e0-9107-d1ee41625b57",
+  "source": {
+    "video_url": "https://peertube.dngr.us/videos/watch/698034f3-5e6f-45e0-9107-d1ee41625b57",
+    "video_uuid": "698034f3-5e6f-45e0-9107-d1ee41625b57",
+    "channel_actor_uri": "https://peertube.dngr.us/video-channels/how_to",
+    "instance_host": "peertube.dngr.us",
+    "title": "DIY Solar Concentrators, Made Better.",
+    "creator_display_name": "How To",
+    "channel_handle": "how_to@peertube.dngr.us",
+    "license": "All Rights Reserved",
+    "language": "en",
+    "duration_s": 1158,
+    "original_published_at": "2025-07-10T00:00:00.000Z",
+    "description": "Check out my sponsor Brilliant, free for 30 days (and get 20% off a premium subscription!) by using this link: https://brilliant.org/nighthawk In this video we dive into compound parabolic concentrators (CPCs) and their incredible ability to focus light from multiple input angles onto a central target at once. This allows them to provide concentrated solar heat without active solar tracking, as well as increased absorbance from indirect sources (such as scattered light in cloudy weather). The method I use in this video is called a \"string construction\", which uses a string to simulate the reflection of light rays and sketch out idealized reflective curves. Resources for further reading: Online tool for plotting CPCs with tube collectors (thanks Koen Siteur!): https://www.desmos.com/calculator/ocggsmh0b6 Another great simulation by Matthew Pritchard: http://bit.ly/4lsTm1Y \"A Review of the Compound Parabolic Concentrator (CPC) with a Tubular Absorber\": https://www.researchgate.net/publication/339075001_A_Review_of_the_Compound_Parabolic_Concentrator_CPC_with_a_Tubular_Absorber \"Mathematical Modeling and Simulation of a Compound Parabolic Concentrators Collector with an Absorber Tube\": https://www.mdpi.com/1996-1073/16/1/287# Power From The Sun e-book, chapter 9: http://www.powerfromthesun.net/Book/chapter09/chapter09.html#9.2%20%20%20%20Compound%20Parabolic%20Concentrators%20(CPC) Non-Imaging optics article discussing concentration limits of CPCs: https://ebrary.net/204001/eng…",
+    "tags": [
+      "DIY",
+      "Preparedness",
+      "yt:8zlAI32MSsQ"
+    ],
+    "category": "Education",
+    "views": 1
+  },
+  "discovery": {
+    "query": "solar DIY",
+    "collection_hint": "strange-machines",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:48Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:54:33Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:08:43Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:48Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"solar DIY\""
+    },
+    {
+      "at": "2026-10-20T01:54:33Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

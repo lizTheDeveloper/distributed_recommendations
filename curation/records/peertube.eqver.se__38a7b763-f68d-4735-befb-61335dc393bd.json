@@ -1,0 +1,86 @@
+{
+  "id": "peertube.eqver.se__38a7b763-f68d-4735-befb-61335dc393bd",
+  "source": {
+    "video_url": "https://peertube.eqver.se/videos/watch/38a7b763-f68d-4735-befb-61335dc393bd",
+    "video_uuid": "38a7b763-f68d-4735-befb-61335dc393bd",
+    "channel_actor_uri": "https://peertube.eqver.se/video-channels/eqtv_english",
+    "instance_host": "peertube.eqver.se",
+    "title": "Pavel Belousov, Nadiyno.org: How to protect yourself and your loved ones from hacker attacks - practical cases",
+    "creator_display_name": "eQtv in English",
+    "channel_handle": "eqtv_english@peertube.eqver.se",
+    "license": null,
+    "language": "en",
+    "duration_s": 7960,
+    "original_published_at": "2025-12-06T07:04:06.980Z",
+    "description": "eQtalk is an original project of the eQtv channel. The guest of the episode is Pavel Belousov, a leading cybersecurity specialist at the Nadiyno.org Digital Assistance Hotline. The topic of the conversation is cyber threats to Ukrainian citizens in the context of military aggression. What tools do scammers use to reach Ukrainians? What role does artificial intelligence play in cyberattacks and cyber defense?",
+    "tags": [
+      "hacking",
+      "cybersecurity",
+      "deepfakes",
+      "defence",
+      "phishing"
+    ],
+    "category": "Science & Technology",
+    "views": 2
+  },
+  "discovery": {
+    "query": "phishing defense",
+    "collection_hint": "hack-the-planet",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:25Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:54:41Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:08:52Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:25Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"phishing defense\""
+    },
+    {
+      "at": "2026-10-20T01:54:42Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

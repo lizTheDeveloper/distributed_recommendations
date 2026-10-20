@@ -1,0 +1,88 @@
+{
+  "id": "watch.monerotalk.live__b2aa82e5-0764-4848-9613-5ce5934f2d2c",
+  "source": {
+    "video_url": "https://watch.monerotalk.live/videos/watch/b2aa82e5-0764-4848-9613-5ce5934f2d2c",
+    "video_uuid": "b2aa82e5-0764-4848-9613-5ce5934f2d2c",
+    "channel_actor_uri": "https://watch.monerotalk.live/video-channels/anon_channel_5",
+    "instance_host": "watch.monerotalk.live",
+    "title": "Monero & Panquake — a “surveillance capitalism” resistant Twitter w/ Sean O’Brien EPI 262",
+    "creator_display_name": "anon_channel_5",
+    "channel_handle": "anon_channel_5@watch.monerotalk.live",
+    "license": null,
+    "language": "en",
+    "duration_s": 4288,
+    "original_published_at": "2023-04-06T22:00:00.000Z",
+    "description": "TODAY'S 🎙SHOW: Doug has a wide-ranging convo with cybersecurity professor Sean Obrien of Yale law school. Brian is the founder of the privacy lab at Yales information society project, the open source lead of Tari, and a security advisor of Panquake. He is also a Monero enthusiast! The two discuss the philosophical reasons for why privacy should be considered a fundamental human right, how the right needs to be preserved in the digital age, surveillance capitalism and how the decentralized version of Twitter — Panquake is being built to resist it’s influence, allowing people to control their own data, They also discuss the Yale law school privacy lab that Sean is a founder of and how he and the lab, support and want to help bring attention to privacy preserving tech open source projects like Monero. If you enjoyed the show & would like to support us, a donation of any size would be greatly appreciated and would mean so much! XMR Donations Accepted and supporting us is easier than ever, by typing in monerotalk.crypto into your monero.com or cake wallet wallet send address field - to send us a tip ;) OR our Free Speech Money Yat emojis: 🗽🎤💵 https://xn--4k8h8qw4a.y.at ⏱Timestamps: 00:00 Monerotalk with Sean O'Brien introduction. 05:54 What is the Privacy Lab? 12:28 People need to know how Privacy is a important tool. 26:20 Why someone would opt to use Panquake? 38:05 What keeps Panquake working? 42:32 What's the objective of Panquake? 48:35 Is any coin associated with Panqua…",
+    "tags": [
+      "#monero",
+      "#privacy",
+      "#privacycoin",
+      "#technology",
+      "#xmr"
+    ],
+    "category": "Science & Technology",
+    "views": 0
+  },
+  "discovery": {
+    "query": "surveillance capitalism",
+    "collection_hint": "the-machine-is-political",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:28Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:57:36Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": true,
+    "caption_languages": [
+      "en"
+    ],
+    "last_checked_at": "2026-10-20T02:12:50Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:28Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"surveillance capitalism\""
+    },
+    {
+      "at": "2026-10-20T01:57:36Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

@@ -1,0 +1,80 @@
+{
+  "id": "peertube.f-si.org__89a2e2d7-537f-443e-8996-eae6daace5c6",
+  "source": {
+    "video_url": "https://peertube.f-si.org/videos/watch/89a2e2d7-537f-443e-8996-eae6daace5c6",
+    "video_uuid": "89a2e2d7-537f-443e-8996-eae6daace5c6",
+    "channel_actor_uri": "https://peertube.f-si.org/video-channels/fsic2022",
+    "instance_host": "peertube.f-si.org",
+    "title": "Why Open Hardware and Open Software are necessary for our future, Frank Karlitschek, Nextcloud",
+    "creator_display_name": "FSiC2022",
+    "channel_handle": "fsic2022@peertube.f-si.org",
+    "license": "Attribution - Non Commercial - No Derivatives",
+    "language": "en",
+    "duration_s": 1778,
+    "original_published_at": "2022-07-27T07:32:10.279Z",
+    "description": "Conference program: https://wiki.f-si.org/index.php/FSiC2022",
+    "tags": [],
+    "category": "Education",
+    "views": 67
+  },
+  "discovery": {
+    "query": "open hardware",
+    "collection_hint": "build-your-own-future",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:38Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:54:52Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:09:03Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:38Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"open hardware\""
+    },
+    {
+      "at": "2026-10-20T01:54:52Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

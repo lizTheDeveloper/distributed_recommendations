@@ -1,0 +1,86 @@
+{
+  "id": "spectra.video__0e9f69ac-0ab2-4319-8ddc-7b3ba6d0afd9",
+  "source": {
+    "video_url": "https://spectra.video/videos/watch/0e9f69ac-0ab2-4319-8ddc-7b3ba6d0afd9",
+    "video_uuid": "0e9f69ac-0ab2-4319-8ddc-7b3ba6d0afd9",
+    "channel_actor_uri": "https://spectra.video/video-channels/cristobal_television",
+    "instance_host": "spectra.video",
+    "title": "Untitled Rabbit Film (2023) | Experimental Animated Anthology Short Film",
+    "creator_display_name": "Cristobal Television",
+    "channel_handle": "cristobal_television@spectra.video",
+    "license": "All Rights Reserved",
+    "language": "zxx",
+    "duration_s": 221,
+    "original_published_at": "2026-04-02T23:42:58.629Z",
+    "description": "An anthology short film that consists of four stop-motion-animated micro films that feature rabbits making the stories feel vivid. It's not your typical nature documentary. Written, produced, directed, edited, and shot by: Cristobal Martinez Genre(s): Experimental, Animation, Anthology",
+    "tags": [
+      "anthology",
+      "short film",
+      "stop-motion animation"
+    ],
+    "category": "Films",
+    "views": 15
+  },
+  "discovery": {
+    "query": "experimental animation",
+    "collection_hint": "the-weird-internet",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:54Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:55:20Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": true,
+    "caption_languages": [
+      "cy"
+    ],
+    "last_checked_at": "2026-10-20T02:09:43Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:54Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"experimental animation\""
+    },
+    {
+      "at": "2026-10-20T01:55:20Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}

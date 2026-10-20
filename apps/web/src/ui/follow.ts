@@ -158,11 +158,23 @@ function tastePanel(app: App): HTMLElement {
           { class: "row" },
           status,
           t.source === "example" ? h("span", { class: "pill exp" }, "example data") : null,
+          t.source === "editorial" ? h("span", { class: "pill ok" }, "editors' collection") : null,
           sponsored ? h("span", { class: "pill spon" }, `${sponsored} sponsored`) : null,
           t.url ? h("span", { class: "mono small muted", style: { "overflow-wrap": "anywhere" } }, t.url) : null,
         ),
       ),
       h("button", { class: "btn sm", "aria-label": `Unsubscribe from ${t.list.name}`, onclick: () => app.removeTaste(t.key) }, "Remove"),
+    );
+  });
+
+  const editorialButtons = app.editorial.map((ed) => {
+    const key = "editorial:" + ed.slug;
+    const added = s.taste.some((t) => t.key === key);
+    return h(
+      "button",
+      { class: "btn sm taste", disabled: added, title: ed.list.description, onclick: () => app.addTaste({ key, source: "editorial", list: ed.list, addedAt: Date.now() }) },
+      added ? "Added: " : "Add: ",
+      ed.list.name,
     );
   });
 
@@ -189,6 +201,9 @@ function tastePanel(app: App): HTMLElement {
     h(
       "div",
       { class: "stack" },
+      app.editorial.length ? h("h3", null, "Editors' collections") : null,
+      app.editorial.length ? h("p", { class: "muted small" }, "Picked and reviewed by people, each with a reason. Every pick links to its original creator; nothing is copied.") : null,
+      app.editorial.length ? h("div", { class: "row" }, editorialButtons) : null,
       h("h3", null, "Example lists"),
       h("p", { class: "muted small" }, "Example data, generated automatically from instances' most-viewed recent uploads. Not picked by a person."),
       h("div", { class: "row" }, exampleButtons),

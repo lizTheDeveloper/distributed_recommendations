@@ -1,0 +1,86 @@
+{
+  "id": "peertube.eqver.se__94533b6f-079d-4179-a2b4-3781c89dacb1",
+  "source": {
+    "video_url": "https://peertube.eqver.se/videos/watch/94533b6f-079d-4179-a2b4-3781c89dacb1",
+    "video_uuid": "94533b6f-079d-4179-a2b4-3781c89dacb1",
+    "channel_actor_uri": "https://peertube.eqver.se/video-channels/eqtv_english",
+    "instance_host": "peertube.eqver.se",
+    "title": "AI Agents — A Security Nightmare? Understanding OpenClaw",
+    "creator_display_name": "eQtv in English",
+    "channel_handle": "eqtv_english@peertube.eqver.se",
+    "license": null,
+    "language": "en",
+    "duration_s": 1404,
+    "original_published_at": "2026-05-23T04:55:29.106Z",
+    "description": "What if the cute red lobster on your desktop could become a tool for hackers and gain access to all your data? We take a closer look at OpenClaw — one of the most advanced AI agents, capable of automating work, finances, messaging apps, and even smart home systems. In this video, we explain how AI agents use tool calling, what security risks they create, and why installing third-party skills can lead to data leaks or the execution of dangerous commands. We also discuss where the line lies between convenient automation and losing control over your own computer.",
+    "tags": [
+      "AI",
+      "AI agents",
+      "OpenClaw",
+      "cybersecurity",
+      "tool calling"
+    ],
+    "category": "Science & Technology",
+    "views": 2
+  },
+  "discovery": {
+    "query": "AI agents",
+    "collection_hint": "build-your-own-future",
+    "service": "search.joinpeertube.org",
+    "at": "2026-10-20T01:52:38Z"
+  },
+  "editorial": {
+    "status": "verified",
+    "primary_collection": null,
+    "secondary_collections": [],
+    "difficulty": null,
+    "format": null,
+    "learning_intents": [],
+    "evidence_class": null,
+    "tags": [],
+    "why_selected": null,
+    "learning_outcomes": [],
+    "try_next": null,
+    "context_note": null,
+    "ratings": null,
+    "score": null,
+    "judgment_basis": null,
+    "proposed_by": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "rejection_reason": null
+  },
+  "verification": {
+    "origin_confirmed": true,
+    "identity_status": "unverified",
+    "verified_at": "2026-10-20T01:54:46Z",
+    "verification_method": "origin instance REST API (/api/v1/videos/{uuid}, isLocal and channel host match)",
+    "rights_status": "unknown",
+    "captions_verified": false,
+    "caption_languages": [],
+    "last_checked_at": "2026-10-20T02:08:57Z",
+    "identity_evidence": null,
+    "publisher": null
+  },
+  "distribution": {
+    "mode": "link-only",
+    "featured": false,
+    "mirroring_authorized": false
+  },
+  "audit": [
+    {
+      "at": "2026-10-20T01:52:38Z",
+      "from": null,
+      "to": "discovered",
+      "by": "discover.mjs",
+      "note": "Sepia query \"AI agents\""
+    },
+    {
+      "at": "2026-10-20T01:54:47Z",
+      "from": "discovered",
+      "to": "verified",
+      "by": "verify.mjs",
+      "note": "origin confirmed"
+    }
+  ]
+}
