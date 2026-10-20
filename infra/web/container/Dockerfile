@@ -8,6 +8,7 @@ WORKDIR /src
 # imports from apps/web/node_modules); only packages/match installs its own.
 COPY packages packages
 COPY apps/web apps/web
+COPY apps/mobile/brand.json apps/mobile/brand.json
 RUN cd packages/match && npm ci --ignore-scripts
 RUN cd apps/web && npm ci --ignore-scripts && npm test && npm run build
 
