@@ -12,7 +12,7 @@ import { generateIdentity, importIdentity, nip07Support, useExtension } from "..
 import { loadPsi, psiStatus } from "../lib/match/psi.ts";
 import { errorText } from "../lib/match/service.ts";
 import { DEMO_NAME } from "../lib/match/demo.ts";
-import { MAX_RELAYS, parseRelayUrl } from "../lib/settings.ts";
+import { MAX_RELAYS, SUGGESTED_RELAYS, parseRelayUrl } from "../lib/settings.ts";
 import { splitList } from "../lib/sheet.ts";
 import { h } from "./dom.ts";
 import { icon } from "./icons.ts";
@@ -223,8 +223,32 @@ function relaysPanel(app: App): HTMLElement {
           }),
         )
       : h("p", { class: "note" }, "No relays yet. For local testing run ", h("code", null, "npm run dev-relay"), " and add ws://127.0.0.1:7777. Don't test against public relays."),
+    suggestedRelays(app, relays),
     h("form", { class: "row", onsubmit: add }, h("label", { for: "relay-input", class: "muted small", style: { flex: "1 0 100%" } }, "Add a relay"), input, h("button", { class: "btn sm", type: "submit" }, "Add")),
     s.ui.relayError ? h("p", { class: "err", role: "alert" }, s.ui.relayError) : null,
+  );
+}
+
+function suggestedRelays(app: App, relays: readonly string[]): HTMLElement | null {
+  const left = SUGGESTED_RELAYS.filter((r) => !relays.includes(r.url));
+  if (!left.length) return null;
+  const full = relays.length >= MAX_RELAYS;
+  return h(
+    "div",
+    { class: "suggested-relays" },
+    h("p", { class: "muted small" }, "Suggested relays"),
+    h(
+      "ul",
+      { class: "list" },
+      left.map((r) =>
+        h(
+          "li",
+          null,
+          h("div", null, h("span", { class: "mono small" }, r.url), h("div", { class: "muted small" }, r.note)),
+          h("button", { class: "btn sm", "aria-label": `Add ${r.url}`, disabled: full, onclick: () => app.setRelays([...relays, r.url]) }, "Add"),
+        ),
+      ),
+    ),
   );
 }
 

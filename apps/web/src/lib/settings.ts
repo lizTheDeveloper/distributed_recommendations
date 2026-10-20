@@ -58,6 +58,18 @@ export type FeedView = "reels" | "grid";
 export const MAX_RELAYS = 6;
 
 /**
+ * Relays offered as one-tap additions under Matches, Relays. None is on by default:
+ * the viewer picks. The first is the one this deployment runs (infra/relay); the rest
+ * are public strfry relays whose NIP-11 limits fit gift wraps (max message 128 KiB+).
+ */
+export const SUGGESTED_RELAYS: readonly { url: string; note: string }[] = [
+  { url: "wss://relay.multiversegames.ai", note: "ours: no IP logs, gift wraps deleted at expiry" },
+  { url: "wss://relay.damus.io", note: "public" },
+  { url: "wss://nos.lol", note: "public" },
+  { url: "wss://relay.primal.net", note: "public" },
+];
+
+/**
  * A relay URL: `wss://` anywhere, or plain `ws://` only on this machine (the local
  * dev relay). Returns the normalized URL or null.
  */

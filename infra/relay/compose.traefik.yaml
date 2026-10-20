@@ -1,0 +1,45 @@
+# Override for a host that already runs Traefik on ports 80/443 (the Multiverse Games box).
+# Traefik terminates TLS and proxies straight to strfry; Caddy is not started.
+#
+#   docker compose -f compose.yaml -f compose.traefik.yaml up -d
+#
+# Needs Traefik v3.1+ (router-level observability), an external Docker network that
+# Traefik watches (TRAEFIK_NETWORK, default `coolify`) and a certificate resolver
+# (TRAEFIK_CERTRESOLVER, default `letsencrypt`).
+#
+# Logs: the router turns Traefik's access log off, because WebSocket connections are
+# long and would otherwise pass a minDuration filter with the client IP in them.
+# Traefik always overwrites X-Real-Ip with the connecting address (unless the
+# entrypoint trusts forwarded headers), so strfry's per-IP rate limit still sees
+# the real client.
+
+services:
+  caddy:
+    profiles: ["caddy"]
+
+  strfry:
+    networks:
+      - relay
+      - traefik
+    labels:
+      - traefik.enable=true
+      - traefik.docker.network=${TRAEFIK_NETWORK:-coolify}
+      - traefik.http.routers.app-relay.rule=Host(`${RELAY_DOMAIN:?set RELAY_DOMAIN in .env}`)
+      - traefik.http.routers.app-relay.entrypoints=https
+      - traefik.http.routers.app-relay.tls.certresolver=${TRAEFIK_CERTRESOLVER:-letsencrypt}
+      - traefik.http.routers.app-relay.observability.accessLogs=false
+      - traefik.http.routers.app-relay.middlewares=app-relay-headers
+      - traefik.http.middlewares.app-relay-headers.headers.stsSeconds=31536000
+      - traefik.http.middlewares.app-relay-headers.headers.contentTypeNosniff=true
+      - traefik.http.middlewares.app-relay-headers.headers.referrerPolicy=no-referrer
+      - traefik.http.routers.app-relay-http.rule=Host(`${RELAY_DOMAIN}`)
+      - traefik.http.routers.app-relay-http.entrypoints=http
+      - traefik.http.routers.app-relay-http.observability.accessLogs=false
+      - traefik.http.routers.app-relay-http.middlewares=app-relay-https
+      - traefik.http.middlewares.app-relay-https.redirectscheme.scheme=https
+      - traefik.http.services.app-relay.loadbalancer.server.port=7777
+
+networks:
+  traefik:
+    name: ${TRAEFIK_NETWORK:-coolify}
+    external: true

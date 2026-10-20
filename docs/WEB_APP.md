@@ -242,7 +242,7 @@ The live build self-hosts its fonts (`public/fonts/`, OFL 1.1; Latin and Latin-e
 
 ### Relays
 
-- Settings → `settings.relays` (localStorage; they are configuration). **None by default**, so nothing is sent until the viewer adds one. `wss://` anywhere; plain `ws://` only for localhost / 127.0.0.1. Up to 6.
+- Settings → `settings.relays` (localStorage; they are configuration). **None by default**, so nothing is sent until the viewer adds one. Matches, Relays offers one-tap suggestions (`SUGGESTED_RELAYS` in `src/lib/settings.ts`): this deployment's relay, wss://relay.multiversegames.ai, and three public strfry relays. `wss://` anywhere; plain `ws://` only for localhost / 127.0.0.1. Up to 6.
 - `WsRelay` (`src/lib/match/wsRelay.ts`) implements match's `RelayLike`: NIP-01 `EVENT` (waits for `OK`), `REQ` until `EOSE` then `CLOSE`, merge and de-duplicate across relays, re-check the filter locally, ignore malformed events and anything over 64 KiB, refuse to send events over 64 KiB, per-operation timeouts. NIP-42: only when a relay answers `auth-required:` (in `OK` or `CLOSED`) does it sign a kind-22242 event for that relay's challenge with the identity key and retry once. Authenticating identifies you to that relay, so it never happens unasked.
 - `npm run dev-relay` (`scripts/dev-relay.mjs`, `ws` 8.21.3): an in-memory relay on 127.0.0.1:7777 for development. It verifies signatures, refuses events over 65,536 bytes, refuses and hides NIP-40-expired events (and purges them each minute), supports live subscriptions, and with `--auth` requires NIP-42 before serving REQs. Never test against public relays.
 - The app checks relays when Matches opens, when the tab becomes visible, every minute while visible, and on "Check for messages".

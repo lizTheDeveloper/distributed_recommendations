@@ -1,7 +1,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { DURATION_CHOICES, closedSheet, durationChoice, sheetLayout, sheetReduce, splitList, trapFocus } from "../src/lib/sheet.ts";
-import { defaultSettings, loadSettings, parseRelayUrl } from "../src/lib/settings.ts";
+import { MAX_RELAYS, SUGGESTED_RELAYS, defaultSettings, loadSettings, parseRelayUrl } from "../src/lib/settings.ts";
 import { DISCOVERY_RECIPE, editRecipe, filtersText, recipePillText } from "../src/lib/recipes.ts";
 import { DEFAULT_RECIPE } from "../src/lib/core.ts";
 
@@ -74,4 +74,10 @@ test("settings: Reels by default, view choice and relays persist; relays validat
 test("recipe pill: short name and explore share", () => {
   assert.equal(recipePillText(DEFAULT_RECIPE), `${DEFAULT_RECIPE.name} · 5% new`);
   assert.match(recipePillText(DISCOVERY_RECIPE), /^Discovery: taste lists \+ ne… · 10% new$/);
+});
+
+test("suggested relays are valid wss:// URLs, unique, and within the relay cap", () => {
+  assert.ok(SUGGESTED_RELAYS.length <= MAX_RELAYS);
+  assert.equal(new Set(SUGGESTED_RELAYS.map((r) => r.url)).size, SUGGESTED_RELAYS.length);
+  for (const r of SUGGESTED_RELAYS) assert.equal(parseRelayUrl(r.url), r.url, r.url);
 });
